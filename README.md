@@ -38,7 +38,7 @@ Dashboards:
 
 Serendipity is a [progressive web application](https://developers.google.com/web/progressive-web-apps/) (PWA) with a RESTful API that can be hosted on premise or in the cloud.
 
-You can customise and extend Serendipity using Angular and the [plugin](docs/developer.md) framework.
+You can customise and extend Serendipity using Angular, Angular libraries and Serendipity's [plugin](docs/developer.md) framework.
 
 ### Quick Links
 
