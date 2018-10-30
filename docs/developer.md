@@ -137,14 +137,17 @@ git push origin <tag>
 
 ## Angular Resources
 
-* GitHub: [Angular, one framework for Mobile & Desktop](https://github.com/angular/angular)
 * Angular.io: [Quick Start Guide](https://angular.io/guide/quickstart)
 * Angular.io: [Style Guide](https://angular.io/guide/styleguide)
+* GitHub: [Angular, one framework for Mobile & Desktop](https://github.com/angular/angular)
 * GitHub: [A curated list of awesome Angular resources](https://github.com/gdi2290/awesome-angular)
 
 ## Angular CLI Resources
 
 * GitHub: [Library support in the Angular CLI](https://github.com/angular/angular-cli/wiki/stories-create-library)
+* Medium: [6 Best Practices & Pro Tips when using Angular CLI](https://medium.com/@tomastrajan/6-best-practices-pro-tips-for-angular-cli-better-developer-experience-7b328bc9db81)
+* Medium: [Compiling css in new Angular 6 libraries](https://medium.com/@Dor3nz/compiling-css-in-new-angular-6-libraries-26f80274d8e5)
+* GitHub: [Project Assets](https://github.com/angular/angular-cli/wiki/stories-asset-configuration)
 
 ## Material Design Resources
 
@@ -158,8 +161,7 @@ git push origin <tag>
 
 ## Additional Resources
 
-* GitHub: [Project Assets](https://github.com/angular/angular-cli/wiki/stories-asset-configuration)
-* Medium: [6 Best Practices & Pro Tips when using Angular CLI](https://medium.com/@tomastrajan/6-best-practices-pro-tips-for-angular-cli-better-developer-experience-7b328bc9db81)
+* GitHub: [ngx-charts](https://github.com/swimlane/ngx-charts)
 
 ## Sample Data
 
