@@ -141,6 +141,7 @@ git push origin <tag>
 * Angular.io: [Style Guide](https://angular.io/guide/styleguide)
 * GitHub: [Angular, one framework for Mobile & Desktop](https://github.com/angular/angular)
 * GitHub: [A curated list of awesome Angular resources](https://github.com/gdi2290/awesome-angular)
+* GitHub: [Catalog of Angular 2+ Components & Libraries](https://github.com/brillout/awesome-angular-components)
 
 ## Angular CLI Resources
 
@@ -159,7 +160,7 @@ git push origin <tag>
 
 * Medium: [The complete guide to Angular Material Themes](https://medium.com/@tomastrajan/the-complete-guide-to-angular-material-themes-4d165a9d24d1)
 
-## Additional Resources
+## Angular Component Libraries
 
 * GitHub: [ngx-charts](https://github.com/swimlane/ngx-charts)
 
