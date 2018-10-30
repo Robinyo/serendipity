@@ -1,0 +1,270 @@
+<!--
+<mat-toolbar class="header-toolbar">
+  <h2 style="margin: 0 auto;">{{ 'CONTACTS_HEADER' | translate }}</h2>
+</mat-toolbar>
+-->
+
+<h2 class="lib-component-title"> {{ 'CONTACTS_HEADER' | translate }} </h2>
+
+<div #contentContainer class="content-container" (window:resize)="onResize($event)" [style.height.px]="containerHeight">
+
+  <ng-container *ngIf="!items; then skeleton"> </ng-container>
+
+  <div #tableContainer class="table-container" [style.height.px]="containerHeight">
+
+    <table mat-table [hidden]="!items" [dataSource]="dataSource" matSort matSortStart="desc" class="mat-elevation-z8" [style.width.px]="containerWidth">
+
+      <ng-container *ngFor="let column of columnDefs" [matColumnDef]="column.name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ column.displayName }}
+        </th>
+        <td mat-cell *matCellDef="let row">
+
+          <!--
+          <span [class]="column.class">
+            {{ getProperty(row, column.name) }}
+          </span>
+          -->
+
+          <ng-container *ngIf="column.class === 'anchor'">
+            <a [class]="column.class">
+              {{ getProperty(row, column.name) }}
+            </a>
+          </ng-container>
+
+          <ng-container *ngIf="column.class !== 'anchor'">
+            <a >
+              {{ getProperty(row, column.name) }}
+            </a>
+          </ng-container>
+
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef class="header-cell-id">
+
+          <button mat-icon-button (click)="refresh()">
+            <mat-icon matListIcon class="header-icon">autorenew</mat-icon>
+          </button>
+
+        </th>
+        <td mat-cell *matCellDef="let element"> </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="footer">
+        <td mat-footer-cell *matFooterCellDef colspan="5">
+
+          <div class="footer-container">
+
+            <button id="All" mat-button class="footer-button" (click)="onClickFilterButton('All')"
+                    [class.active]="selectedFooterItemId === 'All'">
+              All
+            </button>
+
+            <button mat-button disabled class="footer-button">
+              |
+            </button>
+
+            <div *ngFor="let character of alphabet" >
+              <button id="{{ character }}" mat-button class="footer-button" (click)="onClickFilterButton(character)"
+                      [class.active]="selectedFooterItemId === character">
+                {{ character }}
+              </button>
+            </div>
+
+          </div>
+
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr mat-footer-row *matFooterRowDef="['footer']; sticky: true"></tr>
+
+    </table>
+
+  </div>
+
+
+
+  <!-- Skeleton template -->
+
+  <ng-template #skeleton>
+
+    <div class="spinner-container" [style.height.px]="containerHeight">
+      <mat-spinner color="accent"></mat-spinner>
+    </div>
+
+  </ng-template>
+
+  <!--
+  <ng-template #skeleton>
+
+    <mat-list>
+      <mat-list-item *ngFor="let fake of fakeItems">
+        Salt & Pepper
+      </mat-list-item>
+    </mat-list>
+
+  </ng-template>
+  -->
+
+</div> <!-- contentContainer -->
+
+
+
+
+
+<!--
+
+  <ng-template #notAnAnchor let-row="row" let-name="name">
+
+    <span>
+      {{ getProperty(row, name) }}
+    </span>
+
+  </ng-template>
+
+          <ng-container *ngIf="column.class === 'anchor'; then notAnAnchor" *ngTemplateOutlet="notAnAnchor;context:{row: row, name: column.name}">
+            <a [class]="column.class">
+              {{ getProperty(row, column.name) }}
+            </a>
+          </ng-container>
+
+
+<button id="All" mat-button class="footer-button" (click)="onClickFilterButton('All')"
+        [ngClass]="{'active': selectedItemId === 'All'}">
+  All
+</button>
+
+<div *ngFor="let character of alphabet" >
+  <button id="{{ character }}" mat-button class="footer-button" (click)="onClickFilterButton(character)"
+          [ngClass]="{'active': selectedItemId === character}">
+    {{ character }}
+  </button>
+</div>
+-->
+
+<!--
+<h2 style="text-align: center; margin-top: 16px; margin-bottom: 16px"> {{ 'CONTACTS_HEADER' | translate }} </h2>
+
+<mat-toolbar-row>
+  <span class="header-title">{{ 'CONTACTS_HEADER' | translate }}</span>
+</mat-toolbar-row>
+-->
+
+<!-- <table #table mat-table [style.width.px]="containerWidth" [dataSource]="items" class="mat-elevation-z8"> -->
+
+<!--
+<ng-container matColumnDef="displayName">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </th>
+  <td mat-cell *matCellDef="let element">
+    <span class="anchor">
+      {{element.displayName}}
+    </span>
+  </td>
+  <td mat-footer-cell *matFooterCellDef> </td>
+</ng-container>
+
+<ng-container matColumnDef="email">
+  <th mat-header-cell *matHeaderCellDef> Email </th>
+  <td mat-cell *matCellDef="let element">
+    {{element.email}}
+  </td>
+  <td mat-footer-cell *matFooterCellDef> </td>
+</ng-container>
+
+<ng-container matColumnDef="organisation.name">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </th>
+  <td mat-cell *matCellDef="let element">
+    <span class="anchor">
+      {{element.organisation.name}}
+    </span>
+  </td>
+  <td mat-footer-cell *matFooterCellDef> </td>
+</ng-container>
+
+<ng-container matColumnDef="organisation.phoneNumber">
+  <th mat-header-cell *matHeaderCellDef> Business Phone </th>
+  <td mat-cell *matCellDef="let element">
+    {{element.organisation.phoneNumber}}
+  </td>
+  <td mat-footer-cell *matFooterCellDef> </td>
+</ng-container>
+-->
+
+
+<!--
+
+<h2 style="text-align: center; margin-top: 16px; margin-bottom: 16px"> {{ 'CONTACTS_HEADER' | translate }} </h2>
+
+{{containerWidth}} - {{containerHeight}}
+
+[style.height.px]="containerHeight"
+
+<h2 style="text-align: center; margin-top: 16px; margin-bottom: 16px"> {{containerWidth}} - {{containerHeight}} </h2>
+
+<div #contentContainer class="content-container">
+
+  <div #tableContainer class="table-container" (window:resize)="onResize($event)">
+
+    <table #table mat-table [style.width.px]="containerWidth"
+           [dataSource]="items" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="fullName">
+        <th mat-header-cell *matHeaderCellDef> Full Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="organisationName">
+        <th mat-header-cell *matHeaderCellDef> Company Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.organisationName}} </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="organisationPhone">
+        <th mat-header-cell *matHeaderCellDef> Company Phone </th>
+        <td mat-cell *matCellDef="let element"> {{element.organisationPhone}} </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef class="header-cell-id">
+          <mat-icon matListIcon class="header-icon">autorenew</mat-icon>
+        </th>
+        <td mat-cell *matCellDef="let element"> </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="footer">
+        <td mat-footer-cell *matFooterCellDef colspan="5">
+          <div class="filter-container">
+            <a class="filter" *ngFor="let character of alphabet">
+              {{ character }}
+            </a>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr mat-footer-row *matFooterRowDef="['footer']; sticky: true"></tr>
+
+    </table>
+
+  </div>
+
+</div>
+
+-->

@@ -1,0 +1,18 @@
+// https://github.com/angular/material2/blob/8050f633b56b6c048fc72dad2ab79304afdfad19/src/lib/core/style/_variables.scss
+
+$mat-xsmall: 'max-width: 599px';
+$mat-small: 'max-width: 959px';
+
+/*
+
+// https://github.com/angular/material2/blob/877de5691b8dd755af4a2f77b4cf57f2d374e107/src/lib/toolbar/toolbar.scss
+
+$mat-toolbar-height-desktop: 64px !default;
+$mat-toolbar-height-mobile: 56px !default;
+$mat-toolbar-row-padding: 16px !default;
+
+@media ($mat-xsmall) {
+  @include mat-toolbar-height($mat-toolbar-height-mobile);
+}
+
+*/

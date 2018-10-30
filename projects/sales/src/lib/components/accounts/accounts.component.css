@@ -1,0 +1,25 @@
+/*
+
+ Global styles are in the App's theme e.g., black-deep-orange.theme.scss
+
+ For example:
+
+.mat-drawer-container {
+  top: $mat-toolbar-height-desktop;
+
+  @media ($mat-xsmall) {
+    top: $mat-toolbar-height-mobile;
+  }
+}
+
+*/
+
+.table-container {
+  /* margin-top: 64px; */
+  height: 400px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}

@@ -3,6 +3,7 @@
 # compiled output
 /dist
 /tmp
+/temp
 /out-tsc
 
 # dependencies
@@ -37,3 +38,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+/requirements
+/secrets
+
+TODO.txt

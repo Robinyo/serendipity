@@ -1,0 +1,14 @@
+{
+  "APP_TOOLBAR_TITLE": "Serendipity CRM",
+
+  "MY_WORK": "My Work",
+  "CUSTOMERS": "Customers",
+
+  "ACCOUNTS_HEADER": "Accounts",
+  "ACTIVITIES_HEADER": "Activities",
+  "CONTACTS_HEADER": "Contacts",
+  "DASHBOARDS_HEADER": "Dashboards",
+  "LEADS_HEADER": "Leads",
+  "OPPORTUNITES_HEADER": "Opportunities"
+
+}

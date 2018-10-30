@@ -1,0 +1,51 @@
+<!--
+
+<mat-toolbar color="primary" class="app-header-fixed">
+<mat-toolbar color="primary">
+
+-->
+<mat-toolbar color="primary" class="app-toolbar-fixed">
+
+  <mat-toolbar-row>
+
+    <button mat-icon-button (click)="toggleSidenav.emit()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span class="app-toolbar-title"> {{ 'APP_TOOLBAR_TITLE' | translate }} </span>
+
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+
+      <ul fxLayout fxLayoutGap="20px" class="app-navigation-items">
+        <li>
+          <a>
+            <mat-icon class="app-toolbar-icon">settings</mat-icon>
+          </a>
+        </li>
+        <li>
+          <a >
+            <mat-icon class="app-toolbar-icon">help_outline</mat-icon>
+          </a>
+        </li>
+        <li>
+          <a>
+            <mat-icon class="app-toolbar-icon">person_outline</mat-icon>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+  </mat-toolbar-row>
+
+</mat-toolbar>
+
+<!--
+
+<mat-toolbar color="primary" class="app-header-fixed">
+
+    <button mat-icon-button class="sidenav-toggle" (click)="toggleSidenav.emit()">
+
+    <span class="toolbar-title">{{ 'APP_TOOLBAR_TITLE' | translate }}</span>
+
+-->

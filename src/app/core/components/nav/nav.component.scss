@@ -1,0 +1,63 @@
+.mat-sidenav-container {
+  height: 100%;
+}
+
+/*
+
+.sidenav-container {
+  height: 100%;
+}
+*/
+
+// https://github.com/angular/material2/blob/master/src/lib/core/style/_variables.scss
+
+// $sidenav-width: 240px;
+$sidenav-width: 320px;
+
+.mat-sidenav {
+  width: $sidenav-width;
+}
+
+.toolbar-title {
+  margin: 0 16px 0 16px;
+}
+
+.mat-subheader {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.app-nav-list-icon {
+  margin: 0 12px 0 12px;
+}
+
+mat-sidenav-content {
+  // overflow: hidden;
+  // top: 64px;  if fixed header
+}
+
+/*
+
+mat-sidenav-content {
+  overflow: hidden;
+}
+
+*/
+
+/*
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+*/

@@ -1,27 +1,45 @@
 # Serendipity
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
+Serendipity is an open source customer relationship management (CRM) solution.
 
-## Development server
+You can use it to transform your organisation by connecting your customers, products, people and operations.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Screen Shots
 
-## Code scaffolding
+Toolbar:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/toolbar.png">
+</p>
 
-## Build
+Sidenav:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/sidenav.png">
+</p>
 
-## Running unit tests
+Contacts - Desktop:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/contacts-web.png">
+</p>
 
-## Running end-to-end tests
+Contacts - Mobile:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/contacts-handset.png">
+</p>
 
-## Further help
+Dashboards:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/dashboards.png">
+</p>
+
+Serendipity is a [progressive web application](https://developers.google.com/web/progressive-web-apps/) (PWA) with a RESTful API that can be hosted on premise or in the cloud.
+
+You can customise and extend Serendipity using Angular and the [plugin](docs/developer.md) framework.
+
+### Quick Links
+
+[Documentation, demos, and guides](docs/README.md)
