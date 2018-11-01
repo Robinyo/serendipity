@@ -140,11 +140,18 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
     });
   }
 
+  // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
+
   protected subscribe() {
 
     this.logger.info('ContactsPage: subscribe()');
 
     this.subscription = this.contactsService.list().subscribe(data => {
+
+      data.map(a => {
+        a.id = btoa(a.id);
+        return { ...a };
+       });
 
       this.items = data;
       this.dataSource.data = this.items;

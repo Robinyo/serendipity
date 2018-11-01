@@ -106,9 +106,9 @@ export class InMemoryDataService implements InMemoryDbService {
       {"id":"10","displayName":"Cameron, Senator the Hon Douglas","title":"Senator the Hon","givenName":"Douglas","middleName":"","familyName":"Cameron","honorific":"","salutation":"Senator","preferredName":"Doug","initials":"D. N.","gender":"MALE","email":"douglas.cameron@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"ALP","phoneNumber":"(02) 4751 4288"}}
     ];
     
-    */
-  
     return {contacts};
+    
+    */
     
   }
   

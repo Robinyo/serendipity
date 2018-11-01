@@ -7,8 +7,11 @@ import { StaticInjectorService } from './services/injector/static-injector.servi
 
 import { AngularMaterialModule } from './shared/angular-material.module';
 
+import { LibRoutingModule } from './lib-routing.module';
+
 import { AccountsComponent } from './components/accounts/accounts.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
+import { IndividualComponent } from './components/individual/individual.component';
 
 import { LoggerService } from './services/logger/logger.service';
 import { ConsoleLoggerService } from './services/logger/console-logger.service';
@@ -21,18 +24,22 @@ import { InMemoryDataService } from './services/mocks/api/in-memory-data.service
     AngularMaterialModule,
     CommonModule,
     HttpClientInMemoryWebApiModule.forFeature(InMemoryDataService, { passThruUnknownUrl: true, delay: 1500 }),
-    TranslateModule.forChild()
+    TranslateModule.forChild(),
+
+    LibRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
   declarations: [
     AccountsComponent,
-    ContactsComponent
+    ContactsComponent,
+    IndividualComponent
   ],
   providers: [
     { provide: LoggerService, useClass: ConsoleLoggerService }
   ],
   exports: [
     AccountsComponent,
-    ContactsComponent
+    ContactsComponent,
+    IndividualComponent
   ]
 })
 export class SalesModule {

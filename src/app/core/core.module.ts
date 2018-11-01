@@ -36,7 +36,6 @@ import { SalesModule } from 'sales';
   imports: [
     // CommonModule,
     AngularMaterialModule,
-    AppRoutingModule,
     CommonModule,
     FlexLayoutModule,
     HttpClientModule,
@@ -52,7 +51,9 @@ import { SalesModule } from 'sales';
       }
     }),
 
-    SalesModule
+    SalesModule,
+
+    AppRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
   declarations: [ PlaceholderComponent, NavComponent, ToolbarComponent ],
   providers: [

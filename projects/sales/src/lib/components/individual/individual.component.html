@@ -1,0 +1,58 @@
+<h2 class="lib-component-title"> {{ 'INDIVIDUAL_HEADER' | translate }} </h2>
+
+<div #contentContainer class="content-container">
+
+  <ng-container *ngIf="!item; then skeleton"> </ng-container>
+
+
+
+  <!-- Skeleton template -->
+
+  <ng-template #skeleton>
+    <div class="spinner-container" [style.height.px]="containerHeight">
+      <mat-spinner color="accent"></mat-spinner>
+    </div>
+  </ng-template>
+
+</div>
+
+<!--
+
+  <div #tableContainer class="table-container" [style.height.px]="containerHeight">
+
+    <mat-grid-list [hidden]="!item" cols="2" rowHeight="350px">
+
+    </mat-grid-list>
+
+  </div>
+
+<h2 class="lib-component-title"> {{ 'INDIVIDUAL_HEADER' | translate }}: {{item.title}} {{item.givenName}} {{item.familyName}} </h2>
+
+<div class="grid-container">
+
+  <h2 class="lib-component-title"> Dashboard </h2>
+
+  <mat-grid-list cols="2" rowHeight="350px">
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{card.title}}
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div>Card Content Here</div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+-->

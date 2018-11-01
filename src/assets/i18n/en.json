@@ -9,6 +9,9 @@
   "CONTACTS_HEADER": "Contacts",
   "DASHBOARDS_HEADER": "Dashboards",
   "LEADS_HEADER": "Leads",
-  "OPPORTUNITES_HEADER": "Opportunities"
+  "OPPORTUNITES_HEADER": "Opportunities",
+
+  "INDIVIDUAL_HEADER": "Contact",
+  "ORGANISATION_HEADER": "Account"
 
 }

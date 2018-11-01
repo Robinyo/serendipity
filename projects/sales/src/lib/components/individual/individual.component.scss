@@ -1,0 +1,68 @@
+@import "../../themes/variables";
+
+// Note: Define all color and typography styles in a "theme file" for the component / plugin
+
+// top, right, bottom, and left
+
+.content-container {
+  height: 100%;
+}
+
+.table-container {
+  margin-left: 32px;
+  margin-right: 32px;
+  overflow: auto;
+
+  @media ($mat-xsmall) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.grid-container {
+  margin: 20px;
+}
+
+.mat-card-header {
+  background: lightgray;
+  padding-top: 8px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*
+
+.mat-card-header-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+*/
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+//
+
+.dashboard-card {
+  position: absolute;
+  padding: 0;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.dashboard-card-content {
+  padding: 16px;
+  text-align: center;
+}

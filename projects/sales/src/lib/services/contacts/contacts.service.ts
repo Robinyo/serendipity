@@ -10,7 +10,7 @@ import { Contact } from '../../shared/models';
 })
 export class ContactsService {
 
-  private contactsUrl = 'api/contacts';
+  private contactsUrl = 'api/contacts/';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -18,7 +18,13 @@ export class ContactsService {
     return this.httpClient.get<Contact[]>(this.contactsUrl);
   }
 
+  public get(id: string): Observable<Contact>   {
+    return this.httpClient.get<Contact>(this.contactsUrl + id);
+  }
+
 }
+
+// https://firebase.google.com/docs/firestore/reference/rest/
 
 // https://www.csvjson.com/csv2json
 
