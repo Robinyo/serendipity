@@ -1,13 +1,22 @@
-import { InMemoryDbService } from 'angular-in-memory-web-api';
+// https://github.com/angular/in-memory-web-api/blob/master/src/app/hero-in-mem-data.service.ts
+// https://github.com/angular/in-memory-web-api/blob/master/src/app/hero-in-mem-data-override.service.ts
 
+import { Injectable } from '@angular/core';
+
+import { InMemoryDbService, RequestInfo } from 'angular-in-memory-web-api';
+
+// tslint:disable:no-unused-variable
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
+// tslint:enable:no-unused-variable
+
+@Injectable()
 export class InMemoryDataService implements InMemoryDbService {
 
-  createDb() {
+  createDb(reqInfo?: RequestInfo) {
 
     /* tslint:disable */
-    
-    // /*
-    
+
     const contacts = [
       {"id":"1","displayName":"Abetz, Senator the Hon Eric","title":"Senator the Hon","givenName":"Eric","middleName":"","familyName":"Abetz","honorific":"","salutation":"Senator","preferredName":"Eric","initials":"E.","gender":"MALE","email":"eric.abetz@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"LP","phoneNumber":"(03) 6224 3707"}},
       {"id":"2","displayName":"Anning, Senator Fraser","title":"Senator","givenName":"Fraser","middleName":"","familyName":"Anning","honorific":"","salutation":"Senator","preferredName":"Fraser","initials":"F.","gender":"MALE","email":"fraser.anning@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"KAP","phoneNumber":"(07) 3221 9099"}},
@@ -86,33 +95,61 @@ export class InMemoryDataService implements InMemoryDbService {
       {"id":"75","displayName":"Williams, Senator John","title":"Senator","givenName":"John","middleName":"","familyName":"Williams","honorific":"","salutation":"Senator","preferredName":"John","initials":"J. R.","gender":"MALE","email":"john.williams@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"Nats","phoneNumber":"(02) 6721 4500"}},
       {"id":"76","displayName":"Wong, Senator the Hon Penny","title":"Senator the Hon","givenName":"Penny","middleName":"","familyName":"Wong","honorific":"","salutation":"Senator","preferredName":"Penny","initials":"P.","gender":"FEMALE","email":"penny.wong@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"ALP","phoneNumber":"(08) 8212 8272"}}
     ];
+  
+    // default returnType
+    let returnType  = 'object';
+    // let returnType  = 'observable';
+    // let returnType  = 'promise';
+  
+    // demonstrate POST commands/resetDb
+    // this example clears the collections if the request body tells it to do so
+    if (reqInfo) {
+      const body = reqInfo.utils.getJsonBody(reqInfo.req) || {};
+      if (body.clear === true) {
+        contacts.length = 0;
+        // nobodies.length = 0;
+        // stringers.length = 0;
+      }
+    
+      // 'returnType` can be 'object' | 'observable' | 'promise'
+      returnType = body.returnType || 'object';
+    }
+  
+    const db = { contacts };
+  
+    switch (returnType) {
+      
+      case ('observable'):
+        return of(db).pipe(delay(10));
+      
+        case ('promise'):
+        return new Promise(resolve => {
+          setTimeout(() => resolve(db), 10);
+        });
+      
+        default:
+        return db;
+    }
 
-    return {contacts};
-    
-    // */
-    
-    /*
-    
-    const contacts = [
-      {"id":"1","displayName":"Abetz, Senator the Hon Eric","title":"Senator the Hon","givenName":"Eric","middleName":"","familyName":"Abetz","honorific":"","salutation":"Senator","preferredName":"Eric","initials":"E.","gender":"MALE","email":"eric.abetz@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"LP","phoneNumber":"(03) 6224 3707"}},
-      {"id":"2","displayName":"Anning, Senator Fraser","title":"Senator","givenName":"Fraser","middleName":"","familyName":"Anning","honorific":"","salutation":"Senator","preferredName":"Fraser","initials":"F.","gender":"MALE","email":"fraser.anning@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"KAP","phoneNumber":"(07) 3221 9099"}},
-      {"id":"3","displayName":"Bernardi, Senator Cory","title":"Senator","givenName":"Cory","middleName":"","familyName":"Bernardi","honorific":"","salutation":"Senator","preferredName":"Cory","initials":"C.","gender":"MALE","email":"cory.bernardi@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"AC","phoneNumber":"(08) 8362 8600"}},
-      {"id":"4","displayName":"Bilyk, Senator Catryna","title":"Senator","givenName":"Catryna","middleName":"","familyName":"Bilyk","honorific":"","salutation":"Senator","preferredName":"Catryna","initials":"C. L.","gender":"FEMALE","email":"catryna.bilyk@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"ALP","phoneNumber":"(03) 6229 4444"}},
-      {"id":"5","displayName":"Birmingham, Senator the Hon Simon","title":"Senator the Hon","givenName":"Simon","middleName":"","familyName":"Birmingham","honorific":"","salutation":"Senator","preferredName":"Simon","initials":"S. J.","gender":"MALE","email":"simon.birmingham@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"LP","phoneNumber":"(08) 8354 1644"}},
-      {"id":"6","displayName":"Brockman, Senator Slade","title":"Senator","givenName":"Slade","middleName":"","familyName":"Brockman","honorific":"","salutation":"Senator","preferredName":"Slade","initials":"S.","gender":"MALE","email":"slade.brockman@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"LP","phoneNumber":"(08) 9414 7288"}},
-      {"id":"7","displayName":"Brown, Senator Carol","title":"Senator","givenName":"Carol","middleName":"","familyName":"Brown","honorific":"","salutation":"Senator","preferredName":"Carol","initials":"C. L.","gender":"FEMALE","email":"carol.brown@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"ALP","phoneNumber":"(03) 6231 0099"}},
-      {"id":"8","displayName":"Burston, Senator Brian","title":"Senator","givenName":"Brian","middleName":"","familyName":"Burston","honorific":"","salutation":"Senator","preferredName":"Brian","initials":"B.","gender":"MALE","email":"brian.burston@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"UAP","phoneNumber":"(02) 4959 1044"}},
-      {"id":"9","displayName":"Bushby, Senator David","title":"Senator","givenName":"David","middleName":"","familyName":"Bushby","honorific":"","salutation":"Senator","preferredName":"David","initials":"D. C","gender":"MALE","email":"david.bushby@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"LP","phoneNumber":"(03) 6331 8501"}},
-      {"id":"10","displayName":"Cameron, Senator the Hon Douglas","title":"Senator the Hon","givenName":"Douglas","middleName":"","familyName":"Cameron","honorific":"","salutation":"Senator","preferredName":"Doug","initials":"D. N.","gender":"MALE","email":"douglas.cameron@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"ALP","phoneNumber":"(02) 4751 4288"}}
-    ];
-    
-    return {contacts};
-    
-    */
-    
   }
   
 }
 
+/*
 
+const contacts = [
+  {"id":"1","displayName":"Abetz, Senator the Hon Eric","title":"Senator the Hon","givenName":"Eric","middleName":"","familyName":"Abetz","honorific":"","salutation":"Senator","preferredName":"Eric","initials":"E.","gender":"MALE","email":"eric.abetz@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"LP","phoneNumber":"(03) 6224 3707"}},
+  {"id":"2","displayName":"Anning, Senator Fraser","title":"Senator","givenName":"Fraser","middleName":"","familyName":"Anning","honorific":"","salutation":"Senator","preferredName":"Fraser","initials":"F.","gender":"MALE","email":"fraser.anning@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"KAP","phoneNumber":"(07) 3221 9099"}},
+  {"id":"3","displayName":"Bernardi, Senator Cory","title":"Senator","givenName":"Cory","middleName":"","familyName":"Bernardi","honorific":"","salutation":"Senator","preferredName":"Cory","initials":"C.","gender":"MALE","email":"cory.bernardi@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"AC","phoneNumber":"(08) 8362 8600"}},
+  {"id":"4","displayName":"Bilyk, Senator Catryna","title":"Senator","givenName":"Catryna","middleName":"","familyName":"Bilyk","honorific":"","salutation":"Senator","preferredName":"Catryna","initials":"C. L.","gender":"FEMALE","email":"catryna.bilyk@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"ALP","phoneNumber":"(03) 6229 4444"}},
+  {"id":"5","displayName":"Birmingham, Senator the Hon Simon","title":"Senator the Hon","givenName":"Simon","middleName":"","familyName":"Birmingham","honorific":"","salutation":"Senator","preferredName":"Simon","initials":"S. J.","gender":"MALE","email":"simon.birmingham@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"LP","phoneNumber":"(08) 8354 1644"}},
+  {"id":"6","displayName":"Brockman, Senator Slade","title":"Senator","givenName":"Slade","middleName":"","familyName":"Brockman","honorific":"","salutation":"Senator","preferredName":"Slade","initials":"S.","gender":"MALE","email":"slade.brockman@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"LP","phoneNumber":"(08) 9414 7288"}},
+  {"id":"7","displayName":"Brown, Senator Carol","title":"Senator","givenName":"Carol","middleName":"","familyName":"Brown","honorific":"","salutation":"Senator","preferredName":"Carol","initials":"C. L.","gender":"FEMALE","email":"carol.brown@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"ALP","phoneNumber":"(03) 6231 0099"}},
+  {"id":"8","displayName":"Burston, Senator Brian","title":"Senator","givenName":"Brian","middleName":"","familyName":"Burston","honorific":"","salutation":"Senator","preferredName":"Brian","initials":"B.","gender":"MALE","email":"brian.burston@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"UAP","phoneNumber":"(02) 4959 1044"}},
+  {"id":"9","displayName":"Bushby, Senator David","title":"Senator","givenName":"David","middleName":"","familyName":"Bushby","honorific":"","salutation":"Senator","preferredName":"David","initials":"D. C","gender":"MALE","email":"david.bushby@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"LP","phoneNumber":"(03) 6331 8501"}},
+  {"id":"10","displayName":"Cameron, Senator the Hon Douglas","title":"Senator the Hon","givenName":"Douglas","middleName":"","familyName":"Cameron","honorific":"","salutation":"Senator","preferredName":"Doug","initials":"D. N.","gender":"MALE","email":"douglas.cameron@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"ALP","phoneNumber":"(02) 4751 4288"}}
+];
 
+return {contacts};
+
+*/

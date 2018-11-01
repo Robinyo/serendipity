@@ -168,7 +168,19 @@ git push origin <tag>
 
 ## Angular Component Libraries
 
+* GitHub: [flex-layout](https://github.com/angular/flex-layout)
+* GitHub: [angular-split](https://github.com/bertrandg/angular-split/)
 * GitHub: [ngx-charts](https://github.com/swimlane/ngx-charts)
+
+## Angular i18N
+
+* GitHub: [ngx-translate](https://github.com/ngx-translate/core)
+
+## Additional Angular Component Libraries
+
+* GitHub: [Angular in-memory Web API](https://github.com/angular/in-memory-web-api)
+* GitHub: [json-server](https://github.com/typicode/json-server)
+* GitHub: [Hotel - A simple process manager for developers](https://github.com/typicode/hotel)
 
 ## Sample Data
 

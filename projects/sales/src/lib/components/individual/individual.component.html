@@ -4,24 +4,28 @@
 
   <ng-container *ngIf="!item; then skeleton"> </ng-container>
 
-  <div class="grid-container">
+  <ng-container *ngIf="item;">
 
-    <mat-grid-list cols="2" rowHeight="350px">
-      <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows">
-        <mat-card class="dashboard-card">
-          <mat-card-header>
-            <mat-card-title>
-              {{card.title}}
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="dashboard-card-content">
-            <div>Card Content Here</div>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
+    <div class="grid-container">
 
-  </div>
+      <mat-grid-list [hidden]="!item" cols="2" rowHeight="350px">
+        <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows">
+          <mat-card class="dashboard-card">
+            <mat-card-header>
+              <mat-card-title>
+                {{card.title}}
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="dashboard-card-content">
+              {{ item.title }} {{ item.givenName }} {{ item.familyName }}
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+    </div>
+
+  </ng-container>
 
   <!-- Skeleton template -->
 

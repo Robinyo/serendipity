@@ -35,10 +35,8 @@ export class IndividualComponent implements OnInit {
   private tableContainer: ElementRef;
 
   cards = [
-    { title: 'Contact Information', cols: 1, rows: 1 },
-    { title: 'Card 2', cols: 1, rows: 1 },
-    { title: 'Card 3', cols: 1, rows: 1 },
-    { title: 'Card 4', cols: 1, rows: 1 }
+    { title: 'Contact Information', cols: 2, rows: 1 },
+    { title: 'Personal Details', cols: 2, rows: 1 }
   ];
 
   private toolbarHeight = TOOLBAR_HEIGHT_DESKTOP;
