@@ -8,7 +8,14 @@
   height: 100%;
 }
 
-.table-container {
+.grid-container {
+  margin: 32px;
+
+  @media ($mat-xsmall) {
+    margin: 0;
+  }
+
+  /*
   margin-left: 32px;
   margin-right: 32px;
   overflow: auto;
@@ -17,10 +24,7 @@
     margin-left: 0;
     margin-right: 0;
   }
-}
-
-.grid-container {
-  margin: 20px;
+  */
 }
 
 .mat-card-header {
