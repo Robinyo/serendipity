@@ -10,21 +10,11 @@
 
 .grid-container {
   margin: 32px;
+  // overflow: auto;
 
   @media ($mat-xsmall) {
     margin: 0;
   }
-
-  /*
-  margin-left: 32px;
-  margin-right: 32px;
-  overflow: auto;
-
-  @media ($mat-xsmall) {
-    margin-left: 0;
-    margin-right: 0;
-  }
-  */
 }
 
 .mat-card-header {
