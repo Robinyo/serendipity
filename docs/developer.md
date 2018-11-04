@@ -183,14 +183,10 @@ git push origin <tag>
 * GitHub: [Material Design for Angular](https://github.com/angular/material2)
 * GitHub: [Covalent - The Teradata UI Platform built on Angular Material](https://teradata.github.io/covalent/#/docs)
 
-## Additional Material Design Resources
-
-* Medium: [The complete guide to Angular Material Themes](https://medium.com/@tomastrajan/the-complete-guide-to-angular-material-themes-4d165a9d24d1)
-
 ## Angular Component Libraries
 
 * GitHub: [flex-layout](https://github.com/angular/flex-layout)
-* GitHub: [angular-split](https://github.com/bertrandg/angular-split/)
+* GitHub: [ng-dynamic-forms](https://github.com/udos86/ng-dynamic-forms)
 * GitHub: [ngx-charts](https://github.com/swimlane/ngx-charts)
 
 ## Angular i18N
@@ -202,6 +198,12 @@ git push origin <tag>
 * GitHub: [Angular in-memory Web API](https://github.com/angular/in-memory-web-api)
 * GitHub: [json-server](https://github.com/typicode/json-server)
 * GitHub: [Hotel - A simple process manager for developers](https://github.com/typicode/hotel)
+* GitHub: [angular-split](https://github.com/bertrandg/angular-split/)
+
+## CSS Grid Layout
+
+* CSS Tricks: [A Complete Guide to CSS Grid Layout](https://css-tricks.com/snippets/css/complete-guide-grid/)
+* Grid By Example: [CSS Grid Layout by Example](https://gridbyexample.com/learn/)
 
 ## Sample Data
 
