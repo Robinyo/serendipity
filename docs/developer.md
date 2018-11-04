@@ -186,8 +186,17 @@ git push origin <tag>
 ## Angular Component Libraries
 
 * GitHub: [flex-layout](https://github.com/angular/flex-layout)
-* GitHub: [ng-dynamic-forms](https://github.com/udos86/ng-dynamic-forms)
+
 * GitHub: [ngx-charts](https://github.com/swimlane/ngx-charts)
+
+## Angular Form Libraries
+
+* GitHub: [ng-dynamic-forms](https://github.com/udos86/ng-dynamic-forms)
+* GitHub: [ngx-formly](https://github.com/formly-js/ngx-formly)
+* GitHub: [angular-schema-form (AngularJS) - Generate forms from a JSON schema](https://github.com/json-schema-form/angular-schema-form)
+* GitHub: [ngx-schema-form - HTML form generation based on JSON Schema](https://github.com/guillotinaweb/ngx-schema-form)
+* GitHub: [angular2-json-schema-form - Angular 2 JSON Schema Form builder](https://github.com/dschnelldavis/angular2-json-schema-form)
+* form.io: [form.io - A Form and Data Management Platform](https://www.form.io/)
 
 ## Angular i18N
 
