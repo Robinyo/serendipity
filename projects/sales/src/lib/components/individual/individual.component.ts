@@ -38,6 +38,7 @@ export class IndividualComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('contentContainer')
   private tableContainer: ElementRef;
 
+  // formModel: DynamicFormModel = [];
   formModel: DynamicFormControlModel[] = [];
   formGroup: FormGroup;
   formLayout: DynamicFormLayout = MATERIAL_SAMPLE_FORM_LAYOUT;
