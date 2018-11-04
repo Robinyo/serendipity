@@ -2,6 +2,66 @@
 
 export const MATERIAL_SAMPLE_FORM_LAYOUT = {
 
+  'displayName': {
+    grid: {
+      host: 'column-1',
+    }
+  },
+  'title': {
+    grid: {
+      host: 'column-1',
+    }
+  },
+  'givenName': {
+    grid: {
+      host: 'column-1',
+    }
+  },
+  'organisation-name': {
+    grid: {
+      host: 'column-1',
+    }
+  },
+  'email': {
+    grid: {
+      host: 'column-1',
+    }
+  },
+  'organisation-phoneNumber': {
+    grid: {
+      host: 'column-1',
+    }
+  }
+
+};
+
+/*
+
+organisation-phoneNumber
+
+  'organisation-name': {
+    grid: {
+      host: 'column-1',
+    }
+  }
+
+
+
+  'displayName': {
+    element: {
+      label: 'control-label'
+    },
+    grid: {
+      control: 'column-2',
+      label: 'column-2'
+    }
+  }
+
+
+
+
+
+
   'title': {
     grid: {
       host: 'column-1'
@@ -15,9 +75,6 @@ export const MATERIAL_SAMPLE_FORM_LAYOUT = {
     }
   }
 
-};
-
-/*
 
   'title': {
     grid: {

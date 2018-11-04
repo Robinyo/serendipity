@@ -22,6 +22,37 @@
   },
   {
     "type": "INPUT",
+    "id": "givenName",
+    "label": "Given Name",
+    "maxLength": 32,
+    "autoComplete": "off",
+    "additional": {
+      "appearance": "outline"
+    }
+  },
+  {
+    "type": "INPUT",
+    "id": "middleName",
+    "label": "Middle Name",
+    "maxLength": 32,
+    "placeholder": "",
+    "autoComplete": "off",
+    "additional": {
+      "appearance": "outline"
+    }
+  },
+  {
+    "type": "INPUT",
+    "id": "familyName",
+    "label": "Family Name",
+    "maxLength": 64,
+    "autoComplete": "off",
+    "additional": {
+      "appearance": "outline"
+    }
+  },
+  {
+    "type": "INPUT",
     "id": "organisation-name",
     "label": "Account Name",
     "maxLength": 128,
@@ -45,26 +76,6 @@
     "id": "organisation-phoneNumber",
     "label": "Business Phone",
     "maxLength": 16,
-    "autoComplete": "off",
-    "additional": {
-      "appearance": "outline"
-    }
-  },
-  {
-    "type": "INPUT",
-    "id": "givenName",
-    "label": "Given Name",
-    "maxLength": 32,
-    "autoComplete": "off",
-    "additional": {
-      "appearance": "outline"
-    }
-  },
-  {
-    "type": "INPUT",
-    "id": "familyName",
-    "label": "Family Name",
-    "maxLength": 64,
     "autoComplete": "off",
     "additional": {
       "appearance": "outline"

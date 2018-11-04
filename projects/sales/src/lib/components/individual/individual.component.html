@@ -37,7 +37,8 @@
 
           <form [formGroup]="formGroup">
             <dynamic-material-form [group]="formGroup"
-                                   [model]="formModel">
+                                   [layout]="formLayout"
+                                   [model]="formModel" class="nested-grid-container">
             </dynamic-material-form>
           </form>
 
@@ -53,7 +54,8 @@
           </mat-card-title>
         </mat-card-header>
 
-        <mat-card-content class="dashboard-card-content">
+        <mat-card-content class="nested-grid-container">
+
 
         </mat-card-content>
 
@@ -74,6 +76,9 @@
 </div> <!-- contentContainer -->
 
 <!--
+
+          <span class="column-1">column-1</span>
+       <span class="column-1">column-1</span>
 
 class="nested-grid-container"
 

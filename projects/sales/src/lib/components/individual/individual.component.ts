@@ -33,7 +33,7 @@ export class IndividualComponent implements AfterViewInit, OnInit, OnDestroy {
   public item: Contact;
 
   protected formSubscription: Subscription;
-  protected subscription: Subscription;
+  protected modelSubscription: Subscription;
 
   @ViewChild('contentContainer')
   private tableContainer: ElementRef;
@@ -100,10 +100,10 @@ export class IndividualComponent implements AfterViewInit, OnInit, OnDestroy {
 
     this.logger.info('IndividualComponent: subscribe()');
 
-    this.subscription = this.contactsService.get(this.id).subscribe(data => {
+    this.modelSubscription = this.contactsService.get(this.id).subscribe(data => {
 
       this.item = data;
-      // this.logger.info('this.item: ' + JSON.stringify(this.item));
+      this.logger.info('this.item: ' + JSON.stringify(this.item));
       this.initialiseForm();
     });
 
@@ -117,8 +117,8 @@ export class IndividualComponent implements AfterViewInit, OnInit, OnDestroy {
       this.formSubscription.unsubscribe();
     }
 
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+    if (this.modelSubscription) {
+      this.modelSubscription.unsubscribe();
     }
 
   }

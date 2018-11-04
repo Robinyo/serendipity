@@ -13,6 +13,14 @@ See: styles.scss
   height: 0 !important;
 }
 
+.column-1 {
+  grid-column: 1;
+}
+
+.column-2 {
+  grid-column: 2;
+}
+
 */
 
 .content-container {
@@ -21,7 +29,7 @@ See: styles.scss
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   column-gap: 32px;
   row-gap: 1em;
 
@@ -30,8 +38,8 @@ See: styles.scss
 
 .nested-grid-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: 32px;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 16px;
   row-gap: 1em;
 
   // margin: 32px;
@@ -61,10 +69,7 @@ See: styles.scss
 }
 
 
-.column-1 {
-  grid-column: 1 / span 2;
-  // grid-column: 1;
-}
+
 
 
 /*

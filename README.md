@@ -24,10 +24,10 @@ Contacts - Desktop:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/contacts-web.png">
 </p>
 
-Contacts - Mobile:
+Contact:
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/contacts-handset.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/contact-1.png">
 </p>
 
 Serendipity is a [progressive web application](https://developers.google.com/web/progressive-web-apps/) (PWA) with a RESTful API that can be hosted on premise or in the cloud.
