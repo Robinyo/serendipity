@@ -6,6 +6,166 @@
 
   <ng-container *ngIf="item;">
 
+    <div #gridContainer class="grid-container">
+
+      <mat-card>
+
+        <mat-card-header>
+          <mat-card-title>
+            Contact Information
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+
+          <!--
+
+          <form [formGroup]="formGroup">
+            <dynamic-material-form [group]="formGroup"
+                                   [layout]="formLayout"
+                                   [model]="formModel" class="nested-grid-container">
+            </dynamic-material-form>
+          </form>
+
+          <form [formGroup]="formGroup">
+            <dynamic-material-form [group]="formGroup"
+                                   [model]="formModel">
+            </dynamic-material-form>
+          </form>
+
+          -->
+
+          <form [formGroup]="formGroup">
+            <dynamic-material-form [group]="formGroup"
+                                   [model]="formModel">
+            </dynamic-material-form>
+          </form>
+
+        </mat-card-content>
+
+      </mat-card>
+
+      <mat-card>
+
+        <mat-card-header>
+          <mat-card-title>
+            Personal Details
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="dashboard-card-content">
+
+        </mat-card-content>
+
+      </mat-card>
+
+    </div>
+
+  </ng-container> <!-- gridContainer -->
+
+  <!-- Skeleton template -->
+
+  <ng-template #skeleton>
+    <div class="spinner-container" [style.height.px]="containerHeight">
+      <mat-spinner color="accent"></mat-spinner>
+    </div>
+  </ng-template>
+
+</div> <!-- contentContainer -->
+
+<!--
+
+class="nested-grid-container"
+
+[layout]="formLayout"
+
+class="nested-grid-container"
+
+    <div #gridContainer class="grid-container">
+
+      <mat-grid-list cols="2" rowHeight="350px">
+
+        <mat-grid-tile colspan="1" rowspan="1">
+          <mat-card>
+
+            <mat-card-header>
+              <mat-card-title>
+                Contact Information
+              </mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content class="dashboard-card-content">
+
+              <form [formGroup]="formGroup">
+                <dynamic-material-form [group]="formGroup"
+                                       [model]="formModel">
+                </dynamic-material-form>
+              </form>
+
+            </mat-card-content>
+
+          </mat-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="1" rowspan="1">
+          <mat-card>
+
+            <mat-card-header>
+              <mat-card-title>
+                Personal Details
+              </mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content class="dashboard-card-content">
+
+            </mat-card-content>
+
+          </mat-card>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+
+    </div>
+
+  </ng-container>
+
+
+-->
+
+
+
+<!--
+
+<mat-card> class="dashboard-card"
+
+            <mat-card-content class="dashboard-card-content">
+              <div fxLayout="row wrap" class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+
+                <form [formGroup]="formGroup">
+                  <dynamic-material-form [group]="formGroup"
+                                         [model]="formModel">
+                  </dynamic-material-form>
+                </form>
+
+              </div>
+            </mat-card-content>
+
+
+
+
+
+    <form [formGroup]="formGroup">
+
+      <dynamic-material-form [group]="formGroup"
+                             [layout]="formLayout"
+                             [model]="formModel"></dynamic-material-form>
+
+    </form>
+
+-->
+
+<!--
+
     <div class="grid-container">
 
       <mat-grid-list [hidden]="!item" cols="2" rowHeight="350px">
@@ -25,17 +185,7 @@
 
     </div>
 
-  </ng-container>
-
-  <!-- Skeleton template -->
-
-  <ng-template #skeleton>
-    <div class="spinner-container" [style.height.px]="containerHeight">
-      <mat-spinner color="accent"></mat-spinner>
-    </div>
-  </ng-template>
-
-</div>
+-->
 
 <!--
 

@@ -98,12 +98,33 @@ You use the assets array inside the build target in `angular.json` to list files
 
 ```
 "assets": [
-  "src/apple-touch-icon-iphone-retina.png",
-  "src/apple-touch-icon-iphone-retina-precomposed.png",
-  "src/browserconfig.xml",
+  "src/assets",
   "src/favicon.ico",
-  "src/manifest.json",  
-  "src/assets"
+  "src/manifest.json"
+]
+```
+
+### Library Assets
+
+ng-packagr does not copy `assets/` (the files and folders in the assets directory) to the `dist/` directory.
+
+You can workaround this issue by updating the assets array inside the build target in `angular.json`, for example:
+
+```
+"assets": [
+  "src/assets",
+  "src/favicon.ico",
+  "src/manifest.json",
+  {
+    "glob": "**/*",
+    "input": "projects/sales/src/assets",
+    "output": "/assets"
+  },
+  {
+    "glob": "**/*",
+    "input": "node_modules/my-lib/assets",
+    "output": "/assets"
+  }
 ]
 ```
 

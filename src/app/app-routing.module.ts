@@ -7,7 +7,7 @@ import { MyDashboardComponent } from '@app/shared/components/samples/my-dashboar
 // import { MyTableComponent } from '@app/shared/components/samples/my-table/my-table.component';
 
 import { ContactsComponent } from 'sales';
-import { AccountsComponent } from 'sales';
+// import { AccountsComponent } from 'sales';
 
 import { IndividualComponent } from 'sales';
 
@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'sales/accounts',
-    component: AccountsComponent
+    component: PlaceholderComponent
   },
   {
     path: 'sales/contacts',

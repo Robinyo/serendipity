@@ -23,9 +23,14 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
               "src/assets",
-              "src/manifest.json"
+              "src/favicon.ico",
+              "src/manifest.json",
+              {
+                "glob": "**/*",
+                "input": "projects/sales/src/assets",
+                "output": "/assets"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -89,9 +94,14 @@
             ],
             "scripts": [],
             "assets": [
-              "src/favicon.ico",
               "src/assets",
-              "src/manifest.json"
+              "src/favicon.ico",
+              "src/manifest.json",
+              {
+                "glob": "**/*",
+                "input": "projects/sales/src/assets",
+                "output": "/assets"
+              }
             ]
           }
         },
