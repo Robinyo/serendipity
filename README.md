@@ -18,7 +18,7 @@ Sidenav:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/sidenav.png">
 </p>
 
-Contacts - Desktop:
+Contacts:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/contacts-web.png">
