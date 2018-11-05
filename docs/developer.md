@@ -186,7 +186,6 @@ git push origin <tag>
 ## Angular Component Libraries
 
 * GitHub: [flex-layout](https://github.com/angular/flex-layout)
-
 * GitHub: [ngx-charts](https://github.com/swimlane/ngx-charts)
 
 ## Angular Form Libraries
