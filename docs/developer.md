@@ -106,7 +106,7 @@ You use the assets array inside the build target in `angular.json` to list files
 
 ### Library Assets
 
-ng-packagr does not copy `assets/` (the files and folders in the assets directory) to the `dist/` directory.
+ng-packagr does not copy 'assets' (the files and folders in the `assets/` directory) to the `dist/` directory.
 
 You can workaround this issue by updating the assets array inside the build target in `angular.json`, for example:
 
