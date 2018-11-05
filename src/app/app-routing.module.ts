@@ -9,7 +9,7 @@ import { MyDashboardComponent } from '@app/shared/components/samples/my-dashboar
 import { ContactsComponent } from 'sales';
 // import { AccountsComponent } from 'sales';
 
-import { IndividualComponent } from 'sales';
+import { ContactComponent } from 'sales';
 
 const routes: Routes = [
   {
@@ -30,7 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'sales/contacts/:id',
-    component: IndividualComponent
+    component: ContactComponent
   },
   {
     path: 'sales/leads',

@@ -4,7 +4,7 @@
 
 export * from './lib/components/accounts/accounts.component';
 export * from './lib/components/contacts/contacts.component';
-export * from './lib/components/individual/individual.component';
+export * from './lib/components/contact/contact.component';
 export * from './lib/sales.module';
 
 export * from './lib/services/logger/logger.service';

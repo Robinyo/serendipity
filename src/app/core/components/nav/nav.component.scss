@@ -11,8 +11,7 @@
 
 // https://github.com/angular/material2/blob/master/src/lib/core/style/_variables.scss
 
-// $sidenav-width: 240px;
-$sidenav-width: 320px;
+$sidenav-width: 320px; // 240px;
 
 .mat-sidenav {
   width: $sidenav-width;
@@ -31,14 +30,9 @@ $sidenav-width: 320px;
   margin: 0 12px 0 12px;
 }
 
-mat-sidenav-content {
-  // overflow: hidden;
-  // top: 64px;  if fixed header
-}
-
 /*
 
-mat-sidenav-content {
+.mat-sidenav-content {
   overflow: hidden;
 }
 

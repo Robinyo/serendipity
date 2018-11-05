@@ -7,7 +7,7 @@ import { Subscription} from 'rxjs';
 import { FormMetadataService } from '../../services/form/form-metadata.service';
 import { DynamicFormControlModel, DynamicFormLayout, DynamicFormService } from '@ng-dynamic-forms/core';
 
-import { MATERIAL_SAMPLE_FORM_LAYOUT } from './individual-component-form.layout';
+import { MATERIAL_SAMPLE_FORM_LAYOUT } from './contact-component-form.layout';
 
 import { ContactsService } from '../../services/contacts/contacts.service';
 import { Contact } from '../../shared/models';
@@ -20,11 +20,11 @@ import {
 } from '../../shared/constants';
 
 @Component({
-  selector: 'sales-individual',
-  templateUrl: './individual.component.html',
-  styleUrls: ['./individual.component.scss']
+  selector: 'sales-contact',
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.scss']
 })
-export class IndividualComponent implements AfterViewInit, OnInit, OnDestroy {
+export class ContactComponent implements AfterViewInit, OnInit, OnDestroy {
 
   public containerHeight: number;
 
@@ -54,7 +54,7 @@ export class IndividualComponent implements AfterViewInit, OnInit, OnDestroy {
 
   public ngOnInit() {
 
-    this.logger.info('IndividualComponent: ngOnInit()');
+    this.logger.info('ContactComponent: ngOnInit()');
 
     this.id = this.route.snapshot.paramMap.get('id');
     this.id = atob(this.id);
@@ -66,7 +66,7 @@ export class IndividualComponent implements AfterViewInit, OnInit, OnDestroy {
 
   protected createForm(): void {
 
-    this.logger.info('IndividualComponent: createForm()');
+    this.logger.info('ContactComponent: createForm()');
 
     this.formSubscription = this.formMetadataService.get('individual-form.model.json').subscribe(data => {
 
@@ -78,7 +78,7 @@ export class IndividualComponent implements AfterViewInit, OnInit, OnDestroy {
 
   protected initialiseForm(): void {
 
-    this.logger.info('IndividualComponent: initialiseForm()');
+    this.logger.info('ContactComponent: initialiseForm()');
 
     for (const field of Object.keys(this.formGroup.controls)) {
 
@@ -93,13 +93,13 @@ export class IndividualComponent implements AfterViewInit, OnInit, OnDestroy {
 
   public ngAfterViewInit() {
 
-    this.logger.info('IndividualComponent: ngAfterViewInit()');
+    this.logger.info('ContactComponent: ngAfterViewInit()');
     this.subscribe();
   }
 
   protected subscribe() {
 
-    this.logger.info('IndividualComponent: subscribe()');
+    this.logger.info('ContactComponent: subscribe()');
 
     this.modelSubscription = this.contactsService.get(this.id).subscribe(data => {
 
@@ -112,7 +112,7 @@ export class IndividualComponent implements AfterViewInit, OnInit, OnDestroy {
 
   protected unsubscribe() {
 
-    this.logger.info('IndividualComponent: unsubscribe()');
+    this.logger.info('ContactComponent: unsubscribe()');
 
     if (this.formSubscription) {
       this.formSubscription.unsubscribe();
@@ -126,7 +126,7 @@ export class IndividualComponent implements AfterViewInit, OnInit, OnDestroy {
 
   public ngOnDestroy() {
 
-    this.logger.info('IndividualComponent: ngOnDestroy()');
+    this.logger.info('ContactComponent: ngOnDestroy()');
     this.unsubscribe();
   }
 

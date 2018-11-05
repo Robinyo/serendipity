@@ -14,7 +14,7 @@ import { LibRoutingModule } from './lib-routing.module';
 
 import { AccountsComponent } from './components/accounts/accounts.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
-import { IndividualComponent } from './components/individual/individual.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 import { StaticInjectorService } from './services/injector/static-injector.service';
 import { LoggerService } from './services/logger/logger.service';
@@ -40,7 +40,7 @@ import { InMemoryDataService } from './services/mocks/api/in-memory-data.service
   declarations: [
     AccountsComponent,
     ContactsComponent,
-    IndividualComponent
+    ContactComponent
   ],
   providers: [
     { provide: LoggerService, useClass: ConsoleLoggerService }
@@ -48,7 +48,7 @@ import { InMemoryDataService } from './services/mocks/api/in-memory-data.service
   exports: [
     AccountsComponent,
     ContactsComponent,
-    IndividualComponent
+    ContactComponent
   ]
 })
 export class SalesModule {
