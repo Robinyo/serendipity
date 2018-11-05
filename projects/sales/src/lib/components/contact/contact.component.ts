@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { Subscription} from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { FormMetadataService } from '../../services/form/form-metadata.service';
 import { DynamicFormControlModel, DynamicFormLayout, DynamicFormService } from '@ng-dynamic-forms/core';
@@ -24,7 +25,7 @@ import {
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent implements AfterViewInit, OnInit, OnDestroy {
+export class ContactComponent implements OnInit, OnDestroy {
 
   public containerHeight: number;
 
@@ -61,16 +62,24 @@ export class ContactComponent implements AfterViewInit, OnInit, OnDestroy {
 
     this.containerHeight = this.tableContainer.nativeElement.offsetHeight - (this.toolbarHeight * 2 + this.margin);
 
-    this.createForm();
+    this.subscribe();
   }
 
-  protected createForm(): void {
+  protected subscribe() {
 
-    this.logger.info('ContactComponent: createForm()');
+    this.logger.info('ContactComponent: subscribe()');
 
-    this.formSubscription = this.formMetadataService.get('individual-form.model.json').subscribe(data => {
+    this.formSubscription = this.formMetadataService.get('individual-form.model.json').pipe(tap(() =>
 
-      this.formModel = this.dynamicFormService.fromJSON(data);
+        this.modelSubscription = this.contactsService.get(this.id).subscribe(data => {
+          this.item = data;
+          // this.logger.info('this.item: ' + JSON.stringify(this.item));
+          this.initialiseForm();
+        })
+      )
+    ).subscribe(formMetadata => {
+
+      this.formModel = this.dynamicFormService.fromJSON(formMetadata);
       this.formGroup = this.dynamicFormService.createFormGroup(this.formModel);
     });
 
@@ -88,25 +97,6 @@ export class ContactComponent implements AfterViewInit, OnInit, OnDestroy {
 
       this.formGroup.controls[field].setValue(this.getProperty(this.item, field));
     }
-
-  }
-
-  public ngAfterViewInit() {
-
-    this.logger.info('ContactComponent: ngAfterViewInit()');
-    this.subscribe();
-  }
-
-  protected subscribe() {
-
-    this.logger.info('ContactComponent: subscribe()');
-
-    this.modelSubscription = this.contactsService.get(this.id).subscribe(data => {
-
-      this.item = data;
-      this.logger.info('this.item: ' + JSON.stringify(this.item));
-      this.initialiseForm();
-    });
 
   }
 

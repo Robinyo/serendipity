@@ -1,4 +1,4 @@
-import { AfterViewInit, Injector, OnInit, OnDestroy, Type } from '@angular/core';
+import { Injector, OnInit, OnDestroy, Type } from '@angular/core';
 
 import { Subscription} from 'rxjs';
 
@@ -11,7 +11,7 @@ import { FAKE_ITEMS_LENGTH } from '../../shared/constants';
 // No Annotations - see: https://medium.com/@ttemplier/angular2-decorators-and-class-inheritance-905921dbd1b7#.c60rva7jo
 //
 
-export abstract class CollectionComponent implements AfterViewInit, OnInit, OnDestroy {
+export abstract class CollectionComponent implements OnInit, OnDestroy {
 
   protected fakeItems: Array<any> = new Array(FAKE_ITEMS_LENGTH);
 
@@ -44,10 +44,6 @@ export abstract class CollectionComponent implements AfterViewInit, OnInit, OnDe
       this.subscription.unsubscribe();
     }
 
-  }
-
-  public ngAfterViewInit() {
-    this.logger.info('CollectionComponent: ngAfterViewInit()');
   }
 
   public ngOnDestroy() {

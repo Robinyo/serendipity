@@ -4,32 +4,32 @@ export const MATERIAL_SAMPLE_FORM_LAYOUT = {
 
   'displayName': {
     grid: {
-      host: 'column-1',
+      host: 'grid-column-1',
     }
   },
   'title': {
     grid: {
-      host: 'column-1',
+      host: 'grid-column-1',
     }
   },
   'givenName': {
     grid: {
-      host: 'column-1',
+      host: 'grid-column-1',
     }
   },
   'organisation-name': {
     grid: {
-      host: 'column-1',
+      host: 'grid-column-1',
     }
   },
   'email': {
     grid: {
-      host: 'column-1',
+      host: 'grid-column-1',
     }
   },
   'organisation-phoneNumber': {
     grid: {
-      host: 'column-1',
+      host: 'grid-column-1',
     }
   }
 

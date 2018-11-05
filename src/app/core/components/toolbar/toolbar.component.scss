@@ -1,4 +1,4 @@
-.app-toolbar-fixed {
+.crm-toolbar-fixed {
   position: fixed;
   top: 0;
   left: 0;
@@ -6,11 +6,11 @@
   z-index: 998;  // 2
 }
 
-.app-toolbar-title {
+.crm-toolbar-title {
   margin: 0 16px 0 16px;
 }
 
-.app-toolbar-icon {
+.crm-toolbar-icon {
   display: inline-block;
   height: 30px;
   margin: 0 auto;
@@ -20,7 +20,7 @@
   width: 15%;
 }
 
-.app-navigation-items {
+.crm-navigation-items {
   list-style: none;
   padding: 0;
   margin: 0;
