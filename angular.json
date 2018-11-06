@@ -181,6 +181,41 @@
           }
         }
       }
+    },
+    "dynamic-forms": {
+      "root": "projects/dynamic-forms",
+      "sourceRoot": "projects/dynamic-forms/src",
+      "projectType": "library",
+      "prefix": "dynamic",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/dynamic-forms/tsconfig.lib.json",
+            "project": "projects/dynamic-forms/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/dynamic-forms/src/test.ts",
+            "tsConfig": "projects/dynamic-forms/tsconfig.spec.json",
+            "karmaConfig": "projects/dynamic-forms/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/dynamic-forms/tsconfig.lib.json",
+              "projects/dynamic-forms/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "serendipity"

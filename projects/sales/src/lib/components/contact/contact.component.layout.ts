@@ -4,7 +4,7 @@ export const MATERIAL_SAMPLE_FORM_LAYOUT = {
 
   'displayName': {
     grid: {
-      host: 'grid-column-1',
+      host: 'grid-column-2-span-2',
     }
   },
   'title': {
@@ -36,6 +36,33 @@ export const MATERIAL_SAMPLE_FORM_LAYOUT = {
 };
 
 /*
+
+  'displayName': {
+    element: {
+      label: 'Full Name'
+    },
+    grid: {
+      host: 'grid-column-2-span-2',
+      control: 'grid-column-2-span-2',
+      label: 'grid-column-2-span-2'
+    }
+
+  'displayName': {
+    grid: {
+      host: 'grid-column-2-span-2',
+    }
+  },
+
+    "myFormControlModelId": {
+
+        element: {
+            label: "control-label"
+        },
+        grid: {
+            control: "col-sm-9",
+            label: "col-sm-3"
+        }
+    },
 
 organisation-phoneNumber
 

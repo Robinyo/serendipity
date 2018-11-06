@@ -1,6 +1,6 @@
 /*
 
-// https://github.com/angular/material2/blob/877de5691b8dd755af4a2f77b4cf57f2d374e107/src/lib/toolbar/toolbar.scss
+// https://github.com/angular/material2/blob/master/src/lib/toolbar/toolbar.scss
 
 $mat-toolbar-height-desktop: 64px !default;
 $mat-toolbar-height-mobile: 56px !default;
@@ -25,7 +25,7 @@ export const MARGIN_MOBILE  = 0;
 export const ALPHABET: string[] = [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
   'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' ];
 
-// isplayedColumns = [ 'displayName', 'email', 'organisation.name', 'organisation.phoneNumber', 'id' ];
+// displayedColumns = [ 'displayName', 'email', 'organisation.name', 'organisation.phoneNumber', 'id' ];
 
 export const CONTACT_COLUMNS_DESKTOP = [ 'displayName', 'email', 'organisation.name', 'organisation.phoneNumber', 'id' ];
 export const CONTACT_COLUMNS_MOBILE  = [ 'displayName', 'id' ];

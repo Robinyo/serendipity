@@ -1,3 +1,11 @@
+// https://material.angular.io/guide/theming-your-components
+
+$crm-toolbar-height-desktop: 64px !default;
+$crm-toolbar-height-mobile: 56px !default;
+$crm-toolbar-row-padding: 16px !default;
+
+$crm-toolbar-title-padding: 16px !default;
+
 .crm-toolbar-fixed {
   position: fixed;
   top: 0;
@@ -7,7 +15,7 @@
 }
 
 .crm-toolbar-title {
-  margin: 0 16px 0 16px;
+  margin: 0 $crm-toolbar-title-padding 0 $crm-toolbar-title-padding;
 }
 
 .crm-toolbar-icon {

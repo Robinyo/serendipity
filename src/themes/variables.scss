@@ -1,13 +1,3 @@
-// https://github.com/angular/material2/blob/master/src/lib/core/style/_variables.scss
+@import "./mat-variables";
 
-$mat-xsmall: 'max-width: 599px';
-$mat-small: 'max-width: 959px';
-
-// https://github.com/angular/material2/blob/master/src/lib/toolbar/toolbar.scss
-
-$mat-toolbar-height-desktop: 64px !default;
-$mat-toolbar-height-mobile: 56px !default;
-
-$mat-toolbar-row-padding: 16px !default;
-
-$component-title-margin: 16px !default;
+$crm-component-title-margin: 16px !default;

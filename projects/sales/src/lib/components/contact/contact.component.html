@@ -2,9 +2,13 @@
 
 <div #contentContainer class="content-container">
 
+  <!--
   <ng-container *ngIf="!item; then skeleton"> </ng-container>
 
   <ng-container *ngIf="item;">
+  -->
+
+  <ng-container>
 
     <div #gridContainer class="grid-container">
 
@@ -18,11 +22,40 @@
 
         <mat-card-content>
 
-          <form [formGroup]="formGroup">
-            <dynamic-material-form [group]="formGroup"
-                                   [layout]="formLayout"
-                                   [model]="formModel" class="nested-grid-container">
-            </dynamic-material-form>
+          <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
+
+          <form autocomplete="off" [formGroup]="formGroup" class="nested-grid-container">
+
+            <mat-form-field appearance="outline" class="grid-column-2-span-2">
+              <mat-label>Full Name</mat-label>
+              <input matInput formControlName="displayName" placeholder="Full Name" autocomplete="name">
+              <mat-hint></mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="grid-column-1">
+              <mat-label>Job Title</mat-label>
+              <input matInput formControlName="title" placeholder="Job Title" autocomplete="organization-title">
+              <mat-hint></mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="grid-column-1">
+              <mat-label>Given Name</mat-label>
+              <input matInput formControlName="givenName" placeholder="Given Name" autocomplete="given-name">
+              <mat-hint></mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Middle Name</mat-label>
+              <input matInput formControlName="middleName" placeholder="Middle Name" autocomplete="additional-name">
+              <mat-hint></mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Family Name</mat-label>
+              <input matInput formControlName="familyName" placeholder="Family Name" autocomplete="family-name">
+              <mat-hint></mat-hint>
+            </mat-form-field>
+
           </form>
 
         </mat-card-content>
@@ -58,179 +91,8 @@
 
 </div> <!-- contentContainer -->
 
-
 <!--
 
-<form [formGroup]="formGroup">
-  <dynamic-material-form [group]="formGroup"
-                         [layout]="formLayout"
-                         [model]="formModel" class="nested-grid-container">
-  </dynamic-material-form>
-</form>
-
-<form [formGroup]="formGroup">
-  <dynamic-material-form [group]="formGroup"
-                         [model]="formModel">
-  </dynamic-material-form>
-</form>
-
--->
-
-
-<!--
-
-          <span class="column-1">column-1</span>
-       <span class="column-1">column-1</span>
-
-class="nested-grid-container"
-
-[layout]="formLayout"
-
-class="nested-grid-container"
-
-    <div #gridContainer class="grid-container">
-
-      <mat-grid-list cols="2" rowHeight="350px">
-
-        <mat-grid-tile colspan="1" rowspan="1">
-          <mat-card>
-
-            <mat-card-header>
-              <mat-card-title>
-                Contact Information
-              </mat-card-title>
-            </mat-card-header>
-
-            <mat-card-content class="dashboard-card-content">
-
-              <form [formGroup]="formGroup">
-                <dynamic-material-form [group]="formGroup"
-                                       [model]="formModel">
-                </dynamic-material-form>
-              </form>
-
-            </mat-card-content>
-
-          </mat-card>
-        </mat-grid-tile>
-
-        <mat-grid-tile colspan="1" rowspan="1">
-          <mat-card>
-
-            <mat-card-header>
-              <mat-card-title>
-                Personal Details
-              </mat-card-title>
-            </mat-card-header>
-
-            <mat-card-content class="dashboard-card-content">
-
-            </mat-card-content>
-
-          </mat-card>
-        </mat-grid-tile>
-
-      </mat-grid-list>
-
-    </div>
-
-  </ng-container>
-
-
--->
-
-
-
-<!--
-
-<mat-card> class="dashboard-card"
-
-            <mat-card-content class="dashboard-card-content">
-              <div fxLayout="row wrap" class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
-
-                <form [formGroup]="formGroup">
-                  <dynamic-material-form [group]="formGroup"
-                                         [model]="formModel">
-                  </dynamic-material-form>
-                </form>
-
-              </div>
-            </mat-card-content>
-
-
-
-
-
-    <form [formGroup]="formGroup">
-
-      <dynamic-material-form [group]="formGroup"
-                             [layout]="formLayout"
-                             [model]="formModel"></dynamic-material-form>
-
-    </form>
-
--->
-
-<!--
-
-    <div class="grid-container">
-
-      <mat-grid-list [hidden]="!item" cols="2" rowHeight="350px">
-        <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows">
-          <mat-card class="dashboard-card">
-            <mat-card-header>
-              <mat-card-title>
-                {{card.title}}
-              </mat-card-title>
-            </mat-card-header>
-            <mat-card-content class="dashboard-card-content">
-              {{ item.title }} {{ item.givenName }} {{ item.familyName }}
-            </mat-card-content>
-          </mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
-
-    </div>
-
--->
-
-<!--
-
-  <div #tableContainer class="table-container" [style.height.px]="containerHeight">
-
-    <mat-grid-list [hidden]="!item" cols="2" rowHeight="350px">
-
-    </mat-grid-list>
-
-  </div>
-
-<h2 class="lib-component-title"> {{ 'INDIVIDUAL_HEADER' | translate }}: {{item.title}} {{item.givenName}} {{item.familyName}} </h2>
-
-<div class="grid-container">
-
-  <h2 class="lib-component-title"> Dashboard </h2>
-
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>
+chrome://settings/autofill
 
 -->

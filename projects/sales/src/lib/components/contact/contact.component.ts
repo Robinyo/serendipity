@@ -1,14 +1,10 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { Subscription} from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 import { FormMetadataService } from '../../services/form/form-metadata.service';
-import { DynamicFormControlModel, DynamicFormLayout, DynamicFormService } from '@ng-dynamic-forms/core';
-
-import { MATERIAL_SAMPLE_FORM_LAYOUT } from './contact-component-form.layout';
 
 import { ContactsService } from '../../services/contacts/contacts.service';
 import { Contact } from '../../shared/models';
@@ -40,17 +36,16 @@ export class ContactComponent implements OnInit, OnDestroy {
   private tableContainer: ElementRef;
 
   // formModel: DynamicFormModel = [];
-  formModel: DynamicFormControlModel[] = [];
+  // formModel: DynamicFormControlModel[] = [];
   formGroup: FormGroup;
-  formLayout: DynamicFormLayout = MATERIAL_SAMPLE_FORM_LAYOUT;
 
   private toolbarHeight = TOOLBAR_HEIGHT_DESKTOP;
   private margin = MARGIN_DESKTOP;
 
   constructor(private route: ActivatedRoute,
+              private formBuilder: FormBuilder,
               private contactsService: ContactsService,
               private formMetadataService: FormMetadataService,
-              private dynamicFormService: DynamicFormService,
               private logger: LoggerService) { }
 
   public ngOnInit() {
@@ -62,41 +57,18 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     this.containerHeight = this.tableContainer.nativeElement.offsetHeight - (this.toolbarHeight * 2 + this.margin);
 
-    this.subscribe();
+    this.createFormGroup();
   }
 
-  protected subscribe() {
+  protected createFormGroup(): void {
 
-    this.logger.info('ContactComponent: subscribe()');
-
-    this.formSubscription = this.formMetadataService.get('individual-form.model.json').pipe(tap(() =>
-
-        this.modelSubscription = this.contactsService.get(this.id).subscribe(data => {
-          this.item = data;
-          // this.logger.info('this.item: ' + JSON.stringify(this.item));
-          this.initialiseForm();
-        })
-      )
-    ).subscribe(formMetadata => {
-
-      this.formModel = this.dynamicFormService.fromJSON(formMetadata);
-      this.formGroup = this.dynamicFormService.createFormGroup(this.formModel);
+    this.formGroup = this.formBuilder.group({
+      displayName: [''],
+      title: [''],
+      givenName: [''],
+      middleName: [''],
+      familyName: ['']
     });
-
-  }
-
-  protected initialiseForm(): void {
-
-    this.logger.info('ContactComponent: initialiseForm()');
-
-    for (const field of Object.keys(this.formGroup.controls)) {
-
-      // this.logger.info('field name: ' + field +
-      //   ' nested object name: ' + field.replace('-', '.') +
-      //   ' value: ' + this.getProperty(this.item, field));
-
-      this.formGroup.controls[field].setValue(this.getProperty(this.item, field));
-    }
 
   }
 
@@ -127,71 +99,3 @@ export class ContactComponent implements OnInit, OnDestroy {
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
-
-
-/*
-
-  for (const field of Object.keys(this.formGroup.controls)) {
-
-    this.logger.info('field name: ' + field +
-      ' nested object name: ' + field.replace('-', '.') +
-      ' value: ' + this.getProperty(this.item, field.replace('-', '.')));
-  }
-
-  for (const field of Object.keys(this.formGroup.controls)) {
-
-    this.logger.info('field name: ' + field +
-      ' nested object name: ' + field.replace('-', '.') +
-      ' value: ' + this.item[field.replace('-', '.')]);
-    // this.formGroup.controls[field].setValue(this.item[field.replace('-', '.')]);
-  }
-
-*/
-
-/*
-
-ViewEncapsulation
-  // encapsulation: ViewEncapsulation.None
-
-
-      // this.logger.info('this.formModel: ' + JSON.stringify(this.formModel));
-
-  cards = [
-    { title: 'Contact Information', cols: 2, rows: 1 },
-    { title: 'Personal Details', cols: 2, rows: 1 }
-  ];
-
-      // this.logger.info('this.item: ' + JSON.stringify(this.item));
-
-  // formModel: DynamicFormControlModel[] = MATERIAL_SAMPLE_FORM_MODEL;
-  //  formGroup: FormGroup;
-  // formLayout: DynamicFormLayout = MATERIAL_SAMPLE_FORM_LAYOUT;
-
-// import { Location } from '@angular/common';
-
-DynamicFormLayout
-
-import { MATERIAL_SAMPLE_FORM_MODEL } from './individual-component-form.model';
-import { MATERIAL_SAMPLE_FORM_LAYOUT } from './individual-component-form.layout';
-
-  cards = this.breakpointObserver.observe(Breakpoints.HandsetPortrait).pipe(
-    map(({ matches }) => {
-      if (matches) {
-        return [
-          { title: 'Contact Information', cols: 1, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
-          { title: 'Card 3', cols: 1, rows: 1 },
-          { title: 'Card 4', cols: 1, rows: 1 }
-        ];
-      }
-
-      return [
-        { title: 'Contact Information', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 2 },
-        { title: 'Card 4', cols: 1, rows: 1 }
-      ];
-    })
-  );
-
-*/

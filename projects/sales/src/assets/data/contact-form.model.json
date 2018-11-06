@@ -4,7 +4,7 @@
     "type": "INPUT",
     "id": "displayName",
     "label": "Full Name",
-    "maxLength": 32,
+    "maxLength": 128,
     "autoComplete": "off",
     "additional": {
       "appearance": "outline"
