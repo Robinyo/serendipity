@@ -1,0 +1,44 @@
+[
+
+  {
+    "type": "input",
+    "id": "displayName",
+    "label": "Full Name"
+  },
+  {
+    "type": "input",
+    "id": "title",
+    "label": "Job Title"
+  },
+  {
+    "type": "input",
+    "id": "givenName",
+    "label": "Given Name"
+  },
+  {
+    "type": "input",
+    "id": "middleName",
+    "label": "Middle Name"
+  },
+  {
+    "type": "input",
+    "id": "familyName",
+    "label": "Family Name"
+  },
+  {
+    "type": "input",
+    "id": "organisation-name",
+    "label": "Account Name"
+  },
+  {
+    "type": "input",
+    "id": "email",
+    "label": "Email"
+  },
+  {
+    "type": "input",
+    "id": "organisation-phoneNumber",
+    "label": "Business Phone"
+  }
+
+]

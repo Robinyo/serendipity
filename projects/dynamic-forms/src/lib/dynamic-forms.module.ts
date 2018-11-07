@@ -6,18 +6,30 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AngularMaterialModule } from './angular-material/shared/angular-material.module';
 
-import { DynamicFormComponent } from './angular-material/components/dynamic-form/dynamic-form.component';
+import { DynamicFormComponent } from './angular-material/containers/dynamic-form/dynamic-form.component';
+
+//
+// Utils lib
+//
+
+import { UtilsModule } from 'utils';
+import { LoggerService } from 'utils';
+import { ConsoleLoggerService } from 'utils';
 
 @NgModule({
   imports: [
     AngularMaterialModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
 
     // TranslateModule.forChild()
+
+    UtilsModule
     ],
   declarations: [ DynamicFormComponent ],
-  providers: [],
+  providers: [
+    { provide: LoggerService, useClass: ConsoleLoggerService }
+  ],
   exports: [ DynamicFormComponent ]
 })
 export class DynamicFormsModule { }

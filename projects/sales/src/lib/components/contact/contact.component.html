@@ -8,7 +8,7 @@
   <ng-container *ngIf="item;">
   -->
 
-  <ng-container>
+  <ng-container *ngIf="formMetadata;">
 
     <div #gridContainer class="grid-container">
 
@@ -22,8 +22,43 @@
 
         <mat-card-content>
 
+          <dynamic-form [formGroup]="formGroup" class="nested-grid-container">
+
+            <mat-form-field appearance="outline" class="grid-column-2-span-2">
+              <mat-label>Full Name</mat-label>
+              <input matInput formControlName="displayName" placeholder="Full Name" autocomplete="name">
+              <mat-hint></mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="grid-column-1">
+              <mat-label>Job Title</mat-label>
+              <input matInput formControlName="title" placeholder="Job Title" autocomplete="organization-title">
+              <mat-hint></mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="grid-column-1">
+              <mat-label>Given Name</mat-label>
+              <input matInput formControlName="givenName" placeholder="Given Name" autocomplete="given-name">
+              <mat-hint></mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Middle Name</mat-label>
+              <input matInput formControlName="middleName" placeholder="Middle Name" autocomplete="additional-name">
+              <mat-hint></mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Family Name</mat-label>
+              <input matInput formControlName="familyName" placeholder="Family Name" autocomplete="family-name">
+              <mat-hint></mat-hint>
+            </mat-form-field>
+
+          </dynamic-form>
+
           <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
 
+          <!--
           <form autocomplete="off" [formGroup]="formGroup" class="nested-grid-container">
 
             <mat-form-field appearance="outline" class="grid-column-2-span-2">
@@ -57,6 +92,7 @@
             </mat-form-field>
 
           </form>
+          -->
 
         </mat-card-content>
 
@@ -70,11 +106,9 @@
           </mat-card-title>
         </mat-card-header>
 
-        <mat-card-content class="nested-grid-container">
+        <mat-card-content>
 
-          <dynamic-form>
 
-          </dynamic-form>
 
         </mat-card-content>
 
