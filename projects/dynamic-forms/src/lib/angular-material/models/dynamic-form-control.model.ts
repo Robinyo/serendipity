@@ -4,7 +4,13 @@ export interface DynamicFormControlModel {
   id?: string;
   label?: string;
 
+  // autocomplete?: string;  // aka autoFill
+
 }
+
+// https://nealbuerger.com/2018/04/html-how-to-control-the-form-autofill-autocompetion/
+// https://developers.google.com/web/fundamentals/design-and-ux/input/forms/
+// https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill
 
 /*
 

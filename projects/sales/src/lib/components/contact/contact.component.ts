@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription} from 'rxjs';
 
 import { DynamicFormControlModel, DynamicFormMetadataService } from 'dynamic-forms';
+import {tap} from 'rxjs/operators';
 
 import { ContactsService } from '../../services/contacts/contacts.service';
 import { Contact } from '../../shared/models';
@@ -35,11 +36,9 @@ export class ContactComponent implements OnInit, OnDestroy {
   @ViewChild('contentContainer')
   private tableContainer: ElementRef;
 
-  // formModel: DynamicFormModel = [];
-  // formModel: DynamicFormControlModel[] = [];
   formGroup: FormGroup;
-  // formMetadata: DynamicFormControlModel[] = [];
-  formMetadata: DynamicFormControlModel[];
+  // formModel: DynamicFormControlModel[] = [];
+  formModel: DynamicFormControlModel[];
 
   private toolbarHeight = TOOLBAR_HEIGHT_DESKTOP;
   private margin = MARGIN_DESKTOP;
@@ -59,7 +58,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     this.containerHeight = this.tableContainer.nativeElement.offsetHeight - (this.toolbarHeight * 2 + this.margin);
 
-    this.formGroup = this.formBuilder.group({});
+    // this.formGroup = this.formBuilder.group({});
 
     this.subscribe();
   }
@@ -68,47 +67,50 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     this.logger.info('ContactComponent: subscribe()');
 
-    this.formSubscription = this.dynamicFormMetadataService.get('contact-form.model.json').subscribe(data => {
+    this.formSubscription = this.dynamicFormMetadataService.get('contact-form.model.json').pipe(tap(() =>
 
-      this.formMetadata = data;
-      this.createFormGroup();
+        this.modelSubscription = this.contactsService.get(this.id).subscribe(data => {
+          this.item = data;
+          this.initialiseForm();
+        })
+      )
+    ).subscribe(metaData => {
+
+      this.formModel = metaData;
+      this.formGroup = this.createFormGroup(this.formModel);
     });
 
   }
 
-  protected createFormGroup() {
+  protected initialiseForm(): void {
+
+    this.logger.info('ContactComponent: initialiseForm()');
+
+    for (const field of Object.keys(this.formGroup.controls)) {
+
+      // this.logger.info('field name: ' + field +
+      //   ' nested object name: ' + field.replace('-', '.') +
+      //   ' value: ' + this.getProperty(this.item, field));
+
+      this.formGroup.controls[field].setValue(this.getProperty(this.item, field));
+    }
+
+  }
+
+  protected createFormGroup(formModel: DynamicFormControlModel[]): FormGroup {
+
+    const group = this.formBuilder.group({});
 
     this.logger.info('ContactComponent: createFormGroup()');
 
-    this.formMetadata.forEach(control => {
-
-      this.formGroup.addControl(control.id, new FormControl(''));
+    formModel.forEach(control => {
+      group.addControl(control.id, new FormControl(''));
     });
 
-    /*
-
-    this.formMetadata.forEach(control => {
-
-      this.formGroup.addControl(control.id, new FormControl(''));
-    });
-
-    const group = this.fb.group({});
-    this.config.forEach(control => group.addControl(control.name, this.fb.control()));
     return group;
-
-
-    this.formGroup = this.formBuilder.group({
-      displayName: [''],
-      title: [''],
-      givenName: [''],
-      middleName: [''],
-      familyName: ['']
-    });
-    */
-
   }
 
-  protected unsubscribe() {
+  protected unsubscribe(): void {
 
     this.logger.info('ContactComponent: unsubscribe()');
 
@@ -135,3 +137,42 @@ export class ContactComponent implements OnInit, OnDestroy {
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
+
+
+/*
+
+protected subscribe() {
+
+  this.logger.info('ContactComponent: subscribe()');
+
+  this.formSubscription = this.dynamicFormMetadataService.get('contact-form.model.json').subscribe(data => {
+
+    this.formModel = data;
+    this.formGroup = this.createFormGroup(this.formModel);
+  });
+
+}
+
+*/
+
+/*
+
+this.formMetadata.forEach(control => {
+
+  this.formGroup.addControl(control.id, new FormControl(''));
+});
+
+const group = this.fb.group({});
+this.config.forEach(control => group.addControl(control.name, this.fb.control()));
+return group;
+
+
+this.formGroup = this.formBuilder.group({
+  displayName: [''],
+  title: [''],
+  givenName: [''],
+  middleName: [''],
+  familyName: ['']
+});
+
+*/
