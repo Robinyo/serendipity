@@ -23,15 +23,15 @@
 
         <mat-card-content>
 
-          <dynamic-form [formGroup]="formGroup" class="nested-grid-container">
+          <dynamic-form [formGroup]="formGroup" [model]="formModel" [className]="'nested-grid-container'">
 
-            <mat-form-field appearance="outline" class="grid-column-2-span-2">
+            <mat-form-field appearance="outline" class="grid-column-1-span-2">
               <mat-label>Full Name</mat-label>
               <input matInput formControlName="displayName" placeholder="Full Name" autocomplete="name">
               <mat-hint></mat-hint>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="grid-column-1">
+            <mat-form-field appearance="outline">
               <mat-label>Job Title</mat-label>
               <input matInput formControlName="title" placeholder="Job Title" autocomplete="organization-title">
               <mat-hint></mat-hint>

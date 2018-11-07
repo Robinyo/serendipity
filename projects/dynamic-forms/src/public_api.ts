@@ -7,6 +7,7 @@ export * from './lib/dynamic-forms.module';
 
 export * from './lib/angular-material/services/dynamic-form-metadata/dynamic-form-metadata.service';
 
+export * from './lib/angular-material/models/dynamic-form.model';
 export * from './lib/angular-material/models/dynamic-form-control.model';
 
 /*

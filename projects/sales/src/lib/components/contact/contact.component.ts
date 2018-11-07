@@ -3,9 +3,9 @@ import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { Subscription} from 'rxjs';
+import { tap } from 'rxjs/operators';
 
-import { DynamicFormControlModel, DynamicFormMetadataService } from 'dynamic-forms';
-import {tap} from 'rxjs/operators';
+import { DynamicFormModel, DynamicFormMetadataService } from 'dynamic-forms';
 
 import { ContactsService } from '../../services/contacts/contacts.service';
 import { Contact } from '../../shared/models';
@@ -38,7 +38,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   formGroup: FormGroup;
   // formModel: DynamicFormControlModel[] = [];
-  formModel: DynamicFormControlModel[];
+  formModel: DynamicFormModel;
 
   private toolbarHeight = TOOLBAR_HEIGHT_DESKTOP;
   private margin = MARGIN_DESKTOP;
@@ -57,8 +57,6 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.id = atob(this.id);
 
     this.containerHeight = this.tableContainer.nativeElement.offsetHeight - (this.toolbarHeight * 2 + this.margin);
-
-    // this.formGroup = this.formBuilder.group({});
 
     this.subscribe();
   }
@@ -97,7 +95,9 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   }
 
-  protected createFormGroup(formModel: DynamicFormControlModel[]): FormGroup {
+  // https://angular.io/api/forms/FormControl
+
+  protected createFormGroup(formModel: DynamicFormModel): FormGroup {
 
     const group = this.formBuilder.group({});
 
