@@ -2,8 +2,8 @@ import { Injector, OnInit, OnDestroy, Type } from '@angular/core';
 
 import { Subscription} from 'rxjs';
 
-import { StaticInjectorService } from '../../services/injector/static-injector.service';
-import { LoggerService } from '../../services/logger/logger.service';
+import { LoggerService } from 'utils';
+import { StaticInjectorService } from 'utils';
 
 import { FAKE_ITEMS_LENGTH } from '../../shared/constants';
 

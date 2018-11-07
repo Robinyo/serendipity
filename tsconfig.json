@@ -35,6 +35,12 @@
       ],
       "dynamic-forms/*": [
         "dist/dynamic-forms/*"
+      ],
+      "utils": [
+        "dist/utils"
+      ],
+      "utils/*": [
+        "dist/utils/*"
       ]
     }
   }

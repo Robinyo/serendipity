@@ -1,10 +1,23 @@
 import { NgModule } from '@angular/core';
-import { DynamicFormsComponent } from './dynamic-forms.component';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+
+// import { TranslateModule } from '@ngx-translate/core';
+
+import { AngularMaterialModule } from './angular-material/shared/angular-material.module';
+
+import { DynamicFormComponent } from './angular-material/components/dynamic-form/dynamic-form.component';
 
 @NgModule({
   imports: [
-  ],
-  declarations: [DynamicFormsComponent],
-  exports: [DynamicFormsComponent]
+    AngularMaterialModule,
+    CommonModule,
+    ReactiveFormsModule
+
+    // TranslateModule.forChild()
+    ],
+  declarations: [ DynamicFormComponent ],
+  providers: [],
+  exports: [ DynamicFormComponent ]
 })
 export class DynamicFormsModule { }

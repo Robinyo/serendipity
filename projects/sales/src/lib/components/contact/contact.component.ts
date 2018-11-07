@@ -9,7 +9,7 @@ import { FormMetadataService } from '../../services/form/form-metadata.service';
 import { ContactsService } from '../../services/contacts/contacts.service';
 import { Contact } from '../../shared/models';
 
-import { LoggerService } from '../../services/logger/logger.service';
+import { LoggerService } from 'utils';
 
 import {
   MARGIN_DESKTOP,

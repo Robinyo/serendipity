@@ -32,34 +32,34 @@ const ELEMENT_DATA: PeriodicElement[] = [
   // providers: [ { provide: LoggerService, useClass: ConsoleLoggerService } ]
 })
 export class AccountsComponent implements OnInit {
-  
+
   protected subscription: Subscription;
-  
+
   public items: Array<Contact>;
-  
+
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
-  
+
   constructor(private contactsService: ContactsService) {
-  
+
   }
-  
+
   public ngOnInit() {
-    
+
     this.subscribe();
   }
-  
+
   protected subscribe() {
-    
+
     this.subscription = this.contactsService.list().subscribe(data => {
-      
+
       this.items = data;
       // this.dataSource.data = this.items;
-      
+
       // console.log(JSON.stringify(this.items));
-      
+
     });
-    
+
   }
-  
+
 }

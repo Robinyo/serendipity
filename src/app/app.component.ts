@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { LoggerService } from 'sales';
+import { LoggerService } from 'utils';
 
 @Component({
   selector: 'app-root',

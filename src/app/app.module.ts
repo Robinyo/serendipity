@@ -6,22 +6,20 @@ import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 
-import { LoggerService } from 'sales';
-import { ConsoleLoggerService } from 'sales';
-
 //
-// Sales lib
+// Utils lib
 //
 
-// import { SalesModule } from 'sales';
+import { UtilsModule } from 'utils';
+import { LoggerService } from 'utils';
+import { ConsoleLoggerService } from 'utils';
 
 @NgModule({
   imports: [
     BrowserModule,
     CoreModule,
-    SharedModule
-
-    // SalesModule
+    SharedModule,
+    UtilsModule
   ],
   declarations: [ AppComponent ],
   providers: [
