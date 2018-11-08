@@ -7,13 +7,13 @@ import { LoggerService } from 'utils';
 
 @Component({
   selector: 'dynamic-form',
-
-  styleUrls: ['./dynamic-form.component.css'],
   template: `
     <form [formGroup]="formGroup" [className]="className">
-      <ng-content></ng-content>
+      <ng-container *ngFor="let controlModel of formModel;" dynamicControl [formGroup]="formGroup" [model]="controlModel">
+      </ng-container>
     </form>
-  `
+  `,
+  styles: []
 })
 export class DynamicFormComponent implements OnInit {
 
@@ -35,3 +35,12 @@ export class DynamicFormComponent implements OnInit {
   }
 
 }
+
+/*
+
+    <form [formGroup]="formGroup" [className]="className">
+      <ng-content></ng-content>
+    </form>
+
+
+*/

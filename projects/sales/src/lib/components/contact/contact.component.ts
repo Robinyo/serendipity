@@ -80,6 +80,21 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   }
 
+  // https://angular.io/api/forms/FormControl
+
+  protected createFormGroup(formModel: DynamicFormModel): FormGroup {
+
+    const group = this.formBuilder.group({});
+
+    this.logger.info('ContactComponent: createFormGroup()');
+
+    formModel.forEach(control => {
+      group.addControl(control.id, new FormControl(''));
+    });
+
+    return group;
+  }
+
   protected initialiseForm(): void {
 
     this.logger.info('ContactComponent: initialiseForm()');
@@ -95,20 +110,6 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   }
 
-  // https://angular.io/api/forms/FormControl
-
-  protected createFormGroup(formModel: DynamicFormModel): FormGroup {
-
-    const group = this.formBuilder.group({});
-
-    this.logger.info('ContactComponent: createFormGroup()');
-
-    formModel.forEach(control => {
-      group.addControl(control.id, new FormControl(''));
-    });
-
-    return group;
-  }
 
   protected unsubscribe(): void {
 
