@@ -3,42 +3,74 @@
   {
     "type": "input",
     "id": "displayName",
-    "label": "Full Name"
+    "label": "Full Name",
+    "appearance": "outline",
+    "autocomplete": "name",
+
+    "class": "grid-column-1-span-2"
   },
   {
     "type": "input",
     "id": "title",
-    "label": "Job Title"
+    "label": "Job Title",
+    "appearance": "outline",
+    "autocomplete": "organization-title",
+
+    "class": "grid-column-3"
   },
   {
     "type": "input",
     "id": "givenName",
-    "label": "Given Name"
+    "label": "Given Name",
+    "appearance": "outline",
+    "autocomplete": "given-name",
+
+    "class": "grid-column-1"
   },
   {
     "type": "input",
     "id": "middleName",
-    "label": "Middle Name"
+    "label": "Middle Name",
+    "appearance": "outline",
+    "autocomplete": "additional-name",
+
+    "class": "grid-column-2"
   },
   {
     "type": "input",
     "id": "familyName",
-    "label": "Family Name"
+    "label": "Family Name",
+    "appearance": "outline",
+    "autocomplete": "family-name",
+
+    "class": "grid-column-3"
   },
   {
     "type": "input",
     "id": "organisation-name",
-    "label": "Account Name"
+    "label": "Account Name",
+    "appearance": "outline",
+    "autocomplete": "organization",
+
+    "class": "grid-column-1"
   },
   {
     "type": "input",
     "id": "email",
-    "label": "Email"
+    "label": "Email",
+    "appearance": "outline",
+    "autocomplete": "organization",
+
+    "class": "grid-column-1"
   },
   {
     "type": "input",
     "id": "organisation-phoneNumber",
-    "label": "Business Phone"
+    "label": "Business Phone",
+    "appearance": "outline",
+    "autocomplete": "tel",
+
+    "class": "grid-column-1"
   }
 
 ]

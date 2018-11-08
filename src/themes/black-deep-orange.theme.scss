@@ -114,6 +114,13 @@ a:active {
 // Dynamic Reactive Forms
 //
 
+.nested-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 16px;
+  row-gap: 1em;
+}
+
 /*
 .mat-hint {
   // color: rgba(0, 0, 0, 0.6);

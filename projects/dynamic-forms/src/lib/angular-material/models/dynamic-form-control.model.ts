@@ -3,10 +3,13 @@ export interface DynamicFormControlModel {
   type?: string;
   id?: string;
   label?: string;
-
-  // autocomplete?: string;  // aka autoFill
+  appearance?: string;
+  autocomplete?: string;  // aka autoFill
+  class?: string;
 
 }
+
+// https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
 
 // https://nealbuerger.com/2018/04/html-how-to-control-the-form-autofill-autocompetion/
 // https://developers.google.com/web/fundamentals/design-and-ux/input/forms/

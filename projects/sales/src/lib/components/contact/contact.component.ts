@@ -40,6 +40,8 @@ export class ContactComponent implements OnInit, OnDestroy {
   // formModel: DynamicFormControlModel[] = [];
   formModel: DynamicFormModel;
 
+  addressInformation: FormGroup;
+
   private toolbarHeight = TOOLBAR_HEIGHT_DESKTOP;
   private margin = MARGIN_DESKTOP;
 
@@ -57,6 +59,20 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.id = atob(this.id);
 
     this.containerHeight = this.tableContainer.nativeElement.offsetHeight - (this.toolbarHeight * 2 + this.margin);
+
+
+
+
+    this.addressInformation = this.formBuilder.group({
+      streetNumber: [''],
+      streetName: [''],
+      city: [''],
+      state: [''],
+      postalCode: ['']
+    });
+
+
+
 
     this.subscribe();
   }

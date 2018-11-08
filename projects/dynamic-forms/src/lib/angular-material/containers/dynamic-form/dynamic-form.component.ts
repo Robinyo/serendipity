@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { DynamicFormModel } from '../../models/dynamic-form.model';
@@ -6,14 +6,17 @@ import { DynamicFormModel } from '../../models/dynamic-form.model';
 import { LoggerService } from 'utils';
 
 @Component({
+  // encapsulation: ViewEncapsulation.None,
   selector: 'dynamic-form',
   template: `
-    <form [formGroup]="formGroup" [className]="className">
-      <ng-container *ngFor="let controlModel of formModel;" dynamicControl [formGroup]="formGroup" [model]="controlModel">
+    <form  [autocomplete]="autocomplete" [className]="className" [formGroup]="formGroup">
+      <ng-container *ngFor="let controlModel of formModel;"
+                    dynamicControl [formGroup]="formGroup"
+                    [model]="controlModel">
       </ng-container>
     </form>
   `,
-  styles: []
+  styleUrls: ['dynamic-form.component.scss']
 })
 export class DynamicFormComponent implements OnInit {
 
@@ -22,6 +25,7 @@ export class DynamicFormComponent implements OnInit {
   // tslint:disable-next-line:no-input-rename
   @Input('model') formModel: DynamicFormModel;
 
+  @Input() autocomplete: string;
   @Input() className: string;
 
   constructor(private formBuilder: FormBuilder,
@@ -37,6 +41,32 @@ export class DynamicFormComponent implements OnInit {
 }
 
 /*
+
+      <div class="grid-column-2" *ngFor="let controlModel of formModel;"
+                    dynamicControl [formGroup]="formGroup"
+                    [model]="controlModel">
+      </div>
+
+class="controlModel.class"
+
+    <form  [autocomplete]="autocomplete" [className]="className" [formGroup]="formGroup">
+      <ng-container *ngFor="let controlModel of formModel;"
+                    dynamicControl [formGroup]="formGroup"
+                    [model]="controlModel"
+                    class="controlModel.class">
+      </ng-container>
+    </form>
+
+class="nested-grid-container"
+class="dynamic-form-grid-container"
+
+
+
+[ngClass]="['nested-grid-container']"
+
+class="nested-grid-container"
+
+[className]="className"
 
     <form [formGroup]="formGroup" [className]="className">
       <ng-content></ng-content>

@@ -36,14 +36,16 @@ See: styles.scss for ...
   margin: 32px;
 }
 
+/*
+
 .nested-grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 16px;
   row-gap: 1em;
-
-  // margin: 32px;
 }
+
+*/
 
 .spinner-container {
   display: flex;

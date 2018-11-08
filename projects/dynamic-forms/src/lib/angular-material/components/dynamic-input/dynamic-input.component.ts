@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { DynamicFormControlModel } from '../../models/dynamic-form-control.model';
@@ -6,11 +6,12 @@ import { DynamicFormControlModel } from '../../models/dynamic-form-control.model
 import { LoggerService } from 'utils';
 
 @Component({
+  // encapsulation: ViewEncapsulation.None,
   selector: 'dynamic-input',
   template: `
-    <mat-form-field [formGroup]="formGroup" >
+    <mat-form-field [appearance]="model.appearance" [className]="model.class" [formGroup]="formGroup">
       <mat-label> {{ model.label }} </mat-label>
-      <input matInput [formControlName]="model.id" [placeholder]="model.id">
+      <input matInput [autocomplete]="model.autocomplete" [formControlName]="model.id" [placeholder]="model.id" >
       <mat-hint></mat-hint>
     </mat-form-field>
   `,
@@ -21,6 +22,8 @@ export class DynamicInputComponent implements OnInit {
   @Input() formGroup: FormGroup;
   @Input() model: DynamicFormControlModel;
 
+  @HostBinding('class') elementClass;
+
   constructor(private logger: LoggerService) {
 
   }
@@ -28,11 +31,25 @@ export class DynamicInputComponent implements OnInit {
   ngOnInit() {
 
     this.logger.info('DynamicInputComponent: ngOnInit()');
+    this.elementClass = this.model.class;
   }
 
 }
 
+// https://stackoverflow.com/questions/39639098/using-a-directive-to-add-class-to-host-element
+
 /*
+
+  @HostBinding('class')
+  elementClass = this.model.class;
+
+[className]="model.class"
+
+
+
+class="grid-column-2"
+
+[class]="model.class"
 
   // tslint:disable-next-line:no-input-rename
   @Input('model') controlModel: DynamicFormControlModel;

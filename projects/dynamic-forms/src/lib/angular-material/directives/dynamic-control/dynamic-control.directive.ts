@@ -1,4 +1,4 @@
-import { ComponentFactoryResolver, ComponentRef, Directive, Input, OnInit, ViewContainerRef } from '@angular/core';
+import { ComponentFactoryResolver, Directive, Input, OnInit, ViewContainerRef } from '@angular/core';
 
 import { FormGroup } from '@angular/forms';
 
@@ -30,21 +30,29 @@ export class DynamicControlDirective  implements OnInit {
 
   ngOnInit() {
 
-    this.logger.info('DynamicControlDirective: ngOnInit()');
+    // this.logger.info('DynamicControlDirective: ngOnInit()');
 
     if (!components[this.model.type]) {
 
       const supportedTypes = Object.keys(components).join(', ');
 
       this.logger.info(`You tried to use an unsupported type (${this.model.type}). Supported types: ${supportedTypes}`);
+
     } else {
 
       const factory = this.resolver.resolveComponentFactory(components[this.model.type]);
       this.component = this.container.createComponent(factory);
-       this.component.instance.formGroup = this.formGroup;
+      this.component.instance.formGroup = this.formGroup;
       this.component.instance.model = this.model;
     }
 
   }
 
 }
+
+/*
+
+  @HostBinding('class')
+  elementClass = 'grid-column-1';
+
+*/
