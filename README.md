@@ -15,7 +15,7 @@ Toolbar:
 Sidenav:
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/sidenav.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/sidenav-over.png">
 </p>
 
 Contacts:
