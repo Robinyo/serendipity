@@ -52,7 +52,7 @@
     "appearance": "outline",
     "autocomplete": "organization",
 
-    "class": "grid-column-1"
+    "class": "grid-column-1-span-2"
   },
   {
     "type": "input",

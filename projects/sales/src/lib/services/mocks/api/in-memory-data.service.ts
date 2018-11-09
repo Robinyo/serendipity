@@ -16,6 +16,8 @@ export class InMemoryDataService implements InMemoryDbService {
   createDb(reqInfo?: RequestInfo) {
 
     /* tslint:disable */
+    
+    /*
 
     const contacts = [
       {"id":"1","displayName":"Abetz, Senator the Hon Eric","title":"Senator the Hon","givenName":"Eric","middleName":"","familyName":"Abetz","honorific":"","salutation":"Senator","preferredName":"Eric","initials":"E.","gender":"MALE","email":"eric.abetz@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"LP","phoneNumber":"(03) 6224 3707"}},
@@ -96,6 +98,76 @@ export class InMemoryDataService implements InMemoryDbService {
       {"id":"76","displayName":"Wong, Senator the Hon Penny","title":"Senator the Hon","givenName":"Penny","middleName":"","familyName":"Wong","honorific":"","salutation":"Senator","preferredName":"Penny","initials":"P.","gender":"FEMALE","email":"penny.wong@aph.gov.au","phoneNumber":"","photoUrl":"","organisation":{"id":"","name":"ALP","phoneNumber":"(08) 8212 8272"}}
     ];
   
+    */
+  
+    const contacts = [
+      
+      {
+        "id":"1",
+        "displayName":"Abetz, Senator the Hon Eric",
+        "title":"Senator the Hon",
+        "givenName":"Eric",
+        "middleName":"",
+        "familyName":"Abetz",
+        "honorific":"",
+        "salutation":"Senator",
+        "preferredName":"Eric",
+        "initials":"E.",
+        "gender":"MALE",
+        "email":"eric.abetz@aph.gov.au",
+        "phoneNumber":"",
+        "photoUrl":"",
+
+        "organisation":{
+          "id":"",
+          "name":"Liberal Party",
+          "phoneNumber":"(03) 6224 3707"
+        },
+  
+        "address":{
+          "id":"1",
+          "line1":"Highbury House",
+          "line2":"136 Davey Street",
+          "city":"Hobart",
+          "state":"TAS",
+          "postalCode":"7001"
+        }
+
+      },
+      {
+        "id":"2",
+        "displayName":"Anning, Senator Fraser",
+        "title":"Senator",
+        "givenName":"Fraser",
+        "middleName":"",
+        "familyName":"Anning",
+        "honorific":"",
+        "salutation":"Senator",
+        "preferredName":"Fraser",
+        "initials":"F.",
+        "gender":"MALE",
+        "email":"fraser.anning@aph.gov.au",
+        "phoneNumber":"",
+        "photoUrl":"",
+ 
+        "organisation":{
+          "id":"",
+          "name":"Katter's Australian Party",
+          "phoneNumber":"(07) 3221 9099"
+        },
+        
+        "address":{
+          "id":"2",
+          "line1":"Suite 2, Level 36, Waterfront Place",
+          "line2":"1 Eagle Street",
+          "city":"Brisbane",
+          "state":"QLD",
+          "postalCode":"5067"
+        }
+      },
+
+    ];
+    
     // default returnType
     let returnType  = 'object';
     // let returnType  = 'observable';

@@ -17,7 +17,7 @@
 
         <mat-card-header>
           <mat-card-title>
-            Contact Information
+            General Information
           </mat-card-title>
         </mat-card-header>
 
@@ -44,6 +44,48 @@
         </mat-card-header>
 
         <mat-card-content>
+
+          <!--
+          <dynamic-form autocomplete="off"
+                        [className]="'nested-grid-container'"
+                        [formGroup]="addressInformationGroup"
+                        [model]="addressInformationModel">
+          </dynamic-form>
+          -->
+
+          <dynamic-form autocomplete="off"
+                        [className]="'nested-grid-container'"
+                        [formGroup]="addressInformationGroup"
+                        [model]="addressInformationModel">
+          </dynamic-form>
+
+        </mat-card-content>
+
+      </mat-card>
+
+    </div>
+
+  </ng-container> <!-- gridContainer -->
+
+  <!-- Skeleton template -->
+
+  <ng-template #skeleton>
+    <div class="spinner-container" [style.height.px]="containerHeight">
+      <mat-spinner color="accent"></mat-spinner>
+    </div>
+  </ng-template>
+
+</div> <!-- contentContainer -->
+
+<!--
+
+Personal Details
+
+chrome://settings/autofill
+
+-->
+
+<!--
 
           <form autocomplete="off" [formGroup]="addressInformationGroup" class="nested-grid-container">
 
@@ -78,34 +120,6 @@
             </mat-form-field>
 
           </form>
-
-        </mat-card-content>
-
-      </mat-card>
-
-    </div>
-
-  </ng-container> <!-- gridContainer -->
-
-  <!-- Skeleton template -->
-
-  <ng-template #skeleton>
-    <div class="spinner-container" [style.height.px]="containerHeight">
-      <mat-spinner color="accent"></mat-spinner>
-    </div>
-  </ng-template>
-
-</div> <!-- contentContainer -->
-
-<!--
-
-Personal Details
-
-chrome://settings/autofill
-
--->
-
-<!--
 
 <form autocomplete="off" [formGroup]="formGroup" class="nested-grid-container">
 

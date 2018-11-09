@@ -29,18 +29,16 @@ export class ContactComponent implements OnInit, OnDestroy {
   public containerHeight: number;
 
   public id: string;
-
   public item: Contact;
 
-  protected formSubscription: Subscription;
-  protected modelSubscription: Subscription;
+  subscriptions: Subscription[] = [];
 
   @ViewChild('contentContainer')
   private tableContainer: ElementRef;
 
   // formGroup: FormGroup;
-  generalInformationGroup: FormGroup;
-  generalInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];
+  public generalInformationGroup: FormGroup;
+  public generalInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];
 
   public addressInformationGroup: FormGroup;
   public addressInformationModel: DynamicFormModel; // === DynamicFormControlModel[] = [];
@@ -63,22 +61,112 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     this.containerHeight = this.tableContainer.nativeElement.offsetHeight - (this.toolbarHeight * 2 + this.margin);
 
-
-
-
-    this.addressInformationGroup = this.formBuilder.group({
-      streetNumber: [''],
-      streetName: [''],
-      city: [''],
-      state: [''],
-      postalCode: ['']
-    });
-
-
-
-
     this.subscribe();
   }
+
+  protected subscribe() {
+
+    this.logger.info('ContactComponent: subscribe()');
+
+    let formSubscription: Subscription = new Subscription();
+    this.subscriptions.push(formSubscription);
+
+    // General Information
+
+    formSubscription = this.dynamicFormMetadataService.get(GENERAL_INFORMATION_GROUP).pipe(tap(() => {
+
+        let modelSubscription: Subscription = new Subscription();
+        this.subscriptions.push(modelSubscription);
+
+        modelSubscription = this.contactsService.get(this.id).subscribe(data => {
+          this.item = data;
+          this.initFormGroup(this.generalInformationGroup);
+        });
+
+    })).subscribe(metaData => {
+
+      this.generalInformationModel = metaData;
+      this.generalInformationGroup = this.createFormGroup(this.generalInformationModel);
+    });
+
+    // Address Information
+
+    formSubscription = new Subscription();
+    this.subscriptions.push(formSubscription);
+
+    formSubscription = this.dynamicFormMetadataService.get(ADDRESS_INFORMATION_GROUP).pipe(tap(() => {
+
+      let modelSubscription: Subscription = new Subscription();
+      this.subscriptions.push(modelSubscription);
+
+      modelSubscription = this.contactsService.get(this.id).subscribe(data => {
+        this.item = data;
+        this.initFormGroup(this.addressInformationGroup);
+      });
+
+    })).subscribe(metaData => {
+
+      this.addressInformationModel = metaData;
+      this.addressInformationGroup = this.createFormGroup(this.addressInformationModel);
+    });
+
+  }
+
+  // https://angular.io/api/forms/FormControl
+
+  protected createFormGroup(formModel: DynamicFormModel): FormGroup {
+
+    const group = this.formBuilder.group({});
+
+    this.logger.info('ContactComponent: createFormGroup()');
+
+    formModel.forEach(control => {
+      group.addControl(control.id, new FormControl(''));
+    });
+
+    return group;
+  }
+
+  protected initFormGroup(formGroup: FormGroup): void {
+
+    this.logger.info('ContactComponent: initialiseForm()');
+
+    for (const field of Object.keys(formGroup.controls)) {
+
+      // this.logger.info('field name: ' + field +
+      //   ' nested object name: ' + field.replace('-', '.') +
+      //   ' value: ' + this.getProperty(this.item, field));
+
+      formGroup.controls[field].setValue(this.getProperty(this.item, field));
+    }
+
+  }
+
+  protected unsubscribe(): void {
+
+    this.logger.info('ContactComponent: unsubscribe()');
+
+    this.subscriptions.forEach(subscription => {
+      subscription.unsubscribe();
+    });
+
+  }
+
+  public ngOnDestroy() {
+
+    this.logger.info('ContactComponent: ngOnDestroy()');
+    this.unsubscribe();
+  }
+
+  getProperty = (obj, path) => (
+    path.split('-').reduce((o, p) => o && o[p], obj)
+  )
+
+}
+
+// https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
+
+/*
 
   protected subscribe() {
 
@@ -99,21 +187,6 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   }
 
-  // https://angular.io/api/forms/FormControl
-
-  protected createFormGroup(formModel: DynamicFormModel): FormGroup {
-
-    const group = this.formBuilder.group({});
-
-    this.logger.info('ContactComponent: createFormGroup()');
-
-    formModel.forEach(control => {
-      group.addControl(control.id, new FormControl(''));
-    });
-
-    return group;
-  }
-
   protected initialiseForm(): void {
 
     this.logger.info('ContactComponent: initialiseForm()');
@@ -129,7 +202,6 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   }
 
-
   protected unsubscribe(): void {
 
     this.logger.info('ContactComponent: unsubscribe()');
@@ -144,20 +216,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   }
 
-  public ngOnDestroy() {
-
-    this.logger.info('ContactComponent: ngOnDestroy()');
-    this.unsubscribe();
-  }
-
-  getProperty = (obj, path) => (
-    path.split('-').reduce((o, p) => o && o[p], obj)
-  )
-
-}
-
-// https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
-
+*/
 
 /*
 
@@ -186,6 +245,15 @@ const group = this.fb.group({});
 this.config.forEach(control => group.addControl(control.name, this.fb.control()));
 return group;
 
+
+
+    this.addressInformationGroup = this.formBuilder.group({
+      streetNumber: [''],
+      streetName: [''],
+      city: [''],
+      state: [''],
+      postalCode: ['']
+    });
 
 this.formGroup = this.formBuilder.group({
   displayName: [''],
