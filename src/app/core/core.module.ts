@@ -6,9 +6,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-// import { InMemoryDataService } from '@app/core';
-
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularMaterialModule } from '@app/shared/angular-material.module';
 
@@ -17,8 +14,6 @@ import { AppRoutingModule } from '@app/app-routing.module';
 import { PlaceholderComponent } from './components/placeholder/placeholder.component';
 import { NavComponent } from './components/nav/nav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-
-// import { LoggerService, ConsoleLoggerService } from '@app/core';
 
 import { environment } from '@env/environment';
 
@@ -29,8 +24,6 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 //
 
 import { SalesModule } from 'sales';
-// import { LoggerService, ConsoleLoggerService } from 'sales/public_api';
-// import { LoggerService, ConsoleLoggerService } from 'sales';
 
 @NgModule({
   imports: [
@@ -40,8 +33,6 @@ import { SalesModule } from 'sales';
     FlexLayoutModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-
-    // environment.production ? [] : HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true, delay: 1500 }),
 
     TranslateModule.forRoot({
       loader: {
@@ -56,9 +47,7 @@ import { SalesModule } from 'sales';
     AppRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
   declarations: [ PlaceholderComponent, NavComponent, ToolbarComponent ],
-  providers: [
-    // { provide: LoggerService, useClass: ConsoleLoggerService }
-  ],
+  providers: [],
   exports: [ PlaceholderComponent, NavComponent, ToolbarComponent ] // TranslateModule
 })
 export class CoreModule {

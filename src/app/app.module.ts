@@ -14,6 +14,9 @@ import { UtilsModule } from 'utils';
 import { LoggerService } from 'utils';
 import { ConsoleLoggerService } from 'utils';
 
+// The Angular Material module (which is imported in the Core module) must be imported after Angular's BrowserModule, as the import
+// order matters for NgModules.
+
 @NgModule({
   imports: [
     BrowserModule,
