@@ -38,9 +38,9 @@ export class ContactComponent implements OnInit, OnDestroy {
   @ViewChild('contentContainer')
   private tableContainer: ElementRef;
 
-  formGroup: FormGroup;
-  // formModel: DynamicFormControlModel[] = [];
-  generalInformationModel: DynamicFormModel;
+  // formGroup: FormGroup;
+  generalInformationGroup: FormGroup;
+  generalInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];
 
   public addressInformationGroup: FormGroup;
   public addressInformationModel: DynamicFormModel; // === DynamicFormControlModel[] = [];
@@ -94,7 +94,7 @@ export class ContactComponent implements OnInit, OnDestroy {
     ).subscribe(metaData => {
 
       this.generalInformationModel = metaData;
-      this.formGroup = this.createFormGroup(this.generalInformationModel);
+      this.generalInformationGroup = this.createFormGroup(this.generalInformationModel);
     });
 
   }
@@ -118,13 +118,13 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     this.logger.info('ContactComponent: initialiseForm()');
 
-    for (const field of Object.keys(this.formGroup.controls)) {
+    for (const field of Object.keys(this.generalInformationGroup.controls)) {
 
       // this.logger.info('field name: ' + field +
       //   ' nested object name: ' + field.replace('-', '.') +
       //   ' value: ' + this.getProperty(this.item, field));
 
-      this.formGroup.controls[field].setValue(this.getProperty(this.item, field));
+      this.generalInformationGroup.controls[field].setValue(this.getProperty(this.item, field));
     }
 
   }
