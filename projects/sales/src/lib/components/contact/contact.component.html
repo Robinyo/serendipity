@@ -25,10 +25,10 @@
 
           <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
 
-          <!--
-          <dynamic-form autocomplete="off" [formGroup]="formGroup" [model]="formModel" [className]="'nested-grid-container'">
-          -->
-          <dynamic-form autocomplete="off" [className]="'nested-grid-container'" [formGroup]="formGroup" [model]="formModel">
+          <dynamic-form autocomplete="off"
+                        [className]="'nested-grid-container'"
+                        [formGroup]="formGroup"
+                        [model]="generalInformationModel">
           </dynamic-form>
 
         </mat-card-content>
@@ -45,7 +45,7 @@
 
         <mat-card-content>
 
-          <form autocomplete="off" [formGroup]="addressInformation" class="nested-grid-container">
+          <form autocomplete="off" [formGroup]="addressInformationGroup" class="nested-grid-container">
 
             <mat-form-field appearance="outline" class="grid-column-1">
               <mat-label>Street Number</mat-label>

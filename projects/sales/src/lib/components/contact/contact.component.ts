@@ -10,6 +10,8 @@ import { DynamicFormModel, DynamicFormMetadataService } from 'dynamic-forms';
 import { ContactsService } from '../../services/contacts/contacts.service';
 import { Contact } from '../../shared/models';
 
+import { GENERAL_INFORMATION_GROUP, ADDRESS_INFORMATION_GROUP } from '../../shared/filenames';
+
 import { LoggerService } from 'utils';
 
 import {
@@ -38,9 +40,10 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   formGroup: FormGroup;
   // formModel: DynamicFormControlModel[] = [];
-  formModel: DynamicFormModel;
+  generalInformationModel: DynamicFormModel;
 
-  addressInformation: FormGroup;
+  public addressInformationGroup: FormGroup;
+  public addressInformationModel: DynamicFormModel; // === DynamicFormControlModel[] = [];
 
   private toolbarHeight = TOOLBAR_HEIGHT_DESKTOP;
   private margin = MARGIN_DESKTOP;
@@ -63,7 +66,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
 
 
-    this.addressInformation = this.formBuilder.group({
+    this.addressInformationGroup = this.formBuilder.group({
       streetNumber: [''],
       streetName: [''],
       city: [''],
@@ -81,7 +84,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     this.logger.info('ContactComponent: subscribe()');
 
-    this.formSubscription = this.dynamicFormMetadataService.get('contact-form.model.json').pipe(tap(() =>
+    this.formSubscription = this.dynamicFormMetadataService.get(GENERAL_INFORMATION_GROUP).pipe(tap(() =>
 
         this.modelSubscription = this.contactsService.get(this.id).subscribe(data => {
           this.item = data;
@@ -90,8 +93,8 @@ export class ContactComponent implements OnInit, OnDestroy {
       )
     ).subscribe(metaData => {
 
-      this.formModel = metaData;
-      this.formGroup = this.createFormGroup(this.formModel);
+      this.generalInformationModel = metaData;
+      this.formGroup = this.createFormGroup(this.generalInformationModel);
     });
 
   }

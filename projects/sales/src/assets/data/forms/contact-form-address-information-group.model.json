@@ -1,0 +1,49 @@
+[
+
+  {
+    "type": "input",
+    "id": "streetNumber",
+    "label": "Street Number",
+    "appearance": "outline",
+    "autocomplete": "street-number",
+
+    "class": "grid-column-1"
+  },
+  {
+    "type": "input",
+    "id": "streetName",
+    "label": "Street Name",
+    "appearance": "outline",
+    "autocomplete": "street-address",
+
+    "class": "grid-column-2-span-2"
+  },
+  {
+    "type": "input",
+    "id": "city",
+    "label": "City",
+    "appearance": "outline",
+    "autocomplete": "address-level2",
+
+    "class": "grid-column-1"
+  },
+  {
+    "type": "input",
+    "id": "state",
+    "label": "State",
+    "appearance": "outline",
+    "autocomplete": "address-level1",
+
+    "class": "grid-column-2"
+  },
+  {
+    "type": "input",
+    "id": "postalCode",
+    "label": "Postal Code",
+    "appearance": "outline",
+    "autocomplete": "postal-code",
+
+    "class": "grid-column-3"
+  }
+
+]

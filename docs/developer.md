@@ -43,6 +43,7 @@ Go to the project directory, install the project's dependencies and launch the s
 ```
 cd serendipity
 npm install
+ng build utils && ng build dynamic-forms && ng build sales
 ng serve --open
 ```
 
@@ -216,4 +217,3 @@ git push origin <tag>
 ## Sample Data
 
 * [Mail Labels for Australian Senators](https://www.aph.gov.au/Senators_and_Members/Guidelines_for_Contacting_Senators_and_Members/Address_labels_and_CSV_files)
-
