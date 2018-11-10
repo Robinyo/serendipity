@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { DynamicFormControlModel } from '../../models/dynamic-form-control.model';
@@ -6,7 +6,6 @@ import { DynamicFormControlModel } from '../../models/dynamic-form-control.model
 import { LoggerService } from 'utils';
 
 @Component({
-  // encapsulation: ViewEncapsulation.None,
   selector: 'dynamic-input',
   template: `
     <mat-form-field [appearance]="model.appearance" [className]="model.class" [formGroup]="formGroup">
