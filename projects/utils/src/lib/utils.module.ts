@@ -7,6 +7,13 @@ import { UtilsConfigService } from './services/config.service';
 export class UtilsModule {
 
   static forRoot(config: UtilsConfig): ModuleWithProviders {
+
+    // ng build --prod
+    // ERROR in Error during template compile of 'CoreModule'
+    // Function calls are not supported in decorators but 'UtilsModule' was called.
+    // console.log('UtilsModule: forRoot()');
+    // console.log(JSON.stringify(config));
+
     return {
       ngModule: UtilsModule,
       providers: [

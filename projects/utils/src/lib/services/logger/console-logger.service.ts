@@ -14,6 +14,9 @@ export class ConsoleLoggerService implements Logger {
 
   constructor(@Inject(UtilsConfigService) private config: UtilsConfig ) {
 
+    // console.log('ConsoleLoggerService: constructor()');
+    // console.log(JSON.stringify(this.config));
+
     if (this.config.isDebugMode) {
       console.log('Console Logger Service registered');
     }

@@ -1,4 +1,7 @@
-import { Injectable, Injector } from '@angular/core';
+import {Inject, Injectable, Injector} from '@angular/core';
+
+import { UtilsConfig } from '../../shared/models';
+import { UtilsConfigService } from '../config.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +10,18 @@ export class StaticInjectorService {
 
   private static injector: Injector = null;
 
-  static setInjector(injector: Injector) {
+  constructor(@Inject(UtilsConfigService) private config: UtilsConfig ) {
 
-    console.log('Static Injector Service registered');
+    // console.log('StaticInjectorService: constructor()');
+    // console.log(JSON.stringify(this.config));
+
+    if (this.config.isDebugMode) {
+      console.log('Static Injector Service registered');
+    }
+
+  }
+
+  static setInjector(injector: Injector) {
 
     StaticInjectorService.injector = injector;
   }
