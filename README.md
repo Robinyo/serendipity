@@ -4,7 +4,7 @@ Serendipity is an open source customer relationship management (CRM) solution.
 
 You can use it to transform your organisation by connecting your customers, products, people and operations.
 
-### Screen Shots
+## Screen Shots
 
 Toolbar:
 
@@ -34,6 +34,12 @@ Serendipity is a [progressive web application](https://developers.google.com/web
 
 You can customise and extend Serendipity using Angular, Angular libraries and Serendipity's [plugin](docs/developer.md) framework.
 
-### Quick Links
+## Quick Links
 
 [Documentation, demos, and guides](docs/README.md)
+
+## Resources 
+
+## Blog Posts 
+* Rob Ferguson's blog: [Getting started with Angular Material](https://robferguson.org/blog/2018/11/05/getting-started-with-angular-material/)
+* Rob Ferguson's blog: [Angular Material: toolbar and sidenav](https://robferguson.org/blog/2018/11/10/angular-material-toolbar-and-sidenav/)
