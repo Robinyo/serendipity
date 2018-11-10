@@ -34,37 +34,3 @@ export class DynamicInputComponent implements OnInit {
   }
 
 }
-
-// https://stackoverflow.com/questions/39639098/using-a-directive-to-add-class-to-host-element
-
-/*
-
-  @HostBinding('class')
-  elementClass = this.model.class;
-
-[className]="model.class"
-
-
-
-class="grid-column-2"
-
-[class]="model.class"
-
-  // tslint:disable-next-line:no-input-rename
-  @Input('model') controlModel: DynamicFormControlModel;
-
-            <mat-form-field appearance="outline" class="grid-column-1-span-2">
-              <mat-label>Full Name</mat-label>
-              <input matInput formControlName="displayName" placeholder="Full Name" autocomplete="name">
-              <mat-hint></mat-hint>
-            </mat-form-field>
-
-
-<mat-form-field class="demo-full-width" [formGroup]="group">
-  <input matInput [formControlName]="field.name" [placeholder]="field.label" [type]="field.inputType">
-  <ng-container *ngFor="let validation of field.validations;" ngProjectAs="mat-error">
-  <mat-error *ngIf="group.get(field.name).hasError(validation.name)">{{validation.message}}</mat-error>
-  </ng-container>
-</mat-form-field>
-
-*/

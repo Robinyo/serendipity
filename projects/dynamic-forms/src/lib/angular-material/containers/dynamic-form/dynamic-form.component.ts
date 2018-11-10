@@ -39,38 +39,3 @@ export class DynamicFormComponent implements OnInit {
   }
 
 }
-
-/*
-
-      <div class="grid-column-2" *ngFor="let controlModel of formModel;"
-                    dynamicControl [formGroup]="formGroup"
-                    [model]="controlModel">
-      </div>
-
-class="controlModel.class"
-
-    <form  [autocomplete]="autocomplete" [className]="className" [formGroup]="formGroup">
-      <ng-container *ngFor="let controlModel of formModel;"
-                    dynamicControl [formGroup]="formGroup"
-                    [model]="controlModel"
-                    class="controlModel.class">
-      </ng-container>
-    </form>
-
-class="nested-grid-container"
-class="dynamic-form-grid-container"
-
-
-
-[ngClass]="['nested-grid-container']"
-
-class="nested-grid-container"
-
-[className]="className"
-
-    <form [formGroup]="formGroup" [className]="className">
-      <ng-content></ng-content>
-    </form>
-
-
-*/

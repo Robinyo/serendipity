@@ -49,10 +49,3 @@ export class DynamicControlDirective  implements OnInit {
   }
 
 }
-
-/*
-
-  @HostBinding('class')
-  elementClass = 'grid-column-1';
-
-*/
