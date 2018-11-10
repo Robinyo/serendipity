@@ -27,6 +27,13 @@ import { UtilsModule } from 'utils';
 import { LoggerService } from 'utils';
 import { ConsoleLoggerService } from 'utils';
 
+
+//
+// Dynamic Forms lib
+//
+
+import { DynamicFormsModule } from 'dynamic-forms';
+
 //
 // Sales lib
 //
@@ -51,7 +58,7 @@ import { SalesModule } from 'sales';
     }),
 
     UtilsModule.forRoot(environment),
-
+    DynamicFormsModule.forRoot(environment),
     SalesModule,
 
     AppRoutingModule  // https://angular.io/guide/router#routing-module-order
@@ -68,8 +75,6 @@ export class CoreModule {
                private translate: TranslateService,
                private logger: LoggerService) {
 
-    // this.logger.info('CoreModule: constructor()');
-
     translate.setDefaultLang(environment.defaultLanguage);
     translate.use(environment.defaultLanguage);
 
@@ -84,3 +89,5 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 // https://stackoverflow.com/questions/50860898/angular-6-services-providedin-root-vs-coremodule
+
+// this.logger.info('CoreModule: constructor()');

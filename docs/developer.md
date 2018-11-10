@@ -69,7 +69,21 @@ You can also use `ng generate directive|pipe|service|class|guard|interface|enum|
 
 ### Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build` to build the project:
+
+```
+ng build utils && ng build dynamic-forms && ng build sales
+ng build
+```
+
+The build artifacts will be stored in the `dist/` directory. 
+
+Use the `--prod` flag for a production build:
+
+```
+ng build utils && ng build dynamic-forms && ng build sales
+ng build --prod
+```
 
 ### Running unit tests
 

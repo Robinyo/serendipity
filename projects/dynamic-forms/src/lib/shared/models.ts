@@ -1,6 +1,6 @@
 // See: environment.ts
 
-export interface UtilsConfig {
+export interface DynamicFormsConfig {
   production?: boolean;
   isDebugMode?: boolean;
   defaultLanguage?: string;

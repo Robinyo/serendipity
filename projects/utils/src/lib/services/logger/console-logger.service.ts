@@ -12,10 +12,7 @@ const noop = (): any => undefined;
 })
 export class ConsoleLoggerService implements Logger {
 
-  constructor(@Inject(UtilsConfigService) private config: UtilsConfig ) {
-
-    // console.log('ConsoleLoggerService: constructor()');
-    // console.log(JSON.stringify(this.config));
+  constructor(@Inject(UtilsConfigService) private config: UtilsConfig) {
 
     if (this.config.isDebugMode) {
       console.log('Console Logger Service registered');
@@ -52,6 +49,9 @@ export class ConsoleLoggerService implements Logger {
 // https://stackoverflow.com/questions/13815640/a-proper-wrapper-for-console-log-with-correct-line-number
 // https://stackoverflow.com/questions/28668759/what-does-this-statement-do-console-log-bindconsole
 // https://gist.github.com/ytiurin/7e5f57809e3e6eeac616
+
+// console.log('ConsoleLoggerService: constructor()');
+// console.log(JSON.stringify(this.config));
 
 /*
 

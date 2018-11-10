@@ -1,4 +1,4 @@
-import {Inject, Injectable, Injector} from '@angular/core';
+import { Inject, Injectable, Injector } from '@angular/core';
 
 import { UtilsConfig } from '../../shared/models';
 import { UtilsConfigService } from '../config.service';
@@ -11,9 +11,6 @@ export class StaticInjectorService {
   private static injector: Injector = null;
 
   constructor(@Inject(UtilsConfigService) private config: UtilsConfig ) {
-
-    // console.log('StaticInjectorService: constructor()');
-    // console.log(JSON.stringify(this.config));
 
     if (this.config.isDebugMode) {
       console.log('Static Injector Service registered');
@@ -35,3 +32,6 @@ export class StaticInjectorService {
 // https://blogs.msdn.microsoft.com/premier_developer/2018/06/17/angular-how-to-simplify-components-with-typescript-inheritance/
 
 // https://stackoverflow.com/questions/33970645/how-to-extend-a-component-with-dependency-injection-in-angular-2
+
+// console.log('StaticInjectorService: constructor()');
+// console.log(JSON.stringify(this.config));
