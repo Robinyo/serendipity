@@ -20,6 +20,14 @@ import { environment } from '@env/environment';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 
 //
+// Utils lib
+//
+
+import { UtilsModule } from 'utils';
+import { LoggerService } from 'utils';
+import { ConsoleLoggerService } from 'utils';
+
+//
 // Sales lib
 //
 
@@ -42,18 +50,25 @@ import { SalesModule } from 'sales';
       }
     }),
 
+    UtilsModule.forRoot(environment),
+
     SalesModule,
 
     AppRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
   declarations: [ PlaceholderComponent, NavComponent, ToolbarComponent ],
-  providers: [],
+  providers: [
+    { provide: LoggerService, useClass: ConsoleLoggerService }
+  ],
   exports: [ PlaceholderComponent, NavComponent, ToolbarComponent ] // TranslateModule
 })
 export class CoreModule {
 
   constructor( @Optional() @SkipSelf() parentModule: CoreModule,
-               private translate: TranslateService) {
+               private translate: TranslateService,
+               private logger: LoggerService) {
+
+    this.logger.info('CoreModule: constructor()');
 
     translate.setDefaultLang(environment.defaultLanguage);
     translate.use(environment.defaultLanguage);
