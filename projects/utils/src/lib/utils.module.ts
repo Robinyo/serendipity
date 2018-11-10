@@ -1,10 +1,17 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import {NgModule, ModuleWithProviders, Injector, Inject} from '@angular/core';
 
 import { UtilsConfig } from './shared/models';
 import { UtilsConfigService } from './services/config.service';
 
+import { StaticInjectorService } from './services/injector/static-injector.service';
+
 @NgModule()
 export class UtilsModule {
+
+  constructor(private staticInjector: StaticInjectorService) {
+
+    // I'm injecting the StaticInjectorService so that its constructor() is called and the UtilsConfigService is injected.
+  }
 
   static forRoot(config: UtilsConfig): ModuleWithProviders {
 

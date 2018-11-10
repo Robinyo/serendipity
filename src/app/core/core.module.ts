@@ -68,7 +68,7 @@ export class CoreModule {
                private translate: TranslateService,
                private logger: LoggerService) {
 
-    this.logger.info('CoreModule: constructor()');
+    // this.logger.info('CoreModule: constructor()');
 
     translate.setDefaultLang(environment.defaultLanguage);
     translate.use(environment.defaultLanguage);
