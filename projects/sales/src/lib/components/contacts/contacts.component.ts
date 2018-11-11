@@ -103,10 +103,6 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
     this.containerWidth = this.tableContainer.nativeElement.offsetWidth - (this.margin + this.margin);
     this.containerHeight = this.tableContainer.nativeElement.offsetHeight - (this.toolbarHeight * 2 + this.margin);
-
-    // this.dataSource = new MatTableDataSource(this.items);
-    // this.dataSource.sortingDataAccessor = pathDataAccessor;
-    // this.dataSource.sort = this.sort;
   }
 
   // (window:resize)="onResize($event)
@@ -119,8 +115,6 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
   // https://blog.angular-university.io/angular-debugging/
 
   public ngAfterViewInit() {
-
-    // super.ngAfterViewInit();
 
     // this.logger.info('ContactsPage: ngAfterViewInit()');
 
@@ -158,7 +152,6 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
        });
 
       this.items = data;
-      // this.dataSource.data = this.items;
 
       this.dataSource = new MatTableDataSource(this.items);
       this.dataSource.data = this.items;

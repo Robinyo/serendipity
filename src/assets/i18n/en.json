@@ -11,7 +11,7 @@
   "LEADS_HEADER": "Leads",
   "OPPORTUNITES_HEADER": "Opportunities",
 
-  "INDIVIDUAL_HEADER": "Contact",
-  "ORGANISATION_HEADER": "Account"
+  "CONTACT_HEADER": "Contact",
+  "ACCOUNT_HEADER": "Account"
 
 }

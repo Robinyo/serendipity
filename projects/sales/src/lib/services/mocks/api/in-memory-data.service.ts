@@ -164,7 +164,31 @@ export class InMemoryDataService implements InMemoryDbService {
           "state":"QLD",
           "postalCode":"5067"
         }
+        
       },
+      {
+        "id":"3",
+        "displayName":"Bernardi, Senator Cory",
+        "title":"Senator",
+        "givenName":"Cory",
+        "middleName":"",
+        "familyName":"Bernardi",
+        "honorific":"",
+        "salutation":"Senator",
+        "preferredName":"Cory",
+        "initials":"C.",
+        "gender":"MALE",
+        "email":"cory.bernardi@aph.gov.au",
+        "phoneNumber":"",
+        "photoUrl":"",
+        
+        "organisation":{
+          "id":"3",
+          "name":"Australian Conservatives",
+          "phoneNumber":"(08) 8362 8600"
+        }
+
+      }
 
     ];
     
@@ -206,6 +230,19 @@ export class InMemoryDataService implements InMemoryDbService {
   }
   
 }
+
+/*
+
+        "address":{
+          "id":"",
+          "line1":"",
+          "line2":"",
+          "city":"",
+          "state":"",
+          "postalCode":""
+        }
+
+*/
 
 /*
 

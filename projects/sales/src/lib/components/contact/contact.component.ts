@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription} from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { DynamicFormModel, DynamicFormMetadataService } from 'dynamic-forms';
+import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
 import { ContactsService } from '../../services/contacts/contacts.service';
 import { Contact } from '../../shared/models';
@@ -49,7 +49,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
               private formBuilder: FormBuilder,
               private contactsService: ContactsService,
-              private dynamicFormMetadataService: DynamicFormMetadataService,
+              private dynamicFormService: DynamicFormService,
               private logger: LoggerService) { }
 
   public ngOnInit() {
@@ -73,20 +73,20 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     // General Information
 
-    formSubscription = this.dynamicFormMetadataService.get(GENERAL_INFORMATION_GROUP).pipe(tap(() => {
+    formSubscription = this.dynamicFormService.getFormMetadata(GENERAL_INFORMATION_GROUP).pipe(tap(() => {
 
         let modelSubscription: Subscription = new Subscription();
         this.subscriptions.push(modelSubscription);
 
         modelSubscription = this.contactsService.get(this.id).subscribe(data => {
           this.item = data;
-          this.initFormGroup(this.generalInformationGroup);
+          this.dynamicFormService.initFormGroup(this.generalInformationGroup, this.item);
         });
 
     })).subscribe(metaData => {
 
       this.generalInformationModel = metaData;
-      this.generalInformationGroup = this.createFormGroup(this.generalInformationModel);
+      this.generalInformationGroup = this.dynamicFormService.createFormGroup(this.generalInformationModel);
     });
 
     // Address Information
@@ -94,23 +94,45 @@ export class ContactComponent implements OnInit, OnDestroy {
     formSubscription = new Subscription();
     this.subscriptions.push(formSubscription);
 
-    formSubscription = this.dynamicFormMetadataService.get(ADDRESS_INFORMATION_GROUP).pipe(tap(() => {
+    formSubscription = this.dynamicFormService.getFormMetadata(ADDRESS_INFORMATION_GROUP).pipe(tap(() => {
 
       let modelSubscription: Subscription = new Subscription();
       this.subscriptions.push(modelSubscription);
 
       modelSubscription = this.contactsService.get(this.id).subscribe(data => {
         this.item = data;
-        this.initFormGroup(this.addressInformationGroup);
+        this.dynamicFormService.initFormGroup(this.addressInformationGroup, this.item);
       });
 
     })).subscribe(metaData => {
 
       this.addressInformationModel = metaData;
-      this.addressInformationGroup = this.createFormGroup(this.addressInformationModel);
+      this.addressInformationGroup = this.dynamicFormService.createFormGroup(this.addressInformationModel);
     });
 
   }
+
+  protected unsubscribe(): void {
+
+    this.logger.info('ContactComponent: unsubscribe()');
+
+    this.subscriptions.forEach(subscription => {
+      subscription.unsubscribe();
+    });
+
+  }
+
+  public ngOnDestroy() {
+
+    this.logger.info('ContactComponent: ngOnDestroy()');
+    this.unsubscribe();
+  }
+
+}
+
+// https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
+
+/*
 
   // https://angular.io/api/forms/FormControl
 
@@ -142,125 +164,8 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   }
 
-  protected unsubscribe(): void {
-
-    this.logger.info('ContactComponent: unsubscribe()');
-
-    this.subscriptions.forEach(subscription => {
-      subscription.unsubscribe();
-    });
-
-  }
-
-  public ngOnDestroy() {
-
-    this.logger.info('ContactComponent: ngOnDestroy()');
-    this.unsubscribe();
-  }
-
   getProperty = (obj, path) => (
     path.split('-').reduce((o, p) => o && o[p], obj)
   )
-
-}
-
-// https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
-
-/*
-
-  protected subscribe() {
-
-    this.logger.info('ContactComponent: subscribe()');
-
-    this.formSubscription = this.dynamicFormMetadataService.get(GENERAL_INFORMATION_GROUP).pipe(tap(() =>
-
-        this.modelSubscription = this.contactsService.get(this.id).subscribe(data => {
-          this.item = data;
-          this.initialiseForm();
-        })
-      )
-    ).subscribe(metaData => {
-
-      this.generalInformationModel = metaData;
-      this.generalInformationGroup = this.createFormGroup(this.generalInformationModel);
-    });
-
-  }
-
-  protected initialiseForm(): void {
-
-    this.logger.info('ContactComponent: initialiseForm()');
-
-    for (const field of Object.keys(this.generalInformationGroup.controls)) {
-
-      // this.logger.info('field name: ' + field +
-      //   ' nested object name: ' + field.replace('-', '.') +
-      //   ' value: ' + this.getProperty(this.item, field));
-
-      this.generalInformationGroup.controls[field].setValue(this.getProperty(this.item, field));
-    }
-
-  }
-
-  protected unsubscribe(): void {
-
-    this.logger.info('ContactComponent: unsubscribe()');
-
-    if (this.formSubscription) {
-      this.formSubscription.unsubscribe();
-    }
-
-    if (this.modelSubscription) {
-      this.modelSubscription.unsubscribe();
-    }
-
-  }
-
-*/
-
-/*
-
-protected subscribe() {
-
-  this.logger.info('ContactComponent: subscribe()');
-
-  this.formSubscription = this.dynamicFormMetadataService.get('contact-form.model.json').subscribe(data => {
-
-    this.formModel = data;
-    this.formGroup = this.createFormGroup(this.formModel);
-  });
-
-}
-
-*/
-
-/*
-
-this.formMetadata.forEach(control => {
-
-  this.formGroup.addControl(control.id, new FormControl(''));
-});
-
-const group = this.fb.group({});
-this.config.forEach(control => group.addControl(control.name, this.fb.control()));
-return group;
-
-
-
-    this.addressInformationGroup = this.formBuilder.group({
-      streetNumber: [''],
-      streetName: [''],
-      city: [''],
-      state: [''],
-      postalCode: ['']
-    });
-
-this.formGroup = this.formBuilder.group({
-  displayName: [''],
-  title: [''],
-  givenName: [''],
-  middleName: [''],
-  familyName: ['']
-});
 
 */
