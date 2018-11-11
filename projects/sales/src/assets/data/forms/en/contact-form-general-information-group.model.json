@@ -47,7 +47,7 @@
   },
   {
     "type": "input",
-    "id": "organisation-name",
+    "id": "organisation.name",
     "label": "Account Name",
     "appearance": "outline",
     "autocomplete": "organization",
@@ -65,7 +65,7 @@
   },
   {
     "type": "input",
-    "id": "organisation-phoneNumber",
+    "id": "organisation.phoneNumber",
     "label": "Business Phone",
     "appearance": "outline",
     "autocomplete": "tel",

@@ -57,6 +57,7 @@ export class DynamicFormService {
       const property = this.getProperty(item, field);
 
       if (typeof property !== 'undefined') {
+
         // this.logger.info('property: ' + property);
         formGroup.controls[field].setValue(property);
       }
@@ -66,15 +67,7 @@ export class DynamicFormService {
   }
 
   getProperty = (obj, path) => (
-    path.split('-').reduce((o, p) => o && o[p], obj)
+    path.split('.').reduce((o, p) => o && o[p], obj)
   )
 
 }
-
-/*
-
-      // this.logger.info('field name: ' + field +
-      //   ' nested object name: ' + field.replace('-', '.') +
-      //   ' value: ' + this.getProperty(this.item, field));
-
-*/
