@@ -9,10 +9,16 @@ import { LoggerService } from 'utils';
   selector: 'dynamic-input',
   template: `
     <mat-form-field [appearance]="model.appearance" [className]="model.class" [formGroup]="formGroup">
+
       <mat-label> {{ model.label }} </mat-label>
       <input matInput [autocomplete]="model.autocomplete" [formControlName]="model.id" [placeholder]="model.id">
-      <mat-error *ngIf="formGroup.controls[model.id].invalid"> Error message </mat-error>
+
+      <ng-container *ngFor="let validator of model.validators;" ngProjectAs="mat-error">
+        <mat-error *ngIf="formGroup.controls[model.id].hasError(validator.propertyName)"> {{ validator.message }} </mat-error>
+      </ng-container>
+
       <mat-hint></mat-hint>
+
     </mat-form-field>
   `,
   styles: []
@@ -36,17 +42,6 @@ export class DynamicInputComponent implements OnInit {
 
 }
 
-/*
-
-<mat-form-field class="demo-full-width" [formGroup]="group">
-<input matInput [formControlName]="field.name" [placeholder]="field.label" [type]="field.inputType">
-<ng-container *ngFor="let validation of field.validations;" ngProjectAs="mat-error">
-<mat-error *ngIf="group.get(field.name).hasError(validation.name)">{{validation.message}}</mat-error>
-</ng-container>
-</mat-form-field>
-
-      <ng-container *ngFor="let validator of model.validators;" ngProjectAs="mat-error">
-        <mat-error *ngIf="formGroup.get(model.id).hasError(validator.name)"> {{ validator.message }} </mat-error>
-      </ng-container>
-
-*/
+// https://stackoverflow.com/questions/52612671/angular-material-2-reactive-forms-mat-error-with-ngif-not-showing-when-valid
+// https://stackoverflow.com/questions/46129719/angular-4-form-validators-minlength-maxlength-does-not-work-on-field-type-nu/46129969
+// https://github.com/angular/angular/issues/7407

@@ -45,14 +45,10 @@
 
     "validators": [
       {
-        "name": "required",
-        "args": null,
-        "message": "You must enter a family name."
-      },
-      {
         "name": "minLength",
+        "propertyName": "minlength",
         "args": 2,
-        "message": "A family name must be a minimum of two characters."
+        "message": "Family name must be a minimum of 2 characters"
       }
     ],
 
