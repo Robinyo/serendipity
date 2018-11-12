@@ -43,6 +43,19 @@
     "appearance": "outline",
     "autocomplete": "family-name",
 
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "message": "You must enter a family name."
+      },
+      {
+        "name": "minLength",
+        "args": 2,
+        "message": "A family name must be a minimum of two characters."
+      }
+    ],
+
     "class": "grid-column-3"
   },
   {

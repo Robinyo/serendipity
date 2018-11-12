@@ -41,7 +41,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   public generalInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];
 
   public addressInformationGroup: FormGroup;
-  public addressInformationModel: DynamicFormModel; // === DynamicFormControlModel[] = [];
+  public addressInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];
 
   private toolbarHeight = TOOLBAR_HEIGHT_DESKTOP;
   private margin = MARGIN_DESKTOP;
@@ -80,13 +80,13 @@ export class ContactComponent implements OnInit, OnDestroy {
 
         modelSubscription = this.contactsService.get(this.id).subscribe(data => {
           this.item = data;
-          this.dynamicFormService.initFormGroup(this.generalInformationGroup, this.item);
+          this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
         });
 
     })).subscribe(metaData => {
 
       this.generalInformationModel = metaData;
-      this.generalInformationGroup = this.dynamicFormService.createFormGroup(this.generalInformationModel);
+      this.generalInformationGroup = this.dynamicFormService.createGroup(this.generalInformationModel);
     });
 
     // Address Information
@@ -101,13 +101,13 @@ export class ContactComponent implements OnInit, OnDestroy {
 
       modelSubscription = this.contactsService.get(this.id).subscribe(data => {
         this.item = data;
-        this.dynamicFormService.initFormGroup(this.addressInformationGroup, this.item);
+        this.dynamicFormService.initGroup(this.addressInformationGroup, this.item);
       });
 
     })).subscribe(metaData => {
 
       this.addressInformationModel = metaData;
-      this.addressInformationGroup = this.dynamicFormService.createFormGroup(this.addressInformationModel);
+      this.addressInformationGroup = this.dynamicFormService.createGroup(this.addressInformationModel);
     });
 
   }

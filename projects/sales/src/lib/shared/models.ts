@@ -40,6 +40,7 @@ export interface Contact {
     city?: string;
     state?: string;
     postalCode?: string;
+    // country?: string;
   };
 
 }

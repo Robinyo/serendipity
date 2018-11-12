@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 
 import { Observable } from 'rxjs';
 
@@ -9,8 +9,16 @@ import { DynamicFormsConfigService } from '../../../services/config.service';
 
 import { DynamicFormControlModel } from '../../models/dynamic-form-control.model';
 import { DynamicFormModel } from '../../models/dynamic-form.model';
+import { ValidatorModel } from '../../models/validator.model';
 
 import { LoggerService } from 'utils';
+
+// https://github.com/udos86/ng-dynamic-forms/blob/master/packages/core/src/service/dynamic-form-validation.service.ts
+
+// export type Validator = ValidatorFn | AsyncValidatorFn;
+// export type ValidatorFactory = (args: any) => Validator;
+
+export type ValidatorFactory = (args: any) => ValidatorFn;
 
 @Injectable({
   providedIn: 'root'
@@ -35,30 +43,75 @@ export class DynamicFormService {
 
   // https://angular.io/api/forms/FormControl
 
-  public createFormGroup(formModel: DynamicFormModel): FormGroup {
+  public createGroup(formModel: DynamicFormModel): FormGroup {
 
     const group = this.formBuilder.group({});
 
-    this.logger.info('DynamicFormService: createFormGroup()');
+    this.logger.info('DynamicFormService: createGroup()');
 
-    formModel.forEach(control => {
-      group.addControl(control.id, new FormControl(''));
+    formModel.forEach(controlModel => {
+
+      const name = controlModel.id ? controlModel.id : controlModel.name;
+
+      group.addControl(name, this.createControl(controlModel));
     });
 
     return group;
   }
 
-  public initFormGroup(formGroup: FormGroup, item): void {
+  public createControl(controlModel: DynamicFormControlModel) {
 
-    this.logger.info('DynamicFormService: initialiseForm()');
+    return this.formBuilder.control('', this.getValidators(controlModel.validators || []) );
+  }
+
+  public getValidators(validatorModel: ValidatorModel[]) {
+
+    if (validatorModel.length === 0) {
+      return null;
+    }
+
+    const functions: ValidatorFn[] = [];
+
+    validatorModel.forEach(validator => {
+
+      functions.push(this.getValidatorFn(validator.name, validator.args));
+    });
+
+    return Validators.compose(functions);
+
+  }
+
+  public getValidatorFn(validatorName: string, validatorArgs: any) {
+
+    let validatorFn: ValidatorFn = null;
+
+    //
+    // Built-in validators: https://angular.io/guide/form-validation#built-in-validators
+    //
+
+    if (Validators.hasOwnProperty(validatorName) ) {
+
+      validatorFn = (Validators as any)[validatorName];
+
+      if (validatorArgs !== null) {
+        validatorFn = (validatorFn as ValidatorFactory)(validatorArgs);
+      }
+
+      return validatorFn;
+
+    }
+
+  }
+
+  public initGroup(formGroup: FormGroup, item): void {
+
+    this.logger.info('DynamicFormService: initGroup()');
 
     for (const field of Object.keys(formGroup.controls)) {
 
       const property = this.getProperty(item, field);
 
       if (typeof property !== 'undefined') {
-
-        // this.logger.info('property: ' + property);
         formGroup.controls[field].setValue(property);
       }
 
@@ -66,8 +119,19 @@ export class DynamicFormService {
 
   }
 
-  getProperty = (obj, path) => (
+  private getProperty = (obj, path) => (
     path.split('.').reduce((o, p) => o && o[p], obj)
   )
 
 }
+
+// https://github.com/toddmotto/angular-dynamic-forms/blob/master/app/dynamic-form/containers/dynamic-form/dynamic-form.component.ts
+
+// https://github.com/bahurudeen/dynamicform/blob/master/src/app/components/dynamic-form/dynamic-form.component.ts
+
+// https://github.com/udos86/ng-dynamic-forms/blob/master/packages/core/src/service/dynamic-form.service.ts
+// https://github.com/udos86/ng-dynamic-forms/blob/master/packages/core/src/service/dynamic-form-validation.service.ts
+
+// return new FormControl('');
+// const { disabled, validation, value } = config;
+// return this.fb.control({ disabled, value }, validation);

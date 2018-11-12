@@ -1,13 +1,24 @@
+import { ValidatorModel } from './validator.model';
+
 export interface DynamicFormControlModel {
 
-  type?: string;
+  type?: string;          // 'input'
   id?: string;
+  name?: string;          // name || id
   label?: string;
+
   appearance?: string;
   autocomplete?: string;  // aka autoFill
   class?: string;
 
+  validators?: ValidatorModel[];
+
+  // config {}            // aka attributes ???
+  // options {}
+
 }
+
+// Reactive form validation -> https://angular.io/guide/form-validation#validator-functions
 
 // https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
 
