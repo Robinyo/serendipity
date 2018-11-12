@@ -48,7 +48,7 @@
         "name": "minLength",
         "propertyName": "minlength",
         "args": 2,
-        "message": "Family name must be a minimum of 2 characters"
+        "message": "Please enter at least two characters"
       }
     ],
 
@@ -69,6 +69,15 @@
     "label": "Email",
     "appearance": "outline",
     "autocomplete": "organization",
+
+    "validators": [
+      {
+        "name": "email",
+        "propertyName": "email",
+        "args": null,
+        "message": "Please enter a valid email address"
+      }
+    ],
 
     "class": "grid-column-1"
   },
