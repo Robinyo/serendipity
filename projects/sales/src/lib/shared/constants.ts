@@ -23,7 +23,7 @@ export const NAVIGATION_BAR_HEIGHT_DESKTOP = 64;
 export const NAVIGATION_BAR_HEIGHT_MOBILE  = 56;
 
 export const COMMAND_BAR_HEIGHT_DESKTOP = 56;
-export const COMMAND_BAR_HEIGHT_MOBILE  = 48;
+export const COMMAND_BAR_HEIGHT_MOBILE  = 0;  // 48, fxHide.xs
 
 export const MARGIN_DESKTOP = 32;
 export const MARGIN_MOBILE  = 0;

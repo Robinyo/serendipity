@@ -251,6 +251,41 @@
           }
         }
       }
+    },
+    "serendipity-components": {
+      "root": "projects/serendipity-components",
+      "sourceRoot": "projects/serendipity-components/src",
+      "projectType": "library",
+      "prefix": "crm",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/serendipity-components/tsconfig.lib.json",
+            "project": "projects/serendipity-components/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/serendipity-components/src/test.ts",
+            "tsConfig": "projects/serendipity-components/tsconfig.spec.json",
+            "karmaConfig": "projects/serendipity-components/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/serendipity-components/tsconfig.lib.json",
+              "projects/serendipity-components/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "serendipity"

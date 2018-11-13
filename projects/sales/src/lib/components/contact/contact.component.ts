@@ -15,6 +15,7 @@ import { GENERAL_INFORMATION_GROUP, ADDRESS_INFORMATION_GROUP } from '../../shar
 import { LoggerService } from 'utils';
 
 import {
+  COMMAND_BAR_HEIGHT_DESKTOP,
   MARGIN_DESKTOP,
   NAVIGATION_BAR_HEIGHT_DESKTOP,
 } from '../../shared/constants';
@@ -44,6 +45,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   public addressInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];
 
   private navBarHeight = NAVIGATION_BAR_HEIGHT_DESKTOP;
+  private cmdBarHeight = COMMAND_BAR_HEIGHT_DESKTOP;
   private margin = MARGIN_DESKTOP;
 
   constructor(private route: ActivatedRoute,
@@ -59,7 +61,7 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.id = this.route.snapshot.paramMap.get('id');
     this.id = atob(this.id);
 
-    this.containerHeight = this.tableContainer.nativeElement.offsetHeight - (this.navBarHeight * 2 + this.margin);
+    this.containerHeight = this.tableContainer.nativeElement.offsetHeight - ((2 * this.navBarHeight) + this.cmdBarHeight + this.margin);
 
     this.subscribe();
   }

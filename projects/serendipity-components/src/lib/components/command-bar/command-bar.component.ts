@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'sales-command-bar',
+  selector: 'crm-command-bar',
   templateUrl: './command-bar.component.html',
   styleUrls: ['./command-bar.component.scss']
 })

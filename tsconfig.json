@@ -41,6 +41,12 @@
       ],
       "utils/*": [
         "dist/utils/*"
+      ],
+      "serendipity-components": [
+        "dist/serendipity-components"
+      ],
+      "serendipity-components/*": [
+        "dist/serendipity-components/*"
       ]
     }
   }

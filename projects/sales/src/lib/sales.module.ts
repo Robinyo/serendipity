@@ -5,12 +5,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { AngularMaterialModule } from './shared/angular-material.module';
 
 import { AccountsComponent } from './components/accounts/accounts.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { CommandBarComponent } from './components/command-bar/command-bar.component';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/mocks/api/in-memory-data.service';
@@ -25,11 +25,20 @@ import { ConsoleLoggerService } from 'utils';
 import { StaticInjectorService } from 'utils';
 
 //
+// Serendipity Components lib
+//
+
+import { SerendipityComponentsModule } from 'serendipity-components';
+
+//
 // Dynamic Forms lib
 //
 
 import { DynamicFormsModule } from 'dynamic-forms';
-// import { DynamicFormComponent } from 'dynamic-forms';
+
+//
+// LibRoutingModule: https://angular.io/guide/router#routing-module-order
+//
 
 import { LibRoutingModule } from './lib-routing.module';
 
@@ -45,13 +54,13 @@ import { LibRoutingModule } from './lib-routing.module';
     TranslateModule.forChild(),
 
     UtilsModule,
+    SerendipityComponentsModule,
     DynamicFormsModule,
 
     LibRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
   declarations: [
     AccountsComponent,
-    CommandBarComponent,
     ContactsComponent,
     ContactComponent
   ],
@@ -60,7 +69,6 @@ import { LibRoutingModule } from './lib-routing.module';
   ],
   exports: [
     AccountsComponent,
-    CommandBarComponent,
     ContactsComponent,
     ContactComponent
   ]

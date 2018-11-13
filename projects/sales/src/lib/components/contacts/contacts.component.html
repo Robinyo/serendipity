@@ -1,4 +1,31 @@
-<sales-command-bar class="crm-command-bar-fixed"> </sales-command-bar>
+<crm-command-bar class="crm-command-bar-fixed" fxHide.xs>
+
+  <button mat-button class="command-bar-button">
+    <mat-icon>add</mat-icon>
+    NEW
+  </button>
+
+  <button mat-button class="command-bar-button" [disabled]="true">
+    <mat-icon>visibility</mat-icon>
+    ACTIVATE
+  </button>
+
+  <button mat-button class="command-bar-button">
+    <mat-icon>visibility_off</mat-icon>
+    DEACTIVATE
+  </button>
+
+  <button mat-button class="command-bar-button">
+    <mat-icon>link</mat-icon>
+    EMAIL A LINK
+  </button>
+
+  <button mat-button class="command-bar-button">
+    <mat-icon>description</mat-icon>
+    RUN REPORT
+  </button>
+
+</crm-command-bar>
 
 <div class="component-title-container">
   <h1 class="component-title"> {{ 'CONTACTS_HEADER' | translate }} </h1>
@@ -119,6 +146,8 @@
 </div> <!-- contentContainer -->
 
 <!--
+
+<sales-command-bar class="crm-command-bar-fixed" fxHide.xs> </sales-command-bar>
 
 <mat-toolbar>
 

@@ -1,4 +1,38 @@
-<h1 class="lib-component-title"> {{ 'CONTACT_HEADER' | translate }} </h1>
+<crm-command-bar class="crm-command-bar-fixed" fxHide.xs>
+
+  <button mat-button class="command-bar-button">
+    <mat-icon>add</mat-icon>
+    NEW
+  </button>
+
+  <button mat-button class="command-bar-button" [disabled]="true">
+    <mat-icon>visibility</mat-icon>
+    ACTIVATE
+  </button>
+
+  <button mat-button class="command-bar-button">
+    <mat-icon>visibility_off</mat-icon>
+    DEACTIVATE
+  </button>
+
+  <button mat-button class="command-bar-button">
+    <mat-icon>link</mat-icon>
+    EMAIL A LINK
+  </button>
+
+  <div fxFlex fxLayout fxLayoutAlign="flex-end">
+
+    <button mat-button class="command-bar-button">
+      <mat-icon>open_in_new</mat-icon>
+    </button>
+
+  </div>
+
+</crm-command-bar>
+
+<div class="component-title-container">
+  <h1 class="component-title"> {{ 'CONTACT_HEADER' | translate }} </h1>
+</div>
 
 <div #contentContainer class="content-container">
 
