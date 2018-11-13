@@ -12,6 +12,12 @@ Navigation Bar:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/navigation-bar.png">
 </p>
 
+Command Bar:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/command-bar.png">
+</p>
+
 Sidenav:
 
 <p align="center">
