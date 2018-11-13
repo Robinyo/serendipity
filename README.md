@@ -18,7 +18,7 @@ Command Bar:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/command-bar.png">
 </p>
 
-Sidenav:
+Side Nav:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/sidenav-mode-over.png">
