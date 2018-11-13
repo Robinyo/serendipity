@@ -1,12 +1,5 @@
-// See: variables.scss
-
-$crm-command-bar-height-desktop: 56px !default;
-$crm-command-bar-height-mobile: 48px !default;
-
-// See: mat-variables.scss
-
-$mat-xsmall: 'max-width: 599px';
-$mat-small: 'max-width: 959px';
+@import "../../themes/mat-variables";
+@import "../../themes/variables";
 
 .command-bar-height {
   height: $crm-command-bar-height-desktop;

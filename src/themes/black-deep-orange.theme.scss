@@ -106,12 +106,28 @@ body {
 // Library elements
 //
 
+/*
+
 .lib-component-title {
 
   margin-top: $mat-toolbar-height-desktop + $crm-component-title-margin;
 
   @media ($mat-xsmall) {
     margin-top: $mat-toolbar-height-mobile + $crm-component-title-margin;
+  }
+
+  margin-bottom: $crm-component-title-margin;
+  text-align: center;
+}
+
+*/
+
+.lib-component-title {
+
+  margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-component-title-margin;
+
+  @media ($mat-xsmall) {
+    margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-component-title-margin;
   }
 
   margin-bottom: $crm-component-title-margin;

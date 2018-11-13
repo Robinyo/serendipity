@@ -16,8 +16,14 @@ export const MAT_XSMALL = '(max-width: 599px)';
 
 export const FAKE_ITEMS_LENGTH = 16;
 
-export const TOOLBAR_HEIGHT_DESKTOP = 64;
-export const TOOLBAR_HEIGHT_MOBILE  = 56;
+// export const TOOLBAR_HEIGHT_DESKTOP = 64;
+// export const TOOLBAR_HEIGHT_MOBILE  = 56;
+
+export const NAVIGATION_BAR_HEIGHT_DESKTOP = 64;
+export const NAVIGATION_BAR_HEIGHT_MOBILE  = 56;
+
+export const COMMAND_BAR_HEIGHT_DESKTOP = 56;
+export const COMMAND_BAR_HEIGHT_MOBILE  = 48;
 
 export const MARGIN_DESKTOP = 32;
 export const MARGIN_MOBILE  = 0;

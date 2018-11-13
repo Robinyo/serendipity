@@ -1,10 +1,8 @@
 <sales-command-bar class="crm-command-bar-fixed"> </sales-command-bar>
 
-<!--
-
-<h2 class="lib-component-title"> {{ 'CONTACTS_HEADER' | translate }} </h2>
-
--->
+<div class="component-title-container">
+  <h1 class="component-title"> {{ 'CONTACTS_HEADER' | translate }} </h1>
+</div>
 
 <div #contentContainer class="content-container" (window:resize)="onResize($event)" [style.height.px]="containerHeight">
 
@@ -121,6 +119,14 @@
 </div> <!-- contentContainer -->
 
 <!--
+
+<mat-toolbar>
+
+  <mat-toolbar-row>
+    <h1 class="lib-component-title"> {{ 'CONTACTS_HEADER' | translate }} </h1>
+  </mat-toolbar-row>
+
+</mat-toolbar>
 
 <mat-toolbar class="header-toolbar">
   <h2 style="margin: 0 auto;">{{ 'CONTACTS_HEADER' | translate }}</h2>

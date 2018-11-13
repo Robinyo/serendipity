@@ -10,18 +10,40 @@
   // overflow: hidden !important;
 }
 
+.component-title-container {
+  height: $mat-toolbar-height-desktop;
+  min-height: $mat-toolbar-height-desktop;
+
+  margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
+
+  @media ($mat-xsmall) {
+    height: $mat-toolbar-height-mobile;
+    min-height: $mat-toolbar-height-mobile;
+
+    margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile;
+  }
+}
+
+.component-title {
+  // margin-top: $crm-component-title-margin;
+  // margin-bottom: $crm-component-title-margin;
+  // vertical-align: middle;
+  padding-top: 12px;
+  text-align: center;
+}
+
 .table-container {
   margin-left: 32px;
   margin-right: 32px;
   overflow: auto;
 
-  margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + 16px;
+  // margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
 
   @media ($mat-xsmall) {
     margin-left: 0;
     margin-right: 0;
 
-    margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + 16px;
+    // margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile;
   }
 }
 

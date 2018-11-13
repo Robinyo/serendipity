@@ -16,7 +16,7 @@ import { LoggerService } from 'utils';
 
 import {
   MARGIN_DESKTOP,
-  TOOLBAR_HEIGHT_DESKTOP
+  NAVIGATION_BAR_HEIGHT_DESKTOP,
 } from '../../shared/constants';
 
 @Component({
@@ -43,7 +43,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   public addressInformationGroup: FormGroup;
   public addressInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];
 
-  private toolbarHeight = TOOLBAR_HEIGHT_DESKTOP;
+  private navBarHeight = NAVIGATION_BAR_HEIGHT_DESKTOP;
   private margin = MARGIN_DESKTOP;
 
   constructor(private route: ActivatedRoute,
@@ -59,7 +59,7 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.id = this.route.snapshot.paramMap.get('id');
     this.id = atob(this.id);
 
-    this.containerHeight = this.tableContainer.nativeElement.offsetHeight - (this.toolbarHeight * 2 + this.margin);
+    this.containerHeight = this.tableContainer.nativeElement.offsetHeight - (this.navBarHeight * 2 + this.margin);
 
     this.subscribe();
   }
