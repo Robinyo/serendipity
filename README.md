@@ -21,7 +21,7 @@ Command Bar:
 Sidenav:
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/sidenav-over.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/sidenav-mode-over.png">
 </p>
 
 Contacts:
