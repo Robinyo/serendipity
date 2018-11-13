@@ -42,6 +42,9 @@ export class DynamicInputComponent implements OnInit {
 
 }
 
+// https://material.angular.io/components/form-field/overview
+// https://material.angular.io/components/input/overview
+
 // https://stackoverflow.com/questions/52612671/angular-material-2-reactive-forms-mat-error-with-ngif-not-showing-when-valid
 // https://stackoverflow.com/questions/46129719/angular-4-form-validators-minlength-maxlength-does-not-work-on-field-type-nu/46129969
 // https://github.com/angular/angular/issues/7407

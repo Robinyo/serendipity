@@ -1,3 +1,4 @@
+@import "../../themes/mat-variables";
 @import "../../themes/variables";
 
 // Note: Define all color and typography styles in a "theme file" for the component / plugin
@@ -14,9 +15,13 @@
   margin-right: 32px;
   overflow: auto;
 
+  margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + 16px;
+
   @media ($mat-xsmall) {
     margin-left: 0;
     margin-right: 0;
+
+    margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + 16px;
   }
 }
 

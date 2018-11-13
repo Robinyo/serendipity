@@ -1,4 +1,10 @@
+<sales-command-bar class="crm-command-bar-fixed"> </sales-command-bar>
+
+<!--
+
 <h2 class="lib-component-title"> {{ 'CONTACTS_HEADER' | translate }} </h2>
+
+-->
 
 <div #contentContainer class="content-container" (window:resize)="onResize($event)" [style.height.px]="containerHeight">
 
@@ -44,6 +50,8 @@
       <ng-container matColumnDef="footer">
         <td mat-footer-cell *matFooterCellDef colspan="5">
 
+          <!-- Index Bar -->
+
           <div class="footer-container">
 
             <button id="All" mat-button class="footer-button" (click)="onClickFilterButton('All')"
@@ -80,12 +88,8 @@
                 Page 1
               </span>
 
-              <button mat-button class="footer-button-next-page">
-                <mat-icon>keyboard_arrow_right</mat-icon>
-              </button>
-
               <button mat-button class="footer-button-last-page">
-                <mat-icon>skip_next</mat-icon>
+                <mat-icon>keyboard_arrow_right</mat-icon>
               </button>
 
             </div>
@@ -121,5 +125,17 @@
 <mat-toolbar class="header-toolbar">
   <h2 style="margin: 0 auto;">{{ 'CONTACTS_HEADER' | translate }}</h2>
 </mat-toolbar>
+
+              <button mat-button class="footer-button-last-page">
+                <mat-icon>play_arrow</mat-icon>
+              </button>
+
+              <button mat-button class="footer-button-next-page">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+              </button>
+
+              <button mat-button class="footer-button-last-page">
+                <mat-icon>skip_next</mat-icon>
+              </button>
 
 -->

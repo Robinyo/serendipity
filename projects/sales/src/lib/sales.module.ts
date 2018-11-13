@@ -10,6 +10,7 @@ import { AngularMaterialModule } from './shared/angular-material.module';
 import { AccountsComponent } from './components/accounts/accounts.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { CommandBarComponent } from './components/command-bar/command-bar.component';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/mocks/api/in-memory-data.service';
@@ -50,6 +51,7 @@ import { LibRoutingModule } from './lib-routing.module';
   ],
   declarations: [
     AccountsComponent,
+    CommandBarComponent,
     ContactsComponent,
     ContactComponent
   ],
@@ -58,6 +60,7 @@ import { LibRoutingModule } from './lib-routing.module';
   ],
   exports: [
     AccountsComponent,
+    CommandBarComponent,
     ContactsComponent,
     ContactComponent
   ]

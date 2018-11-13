@@ -1,0 +1,52 @@
+// See: variables.scss
+
+$crm-command-bar-height-desktop: 56px !default;
+$crm-command-bar-height-mobile: 48px !default;
+
+// See: mat-variables.scss
+
+$mat-xsmall: 'max-width: 599px';
+$mat-small: 'max-width: 959px';
+
+.command-bar-height {
+  height: $crm-command-bar-height-desktop;
+  min-height: $crm-command-bar-height-desktop;
+
+  @media ($mat-xsmall) {
+    height: $crm-command-bar-height-mobile;
+    min-height: $crm-command-bar-height-mobile;
+  }
+}
+
+.command-bar-container {
+  display: flex;
+  justify-content: space-between;
+  white-space: nowrap;
+}
+
+.command-bar-button {
+  min-width: 48px;
+  padding: 0 16px;
+}
+
+/*
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  // vertical-align: middle;
+
+  // to stop the footer from wrapping
+  white-space: nowrap;
+
+  @media ($mat-xsmall) {
+    display: none !important;
+  }
+}
+
+.footer-button {
+  min-width: 24px;
+  padding: 0 8px;
+}
+
+*/

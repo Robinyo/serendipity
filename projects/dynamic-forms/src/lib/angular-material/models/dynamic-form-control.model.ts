@@ -2,16 +2,21 @@ import { ValidatorModel } from './validator.model';
 
 export interface DynamicFormControlModel {
 
+  // input, ...
+
   type?: string;          // 'input'
   id?: string;
   name?: string;          // name || id
   label?: string;
-
-  appearance?: string;
+  placeholder?: string;
   autocomplete?: string;  // aka autoFill
-  class?: string;
 
   validators?: ValidatorModel[];
+
+  // mat-form-field
+
+  appearance?: string;
+  class?: string;
 
   // config {}            // aka attributes ???
   // options {}

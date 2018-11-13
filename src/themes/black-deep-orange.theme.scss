@@ -21,6 +21,7 @@ $custom-toolbar-typography: mat-typography-config(
 // https://material.io/design/color/the-color-system.html
 // https://github.com/angular/material2/blob/master/src/lib/core/theming/_palette.scss
 
+@import "./mat-variables";
 @import "./variables";
 @import "./palette";
 
@@ -43,6 +44,14 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+/*
+
+.mat-drawer-content {
+  overflow: hidden !important;
+}
+
+*/
+
 #app-content {
   position: absolute;
   top: 0;
@@ -52,19 +61,46 @@ body {
   overflow: auto;
 }
 
+/*
+
+.crm-command-bar {
+
+  margin-top: $mat-toolbar-height-desktop + $crm-component-title-margin;
+
+  @media ($mat-xsmall) {
+    margin-top: $mat-toolbar-height-mobile + $crm-component-title-margin;
+  }
+
+  margin-bottom: $crm-component-title-margin;
+
+  background-color: #f5f5f5;
+}
+
+*/
+
+.crm-command-bar-fixed {
+
+  position: fixed;
+  top: $mat-toolbar-height-desktop;
+  left: 0;
+  right: 0;
+  height: $crm-command-bar-height-desktop;
+  min-height: $crm-command-bar-height-desktop;
+
+  @media ($mat-xsmall) {
+    top: $mat-toolbar-height-mobile;
+    height: $crm-command-bar-height-mobile;
+    min-height: $crm-command-bar-height-mobile;
+  }
+
+  background-color: #f5f5f5;
+}
+
 .list-item-active {
   font-weight: bold;
   color: mat-color($accent, darker) !important;
   background: rgba(0, 0, 0, 0.04);
 }
-
-/*
-
-.mat-drawer-content {
-  overflow: hidden !important;
-}
-
-*/
 
 //
 // Library elements

@@ -46,8 +46,8 @@
     "validators": [
       {
         "name": "minLength",
-        "propertyName": "minlength",
         "args": 2,
+        "propertyName": "minlength",
         "message": "Please enter at least two characters"
       }
     ],
@@ -73,8 +73,8 @@
     "validators": [
       {
         "name": "email",
-        "propertyName": "email",
         "args": null,
+        "propertyName": "email",
         "message": "Please enter a valid email address"
       }
     ],
