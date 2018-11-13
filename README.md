@@ -6,10 +6,10 @@ You can use it to transform your organisation by connecting your customers, prod
 
 ## Screen Shots
 
-Toolbar:
+Navigation Bar:
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/toolbar.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/navigation-bar.png">
 </p>
 
 Sidenav:
