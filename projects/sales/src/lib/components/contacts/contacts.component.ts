@@ -3,6 +3,8 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { MatSort, MatTableDataSource } from '@angular/material';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
+import { Router } from '@angular/router';
+
 import { Subscription} from 'rxjs';
 
 import { ContactsService } from '../../services/contacts/contacts.service';
@@ -77,7 +79,8 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
   private cmdBarHeight = COMMAND_BAR_HEIGHT_DESKTOP;
   private margin = MARGIN_DESKTOP;
 
-  constructor(private breakpointObserver: BreakpointObserver,
+  constructor(private router: Router,
+              private breakpointObserver: BreakpointObserver,
               private contactsService: ContactsService) {
     super();
   }
@@ -182,6 +185,19 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
     this.selectedFooterItemId = id;
   }
 
+  //
+  // Command Bar events
+  //
+
+  public onNewContact() {
+
+    this.logger.info('ContactsPage: newContact()');
+
+    // btoa(0) === 'MA=='
+
+    this.router.navigate(['sales/contacts/MA==', { new: true }]);
+  }
+
 }
 
 // https://stackoverflow.com/questions/48891174/angular-material-2-datatable-sorting-with-nested-objects
@@ -192,3 +208,11 @@ function pathDataAccessor(item: any, path: string): any {
     return accumulator ? accumulator[key] : undefined;
   }, item);
 }
+
+/*
+
+sales/contacts/:id
+http://localhost:4200/sales/contacts;id=3;new=true
+http://localhost:4200/sales/contacts;id=3;new=true/MQ%3D%3D
+
+*/

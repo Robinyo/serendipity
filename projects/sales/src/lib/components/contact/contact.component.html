@@ -36,7 +36,7 @@
 
 <div #contentContainer class="content-container">
 
-  <ng-container *ngIf="!item; then skeleton"> </ng-container>
+  <ng-container *ngIf="!item && !newContact; then skeleton"> </ng-container>
 
   <ng-container *ngIf="item">
 

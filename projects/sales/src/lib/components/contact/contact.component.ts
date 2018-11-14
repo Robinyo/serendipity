@@ -29,7 +29,8 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   public containerHeight: number;
 
-  public id: string;
+  public newContact = false;
+  public id = 'MA==';
   public item: Contact;
 
   subscriptions: Subscription[] = [];
@@ -61,6 +62,11 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.id = this.route.snapshot.paramMap.get('id');
     this.id = atob(this.id);
 
+    if (this.id === '0') {
+      this.newContact = (this.route.snapshot.paramMap.get('new') === 'true');
+      this.logger.info('ContactComponent: ngOnInit() - newContact: ' + this.newContact);
+    }
+
     this.containerHeight = this.tableContainer.nativeElement.offsetHeight - ((2 * this.navBarHeight) + this.cmdBarHeight + this.margin);
 
     this.subscribe();
@@ -77,13 +83,19 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     formSubscription = this.dynamicFormService.getFormMetadata(GENERAL_INFORMATION_GROUP).pipe(tap(() => {
 
+      if (! this.newContact) {
+
         let modelSubscription: Subscription = new Subscription();
         this.subscriptions.push(modelSubscription);
 
         modelSubscription = this.contactsService.get(this.id).subscribe(data => {
+
           this.item = data;
           this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
+          this.dynamicFormService.initGroup(this.addressInformationGroup, this.item);
         });
+
+      }
 
     })).subscribe(metaData => {
 
@@ -98,6 +110,14 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     formSubscription = this.dynamicFormService.getFormMetadata(ADDRESS_INFORMATION_GROUP).pipe(tap(() => {
 
+      if (this.newContact) {
+
+        this.logger.info('ContactComponent: subscribe() - this.item = {} as Contact');
+        this.item = {} as Contact;
+      }
+
+      /*
+
       let modelSubscription: Subscription = new Subscription();
       this.subscriptions.push(modelSubscription);
 
@@ -105,6 +125,16 @@ export class ContactComponent implements OnInit, OnDestroy {
         this.item = data;
         this.dynamicFormService.initGroup(this.addressInformationGroup, this.item);
       });
+
+      */
+
+      /*
+
+      if (this.item) {
+        this.dynamicFormService.initGroup(this.addressInformationGroup, this.item);
+      }
+
+      */
 
     })).subscribe(metaData => {
 
@@ -135,6 +165,8 @@ export class ContactComponent implements OnInit, OnDestroy {
 // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
 
 /*
+
+        this.item = {} as Contact;
 
   // https://angular.io/api/forms/FormControl
 
