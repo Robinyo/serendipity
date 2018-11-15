@@ -1,29 +1,51 @@
 <crm-command-bar class="crm-command-bar-fixed" fxHide.xs>
 
-  <button mat-button class="command-bar-button">
-    <mat-icon>add</mat-icon>
-    NEW
-  </button>
+  <ng-container *ngIf="newContact">
 
-  <button mat-button class="command-bar-button" [disabled]="true">
-    <mat-icon>visibility</mat-icon>
-    ACTIVATE
-  </button>
+    <button mat-button class="command-bar-button">
+      <mat-icon>save</mat-icon>
+      SAVE
+    </button>
 
-  <button mat-button class="command-bar-button">
-    <mat-icon>visibility_off</mat-icon>
-    DEACTIVATE
-  </button>
+    <button mat-button class="command-bar-button">
+      <mat-icon>arrow_back</mat-icon>
+      SAVE & CLOSE
+    </button>
 
-  <button mat-button class="command-bar-button">
-    <mat-icon>link</mat-icon>
-    EMAIL A LINK
-  </button>
+  </ng-container>
+
+  <ng-container *ngIf="!newContact">
+
+    <button mat-button class="command-bar-button">
+      <mat-icon>add</mat-icon>
+      NEW
+    </button>
+
+    <button mat-button class="command-bar-button" [disabled]="true">
+      <mat-icon>visibility</mat-icon>
+      ACTIVATE
+    </button>
+
+    <button mat-button class="command-bar-button">
+      <mat-icon>visibility_off</mat-icon>
+      DEACTIVATE
+    </button>
+
+    <button mat-button class="command-bar-button">
+      <mat-icon>link</mat-icon>
+      EMAIL A LINK
+    </button>
+
+  </ng-container>
 
   <div fxFlex fxLayout fxLayoutAlign="flex-end">
 
     <button mat-button class="command-bar-button">
       <mat-icon>open_in_new</mat-icon>
+    </button>
+
+    <button mat-button class="command-bar-button">
+      <mat-icon>clear</mat-icon>
     </button>
 
   </div>
@@ -36,7 +58,7 @@
 
 <div #contentContainer class="content-container">
 
-  <ng-container *ngIf="!item && !newContact; then skeleton"> </ng-container>
+  <ng-container *ngIf="!item; then skeleton"> </ng-container>
 
   <ng-container *ngIf="item">
 
@@ -97,3 +119,9 @@
   </ng-template>
 
 </div> <!-- contentContainer -->
+
+<!--
+
+<ng-container *ngIf="!item && !newContact; then skeleton"> </ng-container>
+
+-->

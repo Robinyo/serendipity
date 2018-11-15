@@ -49,7 +49,7 @@ import { LibRoutingModule } from './lib-routing.module';
     FlexLayoutModule,
     ReactiveFormsModule,
 
-    HttpClientInMemoryWebApiModule.forFeature(InMemoryDataService, { passThruUnknownUrl: true, delay: 1500 }),
+    HttpClientInMemoryWebApiModule.forFeature(InMemoryDataService, { passThruUnknownUrl: true, delay: 1000 }),
 
     TranslateModule.forChild(),
 
