@@ -2,12 +2,12 @@
 
   <ng-container *ngIf="newContact">
 
-    <button mat-button class="command-bar-button">
+    <button mat-button class="crm-command-bar-button">
       <mat-icon>save</mat-icon>
       SAVE
     </button>
 
-    <button mat-button class="command-bar-button">
+    <button mat-button class="crm-command-bar-button">
       <mat-icon>arrow_back</mat-icon>
       SAVE & CLOSE
     </button>
@@ -16,22 +16,22 @@
 
   <ng-container *ngIf="!newContact">
 
-    <button mat-button class="command-bar-button">
+    <button mat-button class="crm-command-bar-button">
       <mat-icon>add</mat-icon>
       NEW
     </button>
 
-    <button mat-button class="command-bar-button" [disabled]="true">
+    <button mat-button class="crm-command-bar-button" [disabled]="true">
       <mat-icon>visibility</mat-icon>
       ACTIVATE
     </button>
 
-    <button mat-button class="command-bar-button">
+    <button mat-button class="crm-command-bar-button">
       <mat-icon>visibility_off</mat-icon>
       DEACTIVATE
     </button>
 
-    <button mat-button class="command-bar-button">
+    <button mat-button class="crm-command-bar-button">
       <mat-icon>link</mat-icon>
       EMAIL A LINK
     </button>
@@ -40,11 +40,11 @@
 
   <div fxFlex fxLayout fxLayoutAlign="flex-end">
 
-    <button mat-button class="command-bar-button">
+    <button mat-button class="crm-command-bar-button">
       <mat-icon>open_in_new</mat-icon>
     </button>
 
-    <button mat-button class="command-bar-button">
+    <button mat-button class="crm-command-bar-button">
       <mat-icon>clear</mat-icon>
     </button>
 
@@ -52,17 +52,17 @@
 
 </crm-command-bar>
 
-<div class="component-title-container">
-  <h1 class="component-title"> {{ 'CONTACT_HEADER' | translate }} </h1>
+<div class="crm-component-title-container">
+  <h1 class="crm-component-title"> {{ 'CONTACT_HEADER' | translate }} </h1>
 </div>
 
-<div #contentContainer class="content-container">
+<div #contentContainer class="crm-content-container">
 
   <ng-container *ngIf="!item; then skeleton"> </ng-container>
 
   <ng-container *ngIf="item">
 
-    <div #gridContainer class="grid-container">
+    <div #gridContainer class="crm-grid-container">
 
       <mat-card>
 
@@ -77,7 +77,7 @@
           <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
 
           <dynamic-form autocomplete="off"
-                        [className]="'nested-grid-container'"
+                        [className]="'crm-nested-grid-container'"
                         [formGroup]="generalInformationGroup"
                         [model]="generalInformationModel">
           </dynamic-form>
@@ -97,7 +97,7 @@
         <mat-card-content>
 
           <dynamic-form autocomplete="off"
-                        [className]="'nested-grid-container'"
+                        [className]="'crm-nested-grid-container'"
                         [formGroup]="addressInformationGroup"
                         [model]="addressInformationModel">
           </dynamic-form>
@@ -113,15 +113,9 @@
   <!-- Skeleton template -->
 
   <ng-template #skeleton>
-    <div class="spinner-container" [style.height.px]="containerHeight">
+    <div class="crm-spinner-container" [style.height.px]="containerHeight">
       <mat-spinner color="accent"></mat-spinner>
     </div>
   </ng-template>
 
 </div> <!-- contentContainer -->
-
-<!--
-
-<ng-container *ngIf="!item && !newContact; then skeleton"> </ng-container>
-
--->

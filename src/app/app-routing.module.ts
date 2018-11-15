@@ -3,13 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { PlaceholderComponent } from '@app/core/components/placeholder/placeholder.component';
 
-import { MyDashboardComponent } from '@app/shared/components/samples/my-dashboard/my-dashboard.component';
+// import { MyDashboardComponent } from '@app/shared/components/samples/my-dashboard/my-dashboard.component';
 // import { MyTableComponent } from '@app/shared/components/samples/my-table/my-table.component';
 
 import { ContactsComponent } from 'sales';
 // import { AccountsComponent } from 'sales';
-
 import { ContactComponent } from 'sales';
+import { DashboardComponent } from 'sales';
 
 const routes: Routes = [
   {
@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'sales/dashboards',
-    component: MyDashboardComponent
+    component: DashboardComponent
   },
   {
     path: 'sales/accounts',
@@ -57,3 +57,12 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+/*
+
+  {
+    path: 'sales/dashboards',
+    component: MyDashboardComponent
+  },
+
+*/

@@ -1,7 +1,7 @@
 @import "../../themes/mat-variables";
 @import "../../themes/variables";
 
-.command-bar-height {
+.crm-command-bar-height {
   height: $crm-command-bar-height-desktop;
   min-height: $crm-command-bar-height-desktop;
 
@@ -11,13 +11,17 @@
   }
 }
 
-.command-bar-container {
+/*
+
+.crm-command-bar-container {
   display: flex;
   justify-content: space-between;
   white-space: nowrap;
 }
 
-.command-bar-button {
+*/
+
+.crm-command-bar-button {
   min-width: 48px;
   padding: 0 16px;
 }

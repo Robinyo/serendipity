@@ -8,9 +8,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AngularMaterialModule } from './shared/angular-material.module';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 import { AccountsComponent } from './components/accounts/accounts.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/mocks/api/in-memory-data.service';
@@ -51,6 +54,8 @@ import { LibRoutingModule } from './lib-routing.module';
 
     HttpClientInMemoryWebApiModule.forFeature(InMemoryDataService, { passThruUnknownUrl: true, delay: 1000 }),
 
+    NgxChartsModule,
+
     TranslateModule.forChild(),
 
     UtilsModule,
@@ -62,7 +67,8 @@ import { LibRoutingModule } from './lib-routing.module';
   declarations: [
     AccountsComponent,
     ContactsComponent,
-    ContactComponent
+    ContactComponent,
+    DashboardComponent
   ],
   providers: [
     { provide: LoggerService, useClass: ConsoleLoggerService }
@@ -70,7 +76,8 @@ import { LibRoutingModule } from './lib-routing.module';
   exports: [
     AccountsComponent,
     ContactsComponent,
-    ContactComponent
+    ContactComponent,
+    DashboardComponent
   ]
 })
 export class SalesModule {

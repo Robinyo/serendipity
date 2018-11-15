@@ -28,7 +28,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'sales-accounts',
   templateUrl: './accounts.component.html',
-  styleUrls: ['./accounts.component.css']
+  styleUrls: ['./accounts.component.scss']
   // providers: [ { provide: LoggerService, useClass: ConsoleLoggerService } ]
 })
 export class AccountsComponent implements OnInit {

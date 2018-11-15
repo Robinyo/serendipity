@@ -3,26 +3,24 @@
 
 // Note: Define all color and typography styles in a "theme file" for the component / plugin
 
-// top, right, bottom, and left
+.mat-card {
+  padding: 0;
+}
+
+.mat-card-header {
+  background: rgba(0, 0, 0, 0.04);
+  padding-top: 8px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mat-card-content {
+  padding: 16px;
+}
 
 /*
-
-See: styles.scss for ...
-
-.mat-hint {
-  // color: rgba(0, 0, 0, 0.6);
-  height: 0 !important;
-}
-
-.grid-column-1 {
-  grid-column: 1;
-}
-
-.grid-column-2 {
-  grid-column: 2;
-}
-
-*/
 
 .content-container {
   height: 100%;
@@ -62,6 +60,14 @@ See: styles.scss for ...
   margin-right: 32px;
 }
 
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+*/
+
 /*
 
 .nested-grid-container {
@@ -72,32 +78,6 @@ See: styles.scss for ...
 }
 
 */
-
-.spinner-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.mat-card {
-  padding: 0;
-}
-
-.mat-card-header {
-  background: rgba(0, 0, 0, 0.04);
-  padding-top: 8px;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.mat-card-content {
-  padding: 16px;
-}
-
-
-
 
 
 /*

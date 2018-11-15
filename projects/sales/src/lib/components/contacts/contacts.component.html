@@ -1,41 +1,41 @@
 <crm-command-bar class="crm-command-bar-fixed" fxHide.xs>
 
-  <button mat-button class="command-bar-button" (click)="onNewContact()">
+  <button mat-button class="crm-command-bar-button" (click)="onNewContact()">
     <mat-icon>add</mat-icon>
     NEW
   </button>
 
-  <button mat-button class="command-bar-button" [disabled]="true">
+  <button mat-button class="crm-command-bar-button" [disabled]="true">
     <mat-icon>visibility</mat-icon>
     ACTIVATE
   </button>
 
-  <button mat-button class="command-bar-button">
+  <button mat-button class="crm-command-bar-button">
     <mat-icon>visibility_off</mat-icon>
     DEACTIVATE
   </button>
 
-  <button mat-button class="command-bar-button">
+  <button mat-button class="crm-command-bar-button">
     <mat-icon>link</mat-icon>
     EMAIL A LINK
   </button>
 
-  <button mat-button class="command-bar-button">
+  <button mat-button class="crm-command-bar-button">
     <mat-icon>description</mat-icon>
     RUN REPORT
   </button>
 
 </crm-command-bar>
 
-<div class="component-title-container">
-  <h1 class="component-title"> {{ 'CONTACTS_HEADER' | translate }} </h1>
+<div class="crm-component-title-container">
+  <h1 class="crm-component-title"> {{ 'CONTACTS_HEADER' | translate }} </h1>
 </div>
 
-<div #contentContainer class="content-container" (window:resize)="onResize($event)" [style.height.px]="containerHeight">
+<div #contentContainer class="crm-content-container" (window:resize)="onResize($event)" [style.height.px]="containerHeight">
 
   <ng-container *ngIf="!items; then skeleton"> </ng-container>
 
-  <div #tableContainer class="table-container" [style.height.px]="containerHeight">
+  <div #tableContainer class="crm-table-container" [style.height.px]="containerHeight">
 
     <table mat-table [hidden]="!items" [dataSource]="dataSource" matSort matSortStart="desc" class="mat-elevation-z8" [style.width.px]="containerWidth">
 
@@ -137,7 +137,7 @@
 
   <ng-template #skeleton>
 
-    <div class="spinner-container" [style.height.px]="containerHeight">
+    <div class="crm-spinner-container" [style.height.px]="containerHeight">
       <mat-spinner color="accent"></mat-spinner>
     </div>
 
