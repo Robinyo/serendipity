@@ -1,3 +1,5 @@
+// See: variables.scss
+
 /*
 
 // https://github.com/angular/material2/blob/master/src/lib/toolbar/toolbar.scss
