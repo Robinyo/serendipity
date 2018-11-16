@@ -9,8 +9,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularMaterialModule } from '@app/shared/angular-material.module';
 
-import { AppRoutingModule } from '@app/app-routing.module';
-
 import { PlaceholderComponent } from './components/placeholder/placeholder.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { NavComponent } from './components/nav/nav.component';
@@ -20,13 +18,23 @@ import { environment } from '@env/environment';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 
 //
+// Firebase Hosting
+//
+
+// https://github.com/angular/angularfire2/blob/master/docs/install-and-setup.md
+
+import { AngularFireModule } from '@angular/fire';
+// import { AngularFirestoreModule } from '@angular/fire/firestore';
+// import { AngularFireStorageModule } from '@angular/fire/storage';
+// import { AngularFireAuthModule } from '@angular/fire/auth';
+
+//
 // Utils lib
 //
 
 import { UtilsModule } from 'utils';
 import { LoggerService } from 'utils';
 import { ConsoleLoggerService } from 'utils';
-
 
 //
 // Dynamic Forms lib
@@ -40,10 +48,13 @@ import { DynamicFormsModule } from 'dynamic-forms';
 
 import { SalesModule } from 'sales';
 
+// https://angular.io/guide/router#routing-module-order
+
+import { AppRoutingModule } from '@app/app-routing.module';
 
 @NgModule({
   imports: [
-    // CommonModule,
+    AngularFireModule.initializeApp(environment.firebase),
     AngularMaterialModule,
     CommonModule,
     FlexLayoutModule,

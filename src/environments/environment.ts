@@ -5,9 +5,25 @@
 export const environment = {
 
   production: false,
+
+  defaultLanguage: 'en',
+
   isDebugMode: true,
 
-  defaultLanguage: 'en'
+  firebase: {
+    apiKey: '',
+    authDomain: '',
+    databaseURL: '',
+    projectId: '',
+    storageBucket: '',
+    messagingSenderId: ''
+  },
+
+  storageUriPrefix: 'https://firebasestorage.googleapis.com/v0/b/',
+
+  version: '1.0.0-beta.1',
+
+  sentryDsn: ''
 
 };
 
@@ -18,4 +34,5 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
+
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.

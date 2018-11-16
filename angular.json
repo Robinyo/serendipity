@@ -23,9 +23,12 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
-              "src/assets",
+              "src/apple-touch-icon-iphone-retina.png",
+              "src/apple-touch-icon-iphone-retina-precomposed.png",
+              "src/browserconfig.xml",
               "src/favicon.ico",
               "src/manifest.json",
+              "src/assets",
               {
                 "glob": "**/*",
                 "input": "projects/sales/src/assets",

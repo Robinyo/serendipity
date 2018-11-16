@@ -1,19 +1,65 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 
   <meta charset="utf-8">
+
   <title>Serendipity</title>
+
   <base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="assets/images/icons/favicon.ico">
 
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Use viewport-fit=cover to fill the iPhone X notch and also prevent content going under the status bar (if it's translucent) -->
+  <!-- More info: https://css-tricks.com/the-notch-and-css/ -->
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
 
+  <!-- Android -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1976d2">
+  <meta name="theme-color" content="#488aff">
+
+  <!-- iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Serendipity">
+
+  <!-- Possible values include default, black, or black-translucent; only black-translucent is truly full screen -->
+  <!-- More info: https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <!-- Home Screen Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-iphone-retina.png" type="image/png">
+  <link rel="apple-touch-icon" sizes="16x16" href="assets/images/icons/favicon-16x16.png" type="image/png">
+  <link rel="apple-touch-icon" sizes="32x32" href="assets/images/icons/favicon-32x32.png" type="image/png">
+
+  <link rel="mask-icon" href="assets/images/icons/safari-pinned-tab.svg" color="#5bbad5">
+
+  <!-- iOS Startup Images -->
+  <!-- See: https://appsco.pe/developer/splash-screens -->
+  <link rel="apple-touch-startup-image"  href="assets/images/splash/iphone5_splash.png"
+        media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" />
+  <link rel="apple-touch-startup-image" href="assets/images/splash/iphone6_splash.png"
+        media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" />
+  <link rel="apple-touch-startup-image" href="assets/images/splash/iphoneplus_splash.png"
+        media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" />
+  <link rel="apple-touch-startup-image" href="assets/images/splash/iphonex_splash.png"
+        media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" />
+  <link rel="apple-touch-startup-image" href="assets/images/splash/ipad_splash.png"
+        media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" />
+  <link rel="apple-touch-startup-image" href="assets/images/splash/ipadpro1_splash.png"
+        media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" />
+  <link rel="apple-touch-startup-image" href="assets/images/splash/ipadpro2_splash.png"
+        media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" />
+
+  <!-- Windows Mobile specific styles -->
+  <meta name="msapplication-TileColor" content="#2d89ef">
+  <meta name="msapplication-TileImage" content="assets/images/icons/mstile-150x150.png">
+
+  <!--
+  <meta http-equiv="x-ua-compatible" content="IE=Edge">
+
+  <meta name="msapplication-tap-highlight" content="no">
+  -->
 
 </head>
 
@@ -23,14 +69,9 @@
     <app-root></app-root>
   </div>
 
-  <noscript>Please enable JavaScript to continue using this application.</noscript>
+  <noscript>
+    <h2 style="padding: 20px; text-align: center;">JavaScript must be enabled to use this application.</h2>
+  </noscript>
 
 </body>
 </html>
-
-<!--
-
-<link href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-
--->
