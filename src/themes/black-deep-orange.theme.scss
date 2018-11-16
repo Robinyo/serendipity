@@ -7,16 +7,26 @@
 
 // @import "./material.icons";
 
+// https://material.angular.io/guide/typography
+
+/*
+
 $custom-typography: mat-typography-config(
   $button: mat-typography-level(14px, 14px, 400)
 );
+
 $custom-toolbar-typography: mat-typography-config(
   $title: mat-typography-level(20px, 32px, 400)
 );
 
-@include mat-core($custom-typography);
+*/
 
-@include mat-toolbar-typography($custom-toolbar-typography);
+$custom-typography: mat-typography-config(
+  $font-family: 'Open Sans, sans-serif'
+);
+
+@include mat-core($custom-typography);
+// @include mat-toolbar-typography($custom-toolbar-typography);
 
 // https://material.io/design/color/the-color-system.html
 // https://github.com/angular/material2/blob/master/src/lib/core/theming/_palette.scss
@@ -115,14 +125,14 @@ body {
   align-items: center;
   justify-content: center;
 
-  height: $mat-toolbar-height-desktop * 2;
-  min-height: $mat-toolbar-height-desktop * 2;
+  height: $crm-view-bar-height-desktop;
+  min-height: $crm-view-bar-height-desktop;
 
   margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
 
   @media ($mat-xsmall) {
-    height: $mat-toolbar-height-mobile * 2;
-    min-height: $mat-toolbar-height-mobile * 2;
+    height: $crm-view-bar-height-mobile;
+    min-height: $crm-view-bar-height-mobile;
 
     margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile;
   }

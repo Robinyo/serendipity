@@ -15,9 +15,15 @@ import { GENERAL_INFORMATION_GROUP, ADDRESS_INFORMATION_GROUP } from '../../shar
 import { LoggerService } from 'utils';
 
 import {
-  COMMAND_BAR_HEIGHT_DESKTOP,
-  MARGIN_DESKTOP,
   NAVIGATION_BAR_HEIGHT_DESKTOP,
+  NAVIGATION_BAR_HEIGHT_MOBILE,
+  COMMAND_BAR_HEIGHT_DESKTOP,
+  COMMAND_BAR_HEIGHT_MOBILE,
+  VIEW_BAR_HEIGHT_DESKTOP,
+  VIEW_BAR_HEIGHT_MOBILE,
+  MARGIN_DESKTOP,
+  MARGIN_MOBILE,
+  MAT_XSMALL
 } from '../../shared/constants';
 
 @Component({
@@ -47,6 +53,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   private navBarHeight = NAVIGATION_BAR_HEIGHT_DESKTOP;
   private cmdBarHeight = COMMAND_BAR_HEIGHT_DESKTOP;
+  private viewBarHeight = VIEW_BAR_HEIGHT_DESKTOP;
   private margin = MARGIN_DESKTOP;
 
   constructor(private route: ActivatedRoute,
@@ -63,11 +70,13 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.id = atob(this.id);
 
     if (this.id === '0') {
-      this.newContact = (this.route.snapshot.paramMap.get('new') === 'true');
-      this.logger.info('ContactComponent: ngOnInit() - newContact: ' + this.newContact);
+      // this.newContact = (this.route.snapshot.paramMap.get('new') === 'true');
+      // this.logger.info('ContactComponent: ngOnInit() - newContact: ' + this.newContact);
+      this.newContact = true;
     }
 
-    this.containerHeight = this.tableContainer.nativeElement.offsetHeight - ((2 * this.navBarHeight) + this.cmdBarHeight + this.margin);
+    this.containerHeight = this.tableContainer.nativeElement.offsetHeight -
+      (this.navBarHeight + this.cmdBarHeight + this.viewBarHeight + this.margin);
 
     this.subscribe();
   }

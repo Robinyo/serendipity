@@ -16,13 +16,15 @@ import {
   ALPHABET,
   CONTACT_COLUMNS_DESKTOP,
   CONTACT_COLUMNS_MOBILE,
-  MAT_XSMALL,
-  MARGIN_DESKTOP,
-  MARGIN_MOBILE,
   NAVIGATION_BAR_HEIGHT_DESKTOP,
   NAVIGATION_BAR_HEIGHT_MOBILE,
   COMMAND_BAR_HEIGHT_DESKTOP,
-  COMMAND_BAR_HEIGHT_MOBILE
+  COMMAND_BAR_HEIGHT_MOBILE,
+  VIEW_BAR_HEIGHT_DESKTOP,
+  VIEW_BAR_HEIGHT_MOBILE,
+  MARGIN_DESKTOP,
+  MARGIN_MOBILE,
+  MAT_XSMALL
 } from '../../shared/constants';
 
 @Component({
@@ -77,6 +79,7 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
   private navBarHeight = NAVIGATION_BAR_HEIGHT_DESKTOP;
   private cmdBarHeight = COMMAND_BAR_HEIGHT_DESKTOP;
+  private viewBarHeight = VIEW_BAR_HEIGHT_DESKTOP;
   private margin = MARGIN_DESKTOP;
 
   constructor(private router: Router,
@@ -97,27 +100,32 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
       this.navBarHeight = NAVIGATION_BAR_HEIGHT_MOBILE;
       this.cmdBarHeight = COMMAND_BAR_HEIGHT_MOBILE;
+      this.viewBarHeight = VIEW_BAR_HEIGHT_MOBILE;
       this.margin = MARGIN_MOBILE;
 
       this.displayedColumns = CONTACT_COLUMNS_MOBILE;
+
     } else {
 
       this.navBarHeight = NAVIGATION_BAR_HEIGHT_DESKTOP;
       this.cmdBarHeight = COMMAND_BAR_HEIGHT_DESKTOP;
+      this.viewBarHeight = VIEW_BAR_HEIGHT_DESKTOP;
       this.margin = MARGIN_DESKTOP;
 
       this.displayedColumns = CONTACT_COLUMNS_DESKTOP;
     }
 
     this.containerWidth = this.tableContainer.nativeElement.offsetWidth - (this.margin + this.margin);
-    this.containerHeight = this.tableContainer.nativeElement.offsetHeight - ((3 * this.navBarHeight) + this.cmdBarHeight + this.margin);
+    this.containerHeight = this.tableContainer.nativeElement.offsetHeight -
+      (this.navBarHeight + this.cmdBarHeight + this.viewBarHeight + this.margin);
   }
 
   // (window:resize)="onResize($event)
   public onResize(event) {
 
     this.containerWidth = event.target.innerWidth - (this.margin + this.margin);
-    this.containerHeight = event.target.innerHeight - ((3 * this.navBarHeight) + this.cmdBarHeight + this.margin);
+    this.containerHeight = event.target.innerHeight -
+      (this.navBarHeight + this.cmdBarHeight + this.viewBarHeight + this.margin);
   }
 
   // https://blog.angular-university.io/angular-debugging/
@@ -131,15 +139,19 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
     this.breakpointObserver.observe([ Breakpoints.HandsetPortrait ]).subscribe(result => {
 
       if (result.matches) {
+
         this.navBarHeight = NAVIGATION_BAR_HEIGHT_MOBILE;
         this.cmdBarHeight = COMMAND_BAR_HEIGHT_MOBILE;
+        this.viewBarHeight = VIEW_BAR_HEIGHT_MOBILE;
         this.margin = MARGIN_MOBILE;
 
         this.displayedColumns = CONTACT_COLUMNS_MOBILE;
 
       } else {
+
         this.navBarHeight = NAVIGATION_BAR_HEIGHT_DESKTOP;
         this.cmdBarHeight = COMMAND_BAR_HEIGHT_DESKTOP;
+        this.viewBarHeight = VIEW_BAR_HEIGHT_DESKTOP;
         this.margin = MARGIN_DESKTOP;
 
         this.displayedColumns = CONTACT_COLUMNS_DESKTOP;
@@ -195,7 +207,8 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
     // btoa(0) === 'MA=='
 
-    this.router.navigate(['sales/contacts/MA==', { new: true }]);
+    // this.router.navigate(['sales/contacts/MA==', { new: true }]);
+    this.router.navigate(['sales/contacts/MA==']);
   }
 
 }
@@ -208,11 +221,3 @@ function pathDataAccessor(item: any, path: string): any {
     return accumulator ? accumulator[key] : undefined;
   }, item);
 }
-
-/*
-
-sales/contacts/:id
-http://localhost:4200/sales/contacts;id=3;new=true
-http://localhost:4200/sales/contacts;id=3;new=true/MQ%3D%3D
-
-*/
