@@ -1,4 +1,4 @@
-# Serendipity
+# Serendipity CRM
 
 Serendipity is an open source customer relationship management (CRM) solution.
 
@@ -6,7 +6,7 @@ You can use it to transform your organisation by connecting your customers, prod
 
 ## Demo
 
-Take a look at [Serendipity CRM](https://serendipity-f7626.firebaseapp.com)
+Take a look at [Serendipity](https://serendipity-f7626.firebaseapp.com) CRM.
 
 ## Screen Shots
 
