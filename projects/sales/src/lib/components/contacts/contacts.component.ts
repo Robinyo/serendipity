@@ -110,14 +110,14 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
     }
 
     this.containerWidth = this.tableContainer.nativeElement.offsetWidth - (this.margin + this.margin);
-    this.containerHeight = this.tableContainer.nativeElement.offsetHeight - ((2 * this.navBarHeight) + this.cmdBarHeight + this.margin);
+    this.containerHeight = this.tableContainer.nativeElement.offsetHeight - ((3 * this.navBarHeight) + this.cmdBarHeight + this.margin);
   }
 
   // (window:resize)="onResize($event)
   public onResize(event) {
 
     this.containerWidth = event.target.innerWidth - (this.margin + this.margin);
-    this.containerHeight = event.target.innerHeight - ((2 * this.navBarHeight) + this.cmdBarHeight + this.margin);
+    this.containerHeight = event.target.innerHeight - ((3 * this.navBarHeight) + this.cmdBarHeight + this.margin);
   }
 
   // https://blog.angular-university.io/angular-debugging/

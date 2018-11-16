@@ -12,8 +12,8 @@ import { AngularMaterialModule } from '@app/shared/angular-material.module';
 import { AppRoutingModule } from '@app/app-routing.module';
 
 import { PlaceholderComponent } from './components/placeholder/placeholder.component';
+import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { NavComponent } from './components/nav/nav.component';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 import { environment } from '@env/environment';
 
@@ -40,6 +40,7 @@ import { DynamicFormsModule } from 'dynamic-forms';
 
 import { SalesModule } from 'sales';
 
+
 @NgModule({
   imports: [
     // CommonModule,
@@ -63,11 +64,11 @@ import { SalesModule } from 'sales';
 
     AppRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
-  declarations: [ PlaceholderComponent, NavComponent, ToolbarComponent ],
+  declarations: [ PlaceholderComponent, NavigationBarComponent, NavComponent ],
   providers: [
     { provide: LoggerService, useClass: ConsoleLoggerService }
   ],
-  exports: [ PlaceholderComponent, NavComponent, ToolbarComponent ] // TranslateModule
+  exports: [ PlaceholderComponent, NavigationBarComponent, NavComponent ] // TranslateModule
 })
 export class CoreModule {
 

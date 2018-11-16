@@ -7,7 +7,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
+      "prefix": "crm",
       "schematics": {
         "@schematics/angular:component": {
           "styleext": "scss"
@@ -151,7 +151,7 @@
       "root": "projects/sales",
       "sourceRoot": "projects/sales/src",
       "projectType": "library",
-      "prefix": "sales",
+      "prefix": "crm",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

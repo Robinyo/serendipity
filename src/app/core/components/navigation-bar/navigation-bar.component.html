@@ -1,0 +1,35 @@
+<mat-toolbar color="primary" class="crm-navigation-bar">
+
+  <mat-toolbar-row>
+
+    <button mat-icon-button (click)="toggleSidenav.emit()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span class="toolbar-title"> {{ 'APP_TOOLBAR_TITLE' | translate }} </span>
+
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+
+      <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+        <li>
+          <a>
+            <mat-icon class="toolbar-icon">settings</mat-icon>
+          </a>
+        </li>
+        <li>
+          <a >
+            <mat-icon class="toolbar-icon">help_outline</mat-icon>
+          </a>
+        </li>
+        <li>
+          <a>
+            <mat-icon class="toolbar-icon">person_outline</mat-icon>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+  </mat-toolbar-row>
+
+</mat-toolbar>

@@ -1,5 +1,30 @@
 // https://material.angular.io/guide/theming-your-components
 
+$crm-toolbar-title-padding: 16px !default;
+
+.toolbar-title {
+  margin: 0 $crm-toolbar-title-padding 0 $crm-toolbar-title-padding;
+}
+
+.navigation-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.toolbar-icon {
+  display: inline-block;
+  height: 30px;
+  margin: 0 auto;
+  padding-right: 5px;
+  text-align: center;
+  vertical-align: middle;
+  width: 15%;
+}
+
+/*
+
 $crm-toolbar-height-desktop: 64px !default;
 $crm-toolbar-height-mobile: 56px !default;
 $crm-toolbar-row-padding: 16px !default;
@@ -34,3 +59,5 @@ $crm-toolbar-title-padding: 16px !default;
   margin: 0;
   cursor: pointer;
 }
+
+*/
