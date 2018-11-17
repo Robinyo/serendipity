@@ -60,11 +60,82 @@
         (select)="onSelect($event)">
       </ngx-charts-number-card>
 
+      <ngx-charts-bar-horizontal
+        [view]="largeView"
+        [scheme]="accountsColorScheme"
+        [schemeType]="schemeType"
+        [results]="single"
+        [animations]="animations"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [legendTitle]="legendTitle"
+        [legendPosition]="legendPosition"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [tooltipDisabled]="tooltipDisabled"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [showGridLines]="showGridLines"
+        [barPadding]="barPadding"
+        [roundDomains]="roundDomains"
+        [roundEdges]="roundEdges"
+        [xScaleMax]="xScaleMax"
+        [showDataLabel]="showDataLabel">
+      </ngx-charts-bar-horizontal>
+
     </div>
 
   </div>
 
 </div> <!-- contentContainer -->
+
+<!--
+
+      <ngx-charts-number-card
+        class="chart-container"
+        [view]="view"
+        (legendLabelClick)="onLegendLabelClick($event)"
+        [scheme]="colorScheme"
+        cardColor="#232837"
+        emptyColor="#1e222e"
+        [results]="statusData"
+        [animations]="animations"
+        [valueFormatting]="statusValueFormat"
+        [labelFormatting]="statusLabelFormat">
+      </ngx-charts-number-card>
+
+      <ngx-charts-bar-horizontal
+        *ngIf="chartType === 'bar-horizontal'"
+        class="chart-container"
+        [view]="view"
+        [scheme]="colorScheme"
+        [schemeType]="schemeType"
+        [results]="single"
+        [animations]="animations"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [legendTitle]="legendTitle"
+        [legendPosition]="legendPosition"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [tooltipDisabled]="tooltipDisabled"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [showGridLines]="showGridLines"
+        [barPadding]="barPadding"
+        [roundDomains]="roundDomains"
+        [roundEdges]="roundEdges"
+        [xScaleMax]="xScaleMax"
+        [showDataLabel]="showDataLabel"
+        (legendLabelClick)="onLegendLabelClick($event)"
+        (select)="select($event)">
+      </ngx-charts-bar-horizontal>
+
+-->
 
 <!--
 

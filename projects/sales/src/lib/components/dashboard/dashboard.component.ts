@@ -1,5 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
+import {
+  single,
+  multi,
+  bubble,
+  generateData,
+  generateGraph,
+  treemap,
+  timelineFilterBarData,
+  fiscalYearReport
+} from './data';
+
 const accounts = [
   {
     'name': 'Accounts',
@@ -59,12 +70,44 @@ export class DashboardComponent implements OnInit {
     domain: ['#8BC34A']
   };
 
+  single: any[];
+  schemeType = 'ordinal';
+
+  // Options
+  animations = true;
+  gradient = false;
+  showXAxis = true;
+  showXAxisLabel = true;
+  yAxisLabel = 'Country';
+  showYAxis = true;
+  showYAxisLabel = true;
+  xAxisLabel = 'GDP Per Capita';
+
+  showLegend = false;
+  legendTitle = 'Legend';
+  legendPosition = 'right';
+
+  tooltipDisabled = false;
+  showGridLines = true;
+  barPadding = 8;
+  roundDomains = false;
+  roundEdges = true;
+  xScaleMax: any;
+  showDataLabel = false;
+
   constructor() {
 
-    Object.assign(this, {accounts});
-    Object.assign(this, {contacts});
-    Object.assign(this, {leads});
-    Object.assign(this, {opportunities});
+    Object.assign(this, {
+      accounts,
+      contacts,
+      leads,
+      opportunities
+    });
+
+    Object.assign(this, {
+      single
+    });
+
   }
 
   ngOnInit() {
@@ -75,11 +118,26 @@ export class DashboardComponent implements OnInit {
 
 }
 
+// https://github.com/swimlane/ngx-charts/blob/master/demo/app.component.ts
+
 // https://en.wikipedia.org/wiki/Golden_ratio -> 1.61803398875
 
 // https://material.io/design/color/the-color-system.html#tools-for-picking-colors
 
 /*
+
+    Object.assign(this, {
+      single,
+      multi,
+      countries,
+      chartGroups,
+      colorSets,
+      graph: generateGraph(50),
+      bubble,
+      plotData: this.generatePlotData(),
+      treemap,
+      fiscalYearReport
+    });
 
 const single = [
   {

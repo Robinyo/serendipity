@@ -7,13 +7,13 @@
   "ACCOUNTS_HEADER": "Accounts",
   "ACTIVITIES_HEADER": "Activities",
   "CONTACTS_HEADER": "Contacts",
-  "DASHBOARDS_HEADER": "Dashboards",
+  "DASHBOARDS_HEADER": "Dashboard",
   "LEADS_HEADER": "Leads",
   "OPPORTUNITES_HEADER": "Opportunities",
 
   "CONTACT_HEADER": "Contact",
   "ACCOUNT_HEADER": "Account",
 
-  "SALES_ACTIVITY_DASHBOARD_HEADER": "Sales Activity Dashboard"
+  "SALES_ACTIVITY_DASHBOARD_HEADER": "Dashboard"
 
 }
