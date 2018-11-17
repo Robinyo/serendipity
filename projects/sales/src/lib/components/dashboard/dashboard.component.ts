@@ -28,7 +28,7 @@ const contacts = [
 const leads = [
   {
     'name': 'Leads',
-    'value': 3002
+    'value': 3003
   }
 ];
 
@@ -54,20 +54,22 @@ export class DashboardComponent implements OnInit {
   smallView: any[] = [322, 200];
   largeView: any[] = [644, 400];
 
+  // '#647c8a', '#3f51b5', '#2196f3', '#00b862', '#afdf0a', '#a7b61a', '#f3e562', '#ff9800', '#ff5722', '#ff4514'
+
   accountsColorScheme = {
-    domain: ['#2196F3']
+    domain: ['#2196f3']  // #2196F3
   };
 
   contactsColorScheme = {
-    domain: ['#03A9F4']
+    domain: ['#03A9F4']  // #03A9F4
   };
 
   leadsColorScheme = {
-    domain: ['#4CAF50']
+    domain: ['#00b862']  // #4CAF50
   };
 
   opportunitiesColorScheme = {
-    domain: ['#8BC34A']
+    domain: ['#afdf0a']  // #8BC34A
   };
 
   single: any[];
