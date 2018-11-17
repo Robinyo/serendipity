@@ -43,7 +43,7 @@ Go to the project directory, install the project's dependencies and launch the s
 ```
 cd serendipity
 npm install
-ng build utils && ng build dynamic-forms && ng build sales
+ng build utils && ng build serendipity-components && ng build dynamic-forms && ng build sales
 ng serve --open
 ```
 
@@ -53,37 +53,104 @@ Using the --open (or just -o) option will open your browser on `http://localhost
 
 ## Build Management
 
-### Development server
+### Aliases
 
-Run `ng serve` for a dev server. 
+Steps to add support for aliases update the "paths" array in the `compilerOptions` section of `tsconfig.json`:
 
-Navigate to: `http://localhost:4200/` 
+```
+  "paths": {
+    "@app/*": [
+      "src/app/*"
+    ],
+    "@env/*": [
+      "src/environments/*"
+    ],
+
+    ...
+    
+  }
+```
+
+### WebStrom
+
+To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Languages & Frameworks -> TypeScript and clear the 'Angular Language Service' checkbox.
+
+### Development
+
+To build the project:
+
+```
+ng build utils && ng build serendipity-components && ng build dynamic-forms && ng build sales
+```
+       
+To launch the project:
+
+```
+ng serve --open
+```
 
 The app will automatically reload if you change any of the source files.
+
+### Production
+
+To update the project's version:
+
+```
+npm run version-update -- 1.0.0-beta.1
+```
+
+To build the project:
+
+```
+ng build utils && ng build serendipity-components && ng build dynamic-forms && ng build sales
+ng build --prod --source-map 
+```
+
+The build artifacts will be stored in the `dist/serendipity` directory. 
+
+To launch the project using [http-server](https://github.com/indexzero/http-server):
+
+```
+http-server -p 8080 -c-1 dist/serendipity
+```
+
+**Note:** To reduce the possibility of conflicts and avoid serving stale content, test on a dedicated port and disable caching.
+
+Navigate to:
+
+```
+http://127.0.0.1:8080
+```
+
+To launch the project using Firebase:
+
+```
+firebase serve
+```
+ 
+Navigate to:
+ 
+```
+http://localhost:5000
+```
+
+To deploy the project to Firebase Hosting:
+
+```
+firebase deploy
+```
+
+Navigate to:
+
+```
+https://serendipity-f7626.firebaseapp.com
+```
 
 ### Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. 
 
 You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-### Build
-
-Run `ng build` to build the project:
-
-```
-ng build utils && ng build dynamic-forms && ng build sales
-ng build
-```
-
-The build artifacts will be stored in the `dist/` directory. 
-
-Use the `--prod` flag for a production build:
-
-```
-ng build utils && ng build dynamic-forms && ng build sales
-ng build --prod
-```
 
 ### Running unit tests
 
@@ -92,20 +159,6 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ### Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-### http-server: A command-line http server
-
-To install http-server globally:
-
-```
-npm install -g http-server
-```
-
-To reduce the possibility of conflicts and avoid serving stale content, test on a dedicated port and disable caching:
-
-```
-http-server -p 8080 -c-1 dist/serendipity
-```
 
 ### Project Assets
 

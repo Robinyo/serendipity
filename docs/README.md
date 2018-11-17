@@ -2,6 +2,6 @@
 
 ### Quick Links
 
-* [Administrator Documentation](developer.md)
+* Administrator Documentation
 * [Developer Documentation](developer.md)
-* [User Documentation](developer.md)
+* User Documentation
