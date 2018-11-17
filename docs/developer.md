@@ -71,10 +71,6 @@ Steps to add support for aliases update the "paths" array in the `compilerOption
   }
 ```
 
-### WebStrom
-
-To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Languages & Frameworks -> TypeScript and clear the 'Angular Language Service' checkbox.
-
 ### Development
 
 To build the project:
@@ -229,6 +225,10 @@ or
 ```
 git push origin <tag>
 ```
+
+### WebStrom
+
+To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Languages & Frameworks -> TypeScript and clear the 'Angular Language Service' checkbox.
 
 ## Angular Resources
 
