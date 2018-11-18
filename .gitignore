@@ -42,4 +42,6 @@ Thumbs.db
 /requirements
 /secrets
 
+/.firebase
+
 TODO.txt
