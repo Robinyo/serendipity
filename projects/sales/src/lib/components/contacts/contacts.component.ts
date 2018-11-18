@@ -1,9 +1,8 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { MatSort, MatTableDataSource } from '@angular/material';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-
-import { Router } from '@angular/router';
 
 import { Subscription} from 'rxjs';
 
@@ -201,13 +200,11 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
   // Command Bar events
   //
 
-  public onNewContact() {
+  public onNew() {
 
-    this.logger.info('ContactsPage: newContact()');
+    this.logger.info('ContactsPage: onNew()');
 
     // btoa(0) === 'MA=='
-
-    // this.router.navigate(['sales/contacts/MA==', { new: true }]);
     this.router.navigate(['sales/contacts/MA==']);
   }
 
@@ -221,3 +218,10 @@ function pathDataAccessor(item: any, path: string): any {
     return accumulator ? accumulator[key] : undefined;
   }, item);
 }
+
+/*
+
+    // btoa(0) === 'MA=='
+    // this.router.navigate(['sales/contacts/MA==', { new: true }]);
+
+*/

@@ -1,6 +1,6 @@
 <crm-command-bar class="crm-command-bar" fxHide.xs>
 
-  <button mat-button class="crm-command-bar-button" (click)="onNewContact()">
+  <button mat-button class="crm-command-bar-button" (click)="onNew()">
     <mat-icon>add</mat-icon>
     NEW
   </button>
@@ -10,17 +10,17 @@
     ACTIVATE
   </button>
 
-  <button mat-button class="crm-command-bar-button">
+  <button mat-button class="crm-command-bar-button" [disabled]="true">
     <mat-icon>visibility_off</mat-icon>
     DEACTIVATE
   </button>
 
-  <button mat-button class="crm-command-bar-button">
+  <button mat-button class="crm-command-bar-button" [disabled]="true">
     <mat-icon>link</mat-icon>
     EMAIL A LINK
   </button>
 
-  <button mat-button class="crm-command-bar-button">
+  <button mat-button class="crm-command-bar-button" [disabled]="true">
     <mat-icon>description</mat-icon>
     RUN REPORT
   </button>

@@ -1,9 +1,12 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 import { Subscription} from 'rxjs';
 import { tap } from 'rxjs/operators';
+
+import { MatSnackBar } from '@angular/material';
 
 import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
@@ -16,14 +19,14 @@ import { LoggerService } from 'utils';
 
 import {
   NAVIGATION_BAR_HEIGHT_DESKTOP,
-  NAVIGATION_BAR_HEIGHT_MOBILE,
+  // NAVIGATION_BAR_HEIGHT_MOBILE,
   COMMAND_BAR_HEIGHT_DESKTOP,
-  COMMAND_BAR_HEIGHT_MOBILE,
+  // COMMAND_BAR_HEIGHT_MOBILE,
   VIEW_BAR_HEIGHT_DESKTOP,
-  VIEW_BAR_HEIGHT_MOBILE,
+  // VIEW_BAR_HEIGHT_MOBILE,
   MARGIN_DESKTOP,
-  MARGIN_MOBILE,
-  MAT_XSMALL
+  // MARGIN_MOBILE,
+  // MAT_XSMALL
 } from '../../shared/constants';
 
 @Component({
@@ -57,28 +60,39 @@ export class ContactComponent implements OnInit, OnDestroy {
   private margin = MARGIN_DESKTOP;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
+
               private formBuilder: FormBuilder,
               private contactsService: ContactsService,
               private dynamicFormService: DynamicFormService,
+              private snackBar: MatSnackBar,
               private logger: LoggerService) { }
 
   public ngOnInit() {
 
     this.logger.info('ContactComponent: ngOnInit()');
 
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.id = atob(this.id);
-
-    if (this.id === '0') {
-      // this.newContact = (this.route.snapshot.paramMap.get('new') === 'true');
-      // this.logger.info('ContactComponent: ngOnInit() - newContact: ' + this.newContact);
-      this.newContact = true;
-    }
-
     this.containerHeight = this.tableContainer.nativeElement.offsetHeight -
       (this.navBarHeight + this.cmdBarHeight + this.viewBarHeight + this.margin);
 
-    this.subscribe();
+    // this.id = this.route.snapshot.paramMap.get('id');
+
+    let paramSubscription: Subscription = new Subscription();
+    this.subscriptions.push(paramSubscription);
+
+    paramSubscription = this.route.paramMap.subscribe(params =>  {
+
+      this.id = params.get('id');
+      this.id = atob(this.id);
+
+      if (this.id === '0') {
+        this.newContact = true;
+      }
+
+      this.subscribe();
+
+    });
+
   }
 
   protected subscribe() {
@@ -169,11 +183,91 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.unsubscribe();
   }
 
+  //
+  // Command Bar events
+  //
+
+  public onNew() {
+
+    this.logger.info('ContactPage: onNew()');
+
+    // btoa(0) === 'MA=='
+    this.router.navigate(['sales/contacts/MA==']);
+  }
+
+  public onSave() {
+
+    this.logger.info('ContactPage: onSave()');
+
+    /*
+
+    this.snackBar.open('Contact saved', '', {
+      duration: 2000,
+      panelClass: ['crm-snackbar-green']
+    });
+
+    */
+
+    this.openSnackBar();
+  }
+
+  public onSaveAndClose() {
+
+    this.logger.info('ContactPage: onSaveAndClose()');
+
+    this.router.navigate(['sales/contacts']);
+  }
+
+  private openSnackBar() {
+
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 500,
+      panelClass: 'crm-snack-bar-green'
+    });
+
+  }
+
 }
+
+@Component({
+  selector: 'sales-toast',
+  template: `
+    <span>
+      Contact saved
+    </span>
+  `,
+  styles: []
+})
+export class SnackBarComponent {}
 
 // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
 
+// this.newContact = (this.route.snapshot.paramMap.get('new') === 'true');
+// this.logger.info('ContactComponent: ngOnInit() - newContact: ' + this.newContact);
+
+// import { Location } from '@angular/common';
+// private location: Location,
+// this.location.back();
+
 /*
+
+  public onSave() {
+
+    this.logger.info('ContactsPage: onSave()');
+
+    this.snackBar.open('Contact saved', '', {
+      duration: 2000,
+      panelClass: ['crm-snackbar-green']
+    });
+  }
+
+    this.snackBar.open('Contact saved', 'X', {
+      duration: 2000,
+      panelClass: ['crm-snackbar-green']
+    });
+
+
+    // this.router.navigate(['sales/contacts']);
 
         this.item = {} as Contact;
 

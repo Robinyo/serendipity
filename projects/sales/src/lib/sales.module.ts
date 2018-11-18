@@ -12,7 +12,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { AccountsComponent } from './components/accounts/accounts.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
-import { ContactComponent } from './components/contact/contact.component';
+import { SnackBarComponent, ContactComponent } from './components/contact/contact.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -68,7 +68,9 @@ import { LibRoutingModule } from './lib-routing.module';
     AccountsComponent,
     ContactsComponent,
     ContactComponent,
-    DashboardComponent
+    DashboardComponent,
+
+    SnackBarComponent
   ],
   providers: [
     { provide: LoggerService, useClass: ConsoleLoggerService }
@@ -77,8 +79,11 @@ import { LibRoutingModule } from './lib-routing.module';
     AccountsComponent,
     ContactsComponent,
     ContactComponent,
-    DashboardComponent
-  ]
+    DashboardComponent,
+
+    SnackBarComponent
+  ],
+  entryComponents: [ SnackBarComponent ]
 })
 export class SalesModule {
 

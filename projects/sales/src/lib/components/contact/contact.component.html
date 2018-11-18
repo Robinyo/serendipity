@@ -2,12 +2,12 @@
 
   <ng-container *ngIf="newContact">
 
-    <button mat-button class="crm-command-bar-button">
+    <button mat-button class="crm-command-bar-button" (click)="onSave()">
       <mat-icon>save</mat-icon>
       SAVE
     </button>
 
-    <button mat-button class="crm-command-bar-button">
+    <button mat-button class="crm-command-bar-button" (click)="onSaveAndClose()">
       <mat-icon>arrow_back</mat-icon>
       SAVE & CLOSE
     </button>
@@ -16,7 +16,7 @@
 
   <ng-container *ngIf="!newContact">
 
-    <button mat-button class="crm-command-bar-button">
+    <button mat-button class="crm-command-bar-button" (click)="onNew()">
       <mat-icon>add</mat-icon>
       NEW
     </button>
@@ -26,12 +26,12 @@
       ACTIVATE
     </button>
 
-    <button mat-button class="crm-command-bar-button">
+    <button mat-button class="crm-command-bar-button" [disabled]="true">
       <mat-icon>visibility_off</mat-icon>
       DEACTIVATE
     </button>
 
-    <button mat-button class="crm-command-bar-button">
+    <button mat-button class="crm-command-bar-button" [disabled]="true">
       <mat-icon>link</mat-icon>
       EMAIL A LINK
     </button>
@@ -40,11 +40,11 @@
 
   <div fxFlex fxLayout fxLayoutAlign="flex-end">
 
-    <button mat-button class="crm-command-bar-button">
+    <button mat-button class="crm-command-bar-button" [disabled]="true">
       <mat-icon>open_in_new</mat-icon>
     </button>
 
-    <button mat-button class="crm-command-bar-button">
+    <button mat-button class="crm-command-bar-button" [disabled]="true">
       <mat-icon>clear</mat-icon>
     </button>
 
