@@ -16,7 +16,7 @@ import { LoggerService } from 'utils';
       <input matInput
              [autocomplete]="model.autocomplete"
              [formControlName]="model.id"
-             [placeholder]="model.id"
+             [placeholder]="model.label"
              [required]="model?.required" />
 
       <ng-container *ngFor="let validator of model.validators;" ngProjectAs="mat-error">
