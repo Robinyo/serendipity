@@ -2,12 +2,16 @@
 
   <ng-container *ngIf="newContact">
 
-    <button mat-button class="crm-command-bar-button" (click)="onSave()">
+    <button mat-button class="crm-command-bar-button"
+            [disabled]="!isValid()"
+            (click)="onSave()">
       <mat-icon>save</mat-icon>
       SAVE
     </button>
 
-    <button mat-button class="crm-command-bar-button" (click)="onSaveAndClose()">
+    <button mat-button class="crm-command-bar-button"
+            [disabled]="!isValid()"
+            (click)="onSaveAndClose()">
       <mat-icon>arrow_back</mat-icon>
       SAVE & CLOSE
     </button>
@@ -79,8 +83,15 @@
           <dynamic-form autocomplete="off"
                         [className]="'crm-nested-grid-container'"
                         [formGroup]="generalInformationGroup"
-                        [model]="generalInformationModel">
+                        [model]="generalInformationModel"
+                        (ngSubmit)="onSubmit()">
           </dynamic-form>
+
+          <!--
+          <p>
+            Form Value: {{ generalInformationGroup.value | json }}
+          </p>
+          -->
 
         </mat-card-content>
 
@@ -96,11 +107,20 @@
 
         <mat-card-content>
 
+          <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
+
           <dynamic-form autocomplete="off"
                         [className]="'crm-nested-grid-container'"
                         [formGroup]="addressInformationGroup"
-                        [model]="addressInformationModel">
+                        [model]="addressInformationModel"
+                        (ngSubmit)="onSubmit()">
           </dynamic-form>
+
+          <!--
+          <p>
+            Form Value: {{ addressInformationGroup.value | json }}
+          </p>
+          -->
 
         </mat-card-content>
 

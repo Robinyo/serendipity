@@ -184,6 +184,29 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   //
+  // Misc
+  //
+
+  public isValid() {
+
+    // this.logger.info('ContactComponent - isValid()');
+
+    let valid = false;
+
+    if (this.generalInformationGroup && this.generalInformationGroup.valid) {
+
+      if (this.addressInformationGroup && this.addressInformationGroup.valid) {
+
+        valid = true;
+        // this.logger.info('valid: ' + valid);
+      }
+
+    }
+
+    return valid;
+  }
+
+  //
   // Command Bar events
   //
 
@@ -218,6 +241,11 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.router.navigate(['sales/contacts']);
   }
 
+  public onSubmit() {
+
+    this.logger.info('ContactPage: onSubmit()');
+  }
+
   private openSnackBar() {
 
     this.snackBar.openFromComponent(SnackBarComponent, {
@@ -248,6 +276,16 @@ export class SnackBarComponent {}
 // import { Location } from '@angular/common';
 // private location: Location,
 // this.location.back();
+
+/*
+
+if (this.generalInformationGroup && !this.generalInformationGroup.touched) {
+
+  valid = false;
+  this.logger.info('valid: ' + valid);
+}
+
+*/
 
 /*
 

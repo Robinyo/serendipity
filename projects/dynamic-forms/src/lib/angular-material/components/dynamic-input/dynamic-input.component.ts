@@ -8,10 +8,16 @@ import { LoggerService } from 'utils';
 @Component({
   selector: 'dynamic-input',
   template: `
-    <mat-form-field [appearance]="model.appearance" [className]="model.class" [formGroup]="formGroup">
+    <mat-form-field [appearance]="model.appearance"
+                    [className]="model.class"
+                    [formGroup]="formGroup">
 
       <mat-label> {{ model.label }} </mat-label>
-      <input matInput [autocomplete]="model.autocomplete" [formControlName]="model.id" [placeholder]="model.id">
+      <input matInput
+             [autocomplete]="model.autocomplete"
+             [formControlName]="model.id"
+             [placeholder]="model.id"
+             [required]="model?.required" />
 
       <ng-container *ngFor="let validator of model.validators;" ngProjectAs="mat-error">
         <mat-error *ngIf="formGroup.controls[model.id].hasError(validator.propertyName)"> {{ validator.message }} </mat-error>
@@ -41,6 +47,8 @@ export class DynamicInputComponent implements OnInit {
   }
 
 }
+
+// [hideRequiredMarker]="model.hideRequiredMarker">
 
 // https://material.angular.io/components/form-field/overview
 // https://material.angular.io/components/input/overview

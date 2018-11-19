@@ -25,7 +25,17 @@
     "appearance": "outline",
     "autocomplete": "given-name",
 
-    "class": "grid-column-1"
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a given name"
+      }
+    ],
+
+    "class": "grid-column-1",
+    "required": true
   },
   {
     "type": "input",
@@ -34,7 +44,8 @@
     "appearance": "outline",
     "autocomplete": "additional-name",
 
-    "class": "grid-column-2"
+    "class": "grid-column-2",
+    "required": false
   },
   {
     "type": "input",
@@ -45,14 +56,15 @@
 
     "validators": [
       {
-        "name": "minLength",
-        "args": 2,
-        "propertyName": "minlength",
-        "message": "Please enter at least two characters"
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a family name"
       }
     ],
 
-    "class": "grid-column-3"
+    "class": "grid-column-3",
+    "required": true
   },
   {
     "type": "input",
@@ -79,7 +91,8 @@
       }
     ],
 
-    "class": "grid-column-1"
+    "class": "grid-column-1",
+    "required": false
   },
   {
     "type": "input",
