@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Subscription} from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -61,8 +61,6 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-
-              private formBuilder: FormBuilder,
               private contactsService: ContactsService,
               private dynamicFormService: DynamicFormService,
               private snackBar: MatSnackBar,
@@ -241,9 +239,9 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.router.navigate(['sales/contacts']);
   }
 
-  public onSubmit() {
+  public onCustomEvent($event) {
 
-    this.logger.info('ContactPage: onSubmit()');
+    this.logger.info('ContactPage: onCustomEvent()');
   }
 
   private openSnackBar() {

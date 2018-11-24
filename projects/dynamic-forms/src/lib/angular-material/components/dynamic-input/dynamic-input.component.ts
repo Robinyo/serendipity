@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import {Component, EventEmitter, HostBinding, Input, OnInit, Output} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { DynamicFormControlModel } from '../../models/dynamic-form-control.model';
@@ -9,21 +9,34 @@ import { LoggerService } from 'utils';
   selector: 'dynamic-input',
   template: `
     <mat-form-field [appearance]="model.appearance"
-                    [className]="model.class"
+                    [className]="model.gridItemClass"
                     [formGroup]="formGroup">
 
-      <mat-label> {{ model.label }} </mat-label>
+      <ng-container *ngIf="model.label" ngProjectAs="mat-label">
+        <mat-label> {{ model.label }} </mat-label>
+      </ng-container>
+
+      <span matPrefix>
+        <ng-container *ngIf="model.prefix" ngProjectAs="mat-icon">
+          <mat-icon matPrefix> {{ model.prefix }} </mat-icon>
+        </ng-container>
+      </span>
+
       <input matInput
              [autocomplete]="model.autocomplete"
              [formControlName]="model.id"
-             [placeholder]="model.label"
-             [required]="model?.required" />
+             [placeholder]="model.placeholder"
+             [required]="model.required" />
+
+      <span matSuffix>
+        <ng-container *ngIf="model.suffix" ngProjectAs="mat-icon">
+          <mat-icon matSuffix (click)="iconSuffixClickHandler($event)"> {{ model.suffix }} </mat-icon>
+        </ng-container>
+      </span>
 
       <ng-container *ngFor="let validator of model.validators;" ngProjectAs="mat-error">
         <mat-error *ngIf="formGroup.controls[model.id].hasError(validator.propertyName)"> {{ validator.message }} </mat-error>
       </ng-container>
-
-      <mat-hint></mat-hint>
 
     </mat-form-field>
   `,
@@ -34,21 +47,32 @@ export class DynamicInputComponent implements OnInit {
   @Input() formGroup: FormGroup;
   @Input() model: DynamicFormControlModel;
 
+  @Output() customEvent = new EventEmitter<any>();
+
   @HostBinding('class') elementClass;
 
   constructor(private logger: LoggerService) {
 
   }
 
-  ngOnInit() {
+  public ngOnInit() {
 
-    this.logger.info('DynamicInputComponent: ngOnInit()');
-    this.elementClass = this.model.class;
+    // this.logger.info('DynamicInputComponent: ngOnInit()');
+    this.elementClass = this.model.gridItemClass;
+  }
+
+
+  public iconSuffixClickHandler($event: any) {
+
+    this.logger.info('DynamicInputComponent: emit customEvent');
+    this.customEvent.emit($event);
   }
 
 }
 
-// [hideRequiredMarker]="model.hideRequiredMarker">
+
+// https://stackoverflow.com/questions/50574642/angular-material-mat-form-field-custom-component-matsuffix-in-ng-content
+// https://stackoverflow.com/questions/31548311/angular-html-binding
 
 // https://material.angular.io/components/form-field/overview
 // https://material.angular.io/components/input/overview
@@ -56,3 +80,26 @@ export class DynamicInputComponent implements OnInit {
 // https://stackoverflow.com/questions/52612671/angular-material-2-reactive-forms-mat-error-with-ngif-not-showing-when-valid
 // https://stackoverflow.com/questions/46129719/angular-4-form-validators-minlength-maxlength-does-not-work-on-field-type-nu/46129969
 // https://github.com/angular/angular/issues/7407
+
+/*
+
+  @HostListener(`document:cat`, ['$event'])
+  public onEvent(event: any) {
+    this.logger.info('DynamicInputComponent: iconSuffixClickHandler()');
+  }
+
+      <mat-icon matSuffix> search </mat-icon>
+
+      <span *ngIf="model.suffix">
+        <mat-icon matSuffix> {{ model.suffix }} </mat-icon>
+      </span>
+
+      <ng-container *ngIf="model.suffix" ngProjectAs="mat-icon">
+        <mat-icon matSuffix>model.suffix</mat-icon>
+      </ng-container>
+
+      <span *ngIf="model.prefix" matPrefix [innerHTML]="model.prefix"></span>
+
+      <span *ngIf="model.suffix" matSuffix [innerHTML]="model.suffix"></span>
+
+*/

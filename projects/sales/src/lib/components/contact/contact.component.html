@@ -84,7 +84,7 @@
                         [className]="'crm-nested-grid-container'"
                         [formGroup]="generalInformationGroup"
                         [model]="generalInformationModel"
-                        (ngSubmit)="onSubmit()">
+                        (customEvent)="onCustomEvent($event)">
           </dynamic-form>
 
           <!--
@@ -112,8 +112,7 @@
           <dynamic-form autocomplete="off"
                         [className]="'crm-nested-grid-container'"
                         [formGroup]="addressInformationGroup"
-                        [model]="addressInformationModel"
-                        (ngSubmit)="onSubmit()">
+                        [model]="addressInformationModel">
           </dynamic-form>
 
           <!--
@@ -139,3 +138,9 @@
   </ng-template>
 
 </div> <!-- contentContainer -->
+
+<!--
+
+ (dynamicEvent)="onEvent($event)">
+
+-->

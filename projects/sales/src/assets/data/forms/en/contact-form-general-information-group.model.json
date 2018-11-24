@@ -7,7 +7,7 @@
     "appearance": "outline",
     "autocomplete": "name",
 
-    "class": "grid-column-1-span-2"
+    "gridItemClass": "grid-column-1-span-2"
   },
   {
     "type": "input",
@@ -16,7 +16,7 @@
     "appearance": "outline",
     "autocomplete": "organization-title",
 
-    "class": "grid-column-3"
+    "gridItemClass": "grid-column-3"
   },
   {
     "type": "input",
@@ -34,7 +34,7 @@
       }
     ],
 
-    "class": "grid-column-1",
+    "gridItemClass": "grid-column-1",
     "required": true
   },
   {
@@ -44,7 +44,7 @@
     "appearance": "outline",
     "autocomplete": "additional-name",
 
-    "class": "grid-column-2",
+    "gridItemClass": "grid-column-2",
     "required": false
   },
   {
@@ -63,7 +63,7 @@
       }
     ],
 
-    "class": "grid-column-3",
+    "gridItemClass": "grid-column-3",
     "required": true
   },
   {
@@ -73,14 +73,16 @@
     "appearance": "outline",
     "autocomplete": "organization",
 
-    "class": "grid-column-1-span-2"
+    "gridItemClass": "grid-column-1-span-2",
+
+    "suffix": "search"
   },
   {
     "type": "input",
     "id": "email",
     "label": "Email",
     "appearance": "outline",
-    "autocomplete": "organization",
+    "autocomplete": "email",
 
     "validators": [
       {
@@ -91,7 +93,7 @@
       }
     ],
 
-    "class": "grid-column-1",
+    "gridItemClass": "grid-column-1",
     "required": false
   },
   {
@@ -101,7 +103,7 @@
     "appearance": "outline",
     "autocomplete": "tel",
 
-    "class": "grid-column-1"
+    "gridItemClass": "grid-column-1"
   }
 
 ]
