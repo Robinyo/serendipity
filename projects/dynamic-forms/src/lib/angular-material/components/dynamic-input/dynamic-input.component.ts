@@ -1,7 +1,7 @@
 import {Component, EventEmitter, HostBinding, Input, OnInit, Output} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { DynamicFormControlModel } from '../../models/dynamic-form-control.model';
+import { DynamicFormControlCustomEvent, DynamicFormControlModel } from '../../models/dynamic-form-control.model';
 
 import { LoggerService } from 'utils';
 
@@ -17,8 +17,8 @@ import { LoggerService } from 'utils';
       </ng-container>
 
       <span matPrefix>
-        <ng-container *ngIf="model.prefix" ngProjectAs="mat-icon">
-          <mat-icon matPrefix> {{ model.prefix }} </mat-icon>
+        <ng-container *ngIf="model.prefixIconName" ngProjectAs="mat-icon">
+          <mat-icon matPrefix> {{ model.prefixIconName }} </mat-icon>
         </ng-container>
       </span>
 
@@ -29,8 +29,8 @@ import { LoggerService } from 'utils';
              [required]="model.required" />
 
       <span matSuffix>
-        <ng-container *ngIf="model.suffix" ngProjectAs="mat-icon">
-          <mat-icon matSuffix (click)="iconSuffixClickHandler($event)"> {{ model.suffix }} </mat-icon>
+        <ng-container *ngIf="model.suffixIconName" ngProjectAs="mat-icon">
+          <mat-icon matSuffix (click)="iconSuffixClickHandler()"> {{ model.suffixIconName }} </mat-icon>
         </ng-container>
       </span>
 
@@ -47,7 +47,7 @@ export class DynamicInputComponent implements OnInit {
   @Input() formGroup: FormGroup;
   @Input() model: DynamicFormControlModel;
 
-  @Output() customEvent = new EventEmitter<any>();
+  @Output() customEvent = new EventEmitter<DynamicFormControlCustomEvent>();
 
   @HostBinding('class') elementClass;
 
@@ -61,15 +61,13 @@ export class DynamicInputComponent implements OnInit {
     this.elementClass = this.model.gridItemClass;
   }
 
-
-  public iconSuffixClickHandler($event: any) {
+  public iconSuffixClickHandler() {
 
     this.logger.info('DynamicInputComponent: emit customEvent');
-    this.customEvent.emit($event);
+    this.customEvent.emit({ type: 'click', id: this.model.id, directive: 'matSuffix', name: this.model.suffixIconName });
   }
 
 }
-
 
 // https://stackoverflow.com/questions/50574642/angular-material-mat-form-field-custom-component-matsuffix-in-ng-content
 // https://stackoverflow.com/questions/31548311/angular-html-binding

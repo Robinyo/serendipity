@@ -1,4 +1,24 @@
+import { EventEmitter } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ValidatorModel } from './validator.model';
+
+export interface DynamicFormControlCustomEvent {
+
+  type: string;                    // 'click' string
+  id: string;                      // 'organisation.name'
+  directive: string;               // 'matSuffix'
+  name: string;                    // 'search'
+
+}
+
+export interface DynamicFormControl {
+
+  formGroup: FormGroup;
+  model: DynamicFormControlModel;
+
+  customEvent?: EventEmitter<any>;
+
+}
 
 export interface DynamicFormControlModelConfig {
 
@@ -16,9 +36,9 @@ export interface DynamicFormControlModelConfig {
   label?: string;                  // "Given Name"
   name?: string;                   // "givenName"
   placeholder?: string;            // "Given Name"
-  prefix?: string;
+  prefixIconName?: string;
   required?: boolean;              // false
-  suffix?: string;
+  suffixIconName?: string;
 
   validators?: ValidatorModel[];
 
@@ -40,9 +60,9 @@ export class DynamicFormControlModel {
   label?: string;                  // "Given Name"
   name?: string;                   // "givenName"
   placeholder?: string;            // "Given Name"
-  prefix?: string;
+  prefixIconName?: string;
   required?: boolean;              // false
-  suffix?: string;
+  suffixIconName?: string;
 
   validators?: ValidatorModel[];
 
@@ -58,9 +78,9 @@ export class DynamicFormControlModel {
     this.label = config.label || null;
     this.name = config.name || config.id;
     this.placeholder = config.placeholder || config.label;
-    this.prefix = config.prefix || null;
+    this.prefixIconName = config.prefixIconName || null;
     this.required = config.required || false;
-    this.suffix = config.suffix || null;
+    this.suffixIconName = config.suffixIconName || null;
 
     this.validators = config.validators || null;
 

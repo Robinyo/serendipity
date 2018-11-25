@@ -8,7 +8,7 @@ import { tap } from 'rxjs/operators';
 
 import { MatSnackBar } from '@angular/material';
 
-import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
+import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
 import { ContactsService } from '../../services/contacts/contacts.service';
 import { Contact } from '../../shared/models';
@@ -239,9 +239,10 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.router.navigate(['sales/contacts']);
   }
 
-  public onCustomEvent($event) {
+  public onCustomEvent(event: DynamicFormControlCustomEvent) {
 
     this.logger.info('ContactPage: onCustomEvent()');
+    this.logger.info('event: ' + JSON.stringify(event));
   }
 
   private openSnackBar() {

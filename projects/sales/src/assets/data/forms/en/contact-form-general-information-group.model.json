@@ -75,7 +75,7 @@
 
     "gridItemClass": "grid-column-1-span-2",
 
-    "suffix": "search"
+    "suffixIconName": "search"
   },
   {
     "type": "input",

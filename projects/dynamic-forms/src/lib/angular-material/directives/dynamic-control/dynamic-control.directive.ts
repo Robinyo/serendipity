@@ -1,10 +1,20 @@
-import { ComponentFactoryResolver, Directive, EventEmitter, Input, OnInit, Output, ViewContainerRef } from '@angular/core';
+import {
+  ComponentFactoryResolver,
+  ComponentRef,
+  Directive,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewContainerRef
+} from '@angular/core';
 
 import { FormGroup } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 
-import { DynamicFormControlModel } from '../../models/dynamic-form-control.model';
+import { DynamicFormControl, DynamicFormControlCustomEvent, DynamicFormControlModel } from '../../models/dynamic-form-control.model';
 
 import { DynamicInputComponent } from '../../components/dynamic-input/dynamic-input.component';
 
@@ -17,28 +27,32 @@ const components = {
 @Directive({
   selector: '[dynamicControl]'
 })
-export class DynamicControlDirective  implements OnInit {
+export class DynamicControlDirective  implements OnInit, OnDestroy  {
 
   @Input() formGroup: FormGroup;
   @Input() model: DynamicFormControlModel;
 
-  @Output() customEvent = new EventEmitter<any>();
+  @Output() customEvent = new EventEmitter<DynamicFormControlCustomEvent>();
 
+  protected componentRef: ComponentRef<DynamicFormControl>;
   protected componentSubscriptions: Subscription[] = [];
 
-  component: any;
-
   constructor(private resolver: ComponentFactoryResolver,
-              private container: ViewContainerRef,
+              private viewContainerRef: ViewContainerRef,
               private logger: LoggerService) {
 
   }
 
-  ngOnInit() {
+  public ngOnInit() {
 
     // this.logger.info('DynamicControlDirective: ngOnInit()');
 
     this.createDynamicFormControlComponent();
+  }
+
+  public ngOnDestroy() {
+
+    this.destroyDynamicFormControlComponent();
   }
 
   private createDynamicFormControlComponent() {
@@ -54,9 +68,9 @@ export class DynamicControlDirective  implements OnInit {
     } else {
 
       const factory = this.resolver.resolveComponentFactory(components[this.model.type]);
-      this.component = this.container.createComponent(factory);
+      this.componentRef = this.viewContainerRef.createComponent(factory) as ComponentRef<DynamicFormControl>;
 
-      const instance = this.component.instance;
+      const instance = this.componentRef.instance;
 
       instance.formGroup = this.formGroup;
       instance.model = this.model;
@@ -66,20 +80,32 @@ export class DynamicControlDirective  implements OnInit {
         this.logger.info('DynamicControlDirective: instance.customEvent.subscribe()');
 
         this.componentSubscriptions.push(
-          instance.customEvent.subscribe(($event: any) => this.onCustomEvent($event)));
+          instance.customEvent.subscribe((event: DynamicFormControlCustomEvent) => this.onCustomEvent(event)));
       }
 
     }
 
   }
 
-  onCustomEvent($event: any): void {
+  private destroyDynamicFormControlComponent() {
+
+    if (this.componentRef) {
+
+      this.componentSubscriptions.forEach(subscription => subscription.unsubscribe());
+      this.componentSubscriptions = [];
+
+      this.componentRef.destroy();
+    }
+
+  }
+
+  onCustomEvent(event: DynamicFormControlCustomEvent): void {
 
     this.logger.info('DynamicControlDirective: onCustomEvent()');
 
     // const emitter = this.customEvent as EventEmitter<any>;
     // emitter.emit($event);
-    this.customEvent.emit($event);
+    this.customEvent.emit(event);
   }
 
 }

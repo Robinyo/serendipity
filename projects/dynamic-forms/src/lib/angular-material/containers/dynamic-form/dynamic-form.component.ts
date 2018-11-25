@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { DynamicFormModel } from '../../models/dynamic-form.model';
+import { DynamicFormControlCustomEvent } from '../../models/dynamic-form-control.model';
 
 import { LoggerService } from 'utils';
 
@@ -44,10 +45,10 @@ export class DynamicFormComponent implements OnInit {
     this.logger.info('DynamicFormComponent: ngOnInit()');
   }
 
-  public onCustomEvent($event: any) {
+  public onCustomEvent(event: DynamicFormControlCustomEvent) {
 
     this.logger.info('DynamicFormComponent: onCustomEvent()');
-    this.customEvent.emit($event);
+    this.customEvent.emit(event);
   }
 
 }
