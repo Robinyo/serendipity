@@ -17,6 +17,8 @@ import { GENERAL_INFORMATION_GROUP, ADDRESS_INFORMATION_GROUP } from '../../shar
 
 import { LoggerService } from 'utils';
 
+import { DialogService } from 'serendipity-components';
+
 import {
   NAVIGATION_BAR_HEIGHT_DESKTOP,
   // NAVIGATION_BAR_HEIGHT_MOBILE,
@@ -63,6 +65,7 @@ export class ContactComponent implements OnInit, OnDestroy {
               private router: Router,
               private contactsService: ContactsService,
               private dynamicFormService: DynamicFormService,
+              private dialogService: DialogService,
               private snackBar: MatSnackBar,
               private logger: LoggerService) { }
 
@@ -224,7 +227,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     this.snackBar.open('Contact saved', '', {
       duration: 2000,
-      panelClass: ['crm-snackbar-green']
+      panelClass: ['crm-snack-bar']
     });
 
     */
@@ -242,14 +245,21 @@ export class ContactComponent implements OnInit, OnDestroy {
   public onCustomEvent(event: DynamicFormControlCustomEvent) {
 
     this.logger.info('ContactPage: onCustomEvent()');
-    this.logger.info('event: ' + JSON.stringify(event));
+
+    this.dialogService.openAlert({
+      title: 'Alert',
+      message: JSON.stringify(event),
+      closeButton: 'CLOSE'
+    });
+
+    // this.logger.info('event: ' + JSON.stringify(event));
   }
 
   private openSnackBar() {
 
     this.snackBar.openFromComponent(SnackBarComponent, {
       duration: 500,
-      panelClass: 'crm-snack-bar-green'
+      panelClass: 'crm-snack-bar'
     });
 
   }

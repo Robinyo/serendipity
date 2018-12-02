@@ -5,6 +5,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AngularMaterialModule } from './shared/angular-material.module';
 
+import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-dialog.component';
+
 //
 // Utils lib
 //
@@ -22,10 +24,11 @@ import { CommandBarComponent } from './components/command-bar/command-bar.compon
     FlexLayoutModule,
     UtilsModule
   ],
-  declarations: [ CommandBarComponent ],
+  declarations: [ AlertDialogComponent, CommandBarComponent ],
   providers: [
     { provide: LoggerService, useClass: ConsoleLoggerService }
   ],
-  exports: [ CommandBarComponent ]
+  exports: [ CommandBarComponent ],
+  entryComponents: [ AlertDialogComponent ]
 })
 export class SerendipityComponentsModule {}

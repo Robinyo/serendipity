@@ -1,0 +1,35 @@
+<div>
+
+  <div mat-dialog-title>
+    <h3 class="crm-dialog-title"> {{ title }} </h3>
+  </div>
+
+  <div mat-dialog-content class="crm-dialog-content">
+    <span class="crm-dialog-message"> {{ message }} </span>
+  </div>
+
+  <div mat-dialog-actions fxLayoutAlign="flex-end">
+    <button mat-button color="accent" (click)="onClose()"> {{ closeButton }} </button>
+  </div>
+
+</div>
+
+<!--
+
+  <div mat-dialog-actions>
+    <button mat-button color="accent" (click)="onClose()"> {{ closeButton }} </button>
+  </div>
+
+  <div fxFlex fxLayout fxLayoutAlign="flex-end">
+
+    <button mat-button class="crm-command-bar-button" [disabled]="true">
+      <mat-icon>open_in_new</mat-icon>
+    </button>
+
+    <button mat-button class="crm-command-bar-button" [disabled]="true">
+      <mat-icon>clear</mat-icon>
+    </button>
+
+  </div>
+
+-->

@@ -82,7 +82,13 @@ ng build utils && ng build serendipity-components && ng build dynamic-forms && n
 To launch the project:
 
 ```
-ng serve --open
+ng serve
+```
+
+Navigate to:
+
+```
+http://localhost:4200/
 ```
 
 The app will automatically reload if you change any of the source files.
