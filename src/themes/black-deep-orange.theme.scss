@@ -184,6 +184,10 @@ body {
 // Dynamic Reactive Forms
 //
 
+.crm-suffix-icon {
+  cursor: pointer;
+}
+
 .crm-nested-grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

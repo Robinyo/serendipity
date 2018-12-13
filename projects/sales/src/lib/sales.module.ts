@@ -11,6 +11,7 @@ import { AngularMaterialModule } from './shared/angular-material.module';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { AccountsComponent } from './components/accounts/accounts.component';
+import { ActivitiesComponent } from './components/activities/activities.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { SnackBarComponent, ContactComponent } from './components/contact/contact.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -66,6 +67,7 @@ import { LibRoutingModule } from './lib-routing.module';
   ],
   declarations: [
     AccountsComponent,
+    ActivitiesComponent,
     ContactsComponent,
     ContactComponent,
     DashboardComponent,
@@ -77,6 +79,7 @@ import { LibRoutingModule } from './lib-routing.module';
   ],
   exports: [
     AccountsComponent,
+    ActivitiesComponent,
     ContactsComponent,
     ContactComponent,
     DashboardComponent,

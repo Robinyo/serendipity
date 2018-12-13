@@ -71,7 +71,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "serendipity:build"
+            "browserTarget": "serendipity:build",
+            "port": 4200
           },
           "configurations": {
             "production": {
@@ -282,6 +283,41 @@
             "tsConfig": [
               "projects/serendipity-components/tsconfig.lib.json",
               "projects/serendipity-components/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "flowable": {
+      "root": "projects/flowable",
+      "sourceRoot": "projects/flowable/src",
+      "projectType": "library",
+      "prefix": "flow",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/flowable/tsconfig.lib.json",
+            "project": "projects/flowable/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/flowable/src/test.ts",
+            "tsConfig": "projects/flowable/tsconfig.spec.json",
+            "karmaConfig": "projects/flowable/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/flowable/tsconfig.lib.json",
+              "projects/flowable/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

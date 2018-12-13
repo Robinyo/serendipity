@@ -3,19 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { PlaceholderComponent } from '@app/core/components/placeholder/placeholder.component';
 
-// import { MyDashboardComponent } from '@app/shared/components/samples/my-dashboard/my-dashboard.component';
-// import { MyTableComponent } from '@app/shared/components/samples/my-table/my-table.component';
-
 import { ContactsComponent } from 'sales';
-// import { AccountsComponent } from 'sales';
 import { ContactComponent } from 'sales';
 import { DashboardComponent } from 'sales';
 
 const routes: Routes = [
-  {
-    path: 'sales/activities',
-    component: PlaceholderComponent
-  },
+
   {
     path: 'sales/dashboards',
     component: DashboardComponent
@@ -50,6 +43,7 @@ const routes: Routes = [
     path: '**',
     component: PlaceholderComponent
   }
+
 ];
 
 @NgModule({
@@ -58,7 +52,17 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
+// import { MyDashboardComponent } from '@app/shared/components/samples/my-dashboard/my-dashboard.component';
+// import { MyTableComponent } from '@app/shared/components/samples/my-table/my-table.component';
+
+// import { AccountsComponent } from 'sales';
+
 /*
+
+  {
+    path: 'sales/activities',
+    component: PlaceholderComponent
+  },
 
   {
     path: 'sales/dashboards',

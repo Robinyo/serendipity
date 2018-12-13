@@ -43,7 +43,7 @@ Go to the project directory, install the project's dependencies and launch the s
 ```
 cd serendipity
 npm install
-ng build utils && ng build serendipity-components && ng build dynamic-forms && ng build sales
+ng build utils && ng build flowable && ng build serendipity-components && ng build dynamic-forms && ng build sales
 ng serve --open
 ```
 

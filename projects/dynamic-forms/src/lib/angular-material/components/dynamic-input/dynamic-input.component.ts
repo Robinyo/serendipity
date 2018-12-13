@@ -30,7 +30,7 @@ import { LoggerService } from 'utils';
 
       <span matSuffix>
         <ng-container *ngIf="model.suffixIconName" ngProjectAs="mat-icon">
-          <mat-icon matSuffix (click)="iconSuffixClickHandler()"> {{ model.suffixIconName }} </mat-icon>
+          <mat-icon matSuffix class="crm-suffix-icon" (click)="iconSuffixClickHandler()"> {{ model.suffixIconName }} </mat-icon>
         </ng-container>
       </span>
 
