@@ -29,6 +29,12 @@ import { ConsoleLoggerService } from 'utils';
 import { StaticInjectorService } from 'utils';
 
 //
+// Flowable lib
+//
+
+import { FlowableModule } from 'flowable';
+
+//
 // Serendipity Components lib
 //
 
@@ -51,6 +57,7 @@ import { LibRoutingModule } from './lib-routing.module';
     AngularMaterialModule,
     CommonModule,
     FlexLayoutModule,
+    FlowableModule,
     ReactiveFormsModule,
 
     HttpClientInMemoryWebApiModule.forFeature(InMemoryDataService, { passThruUnknownUrl: true, delay: 1000 }),
@@ -92,6 +99,8 @@ export class SalesModule {
 
   constructor(private injector: Injector,
               private logger: LoggerService) {
+
+    this.logger.info('Sales Module initialised');
 
     StaticInjectorService.setInjector(injector);
   }

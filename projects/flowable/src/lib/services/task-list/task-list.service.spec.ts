@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FlowableService } from './flowable.service';
+import { TaskListService } from './task-list.service';
 
-describe('FlowableService', () => {
+describe('TaskListService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: FlowableService = TestBed.get(FlowableService);
+    const service: TaskListService = TestBed.get(TaskListService);
     expect(service).toBeTruthy();
   });
 });

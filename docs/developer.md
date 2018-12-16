@@ -82,7 +82,7 @@ ng build utils && ng build serendipity-components && ng build dynamic-forms && n
 To launch the project:
 
 ```
-ng serve
+ng serve --proxy-config=proxy.conf.json
 ```
 
 Navigate to:
@@ -104,7 +104,7 @@ npm run version-update -- 1.0.0-beta.1
 To build the project:
 
 ```
-ng build utils && ng build serendipity-components && ng build dynamic-forms && ng build sales
+ng build utils && ng build flowable && ng build serendipity-components && ng build dynamic-forms && ng build sales
 ng build --prod --source-map 
 ```
 
