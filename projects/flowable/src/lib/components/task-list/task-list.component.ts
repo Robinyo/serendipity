@@ -4,7 +4,7 @@ import { Subscription} from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { TaskListService } from '../../services/task-list/task-list.service';
-import { TaskListModel } from '../../models/task-list.model';
+import { TaskModel, TaskListModel } from '../../models/task-list.model';
 
 import { LoggerService } from 'utils';
 
@@ -17,7 +17,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
-  public items: TaskListModel;
+  public items: TaskModel[];
 
   constructor(private taskListService: TaskListService,
               private logger: LoggerService) {}
@@ -36,10 +36,10 @@ export class TaskListComponent implements OnInit, OnDestroy {
     let modelSubscription: Subscription = new Subscription();
     this.subscriptions.push(modelSubscription);
 
-    modelSubscription = this.taskListService.getTasks().subscribe(data => {
+    modelSubscription = this.taskListService.getTasks().subscribe(model => {
 
-      this.logger.info(JSON.stringify(data));
-      this.items = data;
+      // this.logger.info(JSON.stringify(model));
+      this.items = model.data;
     });
 
   }

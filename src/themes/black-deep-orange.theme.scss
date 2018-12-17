@@ -163,6 +163,57 @@ body {
   }
 }
 
+$task-list-width: 320px; // 240px;
+
+.crm-activities-container {
+  display: grid;
+  grid-template-columns: $task-list-width auto;
+  // grid-template-rows: 100%; deprecated
+  // grid-template-rows: auto;
+  // grid-template-rows: minmax(250px, auto);
+  column-gap: 32px;
+  // row-gap: 1em;
+
+  margin-top: 0;
+  margin-left: 32px;
+  margin-bottom: 32px;
+  margin-right: 32px;
+
+  // overflow: auto;
+  // overflow: hidden;
+}
+
+.crm-task-list-container {
+  border: 1px solid lightgray;
+}
+
+.crm-task-container {
+  border: 1px solid lightgray;
+
+  // overflow: auto;
+
+  // height: 100%;
+  // height: calc(100vh - ($mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-component-title-margin));
+  // height: calc(100vh - 64 + 56 + 16);
+
+  // height: 100vh;
+  // height: calc(100vh - 64px + 56px + 16px);
+  // height: calc(100vh - 96px);
+  // height: calc(100vh - 128px);
+
+  // height: 400px;
+  height: calc(100vh - 256px);
+
+  @media ($mat-xsmall) {
+    height: calc(100vh - 200px);
+  }
+
+}
+
+.crm-task-list-icon {
+  margin: 0 12px 0 12px;
+}
+
 .crm-grid-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

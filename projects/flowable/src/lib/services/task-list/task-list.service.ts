@@ -26,12 +26,11 @@ export class TaskListService {
   constructor(private httpClient: HttpClient,
               private logger: LoggerService) {
 
-    this.logger.info('Flowable Module initialised');
   }
 
   public getTasks(): Observable<TaskListModel>   {
 
-    const endpoint = `${this.processEngineUriPrefix}tasks`;
+    const endpoint = `${this.processEngineUriPrefix}tasks?sort=createTime&order=asc`;
 
     return this.httpClient.get<any>(endpoint, httpOptions).pipe(
 
@@ -56,6 +55,8 @@ export class TaskListService {
   }
 
 }
+
+// https://www.flowable.org/docs/userguide/index.html#restPagingAndSort
 
 // curl -i 'http://admin:test@localhost:8080/flowable-task/process-api/runtime/tasks'
 
