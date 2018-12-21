@@ -5,7 +5,7 @@
     NEW
   </button>
 
-  <button mat-button class="crm-command-bar-button" [disabled]="true">
+  <button mat-button class="crm-command-bar-button">
     <mat-icon>refresh</mat-icon>
     REFRESH
   </button>
@@ -16,56 +16,10 @@
   <h1 class="crm-component-title"> {{ 'ACTIVITIES_HEADER' | translate }} </h1>
 </div>
 
-<div #activitiesContainer class="crm-activities-container">
-
-  <div class="crm-task-list-container">
-
-    <flow-task-list> </flow-task-list>
-
-  </div>
-
-  <div class="crm-task-container">
-
-    <p>Column 2, ...</p>
-
-  </div>
-
-</div>
+<flow-task-list> </flow-task-list>
 
 <!--
 
-<div #contentContainer class="crm-content-container">
-
-  <div #activitiesContainer class="crm-activities-container">
-
-    <div class="crm-task-list-container">
-
-      <flow-task-list> </flow-task-list>
-
-    </div>
-
-    <div class="crm-task-container">
-
-      <p>Column 2, ...</p>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-
-
-      <div style="height: 450px">
-
-      </div>
-
-    <flow-task-list class="crm-task-list"> </flow-task-list>
-
-    <div>
-      Column 2, ...
-    </div>
+  <button mat-button class="crm-command-bar-button" [disabled]="true">
 
 -->
-

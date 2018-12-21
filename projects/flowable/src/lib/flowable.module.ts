@@ -7,6 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AngularMaterialModule } from './angular-material.module';
 
+import { TaskComponent } from './components/task/task.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 
 //
@@ -25,16 +26,15 @@ import { ConsoleLoggerService } from 'utils';
     TranslateModule.forChild(),
     UtilsModule
   ],
-  declarations: [ TaskListComponent ],
+  declarations: [ TaskComponent, TaskListComponent ],
   providers: [
     { provide: LoggerService, useClass: ConsoleLoggerService }
   ],
-  exports: [ TaskListComponent ]
+  exports: [ TaskComponent, TaskListComponent ]
 })
 export class FlowableModule {
 
   constructor(private logger: LoggerService) {
-
     this.logger.info('Flowable Module initialised');
   }
 

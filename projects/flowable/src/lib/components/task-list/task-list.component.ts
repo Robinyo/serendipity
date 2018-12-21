@@ -11,13 +11,14 @@ import { LoggerService } from 'utils';
 @Component({
   selector: 'flow-task-list',
   templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.css']
+  styleUrls: ['./task-list.component.scss']
 })
 export class TaskListComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
   public items: TaskModel[];
+  public selectedItem: TaskModel;
 
   constructor(private taskListService: TaskListService,
               private logger: LoggerService) {}
@@ -40,6 +41,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
       // this.logger.info(JSON.stringify(model));
       this.items = model.data;
+      this.selectedItem = this.items[0];
     });
 
   }
@@ -52,6 +54,13 @@ export class TaskListComponent implements OnInit, OnDestroy {
       subscription.unsubscribe();
     });
 
+  }
+
+  public onSelect(task: TaskModel) {
+
+    this.logger.info('TaskListComponent: onSelect()');
+
+    this.selectedItem = task;
   }
 
   public ngOnDestroy() {

@@ -1,3 +1,63 @@
+<div #activitiesContainer class="crm-activities-container">
+
+  <div class="crm-task-list-container">
+
+    <mat-nav-list style="padding-top: 0px">
+
+      <a *ngFor="let item of items"
+         mat-list-item
+         [class.list-item-active]="item === selectedItem"
+         (click)="onSelect(item)">
+
+        <mat-icon matListIcon class="crm-task-list-icon"> assignment </mat-icon>
+
+        <p mat-line>
+          {{item.name}}
+        </p>
+
+        <p mat-line>
+          {{item.description}}
+        </p>
+
+      </a>
+
+    </mat-nav-list>
+
+  </div>
+
+  <div class="crm-task-container">
+    <flow-task [task]="selectedItem"> </flow-task>
+  </div>
+
+</div>
+
+
+
+
+
+<!--
+
+         [class.selected]="item === selectedItem"
+
+      <a *ngFor="let item of myWorkRoutes"
+         mat-list-item
+         (click)="sidenav.close()"
+         routerLinkActive
+         #routerLinkActiveInstance="routerLinkActive"
+         [class.list-item-active]="routerLinkActiveInstance.isActive"
+         [routerLink]="[item.route]">
+        <mat-icon matListIcon class="app-nav-list-icon"> {{ item.icon }} </mat-icon>
+        {{item.title}}
+      </a>
+
+         (click)="onSelect(item)">
+
+      <a mat-list-item routerLink="/" style="height: 0;"></a>
+
+-->
+
+<!--
+
 <mat-nav-list>
 
   <a mat-list-item routerLink="/" style="height: 0;"></a>
@@ -19,30 +79,6 @@
 
 </mat-nav-list>
 
-<!--
-
-    <p mat-line>
-      {{item.description}}
-    </p>
-
-  <a *ngFor="let item of items"
-     mat-list-item
-     routerLinkActive
-     #routerLinkActiveInstance="routerLinkActive"
-     [class.list-item-active]="routerLinkActiveInstance.isActive">
-    {{item.name}}
-    {{item.description}}
-  </a>
-
-  <a *ngFor="let item of myWorkRoutes"
-     mat-list-item
-     (click)="sidenav.close()"
-     routerLinkActive
-     #routerLinkActiveInstance="routerLinkActive"
-     [class.list-item-active]="routerLinkActiveInstance.isActive"
-     [routerLink]="[item.route]">
-    <mat-icon matListIcon class="app-nav-list-icon"> {{ item.icon }} </mat-icon>
-    {{item.title}}
-  </a>
-
 -->
+
+

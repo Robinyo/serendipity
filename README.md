@@ -28,6 +28,12 @@ Side Nav:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/sidenav-mode-over.png">
 </p>
 
+Activities:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/activities.png">
+</p>
+
 Contacts:
 
 <p align="center">

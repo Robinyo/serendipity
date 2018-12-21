@@ -1,0 +1,33 @@
+<div *ngIf="task">
+
+  <div class="task-content">
+
+    <button mat-raised-button color="accent" class="pull-right" (click)="onComplete()"> {{ completeButton }} </button>
+
+    <h2> {{ task.name }} </h2>
+
+    Assignee: {{ task.assignee }} <br>
+    Due Date: No due date <br>
+    Id: {{ task.id }} <br>
+
+  </div>
+
+</div>
+
+<!--
+
+  <mat-toolbar class="task-title">
+
+    <mat-toolbar-row>
+
+      <h2> {{ task.name }} </h2>
+
+      <div fxFlex fxLayout fxLayoutAlign="flex-end">
+        <button mat-raised-button color="accent" (click)="onComplete()"> {{ completeButton }} </button>
+      </div>
+
+    </mat-toolbar-row>
+
+  </mat-toolbar>
+
+-->
