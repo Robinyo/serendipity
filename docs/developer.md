@@ -36,7 +36,28 @@ Clone the project by running the following command:
 git clone https://github.com/Robinyo/serendipity
 ```
 
-### Step 3: Serve the application 
+### Step 3: Launch Flowable 
+
+The easiest way to get started with [Flowable](https://www.flowable.org/index.html) is to use a Docker image, for example:
+
+```
+docker run -p 8080:8080 flowable/all-in-one
+```
+
+Using the [proxying](https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md) support in webpack's dev server we can highjack certain URLs and send them to a backend server.
+We do this by passing a file to --proxy-config
+
+```
+{
+  "/flowable-task/*": {
+    "target": "http://localhost:8080",
+    "secure": false
+  }
+}
+
+```
+
+### Step 4: Serve the application 
 
 Go to the project directory, install the project's dependencies and launch the server:
 
