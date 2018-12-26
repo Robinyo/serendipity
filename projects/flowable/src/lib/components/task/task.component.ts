@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, Input } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, Input, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { Subscription} from 'rxjs';
@@ -14,13 +14,15 @@ import { LoggerService } from 'utils';
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss']
 })
-export class TaskComponent implements OnInit, AfterViewInit, OnDestroy {
+export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() task: TaskModel;
 
   completeButton = 'COMPLETE';
 
   protected subscriptions: Subscription[] = [];
+
+  private suffix = '.json';
 
   public taskFormGroup: FormGroup;
   public taskModel: DynamicFormModel; // DynamicFormControlModel[] = [];
@@ -29,29 +31,32 @@ export class TaskComponent implements OnInit, AfterViewInit, OnDestroy {
               private logger: LoggerService) {}
 
   ngOnInit() {
-
     this.logger.info('TaskComponent: ngOnInit()');
-    // this.logger.info('this.task.formKey: ' + this.task.formKey);
-
-    this.subscribe();
   }
 
-  public ngAfterViewInit() {
+  public ngOnChanges(changes: SimpleChanges)  {
 
-    this.logger.info('TaskComponent: ngAfterViewInit()');
-    // this.logger.info('this.task.formKey: ' + this.task.formKey);
+    this.logger.info('TaskComponent: ngOnChanges()');
+
+    if (this.task && this.task.formKey) {
+      this.unsubscribe();
+      this.subscribe();
+    }
+
   }
-
-  // leave-application-form this.task.formKey
 
   protected subscribe() {
 
     this.logger.info('TaskComponent: subscribe()');
 
+    const filename = this.task.formKey + this.suffix;
+
+    this.logger.info('TaskComponent - filename: ' + filename);
+
     let formSubscription: Subscription = new Subscription();
     this.subscriptions.push(formSubscription);
 
-    formSubscription = this.dynamicFormService.getFormMetadata('leave-application-form.json').subscribe(metaData => {
+    formSubscription = this.dynamicFormService.getFormMetadata(filename).subscribe(metaData => {
 
       this.taskModel = metaData;
       this.taskFormGroup = this.dynamicFormService.createGroup(this.taskModel);
@@ -76,7 +81,18 @@ export class TaskComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public onComplete() {
-    this.logger.info('TaskComponent: ngOnonCompleteInit()');
+    this.logger.info('TaskComponent: onComplete()');
   }
 
 }
+
+/*
+
+    // const filename = `leave-application-form${this.suffix}`;
+
+    const chng = changes['task'];
+
+    this.logger.info(JSON.stringify(chng.currentValue));
+    this.logger.info(JSON.stringify(chng.previousValue));
+
+*/

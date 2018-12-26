@@ -7,8 +7,25 @@ export class TaskModel {
   name: string;
   description: string;
   createTime: Date;
+  dueDate: Date;
   priority: number;
+  suspended: boolean;
+  taskDefinitionKey: string;
+  scopeDefinitionId: string;
+  scopeId: string;
+  scopeType: string;
+  tenantId: string;
+  category: string;
   formKey: string;
+  parentTaskId: string;
+  parentTaskUrl: string;
+  executionId: string;
+  executionUrl: string;
+  processInstanceId: string;
+  processInstanceUrl: string;
+  processDefinitionId: string;
+  processDefinitionUrl: string;
+  variables: any[] = [];
 
 }
 
