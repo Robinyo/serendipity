@@ -39,7 +39,8 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
     modelSubscription = this.taskListService.getTasks().subscribe(model => {
 
-      // this.logger.info(JSON.stringify(model));
+      this.logger.info(JSON.stringify(model));
+
       this.items = model.data;
       this.selectedItem = this.items[0];
     });

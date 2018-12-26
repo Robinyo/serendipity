@@ -44,7 +44,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   public id = 'MA==';
   public item: Contact;
 
-  subscriptions: Subscription[] = [];
+  protected subscriptions: Subscription[] = [];
 
   @ViewChild('contentContainer')
   private tableContainer: ElementRef;

@@ -1,0 +1,73 @@
+[
+
+  {
+    "type": "input",
+    "id": "employeeNumber",
+    "label": "Employee Number",
+    "appearance": "outline",
+
+    "gridItemClass": "grid-column-1",
+    "required": true
+  },
+  {
+    "type": "input",
+    "id": "givenName",
+    "label": "Given Name",
+    "appearance": "outline",
+    "autocomplete": "given-name",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a given name"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1",
+    "required": true
+  },
+  {
+    "type": "input",
+    "id": "familyName",
+    "label": "Family Name",
+    "appearance": "outline",
+    "autocomplete": "family-name",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a family name"
+      }
+    ],
+
+    "gridItemClass": "grid-column-2",
+    "required": true
+  },
+  {
+    "type": "input",
+    "id": "fromDate",
+    "label": "From Date",
+    "appearance": "outline",
+
+    "gridItemClass": "grid-column-1",
+    "required": true,
+
+    "suffixIconName": "date_range"
+  },
+  {
+    "type": "input",
+    "id": "toDate",
+    "label": "To Date",
+    "appearance": "outline",
+
+    "gridItemClass": "grid-column-2",
+    "required": true,
+
+    "suffixIconName": "date_range"
+  }
+
+]

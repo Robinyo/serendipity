@@ -1,6 +1,12 @@
-.task-content {
+.task-header {
+  // background: whitesmoke;
   padding-left: 16px;
   padding-right: 16px;
+}
+
+.task-content {
+  background: white;
+  padding: 16px;
 }
 
 .pull-right {
@@ -8,6 +14,10 @@
 }
 
 /*
+
+  padding-left: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
 
 .task-title {
 
