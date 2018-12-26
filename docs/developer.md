@@ -57,6 +57,18 @@ We do this by passing a file to --proxy-config
 
 ```
 
+View the container's details:
+
+```
+docker container ls
+```
+
+Stop the container:
+
+```
+docker container stop [flowable]
+```
+
 ### Step 4: Serve the application 
 
 Go to the project directory, install the project's dependencies and launch the server:

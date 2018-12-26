@@ -21,7 +21,7 @@ const httpOptions = {
 export class TaskListService {
 
   // private processEngineUriPrefix = 'http://localhost:8080/flowable-task/process-api/runtime/';
-  private processEngineUriPrefix = '/flowable-task/process-api/runtime/';
+  private processEngineUriPrefix = '/flowable-task/process-api/';
 
   constructor(private httpClient: HttpClient,
               private logger: LoggerService) {
@@ -30,7 +30,7 @@ export class TaskListService {
 
   public getTasks(): Observable<TaskListModel>   {
 
-    const endpoint = `${this.processEngineUriPrefix}tasks?sort=createTime&order=asc`;
+    const endpoint = `${this.processEngineUriPrefix}runtime/tasks?sort=createTime&order=asc`;
 
     return this.httpClient.get<any>(endpoint, httpOptions).pipe(
 
