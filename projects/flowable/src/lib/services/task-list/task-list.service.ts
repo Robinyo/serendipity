@@ -30,7 +30,7 @@ export class TaskListService {
 
   public getTasks(): Observable<TaskListModel>   {
 
-    const endpoint = `${this.processEngineUriPrefix}runtime/tasks?sort=createTime&order=asc`;
+    const endpoint = `${this.processEngineUriPrefix}runtime/tasks?sort=createTime&order=desc`;
 
     // return this.httpClient.get<any>(endpoint, httpOptions).pipe(
     return this.httpClient.get<any>(endpoint, httpOptions).pipe(
