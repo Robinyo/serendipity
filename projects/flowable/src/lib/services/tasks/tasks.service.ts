@@ -8,8 +8,11 @@ import { TaskListModel } from '../../models/task-list.model';
 
 import { LoggerService } from 'utils';
 
+// https://www.flowable.org/docs/userguide/index.html#restUsageInTomcat
+
 const httpOptions = {
   headers: new HttpHeaders({
+    'Accept':  'application/json',
     'Content-Type':  'application/json',
     'Authorization': 'Basic ' + btoa('admin:test')
   })
@@ -18,7 +21,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class TaskListService {
+export class TasksService {
 
   // private processEngineUriPrefix = 'http://localhost:8080/flowable-task/process-api/runtime/';
   private processEngineUriPrefix = '/flowable-task/process-api/';
@@ -65,3 +68,4 @@ export class TaskListService {
 // this.logger(`${operation} failed: ${error.message}`);
 
 */
+

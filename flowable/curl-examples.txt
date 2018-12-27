@@ -1,0 +1,17 @@
+// curl-examples.txt
+
+curl -i 'http://admin:test@localhost:8080/flowable-task/process-api/repository/deployments'
+
+curl -i 'http://admin:test@localhost:8080/flowable-task/process-api/repository/process-definitions'
+
+curl -i 'http://admin:test@localhost:8080/flowable-task/process-api/runtime/process-instances'
+
+curl -i 'http://admin:test@localhost:8080/flowable-task/process-api/runtime/tasks'
+
+curl -i 'http://admin:test@localhost:8080/flowable-task/form-api/form-repository/form-definitions'
+
+curl -i 'http://admin:test@localhost:8080/flowable-task/form-api/form-repository/form-definitions/c5bdb1a1-06f8-11e9-a85e-0242ac110002/model'
+
+curl -H "Content-Type: application/json" -X POST http://admin:test@localhost:8080/flowable-task/process-api/runtime/tasks/1fae489a-070f-11e9-a85e-0242ac110002 -d "@data-1.json"
+
+curl -H "Content-Type: application/json" -X POST http://admin:test@localhost:8080/flowable-task/process-api/form/form-data -d "@data-2.json"

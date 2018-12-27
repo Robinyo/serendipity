@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription} from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { TaskListService } from '../../services/task-list/task-list.service';
+import { TasksService } from '../../services/tasks/tasks.service';
 import { TaskModel, TaskListModel } from '../../models/task-list.model';
 
 import { LoggerService } from 'utils';
@@ -20,7 +20,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   public items: TaskModel[];
   public selectedItem: TaskModel;
 
-  constructor(private taskListService: TaskListService,
+  constructor(private tasksService: TasksService,
               private logger: LoggerService) {}
 
   public ngOnInit() {
@@ -37,7 +37,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     let modelSubscription: Subscription = new Subscription();
     this.subscriptions.push(modelSubscription);
 
-    modelSubscription = this.taskListService.getTasks().subscribe(model => {
+    modelSubscription = this.tasksService.getTasks().subscribe(model => {
 
       this.items = model.data;
       this.selectedItem = this.items[0];
