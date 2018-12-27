@@ -32,13 +32,10 @@ export class TaskListService {
 
     const endpoint = `${this.processEngineUriPrefix}runtime/tasks?sort=createTime&order=desc`;
 
-    // return this.httpClient.get<any>(endpoint, httpOptions).pipe(
     return this.httpClient.get<any>(endpoint, httpOptions).pipe(
 
       catchError(this.handleError('getTasks', []))
     );
-
-    // return this.httpClient.get<TaskListModel>(this.contactsUrl);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

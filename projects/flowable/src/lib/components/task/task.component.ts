@@ -41,8 +41,8 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
     this.unsubscribe();
 
     // TODO
-    this.taskFormGroup = null;
     this.taskModel = null;
+    this.taskFormGroup = null;
 
     if (this.task && this.task.formKey) {
       this.subscribe();

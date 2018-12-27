@@ -184,12 +184,16 @@ $task-list-width: 320px; // 240px;
 }
 
 .crm-task-list-container {
+  // background: white;
   border: 1px solid lightgray;
 }
 
 .crm-task-container {
+  background: white;
   border: 1px solid lightgray;
-  background: whitesmoke;
+  padding-top: 0;
+  margin-top: 0;
+  // background: whitesmoke;
 
   // padding-left: 32px;
   // padding-right: 32px;

@@ -1,43 +1,32 @@
-<div *ngIf="task">
+<div *ngIf="task" class="task-header">
 
-  <div class="task-header">
-
-    <button mat-raised-button color="accent" class="pull-right" (click)="onComplete()"> {{ completeButton }} </button>
+  <div class="task-header-content">
 
     <h2> {{ task.name }} </h2>
-
-  </div>
-
-  <div *ngIf="taskFormGroup" class="task-content">
-
-    <dynamic-form autocomplete="off"
-                  [className]="'crm-nested-grid-container'"
-                  [formGroup]="taskFormGroup"
-                  [model]="taskModel">
-    </dynamic-form>
+    <button mat-raised-button color="accent" (click)="onComplete()"> {{ completeButton }} </button>
 
   </div>
 
 </div>
 
+<div *ngIf="taskFormGroup" class="task-content">
+
+  <dynamic-form autocomplete="off"
+                [className]="'crm-nested-grid-container'"
+                [formGroup]="taskFormGroup"
+                [model]="taskModel">
+  </dynamic-form>
+
+</div>
+
 <!--
+
+    <button mat-raised-button color="accent" class="pull-right" (click)="onComplete()"> {{ completeButton }} </button>
+
+    <h2> {{ task.name }} </h2>
 
     Assignee: {{ task.assignee }} <br>
     Due Date: No due date <br>
     Id: {{ task.id }} <br>
-
-  <mat-toolbar class="task-title">
-
-    <mat-toolbar-row>
-
-      <h2> {{ task.name }} </h2>
-
-      <div fxFlex fxLayout fxLayoutAlign="flex-end">
-        <button mat-raised-button color="accent" (click)="onComplete()"> {{ completeButton }} </button>
-      </div>
-
-    </mat-toolbar-row>
-
-  </mat-toolbar>
 
 -->
