@@ -38,8 +38,13 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
     this.logger.info('TaskComponent: ngOnChanges()');
 
+    this.unsubscribe();
+
+    // TODO
+    this.taskFormGroup = null;
+    this.taskModel = null;
+
     if (this.task && this.task.formKey) {
-      this.unsubscribe();
       this.subscribe();
     }
 
