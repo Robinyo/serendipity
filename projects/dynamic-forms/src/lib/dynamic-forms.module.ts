@@ -1,5 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { DynamicFormsConfig } from './shared/models';
@@ -23,6 +24,7 @@ import { ConsoleLoggerService } from 'utils';
   imports: [
     AngularMaterialModule,
     CommonModule,
+    HttpClientModule,
     ReactiveFormsModule,
     UtilsModule
     ],

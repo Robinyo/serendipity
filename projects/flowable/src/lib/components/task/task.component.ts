@@ -1,11 +1,12 @@
-import { Component, OnChanges, OnDestroy, OnInit, Input, SimpleChanges } from '@angular/core';
+import {Component, EventEmitter, OnChanges, OnDestroy, OnInit, Input, SimpleChanges, Output} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { Subscription} from 'rxjs';
 
-import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
-
+import { TasksService } from '../../services/tasks/tasks.service';
 import { TaskModel } from '../../models/task-list.model';
+
+import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
 import { LoggerService } from 'utils';
 
@@ -18,6 +19,8 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() task: TaskModel;
 
+  @Output() complete = new EventEmitter();
+
   completeButton = 'COMPLETE';
 
   protected subscriptions: Subscription[] = [];
@@ -28,6 +31,7 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
   public taskModel: DynamicFormModel; // DynamicFormControlModel[] = [];
 
   constructor(private dynamicFormService: DynamicFormService,
+              private tasksService: TasksService,
               private logger: LoggerService) {}
 
   ngOnInit() {
@@ -86,7 +90,14 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public onComplete() {
+
     this.logger.info('TaskComponent: onComplete()');
+
+    const subscription: Subscription = this.tasksService.completeTask(this.task.id).subscribe(() => {
+      this.complete.emit(null);
+      subscription.unsubscribe();
+    });
+
   }
 
 }

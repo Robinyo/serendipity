@@ -1,6 +1,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+// import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -86,6 +87,8 @@ export class CoreModule {
   constructor( @Optional() @SkipSelf() parentModule: CoreModule,
                private translate: TranslateService,
                private logger: LoggerService) {
+
+    this.logger.info('Core Module initialised');
 
     translate.setDefaultLang(environment.defaultLanguage);
     translate.use(environment.defaultLanguage);

@@ -1,5 +1,6 @@
 import { NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { TranslateModule } from '@ngx-translate/core';
@@ -25,13 +26,13 @@ import { ConsoleLoggerService } from 'utils';
 
 import { DynamicFormsModule } from 'dynamic-forms';
 
-
 @NgModule({
   imports: [
     AngularMaterialModule,
     CommonModule,
     DynamicFormsModule,
     FlexLayoutModule,
+    HttpClientModule,
     ReactiveFormsModule,
     TranslateModule.forChild(),
     UtilsModule

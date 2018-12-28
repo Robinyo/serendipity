@@ -1,10 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Output } from '@angular/core';
 
 import { Subscription} from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 import { TasksService } from '../../services/tasks/tasks.service';
-import { TaskModel, TaskListModel } from '../../models/task-list.model';
+import { TaskModel } from '../../models/task-list.model';
 
 import { LoggerService } from 'utils';
 
@@ -27,6 +26,14 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
     this.logger.info('TaskListComponent: ngOnInit()');
 
+    this.subscribe();
+  }
+
+  public refresh() {
+
+    this.logger.info('TaskListComponent: refresh()');
+
+    this.unsubscribe();
     this.subscribe();
   }
 

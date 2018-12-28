@@ -6,20 +6,29 @@ import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 
+import { LoggerService } from 'utils';
+
 // The Angular Material module (which is imported in the Core module) must be imported after Angular's BrowserModule, as the import
 // order matters for NgModules.
 
 @NgModule({
   imports: [
     BrowserModule,
-    CoreModule,
+    CoreModule,  // import HttpClientModule after BrowserModule
     SharedModule
   ],
   declarations: [ AppComponent ],
   providers: [],
   bootstrap: [ AppComponent ]
 })
-export class AppModule {}
+export class AppModule {
+
+  constructor(private logger: LoggerService) {
+
+    this.logger.info('App Module initialised');
+  }
+
+}
 
 /*
 

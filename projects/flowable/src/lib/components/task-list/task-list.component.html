@@ -26,7 +26,7 @@
   </div>
 
   <div class="crm-task-container">
-    <flow-task [task]="selectedItem"> </flow-task>
+    <flow-task (complete)="refresh()" [task]="selectedItem"> </flow-task>
   </div>
 
 </div>

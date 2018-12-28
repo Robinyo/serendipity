@@ -1,5 +1,6 @@
 import { Injector, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { TranslateModule } from '@ngx-translate/core';
@@ -16,8 +17,8 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { SnackBarComponent, ContactComponent } from './components/contact/contact.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './services/mocks/api/in-memory-data.service';
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryDataService } from './services/mocks/api/in-memory-data.service';
 
 //
 // Utils lib
@@ -58,9 +59,10 @@ import { LibRoutingModule } from './lib-routing.module';
     CommonModule,
     FlexLayoutModule,
     FlowableModule,
+    HttpClientModule,
     ReactiveFormsModule,
 
-    HttpClientInMemoryWebApiModule.forFeature(InMemoryDataService, { passThruUnknownUrl: true, delay: 1000 }),
+    // HttpClientInMemoryWebApiModule.forFeature(InMemoryDataService, { passThruUnknownUrl: true, delay: 1000 }),
 
     NgxChartsModule,
 
