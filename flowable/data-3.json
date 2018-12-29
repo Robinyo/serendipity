@@ -1,0 +1,12 @@
+{
+  "formDefinitionKey": "leave-application-form",
+  "processInstanceId": "899b2efe-0af3-11e9-a85e-0242ac110002",
+  "variables" :
+  {
+    "Given Name": "Rob",
+    "Family Name": "Ferguson",
+    "Employee Number": 123456,
+    "From Date": "2018-12-21T00:00:00+00:00",
+    "To Date": "2019-01-07T00:00:00+00:00"
+  }
+}

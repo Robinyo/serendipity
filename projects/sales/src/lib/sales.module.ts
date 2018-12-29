@@ -1,6 +1,6 @@
 import { Injector, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+// import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { TranslateModule } from '@ngx-translate/core';
@@ -59,7 +59,7 @@ import { LibRoutingModule } from './lib-routing.module';
     CommonModule,
     FlexLayoutModule,
     FlowableModule,
-    HttpClientModule,
+    // HttpClientModule,
     ReactiveFormsModule,
 
     HttpClientInMemoryWebApiModule.forFeature(InMemoryDataService, { passThruUnknownUrl: true, delay: 1000 }),

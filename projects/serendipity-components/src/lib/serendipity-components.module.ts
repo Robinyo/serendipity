@@ -31,4 +31,11 @@ import { CommandBarComponent } from './components/command-bar/command-bar.compon
   exports: [ CommandBarComponent ],
   entryComponents: [ AlertDialogComponent ]
 })
-export class SerendipityComponentsModule {}
+export class SerendipityComponentsModule {
+
+  constructor(private logger: LoggerService) {
+
+    this.logger.info('Serendipity Components Module initialised');
+  }
+
+}
