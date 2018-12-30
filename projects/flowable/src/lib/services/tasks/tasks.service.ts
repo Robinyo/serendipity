@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable, of, Subscription } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -15,7 +15,8 @@ const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
     'Authorization': 'Basic ' + btoa('admin:test')
-  })
+  }),
+  params: null
 };
 
 /* tslint:disable */
@@ -44,9 +45,14 @@ export class TasksService {
 
     this.logger.info('TasksService: getTasks()');
 
-    const endpoint = `${this.processEngineUriPrefix}runtime/tasks?sort=createTime&order=desc`;
+    // const endpoint = `${this.processEngineUriPrefix}runtime/tasks?sort=createTime&order=asc`;
+    const endpoint = `${this.processEngineUriPrefix}runtime/tasks`;
 
-    this.logger.info('TasksService getTasks() - endpoint: ' + endpoint);
+    // URL parameters
+    const sort = 'createTime';
+    const order = 'desc';
+
+    httpOptions.params = new HttpParams().set('sort', sort).set('order', order) ;
 
     return this.httpClient.get<any>(endpoint, httpOptions)
       .pipe(
@@ -64,6 +70,8 @@ export class TasksService {
 
     const endpoint = `${this.processEngineUriPrefix}runtime/tasks/${taskId}`;
 
+    httpOptions.params = null;
+
     this.logger.info('TasksService completeTask() - endpoint: ' + endpoint);
 
     return this.httpClient.post<any>(endpoint, completeTaskBody, httpOptions)
@@ -73,18 +81,6 @@ export class TasksService {
         }),
         catchError(this.handleError('completeTask', []))
       );
-
-  }
-
-  public ping() {
-
-    this.logger.info('TasksService: ping()');
-
-    const subscription: Subscription = this.getTasks().subscribe(() => {
-
-      this.logger.info('TasksService: ping() completed');
-      subscription.unsubscribe();
-    });
 
   }
 
@@ -113,6 +109,19 @@ export class TasksService {
 // https://github.com/Alfresco/alfresco-ng2-components/blob/development/lib/process-services/task-list/services/tasklist.service.ts
 
 /*
+
+  public ping() {
+
+    this.logger.info('TasksService: ping()');
+
+    const subscription: Subscription = this.getTasks().subscribe(() => {
+
+      this.logger.info('TasksService: ping() completed');
+      subscription.unsubscribe();
+    });
+
+  }
+
 
   public ping() {
 

@@ -4,7 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { Subscription} from 'rxjs';
 
 import { TasksService } from '../../services/tasks/tasks.service';
-import { TaskModel } from '../../models/task-list.model';
+import { TaskCompleteEvent, TaskModel } from '../../models/task-list.model';
 
 import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
@@ -19,7 +19,7 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() task: TaskModel;
 
-  @Output() complete = new EventEmitter();
+  @Output() completeEvent = new EventEmitter<TaskCompleteEvent>();
 
   completeButton = 'COMPLETE';
 
@@ -94,7 +94,7 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
     this.logger.info('TaskComponent: onComplete()');
 
     const subscription: Subscription = this.tasksService.completeTask(this.task.id).subscribe(() => {
-      this.complete.emit(null);
+      this.completeEvent.emit({ id: this.task.id });
       subscription.unsubscribe();
     });
 

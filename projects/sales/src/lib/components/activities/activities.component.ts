@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { TaskListComponent } from 'flowable';
+
+import { LoggerService } from 'utils';
 
 @Component({
   selector: 'sales-activities',
@@ -7,9 +12,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActivitiesComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild(TaskListComponent)
+  private taskList: TaskListComponent;
+
+  constructor(private logger: LoggerService) {}
 
   ngOnInit() {
+
+    this.logger.info('ActivitiesComponent: ngOnInit()');
+  }
+
+  public canDeactivate(): Observable<boolean> | boolean {
+
+    this.logger.info('ActivitiesComponent: canDeactivate()');
+
+    return true;
+  }
+
+  public refresh() {
+
+    this.taskList.refresh();
   }
 
 }
+
+// https://angular.io/guide/router#candeactivate-handling-unsaved-changes
+
+/*
+
+  public canActivate(): Observable<boolean> | boolean {
+
+    this.logger.info('ActivitiesComponent: canActivate()');
+
+    return true;
+  }
+
+*/

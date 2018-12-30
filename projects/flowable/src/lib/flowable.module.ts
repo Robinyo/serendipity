@@ -12,6 +12,8 @@ import { AngularMaterialModule } from './angular-material.module';
 import { TaskComponent } from './components/task/task.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 
+// import { AngularPageVisibilityModule } from 'angular-page-visibility';
+
 //
 // Utils lib
 //
@@ -29,6 +31,7 @@ import { DynamicFormsModule } from 'dynamic-forms';
 @NgModule({
   imports: [
     AngularMaterialModule,
+    // AngularPageVisibilityModule,
     CommonModule,
     DynamicFormsModule,
     FlexLayoutModule,

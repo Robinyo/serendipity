@@ -2,7 +2,7 @@
 
   <div class="crm-task-list-container">
 
-    <mat-nav-list style="padding-top: 0px">
+    <mat-nav-list style="padding-top: 0">
 
       <a *ngFor="let item of items"
          mat-list-item
@@ -26,16 +26,14 @@
   </div>
 
   <div class="crm-task-container">
-    <flow-task (complete)="refresh()" [task]="selectedItem"> </flow-task>
+    <flow-task (completeEvent)="onCompleteEvent($event)" [task]="selectedItem"> </flow-task>
   </div>
 
 </div>
 
-
-
-
-
 <!--
+
+(completeEvent)="onCompleteEvent()"
 
          [class.selected]="item === selectedItem"
 

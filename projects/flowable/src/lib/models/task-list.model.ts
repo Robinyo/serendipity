@@ -1,3 +1,9 @@
+export interface TaskCompleteEvent {
+
+  id: string;
+
+}
+
 export class TaskModel {
 
   id: string;
