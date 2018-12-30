@@ -45,12 +45,13 @@ export class TasksService {
 
     this.logger.info('TasksService: getTasks()');
 
-    // const endpoint = `${this.processEngineUriPrefix}runtime/tasks?sort=createTime&order=asc`;
     const endpoint = `${this.processEngineUriPrefix}runtime/tasks`;
 
-    // URL parameters
+    // https://www.flowable.org/docs/userguide/index.html#_request_parameters
     const sort = 'createTime';
     const order = 'desc';
+    // const start = 0;
+    // const size = 16;
 
     httpOptions.params = new HttpParams().set('sort', sort).set('order', order) ;
 
@@ -102,11 +103,9 @@ export class TasksService {
 
 // https://github.com/camunda-consulting/code/blob/master/snippets/camunda-tasklist-examples/camunda-angular-app/src/app/
 
-// https://www.flowable.org/docs/userguide/index.html#restPagingAndSort
-
-// curl -i 'http://admin:test@localhost:8080/flowable-task/process-api/runtime/tasks'
-
 // https://github.com/Alfresco/alfresco-ng2-components/blob/development/lib/process-services/task-list/services/tasklist.service.ts
+
+// const endpoint = `${this.processEngineUriPrefix}runtime/tasks?sort=createTime&order=asc`;
 
 /*
 

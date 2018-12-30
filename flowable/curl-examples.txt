@@ -30,3 +30,39 @@ curl -H "Content-Type: application/json" -X POST http://admin:test@localhost:808
 
 curl -H "Content-Type: application/json" -X POST http://admin:test@localhost:8080/flowable-task/process-api/query/tasks -d "@data-4.json"
 
+--
+
+curl -i 'http://admin:test@localhost:8080/flowable-task/process-api/runtime/tasks'
+
+curl -i 'http://admin:test@localhost:8080/flowable-task/process-api/runtime/tasks/e96a5a3b-0c7c-11e9-a85e-0242ac110002/variables'
+
+[
+    {
+        "name": "initiator",
+        "type": "string",
+        "value": "admin",
+        "scope": "global"
+    }
+]
+
+curl -i 'http://admin:test@localhost:8080/flowable-task/process-api/runtime/process-instances/e96a3325-0c7c-11e9-a85e-0242ac110002/variables'
+
+[
+    {
+        "name": "initiator",
+        "type": "string",
+        "value": "admin",
+        "scope": "global"
+    }
+]
+
+--
+
+
+
+
+
+
+
+
+
