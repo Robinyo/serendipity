@@ -26,3 +26,7 @@ curl -H "Content-Type: application/json" -X POST http://admin:test@localhost:808
 
 curl -H "Content-Type: application/json" -X POST http://admin:test@localhost:8080/flowable-task/form-api/form/form-instances -d "@data-3.json"
 
+--
+
+curl -H "Content-Type: application/json" -X POST http://admin:test@localhost:8080/flowable-task/process-api/query/tasks -d "@data-4.json"
+
