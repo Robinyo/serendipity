@@ -58,11 +58,6 @@ curl -i 'http://admin:test@localhost:8080/flowable-task/process-api/runtime/proc
 
 --
 
+curl -i 'http://admin:test@localhost:8080/flowable-task/process-api/runtime/tasks'
 
-
-
-
-
-
-
-
+curl -H "Content-Type: application/json" -X POST http://admin:test@localhost:8080/flowable-task/process-api/runtime/tasks/899b2efe-0af3-11e9-a85e-0242ac110002 -d "@data-5.json"
