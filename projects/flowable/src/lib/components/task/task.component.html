@@ -3,7 +3,7 @@
   <div class="task-header-content">
 
     <h2> {{ task.name }} </h2>
-    <button mat-raised-button color="accent" [disabled]="task.formKey" (click)="onComplete()"> {{ completeButton }} </button>
+    <button mat-raised-button color="accent" [disabled]="!isValid()" (click)="onComplete()"> {{ completeButton }} </button>
 
   </div>
 

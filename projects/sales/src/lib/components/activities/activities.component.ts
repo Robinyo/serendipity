@@ -28,8 +28,12 @@ export class ActivitiesComponent implements OnInit {
 
     return true;
   }
-
-  public refresh() {
+  
+  //
+  // Command Bar events
+  //
+  
+  public onRefresh() {
 
     this.taskList.refresh();
   }

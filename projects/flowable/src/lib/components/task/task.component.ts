@@ -6,6 +6,8 @@ import { Subscription} from 'rxjs';
 import { TasksService } from '../../services/tasks/tasks.service';
 import { TaskCompleteEvent, TaskModel } from '../../models/task-list.model';
 
+import { FormsService } from '../../services/forms/forms.service';
+
 import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
 import { LoggerService } from 'utils';
@@ -32,6 +34,7 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor(private dynamicFormService: DynamicFormService,
               private tasksService: TasksService,
+              private formsService: FormsService,
               private logger: LoggerService) {}
 
   ngOnInit() {
@@ -89,18 +92,91 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
     this.unsubscribe();
   }
 
+  //
+  // Misc
+  //
+
+  public isValid() {
+
+    let valid = true;
+
+    if (this.taskFormGroup) {
+      valid = this.taskFormGroup.valid;
+    }
+
+    return valid;
+
+  }
+
+  //
+  // Command events
+  //
+
   public onComplete() {
 
     this.logger.info('TaskComponent: onComplete()');
 
-    const subscription: Subscription = this.tasksService.completeTask(this.task.id).subscribe(() => {
-      this.completeEvent.emit({ id: this.task.id });
-      subscription.unsubscribe();
-    });
+    let subscription: Subscription;
+
+    if (this.taskFormGroup) {
+
+      const properties: any[] = [];
+
+      this.taskModel.forEach(controlModel => {
+
+        properties.push({
+          'id': controlModel.id,
+          'name': controlModel.name,
+          // "type": controlModel.type -> 'input' as per the Serendipity Form engine
+          'type':  'string',  // 'string | integer | long | date '
+          'value': this.taskFormGroup.value[controlModel.id.valueOf()]
+        });
+
+      });
+
+      const body = { 'taskId' : this.task.id, 'properties' : properties };
+
+      this.logger.info('body: ' + JSON.stringify(body));
+
+      subscription = this.formsService.submitFormData(body).subscribe(() => {
+        this.completeEvent.emit({ id: this.task.id });
+        subscription.unsubscribe();
+      });
+
+    } else {
+
+      subscription = this.tasksService.completeTask(this.task.id).subscribe(() => {
+        this.completeEvent.emit({ id: this.task.id });
+        subscription.unsubscribe();
+      });
+
+    }
 
   }
 
 }
+
+/*
+
+      const properties: any[] = [];
+
+      this.taskModel.forEach(controlModel => {
+
+        properties.push({
+          "id": controlModel.id,
+          "name": controlModel.name,
+          // "type": controlModel.type -> 'input' as per the Serendipity Form engine
+          "type":  'string',  // 'string | integer | long | date '
+          "value": this.taskFormGroup.value[controlModel.id.valueOf()]
+        });
+
+      });
+
+      const body = { "taskId" : this.task.id, "properties" : properties };
+
+      this.logger.info('body: ' + JSON.stringify(body));
+
+*/
 
 /*
 

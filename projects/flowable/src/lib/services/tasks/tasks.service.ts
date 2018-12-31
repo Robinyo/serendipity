@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-import { Observable, of, Subscription } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 import { TaskListModel } from '../../models/task-list.model';
@@ -19,14 +19,10 @@ const httpOptions = {
   params: null
 };
 
-/* tslint:disable */
-
 const completeTaskBody = {
-  "action" : "complete",
-  "variables" : []
+  'action' : 'complete',
+  'variables' : []
 };
-
-/* tslint:enable */
 
 @Injectable({
   providedIn: 'root'
