@@ -16,15 +16,15 @@ import { LoggerService } from 'utils';
         <mat-label> {{ model.label }} </mat-label>
       </ng-container>
 
-      <input matInput
+      <input #input matInput
              [formControlName]="model.id"
-             [matDatepicker]="matDatepicker"
+             [matDatepicker]="picker"
              [placeholder]="model.placeholder"
              [required]="model.required" />
 
-      <mat-datepicker-toggle matSuffix [for]="matDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 
-      <mat-datepicker #matDatepicker></mat-datepicker>
+      <mat-datepicker #picker></mat-datepicker>
 
       <ng-container *ngFor="let validator of model.validators;" ngProjectAs="mat-error">
         <mat-error *ngIf="formGroup.controls[model.id].hasError(validator.propertyName)"> {{ validator.message }} </mat-error>
@@ -54,3 +54,11 @@ export class DynamicDatepickerComponent implements OnInit {
 }
 
 // https://github.com/udos86/ng-dynamic-forms/blob/master/packages/ui-material/src/datepicker/dynamic-material-datepicker.component.ts
+
+// https://stackoverflow.com/questions/45874705/angular-material-2-date-picker-auto-open-on-focus
+
+/*
+
+<mat-datepicker #picker (closed)="input.blur()"></mat-datepicker>
+
+*/
