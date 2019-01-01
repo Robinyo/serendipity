@@ -12,9 +12,7 @@ import { LoggerService } from 'utils';
                     [className]="model.gridItemClass"
                     [formGroup]="formGroup">
 
-      <ng-container *ngIf="model.label" ngProjectAs="mat-label">
-        <mat-label> {{ model.label }} </mat-label>
-      </ng-container>
+      <mat-label *ngIf="model.label"> {{ model.label }} </mat-label>
 
       <input #input matInput
              [formControlName]="model.id"
@@ -22,7 +20,7 @@ import { LoggerService } from 'utils';
              [placeholder]="model.placeholder"
              [required]="model.required" />
 
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-icon matSuffix class="crm-suffix-icon" (click)="picker.open()"> event </mat-icon>
 
       <mat-datepicker #picker></mat-datepicker>
 
@@ -56,6 +54,16 @@ export class DynamicDatepickerComponent implements OnInit {
 // https://github.com/udos86/ng-dynamic-forms/blob/master/packages/ui-material/src/datepicker/dynamic-material-datepicker.component.ts
 
 // https://stackoverflow.com/questions/45874705/angular-material-2-date-picker-auto-open-on-focus
+
+/*
+
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+      <ng-container *ngIf="model.label" ngProjectAs="mat-label">
+        <mat-label> {{ model.label }} </mat-label>
+      </ng-container>
+
+*/
 
 /*
 

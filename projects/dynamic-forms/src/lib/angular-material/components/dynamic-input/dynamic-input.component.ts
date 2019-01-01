@@ -16,10 +16,8 @@ import { LoggerService } from 'utils';
         <mat-label> {{ model.label }} </mat-label>
       </ng-container>
 
-      <span matPrefix>
-        <ng-container *ngIf="model.prefixIconName" ngProjectAs="mat-icon">
-          <mat-icon matPrefix> {{ model.prefixIconName }} </mat-icon>
-        </ng-container>
+      <span *ngIf="model.prefixIconName" matPrefix>
+        <mat-icon matPrefix> {{ model.prefixIconName }} </mat-icon>
       </span>
 
       <input matInput
@@ -28,10 +26,8 @@ import { LoggerService } from 'utils';
              [placeholder]="model.placeholder"
              [required]="model.required" />
 
-      <span matSuffix>
-        <ng-container *ngIf="model.suffixIconName" ngProjectAs="mat-icon">
-          <mat-icon matSuffix class="crm-suffix-icon" (click)="iconSuffixClickHandler()"> {{ model.suffixIconName }} </mat-icon>
-        </ng-container>
+      <span *ngIf="model.suffixIconName" matSuffix>
+        <mat-icon matSuffix class="crm-suffix-icon" (click)="iconSuffixClickHandler()"> {{ model.suffixIconName }} </mat-icon>
       </span>
 
       <ng-container *ngFor="let validator of model.validators;" ngProjectAs="mat-error">
@@ -78,6 +74,22 @@ export class DynamicInputComponent implements OnInit {
 // https://stackoverflow.com/questions/52612671/angular-material-2-reactive-forms-mat-error-with-ngif-not-showing-when-valid
 // https://stackoverflow.com/questions/46129719/angular-4-form-validators-minlength-maxlength-does-not-work-on-field-type-nu/46129969
 // https://github.com/angular/angular/issues/7407
+
+/*
+
+      <span matPrefix>
+        <ng-container *ngIf="model.prefixIconName" ngProjectAs="mat-icon">
+          <mat-icon matPrefix> {{ model.prefixIconName }} </mat-icon>
+        </ng-container>
+      </span>
+
+      <span matSuffix>
+        <ng-container *ngIf="model.suffixIconName" ngProjectAs="mat-icon">
+          <mat-icon matSuffix class="crm-suffix-icon" (click)="iconSuffixClickHandler()"> {{ model.suffixIconName }} </mat-icon>
+        </ng-container>
+      </span>
+
+*/
 
 /*
 
