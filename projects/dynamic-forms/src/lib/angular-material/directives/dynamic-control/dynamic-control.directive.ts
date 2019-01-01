@@ -16,12 +16,14 @@ import { Subscription } from 'rxjs';
 
 import { DynamicFormControl, DynamicFormControlCustomEvent, DynamicFormControlModel } from '../../models/dynamic-form-control.model';
 
+import { DynamicDatepickerComponent } from '../../components/dynamic-datepicker/dynamic-datepicker.component';
 import { DynamicInputComponent } from '../../components/dynamic-input/dynamic-input.component';
 
 import { LoggerService } from 'utils';
 
 const components = {
   input: DynamicInputComponent,
+  date: DynamicDatepickerComponent
 };
 
 @Directive({

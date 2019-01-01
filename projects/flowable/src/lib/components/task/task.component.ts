@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnChanges, OnDestroy, OnInit, Input, SimpleChanges, Output} from '@angular/core';
+import { Component, EventEmitter, OnChanges, OnDestroy, OnInit, Input, SimpleChanges, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { Subscription} from 'rxjs';
@@ -11,6 +11,8 @@ import { FormsService } from '../../services/forms/forms.service';
 import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
 import { LoggerService } from 'utils';
+
+import { format } from 'date-fns';
 
 @Component({
   selector: 'flow-task',
@@ -122,14 +124,26 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
       const properties: any[] = [];
 
+      let type = 'string';
+      let value = '';
+
       this.taskModel.forEach(controlModel => {
+
+        // 'string | date'
+        type = controlModel.type === 'input' ? 'string' : controlModel.type;
+
+        value = this.taskFormGroup.value[controlModel.id.valueOf()];
+
+        // TODO handle locales, etc.
+        if (type === 'date') {
+          value = format(value, 'DD-MM-YYYY');
+        }
 
         properties.push({
           'id': controlModel.id,
           'name': controlModel.name,
-          // "type": controlModel.type -> 'input' as per the Serendipity Form engine
-          'type':  'string',  // 'string | integer | long | date '
-          'value': this.taskFormGroup.value[controlModel.id.valueOf()]
+          'type': type,
+          'value': value
         });
 
       });

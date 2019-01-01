@@ -18,6 +18,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
+import { MatNativeDateModule } from '@angular/material';
+// import { MatMomentDateModule } from '@angular/material-moment-adapter';
+
 //
 // Navigation
 //
@@ -85,6 +88,9 @@ import { MatTableModule } from '@angular/material/table';
     MatSelectModule,
     MatSliderModule,
     MatSlideToggleModule,
+
+    MatNativeDateModule,
+    // MatMomentDateModule,
 
     MatMenuModule,
     MatSidenavModule,

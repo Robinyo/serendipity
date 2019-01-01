@@ -8,6 +8,8 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { MAT_DATE_LOCALE } from '@angular/material';
 import { AngularMaterialModule } from '@app/shared/angular-material.module';
 
 import { PlaceholderComponent } from './components/placeholder/placeholder.component';
@@ -78,6 +80,7 @@ import { AppRoutingModule } from '@app/app-routing.module';
   ],
   declarations: [ PlaceholderComponent, NavigationBarComponent, NavComponent ],
   providers: [
+    { provide: MAT_DATE_LOCALE, useValue: environment.defaultLanguage },
     { provide: LoggerService, useClass: ConsoleLoggerService }
   ],
   exports: [ PlaceholderComponent, NavigationBarComponent, NavComponent ] // TranslateModule
@@ -90,8 +93,14 @@ export class CoreModule {
 
     this.logger.info('Core Module initialised');
 
-    translate.setDefaultLang(environment.defaultLanguage);
-    translate.use(environment.defaultLanguage);
+    // 'en-GB' -> 'en'
+    const defaultLanguage = environment.defaultLanguage.split('-')[0];
+
+    this.logger.info('Default Language: ' + defaultLanguage);
+    this.logger.info('Local: ' + environment.defaultLanguage.split('-')[1]);
+
+    translate.setDefaultLang(defaultLanguage);
+    translate.use(defaultLanguage);
 
     throwIfAlreadyLoaded(parentModule, 'CoreModule');
   }

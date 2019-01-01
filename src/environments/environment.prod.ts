@@ -2,7 +2,7 @@ export const environment = {
 
   production: true,
 
-  defaultLanguage: 'en',
+  defaultLanguage: 'en-GB',
 
   isDebugMode: false,
 

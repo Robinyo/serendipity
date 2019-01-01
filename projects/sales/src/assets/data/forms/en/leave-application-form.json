@@ -48,26 +48,22 @@
     "required": true
   },
   {
-    "type": "input",
+    "type": "date",
     "id": "fromDate",
     "label": "From Date",
     "appearance": "outline",
 
     "gridItemClass": "grid-column-1",
-    "required": true,
-
-    "suffixIconName": "date_range"
+    "required": true
   },
   {
-    "type": "input",
+    "type": "date",
     "id": "toDate",
     "label": "To Date",
     "appearance": "outline",
 
     "gridItemClass": "grid-column-2",
-    "required": true,
-
-    "suffixIconName": "date_range"
+    "required": true
   }
 
 ]

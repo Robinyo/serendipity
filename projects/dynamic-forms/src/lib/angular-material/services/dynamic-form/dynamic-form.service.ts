@@ -32,7 +32,8 @@ export class DynamicFormService {
               private httpClient: HttpClient,
               private logger: LoggerService) {
 
-    this.url = this.url + this.config.defaultLanguage + '/';
+    // this.url = this.url + this.config.defaultLanguage + '/';
+    this.url = this.url + this.config.defaultLanguage.split('-')[0] + '/';
 
     this.logger.info('DynamicFormService: url: ' + this.url);
   }

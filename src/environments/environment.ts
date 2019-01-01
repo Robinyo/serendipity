@@ -6,7 +6,7 @@ export const environment = {
 
   production: false,
 
-  defaultLanguage: 'en',
+  defaultLanguage: 'en-GB',
 
   isDebugMode: true,
 
