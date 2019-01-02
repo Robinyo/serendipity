@@ -62,7 +62,7 @@ Stop the container:
 docker container stop flowable
 ```
 
-**Note:** During development we can use the [proxying](https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md) support in webpack's dev server to highjack certain URIs and send them to a backend server:
+During **development** we can use the [proxying](https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md) support in webpack's dev server to highjack certain URIs and send them to a backend server:
 
 ```
 ng serve --proxy-config=proxy.conf.json
