@@ -50,19 +50,6 @@ or
 docker start --interactive flowable
 ```
 
-Using the [proxying](https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md) support in webpack's dev server we can highjack certain URLs and send them to a backend server.
-We do this by passing a file to --proxy-config
-
-```
-{
-  "/flowable-task": {
-    "target": "http://localhost:8080",
-    "secure": false,
-    "logLevel": "debug"
-  }
-}
-```
-
 View the container's details:
 
 ```
@@ -73,6 +60,24 @@ Stop the container:
 
 ```
 docker container stop flowable
+```
+
+**Note:** During development we can use the [proxying](https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md) support in webpack's dev server to highjack certain URIs and send them to a backend server:
+
+```
+ng serve --proxy-config=proxy.conf.json
+```
+
+proxy.conf.json:
+
+```
+{
+  "/flowable-task": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}
 ```
 
 ### Step 4: Serve the application 
