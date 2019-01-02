@@ -17,10 +17,10 @@ import { LoggerService } from 'utils';
 })
 export class TaskListComponent implements OnInit, OnDestroy {
 
-  subscriptions: Subscription[] = [];
-
   public items: TaskModel[];
   public selectedItem: TaskModel = null;
+
+  private subscriptions: Subscription[] = [];
 
   private componentDestroyed: Subject<boolean> = new Subject<boolean>();
 
@@ -33,17 +33,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
     this.subscribe();
     // this.pollingSubscribe();
-
-    document.addEventListener(
-      'visibilitychange', () => {
-        if (document.hidden) {
-          this.logger.info('visibilitychange: Document is hidden');
-        } else {
-          this.logger.info('visibilitychange: Document is visible');
-        }
-      }
-    );
-
   }
 
   public refresh() {
@@ -110,26 +99,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   }
 
-  /*
-
-      if (! this.selectedItem) {
-        this.selectedItem = this.items[0];
-      }
-
-  protected pollingSubscribe() {
-
-    this.logger.info('TaskListComponent: subscribe()');
-
-    timer(0, 5000).pipe(
-      switchMap(() => this.tasksService.getTasks())).subscribe(model => {
-      this.items = model.data;
-      this.selectedItem = this.items[0];
-    });
-
-  }
-
-  */
-
   protected unsubscribe(): void {
 
     this.logger.info('TaskListComponent: unsubscribe()');
@@ -159,6 +128,40 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.unsubscribe();
   }
 }
+
+/*
+
+    if (! this.selectedItem) {
+      this.selectedItem = this.items[0];
+    }
+
+protected pollingSubscribe() {
+
+  this.logger.info('TaskListComponent: subscribe()');
+
+  timer(0, 5000).pipe(
+    switchMap(() => this.tasksService.getTasks())).subscribe(model => {
+    this.items = model.data;
+    this.selectedItem = this.items[0];
+  });
+
+}
+
+*/
+
+/*
+
+    document.addEventListener(
+      'visibilitychange', () => {
+        if (document.hidden) {
+          this.logger.info('visibilitychange: Document is hidden');
+        } else {
+          this.logger.info('visibilitychange: Document is visible');
+        }
+      }
+    );
+
+*/
 
 /*
 

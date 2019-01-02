@@ -41,7 +41,7 @@ git clone https://github.com/Robinyo/serendipity
 The easiest way to get started with [Flowable](https://www.flowable.org/index.html) is to use a Docker image, for example:
 
 ```
-docker run -p 8080:8080 flowable/all-in-one
+docker run --name flowable -p 8080:8080 flowable/all-in-one
 ```
 
 Using the [proxying](https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md) support in webpack's dev server we can highjack certain URLs and send them to a backend server.
@@ -49,12 +49,12 @@ We do this by passing a file to --proxy-config
 
 ```
 {
-  "/flowable-task/*": {
+  "/flowable-task": {
     "target": "http://localhost:8080",
-    "secure": false
+    "secure": false,
+    "logLevel": "debug"
   }
 }
-
 ```
 
 View the container's details:
@@ -66,7 +66,7 @@ docker container ls
 Stop the container:
 
 ```
-docker container stop [flowable]
+docker container stop flowable
 ```
 
 ### Step 4: Serve the application 
