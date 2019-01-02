@@ -44,6 +44,12 @@ The easiest way to get started with [Flowable](https://www.flowable.org/index.ht
 docker run --name flowable -p 8080:8080 flowable/all-in-one
 ```
 
+or
+
+```
+docker start --interactive flowable
+```
+
 Using the [proxying](https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md) support in webpack's dev server we can highjack certain URLs and send them to a backend server.
 We do this by passing a file to --proxy-config
 
