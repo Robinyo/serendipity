@@ -50,16 +50,23 @@ or
 docker start --interactive flowable
 ```
 
-View the container's details:
+To list all running containers:
 
 ```
 docker container ls
 ```
 
-Stop the container:
+You can stop a container using the following command:
+
+```
+docker container stop [name]
+```
+
+For example:
 
 ```
 docker container stop flowable
+docker container stop flowable-rest
 ```
 
 During **development** we can use the [proxying](https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md) support in webpack's dev server to highjack certain URIs and send them to a backend server:
