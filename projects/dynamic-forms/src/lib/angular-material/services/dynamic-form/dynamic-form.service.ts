@@ -25,7 +25,8 @@ export type ValidatorFactory = (args: any) => ValidatorFn;
 })
 export class DynamicFormService {
 
-  private url = 'assets/data/forms/';
+  private uriPrefix = 'assets/data/forms/';
+  private uriSuffix = '.json';
 
   constructor(@Inject(DynamicFormsConfigService) private config: DynamicFormsConfig,
               private formBuilder: FormBuilder,
@@ -33,13 +34,13 @@ export class DynamicFormService {
               private logger: LoggerService) {
 
     // this.url = this.url + this.config.defaultLanguage + '/';
-    this.url = this.url + this.config.defaultLanguage.split('-')[0] + '/';
+    this.uriPrefix = this.uriPrefix + this.config.defaultLanguage.split('-')[0] + '/';
 
-    this.logger.info('DynamicFormService: url: ' + this.url);
+    this.logger.info('DynamicFormService: uriPrefrix: ' + this.uriPrefix);
   }
 
-  public getFormMetadata(filename: string): Observable<DynamicFormControlModel[]> {
-    return this.httpClient.get<DynamicFormControlModel[]>(this.url + filename);
+  public getFormMetadata(formId: string): Observable<DynamicFormControlModel[]> {
+    return this.httpClient.get<DynamicFormControlModel[]>(this.uriPrefix + formId + this.uriSuffix);
   }
 
   // https://angular.io/api/forms/FormControl

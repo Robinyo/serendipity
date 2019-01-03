@@ -29,8 +29,6 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
   protected subscriptions: Subscription[] = [];
 
-  private suffix = '.json';
-
   public taskFormGroup: FormGroup;
   public taskModel: DynamicFormModel; // DynamicFormControlModel[] = [];
 
@@ -63,14 +61,12 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
     this.logger.info('TaskComponent: subscribe()');
 
-    const filename = this.task.formKey + this.suffix;
-
-    this.logger.info('TaskComponent - filename: ' + filename);
+    this.logger.info('TaskComponent - formId: ' + this.task.formKey);
 
     let formSubscription: Subscription = new Subscription();
     this.subscriptions.push(formSubscription);
 
-    formSubscription = this.dynamicFormService.getFormMetadata(filename).subscribe(metaData => {
+    formSubscription = this.dynamicFormService.getFormMetadata(this.task.formKey).subscribe(metaData => {
 
       this.taskModel = metaData;
       this.taskFormGroup = this.dynamicFormService.createGroup(this.taskModel);
