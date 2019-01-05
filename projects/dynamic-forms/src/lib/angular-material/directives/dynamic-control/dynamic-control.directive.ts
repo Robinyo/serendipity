@@ -79,7 +79,7 @@ export class DynamicControlDirective  implements OnInit, OnDestroy  {
 
       if (instance.customEvent !== undefined) {
 
-        this.logger.info('DynamicControlDirective: instance.customEvent.subscribe()');
+        // this.logger.info('DynamicControlDirective: instance.customEvent.subscribe()');
 
         this.componentSubscriptions.push(
           instance.customEvent.subscribe((event: DynamicFormControlCustomEvent) => this.onCustomEvent(event)));
@@ -93,10 +93,16 @@ export class DynamicControlDirective  implements OnInit, OnDestroy  {
 
     if (this.componentRef) {
 
-      this.componentSubscriptions.forEach(subscription => subscription.unsubscribe());
-      this.componentSubscriptions = [];
+      this.componentSubscriptions.forEach(subscription => {
 
+        // this.logger.info('DynamicControlDirective: instance.customEvent.unsubscribe()');
+
+        subscription.unsubscribe();
+      });
+
+      this.componentSubscriptions = [];
       this.componentRef.destroy();
+
     }
 
   }

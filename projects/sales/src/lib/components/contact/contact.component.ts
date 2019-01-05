@@ -13,7 +13,7 @@ import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } f
 import { ContactsService } from '../../services/contacts/contacts.service';
 import { Contact } from '../../shared/models';
 
-import { GENERAL_INFORMATION_GROUP, ADDRESS_INFORMATION_GROUP } from '../../shared/filenames';
+import { GENERAL_INFORMATION_GROUP, ADDRESS_INFORMATION_GROUP } from '../../shared/form-ids';
 
 import { LoggerService } from 'utils';
 
