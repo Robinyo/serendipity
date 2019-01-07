@@ -24,7 +24,8 @@ import { LoggerService } from 'utils';
              [autocomplete]="model.autocomplete"
              [formControlName]="model.id"
              [placeholder]="model.placeholder"
-             [required]="model.required" />
+             [required]="model.required"
+             [type]="model.inputType"/>
 
       <span *ngIf="model.suffixIconName" matSuffix>
         <mat-icon matSuffix class="crm-suffix-icon" (click)="iconSuffixClickHandler()"> {{ model.suffixIconName }} </mat-icon>

@@ -2,6 +2,7 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -9,12 +10,14 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+// The Angular Material module must be imported after Angular's BrowserModule, as the import order matters for NgModules.
 import { MAT_DATE_LOCALE } from '@angular/material';
 import { AngularMaterialModule } from '@app/shared/angular-material.module';
 
 import { PlaceholderComponent } from './components/placeholder/placeholder.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { NavComponent } from './components/nav/nav.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 
 import { environment } from '@env/environment';
 
@@ -40,6 +43,12 @@ import { LoggerService } from 'utils';
 import { ConsoleLoggerService } from 'utils';
 
 //
+// Auth lib
+//
+
+import { AuthModule } from 'auth';
+
+//
 // Dynamic Forms lib
 //
 
@@ -51,14 +60,11 @@ import { DynamicFormsModule } from 'dynamic-forms';
 
 import { SalesModule } from 'sales';
 
-// https://angular.io/guide/router#routing-module-order
-
-import { AppRoutingModule } from '@app/app-routing.module';
-
 @NgModule({
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
     AngularMaterialModule,
+    AuthModule,
     CommonModule,
     FlexLayoutModule,
     HttpClientModule,
@@ -76,9 +82,9 @@ import { AppRoutingModule } from '@app/app-routing.module';
     DynamicFormsModule.forRoot(environment),
     SalesModule,
 
-    AppRoutingModule  // https://angular.io/guide/router#routing-module-order
+    RouterModule  // There is no directive with "exportAs" set to "routerLinkActive ...
   ],
-  declarations: [ PlaceholderComponent, NavigationBarComponent, NavComponent ],
+  declarations: [ PlaceholderComponent, NavigationBarComponent, NavComponent, SignInComponent ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: environment.defaultLanguage },
     { provide: LoggerService, useClass: ConsoleLoggerService }

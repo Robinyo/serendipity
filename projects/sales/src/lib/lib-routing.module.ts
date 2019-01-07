@@ -1,18 +1,34 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ActivitiesComponent } from './components/activities/activities.component';
+import { AuthGuard } from 'auth';
 
-import { CanActivateGuard } from './guards/can-activate/can-activate.guard';
-import { CanDeactivateGuard } from './guards/can-deactivate/can-deactivate.guard';
+import { ActivitiesComponent } from './components/activities/activities.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
 
   {
     path: 'sales/activities',
     component: ActivitiesComponent,
-    canActivate: [CanActivateGuard],
-    canDeactivate: [CanDeactivateGuard]
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'sales/dashboards',
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'sales/contacts',
+    component: ContactsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'sales/contacts/:id',
+    component: ContactComponent,
+    canActivate: [AuthGuard]
   }
 
 ];
@@ -22,3 +38,18 @@ const routes: Routes = [
   exports: [ RouterModule ]
 })
 export class LibRoutingModule { }
+
+/*
+
+import { CanActivateGuard } from './guards/can-activate/can-activate.guard';
+import { CanDeactivateGuard } from './guards/can-deactivate/can-deactivate.guard';
+
+  {
+    path: 'sales/activities',
+    component: ActivitiesComponent,
+    canActivate: [CanActivateGuard],
+    canDeactivate: [CanDeactivateGuard]
+  }
+
+
+*/

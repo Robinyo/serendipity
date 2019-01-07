@@ -1,0 +1,43 @@
+[
+
+  {
+    "type": "input",
+    "id": "username",
+    "label": "Username",
+    "placeholder": "admin",
+    "appearance": "fill",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a username"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1",
+    "required": true
+  },
+  {
+    "type": "input",
+    "inputType": "password",
+    "id": "password",
+    "label": "Password",
+    "placeholder": "test",
+    "appearance": "fill",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a password"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1",
+    "required": true
+  }
+
+]

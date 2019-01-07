@@ -27,6 +27,8 @@ export interface DynamicFormControlModelConfig {
   type: string;                    // "input"
   id: string;                      // "givenName"
 
+  inputType?: string;              // "text"
+
   // Optional items
 
   appearance?: string;             // "outline"
@@ -51,6 +53,8 @@ export class DynamicFormControlModel {
   type: string;                    // "input"
   id: string;                      // "givenName"
 
+  inputType: string;               // "text"
+
   // Optional items
 
   appearance?: string;             // "outline"
@@ -71,6 +75,8 @@ export class DynamicFormControlModel {
     this.type = config.type;
     this.id = config.id;
 
+    this.inputType = config.inputType || 'text';
+
     this.appearance = config.appearance || 'outline';
     this.autocomplete = config.autocomplete || null;
     this.gridItemClass = config.gridItemClass || null;
@@ -89,6 +95,20 @@ export class DynamicFormControlModel {
 }
 
 /*
+
+color
+date
+datetime-local
+email
+month
+number
+password
+search
+tel
+text
+time
+url
+week
 
   type: string;           // "input"
   id: string;             // "organisation.phoneNumber"

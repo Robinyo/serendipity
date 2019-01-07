@@ -1,29 +1,70 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PlaceholderComponent } from '@app/core/components/placeholder/placeholder.component';
+import { AuthGuard } from 'auth';
 
-import { ContactsComponent } from 'sales';
-import { ContactComponent } from 'sales';
-import { DashboardComponent } from 'sales';
+import { PlaceholderComponent } from '@app/core/components/placeholder/placeholder.component';
+import { SignInComponent } from '@app/core/components/sign-in/sign-in.component';
 
 const routes: Routes = [
 
   {
-    path: 'sales/dashboards',
-    component: DashboardComponent
+    path: 'login',
+    component: SignInComponent
   },
   {
     path: 'sales/accounts',
+    component: PlaceholderComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'sales/leads',
+    component: PlaceholderComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'sales/opportunities',
+    component: PlaceholderComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: '**',
+    redirectTo: 'sales/contacts'
+  }
+
+];
+
+@NgModule({
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ]
+})
+export class AppRoutingModule { }
+
+// import { MyDashboardComponent } from '@app/shared/components/samples/my-dashboard/my-dashboard.component';
+// import { MyTableComponent } from '@app/shared/components/samples/my-table/my-table.component';
+
+// import { AccountsComponent } from 'sales';
+
+/*
+
+const appRoutes: Routes = [
+    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+
+    // otherwise redirect to home
+    { path: '**', redirectTo: '' }
+];
+
+*/
+
+/*
+
+const routes: Routes = [
+
+  {
+    path: 'sales/accounts',
     component: PlaceholderComponent
-  },
-  {
-    path: 'sales/contacts',
-    component: ContactsComponent
-  },
-  {
-    path: 'sales/contacts/:id',
-    component: ContactComponent
   },
   {
     path: 'sales/leads',
@@ -45,28 +86,5 @@ const routes: Routes = [
   }
 
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
-
-// import { MyDashboardComponent } from '@app/shared/components/samples/my-dashboard/my-dashboard.component';
-// import { MyTableComponent } from '@app/shared/components/samples/my-table/my-table.component';
-
-// import { AccountsComponent } from 'sales';
-
-/*
-
-  {
-    path: 'sales/activities',
-    component: PlaceholderComponent
-  },
-
-  {
-    path: 'sales/dashboards',
-    component: MyDashboardComponent
-  },
 
 */

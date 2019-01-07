@@ -5,17 +5,16 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 
 import { LoggerService } from 'utils';
-
-// The Angular Material module (which is imported in the Core module) must be imported after Angular's BrowserModule, as the import
-// order matters for NgModules.
 
 @NgModule({
   imports: [
     BrowserModule,
-    CoreModule,  // import HttpClientModule after BrowserModule
-    SharedModule
+    CoreModule,
+    SharedModule,
+    AppRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
   declarations: [ AppComponent ],
   providers: [],

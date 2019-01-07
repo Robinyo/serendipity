@@ -53,6 +53,12 @@
       ],
       "flowable/*": [
         "dist/flowable/*"
+      ],
+      "auth": [
+        "dist/auth"
+      ],
+      "auth/*": [
+        "dist/auth/*"
       ]
     }
   }

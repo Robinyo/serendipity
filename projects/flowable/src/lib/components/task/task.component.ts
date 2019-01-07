@@ -25,12 +25,12 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
   @Output() completeEvent = new EventEmitter<TaskCompleteEvent>();
 
-  completeButton = 'COMPLETE';
-
-  protected subscriptions: Subscription[] = [];
+  public completeButton = 'COMPLETE';
 
   public taskFormGroup: FormGroup;
-  public taskModel: DynamicFormModel; // DynamicFormControlModel[] = [];
+  public taskModel: DynamicFormModel;
+
+  protected subscriptions: Subscription[] = [];
 
   constructor(private dynamicFormService: DynamicFormService,
               private tasksService: TasksService,

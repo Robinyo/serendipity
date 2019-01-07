@@ -8,9 +8,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class AlertDialogComponent {
 
-  title: string;
-  message: string;
-  closeButton = 'CLOSE';
+  public title: string;
+  public message: string;
+  public closeButton = 'CLOSE';
 
   constructor(private dialogRef: MatDialogRef<AlertDialogComponent>) {}
 
