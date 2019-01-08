@@ -6,6 +6,12 @@ You can use it to transform your organisation by connecting your customers, prod
 
 ## Screen Shots
 
+Login:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/login.png">
+</p>
+
 Navigation Bar:
 
 <p align="center">
