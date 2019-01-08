@@ -11,6 +11,80 @@
     <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
 
       <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+
+        <li>
+          <button mat-icon-button>
+            <mat-icon>settings</mat-icon>
+          </button>
+        </li>
+
+        <li>
+          <button mat-icon-button>
+            <mat-icon>help_outline</mat-icon>
+          </button>
+        </li>
+
+        <li>
+          <button mat-icon-button [matMenuTriggerFor]="auth">
+            <mat-icon>person_outline</mat-icon>
+          </button>
+          <mat-menu #auth="matMenu">
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>exit_to_app</mat-icon>
+              <span>Sign out</span>
+            </button>
+          </mat-menu>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </mat-toolbar-row>
+
+</mat-toolbar>
+
+<!--
+
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+
+      <mat-icon class="toolbar-icon">settings</mat-icon>
+
+      <mat-icon class="toolbar-icon">help_outline</mat-icon>
+
+      <button mat-icon-button [matMenuTriggerFor]="auth">
+        <mat-icon>person_outline</mat-icon>
+      </button>
+      <mat-menu #auth="matMenu">
+        <button mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Sign out</span>
+        </button>
+      </mat-menu>
+
+    </div>
+
+<button mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>dialpad</mat-icon>
+    <span>Redial</span>
+  </button>
+  <button mat-menu-item disabled>
+    <mat-icon>voicemail</mat-icon>
+    <span>Check voicemail</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>notifications_off</mat-icon>
+    <span>Disable alerts</span>
+  </button>
+</mat-menu>
+
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+
+      <ul fxLayout fxLayoutGap="20px" class="navigation-items">
         <li>
           <a>
             <mat-icon class="toolbar-icon">settings</mat-icon>
@@ -30,6 +104,4 @@
 
     </div>
 
-  </mat-toolbar-row>
-
-</mat-toolbar>
+-->

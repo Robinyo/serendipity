@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { AuthService } from 'auth';
+
 interface ROUTE {
   icon?: string;
   route?: string;
@@ -44,6 +46,12 @@ export class NavComponent {
       title: 'Opportunities',
     }
   ];
+
+  constructor(private authService: AuthService) {}
+
+  public isAuthenticated() {
+    return this.authService.isAuthenticated();
+  }
 
 }
 

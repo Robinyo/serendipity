@@ -4,13 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'auth';
 
 import { PlaceholderComponent } from '@app/core/components/placeholder/placeholder.component';
-import { SignInComponent } from '@app/core/components/sign-in/sign-in.component';
+import { LoginComponent } from '@app/core/components/login/login.component';
 
 const routes: Routes = [
 
   {
     path: 'login',
-    component: SignInComponent
+    component: LoginComponent
   },
   {
     path: 'sales/accounts',

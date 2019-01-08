@@ -12,11 +12,11 @@ import { AuthService } from 'auth';
 import { LoggerService } from 'utils';
 
 @Component({
-  selector: 'crm-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss']
+  selector: 'crm-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class SignInComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit, OnDestroy {
 
   public signInButton = 'SIGN IN';
 
@@ -35,7 +35,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
 
-    this.logger.info('SignInComponent: ngOnInit()');
+    this.logger.info('LoginComponent: ngOnInit()');
 
     if (this.authService.isAuthenticated()) {
 
@@ -51,12 +51,12 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   protected subscribe() {
 
-    this.logger.info('SignInComponent: subscribe()');
+    this.logger.info('LoginComponent: subscribe()');
 
     let formSubscription: Subscription = new Subscription();
     this.subscriptions.push(formSubscription);
 
-    formSubscription = this.dynamicFormService.getFormMetadata('sign-in').subscribe(metaData => {
+    formSubscription = this.dynamicFormService.getFormMetadata('login').subscribe(metaData => {
 
       this.formModel = metaData;
       this.formGroup = this.dynamicFormService.createGroup(this.formModel);
@@ -66,7 +66,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   protected unsubscribe(): void {
 
-    this.logger.info('SignInComponent: unsubscribe()');
+    this.logger.info('LoginComponent: unsubscribe()');
 
     this.subscriptions.forEach(subscription => {
       subscription.unsubscribe();
@@ -76,7 +76,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy() {
 
-    this.logger.info('SignInComponent: ngOnDestroy()');
+    this.logger.info('LoginComponent: ngOnDestroy()');
     this.unsubscribe();
   }
 
@@ -111,7 +111,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 
       },
       error => {
-        this.logger.error('SignInComponent: onSubmit()');
+        this.logger.error('LoginComponent: onSubmit()');
       });
 
   }

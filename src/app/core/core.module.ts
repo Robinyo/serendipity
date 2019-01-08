@@ -17,7 +17,7 @@ import { AngularMaterialModule } from '@app/shared/angular-material.module';
 import { PlaceholderComponent } from './components/placeholder/placeholder.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { NavComponent } from './components/nav/nav.component';
-import { SignInComponent } from './components/sign-in/sign-in.component';
+import { LoginComponent } from './components/login/login.component';
 
 import { environment } from '@env/environment';
 
@@ -84,7 +84,7 @@ import { SalesModule } from 'sales';
 
     RouterModule  // There is no directive with "exportAs" set to "routerLinkActive ...
   ],
-  declarations: [ PlaceholderComponent, NavigationBarComponent, NavComponent, SignInComponent ],
+  declarations: [ PlaceholderComponent, NavigationBarComponent, NavComponent, LoginComponent ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: environment.defaultLanguage },
     { provide: LoggerService, useClass: ConsoleLoggerService }

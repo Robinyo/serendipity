@@ -45,8 +45,14 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <crm-navigation-bar (toggleSidenav)="sidenav.toggle()"></crm-navigation-bar>
+    <crm-navigation-bar *ngIf="isAuthenticated()" (toggleSidenav)="sidenav.toggle()"></crm-navigation-bar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 
 </mat-sidenav-container>
+
+<!--
+
+    <crm-navigation-bar *ngIf="isAuthenticated()" (toggleSidenav)="sidenav.toggle()"></crm-navigation-bar>
+
+-->
