@@ -6,18 +6,9 @@ import { catchError, tap } from 'rxjs/operators';
 
 import { TaskListModel } from '../../models/task-list.model';
 
+import { AuthService, User } from 'auth';
+
 import { LoggerService } from 'utils';
-
-// https://www.flowable.org/docs/userguide/index.html#restUsageInTomcat
-// 'Accept': 'application/json',
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': 'Basic ' + btoa('admin:test')
-  }),
-  params: null
-};
 
 const completeTaskBody = {
   'action' : 'complete',
@@ -32,12 +23,16 @@ export class TasksService {
   // private processEngineUriPrefix = 'http://localhost:8080/flowable-task/process-api/runtime/';
   private processEngineUriPrefix = '/flowable-task/process-api/';
 
-  constructor(private httpClient: HttpClient,
+  private httpOptions = null;
+
+  constructor(private authService: AuthService,
+              private httpClient: HttpClient,
               private logger: LoggerService) {
 
   }
 
-  public getTasks(): Observable<TaskListModel>   {
+  // public getTasks(): Observable<TaskListModel>   {
+  public getTasks(): Observable<any> {
 
     this.logger.info('TasksService: getTasks()');
 
@@ -49,15 +44,15 @@ export class TasksService {
     // const start = 0;
     // const size = 16;
 
-    httpOptions.params = new HttpParams().set('sort', sort).set('order', order) ;
+    const params = new HttpParams().set('sort', sort).set('order', order);
 
-    return this.httpClient.get<any>(endpoint, httpOptions)
-      .pipe(
-        tap(() => {
-          this.logger.info('TasksService: getTasks() completed');
-        }),
-        catchError(this.handleError('getTasks', []))
-      );
+    return this.httpClient.get<TaskListModel>(endpoint, this.getHttpOptions(params))
+    .pipe(
+      tap(() => {
+        this.logger.info('TasksService: getTasks() completed');
+      }),
+      catchError(this.handleError('getTasks', []))
+    );
 
   }
 
@@ -67,11 +62,9 @@ export class TasksService {
 
     const endpoint = `${this.processEngineUriPrefix}runtime/tasks/${taskId}`;
 
-    httpOptions.params = null;
-
     this.logger.info('TasksService completeTask() - endpoint: ' + endpoint);
 
-    return this.httpClient.post<any>(endpoint, completeTaskBody, httpOptions)
+    return this.httpClient.post<any>(endpoint, completeTaskBody, this.getHttpOptions(null))
       .pipe(
         tap(() => {
           this.logger.info('TasksService: completeTask() completed');
@@ -79,6 +72,34 @@ export class TasksService {
         catchError(this.handleError('completeTask', []))
       );
 
+  }
+
+  private getHttpOptions(params: HttpParams) {
+
+    this.logger.info('TasksService: getHttpOptions()');
+
+    if (!this.httpOptions) {
+
+      const user: User = this.authService.getUser();
+      const token = user.username + ':' + user.password;
+
+      this.logger.info('TasksService getHttpOptions() - token: ' + token);
+
+      this.httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          'Authorization': 'Basic ' + btoa(token)
+        }),
+        params: null
+      };
+
+    }
+
+    this.httpOptions.params = params;
+
+    // this.logger.info(JSON.stringify(this.httpOptions));
+
+    return this.httpOptions;
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
@@ -102,6 +123,39 @@ export class TasksService {
 // https://github.com/Alfresco/alfresco-ng2-components/blob/development/lib/process-services/task-list/services/tasklist.service.ts
 
 // const endpoint = `${this.processEngineUriPrefix}runtime/tasks?sort=createTime&order=asc`;
+
+// https://www.flowable.org/docs/userguide/index.html#restUsageInTomcat
+// 'Accept': 'application/json',
+
+/*
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': 'Basic ' + btoa('admin:test')
+  }),
+  params: null
+};
+*/
+
+/*
+
+  // return this.httpClient.get<TaskListModel>(endpoint, this.getHttpOptions(params));
+
+Type 'Observable<HttpEvent<TaskListModel>>' is not assignable to type 'Observable<TaskListModel>'.
+   Type 'HttpEvent<TaskListModel>' is not assignable to type 'TaskListModel'.
+      Type 'HttpSentEvent' is not assignable to type 'TaskListModel'.
+         Property 'total' is missing in type 'HttpSentEvent'.
+
+
+  return this.httpClient.get<any>(endpoint, this.getHttpOptions(params))
+    .pipe(
+      tap(() => {
+        this.logger.info('TasksService: getTasks() completed');
+      }),
+      catchError(this.handleError('getTasks', []))
+    );
+
+*/
 
 /*
 

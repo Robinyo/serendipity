@@ -15,6 +15,12 @@ import { TaskListComponent } from './components/task-list/task-list.component';
 // import { AngularPageVisibilityModule } from 'angular-page-visibility';
 
 //
+// Auth lib
+//
+
+import { AuthModule } from 'auth';
+
+//
 // Utils lib
 //
 
@@ -32,6 +38,7 @@ import { DynamicFormsModule } from 'dynamic-forms';
   imports: [
     AngularMaterialModule,
     // AngularPageVisibilityModule,
+    AuthModule,
     CommonModule,
     DynamicFormsModule,
     FlexLayoutModule,

@@ -31,9 +31,22 @@ export class AuthService {
 
   }
 
+  public getUser() {
+
+    try {
+
+      return this.userSubject.value;
+
+    } catch (error) {
+
+      return null;
+    }
+
+  }
+
   public login(username: string, password: string) {
 
-    this.userSubject.next({ username: username, password: username});
+    this.userSubject.next({ username: username, password: password});
     return this.user;
   }
 

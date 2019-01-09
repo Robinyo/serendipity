@@ -4,15 +4,9 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-import { LoggerService } from 'utils';
+import { AuthService, User } from 'auth';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'Basic ' + btoa('admin:test')
-  }),
-  params: null
-};
+import { LoggerService } from 'utils';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +15,10 @@ export class FormsService {
 
   private processEngineUriPrefix = '/flowable-task/process-api/';
 
-  constructor(private httpClient: HttpClient,
+  private httpOptions = null;
+
+  constructor(private authService: AuthService,
+              private httpClient: HttpClient,
               private logger: LoggerService) {
 
   }
@@ -32,11 +29,11 @@ export class FormsService {
 
     const endpoint = `${this.processEngineUriPrefix}form/form-data`;
 
-    httpOptions.params = null;
+    this.httpOptions.params = null;
 
     this.logger.info('FormsService submitFormData() - endpoint: ' + endpoint);
 
-    return this.httpClient.post<any>(endpoint, body, httpOptions)
+    return this.httpClient.post<any>(endpoint, body, this.getHttpOptions(null))
     .pipe(
       tap(() => {
         this.logger.info('FormsService: submitFormData() completed');
@@ -44,6 +41,34 @@ export class FormsService {
       catchError(this.handleError('submitFormData', []))
     );
 
+  }
+
+  private getHttpOptions(params: HttpParams) {
+
+    this.logger.info('FormsService: getHttpOptions()');
+
+    if (!this.httpOptions) {
+
+      const user: User = this.authService.getUser();
+      const token = user.username + ':' + user.password;
+
+      this.logger.info('FormsService getHttpOptions() - token: ' + token);
+
+      this.httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          'Authorization': 'Basic ' + btoa(token)
+        }),
+        params: null
+      };
+
+    }
+
+    this.httpOptions.params = params;
+
+    // this.logger.info(JSON.stringify(this.httpOptions));
+
+    return this.httpOptions;
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

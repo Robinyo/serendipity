@@ -4,7 +4,8 @@ export interface TaskCompleteEvent {
 
 }
 
-export class TaskModel {
+// export class TaskModel {
+export interface TaskModel {
 
   id: string;
   url: string;
@@ -31,11 +32,14 @@ export class TaskModel {
   processInstanceUrl: string;
   processDefinitionId: string;
   processDefinitionUrl: string;
-  variables: any[] = [];
+
+  // variables: any[] = [];
+  variables: any[];
 
 }
 
-export class TaskListModel {
+// export class TaskListModel {
+export interface TaskListModel {
 
   total: number;
   sort: string;
@@ -43,9 +47,10 @@ export class TaskListModel {
   start: number;
   size: number;
 
-  data: TaskModel[] = [];
+  // data: TaskModel[] = [];
+  data: TaskModel[];
 
-  constructor() {}
+  // constructor() {}
 
 }
 

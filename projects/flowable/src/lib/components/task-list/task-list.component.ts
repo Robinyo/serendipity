@@ -4,7 +4,7 @@ import { Subject, Subscription, timer } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
 
 import { TasksService } from '../../services/tasks/tasks.service';
-import { TaskCompleteEvent, TaskModel } from '../../models/task-list.model';
+import { TaskCompleteEvent, TaskListModel, TaskModel } from '../../models/task-list.model';
 
 import { LoggerService } from 'utils';
 
@@ -60,7 +60,8 @@ export class TaskListComponent implements OnInit, OnDestroy {
     let modelSubscription: Subscription = new Subscription();
     this.subscriptions.push(modelSubscription);
 
-    modelSubscription = this.tasksService.getTasks().subscribe(model => {
+    // modelSubscription = this.tasksService.getTasks().subscribe(model => {
+    modelSubscription = this.tasksService.getTasks().subscribe((model: TaskListModel) => {
 
       this.items = model.data;
       this.selectedItem = this.items[0];
@@ -77,7 +78,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
     modelSubscription = timer(0, 5000).pipe(
       takeUntil(this.componentDestroyed),
-      switchMap(() => this.tasksService.getTasks())).subscribe(model => {
+      switchMap(() => this.tasksService.getTasks())).subscribe((model: TaskListModel) => {
 
       this.items = model.data;
 
@@ -130,6 +131,8 @@ export class TaskListComponent implements OnInit, OnDestroy {
 }
 
 /*
+
+    // const taskListModel: TaskListModel = { ...model };
 
     if (! this.selectedItem) {
       this.selectedItem = this.items[0];
