@@ -19,16 +19,7 @@ export class AuthService {
   }
 
   public isAuthenticated() {
-
-    try {
-
-      return this.userSubject.value;
-
-    } catch (error) {
-
-      return false;
-    }
-
+    return this.getUser();
   }
 
   public getUser() {
@@ -38,20 +29,18 @@ export class AuthService {
       return this.userSubject.value;
 
     } catch (error) {
-
-      return null;
+      return undefined;
     }
 
   }
 
   public login(username: string, password: string) {
 
-    this.userSubject.next({ username: username, password: password});
+    this.userSubject.next({ username: username, password: password });
     return this.user;
   }
 
   public logout() {
-
     this.userSubject.next(null);
   }
 
