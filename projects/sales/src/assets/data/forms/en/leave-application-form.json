@@ -6,6 +6,15 @@
     "label": "Employee Number",
     "appearance": "outline",
 
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter your employee number"
+      }
+    ],
+
     "gridItemClass": "grid-column-1",
     "required": true
   },
@@ -53,6 +62,15 @@
     "label": "From Date",
     "appearance": "outline",
 
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a From date"
+      }
+    ],
+
     "gridItemClass": "grid-column-1",
     "required": true
   },
@@ -61,6 +79,15 @@
     "id": "toDate",
     "label": "To Date",
     "appearance": "outline",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a To date"
+      }
+    ],
 
     "gridItemClass": "grid-column-2",
     "required": true

@@ -28,6 +28,7 @@ export abstract class CollectionService {
 
       if (typeof user === 'undefined') {
         this.logger.error('CollectionService getHttpOptions() - user is undefined');
+        return this.httpOptions;
       }
 
       const token = user.username + ':' + user.password;
