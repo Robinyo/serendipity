@@ -67,3 +67,10 @@ curl -H "Content-Type: application/json" -X POST http://admin:test@localhost:808
 curl -i 'http://admin:test@localhost:8080/flowable-task/process-api/identity/users'
 
 curl -i 'http://admin:test@localhost:8080/flowable-task/process-api/identity/users/admin'
+
+--
+
+curl -H "Content-Type: application/json" -X POST http://admin:test@localhost:8080/flowable-task/process-api/query/tasks -d "@data-6.json"
+
+
+
