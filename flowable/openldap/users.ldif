@@ -1,0 +1,8 @@
+# Actual users
+
+dn: cn=Flowable Administrator,ou=users,dc=flowable,dc=org
+objectclass: inetOrgPerson
+cn: flowable
+sn: flowable
+uid: flowable
+userPassword:: test
