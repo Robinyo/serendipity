@@ -4,7 +4,7 @@
     "type": "input",
     "id": "username",
     "label": "Username",
-    "placeholder": "admin",
+    "placeholder": "flowable",
     "appearance": "fill",
 
     "validators": [
