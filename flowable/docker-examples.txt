@@ -1,9 +1,9 @@
 
 docker container ls
-docker container stop serene_gagarin
+docker container stop nostalgic_cartwright
 
 docker image ls
-docker image rm 3904c7774bbe --force
+docker image rm 74b6a536d4d2 --force
 
 --
 
