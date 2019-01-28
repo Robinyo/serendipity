@@ -34,9 +34,9 @@ objectClass: top
 
 # Actual users
 
-dn: cn=Flowable Administrator,ou=users,dc=flowable,dc=org
+dn: cn=Flowable, ou=users,dc=flowable,dc=org
 objectclass: inetOrgPerson
-cn: flowable
-sn: flowable
+cn: Flowable
+sn: Administrator
 uid: flowable
 userPassword:: test

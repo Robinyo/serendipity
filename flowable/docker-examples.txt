@@ -30,3 +30,19 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ope
 
 docker system prune --volumes
 
+--
+
+docker run --name openldap \
+  -p 10389:389 -p 10636:636 \
+  -v ~/workspace/Robinyo/serendipity:/serendipity \
+  --env LDAP_ORGANISATION="flowable" \
+  --env LDAP_DOMAIN="flowable.org" \
+  --env LDAP_ADMIN_PASSWORD="secret" \
+  osixia/openldap:1.2.3
+
+docker start --interactive openldap \
+  -p 10389:389 -p 10636:636 \
+  -v ~/workspace/Robinyo/serendipity:/serendipity \
+  --env LDAP_ORGANISATION="flowable" \
+  --env LDAP_DOMAIN="flowable.org" \
+  --env LDAP_ADMIN_PASSWORD="secret"
