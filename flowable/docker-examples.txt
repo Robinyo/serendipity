@@ -1,0 +1,32 @@
+
+docker container ls
+docker container stop serene_gagarin
+
+docker image ls
+docker image rm 3904c7774bbe --force
+
+--
+
+docker run -v ~/workspace/Robinyo/serendipity:/serendipity \
+  -p 10389:389 -p 10636:636 --name openldap \
+  --env LDAP_ORGANISATION="flowable" \
+  --env LDAP_DOMAIN="flowable.org" \
+  --env LDAP_ADMIN_PASSWORD="secret" \
+  osixia/openldap:1.2.3
+
+docker start --interactive openldap \
+  -v ~/workspace/Robinyo/serendipity:/serendipity \
+  -p 10389:389 -p 10636:636 \
+  --env LDAP_ORGANISATION="flowable" \
+  --env LDAP_DOMAIN="flowable.org" \
+  --env LDAP_ADMIN_PASSWORD="secret"
+
+cd ~/workspace/Robinyo/serendipity
+docker run -p 8080:8080 --env-file ldap-env.txt flowable/all-in-one:6.5.0-SNAPSHOT
+
+--
+
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' openldap
+
+docker system prune --volumes
+
