@@ -8,17 +8,17 @@
 
     <span class="toolbar-title"> {{ 'APP_TOOLBAR_TITLE' | translate }} </span>
 
-    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+    <div fxFlex fxLayout fxLayoutAlign="flex-end">
 
       <ul fxLayout fxLayoutGap="20px" class="navigation-items">
 
-        <li>
+        <li fxHide.xs>
           <button mat-icon-button>
             <mat-icon>settings</mat-icon>
           </button>
         </li>
 
-        <li>
+        <li fxHide.xs>
           <button mat-icon-button>
             <mat-icon>help_outline</mat-icon>
           </button>
@@ -45,6 +45,8 @@
 </mat-toolbar>
 
 <!--
+
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
 
     <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
 

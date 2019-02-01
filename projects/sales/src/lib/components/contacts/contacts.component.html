@@ -84,18 +84,18 @@
               All
             </button>
 
-            <button mat-button disabled class="footer-button">
+            <button mat-button disabled class="footer-button" fxHide.xs>
               |
             </button>
 
-            <div *ngFor="let character of alphabet" >
+            <div *ngFor="let character of alphabet" fxHide.xs>
               <button id="{{ character }}" mat-button class="footer-button" (click)="onClickFilterButton(character)"
                       [class.active]="selectedFooterItemId === character">
                 {{ character }}
               </button>
             </div>
 
-            <button mat-button disabled class="footer-button">
+            <button mat-button disabled class="footer-button" fxHide.xs>
               |
             </button>
 

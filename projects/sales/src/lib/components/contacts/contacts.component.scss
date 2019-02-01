@@ -32,9 +32,9 @@
   // to stop the footer from wrapping
   white-space: nowrap;
 
-  @media ($mat-xsmall) {
-    display: none !important;
-  }
+  // @media ($mat-xsmall) {
+  //   display: none !important;
+  // }
 }
 .footer-button {
   min-width: 24px;
