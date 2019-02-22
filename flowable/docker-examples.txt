@@ -1,6 +1,6 @@
 
 docker container ls
-docker container stop nostalgic_cartwright
+docker container stop openldap
 
 docker image ls
 docker image rm 74b6a536d4d2 --force
