@@ -12,6 +12,7 @@ import { LoggerService } from 'utils';
 @NgModule({
   imports: [
     BrowserModule,
+    // The Angular Material module must be imported after Angular's BrowserModule, as the import order matters for NgModules.
     CoreModule,
     SharedModule,
     AppRoutingModule  // https://angular.io/guide/router#routing-module-order

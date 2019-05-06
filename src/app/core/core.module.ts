@@ -2,6 +2,7 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
@@ -10,7 +11,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-// The Angular Material module must be imported after Angular's BrowserModule, as the import order matters for NgModules.
 import { MAT_DATE_LOCALE } from '@angular/material';
 import { AngularMaterialModule } from '@app/shared/angular-material.module';
 
@@ -63,6 +63,7 @@ import { SalesModule } from 'sales';
 @NgModule({
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
+    BrowserAnimationsModule,
     AngularMaterialModule,
     AuthModule,
     CommonModule,
