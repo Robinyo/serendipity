@@ -15,12 +15,10 @@
       <a mat-list-item routerLink="/" style="height: 0;"></a>
 
       <a *ngFor="let item of myWorkRoutes"
-         mat-list-item
-         (click)="sidenav.close()"
-         routerLinkActive
-         #routerLinkActiveInstance="routerLinkActive"
-         [class.list-item-active]="routerLinkActiveInstance.isActive"
-         [routerLink]="[item.route]">
+        mat-list-item
+        (click)="sidenav.close()"
+        [routerLink]="[item.route]"
+        routerLinkActive="list-item-active">
         <mat-icon matListIcon class="app-nav-list-icon"> {{ item.icon }} </mat-icon>
         {{item.title}}
       </a>
@@ -28,14 +26,12 @@
       <mat-divider></mat-divider>
 
       <h2 matSubheader> {{ 'CUSTOMERS' | translate }} </h2>
-
+      
       <a *ngFor="let item of customerRoutes"
-         mat-list-item
-         (click)="sidenav.close()"
-         routerLinkActive
-         #routerLinkActiveInstance="routerLinkActive"
-         [class.list-item-active]="routerLinkActiveInstance.isActive"
-         [routerLink]="[item.route]">
+        mat-list-item
+        (click)="sidenav.close()"
+        [routerLink]="[item.route]"
+        routerLinkActive="list-item-active">
         <mat-icon matListIcon class="app-nav-list-icon"> {{ item.icon }} </mat-icon>
         {{item.title}}
       </a>
@@ -52,7 +48,31 @@
 </mat-sidenav-container>
 
 <!--
+<a *ngFor="let item of myWorkRoutes"
+   mat-list-item
+   (click)="sidenav.close()"
+   routerLinkActive
+   #routerLinkActiveInstance="routerLinkActive"
+   [class.list-item-active]="routerLinkActiveInstance.isActive"
+   [routerLink]="[item.route]">
+  <mat-icon matListIcon class="app-nav-list-icon"> {{ item.icon }} </mat-icon>
+  {{item.title}}
+</a>
+-->
 
-    <crm-navigation-bar *ngIf="isAuthenticated()" (toggleSidenav)="sidenav.toggle()"></crm-navigation-bar>
+<!--
+<a *ngFor="let item of customerRoutes"
+   mat-list-item
+   (click)="sidenav.close()"
+   routerLinkActive
+   #routerLinkActiveInstance="routerLinkActive"
+   [class.list-item-active]="routerLinkActiveInstance.isActive"
+   [routerLink]="[item.route]">
+  <mat-icon matListIcon class="app-nav-list-icon"> {{ item.icon }} </mat-icon>
+  {{item.title}}
+</a>
+-->
 
+<!--
+  <crm-navigation-bar *ngIf="isAuthenticated()" (toggleSidenav)="sidenav.toggle()"></crm-navigation-bar>
 -->
