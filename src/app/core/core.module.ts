@@ -63,8 +63,8 @@ import { SalesModule } from 'sales';
 @NgModule({
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
-    BrowserAnimationsModule,
     AngularMaterialModule,
+    BrowserAnimationsModule,
     AuthModule,
     CommonModule,
     FlexLayoutModule,
@@ -87,16 +87,16 @@ import { SalesModule } from 'sales';
   ],
   declarations: [ PlaceholderComponent, NavigationBarComponent, NavComponent, LoginComponent ],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: environment.defaultLanguage },
-    { provide: LoggerService, useClass: ConsoleLoggerService }
+    { provide: LoggerService, useClass: ConsoleLoggerService },
+    { provide: MAT_DATE_LOCALE, useValue: environment.defaultLanguage }
   ],
   exports: [ PlaceholderComponent, NavigationBarComponent, NavComponent ] // TranslateModule
 })
 export class CoreModule {
 
-  constructor( @Optional() @SkipSelf() parentModule: CoreModule,
-               private translate: TranslateService,
-               private logger: LoggerService) {
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule,
+              private translate: TranslateService,
+              private logger: LoggerService) {
 
     this.logger.info('Core Module initialised');
 

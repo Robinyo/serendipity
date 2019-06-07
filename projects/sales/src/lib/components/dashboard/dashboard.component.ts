@@ -1,157 +1,65 @@
+// import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
-import {
-  single,
-  multi,
-  bubble,
-  generateData,
-  generateGraph,
-  treemap,
-  timelineFilterBarData,
-  fiscalYearReport
-} from './data';
+import { CompactType, DisplayGrid, GridsterConfig, GridsterItem, GridType } from 'angular-gridster2';
 
-const accounts = [
-  {
-    'name': 'Accounts',
-    'value': 1001
-  }
-];
-
-const contacts = [
-  {
-    'name': 'Contacts',
-    'value': 2002
-  }
-];
-
-const leads = [
-  {
-    'name': 'Leads',
-    'value': 3003
-  }
-];
-
-const opportunities = [
-  {
-    'name': 'Opportunities',
-    'value': 4004
-  }
-];
+import { LoggerService } from 'utils';
 
 @Component({
   selector: 'sales-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
+  // changeDetection: ChangeDetectionStrategy.OnPush,
+  // encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
 
-  accounts: any[];
-  contacts: any[];
-  leads: any[];
-  opportunities: any[];
+  public options: GridsterConfig;
+  public items: Array<GridsterItem>;
 
-  smallView: any[] = [322, 200];
-  largeView: any[] = [644, 400];
-
-  // '#647c8a', '#3f51b5', '#2196f3', '#00b862', '#afdf0a', '#a7b61a', '#f3e562', '#ff9800', '#ff5722', '#ff4514'
-
-  accountsColorScheme = {
-    domain: ['#2196f3']  // #2196F3
-  };
-
-  contactsColorScheme = {
-    domain: ['#03A9F4']  // #03A9F4
-  };
-
-  leadsColorScheme = {
-    domain: ['#00b862']  // #4CAF50
-  };
-
-  opportunitiesColorScheme = {
-    domain: ['#afdf0a']  // #8BC34A
-  };
-
-  single: any[];
-  schemeType = 'ordinal';
-
-  // Options
-  animations = true;
-  gradient = false;
-  showXAxis = true;
-  showXAxisLabel = true;
-  yAxisLabel = 'Country';
-  showYAxis = true;
-  showYAxisLabel = true;
-  xAxisLabel = 'GDP Per Capita';
-
-  showLegend = false;
-  legendTitle = 'Legend';
-  legendPosition = 'right';
-
-  tooltipDisabled = false;
-  showGridLines = true;
-  barPadding = 8;
-  roundDomains = false;
-  roundEdges = true;
-  xScaleMax: any;
-  showDataLabel = false;
-
-  constructor() {
-
-    Object.assign(this, {
-      accounts,
-      contacts,
-      leads,
-      opportunities
-    });
-
-    Object.assign(this, {
-      single
-    });
-
-  }
+  constructor(private logger: LoggerService) {}
 
   ngOnInit() {
-  }
 
-  onSelect(event) {
+    this.logger.info('DashboardComponent: ngOnInit()');
+
+    // See: https://github.com/tiberiuzuld/angular-gridster2/blob/master/projects/angular-gridster2/src/lib/gridsterConfig.constant.ts
+
+    this.options = {
+      // itemChangeCallback: LayoutComponent.itemChange,
+      // itemResizeCallback: LayoutComponent.itemResize,
+      minCols: 6,
+      maxCols: 12,
+      minRows: 8,
+      maxRows: 12,
+      draggable: {
+        enabled: true
+      },
+      pushItems: true,
+      resizable: {
+        enabled: true
+      }
+    };
+
+    this.items = [
+      {cols: 2, rows: 2, y: 0, x: 0},
+
+      {cols: 2, rows: 1, y: 0, x: 2},
+      {cols: 2, rows: 1, y: 1, x: 2},
+
+      {cols: 2, rows: 1, y: 0, x: 4},
+      {cols: 2, rows: 1, y: 1, x: 4}
+    ];
+
   }
 
 }
 
-// https://github.com/swimlane/ngx-charts/blob/master/demo/app.component.ts
-
-// https://en.wikipedia.org/wiki/Golden_ratio -> 1.61803398875
-
-// https://material.io/design/color/the-color-system.html#tools-for-picking-colors
-
 /*
 
-    Object.assign(this, {
-      single,
-      multi,
-      countries,
-      chartGroups,
-      colorSets,
-      graph: generateGraph(50),
-      bubble,
-      plotData: this.generatePlotData(),
-      treemap,
-      fiscalYearReport
-    });
-
-const single = [
-  {
-    'name': 'Accounts',
-    'value': 1000001
-  }
-];
-
-  // https://github.com/angular/material2/blob/master/src/lib/core/theming/_palette.scss
-
-  colorScheme = {
-    domain: ['#ff5722']  // domain: ['#5AA454', '#A10A28', '#C7B42C']
-  };
+    this.items = [
+      {cols: 1, rows: 1, y: 0, x: 0},
+      {cols: 1, rows: 1, y: 0, x: 1}
+    ];
 
 */

@@ -69,6 +69,12 @@ docker container stop flowable
 docker container stop flowable-rest
 ```
 
+Where is your image? It’s in your machine’s local Docker image registry:
+
+```
+docker image ls
+```
+
 During **development** we can use the [proxying](https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md) support in webpack's dev server to highjack certain URIs and send them to a backend server:
 
 ```

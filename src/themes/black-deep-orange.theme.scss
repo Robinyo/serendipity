@@ -148,6 +148,18 @@ body {
   // text-align: center;
 }
 
+.crm-dashboard-container {
+  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
+  // 64 + 56 + 96
+  height: calc(100vh - 216px);
+
+  @media ($mat-xsmall) {
+    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
+    // 56 + 0 + 84
+    height: calc(100vh - 140px);
+  }
+}
+
 .crm-table-container {
   margin-left: 32px;
   margin-right: 32px;

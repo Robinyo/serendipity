@@ -48,6 +48,12 @@ import { SerendipityComponentsModule } from 'serendipity-components';
 import { DynamicFormsModule } from 'dynamic-forms';
 
 //
+// Dynamic Forms lib
+//
+
+import { GridsterModule } from 'angular-gridster2';
+
+//
 // LibRoutingModule: https://angular.io/guide/router#routing-module-order
 //
 
@@ -59,6 +65,7 @@ import { LibRoutingModule } from './lib-routing.module';
     CommonModule,
     FlexLayoutModule,
     FlowableModule,
+    GridsterModule,
     // HttpClientModule,
     ReactiveFormsModule,
 
