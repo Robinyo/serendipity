@@ -29,9 +29,9 @@ export class DashboardComponent implements OnInit {
       // itemChangeCallback: LayoutComponent.itemChange,
       // itemResizeCallback: LayoutComponent.itemResize,
       minCols: 6,
-      maxCols: 12,
-      minRows: 8,
-      maxRows: 12,
+      maxCols: 6,
+      minRows: 2,
+      maxRows: 2,
       draggable: {
         enabled: true
       },
