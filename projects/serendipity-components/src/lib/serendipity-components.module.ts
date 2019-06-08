@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularMaterialModule } from './shared/angular-material.module';
 
 import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-dialog.component';
+import { CommandBarComponent } from './components/command-bar/command-bar.component';
 
 //
 // Utils lib
@@ -14,8 +15,6 @@ import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-di
 import { UtilsModule } from 'utils';
 import { LoggerService } from 'utils';
 import { ConsoleLoggerService } from 'utils';
-
-import { CommandBarComponent } from './components/command-bar/command-bar.component';
 
 @NgModule({
   imports: [

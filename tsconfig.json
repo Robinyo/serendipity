@@ -59,6 +59,12 @@
       ],
       "auth/*": [
         "dist/auth/*"
+      ],
+      "dashboard": [
+        "dist/dashboard"
+      ],
+      "dashboard/*": [
+        "dist/dashboard/*"
       ]
     }
   }

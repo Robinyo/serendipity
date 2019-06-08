@@ -19,7 +19,6 @@ export class StaticInjectorService {
   }
 
   static setInjector(injector: Injector) {
-
     StaticInjectorService.injector = injector;
   }
 

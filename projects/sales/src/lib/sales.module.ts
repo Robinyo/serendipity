@@ -1,6 +1,5 @@
 import { Injector, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { TranslateModule } from '@ngx-translate/core';
@@ -8,8 +7,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AngularMaterialModule } from './shared/angular-material.module';
-
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { AccountsComponent } from './components/accounts/accounts.component';
 import { ActivitiesComponent } from './components/activities/activities.component';
@@ -42,16 +39,16 @@ import { FlowableModule } from 'flowable';
 import { SerendipityComponentsModule } from 'serendipity-components';
 
 //
+// Dashboard lib
+//
+
+import { DashboardModule } from 'dashboard';
+
+//
 // Dynamic Forms lib
 //
 
 import { DynamicFormsModule } from 'dynamic-forms';
-
-//
-// Dynamic Forms lib
-//
-
-import { GridsterModule } from 'angular-gridster2';
 
 //
 // LibRoutingModule: https://angular.io/guide/router#routing-module-order
@@ -63,15 +60,13 @@ import { LibRoutingModule } from './lib-routing.module';
   imports: [
     AngularMaterialModule,
     CommonModule,
+    DashboardModule,
     FlexLayoutModule,
     FlowableModule,
-    GridsterModule,
     // HttpClientModule,
     ReactiveFormsModule,
 
     HttpClientInMemoryWebApiModule.forFeature(InMemoryDataService, { passThruUnknownUrl: true, delay: 1000 }),
-
-    NgxChartsModule,
 
     TranslateModule.forChild(),
 

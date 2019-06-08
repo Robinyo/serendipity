@@ -1,10 +1,6 @@
-// import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
-import { CompactType, DisplayGrid, GridsterConfig, GridsterItem, GridType } from 'angular-gridster2';
-
-// import { ContactsService } from '../../services/contacts/contacts.service';
-import { DashboardItem } from '../../shared/dashboard.models';
+import { DashboardConfig, DashboardItem } from 'dashboard';
 
 import { LoggerService } from 'utils';
 
@@ -12,13 +8,10 @@ import { LoggerService } from 'utils';
   selector: 'sales-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
-  // changeDetection: ChangeDetectionStrategy.OnPush,
-  // encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
 
-  public options: GridsterConfig;
-  // public items: Array<GridsterItem>;
+  public options: DashboardConfig;
   public items: DashboardItem[] = [];
 
   constructor(private logger: LoggerService) {}
@@ -26,8 +19,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
 
     this.logger.info('DashboardComponent: ngOnInit()');
-
-    // See: https://github.com/tiberiuzuld/angular-gridster2/blob/master/projects/angular-gridster2/src/lib/gridsterConfig.constant.ts
 
     this.options = {
       // itemChangeCallback: LayoutComponent.itemChange,
@@ -66,6 +57,9 @@ Opportunity Pipeline by Sales Stage
 
 number-card
 bar-horizontal
+
+  // public options: GridsterConfig;
+  // public items: Array<GridsterItem>;
 
   public items: Array<GridsterItem>;
 

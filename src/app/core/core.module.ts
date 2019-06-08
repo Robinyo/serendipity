@@ -63,6 +63,7 @@ import { SalesModule } from 'sales';
 @NgModule({
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
+    // The Angular Material module must be imported after Angular's BrowserModule, as the import order matters for NgModules.
     AngularMaterialModule,
     BrowserAnimationsModule,
     AuthModule,

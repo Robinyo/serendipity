@@ -1,10 +1,13 @@
 // import { CompactType, DisplayGrid, GridsterConfig, GridsterItem, GridType } from 'angular-gridster2';
 
-import { GridsterItem } from 'angular-gridster2';
+import { GridsterConfig, GridsterItem } from 'angular-gridster2';
 
 // https://google.github.io/styleguide/jsoncstyleguide.xml
 
-// https://github.com/tiberiuzuld/angular-gridster2/blob/v7.2.0/projects/angular-gridster2/src/lib/gridsterItem.interface.ts
+// tslint:disable-next-line:no-empty-interface
+export interface DashboardConfig extends GridsterConfig {
+
+}
 
 export interface DashboardItem extends GridsterItem {
 
@@ -33,3 +36,5 @@ export interface DashboardItem extends GridsterItem {
   name?: string;
 
 }
+
+// https://github.com/tiberiuzuld/angular-gridster2/blob/v7.2.0/projects/angular-gridster2/src/lib/gridsterItem.interface.ts
