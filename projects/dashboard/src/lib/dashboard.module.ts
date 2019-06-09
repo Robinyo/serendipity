@@ -1,22 +1,29 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { GridsterModule } from 'angular-gridster2';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+
+//
+// Dashboard Widgets lib
+//
+
+import { DynamicModule } from 'ng-dynamic-component';
+import { DashboardWidgetsModule, NumberCardComponent } from 'dashboard-widgets';
 
 //
 // Utils lib
 //
 
-import { UtilsModule } from 'utils';
-import { LoggerService } from 'utils';
-import { ConsoleLoggerService } from 'utils';
+import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
 
 @NgModule({
   imports: [
+    CommonModule,
+    DashboardWidgetsModule,
+    DynamicModule.withComponents([NumberCardComponent]),
     GridsterModule,
-    NgxChartsModule,
     UtilsModule
   ],
   declarations: [ DashboardComponent ],

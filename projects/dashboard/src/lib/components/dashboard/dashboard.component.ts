@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import { NumberCardComponent } from 'dashboard-widgets';
+
 import { DashboardConfig, DashboardItem } from '../../models/models';
 
 import { LoggerService } from 'utils';
@@ -10,9 +12,9 @@ import { LoggerService } from 'utils';
   template: `
     <gridster [options]="options">
 
-      <gridster-item [item]="item" *ngFor="let item of items">
+      <gridster-item *ngFor="let item of items" [item]="item">
 
-        <p>{{item.name}}</p>
+        <ndc-dynamic [ndcDynamicComponent]=component></ndc-dynamic>
 
       </gridster-item>
 
@@ -27,6 +29,8 @@ export class DashboardComponent implements OnInit {
   @Input() options: DashboardConfig;
   @Input() items: DashboardItem[];
 
+  component = NumberCardComponent;
+
   constructor(private logger: LoggerService) {}
 
   public ngOnInit() {
@@ -36,6 +40,22 @@ export class DashboardComponent implements OnInit {
 }
 
 /*
+
+        <div style="display: flex; align-items: stretch; width: 100%; height: 100%;">
+          <ndc-dynamic [ndcDynamicComponent]=component></ndc-dynamic>
+        </div>
+
+        <div style="width: 100%; height: 100%; background-color: #2196f3;">
+          <ndc-dynamic [ndcDynamicComponent]=component></ndc-dynamic>
+        </div>
+
+        <div style="width: 100%; height: 100%">
+          <ndc-dynamic [ndcDynamicComponent]=component></ndc-dynamic>
+        </div>
+
+  <p>{{item.name}}</p>
+
+  <ndc-dynamic class="no-drag" [ndcDynamicComponent]="item.component" (moduleInfo)="display($event)"></ndc-dynamic>
 
   <ng-content> </ng-content>
 

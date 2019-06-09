@@ -103,8 +103,8 @@ npm install
 
 ng build utils && \
 ng build auth && \
-ng build dashboard && \
 ng build dashboard-widgets && \
+ng build dashboard && \
 ng build serendipity-components && \
 ng build dynamic-forms && \
 ng build flowable && \

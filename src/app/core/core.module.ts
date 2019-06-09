@@ -1,6 +1,5 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -10,9 +9,6 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
-
-// import { MAT_DATE_LOCALE } from '@angular/material';
-// import { AngularMaterialModule } from '@app/shared/angular-material.module';
 
 import { PlaceholderComponent } from './components/placeholder/placeholder.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
