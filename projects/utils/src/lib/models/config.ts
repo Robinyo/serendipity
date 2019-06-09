@@ -1,6 +1,6 @@
-// See: environment.ts
+// See: src/environment.ts
 
-export interface UtilsConfig {
+export interface Config {
 
   production: boolean;
 

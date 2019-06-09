@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
-import { UtilsConfig } from './shared/models';
+import { UtilsConfig } from './models/models';
 import { UtilsConfigService } from './services/config.service';
 
 import { StaticInjectorService } from './services/injector/static-injector.service';

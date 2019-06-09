@@ -5,7 +5,7 @@ import { Subscription} from 'rxjs';
 import { LoggerService } from 'utils';
 import { StaticInjectorService } from 'utils';
 
-import { FAKE_ITEMS_LENGTH } from '../../shared/constants';
+import { FAKE_ITEMS_LENGTH } from '../../models/constants';
 
 //
 // No Annotations - see: https://medium.com/@ttemplier/angular2-decorators-and-class-inheritance-905921dbd1b7#.c60rva7jo

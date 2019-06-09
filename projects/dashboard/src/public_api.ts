@@ -3,6 +3,7 @@
  */
 
 export * from './lib/components/dashboard/dashboard.component';
-export * from './lib/dashboard.module';
 
 export * from './lib/models/models';
+
+export * from './lib/dashboard.module';

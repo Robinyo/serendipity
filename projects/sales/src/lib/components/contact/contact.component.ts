@@ -11,9 +11,9 @@ import { MatSnackBar } from '@angular/material';
 import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
 import { ContactsService } from '../../services/contacts/contacts.service';
-import { Contact } from '../../shared/models';
+import { Contact } from '../../models/models';
 
-import { GENERAL_INFORMATION_GROUP, ADDRESS_INFORMATION_GROUP } from '../../shared/form-ids';
+import { GENERAL_INFORMATION_GROUP, ADDRESS_INFORMATION_GROUP } from '../../models/form-ids';
 
 import { LoggerService } from 'utils';
 
@@ -29,7 +29,7 @@ import {
   MARGIN_DESKTOP,
   // MARGIN_MOBILE,
   // MAT_XSMALL
-} from '../../shared/constants';
+} from '../../models/constants';
 
 @Component({
   selector: 'sales-contact',

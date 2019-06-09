@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 
 import { Logger } from './logger';
 
-import { UtilsConfig } from '../../shared/models';
+import { UtilsConfig } from '../../models/models';
 import { UtilsConfigService } from '../config.service';
 
 const noop = (): any => undefined;

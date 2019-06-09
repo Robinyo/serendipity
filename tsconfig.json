@@ -65,6 +65,12 @@
       ],
       "dashboard/*": [
         "dist/dashboard/*"
+      ],
+      "dashboard-widgets": [
+        "dist/dashboard-widgets"
+      ],
+      "dashboard-widgets/*": [
+        "dist/dashboard-widgets/*"
       ]
     }
   }

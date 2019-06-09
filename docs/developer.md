@@ -100,7 +100,16 @@ Go to the project directory, install the project's dependencies and launch the s
 ```
 cd serendipity
 npm install
-ng build utils && ng build auth && ng build serendipity-components && ng build dynamic-forms && ng build flowable && ng build sales
+
+ng build utils && \
+ng build auth && \
+ng build dashboard && \
+ng build dashboard-widgets && \
+ng build serendipity-components && \
+ng build dynamic-forms && \
+ng build flowable && \
+ng build sales
+
 ng serve --proxy-config=proxy.conf.json --open
 ```
 
@@ -133,7 +142,14 @@ Steps to add support for aliases update the "paths" array in the `compilerOption
 To build the project:
 
 ```
-ng build utils && ng build auth && ng build dashboard && ng build serendipity-components && ng build dynamic-forms && ng build flowable && ng build sales
+ng build utils && \
+ng build auth && \
+ng build dashboard && \
+ng build dashboard-widgets && \
+ng build serendipity-components && \
+ng build dynamic-forms && \
+ng build flowable && \
+ng build sales
 ```
        
 To launch the project:
@@ -161,7 +177,14 @@ npm run version-update -- 1.0.0-beta.1
 To build the project:
 
 ```
-ng build utils && ng build auth && ng build serendipity-components && ng build dynamic-forms && ng build flowable && ng build sales
+ng build utils && \
+ng build auth && \
+ng build dashboard && \
+ng build dashboard-widgets && \
+ng build serendipity-components && \
+ng build dynamic-forms && \
+ng build flowable && \
+ng build sales
 ng build --prod --source-map 
 ```
 

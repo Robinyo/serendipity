@@ -1,6 +1,6 @@
 import { Inject, Injectable, Injector } from '@angular/core';
 
-import { UtilsConfig } from '../../shared/models';
+import { UtilsConfig } from '../../models/models';
 import { UtilsConfigService } from '../config.service';
 
 @Injectable({

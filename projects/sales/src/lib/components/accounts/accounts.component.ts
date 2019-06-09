@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription} from 'rxjs';
 
 import { ContactsService } from '../../services/contacts/contacts.service';
-import { Contact } from '../../shared/models';
+import { Contact } from '../../models/models';
 
 interface PeriodicElement {
   name: string;

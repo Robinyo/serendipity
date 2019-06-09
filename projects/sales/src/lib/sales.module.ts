@@ -6,8 +6,6 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { AngularMaterialModule } from './shared/angular-material.module';
-
 import { AccountsComponent } from './components/accounts/accounts.component';
 import { ActivitiesComponent } from './components/activities/activities.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
@@ -21,10 +19,8 @@ import { InMemoryDataService } from './services/mocks/api/in-memory-data.service
 // Utils lib
 //
 
-import { UtilsModule } from 'utils';
-import { LoggerService } from 'utils';
-import { ConsoleLoggerService } from 'utils';
-import { StaticInjectorService } from 'utils';
+import { UtilsModule, LoggerService, ConsoleLoggerService, StaticInjectorService } from 'utils';
+import { AngularMaterialModule } from 'utils';
 
 //
 // Flowable lib

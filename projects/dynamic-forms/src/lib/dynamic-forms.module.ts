@@ -2,10 +2,8 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { DynamicFormsConfig } from './shared/models';
+import { DynamicFormsConfig } from './models/models';
 import { DynamicFormsConfigService } from './services/config.service';
-
-import { AngularMaterialModule } from './shared/angular-material.module';
 
 import { DynamicControlDirective } from './angular-material/directives/dynamic-control/dynamic-control.directive';
 import { DynamicFormComponent } from './angular-material/containers/dynamic-form/dynamic-form.component';
@@ -17,9 +15,8 @@ import { DynamicInputComponent } from './angular-material/components/dynamic-inp
 // Utils lib
 //
 
-import { UtilsModule } from 'utils';
-import { LoggerService } from 'utils';
-import { ConsoleLoggerService } from 'utils';
+import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
+import { AngularMaterialModule } from 'utils';
 
 @NgModule({
   imports: [

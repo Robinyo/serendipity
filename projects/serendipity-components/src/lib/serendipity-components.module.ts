@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { AngularMaterialModule } from './shared/angular-material.module';
-
 import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-dialog.component';
 import { CommandBarComponent } from './components/command-bar/command-bar.component';
 
@@ -12,9 +10,8 @@ import { CommandBarComponent } from './components/command-bar/command-bar.compon
 // Utils lib
 //
 
-import { UtilsModule } from 'utils';
-import { LoggerService } from 'utils';
-import { ConsoleLoggerService } from 'utils';
+import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
+import { AngularMaterialModule } from 'utils';
 
 @NgModule({
   imports: [

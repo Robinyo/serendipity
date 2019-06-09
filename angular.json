@@ -395,6 +395,41 @@
           }
         }
       }
+    },
+    "dashboard-widgets": {
+      "root": "projects/dashboard-widgets",
+      "sourceRoot": "projects/dashboard-widgets/src",
+      "projectType": "library",
+      "prefix": "widget",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/dashboard-widgets/tsconfig.lib.json",
+            "project": "projects/dashboard-widgets/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/dashboard-widgets/src/test.ts",
+            "tsConfig": "projects/dashboard-widgets/tsconfig.spec.json",
+            "karmaConfig": "projects/dashboard-widgets/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/dashboard-widgets/tsconfig.lib.json",
+              "projects/dashboard-widgets/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "serendipity"

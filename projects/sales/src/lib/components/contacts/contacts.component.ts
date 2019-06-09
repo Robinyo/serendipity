@@ -7,7 +7,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Subscription} from 'rxjs';
 
 import { ContactsService } from '../../services/contacts/contacts.service';
-import { ColumnDef, Contact } from '../../shared/models';
+import { ColumnDef, Contact } from '../../models/models';
 
 import { CollectionComponent } from '../abstract/collection.component';
 
@@ -24,7 +24,7 @@ import {
   MARGIN_DESKTOP,
   MARGIN_MOBILE,
   MAT_XSMALL
-} from '../../shared/constants';
+} from '../../models/constants';
 
 @Component({
   selector: 'sales-contacts',

@@ -11,8 +11,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { MAT_DATE_LOCALE } from '@angular/material';
-import { AngularMaterialModule } from '@app/shared/angular-material.module';
+// import { MAT_DATE_LOCALE } from '@angular/material';
+// import { AngularMaterialModule } from '@app/shared/angular-material.module';
 
 import { PlaceholderComponent } from './components/placeholder/placeholder.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
@@ -38,9 +38,10 @@ import { AngularFireModule } from '@angular/fire';
 // Utils lib
 //
 
-import { UtilsModule } from 'utils';
-import { LoggerService } from 'utils';
-import { ConsoleLoggerService } from 'utils';
+import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
+import { AngularMaterialModule } from 'utils';
+
+import { MAT_DATE_LOCALE } from '@angular/material';
 
 //
 // Auth lib
@@ -121,5 +122,3 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 // https://stackoverflow.com/questions/50860898/angular-6-services-providedin-root-vs-coremodule
-
-// this.logger.info('CoreModule: constructor()');

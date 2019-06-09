@@ -37,6 +37,8 @@ export class DashboardComponent implements OnInit {
 
 /*
 
+  <ng-content> </ng-content>
+
   public options: DashboardConfig;
   public items: DashboardItem[] = [];
 

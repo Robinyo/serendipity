@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators, ValidatorFn } from '@angular/forms'
 
 import { Observable } from 'rxjs';
 
-import { DynamicFormsConfig } from '../../../shared/models';
+import { DynamicFormsConfig } from '../../../models/models';
 import { DynamicFormsConfigService } from '../../../services/config.service';
 
 import { DynamicFormControlModel } from '../../models/dynamic-form-control.model';
