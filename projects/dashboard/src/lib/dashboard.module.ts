@@ -4,13 +4,14 @@ import { CommonModule } from '@angular/common';
 import { GridsterModule } from 'angular-gridster2';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardWidgetComponent } from './components/dashboard-widget/dashboard-widget.component';
 
 //
 // Dashboard Widgets lib
 //
 
 import { DynamicModule } from 'ng-dynamic-component';
-import { DashboardWidgetsModule, NumberCardComponent } from 'dashboard-widgets';
+import { DashboardWidgetsModule, LineChartComponent } from 'dashboard-widgets';
 
 //
 // Utils lib
@@ -22,15 +23,15 @@ import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
   imports: [
     CommonModule,
     DashboardWidgetsModule,
-    DynamicModule.withComponents([NumberCardComponent]),
+    DynamicModule.withComponents([ LineChartComponent ]),
     GridsterModule,
     UtilsModule
   ],
-  declarations: [ DashboardComponent ],
+  declarations: [ DashboardComponent, DashboardWidgetComponent ],
   providers: [
     { provide: LoggerService, useClass: ConsoleLoggerService }
   ],
-  exports: [ DashboardComponent ],
+  exports: [ DashboardComponent, DashboardWidgetComponent ],
   entryComponents: []
 })
 export class DashboardModule {

@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { NumberCardComponent } from 'dashboard-widgets';
+import { DashboardConfig, DashboardItem, DashboardItemComponentInterface } from '../../models/models';
 
-import { DashboardConfig, DashboardItem } from '../../models/models';
+import { LineChartComponent } from 'dashboard-widgets';
 
 import { LoggerService } from 'utils';
 
@@ -12,11 +12,13 @@ import { LoggerService } from 'utils';
   template: `
     <gridster [options]="options">
 
-      <gridster-item *ngFor="let item of items" [item]="item">
+      <ng-container *ngFor="let item of items">
 
-        <ndc-dynamic [ndcDynamicComponent]=component></ndc-dynamic>
+        <gridster-item [item]="item">
+          <ndc-dynamic [ndcDynamicComponent]=widget></ndc-dynamic>
+        </gridster-item>
 
-      </gridster-item>
+      </ng-container>
 
     </gridster>
   `,
@@ -26,18 +28,76 @@ import { LoggerService } from 'utils';
 })
 export class DashboardComponent implements OnInit {
 
-  @Input() options: DashboardConfig;
+  // @Input() options: DashboardConfig;
   @Input() items: DashboardItem[];
 
-  component = NumberCardComponent;
+  public options: DashboardConfig;
+
+  widget = LineChartComponent;
 
   constructor(private logger: LoggerService) {}
 
   public ngOnInit() {
+
     this.logger.info('DashboardComponent: ngOnInit()');
+
+    this.options = {
+      itemResizeCallback: this.itemResize.bind(this),
+      minCols: 4,
+      maxCols: 4,
+      minRows: 4,
+      maxRows: 4,
+      draggable: {
+        enabled: true
+      },
+      pushItems: true,
+      resizable: {
+        enabled: false
+      }
+    };
+
+  }
+
+  public itemResize(item: DashboardItem, itemComponent: DashboardItemComponentInterface): void {
+
+    this.logger.info('DashboardComponent: itemResize()');
+
+    this.logger.info('item: ' + JSON.stringify(item));
+
+    this.logger.info('width: ' + itemComponent.gridster.curWidth);
+    this.logger.info('height: ' + itemComponent.gridster.curHeight);
+    this.logger.info('curColWidth: ' + itemComponent.gridster.curColWidth);
+    this.logger.info('curRowHeight: ' + itemComponent.gridster.curRowHeight);
   }
 
 }
+
+// https://github.com/tiberiuzuld/angular-gridster2/issues/389
+// https://github.com/tiberiuzuld/angular-gridster2/issues/308
+
+/*
+
+        <dashboard-widget [item]="item"> </dashboard-widget>
+*/
+
+/*
+
+
+// this.logger.info('itemComponent: ' + JSON.stringify(itemComponent));
+
+// https://github.com/tiberiuzuld/angular-gridster2/issues/362
+
+(resized)="onResize($event, item)"
+
+
+  public onResize(event: any, item: DashboardItem) {
+
+    this.logger.info('DashboardComponent: onResize()');
+
+    this.logger.info('item: ' + JSON.stringify(item));
+  }
+
+*/
 
 /*
 

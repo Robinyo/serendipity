@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DashboardConfig, DashboardItem } from 'dashboard';
+// import { DashboardConfig, DashboardItem } from 'dashboard';
+import { DashboardItem } from 'dashboard';
 
 import { LoggerService } from 'utils';
 
@@ -11,7 +12,7 @@ import { LoggerService } from 'utils';
 })
 export class DashboardComponent implements OnInit {
 
-  public options: DashboardConfig;
+  // public options: DashboardConfig;
   public items: DashboardItem[] = [];
 
   constructor(private logger: LoggerService) {}
@@ -20,6 +21,7 @@ export class DashboardComponent implements OnInit {
 
     this.logger.info('DashboardComponent: ngOnInit()');
 
+    /*
     this.options = {
       // itemChangeCallback: LayoutComponent.itemChange,
       // itemResizeCallback: LayoutComponent.itemResize,
@@ -35,12 +37,12 @@ export class DashboardComponent implements OnInit {
         enabled: true
       }
     };
+    */
+
+    // Y increases downwards, X increases to the right :)
 
     this.items = [
-      {cols: 1, rows: 1, y: 0, x: 0, name: 'Accounts' },
-      {cols: 2, rows: 2, y: 2, x: 0, name: 'Opportunities' },
-      {cols: 1, rows: 1, y: 0, x: 1, name: 'Contacts' },
-      {cols: 2, rows: 2, y: 2, x: 0, name: 'Leads' },
+      { x: 0, y: 0, rows: 2, cols: 2, name: 'Accounts' }
     ];
 
   }
@@ -48,6 +50,16 @@ export class DashboardComponent implements OnInit {
 }
 
 /*
+
+    this.items = [
+      { x: 0, y: 0, rows: 2, cols: 2, name: 'Accounts' },
+      { x: 2, y: 0, rows: 2, cols: 2, name: 'Contacts' }
+    ];
+
+      {cols: 1, rows: 1, y: 0, x: 0, name: 'Accounts' },
+      {cols: 2, rows: 2, y: 2, x: 0, name: 'Opportunities' },
+      {cols: 1, rows: 1, y: 0, x: 1, name: 'Contacts' },
+      {cols: 2, rows: 2, y: 2, x: 0, name: 'Leads' },
 
 Open Leads
 Open Opportunities
