@@ -340,7 +340,9 @@ To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Lang
 ## Angular Component Libraries
 
 * GitHub: [flex-layout](https://github.com/angular/flex-layout)
-* GitHub: [ngx-charts](https://github.com/swimlane/ngx-charts)
+* GitHub: [angular-split](https://github.com/bertrandg/angular-split/)
+* GitHub: [angular-gridster2](https://github.com/tiberiuzuld/angular-gridster2)
+* GitHub: [highcharts-angular](https://github.com/highcharts/highcharts-angular)
 
 ## Angular Form Libraries
 
@@ -360,7 +362,6 @@ To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Lang
 * GitHub: [Angular in-memory Web API](https://github.com/angular/in-memory-web-api)
 * GitHub: [json-server](https://github.com/typicode/json-server)
 * GitHub: [Hotel - A simple process manager for developers](https://github.com/typicode/hotel)
-* GitHub: [angular-split](https://github.com/bertrandg/angular-split/)
 
 ## CSS Grid Layout
 
