@@ -45,8 +45,8 @@ export class DashboardComponent implements OnInit {
     // Y increases downwards, X increases to the right :)
 
     this.items = [
-      { x: 0, y: 0, rows: 6, cols: 3, name: 'Open Opportunities', component: 'funnelChart'},
-      { x: 3, y: 0, rows: 6, cols: 3, name: 'All Opportunities', component: 'pieChart'}
+      { x: 0, y: 0, rows: 4, cols: 3, name: 'Open Opportunities', component: 'funnelChart'},
+      { x: 3, y: 0, rows: 4, cols: 3, name: 'All Opportunities', component: 'pieChart'}
     ];
 
   }

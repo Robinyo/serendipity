@@ -160,6 +160,23 @@ body {
   }
 }
 
+:fullscreen .crm-navigation-bar {
+  display: none;
+}
+
+:fullscreen .crm-command-bar {
+  display: none;
+}
+
+:fullscreen .crm-component-title-container {
+  margin-top: 0;
+}
+
+:fullscreen .crm-dashboard-container {
+  // $crm-view-bar-height-desktop
+  height: calc(100vh - 96px);
+}
+
 .crm-table-container {
   margin-left: 32px;
   margin-right: 32px;
