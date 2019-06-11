@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 // import { DashboardConfig, DashboardItem } from 'dashboard';
 import { DashboardItem } from 'dashboard';
 
+import * as screenfull from 'screenfull';
+import {Screenfull} from 'screenfull';
+
 import { LoggerService } from 'utils';
 
 @Component({
@@ -48,7 +51,25 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  //
+  // Command Bar events
+  //
+
+  public onFullscreen() {
+
+    this.logger.info('DashboardComponent: onFullscreen()');
+
+    const sf = <Screenfull>screenfull;
+
+    if (sf.enabled) {
+      sf.toggle();
+    }
+
+  }
+
 }
+
+// https://github.com/sindresorhus/screenfull.js/issues/126
 
 /*
 

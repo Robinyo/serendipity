@@ -42,6 +42,7 @@
     "highcharts-angular": "^2.4.0",
     "ng-dynamic-component": "^4.0.3",
     "rxjs": "~6.3.3",
+    "screenfull": "^4.2.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
