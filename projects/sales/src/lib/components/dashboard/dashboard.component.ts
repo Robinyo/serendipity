@@ -3,8 +3,10 @@ import { Component, OnInit } from '@angular/core';
 // import { DashboardConfig, DashboardItem } from 'dashboard';
 import { DashboardItem } from 'dashboard';
 
+import { DashboardWidgetService } from 'dashboard-widgets';
+
 import * as screenfull from 'screenfull';
-import {Screenfull} from 'screenfull';
+import { Screenfull } from 'screenfull';
 
 import { LoggerService } from 'utils';
 
@@ -18,7 +20,8 @@ export class DashboardComponent implements OnInit {
   // public options: DashboardConfig;
   public items: DashboardItem[] = [];
 
-  constructor(private logger: LoggerService) {}
+  constructor(private dashboardWidgetService: DashboardWidgetService,
+              private logger: LoggerService) {}
 
   ngOnInit() {
 
@@ -62,7 +65,13 @@ export class DashboardComponent implements OnInit {
     const sf = <Screenfull>screenfull;
 
     if (sf.enabled) {
+
       sf.toggle();
+
+      setTimeout(() => {
+        this.dashboardWidgetService.reflowWidgets();
+        }, 1000);
+
     }
 
   }

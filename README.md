@@ -48,7 +48,7 @@ Contact:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/contact.png">
 </p>
 
-Dashboard:
+Dashboards:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/sales-activity-dashboard.png">

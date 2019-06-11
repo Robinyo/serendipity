@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DashboardConfig, DashboardItem, DashboardItemComponentInterface } from '../../models/models';
 
 import { FunnelChartComponent, PieChartComponent } from 'dashboard-widgets';
-import { HighchartsService } from 'dashboard-widgets';
+import { DashboardWidgetService } from 'dashboard-widgets';
 
 import { LoggerService } from 'utils';
 
@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
     pieChart: PieChartComponent
   };
 
-  constructor(private dashboardWidgetsService: HighchartsService,
+  constructor(private dashboardWidgetService: DashboardWidgetService,
               private logger: LoggerService) {}
 
   public ngOnInit() {
@@ -96,7 +96,7 @@ export class DashboardComponent implements OnInit {
 
     this.logger.info('DashboardComponent: itemResize()');
 
-    this.dashboardWidgetsService.reflowWidgets();
+    this.dashboardWidgetService.reflowWidgets();
   }
 
 }
