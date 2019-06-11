@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { DashboardConfig, DashboardItem, DashboardItemComponentInterface } from '../../models/models';
 
-import { LineChartComponent } from 'dashboard-widgets';
+import { FunnelChartComponent, HighchartsService } from 'dashboard-widgets';
 
 import { LoggerService } from 'utils';
 
@@ -12,7 +12,9 @@ import { LoggerService } from 'utils';
   template: `
     <gridster [options]="options">
 
-      <ng-container *ngFor="let item of items">
+    <!-- <gridster [options]="options" style="background-color: transparent;"> -->
+
+      <ng-container *ngFor="let item of items" style="overflow: hidden;">
 
         <gridster-item [item]="item">
           <ndc-dynamic [ndcDynamicComponent]=widget></ndc-dynamic>
@@ -33,9 +35,10 @@ export class DashboardComponent implements OnInit {
 
   public options: DashboardConfig;
 
-  widget = LineChartComponent;
+  widget = FunnelChartComponent;
 
-  constructor(private logger: LoggerService) {}
+  constructor(private dashboardWidgetService: HighchartsService,
+              private logger: LoggerService) {}
 
   public ngOnInit() {
 
@@ -43,10 +46,36 @@ export class DashboardComponent implements OnInit {
 
     this.options = {
       itemResizeCallback: this.itemResize.bind(this),
+      gridType: 'fit',
+      // enableEmptyCellDrop: true,
+      // emptyCellDropCallback: this.onDrop,
+      pushItems: true,
+      swap: true,
+      pushDirections: { north: true, east: true, south: true, west: true },
+      resizable: { enabled: true },
+      // itemChangeCallback: this.itemChange.bind(this),
+      draggable: {
+        enabled: true,
+        // ignoreContent: true,
+        // dropOverItems: true,
+        // dragHandleClass: 'drag-handler',
+        // ignoreContentClass: 'no-drag',
+      },
+      // displayGrid: 'always',
+      minCols: 6,
+      maxCols: 6,
+      minRows: 6,
+      maxRows: 6,
+    };
+
+    /*
+
+    this.options = {
+      itemResizeCallback: this.itemResize.bind(this),
       minCols: 4,
       maxCols: 4,
-      minRows: 4,
-      maxRows: 4,
+      minRows: 2,
+      maxRows: 2,
       draggable: {
         enabled: true
       },
@@ -56,26 +85,46 @@ export class DashboardComponent implements OnInit {
       }
     };
 
+    */
+
   }
 
   public itemResize(item: DashboardItem, itemComponent: DashboardItemComponentInterface): void {
 
     this.logger.info('DashboardComponent: itemResize()');
 
-    this.logger.info('item: ' + JSON.stringify(item));
+    // this.logger.info('item: ' + JSON.stringify(item));
+    // this.logger.info('itemComponent: ' + JSON.stringify(itemComponent.item));
 
-    this.logger.info('width: ' + itemComponent.gridster.curWidth);
-    this.logger.info('height: ' + itemComponent.gridster.curHeight);
-    this.logger.info('curColWidth: ' + itemComponent.gridster.curColWidth);
-    this.logger.info('curRowHeight: ' + itemComponent.gridster.curRowHeight);
+    // this.items[0].rows = item.rows;
+    // this.items[0].cols = item.cols;
+
+    this.dashboardWidgetService.reflowWidgets();
   }
 
 }
+
+// https://github.com/highcharts/highcharts/issues/6427 -> style="overflow: hidden;"
+
+/*
+
+    this.logger.info('top: ' + itemComponent.top);
+    this.logger.info('left: ' + itemComponent.left);
+
+    this.logger.info('width: ' + itemComponent.width);
+    this.logger.info('height: ' + itemComponent.height);
+
+*/
 
 // https://github.com/tiberiuzuld/angular-gridster2/issues/389
 // https://github.com/tiberiuzuld/angular-gridster2/issues/308
 
 /*
+
+    this.logger.info('width: ' + itemComponent.gridster.curWidth);
+    this.logger.info('height: ' + itemComponent.gridster.curHeight);
+    this.logger.info('curColWidth: ' + itemComponent.gridster.curColWidth);
+    this.logger.info('curRowHeight: ' + itemComponent.gridster.curRowHeight);
 
         <dashboard-widget [item]="item"> </dashboard-widget>
 */

@@ -1,32 +1,24 @@
 import { NgModule } from '@angular/core';
 
-import { ChartModule } from 'angular-highcharts';
-import { LineChartComponent } from './angular-highcharts/components/line-chart/line-chart.component';
-
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { NumberCardComponent } from './ngx-charts/components/number-card/number-card.component';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 //
 // Utils lib
 //
 
 import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
+import { FunnelChartComponent } from './highcharts-angular/components/funnel-chart/funnel-chart.component';
 
 @NgModule({
   imports: [
-    ChartModule,
-    NgxChartsModule,
+    HighchartsChartModule,
     UtilsModule
   ],
-  declarations: [
-    NumberCardComponent,
-    LineChartComponent ],
+  declarations: [ FunnelChartComponent ],
   providers: [
     { provide: LoggerService, useClass: ConsoleLoggerService }
   ],
-  exports: [
-    NumberCardComponent,
-    LineChartComponent ],
+  exports: [ FunnelChartComponent ],
   entryComponents: []
 })
 export class DashboardWidgetsModule {
@@ -37,3 +29,24 @@ export class DashboardWidgetsModule {
   }
 
 }
+
+/*
+
+// import { ChartModule } from 'angular-highcharts';
+// import { LineChartComponent } from './angular-highcharts/components/line-chart/line-chart.component';
+
+// import { NgxChartsModule } from '@swimlane/ngx-charts';
+// import { NumberCardComponent } from './ngx-charts/components/number-card/number-card.component';
+
+    // ChartModule,
+    // NgxChartsModule,
+
+  declarations: [
+    NumberCardComponent,
+    LineChartComponent ],
+
+  exports: [
+    NumberCardComponent,
+    LineChartComponent ],
+
+*/
