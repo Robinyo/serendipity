@@ -48,10 +48,16 @@ Contact:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/contact.png">
 </p>
 
-Dashboards:
+Sales Activity Dashboard:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/sales-activity-dashboard.png">
+</p>
+
+Sales Activity Dashboard - Fullscreen:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/sales-activity-dashboard-fullscreen.png">
 </p>
 
 Serendipity is a [progressive web application](https://developers.google.com/web/progressive-web-apps/) (PWA) with a RESTful API that can be hosted on premise or in the cloud.
