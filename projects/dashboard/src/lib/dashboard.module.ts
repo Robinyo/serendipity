@@ -10,7 +10,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 //
 
 import { DynamicModule } from 'ng-dynamic-component';
-import { DashboardWidgetsModule, FunnelChartComponent } from 'dashboard-widgets';
+import { DashboardWidgetsModule, FunnelChartComponent, PieChartComponent } from 'dashboard-widgets';
 
 //
 // Utils lib
@@ -22,7 +22,7 @@ import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
   imports: [
     CommonModule,
     DashboardWidgetsModule,
-    DynamicModule.withComponents([ FunnelChartComponent ]),
+    DynamicModule.withComponents([ FunnelChartComponent, PieChartComponent ]),
     GridsterModule,
     UtilsModule
   ],

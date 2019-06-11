@@ -12,7 +12,12 @@ export class HighchartsService {
   public reflowWidgets() {
 
     Highcharts.charts.forEach(chart => {
-      chart.reflow();
+
+      // ERROR TypeError: Cannot read property 'reflow' of undefined
+      if (chart) {
+        chart.reflow();
+      }
+
     });
 
   }

@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { DashboardConfig, DashboardItem, DashboardItemComponentInterface } from '../../models/models';
 
-import { FunnelChartComponent, HighchartsService } from 'dashboard-widgets';
+import { FunnelChartComponent, PieChartComponent } from 'dashboard-widgets';
+import { HighchartsService } from 'dashboard-widgets';
 
 import { LoggerService } from 'utils';
 
@@ -10,14 +11,14 @@ import { LoggerService } from 'utils';
   // tslint:disable-next-line:component-selector
   selector: 'dashboard',
   template: `
-    <gridster [options]="options">
+    <gridster [options]="options" style="background-color: transparent;">
 
     <!-- <gridster [options]="options" style="background-color: transparent;"> -->
 
       <ng-container *ngFor="let item of items" style="overflow: hidden;">
 
         <gridster-item [item]="item">
-          <ndc-dynamic [ndcDynamicComponent]=widget></ndc-dynamic>
+          <ndc-dynamic [ndcDynamicComponent]=components[item.component]></ndc-dynamic>
         </gridster-item>
 
       </ng-container>
@@ -32,10 +33,12 @@ export class DashboardComponent implements OnInit {
 
   // @Input() options: DashboardConfig;
   @Input() items: DashboardItem[];
-
   public options: DashboardConfig;
 
-  widget = FunnelChartComponent;
+  public components = {
+    funnelChart: FunnelChartComponent,
+    pieChart: PieChartComponent
+  };
 
   constructor(private dashboardWidgetsService: HighchartsService,
               private logger: LoggerService) {}
@@ -93,12 +96,6 @@ export class DashboardComponent implements OnInit {
 
     this.logger.info('DashboardComponent: itemResize()');
 
-    // this.logger.info('item: ' + JSON.stringify(item));
-    // this.logger.info('itemComponent: ' + JSON.stringify(itemComponent.item));
-
-    // this.items[0].rows = item.rows;
-    // this.items[0].cols = item.cols;
-
     this.dashboardWidgetsService.reflowWidgets();
   }
 
@@ -107,6 +104,12 @@ export class DashboardComponent implements OnInit {
 // https://github.com/highcharts/highcharts/issues/6427 -> style="overflow: hidden;"
 
 /*
+
+    // this.logger.info('item: ' + JSON.stringify(item));
+    // this.logger.info('itemComponent: ' + JSON.stringify(itemComponent.item));
+
+    // this.items[0].rows = item.rows;
+    // this.items[0].cols = item.cols;
 
     this.logger.info('top: ' + itemComponent.top);
     this.logger.info('left: ' + itemComponent.left);

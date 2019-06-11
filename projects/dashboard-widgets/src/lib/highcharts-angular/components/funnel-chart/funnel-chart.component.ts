@@ -87,15 +87,3 @@ export class FunnelChartComponent implements OnInit {
 }
 
 // https://github.com/highcharts/highcharts-angular
-
-/*
-
-  chartOptions: Highcharts.Options = {
-    series: [{
-      data: [1, 2, 3],
-      type: 'funnel'
-    }]
-  };
-
-
-*/

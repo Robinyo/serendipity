@@ -2,23 +2,25 @@ import { NgModule } from '@angular/core';
 
 import { HighchartsChartModule } from 'highcharts-angular';
 
+import { FunnelChartComponent } from './highcharts-angular/components/funnel-chart/funnel-chart.component';
+import { PieChartComponent } from './highcharts-angular/components/pie-chart/pie-chart.component';
+
 //
 // Utils lib
 //
 
 import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
-import { FunnelChartComponent } from './highcharts-angular/components/funnel-chart/funnel-chart.component';
 
 @NgModule({
   imports: [
     HighchartsChartModule,
     UtilsModule
   ],
-  declarations: [ FunnelChartComponent ],
+  declarations: [ FunnelChartComponent, PieChartComponent ],
   providers: [
     { provide: LoggerService, useClass: ConsoleLoggerService }
   ],
-  exports: [ FunnelChartComponent ],
+  exports: [ FunnelChartComponent, PieChartComponent ],
   entryComponents: []
 })
 export class DashboardWidgetsModule {
