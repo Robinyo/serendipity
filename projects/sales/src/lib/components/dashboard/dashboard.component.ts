@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-// import { DashboardConfig, DashboardItem } from 'dashboard';
 import { DashboardItem } from 'dashboard';
-
-import { DashboardWidgetService } from 'dashboard-widgets';
 
 import * as screenfull from 'screenfull';
 import { Screenfull } from 'screenfull';
@@ -20,30 +17,13 @@ export class DashboardComponent implements OnInit {
   // public options: DashboardConfig;
   public items: DashboardItem[] = [];
 
-  constructor(private dashboardWidgetService: DashboardWidgetService,
-              private logger: LoggerService) {}
+  public screenFull = <Screenfull>screenfull;
+
+  constructor(private logger: LoggerService) {}
 
   ngOnInit() {
 
-    this.logger.info('DashboardComponent: ngOnInit()');
-
-    /*
-    this.options = {
-      // itemChangeCallback: LayoutComponent.itemChange,
-      // itemResizeCallback: LayoutComponent.itemResize,
-      minCols: 4,
-      maxCols: 4,
-      minRows: 4,
-      maxRows: 4,
-      draggable: {
-        enabled: true
-      },
-      pushItems: true,
-      resizable: {
-        enabled: true
-      }
-    };
-    */
+    this.logger.info('Sales DashboardComponent: ngOnInit()');
 
     // Y increases downwards, X increases to the right :)
 
@@ -60,17 +40,17 @@ export class DashboardComponent implements OnInit {
 
   public onFullscreen() {
 
-    this.logger.info('DashboardComponent: onFullscreen()');
+    this.logger.info('Sales DashboardComponent: onFullscreen()');
 
-    const sf = <Screenfull>screenfull;
+    if (this.screenFull.enabled) {
 
-    if (sf.enabled) {
+      this.screenFull.toggle();
 
-      sf.toggle();
-
+      /*
       setTimeout(() => {
         this.dashboardWidgetService.reflowWidgets();
-        }, 1000);
+      }, 1000);
+      */
 
     }
 
@@ -81,6 +61,18 @@ export class DashboardComponent implements OnInit {
 // https://github.com/sindresorhus/screenfull.js/issues/126
 
 /*
+
+    const sf = <Screenfull>screenfull;
+
+    if (sf.enabled) {
+
+      sf.toggle();
+
+      setTimeout(() => {
+        this.dashboardWidgetService.reflowWidgets();
+      }, 1000);
+
+    }
 
     this.items = [
       { x: 0, y: 0, rows: 2, cols: 2, name: 'Accounts' },
@@ -121,4 +113,22 @@ bar-horizontal
       {cols: 1, rows: 1, y: 0, x: 1}
     ];
 
+*/
+
+/*
+this.options = {
+  // itemChangeCallback: LayoutComponent.itemChange,
+  // itemResizeCallback: LayoutComponent.itemResize,
+  minCols: 4,
+  maxCols: 4,
+  minRows: 4,
+  maxRows: 4,
+  draggable: {
+    enabled: true
+  },
+  pushItems: true,
+  resizable: {
+    enabled: true
+  }
+};
 */

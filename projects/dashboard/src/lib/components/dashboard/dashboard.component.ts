@@ -5,6 +5,9 @@ import { DashboardConfig, DashboardItem, DashboardItemComponentInterface } from 
 import { FunnelChartComponent, PieChartComponent } from 'dashboard-widgets';
 import { DashboardWidgetService } from 'dashboard-widgets';
 
+import * as screenfull from 'screenfull';
+import { Screenfull } from 'screenfull';
+
 import { LoggerService } from 'utils';
 
 @Component({
@@ -34,6 +37,8 @@ export class DashboardComponent implements OnInit {
   // @Input() options: DashboardConfig;
   @Input() items: DashboardItem[];
   public options: DashboardConfig;
+
+  public screenFull = <Screenfull>screenfull;
 
   public components = {
     funnelChart: FunnelChartComponent,
@@ -89,6 +94,16 @@ export class DashboardComponent implements OnInit {
     };
 
     */
+
+    if (this.screenFull.enabled) {
+
+      this.logger.info('DashboardComponent: Screenfull change handler registered');
+
+      this.screenFull.on('change', () => {
+        this.logger.warn('Am I fullscreen? ' + this.screenFull.isFullscreen ? 'Yes' : 'No');
+        this.dashboardWidgetService.reflowWidgets();
+      });
+    }
 
   }
 
