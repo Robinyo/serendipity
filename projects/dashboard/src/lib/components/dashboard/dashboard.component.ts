@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit {
 
   widget = FunnelChartComponent;
 
-  constructor(private dashboardWidgetService: HighchartsService,
+  constructor(private dashboardWidgetsService: HighchartsService,
               private logger: LoggerService) {}
 
   public ngOnInit() {
@@ -99,7 +99,7 @@ export class DashboardComponent implements OnInit {
     // this.items[0].rows = item.rows;
     // this.items[0].cols = item.cols;
 
-    this.dashboardWidgetService.reflowWidgets();
+    this.dashboardWidgetsService.reflowWidgets();
   }
 
 }
