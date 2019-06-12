@@ -3,7 +3,8 @@
  */
 
 export * from './lib/components/dashboard/dashboard.component';
-// export * from './lib/components/dashboard-widget/dashboard-widget.component';
+
+export * from './lib/services/mocks/dashboard/mock-dashboard.service';
 
 export * from './lib/models/models';
 

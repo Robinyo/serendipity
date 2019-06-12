@@ -1,22 +1,25 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 
-import { DashboardConfig, DashboardItem, DashboardItemComponentInterface } from '../../models/models';
+import { Subscription } from 'rxjs';
+
+import { DashboardConfig, DashboardItemComponentInterface } from '../../models/models';
+import { DashboardWidget } from '../../models/models';
 
 import { FunnelChartComponent, PieChartComponent } from 'dashboard-widgets';
 import { DashboardWidgetService } from 'dashboard-widgets';
 
-import * as screenfull from 'screenfull';
-import { Screenfull } from 'screenfull';
+import { MockDashboardService } from '../../services/mocks/dashboard/mock-dashboard.service';
 
 import { LoggerService } from 'utils';
+
+import * as screenfull from 'screenfull';
+import { Screenfull } from 'screenfull';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'dashboard',
   template: `
     <gridster [options]="options" style="background-color: transparent;">
-
-    <!-- <gridster [options]="options" style="background-color: transparent;"> -->
 
       <ng-container *ngFor="let item of items" style="overflow: hidden;">
 
@@ -32,20 +35,24 @@ import { LoggerService } from 'utils';
   // changeDetection: ChangeDetectionStrategy.OnPush,
   // encapsulation: ViewEncapsulation.None
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
 
-  // @Input() options: DashboardConfig;
-  @Input() items: DashboardItem[];
+  @Input() dashboardId = 1;
+
   public options: DashboardConfig;
+  public items: DashboardWidget[];
 
   public screenFull = <Screenfull>screenfull;
+
+  protected subscription: Subscription;
 
   public components = {
     funnelChart: FunnelChartComponent,
     pieChart: PieChartComponent
   };
 
-  constructor(private dashboardWidgetService: DashboardWidgetService,
+  constructor(private dashboardService: MockDashboardService,
+              private dashboardWidgetService: DashboardWidgetService,
               private logger: LoggerService) {}
 
   public ngOnInit() {
@@ -78,40 +85,63 @@ export class DashboardComponent implements OnInit {
 
     /*
 
-    this.options = {
-      itemResizeCallback: this.itemResize.bind(this),
-      minCols: 4,
-      maxCols: 4,
-      minRows: 2,
-      maxRows: 2,
-      draggable: {
-        enabled: true
-      },
-      pushItems: true,
-      resizable: {
-        enabled: false
-      }
-    };
-
-    */
-
     if (this.screenFull.enabled) {
 
       this.logger.info('DashboardComponent: Screenfull change handler registered');
 
       this.screenFull.on('change', () => {
-        this.logger.warn('Am I fullscreen? ' + this.screenFull.isFullscreen ? 'Yes' : 'No');
-        this.dashboardWidgetService.reflowWidgets();
+        if (this.screenFull.isFullscreen) {
+          this.logger.info('Am I fullscreen? Yes');
+        } else {
+          this.logger.info('Am I fullscreen? No');
+        }
+
+        // this.dashboardWidgetService.reflowWidgets();
       });
+    }
+
+    */
+
+    this.subscribe();
+
+  }
+
+  protected subscribe() {
+
+    this.logger.info('DashboardComponent: subscribe()');
+
+    if (this.dashboardId) {
+
+      this.subscription = this.dashboardService.getDashboard(this.dashboardId).subscribe(data => {
+        this.items = data.widgets;
+
+        // this.logger.info('items: ' + JSON.stringify(this.items));
+      });
+
     }
 
   }
 
-  public itemResize(item: DashboardItem, itemComponent: DashboardItemComponentInterface): void {
+  public itemResize(item: DashboardWidget, itemComponent: DashboardItemComponentInterface): void {
 
     this.logger.info('DashboardComponent: itemResize()');
 
     this.dashboardWidgetService.reflowWidgets();
+  }
+
+  protected unsubscribe() {
+
+    this.logger.info('DashboardComponent: unsubscribe()');
+
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+
+  }
+
+  public ngOnDestroy() {
+    this.logger.info('DashboardComponent: ngOnDestroy()');
+    this.unsubscribe();
   }
 
 }
@@ -119,6 +149,30 @@ export class DashboardComponent implements OnInit {
 // https://github.com/highcharts/highcharts/issues/6427 -> style="overflow: hidden;"
 
 /*
+
+this.logger.info('Am I fullscreen? ' + this.screenFull.isFullscreen ? 'Yes' : 'No');
+
+this.options = {
+  itemResizeCallback: this.itemResize.bind(this),
+  minCols: 4,
+  maxCols: 4,
+  minRows: 2,
+  maxRows: 2,
+  draggable: {
+    enabled: true
+  },
+  pushItems: true,
+  resizable: {
+    enabled: false
+  }
+};
+
+*/
+
+/*
+
+  // @Input() options: DashboardConfig;
+  // @Input() items: DashboardItem[];
 
     // this.logger.info('item: ' + JSON.stringify(item));
     // this.logger.info('itemComponent: ' + JSON.stringify(itemComponent.item));

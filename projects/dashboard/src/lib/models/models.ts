@@ -111,8 +111,9 @@ export interface DashboardItem extends GridsterItem {
 
   */
 
-  component?: any;
+  id?: number;
   name?: string;
+  component?: any;
 
 }
 
@@ -143,6 +144,22 @@ export interface DashboardItemComponentInterface extends GridsterItemComponentIn
   */
 
 }
+
+// tslint:disable-next-line:no-empty-interface
+export interface DashboardWidget extends DashboardItem {
+
+}
+
+export interface Dashboard {
+
+  id?: number;
+  name?: string;
+  widgets?: Array<DashboardWidget>;
+
+}
+
+
+
 
 // https://github.com/tiberiuzuld/angular-gridster2/blob/v7.2.0/projects/angular-gridster2/src/lib/gridsterItem.interface.ts
 

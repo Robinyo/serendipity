@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DashboardItem } from 'dashboard';
+import { DashboardWidgetService } from 'dashboard-widgets';
 
 import * as screenfull from 'screenfull';
 import { Screenfull } from 'screenfull';
@@ -14,23 +14,31 @@ import { LoggerService } from 'utils';
 })
 export class DashboardComponent implements OnInit {
 
-  // public options: DashboardConfig;
-  public items: DashboardItem[] = [];
-
   public screenFull = <Screenfull>screenfull;
 
-  constructor(private logger: LoggerService) {}
+  constructor(private dashboardWidgetService: DashboardWidgetService,
+              private logger: LoggerService) {}
 
   ngOnInit() {
 
     this.logger.info('Sales DashboardComponent: ngOnInit()');
 
-    // Y increases downwards, X increases to the right :)
+    if (this.screenFull.enabled) {
 
-    this.items = [
-      { x: 0, y: 0, rows: 4, cols: 3, name: 'Open Opportunities', component: 'funnelChart'},
-      { x: 3, y: 0, rows: 4, cols: 3, name: 'All Opportunities', component: 'pieChart'}
-    ];
+      this.logger.info('DashboardComponent: Screenfull change handler registered');
+
+      this.screenFull.on('change', () => {
+        if (this.screenFull.isFullscreen) {
+          this.logger.info('Am I fullscreen? Yes');
+        } else {
+          this.logger.info('Am I fullscreen? No');
+        }
+
+        setTimeout(() => {
+          this.dashboardWidgetService.reflowWidgets();
+        }, 750);
+      });
+    }
 
   }
 
@@ -43,15 +51,7 @@ export class DashboardComponent implements OnInit {
     this.logger.info('Sales DashboardComponent: onFullscreen()');
 
     if (this.screenFull.enabled) {
-
       this.screenFull.toggle();
-
-      /*
-      setTimeout(() => {
-        this.dashboardWidgetService.reflowWidgets();
-      }, 1000);
-      */
-
     }
 
   }
@@ -61,6 +61,20 @@ export class DashboardComponent implements OnInit {
 // https://github.com/sindresorhus/screenfull.js/issues/126
 
 /*
+setTimeout(() => {
+  this.dashboardWidgetService.reflowWidgets();
+}, 1000);
+*/
+
+
+/*
+
+    // Y increases downwards, X increases to the right :)
+
+    this.items = [
+      { x: 0, y: 0, rows: 4, cols: 3, name: 'Open Opportunities', component: 'funnelChart'},
+      { x: 3, y: 0, rows: 4, cols: 3, name: 'All Opportunities', component: 'pieChart'}
+    ];
 
     const sf = <Screenfull>screenfull;
 
