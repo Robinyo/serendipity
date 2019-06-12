@@ -110,6 +110,14 @@ body {
   background-color: #f5f5f5;
 }
 
+.crm-command-bar-sidenav {
+  margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
+
+  @media ($mat-xsmall) {
+    margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile;
+  }
+}
+
 .crm-content-container {
   height: 100%;
 }

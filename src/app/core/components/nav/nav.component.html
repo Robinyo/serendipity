@@ -1,6 +1,6 @@
 <mat-sidenav-container>
 
-  <mat-sidenav #sidenav mode="over">
+  <mat-sidenav #navigationSidenav mode="over">
 
     <mat-toolbar>
       <mat-toolbar-row>
@@ -16,7 +16,7 @@
 
       <a *ngFor="let item of myWorkRoutes"
         mat-list-item
-        (click)="sidenav.close()"
+        (click)="navigationSidenav.close()"
         [routerLink]="[item.route]"
         routerLinkActive="list-item-active">
         <mat-icon matListIcon class="app-nav-list-icon"> {{ item.icon }} </mat-icon>
@@ -29,7 +29,7 @@
 
       <a *ngFor="let item of customerRoutes"
         mat-list-item
-        (click)="sidenav.close()"
+        (click)="navigationSidenav.close()"
         [routerLink]="[item.route]"
         routerLinkActive="list-item-active">
         <mat-icon matListIcon class="app-nav-list-icon"> {{ item.icon }} </mat-icon>
@@ -40,8 +40,10 @@
 
   </mat-sidenav>
 
+  <mat-sidenav #commandbarSidenav position="end" mode="side" class="crm-command-bar-sidenav"></mat-sidenav>
+
   <mat-sidenav-content>
-    <crm-navigation-bar *ngIf="isAuthenticated()" (toggleSidenav)="sidenav.toggle()"></crm-navigation-bar>
+    <crm-navigation-bar *ngIf="isAuthenticated()" (toggleSidenav)="navigationSidenav.toggle()"></crm-navigation-bar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 

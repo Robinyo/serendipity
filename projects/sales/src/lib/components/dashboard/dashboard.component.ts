@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { SidenavService } from 'serendipity-components';
+
 import { DashboardWidgetService } from 'dashboard-widgets';
 
 import * as screenfull from 'screenfull';
@@ -16,7 +18,8 @@ export class DashboardComponent implements OnInit {
 
   public screenFull = <Screenfull>screenfull;
 
-  constructor(private dashboardWidgetService: DashboardWidgetService,
+  constructor(private commandBarSidenavService: SidenavService,
+              private dashboardWidgetService: DashboardWidgetService,
               private logger: LoggerService) {}
 
   ngOnInit() {
@@ -46,12 +49,23 @@ export class DashboardComponent implements OnInit {
   // Command Bar events
   //
 
+  public onToggleSidenav() {
+
+    this.logger.info('Sales DashboardComponent: onToggleSidenav()');
+
+    this.commandBarSidenavService.toggle();
+  }
+
   public onFullscreen() {
 
     this.logger.info('Sales DashboardComponent: onFullscreen()');
 
     if (this.screenFull.enabled) {
       this.screenFull.toggle();
+
+      // setTimeout(() => {
+      //   this.dashboardWidgetService.reflowWidgets();
+      // }, 1000);
     }
 
   }

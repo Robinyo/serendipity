@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { MatSidenav } from '@angular/material';
+
+import { SidenavService } from 'serendipity-components';
 
 import { AuthService } from 'auth';
 
@@ -13,7 +17,9 @@ interface ROUTE {
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
+
+  @ViewChild('commandbarSidenav') public sidenav: MatSidenav;
 
   myWorkRoutes: ROUTE[] = [
     {
@@ -47,7 +53,12 @@ export class NavComponent {
     }
   ];
 
-  constructor(private authService: AuthService) {}
+  constructor(private commandBarSidenavService: SidenavService,
+              private authService: AuthService) {}
+
+  public ngOnInit(): void {
+    this.commandBarSidenavService.setSidenav(this.sidenav);
+  }
 
   public isAuthenticated() {
     return this.authService.isAuthenticated();

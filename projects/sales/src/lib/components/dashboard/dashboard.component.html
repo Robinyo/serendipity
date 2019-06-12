@@ -21,10 +21,17 @@
   </button>
 
   <div fxFlex fxLayout fxLayoutAlign="flex-end">
+
+    <button mat-button class="crm-command-bar-button" (click)="onToggleSidenav()">
+      <mat-icon>widgets</mat-icon>
+      WIDGETS
+    </button>
+
     <button mat-button class="crm-command-bar-button" (click)="onFullscreen()">
       <mat-icon>fullscreen</mat-icon>
-      FULLSCREEN
+      FULL SCREEN
     </button>
+
   </div>
 
 </crm-command-bar>
