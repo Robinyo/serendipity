@@ -140,6 +140,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
+
     this.logger.info('DashboardComponent: ngOnDestroy()');
     this.unsubscribe();
   }
@@ -149,6 +150,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 // https://github.com/highcharts/highcharts/issues/6427 -> style="overflow: hidden;"
 
 /*
+
+// this.options.api.optionsChanged();
 
 this.logger.info('Am I fullscreen? ' + this.screenFull.isFullscreen ? 'Yes' : 'No');
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { SidenavService } from 'serendipity-components';
 
@@ -31,11 +31,14 @@ export class DashboardComponent implements OnInit {
       this.logger.info('DashboardComponent: Screenfull change handler registered');
 
       this.screenFull.on('change', () => {
+
         if (this.screenFull.isFullscreen) {
           this.logger.info('Am I fullscreen? Yes');
         } else {
           this.logger.info('Am I fullscreen? No');
         }
+
+        window.dispatchEvent(new Event('resize'));
 
         setTimeout(() => {
           this.dashboardWidgetService.reflowWidgets();
@@ -54,6 +57,14 @@ export class DashboardComponent implements OnInit {
     this.logger.info('Sales DashboardComponent: onToggleSidenav()');
 
     this.commandBarSidenavService.toggle();
+
+    if (this.commandBarSidenavService.isOpen()) {
+      this.logger.info('commandBarSidenav is open');
+    } else {
+      this.logger.info('commandBarSidenav is closed');
+    }
+
+    window.dispatchEvent(new Event('resize'));
   }
 
   public onFullscreen() {
@@ -62,10 +73,6 @@ export class DashboardComponent implements OnInit {
 
     if (this.screenFull.enabled) {
       this.screenFull.toggle();
-
-      // setTimeout(() => {
-      //   this.dashboardWidgetService.reflowWidgets();
-      // }, 1000);
     }
 
   }
@@ -73,6 +80,57 @@ export class DashboardComponent implements OnInit {
 }
 
 // https://github.com/sindresorhus/screenfull.js/issues/126
+
+/*
+
+import {
+  COMMAND_BAR_SIDENAV_WIDTH
+} from '../../models/constants';
+
+  @ViewChild('contentContainer')
+  private contentContainerElementRef: ElementRef;
+
+  public containerWidth: number;
+  public dashboardWidth: number;
+
+
+    this.containerWidth = this.contentContainerElementRef.nativeElement.offsetWidth;
+
+    this.logger.info('containerWidth: ' + this.containerWidth);
+
+  // (window:resize)="onResize($event)
+  public onResize(event) {
+
+    this.containerWidth = event.target.innerWidth;
+    this.logger.info('containerWidth: ' + this.containerWidth);
+
+  }
+
+  public onToggleSidenav() {
+
+    this.logger.info('Sales DashboardComponent: onToggleSidenav()');
+
+    this.commandBarSidenavService.toggle();
+
+    if (this.commandBarSidenavService.isOpen()) {
+
+      this.logger.info('commandBarSidenav is open');
+      this.dashboardWidth = this.containerWidth - COMMAND_BAR_SIDENAV_WIDTH;
+      this.logger.info('dashboardWidth: ' + this.dashboardWidth);
+
+    } else {
+
+      this.logger.info('commandBarSidenav is closed');
+      this.dashboardWidth = this.containerWidth;
+      this.logger.info('dashboardWidth: ' + this.dashboardWidth);
+
+    }
+
+    window.dispatchEvent(new Event('resize'));
+  }
+
+
+*/
 
 /*
 setTimeout(() => {

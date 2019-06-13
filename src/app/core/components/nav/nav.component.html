@@ -1,6 +1,9 @@
-<mat-sidenav-container>
+<crm-navigation-bar *ngIf="isAuthenticated()" (toggleSidenav)="navigationSidenav.toggle()">
+</crm-navigation-bar>
 
-  <mat-sidenav #navigationSidenav mode="over">
+<mat-sidenav-container autosize>
+
+  <mat-sidenav #navigationSidenav mode="over" role="navigation">
 
     <mat-toolbar>
       <mat-toolbar-row>
@@ -40,16 +43,43 @@
 
   </mat-sidenav>
 
-  <mat-sidenav #commandbarSidenav position="end" mode="side" class="crm-command-bar-sidenav"></mat-sidenav>
+  <mat-sidenav #commandbarSidenav position="end" mode="side" class="crm-command-bar-sidenav">
 
-  <mat-sidenav-content>
-    <crm-navigation-bar *ngIf="isAuthenticated()" (toggleSidenav)="navigationSidenav.toggle()"></crm-navigation-bar>
+    <mat-nav-list>
+
+      <a mat-list-item>
+        <mat-icon matListIcon class="app-nav-list-icon"> bar_chart </mat-icon>
+        Bar Chart
+      </a>
+
+      <a mat-list-item>
+        <mat-icon matListIcon class="app-nav-list-icon"> local_bar </mat-icon>
+        Funnel Chart
+      </a>
+
+      <a mat-list-item>
+        <mat-icon matListIcon class="app-nav-list-icon"> pie_chart </mat-icon>
+        Pie Chart
+      </a>
+
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content role="main">
+    <!--
+    <crm-navigation-bar *ngIf="isAuthenticated()" (toggleSidenav)="navigationSidenav.toggle()">
+    </crm-navigation-bar>
+    -->
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 
 </mat-sidenav-container>
 
 <!--
+
+<mat-sidenav-content role="main" style="width: 100%; height: 100%">
+
 <a *ngFor="let item of myWorkRoutes"
    mat-list-item
    (click)="sidenav.close()"

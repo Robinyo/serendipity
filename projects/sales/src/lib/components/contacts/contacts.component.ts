@@ -26,6 +26,8 @@ import {
   MAT_XSMALL
 } from '../../models/constants';
 
+import { SidenavService } from 'serendipity-components';
+
 @Component({
   selector: 'sales-contacts',
   templateUrl: './contacts.component.html',
@@ -83,7 +85,8 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
   constructor(private router: Router,
               private breakpointObserver: BreakpointObserver,
-              private contactsService: ContactsService) {
+              private contactsService: ContactsService,
+              private commandBarSidenavService: SidenavService) {
     super();
   }
 
@@ -206,6 +209,13 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
     // btoa(0) === 'MA=='
     this.router.navigate(['sales/contacts/MA==']);
+  }
+
+  public onToggleSidenav() {
+
+    this.logger.info('Sales DashboardComponent: onToggleSidenav()');
+
+    this.commandBarSidenavService.toggle();
   }
 
 }

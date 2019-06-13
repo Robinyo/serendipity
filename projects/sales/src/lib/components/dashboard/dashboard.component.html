@@ -48,6 +48,26 @@
 
 <!--
 
+<div #contentContainer class="crm-dashboard-container" (window:resize)="onResize($event)">
+
+  <dashboard [style.width.px]="dashboardWidth"> </dashboard>
+
+</div>
+
+-->
+
+
+
+<!--
+
+<div class="crm-dashboard-container" (window:resize)="onResize($event)">
+
+<div class="crm-dashboard-container">
+
+  <dashboard> </dashboard>
+
+</div>
+
   <dashboard [items]="items"> </dashboard>
 
 <div class="crm-dashboard-container">
