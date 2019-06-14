@@ -8,6 +8,10 @@ You can use it to transform your organisation by connecting your customers, prod
 
 Firebase Hosting: [Serendipity](https://serendipity-f7626.firebaseapp.com)
 
+## Quick Links
+
+[Documentation, demos, and guides](docs/README.md)
+
 ## Screen Shots
 
 Login:
@@ -73,10 +77,6 @@ Dashboard - Fullscreen:
 Serendipity is a [progressive web application](https://developers.google.com/web/progressive-web-apps/) (PWA) with a RESTful API that can be hosted on premise or in the cloud.
 
 You can customise and extend Serendipity using Angular, Angular libraries and Serendipity's [plugin](docs/developer.md) framework.
-
-## Quick Links
-
-[Documentation, demos, and guides](docs/README.md)
 
 ## Resources 
 
