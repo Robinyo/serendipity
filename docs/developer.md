@@ -219,7 +219,45 @@ Navigate to:
 http://127.0.0.1:8080
 ```
 
-To launch the project using Firebase:
+### Firebase Hosting
+
+The Serendipity [demo](https://serendipity-f7626.firebaseapp.com) utilises Firebase Hosting.
+
+The Firebase Hosting configuration settings are located in the project's `environment.ts` and `environments.prod.ts`:
+
+```
+  firebase: {
+    apiKey: '',
+    authDomain: '',
+    databaseURL: '',
+    projectId: '',
+    storageBucket: '',
+    messagingSenderId: ''
+  }
+```
+
+And, `firebase.json`:
+
+```
+{
+  "hosting": {
+    "public": "dist/serendipity",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
+```
+
+To launch the project locally using Firebase:
 
 ```
 firebase serve
