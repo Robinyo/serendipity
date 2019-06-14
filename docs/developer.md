@@ -208,7 +208,7 @@ The build artifacts will be stored in the `dist/serendipity` directory.
 To launch the project using [http-server](https://github.com/indexzero/http-server):
 
 ```
-http-server -p 8080 -c-1 dist/serendipity
+http-server -p 5042 -c-1 dist/serendipity
 ```
 
 **Note:** To reduce the possibility of conflicts and avoid serving stale content, test on a dedicated port and disable caching.
@@ -216,7 +216,7 @@ http-server -p 8080 -c-1 dist/serendipity
 Navigate to:
 
 ```
-http://127.0.0.1:8080
+http://127.0.0.1:5042
 ```
 
 ### Firebase Hosting
