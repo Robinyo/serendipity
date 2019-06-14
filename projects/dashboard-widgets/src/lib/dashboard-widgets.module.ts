@@ -20,8 +20,8 @@ import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
   providers: [
     { provide: LoggerService, useClass: ConsoleLoggerService }
   ],
-  exports: [ FunnelChartComponent, PieChartComponent ],
-  entryComponents: []
+  exports: [ FunnelChartComponent, PieChartComponent ]
+  // entryComponents: [ FunnelChartComponent, PieChartComponent ]
 })
 export class DashboardWidgetsModule {
 

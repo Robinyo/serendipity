@@ -89,9 +89,9 @@ import { LibRoutingModule } from './lib-routing.module';
     ActivitiesComponent,
     ContactsComponent,
     ContactComponent,
-    DashboardComponent,
+    DashboardComponent
 
-    SnackBarComponent
+    // SnackBarComponent
   ],
   entryComponents: [ SnackBarComponent ]
 })

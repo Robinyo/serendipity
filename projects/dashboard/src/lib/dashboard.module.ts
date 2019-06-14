@@ -31,7 +31,7 @@ import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
     { provide: LoggerService, useClass: ConsoleLoggerService }
   ],
   exports: [ DashboardComponent ],
-  entryComponents: []
+  entryComponents: [ FunnelChartComponent, PieChartComponent ]
 })
 export class DashboardModule {
 

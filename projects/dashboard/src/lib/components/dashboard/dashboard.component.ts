@@ -24,6 +24,10 @@ import { Screenfull } from 'screenfull';
       <ng-container *ngFor="let item of items" style="overflow: hidden;">
 
         <gridster-item [item]="item">
+          <!--
+          <ndc-dynamic [ndcDynamicComponent]=components[item.component]></ndc-dynamic>
+          <ndc-dynamic [ndcDynamicComponent]=item.component></ndc-dynamic>
+          -->
           <ndc-dynamic [ndcDynamicComponent]=components[item.component]></ndc-dynamic>
         </gridster-item>
 

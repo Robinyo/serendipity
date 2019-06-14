@@ -22,8 +22,8 @@ import { DynamicInputComponent } from '../../components/dynamic-input/dynamic-in
 import { LoggerService } from 'utils';
 
 const components = {
-  input: DynamicInputComponent,
-  date: DynamicDatepickerComponent
+  date: DynamicDatepickerComponent,
+  input: DynamicInputComponent
 };
 
 @Directive({
