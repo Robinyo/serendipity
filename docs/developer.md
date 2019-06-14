@@ -99,7 +99,7 @@ proxy.conf.json:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/activities-without-flowable.png">
 </p>
 
-## Flowable-related Blog Posts 
+#### Flowable-related Blog Posts 
 
 * Rob Ferguson's blog: [Getting started with Flowable](https://robferguson.org/blog/2018/12/10/getting-started-with-flowable/)
 * Rob Ferguson's blog: [How To: Build Flowable](https://robferguson.org/blog/2019/01/05/how-to-build-flowable/)
@@ -331,7 +331,9 @@ git push origin <tag>
 
 To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Languages & Frameworks -> TypeScript and clear the 'Angular Language Service' checkbox.
 
-## Angular Resources
+## Resources 
+
+### Angular Resources
 
 * Angular.io: [Quick Start Guide](https://angular.io/guide/quickstart)
 * Angular.io: [Style Guide](https://angular.io/guide/styleguide)
@@ -339,27 +341,27 @@ To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Lang
 * GitHub: [A curated list of awesome Angular resources](https://github.com/gdi2290/awesome-angular)
 * GitHub: [Catalog of Angular 2+ Components & Libraries](https://github.com/brillout/awesome-angular-components)
 
-## Angular CLI Resources
+### Angular CLI Resources
 
 * GitHub: [Library support in the Angular CLI](https://github.com/angular/angular-cli/wiki/stories-create-library)
 * Medium: [6 Best Practices & Pro Tips when using Angular CLI](https://medium.com/@tomastrajan/6-best-practices-pro-tips-for-angular-cli-better-developer-experience-7b328bc9db81)
 * Medium: [Compiling css in new Angular 6 libraries](https://medium.com/@Dor3nz/compiling-css-in-new-angular-6-libraries-26f80274d8e5)
 * GitHub: [Project Assets](https://github.com/angular/angular-cli/wiki/stories-asset-configuration)
 
-## Material Design Resources
+### Material Design Resources
 
 * Material.io: [Material Design, make beautiful products, faster](https://material.io/)
 * GitHub: [Material Design for Angular](https://github.com/angular/material2)
 * GitHub: [Covalent - The Teradata UI Platform built on Angular Material](https://teradata.github.io/covalent/#/docs)
 
-## Angular Component Libraries
+### Angular Component Libraries
 
 * GitHub: [flex-layout](https://github.com/angular/flex-layout)
 * GitHub: [angular-split](https://github.com/bertrandg/angular-split/)
 * GitHub: [angular-gridster2](https://github.com/tiberiuzuld/angular-gridster2)
 * GitHub: [highcharts-angular](https://github.com/highcharts/highcharts-angular)
 
-## Angular Form Libraries
+### Angular Form Libraries
 
 * GitHub: [ng-dynamic-forms](https://github.com/udos86/ng-dynamic-forms)
 * GitHub: [ngx-formly](https://github.com/formly-js/ngx-formly)
@@ -368,22 +370,22 @@ To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Lang
 * GitHub: [angular2-json-schema-form - Angular 2 JSON Schema Form builder](https://github.com/dschnelldavis/angular2-json-schema-form)
 * form.io: [form.io - A Form and Data Management Platform](https://www.form.io/)
 
-## Angular i18N
+### Angular i18N
 
 * GitHub: [ngx-translate](https://github.com/ngx-translate/core)
 
-## Additional Angular Component Libraries
+### Additional Angular Component Libraries
 
 * GitHub: [Angular in-memory Web API](https://github.com/angular/in-memory-web-api)
 * GitHub: [json-server](https://github.com/typicode/json-server)
 * GitHub: [Hotel - A simple process manager for developers](https://github.com/typicode/hotel)
 
-## CSS Grid Layout
+### CSS Grid Layout
 
 * CSS Tricks: [A Complete Guide to CSS Grid Layout](https://css-tricks.com/snippets/css/complete-guide-grid/)
 * Grid By Example: [CSS Grid Layout by Example](https://gridbyexample.com/learn/)
 
-## Sample Data
+### Sample Data
 
 * Wikipedia: [List of political parties in Australia](https://en.wikipedia.org/wiki/List_of_political_parties_in_Australia)
 * Australian Parliament: [Mail Labels for Australian Senators](https://www.aph.gov.au/Senators_and_Members/Guidelines_for_Contacting_Senators_and_Members/Address_labels_and_CSV_files)
