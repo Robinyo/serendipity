@@ -6,7 +6,7 @@ You can use it to transform your organisation by connecting your customers, prod
 
 # Demo
 
-The nightly build deployed to Firebase Hosting: [Serendipity CRM](https://serendipity-f7626.firebaseapp.com)
+Firebase Hosting: [Serendipity](https://serendipity-f7626.firebaseapp.com)
 
 ## Screen Shots
 
