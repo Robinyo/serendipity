@@ -5,7 +5,7 @@
 export const environment = {
 
   production: false,
-
+  
   defaultLanguage: 'en-GB',
 
   isDebugMode: true,

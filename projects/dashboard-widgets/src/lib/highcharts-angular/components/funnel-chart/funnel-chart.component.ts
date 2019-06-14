@@ -8,6 +8,9 @@ import funnel from 'highcharts/modules/funnel';
 // Exporting(Highcharts);
 funnel(Highcharts);
 
+import HC_more from 'highcharts/highcharts-more';
+HC_more(Highcharts);
+
 @Component({
   selector: 'widget-funnel-chart',
   template: `

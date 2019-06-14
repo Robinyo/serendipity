@@ -213,7 +213,7 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
   public onToggleSidenav() {
 
-    this.logger.info('Sales DashboardComponent: onToggleSidenav()');
+    this.logger.info('ContactsPage: onToggleSidenav()');
 
     this.commandBarSidenavService.toggle();
   }
