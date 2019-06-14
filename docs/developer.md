@@ -93,6 +93,12 @@ proxy.conf.json:
 }
 ```
 
+**Note:** You can build and serve Serendipity without launching Flowable: 
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/activities-without-flowable.png">
+</p>
+
 ### Step 4: Serve the application 
 
 Go to the project directory, install the project's dependencies and launch the server:
