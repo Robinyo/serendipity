@@ -223,7 +223,7 @@ http://127.0.0.1:5042
 
 The Serendipity [demo](https://serendipity-f7626.firebaseapp.com) utilises Firebase Hosting.
 
-The Firebase Hosting configuration settings are located in the project's `environment.ts` and `environments.prod.ts`:
+The Firebase Hosting configuration is located in the project's `environment.ts` and `environments.prod.ts`:
 
 ```
   firebase: {
