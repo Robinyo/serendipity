@@ -111,7 +111,7 @@ export interface DashboardItem extends GridsterItem {
 
   */
 
-  id?: number;
+  id?: string;
   name?: string;
   component?: any;
 
@@ -152,7 +152,7 @@ export interface DashboardWidget extends DashboardItem {
 
 export interface Dashboard {
 
-  id?: number;
+  id?: string;
   name?: string;
   widgets?: Array<DashboardWidget>;
 

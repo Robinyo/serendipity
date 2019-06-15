@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 
 import { SidenavService } from 'serendipity-components';
 
@@ -17,6 +17,8 @@ import { LoggerService } from 'utils';
 export class DashboardComponent implements OnInit {
 
   public screenFull = <Screenfull>screenfull;
+
+  public dashboardId = '1';
 
   constructor(private commandBarSidenavService: SidenavService,
               private dashboardWidgetService: DashboardWidgetService,

@@ -33,6 +33,11 @@
                 "glob": "**/*",
                 "input": "projects/sales/src/assets",
                 "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/dashboard-widgets/src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [

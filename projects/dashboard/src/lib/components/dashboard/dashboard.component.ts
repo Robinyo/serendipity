@@ -8,6 +8,8 @@ import { DashboardWidget } from '../../models/models';
 import { FunnelChartComponent, PieChartComponent } from 'dashboard-widgets';
 import { DashboardWidgetService } from 'dashboard-widgets';
 
+import { SidenavService } from 'serendipity-components';
+
 import { MockDashboardService } from '../../services/mocks/dashboard/mock-dashboard.service';
 
 import { LoggerService } from 'utils';
@@ -19,13 +21,12 @@ import { Screenfull } from 'screenfull';
   // tslint:disable-next-line:component-selector
   selector: 'dashboard',
   template: `
-    <gridster [options]="options" style="background-color: transparent;">
+    <gridster [options]="options" (drop)="onDrop($event)" style="background-color: transparent;">
 
       <ng-container *ngFor="let item of items" style="overflow: hidden;">
 
         <gridster-item [item]="item">
           <!--
-          <ndc-dynamic [ndcDynamicComponent]=components[item.component]></ndc-dynamic>
           <ndc-dynamic [ndcDynamicComponent]=item.component></ndc-dynamic>
           -->
           <ndc-dynamic [ndcDynamicComponent]=components[item.component]></ndc-dynamic>
@@ -41,7 +42,7 @@ import { Screenfull } from 'screenfull';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
-  @Input() dashboardId = 1;
+  @Input() dashboardId: string;
 
   public options: DashboardConfig;
   public items: DashboardWidget[];
@@ -55,7 +56,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     pieChart: PieChartComponent
   };
 
-  constructor(private dashboardService: MockDashboardService,
+  constructor(private commandBarSidenavService: SidenavService,
+              private dashboardService: MockDashboardService,
               private dashboardWidgetService: DashboardWidgetService,
               private logger: LoggerService) {}
 
@@ -66,25 +68,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.options = {
       itemResizeCallback: this.itemResize.bind(this),
       gridType: 'fit',
-      // enableEmptyCellDrop: true,
-      // emptyCellDropCallback: this.onDrop,
+      enableEmptyCellDrop: true,
+      emptyCellDropCallback: this.onDrop,
+      // emptyCellDropCallback: this.onDrop.bind(this),
       pushItems: true,
       swap: true,
       pushDirections: { north: true, east: true, south: true, west: true },
       resizable: { enabled: true },
-      // itemChangeCallback: this.itemChange.bind(this),
+      itemChangeCallback: this.itemChange.bind(this),
       draggable: {
         enabled: true,
-        // ignoreContent: true,
-        // dropOverItems: true,
-        // dragHandleClass: 'drag-handler',
-        // ignoreContentClass: 'no-drag',
+        ignoreContent: true,
+        dropOverItems: true,
+        dragHandleClass: 'drag-handler',
+        ignoreContentClass: 'no-drag',
       },
       // displayGrid: 'always',
-      minCols: 6,
-      maxCols: 6,
-      minRows: 6,
-      maxRows: 6,
+      minCols: 10, // 6
+      minRows: 10, // 6
+      // maxCols: 6,
+      // maxRows: 6,
     };
 
     /*
@@ -119,7 +122,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.subscription = this.dashboardService.getDashboard(this.dashboardId).subscribe(data => {
         this.items = data.widgets;
 
-        // this.logger.info('items: ' + JSON.stringify(this.items));
+        this.logger.info('Dashboard Id: ' + JSON.stringify(data.id));
+        this.logger.info('Widgets: ' + JSON.stringify(this.items));
       });
 
     }
@@ -131,6 +135,30 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.logger.info('DashboardComponent: itemResize()');
 
     this.dashboardWidgetService.reflowWidgets();
+  }
+
+  public onDrop(event) {
+
+    this.logger.info('DashboardComponent: onDrop()');
+
+    const id = event.dataTransfer.getData('widgetIdentifier');
+
+    this.logger.info('Widget Id: ' + id);
+
+    return this.items.push({
+      'id': '9',
+      'name': 'All Opportunities',
+      'component': 'pieChart',
+      'cols': 2,
+      'rows': 2,
+      'y': 0,
+      'x': 0
+    });
+
+  }
+
+  public itemChange() {
+    this.logger.info('DashboardComponent: itemChange()');
   }
 
   protected unsubscribe() {
@@ -146,6 +174,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public ngOnDestroy() {
 
     this.logger.info('DashboardComponent: ngOnDestroy()');
+
+    if (this.commandBarSidenavService.isOpen()) {
+
+      this.logger.info('commandBarSidenav is open');
+      this.commandBarSidenavService.toggle();
+    }
+
     this.unsubscribe();
   }
 

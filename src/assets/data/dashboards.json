@@ -1,50 +1,50 @@
 [
 
   {
-    "id": 1,
+    "id": "1",
     "name": "Sample Dashboard 1",
     "widgets": [
       {
-        "id": 1,
+        "id": "1",
         "name": "Open Opportunities",
         "component": "funnelChart",
-        "cols": 3,
+        "cols": 4,
         "rows": 4,
         "y": 0,
         "x": 0
       },
       {
-        "id": 2,
+        "id": "2",
         "name": "All Opportunities",
         "component": "pieChart",
-        "cols": 3,
+        "cols": 4,
         "rows": 4,
         "y": 0,
-        "x": 3
+        "x": 4
       }
     ]
   },
   {
-    "id": 2,
+    "id": "2",
     "name": "Sample Dashboard 2",
     "widgets": [
       {
-        "id": 1,
-        "name": "Open Opportunities",
-        "component": "funnelChart",
-        "cols": 3,
-        "rows": 4,
+        "id": "1",
+        "name": "All Opportunities",
+        "component": "pieChart",
+        "cols": 2,
+        "rows": 2,
         "y": 0,
         "x": 0
       },
       {
-        "id": 2,
-        "name": "All Opportunities",
-        "component": "pieChart",
-        "cols": 3,
-        "rows": 4,
+        "id": "2",
+        "name": "Open Opportunities",
+        "component": "funnelChart",
+        "cols": 2,
+        "rows": 2,
         "y": 0,
-        "x": 3
+        "x": 2
       }
     ]
   }

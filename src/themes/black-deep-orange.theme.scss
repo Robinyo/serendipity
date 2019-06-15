@@ -110,8 +110,11 @@ body {
   background-color: #f5f5f5;
 }
 
+$command-bar-width: 240px; // 140px;
+
 .crm-command-bar-sidenav {
   margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
+  width: $command-bar-width !important;
 
   @media ($mat-xsmall) {
     margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile;

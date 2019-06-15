@@ -15,14 +15,17 @@ export class MockDashboardService {
 
   constructor(protected httpClient: HttpClient) {}
 
-  public getDashboard(dashboardId: number): Observable<Dashboard>  {
+  public getDashboard(dashboardId: string): Observable<Dashboard>  {
 
     return this.httpClient.get<Dashboard[]>(this.URL).pipe(
       map((dashboards: Dashboard[]) => dashboards.find(dashboard => dashboard.id === dashboardId)));
-
   }
 
 }
+
+// https://stackoverflow.com/questions/14667713/typescript-converting-a-string-to-a-number
+
+// const id: number = Number(dashboardId);
 
 /*
 

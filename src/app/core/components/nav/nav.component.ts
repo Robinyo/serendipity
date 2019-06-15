@@ -6,6 +6,8 @@ import { SidenavService } from 'serendipity-components';
 
 import { AuthService } from 'auth';
 
+import { LoggerService } from 'utils';
+
 interface ROUTE {
   icon?: string;
   route?: string;
@@ -54,9 +56,13 @@ export class NavComponent implements OnInit {
   ];
 
   constructor(private commandBarSidenavService: SidenavService,
-              private authService: AuthService) {}
+              private authService: AuthService,
+              private logger: LoggerService) {}
 
   public ngOnInit(): void {
+
+    this.logger.info('NavComponent: ngOnInit()');
+
     this.commandBarSidenavService.setSidenav(this.sidenav);
   }
 
@@ -64,5 +70,11 @@ export class NavComponent implements OnInit {
     return this.authService.isAuthenticated();
   }
 
-}
+  public onDrag(event, identifier) {
 
+    this.logger.info('NavComponent: onDrag()');
+
+    event.dataTransfer.setData('widgetIdentifier', identifier);
+  }
+
+}

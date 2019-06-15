@@ -24,12 +24,12 @@
 
     <button mat-button class="crm-command-bar-button" (click)="onToggleSidenav()">
       <mat-icon>widgets</mat-icon>
-      WIDGETS
+      <!-- WIDGETS -->
     </button>
 
     <button mat-button class="crm-command-bar-button" (click)="onFullscreen()">
       <mat-icon>fullscreen</mat-icon>
-      FULL SCREEN
+      <!-- FULL SCREEN -->
     </button>
 
   </div>
@@ -42,7 +42,7 @@
 
 <div class="crm-dashboard-container">
 
-  <dashboard> </dashboard>
+  <dashboard [dashboardId]="dashboardId"> </dashboard>
 
 </div>
 
