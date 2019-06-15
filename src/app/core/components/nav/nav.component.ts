@@ -23,6 +23,9 @@ export class NavComponent implements OnInit {
 
   @ViewChild('commandbarSidenav') public sidenav: MatSidenav;
 
+  public icon = '../../../../assets/images/icons/bar-chart.svg';
+  public title = 'New Chart';
+
   myWorkRoutes: ROUTE[] = [
     {
       icon: 'assignment',

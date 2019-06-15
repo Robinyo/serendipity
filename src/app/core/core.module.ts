@@ -1,5 +1,6 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -63,8 +64,8 @@ import { SalesModule } from 'sales';
     // The Angular Material module must be imported after Angular's BrowserModule, as the import order matters for NgModules.
     AngularMaterialModule,
     BrowserAnimationsModule,
-    AuthModule,
     CommonModule,
+    DragDropModule,
     FlexLayoutModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
@@ -77,8 +78,9 @@ import { SalesModule } from 'sales';
       }
     }),
 
-    UtilsModule.forRoot(environment),
+    AuthModule,
     DynamicFormsModule.forRoot(environment),
+    UtilsModule.forRoot(environment),
     SalesModule,
 
     RouterModule  // There is no directive with "exportAs" set to "routerLinkActive ...
