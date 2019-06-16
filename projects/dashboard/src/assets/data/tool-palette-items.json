@@ -1,12 +1,6 @@
 [
 
   {
-    "id": "1",
-    "name": "Bar Chart",
-    "component": "pieChart",
-    "icon": "../../../../assets/images/icons/bar-chart.svg"
-  },
-  {
     "id": "2",
     "name": "Funnel Chart",
     "component": "funnelChart",

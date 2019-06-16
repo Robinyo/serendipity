@@ -32,7 +32,7 @@ export class FunnelChartComponent implements OnInit {
       type: 'funnel'
     },
     title: {
-      text: 'Open Opportunities'
+      text: 'Funnel Chart' // 'Open Opportunities'
     },
     plotOptions: {
       series: {

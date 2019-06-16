@@ -46,6 +46,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   public screenFull = <Screenfull>screenfull;
 
+  public toolPaletteItems: ToolPaletteItem[];
+
   protected subscription: Subscription;
 
   public components = {
@@ -78,8 +80,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
       resizable: { enabled: true },
 
-      // emptyCellDropCallback: this.onDrop,
-      emptyCellDropCallback: this.onDrop.bind(this),
+      emptyCellDropCallback: this.onDrop,
+      // emptyCellDropCallback: this.onDrop.bind(this),
       itemChangeCallback: this.itemChange.bind(this),
       itemResizeCallback: this.itemResize.bind(this),
       emptyCellDragMaxCols: 50,
@@ -103,6 +105,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     this.subscribe();
 
+    this.getToolPaletteItems();
+
   }
 
   protected subscribe() {
@@ -122,6 +126,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   }
 
+  public getToolPaletteItems() {
+
+    const subscription: Subscription = this.dashboardService.getToolPaletteItems().subscribe(data => {
+
+      this.toolPaletteItems = data;
+      this.logger.info('toolPaletteItems: ' + JSON.stringify(this.toolPaletteItems));
+
+      subscription.unsubscribe();
+    });
+
+  }
+
+  public getToolPaletteItem(widgetId: string) {
+
+    return this.toolPaletteItems.find(toolPaletteItem => toolPaletteItem.id === widgetId);
+  }
+
   protected unsubscribe() {
 
     this.logger.info('DashboardComponent: unsubscribe()');
@@ -138,34 +159,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     const widgetId = event.dataTransfer.getData('widgetIdentifier');
 
-    this.logger.info('Widget Id: ' + widgetId);
+    const toolPaletteItem = this.getToolPaletteItem(widgetId);
 
-    this.items.push({
-      'id': '99',
-      'name': 'New Chart',
-      'component': 'funnelChart',
-      'cols': 4,
-      'rows': 4,
-      'y': 0,
-      'x': 0
-    });
+    const widget = { cols: 4, rows: 4, y: 0, x: 0, ...toolPaletteItem };
 
-    /*
+    this.items.push(widget);
 
-    const subscription: Subscription = this.dashboardService.getToolPaletteItem(widgetId).subscribe(data => {
-
-      const widget: DashboardWidget = { cols: 2, rows: 2, x: 0, y: 0, ...data };
-
-      this.logger.info('toolPaletteItem: ' + JSON.stringify(widget));
-
-      this.items.push(<any>{widget});
-
-      subscription.unsubscribe();
-
-    });
-
-    */
-
+    // this.logger.info('Widget Id: ' + widgetId);
+    // this.logger.info('toolPaletteItem: ' + JSON.stringify(toolPaletteItem));
+    // this.logger.info('widget: ' + JSON.stringify(widget));
   }
 
   public itemResize(item: DashboardWidget, itemComponent: DashboardItemComponentInterface): void {
@@ -198,6 +200,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
 // https://github.com/tiberiuzuld/angular-gridster2/blob/master/src/app/sections/emptyCell/emptyCell.component.ts
 
 // https://github.com/highcharts/highcharts/issues/6427 -> style="overflow: hidden;"
+
+/*
+
+this.items.push({
+  'id': '99',
+  'name': 'New Chart',
+  'component': 'funnelChart',
+  'cols': 4,
+  'rows': 4,
+  'y': 0,
+  'x': 0
+});
+
+*/
 
 /*
 

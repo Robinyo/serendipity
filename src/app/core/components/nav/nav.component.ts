@@ -2,12 +2,12 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 
 import { MatSidenav } from '@angular/material';
 
-import { SidenavService } from 'serendipity-components';
-
-import { MockDashboardService, ToolPaletteItem } from 'dashboard';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from 'auth';
+
+import { SidenavService } from 'serendipity-components';
+import { MockDashboardService, ToolPaletteItem } from 'dashboard';
 
 import { LoggerService } from 'utils';
 

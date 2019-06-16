@@ -29,7 +29,7 @@ export class PieChartComponent implements OnInit {
       type: 'pie'
     },
     title: {
-      text: 'All Opportunities'
+      text: 'Pie Chart' // 'All Opportunities'
     },
     tooltip: {
       pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

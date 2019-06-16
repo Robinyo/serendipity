@@ -29,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'sales/contacts'
+    redirectTo: 'sales/dashboards'  // 'sales/contacts'
   }
 
 ];
