@@ -3,7 +3,7 @@ import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { DashboardConfig, DashboardItemComponentInterface } from '../../models/models';
-import { DashboardWidget } from '../../models/models';
+import { DashboardWidget, ToolPaletteItem } from '../../models/models';
 
 import { FunnelChartComponent, PieChartComponent } from 'dashboard-widgets';
 import { DashboardWidgetService } from 'dashboard-widgets';
@@ -122,23 +122,49 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   }
 
+  protected unsubscribe() {
+
+    this.logger.info('DashboardComponent: unsubscribe()');
+
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+
+  }
+
   public onDrop(event) {
 
     this.logger.info('DashboardComponent: onDrop()');
 
-    const id = event.dataTransfer.getData('widgetIdentifier');
+    const widgetId = event.dataTransfer.getData('widgetIdentifier');
 
-    this.logger.info('Widget Id: ' + id);
+    this.logger.info('Widget Id: ' + widgetId);
 
-    return this.items.push({
-      'id': '9',
-      'name': 'All Opportunities',
-      'component': 'pieChart',
-      'cols': 2,
-      'rows': 2,
+    this.items.push({
+      'id': '99',
+      'name': 'New Chart',
+      'component': 'funnelChart',
+      'cols': 4,
+      'rows': 4,
       'y': 0,
       'x': 0
     });
+
+    /*
+
+    const subscription: Subscription = this.dashboardService.getToolPaletteItem(widgetId).subscribe(data => {
+
+      const widget: DashboardWidget = { cols: 2, rows: 2, x: 0, y: 0, ...data };
+
+      this.logger.info('toolPaletteItem: ' + JSON.stringify(widget));
+
+      this.items.push(<any>{widget});
+
+      subscription.unsubscribe();
+
+    });
+
+    */
 
   }
 
@@ -151,16 +177,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   public itemChange() {
     this.logger.info('DashboardComponent: itemChange()');
-  }
-
-  protected unsubscribe() {
-
-    this.logger.info('DashboardComponent: unsubscribe()');
-
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-
   }
 
   public ngOnDestroy() {

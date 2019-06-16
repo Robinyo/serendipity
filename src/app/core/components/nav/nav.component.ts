@@ -1,8 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 
 import { MatSidenav } from '@angular/material';
 
 import { SidenavService } from 'serendipity-components';
+
+import { MockDashboardService, ToolPaletteItem } from 'dashboard';
+import { Subscription } from 'rxjs';
 
 import { AuthService } from 'auth';
 
@@ -14,24 +17,14 @@ interface ROUTE {
   title?: string;
 }
 
-/*
-interface WIDGET {
-  id?: string;
-  icon?: string;
-}
-*/
-
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit, OnDestroy {
 
   @ViewChild('commandbarSidenav') public sidenav: MatSidenav;
-
-  public icon = '../../../../assets/images/icons/bar-chart.svg';
-  public title = 'New Chart';
 
   myWorkRoutes: ROUTE[] = [
     {
@@ -65,7 +58,12 @@ export class NavComponent implements OnInit {
     }
   ];
 
+  public toolPaletteItems: ToolPaletteItem[];
+
+  protected subscription: Subscription;
+
   constructor(private commandBarSidenavService: SidenavService,
+              private dashboardService: MockDashboardService,
               private authService: AuthService,
               private logger: LoggerService) {}
 
@@ -74,6 +72,30 @@ export class NavComponent implements OnInit {
     this.logger.info('NavComponent: ngOnInit()');
 
     this.commandBarSidenavService.setSidenav(this.sidenav);
+
+    this.subscribe();
+  }
+
+  protected subscribe() {
+
+    this.logger.info('NavComponent: subscribe()');
+
+    this.subscription = this.dashboardService.getToolPaletteItems().subscribe(data => {
+
+      this.toolPaletteItems = data;
+      this.logger.info('toolPaletteItems: ' + JSON.stringify(this.toolPaletteItems));
+    });
+
+  }
+
+  protected unsubscribe() {
+
+    this.logger.info('DashboardComponent: unsubscribe()');
+
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+
   }
 
   public isAuthenticated() {
@@ -87,7 +109,14 @@ export class NavComponent implements OnInit {
     event.dataTransfer.setData('widgetIdentifier', identifier);
 
     event.dataTransfer.setData('text/plain', 'Drag Me Button');
-    event.dataTransfer.dropEffect = 'copy';
+    event.dataTransfer.dropEffect = 'move';
+  }
+
+  public ngOnDestroy() {
+
+    this.logger.info('NavComponent: ngOnDestroy()');
+
+    this.unsubscribe();
   }
 
 }

@@ -118,9 +118,9 @@ npm install
 
 ng build utils && \
 ng build auth && \
+ng build serendipity-components && \
 ng build dashboard-widgets && \
 ng build dashboard && \
-ng build serendipity-components && \
 ng build dynamic-forms && \
 ng build flowable && \
 ng build sales
@@ -159,9 +159,9 @@ To build the project:
 ```
 ng build utils && \
 ng build auth && \
+ng build serendipity-components && \
 ng build dashboard-widgets && \
 ng build dashboard && \
-ng build serendipity-components && \
 ng build dynamic-forms && \
 ng build flowable && \
 ng build sales
@@ -194,9 +194,9 @@ To build the project:
 ```
 ng build utils && \
 ng build auth && \
+ng build serendipity-components && \
 ng build dashboard-widgets && \
 ng build dashboard && \
-ng build serendipity-components && \
 ng build dynamic-forms && \
 ng build flowable && \
 ng build sales
@@ -330,7 +330,7 @@ You can workaround this issue by updating the assets array inside the build targ
     },
     {
       "glob": "**/*",
-      "input": "projects/dashboard-widgets/src/assets",
+      "input": "projects/dashboard/src/assets",
       "output": "/assets"
     }
   ]

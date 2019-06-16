@@ -114,6 +114,7 @@ export interface DashboardItem extends GridsterItem {
   id?: string;
   name?: string;
   component?: any;
+  // icon?: string;
 
 }
 
@@ -158,8 +159,14 @@ export interface Dashboard {
 
 }
 
+export interface ToolPaletteItem {
 
+  id?: string;
+  name?: string;
+  component?: any;
+  icon?: string;
 
+}
 
 // https://github.com/tiberiuzuld/angular-gridster2/blob/v7.2.0/projects/angular-gridster2/src/lib/gridsterItem.interface.ts
 
