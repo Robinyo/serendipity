@@ -14,6 +14,13 @@ interface ROUTE {
   title?: string;
 }
 
+/*
+interface WIDGET {
+  id?: string;
+  icon?: string;
+}
+*/
+
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -73,11 +80,17 @@ export class NavComponent implements OnInit {
     return this.authService.isAuthenticated();
   }
 
-  public onDrag(event, identifier) {
+  public onDragStart(event, identifier) {
 
-    this.logger.info('NavComponent: onDrag()');
+    this.logger.info('NavComponent: onDragStart()');
 
     event.dataTransfer.setData('widgetIdentifier', identifier);
+
+    event.dataTransfer.setData('text/plain', 'Drag Me Button');
+    event.dataTransfer.dropEffect = 'copy';
   }
 
 }
+
+// https://github.com/tiberiuzuld/angular-gridster2/blob/master/src/app/sections/emptyCell/emptyCell.component.html
+// https://github.com/tiberiuzuld/angular-gridster2/blob/master/src/app/sections/emptyCell/emptyCell.component.ts

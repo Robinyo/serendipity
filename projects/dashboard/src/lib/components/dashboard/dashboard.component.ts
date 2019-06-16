@@ -26,9 +26,6 @@ import { Screenfull } from 'screenfull';
       <ng-container *ngFor="let item of items" style="overflow: hidden;">
 
         <gridster-item [item]="item">
-          <!--
-          <ndc-dynamic [ndcDynamicComponent]=item.component></ndc-dynamic>
-          -->
           <ndc-dynamic [ndcDynamicComponent]=components[item.component]></ndc-dynamic>
         </gridster-item>
 
@@ -66,17 +63,29 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.logger.info('DashboardComponent: ngOnInit()');
 
     this.options = {
-      itemResizeCallback: this.itemResize.bind(this),
+
       gridType: 'fit',
+      // displayGrid: DisplayGrid.Always,
+      enableEmptyCellClick: false,
+      enableEmptyCellContextMenu: false,
       enableEmptyCellDrop: true,
-      emptyCellDropCallback: this.onDrop,
-      // emptyCellDropCallback: this.onDrop.bind(this),
+      enableEmptyCellDrag: false,
+
       pushItems: true,
       disablePushOnDrag: true,
       // swap: true,
       pushDirections: { north: true, east: true, south: true, west: true },
+
       resizable: { enabled: true },
+
+      // emptyCellDropCallback: this.onDrop,
+      emptyCellDropCallback: this.onDrop.bind(this),
       itemChangeCallback: this.itemChange.bind(this),
+      itemResizeCallback: this.itemResize.bind(this),
+      emptyCellDragMaxCols: 50,
+      emptyCellDragMaxRows: 50,
+
+      /*
       draggable: {
         enabled: true,
         ignoreContent: true,
@@ -84,31 +93,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
         dragHandleClass: 'drag-handler',
         ignoreContentClass: 'no-drag',
       },
-      // displayGrid: 'always',
+      */
+
       minCols: 10, // 6
-      minRows: 10, // 6
+      minRows: 10  // 6
       // maxCols: 6,
       // maxRows: 6,
     };
-
-    /*
-
-    if (this.screenFull.enabled) {
-
-      this.logger.info('DashboardComponent: Screenfull change handler registered');
-
-      this.screenFull.on('change', () => {
-        if (this.screenFull.isFullscreen) {
-          this.logger.info('Am I fullscreen? Yes');
-        } else {
-          this.logger.info('Am I fullscreen? No');
-        }
-
-        // this.dashboardWidgetService.reflowWidgets();
-      });
-    }
-
-    */
 
     this.subscribe();
 
@@ -131,13 +122,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   }
 
-  public itemResize(item: DashboardWidget, itemComponent: DashboardItemComponentInterface): void {
-
-    this.logger.info('DashboardComponent: itemResize()');
-
-    this.dashboardWidgetService.reflowWidgets();
-  }
-
   public onDrop(event) {
 
     this.logger.info('DashboardComponent: onDrop()');
@@ -156,6 +140,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
       'x': 0
     });
 
+  }
+
+  public itemResize(item: DashboardWidget, itemComponent: DashboardItemComponentInterface): void {
+
+    this.logger.info('DashboardComponent: itemResize()');
+
+    this.dashboardWidgetService.reflowWidgets();
   }
 
   public itemChange() {
@@ -187,9 +178,27 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 }
 
+// https://github.com/tiberiuzuld/angular-gridster2/blob/master/src/app/sections/emptyCell/emptyCell.component.html
+// https://github.com/tiberiuzuld/angular-gridster2/blob/master/src/app/sections/emptyCell/emptyCell.component.ts
+
 // https://github.com/highcharts/highcharts/issues/6427 -> style="overflow: hidden;"
 
 /*
+
+    <!--
+    <gridster [options]="options" (drop)="onDrop($event)" style="background-color: transparent;">
+
+    <gridster [options]="options"
+              cdkDropList
+              id="drop-list"
+              cdkDropList
+              (cdkDropListDropped)="onDrop($event)"
+              style="background-color: transparent;">
+     -->
+
+     <!--
+          <ndc-dynamic [ndcDynamicComponent]=item.component></ndc-dynamic>
+     -->
 
 // this.options.api.optionsChanged();
 
@@ -209,6 +218,25 @@ this.options = {
     enabled: false
   }
 };
+
+*/
+
+/*
+
+if (this.screenFull.enabled) {
+
+  this.logger.info('DashboardComponent: Screenfull change handler registered');
+
+  this.screenFull.on('change', () => {
+    if (this.screenFull.isFullscreen) {
+      this.logger.info('Am I fullscreen? Yes');
+    } else {
+      this.logger.info('Am I fullscreen? No');
+    }
+
+    // this.dashboardWidgetService.reflowWidgets();
+  });
+}
 
 */
 

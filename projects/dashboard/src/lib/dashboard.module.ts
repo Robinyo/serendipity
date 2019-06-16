@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+// import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { GridsterModule } from 'angular-gridster2';
 
@@ -21,6 +22,7 @@ import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
 @NgModule({
   imports: [
     CommonModule,
+    // DragDropModule,
     DashboardWidgetsModule,
     DynamicModule.withComponents([ FunnelChartComponent, PieChartComponent ]),
     GridsterModule,

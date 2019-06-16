@@ -300,11 +300,16 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 You use the assets array inside the build target in `angular.json` to list files or folders you want to copy as-is when building your project:
 
 ```
-"assets": [
-  "src/assets",
-  "src/favicon.ico",
-  "src/manifest.json"
-]
+  "assets": [
+    "src/apple-touch-icon-iphone-retina.png",
+    "src/apple-touch-icon-iphone-retina-precomposed.png",
+    "src/browserconfig.xml",
+    "src/favicon.ico",
+    "src/manifest.json",
+    "src/assets",
+    
+    ...
+  ]
 ```
 
 ### Library Assets
@@ -314,21 +319,21 @@ ng-packagr does not copy 'assets' (the files and folders in the `assets/` direct
 You can workaround this issue by updating the assets array inside the build target in `angular.json`, for example:
 
 ```
-"assets": [
-  "src/assets",
-  "src/favicon.ico",
-  "src/manifest.json",
-  {
-    "glob": "**/*",
-    "input": "projects/sales/src/assets",
-    "output": "/assets"
-  },
-  {
-    "glob": "**/*",
-    "input": "node_modules/my-lib/assets",
-    "output": "/assets"
-  }
-]
+  "assets": [
+   
+    ....
+    
+    {
+      "glob": "**/*",
+      "input": "projects/sales/src/assets",
+      "output": "/assets"
+    },
+    {
+      "glob": "**/*",
+      "input": "projects/dashboard-widgets/src/assets",
+      "output": "/assets"
+    }
+  ]
 ```
 
 ### Source Control
