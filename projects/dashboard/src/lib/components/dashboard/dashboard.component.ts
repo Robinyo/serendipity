@@ -81,6 +81,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     this.options = {
       gridType: GridType.Fit,
+      displayGrid: DisplayGrid.Always,
       compactType: CompactType.None,
       margin: 10,
       outerMargin: true,
@@ -116,10 +117,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
       emptyCellDragMaxRows: 50,
       ignoreMarginInRow: false,
       draggable: {
-        enabled: true,
+        enabled: true
       },
       resizable: {
-        enabled: true,
+        enabled: true
       },
       swap: false,
       pushItems: true,
@@ -127,7 +128,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
       disablePushOnResize: false,
       pushDirections: {north: true, east: true, south: true, west: true},
       pushResizeItems: false,
-      displayGrid: DisplayGrid.Always,
       disableWindowResize: false,
       disableWarnings: false,
       scrollToNewItems: false
@@ -156,6 +156,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       emptyCellDropCallback: this.onDrop,
       // emptyCellDropCallback: this.onDrop.bind(this),
       // itemChangeCallback: this.itemChange.bind(this),
+      itemChangeCallback: null,
       itemResizeCallback: this.itemResize.bind(this),
 
       emptyCellDragMaxCols: 50,
@@ -168,9 +169,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
       // swap: true,
       pushDirections: { north: true, east: true, south: true, west: true },
 
+      draggable: { enabled: true },
+
       resizable: { enabled: true },
 
-      // /*
+      /*
       draggable: {
         enabled: true,
         ignoreContent: true,
@@ -178,7 +181,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         dragHandleClass: 'drag-handler',
         ignoreContentClass: 'no-drag',
       },
-      // */
+      */
 
       minCols: 10, // 6
       minRows: 10  // 6
