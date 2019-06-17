@@ -58,6 +58,29 @@ export class DashboardComponent implements OnInit {
 
     this.logger.info('Sales DashboardComponent: onToggleSidenav()');
 
+    this.commandBarSidenavService.toggle().then(() => {
+
+      if (this.commandBarSidenavService.isOpen()) {
+        this.logger.info('commandBarSidenav is open');
+      } else {
+        this.logger.info('commandBarSidenav is closed');
+      }
+
+      // this.gridster.resize();
+      window.dispatchEvent(new Event('resize'));
+
+      setTimeout(() => {
+        this.dashboardWidgetService.reflowWidgets();
+      }, 500);
+    });
+
+  }
+
+  /*
+  public onToggleSidenav() {
+
+    this.logger.info('Sales DashboardComponent: onToggleSidenav()');
+
     this.commandBarSidenavService.toggle();
 
     if (this.commandBarSidenavService.isOpen()) {
@@ -68,6 +91,7 @@ export class DashboardComponent implements OnInit {
 
     window.dispatchEvent(new Event('resize'));
   }
+  */
 
   public onFullscreen() {
 

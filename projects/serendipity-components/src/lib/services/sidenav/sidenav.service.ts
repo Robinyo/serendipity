@@ -24,9 +24,9 @@ export class SidenavService {
     return this.sidenav.close();
   }
 
-  public toggle(): void {
+  public toggle() {
     this.opened = !this.opened;
-    this.sidenav.toggle();
+    return this.sidenav.toggle();
   }
 
   public isOpen(): boolean {
