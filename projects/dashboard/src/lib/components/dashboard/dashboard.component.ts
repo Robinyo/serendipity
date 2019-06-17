@@ -153,8 +153,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       // emptyCellDropCallback: this.emptyCellClick.bind(this),
       // emptyCellDragCallback: this.emptyCellClick.bind(this),
 
-      emptyCellDropCallback: this.onDrop,
-      // emptyCellDropCallback: this.onDrop.bind(this),
+      // emptyCellDropCallback: this.onDrop,
+      emptyCellDropCallback: this.onDrop.bind(this),
       // itemChangeCallback: this.itemChange.bind(this),
       itemChangeCallback: null,
       itemResizeCallback: this.itemResize.bind(this),
@@ -237,7 +237,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   public onDrop(event) {
 
-    this.logger.info('DashboardComponent: onDrop()');
+    // this.logger.info('DashboardComponent: onDrop()');
 
     const widgetId = event.dataTransfer.getData('widgetIdentifier');
 
