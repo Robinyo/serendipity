@@ -135,18 +135,33 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   }
 
-  // https://github.com/tiberiuzuld/angular-gridster2/blob/master/src/app/sections/emptyCell/emptyCell.component.ts
-
   public getEmptyCellOptions() {
 
     this.options = {
 
-      gridType: 'fit',
+      // https://github.com/tiberiuzuld/angular-gridster2/blob/master/src/app/sections/emptyCell/emptyCell.component.ts
+
+      gridType: GridType.Fit,
       // displayGrid: DisplayGrid.Always,
       enableEmptyCellClick: false,
       enableEmptyCellContextMenu: false,
       enableEmptyCellDrop: true,
       enableEmptyCellDrag: false,
+
+      // emptyCellClickCallback: this.emptyCellClick.bind(this),
+      // emptyCellContextMenuCallback: this.emptyCellClick.bind(this),
+      // emptyCellDropCallback: this.emptyCellClick.bind(this),
+      // emptyCellDragCallback: this.emptyCellClick.bind(this),
+
+      emptyCellDropCallback: this.onDrop,
+      // emptyCellDropCallback: this.onDrop.bind(this),
+      // itemChangeCallback: this.itemChange.bind(this),
+      itemResizeCallback: this.itemResize.bind(this),
+
+      emptyCellDragMaxCols: 50,
+      emptyCellDragMaxRows: 50,
+
+      // https://github.com/NastyZ98/angular6-dynamic-dashboard/blob/master/src/app/dashboard/dashboard.component.ts
 
       pushItems: true,
       disablePushOnDrag: true,
@@ -155,14 +170,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
       resizable: { enabled: true },
 
-      emptyCellDropCallback: this.onDrop,
-      // emptyCellDropCallback: this.onDrop.bind(this),
-      itemChangeCallback: this.itemChange.bind(this),
-      itemResizeCallback: this.itemResize.bind(this),
-      emptyCellDragMaxCols: 50,
-      emptyCellDragMaxRows: 50,
-
-      /*
+      // /*
       draggable: {
         enabled: true,
         ignoreContent: true,
@@ -170,16 +178,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
         dragHandleClass: 'drag-handler',
         ignoreContentClass: 'no-drag',
       },
-      */
+      // */
 
       minCols: 10, // 6
-      minRows: 10,  // 6
+      minRows: 10  // 6
       // maxCols: 6,
       // maxRows: 6,
-
-      draggable: {
-        enabled: true,
-      }
     };
 
   }
