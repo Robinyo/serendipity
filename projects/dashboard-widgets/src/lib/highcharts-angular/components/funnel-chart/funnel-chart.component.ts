@@ -17,10 +17,9 @@ HC_more(Highcharts);
     <highcharts-chart
       [Highcharts]="Highcharts"
       [options]="chartOptions"
-      style="width: 100%; height: 100%; display: inline-block;">
+      style="width: 100%; height: calc(100% - 40px); display: inline-block;">
     </highcharts-chart>
-  `,
-  styles: []
+  `
 })
 export class FunnelChartComponent implements OnInit {
 
@@ -31,9 +30,7 @@ export class FunnelChartComponent implements OnInit {
     chart: {
       type: 'funnel'
     },
-    title: {
-      text: 'Funnel Chart' // 'Open Opportunities'
-    },
+    title: { text: '' },
     plotOptions: {
       series: {
         dataLabels: {

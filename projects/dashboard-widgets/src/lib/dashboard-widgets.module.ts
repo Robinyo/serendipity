@@ -10,9 +10,11 @@ import { PieChartComponent } from './highcharts-angular/components/pie-chart/pie
 //
 
 import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
+// import { AngularMaterialModule } from 'utils';
 
 @NgModule({
   imports: [
+    // AngularMaterialModule,
     HighchartsChartModule,
     UtilsModule
   ],

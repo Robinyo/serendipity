@@ -1,0 +1,33 @@
+<gridster [options]="options" (drop)="onDrop($event)" style="background-color: transparent;">
+
+  <ng-container *ngFor="let item of items" style="overflow: hidden;">
+
+    <gridster-item [item]="item" class="crm-dashboard-widget">
+
+      <mat-toolbar class="crm-dashboard-widget-toolbar">
+        <mat-toolbar-row class="crm-dashboard-widget-toolbar-row">
+
+          {{item.name}}
+
+          <div fxFlex fxLayout fxLayoutAlign="flex-end">
+
+            <button mat-button class="crm-dashboard-widget-toolbar-button" (click)="onSettings(item)">
+              <mat-icon>settings</mat-icon>
+            </button>
+
+            <button mat-button class="crm-dashboard-widget-toolbar-button" (click)="onDelete(item)">
+              <mat-icon>delete</mat-icon>
+            </button>
+
+          </div>
+
+        </mat-toolbar-row>
+      </mat-toolbar>
+
+      <ndc-dynamic [ndcDynamicComponent]=components[item.component]></ndc-dynamic>
+
+    </gridster-item>
+
+  </ng-container>
+
+</gridster>

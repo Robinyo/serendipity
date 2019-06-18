@@ -9,7 +9,7 @@
         "name": "Open Opportunities",
         "component": "funnelChart",
         "cols": 4,
-        "rows": 4,
+        "rows": 8,
         "y": 0,
         "x": 0
       },
@@ -18,7 +18,7 @@
         "name": "All Opportunities",
         "component": "pieChart",
         "cols": 4,
-        "rows": 4,
+        "rows": 8,
         "y": 0,
         "x": 4
       }

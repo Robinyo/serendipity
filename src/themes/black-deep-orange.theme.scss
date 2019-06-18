@@ -98,23 +98,23 @@ body {
   left: 0;
   right: 0;
   z-index: 997;
-  height: $crm-command-bar-height-desktop;
-  min-height: $crm-command-bar-height-desktop;
+  height: $crm-command-bar-height-desktop !important;
+  min-height: $crm-command-bar-height-desktop !important;
 
   @media ($mat-xsmall) {
     top: $mat-toolbar-height-mobile;
-    height: $crm-command-bar-height-mobile;
-    min-height: $crm-command-bar-height-mobile;
+    height: $crm-command-bar-height-mobile !important;
+    min-height: $crm-command-bar-height-mobile !important;
   }
 
   background-color: #f5f5f5;
 }
 
-$command-bar-width: 200px; // 140px;
+$command-bar-sidenav-width: 200px; // 140px;
 
 .crm-command-bar-sidenav {
   margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
-  width: $command-bar-width !important;
+  width: $command-bar-sidenav-width !important;
 
   @media ($mat-xsmall) {
     margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile;

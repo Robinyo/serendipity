@@ -14,6 +14,8 @@ import { SidenavService } from 'serendipity-components';
 
 import { MockDashboardService } from '../../services/mocks/dashboard/mock-dashboard.service';
 
+import { DialogService } from 'serendipity-components';
+
 import { LoggerService } from 'utils';
 
 import * as screenfull from 'screenfull';
@@ -22,20 +24,8 @@ import { Screenfull } from 'screenfull';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'dashboard',
-  template: `
-    <gridster [options]="options" (drop)="onDrop($event)" style="background-color: transparent;">
-
-      <ng-container *ngFor="let item of items" style="overflow: hidden;">
-
-        <gridster-item [item]="item">
-          <ndc-dynamic [ndcDynamicComponent]=components[item.component]></ndc-dynamic>
-        </gridster-item>
-
-      </ng-container>
-
-    </gridster>
-  `,
-  styles: []
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
   // changeDetection: ChangeDetectionStrategy.OnPush,
   // encapsulation: ViewEncapsulation.None
 })
@@ -60,6 +50,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private commandBarSidenavService: SidenavService,
               private dashboardService: MockDashboardService,
               private dashboardWidgetService: DashboardWidgetService,
+              private dialogService: DialogService,
               private logger: LoggerService) {}
 
   public ngOnInit() {
@@ -156,7 +147,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
       // emptyCellDropCallback: this.onDrop,
       emptyCellDropCallback: this.onDrop.bind(this),
       // itemChangeCallback: this.itemChange.bind(this),
-      itemChangeCallback: null,
       itemResizeCallback: this.itemResize.bind(this),
 
       emptyCellDragMaxCols: 50,
@@ -274,6 +264,32 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
 
     this.unsubscribe();
+  }
+
+  //
+  // Toolbar events
+  //
+
+  public onDelete(item) {
+
+    this.logger.info('DashboardComponent: onDelete()');
+
+    this.items.splice(this.items.indexOf(item), 1);
+
+    this.logger.info('Widgets: ' + JSON.stringify(this.items));
+
+  }
+
+  public onSettings(item) {
+
+    this.logger.info('DashboardComponent: onSettings()');
+
+    this.dialogService.openAlert({
+      title: 'Alert',
+      message: 'You clicked the Settings button.',
+      closeButton: 'CLOSE'
+    });
+
   }
 
 }

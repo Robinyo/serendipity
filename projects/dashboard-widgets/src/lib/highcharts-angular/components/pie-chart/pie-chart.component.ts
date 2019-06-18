@@ -11,7 +11,7 @@ HC_more(Highcharts);
     <highcharts-chart
       [Highcharts]="Highcharts"
       [options]="chartOptions"
-      style="width: 100%; height: 100%; display: inline-block;">
+      style="width: 100%; height: calc(100% - 40px); display: inline-block;">
     </highcharts-chart>
   `,
   styles: []
@@ -28,9 +28,7 @@ export class PieChartComponent implements OnInit {
       plotShadow: false,
       type: 'pie'
     },
-    title: {
-      text: 'Pie Chart' // 'All Opportunities'
-    },
+    title: { text: '' },
     tooltip: {
       pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
     },
