@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, OnDestroy, Renderer2 } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
@@ -47,7 +47,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     pieChart: PieChartComponent
   };
 
-  constructor(private commandBarSidenavService: SidenavService,
+  constructor(private elementRef: ElementRef,
+              private renderer: Renderer2,
+              private commandBarSidenavService: SidenavService,
               private dashboardService: MockDashboardService,
               private dashboardWidgetService: DashboardWidgetService,
               private dialogService: DialogService,
@@ -227,7 +229,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   public onDrop(event) {
 
-    // this.logger.info('DashboardComponent: onDrop()');
+    this.logger.info('DashboardComponent: onDrop()');
 
     const widgetId = event.dataTransfer.getData('widgetIdentifier');
 
@@ -276,6 +278,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     this.items.splice(this.items.indexOf(item), 1);
 
+    //
+    // Deleting a widget (GridsterItem) leaves a gridster-preview behind
+    // See: https://github.com/tiberiuzuld/angular-gridster2/issues/516
+    //
+
+    const gridsterPreview = this.elementRef.nativeElement.getElementsByTagName('gridster-preview');
+
+    // this.renderer.setStyle(gridsterPreview[0], 'display', 'none !important');
+    this.renderer.setStyle(gridsterPreview[0], 'background', '#fafafa');
+
     this.logger.info('Widgets: ' + JSON.stringify(this.items));
 
   }
@@ -298,6 +310,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 // https://github.com/tiberiuzuld/angular-gridster2/blob/master/src/app/sections/emptyCell/emptyCell.component.ts
 
 // https://github.com/highcharts/highcharts/issues/6427 -> style="overflow: hidden;"
+
+// https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API
+// window.dispatchEvent(new Event('dragenter'));
 
 /*
 
