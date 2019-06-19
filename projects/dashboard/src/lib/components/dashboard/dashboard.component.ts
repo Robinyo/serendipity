@@ -163,19 +163,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
       // swap: true,
       pushDirections: { north: true, east: true, south: true, west: true },
 
-      draggable: { enabled: true },
-
       resizable: { enabled: true },
 
-      /*
+      // draggable: { enabled: true },
+
+      // /*
       draggable: {
         enabled: true,
         ignoreContent: true,
-        dropOverItems: true,
+        // dropOverItems: true,
+        dropOverItems: false,
         dragHandleClass: 'drag-handler',
         ignoreContentClass: 'no-drag',
       },
-      */
+      // */
 
       minCols: 10, // 6
       minRows: 10  // 6
