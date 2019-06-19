@@ -32,19 +32,16 @@ import { AngularFireModule } from '@angular/fire';
 // import { AngularFireAuthModule } from '@angular/fire/auth';
 
 //
-// Utils lib
-//
-
-import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
-import { AngularMaterialModule } from 'utils';
-
-import { MAT_DATE_LOCALE } from '@angular/material';
-
-//
 // Auth lib
 //
 
 import { AuthModule } from 'auth';
+
+//
+// Dashboard Widgets lib
+//
+
+import { HighchartsChartModule } from 'highcharts-angular';
 
 //
 // Dynamic Forms lib
@@ -58,6 +55,15 @@ import { DynamicFormsModule } from 'dynamic-forms';
 
 import { SalesModule } from 'sales';
 
+//
+// Utils lib
+//
+
+import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
+import { AngularMaterialModule } from 'utils';
+
+import { MAT_DATE_LOCALE } from '@angular/material';
+
 @NgModule({
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -67,6 +73,7 @@ import { SalesModule } from 'sales';
     CommonModule,
     // DragDropModule,
     FlexLayoutModule,
+    HighchartsChartModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 

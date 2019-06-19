@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import * as Highcharts from 'highcharts';
 
-import HC_more from 'highcharts/highcharts-more';
-HC_more(Highcharts);
-
 @Component({
   selector: 'widget-pie-chart',
   template: `
@@ -83,9 +80,8 @@ export class PieChartComponent implements OnInit {
 
   };
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }
