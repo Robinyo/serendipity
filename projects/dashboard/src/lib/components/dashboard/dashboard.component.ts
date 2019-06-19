@@ -229,6 +229,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   }
 
+  public onDragEnter(event) {
+
+    this.logger.info('DashboardComponent: onDragEnter()');
+
+    //
+    // Deleting a widget (GridsterItem) leaves a gridster-preview behind
+    // See: https://github.com/tiberiuzuld/angular-gridster2/issues/516
+    //
+
+    const gridsterPreviewElements = this.elementRef.nativeElement.getElementsByTagName('gridster-preview');
+
+    // this.renderer.setStyle(gridsterPreview[0], 'display', 'block');
+    this.renderer.setStyle(gridsterPreviewElements[0], 'background', 'rgba(0, 0, 0, .15)');
+
+  }
+
   public onDrop(event) {
 
     this.logger.info('DashboardComponent: onDrop()');

@@ -1,4 +1,4 @@
-<gridster #gridster [options]="options" (drop)="onDrop($event)" style="background-color: transparent;">
+<gridster #gridster [options]="options" (dragenter)="onDragEnter($event)" (drop)="onDrop($event)" style="background-color: transparent;">
 
   <ng-container *ngFor="let item of items" style="overflow: hidden;">
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewChild, ElementRef, Renderer2} from '@angular/core';
 
 import { MatSidenav } from '@angular/material';
 
@@ -62,7 +62,9 @@ export class NavComponent implements OnInit, OnDestroy {
 
   protected subscription: Subscription;
 
-  constructor(private commandBarSidenavService: SidenavService,
+  constructor(private elementRef: ElementRef,
+              private renderer: Renderer2,
+              private commandBarSidenavService: SidenavService,
               private dashboardService: MockDashboardService,
               private authService: AuthService,
               private logger: LoggerService) {}
