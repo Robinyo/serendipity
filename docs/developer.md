@@ -281,6 +281,13 @@ Navigate to:
 https://serendipity-f7626.firebaseapp.com
 ```
 
+**Note:** If you run into any issues when trying to deploy to Firebase Hosting, try:
+
+```
+firebase login --reauth
+firebase list
+```
+
 ### Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. 
