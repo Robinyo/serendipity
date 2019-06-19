@@ -20,11 +20,19 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuard]
   },
+
+  //
+  // The Wildcard route
+  // See: app-routing.module.ts
+  //
+
   {
     path: 'sales/contacts',
     component: ContactsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
   },
+
   {
     path: 'sales/contacts/:id',
     component: ContactComponent,
@@ -37,7 +45,9 @@ const routes: Routes = [
   imports: [ RouterModule.forChild(routes)],
   exports: [ RouterModule ]
 })
-export class LibRoutingModule { }
+export class LibRoutingModule {}
+
+// https://stackoverflow.com/questions/40380726/angular2-router-canactivate-after-logout
 
 /*
 

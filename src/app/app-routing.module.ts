@@ -27,18 +27,25 @@ const routes: Routes = [
     component: PlaceholderComponent,
     canActivate: [AuthGuard]
   },
+
+  //
+  // The Wildcard route
+  //
+
   {
     path: '**',
-    redirectTo: 'sales/dashboards'  // 'sales/contacts'
+    redirectTo: 'sales/contacts'
   }
 
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [ RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'}) ],
   exports: [ RouterModule ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
+
+// https://stackoverflow.com/questions/40380726/angular2-router-canactivate-after-logout
 
 // import { MyDashboardComponent } from '@app/shared/components/samples/my-dashboard/my-dashboard.component';
 // import { MyTableComponent } from '@app/shared/components/samples/my-table/my-table.component';

@@ -42,6 +42,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   protected subscription: Subscription;
 
+  private canDrop = true;
+
   public components = {
     funnelChart: FunnelChartComponent,
     pieChart: PieChartComponent
@@ -231,13 +233,30 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     this.logger.info('DashboardComponent: onDrop()');
 
-    const widgetId = event.dataTransfer.getData('widgetIdentifier');
+    //
+    // emptyCellDropCallback is called twice
+    // See: https://github.com/tiberiuzuld/angular-gridster2/issues/513
+    //
 
-    const toolPaletteItem = this.getToolPaletteItem(widgetId);
+    this.logger.info('DashboardComponent: canDrop === ' + this.canDrop);
 
-    const widget = { cols: 4, rows: 4, y: 0, x: 0, ...toolPaletteItem };
+    if (this.canDrop) {
 
-    this.items.push(widget);
+      this.canDrop = false;
+
+      const widgetId = event.dataTransfer.getData('widgetIdentifier');
+
+      const toolPaletteItem = this.getToolPaletteItem(widgetId);
+
+      const widget = { cols: 4, rows: 4, y: 0, x: 0, ...toolPaletteItem };
+
+      this.items.push(widget);
+
+      setTimeout(() => {
+        this.canDrop = true;
+      }, 1000);
+
+    }
 
     // this.logger.info('Widget Id: ' + widgetId);
     // this.logger.info('toolPaletteItem: ' + JSON.stringify(toolPaletteItem));
@@ -283,10 +302,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     // See: https://github.com/tiberiuzuld/angular-gridster2/issues/516
     //
 
-    const gridsterPreview = this.elementRef.nativeElement.getElementsByTagName('gridster-preview');
+    const gridsterPreviewElements = this.elementRef.nativeElement.getElementsByTagName('gridster-preview');
 
     // this.renderer.setStyle(gridsterPreview[0], 'display', 'none !important');
-    this.renderer.setStyle(gridsterPreview[0], 'background', '#fafafa');
+    this.renderer.setStyle(gridsterPreviewElements[0], 'background', '#fafafa');
 
     this.logger.info('Widgets: ' + JSON.stringify(this.items));
 
