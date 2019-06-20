@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-dialog.component';
+import { ActivityBarComponent } from './components/activity-bar/activity-bar.component';
 import { CommandBarComponent } from './components/command-bar/command-bar.component';
 
 //
@@ -20,11 +21,11 @@ import { AngularMaterialModule } from 'utils';
     FlexLayoutModule,
     UtilsModule
   ],
-  declarations: [ AlertDialogComponent, CommandBarComponent ],
+  declarations: [ AlertDialogComponent, ActivityBarComponent, CommandBarComponent ],
   providers: [
     { provide: LoggerService, useClass: ConsoleLoggerService }
   ],
-  exports: [ CommandBarComponent ],
+  exports: [ ActivityBarComponent, CommandBarComponent ],
   entryComponents: [ AlertDialogComponent ]
 })
 export class SerendipityComponentsModule {

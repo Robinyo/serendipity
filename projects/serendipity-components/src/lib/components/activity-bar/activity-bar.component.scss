@@ -1,0 +1,57 @@
+@import "../../themes/mat-variables";
+@import "../../themes/variables";
+
+.crm-activity-bar-row {
+  height: $crm-activity-bar-height-desktop;
+  min-height: $crm-activity-bar-height-desktop;
+
+  padding-left: 24px;
+  padding-right: 24px;
+
+  @media ($mat-xsmall) {
+    height: $crm-activity-bar-height-mobile;
+    min-height: $crm-activity-bar-height-mobile;
+  }
+}
+
+//
+// https://material.angular.io/guide/customizing-component-styles
+//
+
+/*
+
+.crm-activity-bar-menu-button {
+  min-width: 32px !important;
+  padding: 0 !important;
+}
+
+*/
+
+::ng-deep .crm-activity-bar-menu-button {
+  min-width: 32px !important;
+  padding: 0 !important;
+}
+
+::ng-deep .mat-menu-content {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+::ng-deep .mat-menu-item {
+  line-height: 40px !important;
+  height: 40px !important;
+}
+
+/*
+
+.crm-activity-bar-menu {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.crm-activity-bar-menu-item {
+  line-height: 40px !important;
+  height: 40px !important;
+}
+
+*/

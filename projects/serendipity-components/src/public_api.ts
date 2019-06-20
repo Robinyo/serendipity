@@ -3,6 +3,7 @@
  */
 
 export * from './lib/components/command-bar/command-bar.component';
+export * from './lib/components/activity-bar/activity-bar.component';
 
 export * from './lib/services/sidenav/sidenav.service';
 export * from './lib/services/dialogs/dialog.service';

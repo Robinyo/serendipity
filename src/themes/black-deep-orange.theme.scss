@@ -108,6 +108,7 @@ body {
   }
 
   background-color: #f5f5f5;
+
 }
 
 $command-bar-sidenav-width: 200px; // 140px;
@@ -120,6 +121,45 @@ $command-bar-sidenav-width: 200px; // 140px;
     margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile;
   }
 }
+
+.crm-activity-bar {
+  height: $crm-view-bar-height-desktop;
+  min-height: $crm-view-bar-height-desktop;
+
+  margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
+
+  @media ($mat-xsmall) {
+    height: $crm-view-bar-height-mobile;
+    min-height: $crm-view-bar-height-mobile;
+
+    margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile;
+  }
+
+  background-color: transparent;
+
+}
+
+//
+// https://material.angular.io/guide/customizing-component-styles
+//
+
+/*
+
+::ng-deep .mat-menu-content {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+::ng-deep .mat-menu-item {
+  line-height: 40px !important;
+  height: 40px !important;
+}
+
+*/
+
+
+
+
 
 .crm-content-container {
   height: 100%;

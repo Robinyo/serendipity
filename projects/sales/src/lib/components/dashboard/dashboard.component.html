@@ -36,9 +36,36 @@
 
 </crm-command-bar>
 
-<div class="crm-component-title-container">
-  <h1 class="crm-component-title"> {{ 'SALES_ACTIVITY_DASHBOARD_HEADER' | translate }} </h1>
-</div>
+<crm-activity-bar>
+
+  {{dashboardName}}
+
+  <button mat-button [matMenuTriggerFor]="dashboardMenu" class="crm-activity-bar-menu-button">
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+
+  <mat-menu #dashboardMenu="matMenu">
+
+    <button *ngFor="let item of items" mat-menu-item (click)="onMenuClick(item)">
+      <mat-icon>dashboard</mat-icon>
+      <span>{{item.name}}</span>
+    </button>
+
+    <!--
+    <button mat-menu-item>
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard 1</span>
+    </button>
+
+    <button mat-menu-item>
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard 2</span>
+    </button>
+    -->
+
+  </mat-menu>
+
+</crm-activity-bar>
 
 <div class="crm-dashboard-container">
 
@@ -47,33 +74,25 @@
 </div>
 
 <!--
+<div class="crm-component-title-container">
 
-<div #contentContainer class="crm-dashboard-container" (window:resize)="onResize($event)">
-
-  <dashboard [style.width.px]="dashboardWidth"> </dashboard>
+  <h1 class="crm-component-title"> {{ 'SALES_ACTIVITY_DASHBOARD_HEADER' | translate }} </h1>
 
 </div>
-
 -->
 
-
-
 <!--
+<mat-menu #dashboardMenu="matMenu" class="crm-activity-bar-menu">
 
-<div class="crm-dashboard-container" (window:resize)="onResize($event)">
+  <button mat-menu-item class="crm-activity-bar-menu-item">
+    <mat-icon>dashboard</mat-icon>
+    <span>Dashboard 1</span>
+  </button>
 
-<div class="crm-dashboard-container">
+  <button mat-menu-item class="crm-activity-bar-menu-item">
+    <mat-icon>dashboard</mat-icon>
+    <span>Dashboard 2</span>
+  </button>
 
-  <dashboard> </dashboard>
-
-</div>
-
-  <dashboard [items]="items"> </dashboard>
-
-<div class="crm-dashboard-container">
-
-  <dashboard [options]="options" [items]="items"> </dashboard>
-
-</div>
-
+</mat-menu>
 -->

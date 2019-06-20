@@ -30,19 +30,19 @@
     "widgets": [
       {
         "id": "1",
-        "name": "All Opportunities",
+        "name": "Pie Chart",
         "component": "pieChart",
-        "cols": 2,
-        "rows": 2,
+        "cols": 4,
+        "rows": 8,
         "y": 0,
         "x": 0
       },
       {
         "id": "2",
-        "name": "Open Opportunities",
+        "name": "Funnel Chart",
         "component": "funnelChart",
-        "cols": 2,
-        "rows": 2,
+        "cols": 4,
+        "rows": 8,
         "y": 0,
         "x": 2
       }

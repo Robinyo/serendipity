@@ -1,26 +1,36 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+
+import { Subscription } from 'rxjs';
 
 import { SidenavService } from 'serendipity-components';
 
 import { DashboardWidgetService } from 'dashboard-widgets';
 
-import * as screenfull from 'screenfull';
-import { Screenfull } from 'screenfull';
+import { Dashboard, MockDashboardService } from 'dashboard';
 
 import { LoggerService } from 'utils';
+
+import * as screenfull from 'screenfull';
+import { Screenfull } from 'screenfull';
 
 @Component({
   selector: 'sales-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
+
+  public dashboardId = '1';
+  public dashboardName = 'Sample Dashboard 1';
+
+  public items: Dashboard[];
 
   public screenFull = <Screenfull>screenfull;
 
-  public dashboardId = '1';
+  protected subscription: Subscription;
 
   constructor(private commandBarSidenavService: SidenavService,
+              private dashboardService: MockDashboardService,
               private dashboardWidgetService: DashboardWidgetService,
               private logger: LoggerService) {}
 
@@ -48,6 +58,37 @@ export class DashboardComponent implements OnInit {
       });
     }
 
+    this.subscribe();
+
+  }
+
+  protected subscribe() {
+
+    this.logger.info('Sales DashboardComponent: subscribe()');
+
+    this.subscription = this.dashboardService.getDashboards().subscribe(data => {
+
+      this.items = data;
+      this.logger.info('Dashboards: ' + JSON.stringify(this.items));
+
+    });
+  }
+
+  protected unsubscribe() {
+
+    this.logger.info('Sales DashboardComponent: unsubscribe()');
+
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+
+  }
+
+  public ngOnDestroy() {
+
+    this.logger.info('Sales DashboardComponent: ngOnDestroy()');
+
+    this.unsubscribe();
   }
 
   //
@@ -101,6 +142,20 @@ export class DashboardComponent implements OnInit {
       this.screenFull.toggle();
     }
 
+  }
+
+  //
+  // Activity Bar events
+  //
+
+  public onMenuClick(item: Dashboard) {
+
+    this.logger.info('Sales DashboardComponent: onMenuClick()');
+
+    this.dashboardId = item.id;
+    this.dashboardName = item.name;
+
+    this.logger.info('Dashboard Id: ' + this.dashboardId);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, OnDestroy, Renderer2 } from '@angular/core';
+import { Component, SimpleChanges, ElementRef, Input, OnInit, OnChanges, OnDestroy, Renderer2 } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
@@ -29,7 +29,7 @@ import { Screenfull } from 'screenfull';
   // changeDetection: ChangeDetectionStrategy.OnPush,
   // encapsulation: ViewEncapsulation.None
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() dashboardId: string;
 
@@ -227,6 +227,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+
+  }
+
+  public ngOnChanges(changes: SimpleChanges) {
+
+    this.logger.info('DashboardComponent: ngOnChanges()');
+
+    this.dashboardId = changes.dashboardId.currentValue;
+
+    this.unsubscribe();
+    this.subscribe();
 
   }
 

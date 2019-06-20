@@ -16,6 +16,10 @@ export class MockDashboardService {
 
   constructor(protected httpClient: HttpClient) {}
 
+  public getDashboards(): Observable<Dashboard[]> {
+    return this.httpClient.get<Dashboard[]>(this.DASHBOARDS);
+  }
+
   public getDashboard(dashboardId: string): Observable<Dashboard>  {
 
     return this.httpClient.get<Dashboard[]>(this.DASHBOARDS).pipe(
