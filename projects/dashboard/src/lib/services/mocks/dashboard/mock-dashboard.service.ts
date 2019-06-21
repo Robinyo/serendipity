@@ -23,7 +23,8 @@ export class MockDashboardService {
   public getDashboard(dashboardId: string): Observable<Dashboard>  {
 
     return this.httpClient.get<Dashboard[]>(this.DASHBOARDS).pipe(
-      map((dashboards: Dashboard[]) => dashboards.find(dashboard => dashboard.id === dashboardId)));
+      map((dashboards: Dashboard[]) =>
+        dashboards.find(dashboard => dashboard.id === dashboardId)));
   }
 
   public getToolPaletteItems(): Observable<ToolPaletteItem[]> {
@@ -33,7 +34,8 @@ export class MockDashboardService {
   public getToolPaletteItem(widgetId: string): Observable<ToolPaletteItem>  {
 
     return this.httpClient.get<ToolPaletteItem[]>(this.TOOL_PALETTE_ITEMS).pipe(
-      map((toolPaletteItems: ToolPaletteItem[]) => toolPaletteItems.find(toolPaletteItem => toolPaletteItem.id === widgetId)));
+      map((toolPaletteItems: ToolPaletteItem[]) =>
+        toolPaletteItems.find(toolPaletteItem => toolPaletteItem.id === widgetId)));
   }
 
 }

@@ -11,6 +11,8 @@ export interface DashboardConfig extends GridsterConfig {
 
   /*
 
+  // https://github.com/tiberiuzuld/angular-gridster2/blob/master/projects/angular-gridster2/src/lib/gridsterConfig.constant.ts
+
   gridType?: gridTypes;
   fixedColWidth?: number;
   fixedRowHeight?: number;

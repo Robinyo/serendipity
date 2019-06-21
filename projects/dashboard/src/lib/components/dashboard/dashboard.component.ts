@@ -2,7 +2,7 @@ import { Component, SimpleChanges, ElementRef, Input, OnInit, OnChanges, OnDestr
 
 import { Subscription } from 'rxjs';
 
-import { CompactType, DisplayGrid, GridType } from 'angular-gridster2';
+import { GridType } from 'angular-gridster2';
 
 import { DashboardConfig, DashboardItemComponentInterface } from '../../models/models';
 import { DashboardWidget, ToolPaletteItem } from '../../models/models';
@@ -64,113 +64,24 @@ export class DashboardComponent implements OnInit, OnChanges, OnDestroy {
 
     this.logger.info('DashboardComponent: ngOnInit()');
 
-    // this.getDefaultOptions();
-    this.getEmptyCellOptions();
-
-    this.subscribe();
+    this.getOptions();
 
     this.getToolPaletteItems();
 
+    this.subscribe();
   }
 
-  // https://github.com/tiberiuzuld/angular-gridster2/blob/master/src/app/sections/home/home.component.ts
+  public getOptions() {
 
-  public getDefaultOptions() {
-
-    this.options = {
-      gridType: GridType.Fit,
-      displayGrid: DisplayGrid.Always,
-      compactType: CompactType.None,
-      margin: 10,
-      outerMargin: true,
-      outerMarginTop: null,
-      outerMarginRight: null,
-      outerMarginBottom: null,
-      outerMarginLeft: null,
-      useTransformPositioning: true,
-      mobileBreakpoint: 640,
-      minCols: 1,
-      maxCols: 100,
-      minRows: 1,
-      maxRows: 100,
-      maxItemCols: 100,
-      minItemCols: 1,
-      maxItemRows: 100,
-      minItemRows: 1,
-      maxItemArea: 2500,
-      minItemArea: 1,
-      defaultItemCols: 1,
-      defaultItemRows: 1,
-      fixedColWidth: 105,
-      fixedRowHeight: 105,
-      keepFixedHeightInMobile: false,
-      keepFixedWidthInMobile: false,
-      scrollSensitivity: 10,
-      scrollSpeed: 20,
-      enableEmptyCellClick: false,
-      enableEmptyCellContextMenu: false,
-      enableEmptyCellDrop: false,
-      enableEmptyCellDrag: false,
-      emptyCellDragMaxCols: 50,
-      emptyCellDragMaxRows: 50,
-      ignoreMarginInRow: false,
-      draggable: {
-        enabled: true
-      },
-      resizable: {
-        enabled: true
-      },
-      swap: false,
-      pushItems: true,
-      disablePushOnDrag: false,
-      disablePushOnResize: false,
-      pushDirections: {north: true, east: true, south: true, west: true},
-      pushResizeItems: false,
-      disableWindowResize: false,
-      disableWarnings: false,
-      scrollToNewItems: false
-    };
-
-  }
-
-  public getEmptyCellOptions() {
+    //
+    // There is some documentation re angular-gridster2's config properties in this file: gridsterConfig.constant.ts
+    // See: https://github.com/tiberiuzuld/angular-gridster2/blob/master/projects/angular-gridster2/src/lib/gridsterConfig.constant.ts
+    //
 
     this.options = {
 
-      // https://github.com/tiberiuzuld/angular-gridster2/blob/master/src/app/sections/emptyCell/emptyCell.component.ts
-
-      gridType: GridType.Fit,
-      // displayGrid: DisplayGrid.Always,
-      enableEmptyCellClick: false,
-      enableEmptyCellContextMenu: false,
-      enableEmptyCellDrop: true,
-      enableEmptyCellDrag: false,
-
-      // emptyCellClickCallback: this.emptyCellClick.bind(this),
-      // emptyCellContextMenuCallback: this.emptyCellClick.bind(this),
-      // emptyCellDropCallback: this.emptyCellClick.bind(this),
-      // emptyCellDragCallback: this.emptyCellClick.bind(this),
-
-      // emptyCellDropCallback: this.onDrop,
-      emptyCellDropCallback: this.onDrop.bind(this),
-      // itemChangeCallback: this.itemChange.bind(this),
-      itemResizeCallback: this.itemResize.bind(this),
-
-      emptyCellDragMaxCols: 50,
-      emptyCellDragMaxRows: 50,
-
-      // https://github.com/NastyZ98/angular6-dynamic-dashboard/blob/master/src/app/dashboard/dashboard.component.ts
-
-      pushItems: true,
       disablePushOnDrag: true,
-      // swap: true,
-      pushDirections: { north: true, east: true, south: true, west: true },
-
-      resizable: { enabled: true },
-
-      // draggable: { enabled: true },
-
-      // /*
+      // displayGrid: DisplayGrid.Always,
       draggable: {
         enabled: true,
         ignoreContent: true,
@@ -179,12 +90,23 @@ export class DashboardComponent implements OnInit, OnChanges, OnDestroy {
         dragHandleClass: 'drag-handler',
         ignoreContentClass: 'no-drag',
       },
-      // */
-
-      minCols: 10, // 6
-      minRows: 10  // 6
+      emptyCellDragMaxCols: 50,
+      emptyCellDragMaxRows: 50,
+      emptyCellDropCallback: this.onDrop.bind(this),
+      enableEmptyCellClick: false,
+      enableEmptyCellContextMenu: false,
+      enableEmptyCellDrop: true,
+      enableEmptyCellDrag: false,
+      gridType: GridType.Fit,
+      itemResizeCallback: this.itemResize.bind(this),
       // maxCols: 6,
       // maxRows: 6,
+      minCols: 10, // 6
+      minRows: 10,  // 6
+      pushDirections: { north: true, east: true, south: true, west: true },
+      pushItems: true,
+      resizable: { enabled: true }
+      // swap: true,
     };
 
   }
@@ -193,16 +115,13 @@ export class DashboardComponent implements OnInit, OnChanges, OnDestroy {
 
     this.logger.info('DashboardComponent: subscribe()');
 
-    if (this.dashboardId) {
+    this.subscription = this.dashboardService.getDashboard(this.dashboardId).subscribe(data => {
 
-      this.subscription = this.dashboardService.getDashboard(this.dashboardId).subscribe(data => {
-        this.items = data.widgets;
+      this.items = data.widgets;
 
-        this.logger.info('Dashboard Id: ' + JSON.stringify(data.id));
-        this.logger.info('Widgets: ' + JSON.stringify(this.items));
-      });
-
-    }
+      this.logger.info('Dashboard Id: ' + JSON.stringify(data.id));
+      this.logger.info('Widgets: ' + JSON.stringify(this.items));
+    });
 
   }
 
@@ -356,6 +275,9 @@ export class DashboardComponent implements OnInit, OnChanges, OnDestroy {
 
 }
 
+// https://github.com/tiberiuzuld/angular-gridster2/blob/master/src/app/sections/emptyCell/emptyCell.component.ts
+// https://github.com/NastyZ98/angular6-dynamic-dashboard/blob/master/src/app/dashboard/dashboard.component.ts
+
 // https://github.com/tiberiuzuld/angular-gridster2/blob/master/src/app/sections/emptyCell/emptyCell.component.html
 // https://github.com/tiberiuzuld/angular-gridster2/blob/master/src/app/sections/emptyCell/emptyCell.component.ts
 
@@ -365,6 +287,24 @@ export class DashboardComponent implements OnInit, OnChanges, OnDestroy {
 // window.dispatchEvent(new Event('dragenter'));
 
 /*
+
+  protected subscribe() {
+
+    this.logger.info('DashboardComponent: subscribe()');
+
+    if (this.dashboardId) {
+
+      this.subscription = this.dashboardService.getDashboard(this.dashboardId).subscribe(data => {
+
+        this.items = data.widgets;
+
+        this.logger.info('Dashboard Id: ' + JSON.stringify(data.id));
+        this.logger.info('Widgets: ' + JSON.stringify(this.items));
+      });
+
+    }
+
+  }
 
 this.items.push({
   'id': '99',
@@ -516,3 +456,69 @@ if (this.screenFull.enabled) {
 
 // See: https://github.com/tiberiuzuld/angular-gridster2/blob/master/projects/angular-gridster2/src/lib/gridsterConfig.constant.ts
 
+
+// https://github.com/tiberiuzuld/angular-gridster2/blob/master/src/app/sections/home/home.component.ts
+
+/*
+
+import { CompactType, DisplayGrid, GridType } from 'angular-gridster2';
+
+public getDefaultOptions() {
+
+  this.options = {
+    gridType: GridType.Fit,
+    displayGrid: DisplayGrid.Always,
+    compactType: CompactType.None,
+    margin: 10,
+    outerMargin: true,
+    outerMarginTop: null,
+    outerMarginRight: null,
+    outerMarginBottom: null,
+    outerMarginLeft: null,
+    useTransformPositioning: true,
+    mobileBreakpoint: 640,
+    minCols: 1,
+    maxCols: 100,
+    minRows: 1,
+    maxRows: 100,
+    maxItemCols: 100,
+    minItemCols: 1,
+    maxItemRows: 100,
+    minItemRows: 1,
+    maxItemArea: 2500,
+    minItemArea: 1,
+    defaultItemCols: 1,
+    defaultItemRows: 1,
+    fixedColWidth: 105,
+    fixedRowHeight: 105,
+    keepFixedHeightInMobile: false,
+    keepFixedWidthInMobile: false,
+    scrollSensitivity: 10,
+    scrollSpeed: 20,
+    enableEmptyCellClick: false,
+    enableEmptyCellContextMenu: false,
+    enableEmptyCellDrop: false,
+    enableEmptyCellDrag: false,
+    emptyCellDragMaxCols: 50,
+    emptyCellDragMaxRows: 50,
+    ignoreMarginInRow: false,
+    draggable: {
+      enabled: true
+    },
+    resizable: {
+      enabled: true
+    },
+    swap: false,
+    pushItems: true,
+    disablePushOnDrag: false,
+    disablePushOnResize: false,
+    pushDirections: {north: true, east: true, south: true, west: true},
+    pushResizeItems: false,
+    disableWindowResize: false,
+    disableWarnings: false,
+    scrollToNewItems: false
+  };
+
+}
+
+*/
