@@ -24,6 +24,7 @@
       }
     ]
   },
+
   {
     "id": "2",
     "name": "Sample Dashboard 2",
@@ -45,6 +46,38 @@
         "rows": 8,
         "y": 0,
         "x": 2
+      }
+    ]
+  },
+
+  {
+    "id": "3",
+    "name": "Sample Dashboard 3",
+    "widgets": [
+      {
+        "id": "1",
+        "name": "Parliament Chart",
+        "component": "parliamentChart",
+        "cols": 7,
+        "rows": 7,
+        "y": 0,
+        "x": 0
+      }
+    ]
+  },
+
+  {
+    "id": "4",
+    "name": "Sample Dashboard 4",
+    "widgets": [
+      {
+        "id": "1",
+        "name": "Timeline",
+        "component": "timeline",
+        "cols": 6,
+        "rows": 6,
+        "y": 0,
+        "x": 0
       }
     ]
   }

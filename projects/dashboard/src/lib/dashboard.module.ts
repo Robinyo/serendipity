@@ -9,17 +9,19 @@ import { GridsterModule } from 'angular-gridster2';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 //
-// Dashboard Widgets lib
-//
-
-import { DynamicModule } from 'ng-dynamic-component';
-import { DashboardWidgetsModule, FunnelChartComponent, PieChartComponent } from 'dashboard-widgets';
-
-//
 // Serendipity Components lib
 //
 
 import { SerendipityComponentsModule } from 'serendipity-components';
+
+//
+// Dashboard Widgets lib
+//
+
+import { DynamicModule } from 'ng-dynamic-component';
+import { DashboardWidgetsModule } from 'dashboard-widgets';
+import { FunnelChartComponent, ParliamentChartComponent, PieChartComponent } from 'dashboard-widgets';
+import { TimelineComponent } from 'dashboard-widgets';
 
 //
 // Utils lib
@@ -34,7 +36,7 @@ import { AngularMaterialModule } from 'utils';
     CommonModule,
     // DragDropModule,
     DashboardWidgetsModule,
-    DynamicModule.withComponents([ FunnelChartComponent, PieChartComponent ]),
+    DynamicModule.withComponents([ FunnelChartComponent, ParliamentChartComponent, PieChartComponent, TimelineComponent ]),
     FlexLayoutModule,
     GridsterModule,
     SerendipityComponentsModule,
@@ -45,7 +47,7 @@ import { AngularMaterialModule } from 'utils';
     { provide: LoggerService, useClass: ConsoleLoggerService }
   ],
   exports: [ DashboardComponent ],
-  entryComponents: [ FunnelChartComponent, PieChartComponent ]
+  entryComponents: [ FunnelChartComponent, ParliamentChartComponent, PieChartComponent, TimelineComponent ]
 })
 export class DashboardModule {
 

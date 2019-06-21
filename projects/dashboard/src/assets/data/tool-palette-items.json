@@ -8,9 +8,21 @@
   },
   {
     "id": "3",
+    "name": "Parliament Chart",
+    "component": "parliamentChart",
+    "icon": "../../../../assets/images/icons/parliament-chart.svg"
+  },
+  {
+    "id": "4",
     "name": "Pie Chart",
     "component": "pieChart",
     "icon": "../../../../assets/images/icons/pie-chart.svg"
+  },
+  {
+    "id": "5",
+    "name": "Timeline",
+    "component": "timeline",
+    "icon": "../../../../assets/images/icons/timeline.svg"
   }
 
 ]

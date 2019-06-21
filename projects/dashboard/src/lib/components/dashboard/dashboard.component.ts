@@ -7,7 +7,8 @@ import { CompactType, DisplayGrid, GridType } from 'angular-gridster2';
 import { DashboardConfig, DashboardItemComponentInterface } from '../../models/models';
 import { DashboardWidget, ToolPaletteItem } from '../../models/models';
 
-import { FunnelChartComponent, PieChartComponent } from 'dashboard-widgets';
+import { FunnelChartComponent, ParliamentChartComponent, PieChartComponent } from 'dashboard-widgets';
+import { TimelineComponent } from 'dashboard-widgets';
 import { DashboardWidgetService } from 'dashboard-widgets';
 
 import { SidenavService } from 'serendipity-components';
@@ -46,7 +47,9 @@ export class DashboardComponent implements OnInit, OnChanges, OnDestroy {
 
   public components = {
     funnelChart: FunnelChartComponent,
-    pieChart: PieChartComponent
+    parliamentChart: ParliamentChartComponent,
+    pieChart: PieChartComponent,
+    timeline: TimelineComponent
   };
 
   constructor(private elementRef: ElementRef,

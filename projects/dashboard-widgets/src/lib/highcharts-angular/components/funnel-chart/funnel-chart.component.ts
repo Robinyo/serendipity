@@ -21,7 +21,7 @@ export class FunnelChartComponent implements OnInit {
 
   chartOptions: Highcharts.Options = <any>{
 
-    chart: {
+  chart: {
       type: 'funnel'
     },
     title: { text: '' },
