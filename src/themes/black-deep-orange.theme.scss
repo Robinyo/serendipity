@@ -123,14 +123,14 @@ $command-bar-sidenav-width: 240px; // 140px;
 }
 
 .crm-activity-bar {
-  height: $crm-view-bar-height-desktop;
-  min-height: $crm-view-bar-height-desktop;
+  height: $crm-activity-bar-height-desktop !important;
+  min-height: $crm-activity-bar-height-desktop !important;
 
   margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
 
   @media ($mat-xsmall) {
-    height: $crm-view-bar-height-mobile;
-    min-height: $crm-view-bar-height-mobile;
+    height: $crm-activity-bar-height-mobile !important;
+    min-height: $crm-activity-bar-height-mobile !important;
 
     margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile;
   }
@@ -217,6 +217,10 @@ $command-bar-sidenav-width: 240px; // 140px;
 }
 
 :fullscreen .crm-command-bar {
+  display: none;
+}
+
+:fullscreen .crm-activity-bar {
   display: none;
 }
 

@@ -2,15 +2,15 @@
 @import "../../themes/variables";
 
 .crm-command-bar-row {
-  height: $crm-command-bar-height-desktop;
-  min-height: $crm-command-bar-height-desktop;
+  height: $crm-command-bar-height-desktop !important;
+  min-height: $crm-command-bar-height-desktop !important;
 
   padding-left: 8px;
   padding-right: 8px;
 
   @media ($mat-xsmall) {
-    height: $crm-command-bar-height-mobile;
-    min-height: $crm-command-bar-height-mobile;
+    height: $crm-command-bar-height-mobile !important;
+    min-height: $crm-command-bar-height-mobile !important;
   }
 }
 
