@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -36,7 +35,12 @@ import { AngularMaterialModule } from 'utils';
     CommonModule,
     // DragDropModule,
     DashboardWidgetsModule,
-    DynamicModule.withComponents([ FunnelChartComponent, ParliamentChartComponent, PieChartComponent, TimelineComponent ]),
+    DynamicModule.withComponents([
+      FunnelChartComponent,
+      ParliamentChartComponent,
+      PieChartComponent,
+      TimelineComponent
+    ]),
     FlexLayoutModule,
     GridsterModule,
     SerendipityComponentsModule,
@@ -47,7 +51,12 @@ import { AngularMaterialModule } from 'utils';
     { provide: LoggerService, useClass: ConsoleLoggerService }
   ],
   exports: [ DashboardComponent ],
-  entryComponents: [ FunnelChartComponent, ParliamentChartComponent, PieChartComponent, TimelineComponent ]
+  entryComponents: [
+    FunnelChartComponent,
+    ParliamentChartComponent,
+    PieChartComponent,
+    TimelineComponent
+  ]
 })
 export class DashboardModule {
 
