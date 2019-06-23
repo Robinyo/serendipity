@@ -2,9 +2,7 @@ import { Component, SimpleChanges, ElementRef, Input, OnInit, OnChanges, OnDestr
 
 import { Subscription } from 'rxjs';
 
-import { GridType } from 'angular-gridster2';
-
-import { DashboardConfig, DashboardItemComponentInterface } from '../../models/models';
+import { DashboardConfig, DashboardItemComponentInterface, GridType } from '../../models/models';
 import { DashboardWidget, ToolPaletteItem } from '../../models/models';
 
 import { FunnelChartComponent, ParliamentChartComponent, PieChartComponent } from 'dashboard-widgets';

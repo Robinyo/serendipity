@@ -1,10 +1,19 @@
-// import { CompactType, DisplayGrid, GridsterConfig, GridsterItem, GridType } from 'angular-gridster2';
-
 import { GridsterConfig, GridsterItem, GridsterItemComponentInterface } from 'angular-gridster2';
 
 // https://google.github.io/styleguide/jsoncstyleguide.xml
 
-// See: https://github.com/tiberiuzuld/angular-gridster2/blob/v7.2.0/projects/angular-gridster2/src/lib/gridsterConfig.interface.ts
+// https://github.com/tiberiuzuld/angular-gridster2/blob/master/projects/angular-gridster2/src/lib/gridsterConfig.interface.ts
+
+export enum GridType {
+  Fit = 'fit',
+  ScrollVertical = 'scrollVertical',
+  ScrollHorizontal = 'scrollHorizontal',
+  Fixed = 'fixed',
+  VerticalFixed = 'verticalFixed',
+  HorizontalFixed = 'horizontalFixed'
+}
+
+// https://github.com/tiberiuzuld/angular-gridster2/blob/v7.2.0/projects/angular-gridster2/src/lib/gridsterConfig.interface.ts
 
 // tslint:disable-next-line:no-empty-interface
 export interface DashboardConfig extends GridsterConfig {
@@ -90,6 +99,8 @@ export interface DashboardConfig extends GridsterConfig {
 
 }
 
+// https://github.com/tiberiuzuld/angular-gridster2/blob/v7.2.0/projects/angular-gridster2/src/lib/gridsterItem.interface.ts
+
 export interface DashboardItem extends GridsterItem {
 
   /*
@@ -119,6 +130,8 @@ export interface DashboardItem extends GridsterItem {
   // icon?: string;
 
 }
+
+// https://github.com/tiberiuzuld/angular-gridster2/blob/v7.2.0/projects/angular-gridster2/src/lib/gridsterItemComponent.interface.ts
 
 // tslint:disable-next-line:no-empty-interface
 export interface DashboardItemComponentInterface extends GridsterItemComponentInterface {
@@ -169,9 +182,3 @@ export interface ToolPaletteItem {
   icon?: string;
 
 }
-
-// https://github.com/tiberiuzuld/angular-gridster2/blob/v7.2.0/projects/angular-gridster2/src/lib/gridsterItem.interface.ts
-
-// https://github.com/tiberiuzuld/angular-gridster2/blob/v7.2.0/projects/angular-gridster2/src/lib/gridsterItemComponent.interface.ts
-
-// https://github.com/tiberiuzuld/angular-gridster2/blob/v7.2.0/projects/angular-gridster2/src/lib/gridster.interface.ts
