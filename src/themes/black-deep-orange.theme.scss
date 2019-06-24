@@ -111,7 +111,8 @@ body {
 
 }
 
-$command-bar-sidenav-width: 240px; // 140px;
+// $command-bar-sidenav-width: 240px;  // menu item layout
+$command-bar-sidenav-width: 160px; // card layout
 
 .crm-command-bar-sidenav {
   margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;

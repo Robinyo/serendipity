@@ -2,7 +2,8 @@ import { Component, SimpleChanges, ElementRef, Input, OnInit, OnChanges, OnDestr
 
 import { Subscription } from 'rxjs';
 
-import { DashboardConfig, DashboardItemComponentInterface, GridType } from '../../models/models';
+import { DashboardConfig, DashboardItemComponentInterface } from '../../models/models';
+import { DisplayGrid, GridType } from '../../models/models';
 import { DashboardWidget, ToolPaletteItem } from '../../models/models';
 
 import { FunnelChartComponent, ParliamentChartComponent, PieChartComponent } from 'dashboard-widgets';
@@ -79,7 +80,7 @@ export class DashboardComponent implements OnInit, OnChanges, OnDestroy {
     this.options = {
 
       disablePushOnDrag: true,
-      // displayGrid: DisplayGrid.Always,
+      displayGrid: DisplayGrid.Always,
       draggable: {
         enabled: true,
         ignoreContent: true,

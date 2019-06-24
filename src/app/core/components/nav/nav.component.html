@@ -45,7 +45,27 @@
 
   <mat-sidenav #commandbarSidenav position="end" mode="side" class="crm-command-bar-sidenav">
 
-    <!-- <mat-nav-list style="padding: 10px;"> -->
+    <mat-list style="padding: 10px;">
+
+      <mat-card *ngFor="let item of toolPaletteItems" style="padding: 8px; margin-bottom: 10px; text-align: center;">
+
+        <img mat-card-sm-image
+             [src]="item.icon"
+             [alt]="item.name"
+             draggable="true"
+             (dragstart)="onDragStart($event, item.id)">
+
+        <mat-card-content>
+          <mat-card-subtitle>
+            {{item.name}}
+          </mat-card-subtitle>
+        </mat-card-content>
+
+      </mat-card>
+
+    </mat-list>
+
+    <!--
     <mat-nav-list>
 
       <a *ngFor="let item of toolPaletteItems"
@@ -59,6 +79,7 @@
       </a>
 
     </mat-nav-list>
+    -->
 
   </mat-sidenav>
 
@@ -71,197 +92,3 @@
   </mat-sidenav-content>
 
 </mat-sidenav-container>
-
-<!--
-
-https://github.com/tiberiuzuld/angular-gridster2/blob/master/src/app/sections/emptyCell/emptyCell.component.html
-
--->
-
-<!--
-<mat-nav-list>
-
-  <a mat-list-item>
-    <img matListIcon class="app-nav-list-icon" src="../../../../assets/images/icons/bar-chart.svg" alt="Bar Chart"
-         draggable="true" (dragstart)="onDragStart($event, '1')">
-    Bar Chart
-  </a>
--->
-
-<!--
-<a mat-list-item draggable="true" (dragstart)="onDragStart($event, '1')">
-  <mat-icon matListIcon class="app-nav-list-icon"> bar_chart </mat-icon>
-  Bar Chart
-</a>
-
-<a mat-list-item draggable="true" (dragstart)="onDragStart($event, '2')">
-  <mat-icon matListIcon class="app-nav-list-icon"> local_bar </mat-icon>
-  Funnel Chart
-</a>
-
-<a mat-list-item draggable="true" (dragstart)="onDragStart($event, '3')">
-  <mat-icon matListIcon class="app-nav-list-icon"> pie_chart </mat-icon>
-  Pie Chart
-</a>
--->
-
-<!--
-<mat-sidenav-content role="main" style="width: 100%; height: 100%">
-
-<a *ngFor="let item of myWorkRoutes"
-   mat-list-item
-   (click)="sidenav.close()"
-   routerLinkActive
-   #routerLinkActiveInstance="routerLinkActive"
-   [class.list-item-active]="routerLinkActiveInstance.isActive"
-   [routerLink]="[item.route]">
-  <mat-icon matListIcon class="app-nav-list-icon"> {{ item.icon }} </mat-icon>
-  {{item.title}}
-</a>
--->
-
-<!--
-<a *ngFor="let item of customerRoutes"
-   mat-list-item
-   (click)="sidenav.close()"
-   routerLinkActive
-   #routerLinkActiveInstance="routerLinkActive"
-   [class.list-item-active]="routerLinkActiveInstance.isActive"
-   [routerLink]="[item.route]">
-  <mat-icon matListIcon class="app-nav-list-icon"> {{ item.icon }} </mat-icon>
-  {{item.title}}
-</a>
--->
-
-<!--
-  <crm-navigation-bar *ngIf="isAuthenticated()" (toggleSidenav)="sidenav.toggle()"></crm-navigation-bar>
--->
-
-<!--
-<mat-nav-list cdkDropList style="padding: 10px;">
-
-  <a mat-list-item
-     cdkDrag
-     cdkDropList
-     cdkDropListConnectedTo="drop-list"
-     (cdkDragStarted)="dragStart($event)"
-     (cdkDragMoved)="dragMove($event)">
-    <mat-icon matListIcon class="app-nav-list-icon"> bar_chart </mat-icon>
-    Bar Chart
-    <img *cdkDragPreview [src]="icon" [alt]="title" style="width: 32px; height:32px;">
-  </a>
-
-  <a mat-list-item
-     cdkDrag
-     cdkDropList
-     cdkDropListConnectedTo="drop-list"
-     (cdkDragStarted)="dragStart($event)"
-     (cdkDragMoved)="dragMove($event)">
-    <mat-icon matListIcon class="app-nav-list-icon"> local_bar </mat-icon>
-    Funnel Chart
-    <img *cdkDragPreview [src]="icon" [alt]="title" style="width: 32px; height:32px;">
-  </a>
-
-  <a mat-list-item
-     cdkDrag
-     cdkDropList
-     cdkDropListConnectedTo="drop-list"
-     (cdkDragStarted)="dragStart($event)"
-     (cdkDragMoved)="dragMove($event)">
-    <mat-icon matListIcon class="app-nav-list-icon"> pie_chart </mat-icon>
-    Pie Chart
-    <img *cdkDragPreview [src]="icon" [alt]="title" style="width: 32px; height:32px;">
-  </a>
-
-</mat-nav-list>
--->
-
-
-<!--
-<mat-nav-list cdkDropList style="padding: 10px;">
-
-  <a mat-list-item cdkDrag cdkDropList cdkDropListConnectedTo="drop-list">
-    <mat-icon matListIcon class="app-nav-list-icon"> bar_chart </mat-icon>
-    Bar Chart
-    <img *cdkDragPreview [src]="icon" [alt]="title" style="width: 32px; height:32px;">
-  </a>
-
-</mat-nav-list>
--->
-
-<!--
-<div mat-list-item cdkDrag>
-  <mat-icon matListIcon class="app-nav-list-icon"> bar_chart </mat-icon>
-  Bar Chart
-  <img *cdkDragPreview [src]="icon" [alt]="title" style="width: 32px; height:32px;">
-</div>
--->
-
-<!--
-<mat-nav-list style="padding: 10px;">
-
-  <a mat-list-item draggable="true" (dragstart)="onDrag($event, '1')">
-    <mat-icon matListIcon class="app-nav-list-icon"> bar_chart </mat-icon>
-    Bar Chart
-  </a>
-
-  <a mat-list-item draggable="true" (dragstart)="onDrag($event, '2')">
-    <mat-icon matListIcon class="app-nav-list-icon"> local_bar </mat-icon>
-    Funnel Chart
-  </a>
-
-  <a mat-list-item draggable="true" (dragstart)="onDrag($event, '3')">
-    <mat-icon matListIcon class="app-nav-list-icon"> pie_chart </mat-icon>
-    Pie Chart
-  </a>
-
-</mat-nav-list>
--->
-
-<!--
-<div style="background-color: #f5f5f5; padding-top: 8px; padding-bottom: 8px; text-align: center;">
-  Components
-</div>
--->
-
-<!--
-<mat-list style="padding: 10px;">
-
-  <mat-card style="padding: 8px; margin-bottom: 10px; text-align: center;" draggable="true" (dragstart)="onDrag($event, '1')">
-
-    <img mat-card-sm-image src="../../../../assets/images/icons/bar-chart.svg" alt="Bar Chart">
-
-    <mat-card-content>
-      <mat-card-subtitle>
-        Bar Chart
-      </mat-card-subtitle>
-    </mat-card-content>
-
-  </mat-card>
-
-  <mat-card style="padding: 8px; margin-bottom: 10px; text-align: center;">
-
-    <img mat-card-sm-image src="../../../../assets/images/icons/funnel-chart.svg" alt="Funnel Chart">
-
-    <mat-card-content>
-      <mat-card-subtitle>
-        Funnel Chart
-      </mat-card-subtitle>
-    </mat-card-content>
-
-  </mat-card>
-
-  <mat-card style="padding: 8px; margin-bottom: 10px; text-align: center;">
-
-    <img mat-card-sm-image src="../../../../assets/images/icons/pie-chart.svg" alt="Pie Chart">
-
-    <mat-card-content>
-      <mat-card-subtitle>
-        Pie Chart
-      </mat-card-subtitle>
-    </mat-card-content>
-
-  </mat-card>
-
-</mat-list>
--->

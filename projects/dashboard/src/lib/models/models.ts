@@ -4,6 +4,23 @@ import { GridsterConfig, GridsterItem, GridsterItemComponentInterface } from 'an
 
 // https://github.com/tiberiuzuld/angular-gridster2/blob/master/projects/angular-gridster2/src/lib/gridsterConfig.interface.ts
 
+export enum DisplayGrid {
+  Always = 'always',
+  OnDragAndResize = 'onDrag&Resize',
+  None = 'none'
+}
+
+export enum CompactType {
+  None = 'none',
+  CompactUp = 'compactUp',
+  CompactLeft = 'compactLeft',
+  CompactUpAndLeft = 'compactUp&Left',
+  CompactLeftAndUp = 'compactLeft&Up',
+  CompactRight = 'compactRight',
+  CompactUpAndRight = 'compactUp&Right',
+  CompactRightAndUp = 'compactRight&Up',
+}
+
 export enum GridType {
   Fit = 'fit',
   ScrollVertical = 'scrollVertical',
