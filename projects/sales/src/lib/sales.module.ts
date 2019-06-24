@@ -16,19 +16,6 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/mocks/api/in-memory-data.service';
 
 //
-// Utils lib
-//
-
-import { UtilsModule, LoggerService, ConsoleLoggerService, StaticInjectorService } from 'utils';
-import { AngularMaterialModule } from 'utils';
-
-//
-// Flowable lib
-//
-
-import { FlowableModule } from 'flowable';
-
-//
 // Serendipity Components lib
 //
 
@@ -45,6 +32,19 @@ import { DashboardModule } from 'dashboard';
 //
 
 import { DynamicFormsModule } from 'dynamic-forms';
+
+//
+// Flowable lib
+//
+
+import { FlowableModule } from 'flowable';
+
+//
+// Utils lib
+//
+
+import { UtilsModule, LoggerService, ConsoleLoggerService, StaticInjectorService } from 'utils';
+import { AngularMaterialModule } from 'utils';
 
 //
 // LibRoutingModule: https://angular.io/guide/router#routing-module-order
@@ -106,25 +106,3 @@ export class SalesModule {
   }
 
 }
-
-// import { DynamicFormsCoreModule } from '@ng-dynamic-forms/core';
-// import { DynamicFormsMaterialUIModule } from '@ng-dynamic-forms/ui-material';
-
-// DynamicFormsCoreModule,
-// DynamicFormsMaterialUIModule,
-
-/*
-
-// this.logger.info('SalesModule: constructor()');
-
-// import { LoggerService } from './services/logger/logger.service';
-// import { ConsoleLoggerService } from './services/logger/console-logger.service';
-
-// { provide: LoggerService, useClass: ConsoleLoggerService }
-
-[ ContactsComponent, AccountsComponent, LoggerService, ConsoleLoggerService ]
-
-// import { CommonModule } from '@angular/common';
-// import { ReactiveFormsModule } from '@angular/forms';
-
-*/

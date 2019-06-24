@@ -158,18 +158,22 @@ $command-bar-sidenav-width: 160px; // card layout
 
 */
 
-
-
-
-
-.crm-content-container {
-  height: 100%;
-}
-
 .crm-spinner-container {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
+  // 64 + 56 + 96
+  height: calc(100vh - 216px);
+  width: 100%;
+
+  @media ($mat-xsmall) {
+    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
+    // 56 + 0 + 84
+    height: calc(100vh - 140px);
+  }
+
 }
 
 .crm-component-title-container {
@@ -189,6 +193,7 @@ $command-bar-sidenav-width: 160px; // card layout
 
     margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile;
   }
+
 }
 
 .crm-component-title {
@@ -198,6 +203,57 @@ $command-bar-sidenav-width: 160px; // card layout
   // padding-top: 12px;
   margin: 0;
   // text-align: center;
+}
+
+/*
+.crm-content-container {
+  height: 100%;
+}
+*/
+
+.crm-content-container {
+  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
+  // 64 + 56 + 96
+  height: calc(100vh - 216px);
+  width: 100%;
+
+  @media ($mat-xsmall) {
+    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
+    // 56 + 0 + 84
+    height: calc(100vh - 140px);
+  }
+
+  // background-color: black;
+}
+
+$table-margin-desktop: 32px;
+$table-margin-mobile: 0;
+
+.crm-table-container {
+  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
+  // 64 + 56 + 96 + 32
+  height: calc(100vh - 248px);
+
+  margin-left: $table-margin-desktop;
+  margin-right: $table-margin-desktop;
+  overflow: auto;
+
+  // margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
+
+  @media ($mat-xsmall) {
+    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
+    // 56 + 0 + 84 + 0
+    height: calc(100vh - 140px);
+
+    margin-left: $table-margin-mobile;
+    margin-right: $table-margin-mobile;
+  }
+
+  // background-color: black;
+}
+
+.crm-table {
+  width: 100%;
 }
 
 .crm-dashboard-container {
@@ -234,20 +290,6 @@ $command-bar-sidenav-width: 160px; // card layout
   height: calc(100vh - 96px);
 }
 
-.crm-table-container {
-  margin-left: 32px;
-  margin-right: 32px;
-  overflow: auto;
-
-  // margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
-
-  @media ($mat-xsmall) {
-    margin-left: 0;
-    margin-right: 0;
-
-    // margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile;
-  }
-}
 
 $task-list-width: 320px; // 240px;
 

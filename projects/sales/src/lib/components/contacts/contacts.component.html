@@ -25,30 +25,24 @@
     RUN REPORT
   </button>
 
-  <!--
-  <div fxFlex fxLayout fxLayoutAlign="flex-end">
-
-    <button mat-button class="crm-command-bar-button" (click)="onToggleSidenav()">
-      <mat-icon>widgets</mat-icon>
-      WIDGETS
-    </button>
-
-  </div>
-  -->
-
 </crm-command-bar>
 
 <div class="crm-component-title-container">
   <h1 class="crm-component-title"> {{ 'CONTACTS_HEADER' | translate }} </h1>
 </div>
 
-<div #contentContainer class="crm-content-container" (window:resize)="onResize($event)" [style.height.px]="containerHeight">
+<div #contentContainer class="crm-content-container">
 
   <ng-container *ngIf="!items; then skeleton"> </ng-container>
 
-  <div #tableContainer class="crm-table-container" [style.height.px]="containerHeight">
+  <div class="crm-table-container">
 
-    <table mat-table [hidden]="!items" [dataSource]="dataSource" matSort matSortStart="desc" class="mat-elevation-z8" [style.width.px]="containerWidth">
+    <table mat-table
+           [hidden]="!items"
+           [dataSource]="dataSource"
+           matSort
+           matSortStart="desc"
+           class="mat-elevation-z8 crm-table">
 
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef class="header-cell-id">
@@ -85,8 +79,6 @@
 
       <ng-container matColumnDef="footer">
         <td mat-footer-cell *matFooterCellDef colspan="5">
-
-          <!-- Index Bar -->
 
           <div class="footer-container" fxHide.xs>
 
@@ -148,7 +140,7 @@
 
   <ng-template #skeleton>
 
-    <div class="crm-spinner-container" [style.height.px]="containerHeight">
+    <div class="crm-spinner-container">
       <mat-spinner color="accent"></mat-spinner>
     </div>
 
@@ -158,30 +150,6 @@
 
 <!--
 
-<sales-command-bar class="crm-command-bar-fixed" fxHide.xs> </sales-command-bar>
-
-<mat-toolbar>
-
-  <mat-toolbar-row>
-    <h1 class="lib-component-title"> {{ 'CONTACTS_HEADER' | translate }} </h1>
-  </mat-toolbar-row>
-
-</mat-toolbar>
-
-<mat-toolbar class="header-toolbar">
-  <h2 style="margin: 0 auto;">{{ 'CONTACTS_HEADER' | translate }}</h2>
-</mat-toolbar>
-
-              <button mat-button class="footer-button-last-page">
-                <mat-icon>play_arrow</mat-icon>
-              </button>
-
-              <button mat-button class="footer-button-next-page">
-                <mat-icon>keyboard_arrow_right</mat-icon>
-              </button>
-
-              <button mat-button class="footer-button-last-page">
-                <mat-icon>skip_next</mat-icon>
-              </button>
+<div #contentContainer class="crm-content-container" (window:resize)="onResize($event)">
 
 -->

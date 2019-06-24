@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MatSort, MatTableDataSource } from '@angular/material';
@@ -15,14 +15,6 @@ import {
   ALPHABET,
   CONTACT_COLUMNS_DESKTOP,
   CONTACT_COLUMNS_MOBILE,
-  NAVIGATION_BAR_HEIGHT_DESKTOP,
-  NAVIGATION_BAR_HEIGHT_MOBILE,
-  COMMAND_BAR_HEIGHT_DESKTOP,
-  COMMAND_BAR_HEIGHT_MOBILE,
-  VIEW_BAR_HEIGHT_DESKTOP,
-  VIEW_BAR_HEIGHT_MOBILE,
-  MARGIN_DESKTOP,
-  MARGIN_MOBILE,
   MAT_XSMALL
 } from '../../models/constants';
 
@@ -35,13 +27,12 @@ import { SidenavService } from 'serendipity-components';
 })
 export class ContactsComponent extends CollectionComponent implements AfterViewInit, OnInit {
 
-  public containerWidth: number;
-  public containerHeight: number;
+  @ViewChild(MatSort) sort: MatSort;
 
   public items: Array<Contact>;
 
-  public dataSource: MatTableDataSource<Contact>;
-  public displayedColumns: string[];
+  public dataSource: MatTableDataSource<Contact> = null;
+  public displayedColumns: string[] = [];
 
   public alphabet = ALPHABET;
 
@@ -72,17 +63,6 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
   protected subscription: Subscription;
 
-  @ViewChild('contentContainer')
-  private tableContainer: ElementRef;
-
-  @ViewChild(MatSort)
-  private sort: MatSort;
-
-  private navBarHeight = NAVIGATION_BAR_HEIGHT_DESKTOP;
-  private cmdBarHeight = COMMAND_BAR_HEIGHT_DESKTOP;
-  private viewBarHeight = VIEW_BAR_HEIGHT_DESKTOP;
-  private margin = MARGIN_DESKTOP;
-
   constructor(private router: Router,
               private breakpointObserver: BreakpointObserver,
               private contactsService: ContactsService,
@@ -94,68 +74,31 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
     super.ngOnInit();
 
-    // this.logger.info('ContactsPage: ngOnInit()');
+    this.logger.info('ContactsPage: ngOnInit()');
 
     // Evaluate against the current viewport
 
     if (this.breakpointObserver.isMatched(MAT_XSMALL)) {
-
-      this.navBarHeight = NAVIGATION_BAR_HEIGHT_MOBILE;
-      this.cmdBarHeight = COMMAND_BAR_HEIGHT_MOBILE;
-      this.viewBarHeight = VIEW_BAR_HEIGHT_MOBILE;
-      this.margin = MARGIN_MOBILE;
-
       this.displayedColumns = CONTACT_COLUMNS_MOBILE;
-
     } else {
-
-      this.navBarHeight = NAVIGATION_BAR_HEIGHT_DESKTOP;
-      this.cmdBarHeight = COMMAND_BAR_HEIGHT_DESKTOP;
-      this.viewBarHeight = VIEW_BAR_HEIGHT_DESKTOP;
-      this.margin = MARGIN_DESKTOP;
-
       this.displayedColumns = CONTACT_COLUMNS_DESKTOP;
     }
 
-    this.containerWidth = this.tableContainer.nativeElement.offsetWidth - (this.margin + this.margin);
-    this.containerHeight = this.tableContainer.nativeElement.offsetHeight -
-      (this.navBarHeight + this.cmdBarHeight + this.viewBarHeight + this.margin);
-  }
-
-  // (window:resize)="onResize($event)
-  public onResize(event) {
-
-    this.containerWidth = event.target.innerWidth - (this.margin + this.margin);
-    this.containerHeight = event.target.innerHeight -
-      (this.navBarHeight + this.cmdBarHeight + this.viewBarHeight + this.margin);
   }
 
   // https://blog.angular-university.io/angular-debugging/
 
   public ngAfterViewInit() {
 
-    // this.logger.info('ContactsPage: ngAfterViewInit()');
+    this.logger.info('ContactsPage: ngAfterViewInit()');
 
     // React to changes to the viewport
 
     this.breakpointObserver.observe([ Breakpoints.HandsetPortrait ]).subscribe(result => {
 
       if (result.matches) {
-
-        this.navBarHeight = NAVIGATION_BAR_HEIGHT_MOBILE;
-        this.cmdBarHeight = COMMAND_BAR_HEIGHT_MOBILE;
-        this.viewBarHeight = VIEW_BAR_HEIGHT_MOBILE;
-        this.margin = MARGIN_MOBILE;
-
         this.displayedColumns = CONTACT_COLUMNS_MOBILE;
-
       } else {
-
-        this.navBarHeight = NAVIGATION_BAR_HEIGHT_DESKTOP;
-        this.cmdBarHeight = COMMAND_BAR_HEIGHT_DESKTOP;
-        this.viewBarHeight = VIEW_BAR_HEIGHT_DESKTOP;
-        this.margin = MARGIN_DESKTOP;
-
         this.displayedColumns = CONTACT_COLUMNS_DESKTOP;
       }
 
@@ -187,7 +130,6 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
   public refresh() {
     this.logger.info('ContactsPage: refresh()');
-    // console.log(JSON.stringify(this.items));
   }
 
   public onClickFilterButton(id: string) {
