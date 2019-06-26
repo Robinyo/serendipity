@@ -14,7 +14,7 @@ Firebase Hosting: [Serendipity](https://serendipity-f7626.firebaseapp.com)
 
 ## Roadmap
 
-* Use TypeScript, Node.js, Express and TypeORM to build a [REST API](https://github.com/Robinyo/serendipity-api) for Serendipity CRM.
+Use TypeScript, Node.js, Express and TypeORM to build a [RESTful API](https://github.com/Robinyo/serendipity-api) for Serendipity CRM.
 
 ## Screen Shots
 
