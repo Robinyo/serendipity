@@ -111,7 +111,11 @@ proxy.conf.json:
 * Rob Ferguson's blog: [Flowable's REST API - Part 2](https://robferguson.org/blog/2019/01/02/flowable-rest-api-part-2/)
 * Rob Ferguson's blog: [Flowable's REST API - Part 3](https://robferguson.org/blog/2019/01/03/flowable-rest-api-part-3/)
 
-### Step 4: Serve the application 
+### Step 4: Serve the application's API 
+
+Follow the steps in the Serendipity API [Quick Start](https://github.com/Robinyo/serendipity-api/blob/master/projects/express-typeorm/docs/developer.md) Guide.
+
+### Step 5: Serve the application 
 
 Go to the project directory, install the project's dependencies and launch the server:
 
