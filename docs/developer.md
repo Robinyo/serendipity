@@ -113,7 +113,7 @@ proxy.conf.json:
 
 ### Step 4: Serve the application's API 
 
-Follow the steps in the Serendipity API [Quick Start](https://github.com/Robinyo/serendipity-api/blob/master/projects/express-typeorm/docs/developer.md) Guide.
+Follow the steps in the Serendipity API's [Quick Start](https://github.com/Robinyo/serendipity-api/blob/master/projects/express-typeorm/docs/developer.md) Guide.
 
 ### Step 5: Serve the application 
 
