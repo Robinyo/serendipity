@@ -12,8 +12,8 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { SnackBarComponent, ContactComponent } from './components/contact/contact.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './services/mocks/api/in-memory-data.service';
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryDataService } from './services/mocks/api/in-memory-data.service';
 
 //
 // Serendipity Components lib
@@ -62,7 +62,7 @@ import { LibRoutingModule } from './lib-routing.module';
     // HttpClientModule,
     ReactiveFormsModule,
 
-    HttpClientInMemoryWebApiModule.forFeature(InMemoryDataService, { passThruUnknownUrl: true, delay: 1000 }),
+    // HttpClientInMemoryWebApiModule.forFeature(InMemoryDataService, { passThruUnknownUrl: true, delay: 1000 }),
 
     TranslateModule.forChild(),
 

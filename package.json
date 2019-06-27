@@ -1,14 +1,14 @@
 {
   "name": "serendipity",
-  "description": "Transform your organisation by connecting your customers, products, people and operations.",
   "version": "1.0.0-beta.1",
+  "description": "Transform your organisation by connecting your customers, products, people and operations.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Robinyo/serendipity"
+  },
   "author": "Rob Ferguson",
   "homepage": "https://github.com/Robinyo/serendipity",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://github.com/Robinyo/serendipity"
-  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

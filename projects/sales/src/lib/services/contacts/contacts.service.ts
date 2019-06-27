@@ -10,7 +10,8 @@ import { Contact } from '../../models/models';
 })
 export class ContactsService {
 
-  private contactsUrl = 'api/contacts/';
+  // private contactsUrl = 'api/contacts/';
+  private contactsUrl = 'http://localhost:3001/api/contacts/';
 
   constructor(private httpClient: HttpClient) {}
 
