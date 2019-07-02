@@ -8,6 +8,8 @@ import { OktaAuthModule, OKTA_CONFIG } from '@okta/okta-angular';
 import { AuthConfig } from './models/models';
 import { AuthConfigService } from './services/config.service';
 
+// import { LoginComponent } from './components/login/login.component';
+
 import { OktaLoginComponent } from './components/okta-login/okta-login.component';
 // import { OktaSigninComponent } from './components/okta-signin/okta-signin.component';
 
@@ -34,7 +36,7 @@ import { LibRoutingModule } from './lib-routing.module';
 
     LibRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
-  declarations: [ OktaLoginComponent ],
+  declarations: [ OktaLoginComponent ], // LoginComponent
   providers: [
     { provide: LoggerService, useClass: ConsoleLoggerService }
   ],

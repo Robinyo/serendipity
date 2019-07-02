@@ -37,9 +37,9 @@ export class AuthService {
     return;
   }
 
-  public logout() {
+  public logout(returnUrl: string) {
 
-    this.auth.logout('/');
+    this.auth.logout(returnUrl);
   }
 
 }

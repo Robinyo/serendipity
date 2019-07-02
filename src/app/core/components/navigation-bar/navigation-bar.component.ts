@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 import { AuthService } from 'auth';
+
+import { LoggerService } from 'utils';
 
 @Component({
   selector: 'crm-navigation-bar',
@@ -12,13 +14,28 @@ export class NavigationBarComponent {
 
   @Output() toggleSidenav = new EventEmitter<void>();
 
+  private returnUrl = '/';
+
   constructor(private authService: AuthService,
-              private router: Router) {}
+              private router: Router,
+              private logger: LoggerService) {
+
+    this.router.events.subscribe((event) => {
+
+      if (event instanceof NavigationEnd) {
+
+        this.returnUrl = event.url;
+        this.logger.info('returnUrl: ' + this.returnUrl);
+      }
+
+    });
+
+  }
 
   public logout() {
 
-    this.authService.logout();
-    this.router.navigate(['/']);
+    this.authService.logout(this.returnUrl || '/');
+    // this.router.navigate(['/']);
   }
 
 }

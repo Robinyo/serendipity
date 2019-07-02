@@ -14,17 +14,20 @@ const routes: Routes = [
   {
     path: 'sales/accounts',
     component: PlaceholderComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
   },
   {
     path: 'sales/leads',
     component: PlaceholderComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
   },
   {
     path: 'sales/opportunities',
     component: PlaceholderComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
   },
 
   //

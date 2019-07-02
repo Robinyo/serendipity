@@ -13,11 +13,6 @@ const routes: Routes = [
   {
     path: 'sales/activities',
     component: ActivitiesComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'sales/dashboards',
-    component: DashboardComponent,
     canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always'
   },
@@ -28,16 +23,24 @@ const routes: Routes = [
   //
 
   {
+    path: 'sales/dashboards',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
+  },
+
+  {
     path: 'sales/contacts',
     component: ContactsComponent,
-    canActivate: [AuthGuard]
-    // runGuardsAndResolvers: 'always'
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
   },
 
   {
     path: 'sales/contacts/:id',
     component: ContactComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
   }
 
 ];
