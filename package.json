@@ -38,6 +38,8 @@
     "@angular/service-worker": "^7.2.15",
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
+    "@okta/okta-angular": "^1.2.1",
+    "@okta/okta-signin-widget": "^2.20.1",
     "angular-gridster2": "^7.2.0",
     "core-js": "^2.6.9",
     "date-fns": "^1.30.1",

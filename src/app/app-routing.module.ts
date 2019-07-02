@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from 'auth';
+import { AuthGuard, OktaLoginComponent } from 'auth';
 
 import { PlaceholderComponent } from '@app/core/components/placeholder/placeholder.component';
-import { LoginComponent } from '@app/core/components/login/login.component';
 
 const routes: Routes = [
 
   {
     path: 'login',
-    component: LoginComponent
+    component: OktaLoginComponent
   },
   {
     path: 'sales/accounts',
@@ -34,7 +33,7 @@ const routes: Routes = [
 
   {
     path: '**',
-    redirectTo: 'sales/contacts'
+    redirectTo: 'sales/dashboards'
   }
 
 ];

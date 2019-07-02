@@ -17,6 +17,16 @@ export interface Config {
     messagingSenderId: string
   };
 
+  oidc: {
+    clientId: string,
+    issuer: string,
+    redirectUri: string,
+    scope: string,
+    testing: {
+      disableHttpsCheck: boolean
+    }
+  };
+
   storageUriPrefix: string;
 
   version: string;

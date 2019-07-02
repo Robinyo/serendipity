@@ -390,6 +390,11 @@ To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Lang
 
 ## Resources 
 
+### Auth Resources
+* Scott Brady's blog: [SPA Authentication using OpenID Connect, Angular CLI and oidc-client](https://www.scottbrady91.com/Angular/SPA-Authentiction-using-OpenID-Connect-Angular-CLI-and-oidc-client)
+* Scott Brady's blog: [Silent Refresh - Refreshing Access Tokens when using the Implicit Flow](https://www.scottbrady91.com/OpenID-Connect/Silent-Refresh-Refreshing-Access-Tokens-when-using-the-Implicit-Flow)
+* Scott Brady's blog: [Migrating oidc-client-js to use the OpenID Connect Authorization Code Flow and PKCE](https://www.scottbrady91.com/Angular/Migrating-oidc-client-js-to-use-the-OpenID-Connect-Authorization-Code-Flow-and-PKCE)
+
 ### Angular Resources
 
 * Angular.io: [Quick Start Guide](https://angular.io/guide/quickstart)

@@ -2,6 +2,8 @@
  * Public API Surface of auth
  */
 
+export * from './lib/components/okta-login/okta-login.component';
+
 export * from './lib/services/auth/auth.service';
 
 export * from './lib/guards/auth/auth.guard';

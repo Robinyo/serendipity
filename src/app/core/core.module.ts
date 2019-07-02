@@ -14,7 +14,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { PlaceholderComponent } from './components/placeholder/placeholder.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { NavComponent } from './components/nav/nav.component';
-import { LoginComponent } from './components/login/login.component';
+// import { LoginComponent } from './components/login/login.component';
 
 import { environment } from '@env/environment';
 
@@ -85,14 +85,14 @@ import { MAT_DATE_LOCALE } from '@angular/material';
       }
     }),
 
-    AuthModule,
+    AuthModule.forRoot(environment),
     DynamicFormsModule.forRoot(environment),
     UtilsModule.forRoot(environment),
     SalesModule,
 
     RouterModule  // There is no directive with "exportAs" set to "routerLinkActive ...
   ],
-  declarations: [ PlaceholderComponent, NavigationBarComponent, NavComponent, LoginComponent ],
+  declarations: [ PlaceholderComponent, NavigationBarComponent, NavComponent ],
   providers: [
     { provide: LoggerService, useClass: ConsoleLoggerService },
     { provide: MAT_DATE_LOCALE, useValue: environment.defaultLanguage }
