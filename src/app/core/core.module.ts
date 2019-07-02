@@ -16,6 +16,8 @@ import { NavigationBarComponent } from './components/navigation-bar/navigation-b
 import { NavComponent } from './components/nav/nav.component';
 // import { LoginComponent } from './components/login/login.component';
 
+import { httpInterceptorProviders } from './http-interceptors';
+
 import { environment } from '@env/environment';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
@@ -94,6 +96,7 @@ import { MAT_DATE_LOCALE } from '@angular/material';
   ],
   declarations: [ PlaceholderComponent, NavigationBarComponent, NavComponent ],
   providers: [
+    httpInterceptorProviders,
     { provide: LoggerService, useClass: ConsoleLoggerService },
     { provide: MAT_DATE_LOCALE, useValue: environment.defaultLanguage }
   ],
