@@ -21,7 +21,7 @@ export const environment = {
     redirectUri: 'http://localhost:4200/implicit/callback',
     scope: 'openid profile email',
     testing: {
-      disableHttpsCheck: true
+      disableHttpsCheck: false
     }
   },
 
