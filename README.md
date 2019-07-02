@@ -28,6 +28,12 @@ Login:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/login.png">
 </p>
 
+Okta Login:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/okta-login.png">
+</p>
+
 Navigation Bar:
 
 <p align="center">
