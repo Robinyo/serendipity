@@ -19,7 +19,7 @@ export const environment = {
     clientId: '',
     issuer: '',
     redirectUri: 'http://localhost:4200/implicit/callback',
-    scope: 'openid profile email',
+    scope: 'openid profile email phone address groups',
     testing: {
       disableHttpsCheck: false
     }
