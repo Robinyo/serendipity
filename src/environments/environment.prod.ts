@@ -20,6 +20,7 @@ export const environment = {
     issuer: '',
     redirectUri: 'http://localhost:4200/implicit/callback',
     scope: 'openid profile email phone address groups',
+    responseType: 'id_token token',
     testing: {
       disableHttpsCheck: false
     }
@@ -32,3 +33,5 @@ export const environment = {
   sentryDsn: ''
 
 };
+
+// https://developer.okta.com/blog/2017/07/25/oidc-primer-part-1
