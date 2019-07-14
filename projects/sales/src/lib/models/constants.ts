@@ -14,6 +14,11 @@ $mat-toolbar-row-padding: 16px !default;
 
 */
 
+// btoa(0) === 'MA=='
+
+export const ZERO = '/MA==';
+export const CONTACTS = 'sales/contacts';
+
 export const MAT_XSMALL = '(max-width: 599px)';
 
 export const FAKE_ITEMS_LENGTH = 16;

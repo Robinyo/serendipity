@@ -3,9 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-dialog.component';
+//
+// Bar components
+//
+
 import { ActivityBarComponent } from './components/activity-bar/activity-bar.component';
 import { CommandBarComponent } from './components/command-bar/command-bar.component';
+
+//
+// Dialog components
+//
+
+import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-dialog.component';
+import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/confirm-dialog.component';
 
 //
 // Utils lib
@@ -21,12 +31,20 @@ import { AngularMaterialModule } from 'utils';
     FlexLayoutModule,
     UtilsModule
   ],
-  declarations: [ AlertDialogComponent, ActivityBarComponent, CommandBarComponent ],
+  declarations: [
+    AlertDialogComponent,
+    ConfirmDialogComponent,
+    ActivityBarComponent,
+    CommandBarComponent ],
   providers: [
     { provide: LoggerService, useClass: ConsoleLoggerService }
   ],
-  exports: [ ActivityBarComponent, CommandBarComponent ],
-  entryComponents: [ AlertDialogComponent ]
+  exports: [
+    ActivityBarComponent,
+    CommandBarComponent ],
+  entryComponents: [
+    AlertDialogComponent,
+    ConfirmDialogComponent ]
 })
 export class SerendipityComponentsModule {
 

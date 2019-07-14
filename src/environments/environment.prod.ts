@@ -33,5 +33,3 @@ export const environment = {
   sentryDsn: ''
 
 };
-
-// https://developer.okta.com/blog/2017/07/25/oidc-primer-part-1

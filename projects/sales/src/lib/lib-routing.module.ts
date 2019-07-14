@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from 'auth';
+import { CanDeactivateGuard } from './guards/can-deactivate/can-deactivate.guard';
 
 import { ActivitiesComponent } from './components/activities/activities.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
     path: 'sales/activities',
     component: ActivitiesComponent,
     canActivate: [AuthGuard],
+    canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
   },
 
@@ -40,6 +42,7 @@ const routes: Routes = [
     path: 'sales/contacts/:id',
     component: ContactComponent,
     canActivate: [AuthGuard],
+    canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
   }
 

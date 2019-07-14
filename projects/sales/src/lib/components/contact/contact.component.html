@@ -1,17 +1,18 @@
 <crm-command-bar>
 
-  <ng-container *ngIf="newContact">
+  <!--   <ng-container *ngIf="newContact"> -->
+  <ng-container>
 
     <button mat-button class="crm-command-bar-button"
-            [disabled]="!isValid()"
-            (click)="onSave()">
+        [disabled]="!isDirty() || !isValid()"
+        (click)="onSave()">
       <mat-icon>save</mat-icon>
       SAVE
     </button>
 
     <button mat-button class="crm-command-bar-button"
-            [disabled]="!isValid()"
-            (click)="onSaveAndClose()">
+        [disabled]="!isDirty() || !isValid()"
+        (click)="onSaveAndClose()">
       <mat-icon>arrow_back</mat-icon>
       SAVE & CLOSE
     </button>
@@ -25,6 +26,7 @@
       NEW
     </button>
 
+    <!--
     <button mat-button class="crm-command-bar-button" [disabled]="true">
       <mat-icon>visibility</mat-icon>
       ACTIVATE
@@ -34,6 +36,7 @@
       <mat-icon>visibility_off</mat-icon>
       DEACTIVATE
     </button>
+    -->
 
     <button mat-button class="crm-command-bar-button" [disabled]="true">
       <mat-icon>link</mat-icon>
@@ -44,11 +47,14 @@
 
   <div fxFlex fxLayout fxLayoutAlign="flex-end">
 
+    <!--
     <button mat-button class="crm-command-bar-button" [disabled]="true">
       <mat-icon>open_in_new</mat-icon>
     </button>
+    -->
 
-    <button mat-button class="crm-command-bar-button" [disabled]="true">
+    <button mat-button class="crm-command-bar-button"
+        (click)="onClose()">
       <mat-icon>clear</mat-icon>
     </button>
 

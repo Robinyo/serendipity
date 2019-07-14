@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Subscription} from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { MatSnackBar } from '@angular/material';
@@ -13,6 +13,7 @@ import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } f
 import { ContactsService } from '../../services/contacts/contacts.service';
 import { Contact } from '../../models/models';
 
+import { CONTACTS } from '../../models/constants';
 import { GENERAL_INFORMATION_GROUP, ADDRESS_INFORMATION_GROUP } from '../../models/form-ids';
 
 import { LoggerService } from 'utils';
@@ -178,6 +179,8 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   }
 
+
+
   public ngOnDestroy() {
 
     this.logger.info('ContactComponent: ngOnDestroy()');
@@ -187,6 +190,37 @@ export class ContactComponent implements OnInit, OnDestroy {
   //
   // Misc
   //
+
+  public canDeactivate(): Observable<boolean> | boolean {
+
+    // this.logger.info('ContactComponent: canDeactivate()');
+
+    if (!this.isDirty() && this.isValid()) {
+      return true;
+    }
+
+    return this.dialogService.openConfirm({
+      title: 'Contact',
+      message: 'Are you sure you want to leave this page?',
+      acceptButton: 'OK',
+      cancelButton: 'CANCEL'
+    }).afterClosed();
+
+  }
+
+  public isDirty() {
+
+    // this.logger.info('ContactComponent - isDirty()');
+
+    let dirty = false;
+
+    if ((this.generalInformationGroup && this.generalInformationGroup.dirty) ||
+        (this.addressInformationGroup && this.addressInformationGroup.dirty)) {
+      dirty = true;
+    }
+
+    return dirty;
+  }
 
   public isValid() {
 
@@ -207,6 +241,20 @@ export class ContactComponent implements OnInit, OnDestroy {
     return valid;
   }
 
+  public markAsPristine() {
+
+    // this.logger.info('ContactComponent - markAsPristine()');
+
+    if (this.generalInformationGroup) {
+      this.generalInformationGroup.markAsPristine();
+    }
+
+    if (this.addressInformationGroup) {
+      this.addressInformationGroup.markAsPristine();
+    }
+
+  }
+
   //
   // Command Bar events
   //
@@ -215,31 +263,31 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     this.logger.info('ContactPage: onNew()');
 
-    // btoa(0) === 'MA=='
-    this.router.navigate(['sales/contacts/MA==']);
+    this.router.navigate([CONTACTS + '/MA==']);
   }
 
   public onSave() {
 
     this.logger.info('ContactPage: onSave()');
 
-    /*
-
-    this.snackBar.open('Contact saved', '', {
-      duration: 2000,
-      panelClass: ['crm-snack-bar']
-    });
-
-    */
-
+    this.markAsPristine();
     this.openSnackBar();
+  }
+
+  public onClose() {
+
+    this.logger.info('ContactPage: onClose()');
+
+    this.router.navigate([CONTACTS]);
   }
 
   public onSaveAndClose() {
 
     this.logger.info('ContactPage: onSaveAndClose()');
 
-    this.router.navigate(['sales/contacts']);
+    this.markAsPristine();
+    this.openSnackBar();
+    this.router.navigate([CONTACTS]);
   }
 
   public onCustomEvent(event: DynamicFormControlCustomEvent) {
@@ -278,6 +326,30 @@ export class ContactComponent implements OnInit, OnDestroy {
 export class SnackBarComponent {}
 
 // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
+
+/*
+
+    this.dialogService.openConfirm({
+      title: 'Contact',
+      message: 'Leave this page?',
+      acceptButton: 'OK',
+      cancelButton: 'CANCEL'
+    }).afterClosed().subscribe((accept: boolean) => {
+      if (accept) {
+        this.router.navigate([CONTACTS]);
+      }
+    });
+
+*/
+
+/*
+
+this.snackBar.open('Contact saved', '', {
+  duration: 2000,
+  panelClass: ['crm-snack-bar']
+});
+
+*/
 
 // this.newContact = (this.route.snapshot.paramMap.get('new') === 'true');
 // this.logger.info('ContactComponent: ngOnInit() - newContact: ' + this.newContact);
