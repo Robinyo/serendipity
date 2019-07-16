@@ -52,7 +52,7 @@ const routes: Routes = [
   imports: [
     AuthModule,
     AuthOktaModule,
-    RouterModule.forChild(routes)
+    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})
   ],
   providers: [
     AuthOktaGuard

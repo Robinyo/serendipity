@@ -82,12 +82,6 @@ export class LibRoutingModule {}
 
 /*
 
-// import { AuthOktaGuard } from 'auth-okta';
-
-  providers: [
-    AuthOktaGuard
-  ],
-
 import { CanActivateGuard } from './guards/can-activate/can-activate.guard';
 import { CanDeactivateGuard } from './guards/can-deactivate/can-deactivate.guard';
 

@@ -36,8 +36,10 @@ import { AngularFireModule } from '@angular/fire';
 // Auth libs
 //
 
-import { AuthModule, AuthService } from 'auth';
-import { AuthOktaModule, AuthOktaService } from 'auth-okta';
+// import { AuthModule, AuthService } from 'auth';
+// import { AuthOktaModule, AuthOktaService } from 'auth-okta';
+import { AuthModule } from 'auth';
+import { AuthOktaModule } from 'auth-okta';
 
 //
 // Dashboard Widgets lib
@@ -93,12 +95,11 @@ import { MAT_DATE_LOCALE } from '@angular/material';
     UtilsModule.forRoot(environment),
     SalesModule,
 
-    // RouterModule  // There is no directive with "exportAs" set to "routerLinkActive ...
-    RouterModule.forRoot([])
+    RouterModule  // There is no directive with "exportAs" set to "routerLinkActive ...
   ],
   declarations: [ PlaceholderComponent, NavigationBarComponent, NavComponent ],
   providers: [
-    { provide: AuthService, useClass: AuthOktaService },
+    // { provide: AuthService, useClass: AuthOktaService },
     { provide: LoggerService, useClass: ConsoleLoggerService },
     { provide: MAT_DATE_LOCALE, useValue: environment.defaultLanguage },
     httpInterceptorProviders
