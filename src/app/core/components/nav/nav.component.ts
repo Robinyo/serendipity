@@ -1,9 +1,10 @@
-import {Component, OnInit, OnDestroy, ViewChild, ElementRef, Renderer2} from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 
 import { MatSidenav } from '@angular/material';
 
 import { Subscription } from 'rxjs';
 
+// import { AuthOktaService } from 'auth-okta';
 import { AuthService } from 'auth';
 
 import { SidenavService } from 'serendipity-components';
@@ -18,6 +19,7 @@ interface ROUTE {
 }
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']

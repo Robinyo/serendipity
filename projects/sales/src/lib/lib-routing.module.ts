@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from 'auth';
+//
+// Auth libs
+//
+
+import { AuthModule, AuthGuard } from 'auth';
+import { AuthOktaModule, AuthOktaGuard } from 'auth-okta';
+
 import { CanDeactivateGuard } from './guards/can-deactivate/can-deactivate.guard';
 
 import { ActivitiesComponent } from './components/activities/activities.component';
@@ -14,7 +20,9 @@ const routes: Routes = [
   {
     path: 'sales/activities',
     component: ActivitiesComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthOktaGuard],
+    // canActivate: [AuthGuard],
+    canActivate: [AuthOktaGuard],
     canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
   },
@@ -27,21 +35,27 @@ const routes: Routes = [
   {
     path: 'sales/dashboards',
     component: DashboardComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthOktaGuard],
+    // canActivate: [AuthGuard],
+    canActivate: [AuthOktaGuard],
     runGuardsAndResolvers: 'always'
   },
 
   {
     path: 'sales/contacts',
     component: ContactsComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthOktaGuard],
+    // canActivate: [AuthGuard],
+    canActivate: [AuthOktaGuard],
     runGuardsAndResolvers: 'always'
   },
 
   {
     path: 'sales/contacts/:id',
     component: ContactComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthOktaGuard],
+    // canActivate: [AuthGuard],
+    canActivate: [AuthOktaGuard],
     canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
   }
@@ -49,14 +63,30 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forChild(routes)],
-  exports: [ RouterModule ]
+  imports: [
+    AuthModule,
+    AuthOktaModule,
+    RouterModule.forChild(routes)
+  ],
+  providers: [
+    AuthOktaGuard
+    // { provide: AuthGuard, useClass: AuthOktaGuard }
+  ],
+  exports: [
+    RouterModule
+  ]
 })
 export class LibRoutingModule {}
 
 // https://stackoverflow.com/questions/40380726/angular2-router-canactivate-after-logout
 
 /*
+
+// import { AuthOktaGuard } from 'auth-okta';
+
+  providers: [
+    AuthOktaGuard
+  ],
 
 import { CanActivateGuard } from './guards/can-activate/can-activate.guard';
 import { CanDeactivateGuard } from './guards/can-deactivate/can-deactivate.guard';
@@ -67,6 +97,5 @@ import { CanDeactivateGuard } from './guards/can-deactivate/can-deactivate.guard
     canActivate: [CanActivateGuard],
     canDeactivate: [CanDeactivateGuard]
   }
-
 
 */

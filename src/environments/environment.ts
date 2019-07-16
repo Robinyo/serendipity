@@ -2,7 +2,9 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const environment = {
+import { Environment } from './models';
+
+export const environment: Environment = {
 
   production: false,
 
@@ -37,6 +39,8 @@ export const environment = {
   sentryDsn: ''
 
 };
+
+// https://github.com/PatrickJS/angular-starter/blob/master/src/environments/environment.ts
 
 /*
  * For easier debugging in development mode, you can import the following file

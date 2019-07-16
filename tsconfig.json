@@ -55,9 +55,11 @@
         "dist/flowable/*"
       ],
       "auth": [
+        "dist/auth",
         "dist/auth"
       ],
       "auth/*": [
+        "dist/auth/*",
         "dist/auth/*"
       ],
       "dashboard": [
@@ -71,6 +73,12 @@
       ],
       "dashboard-widgets/*": [
         "dist/dashboard-widgets/*"
+      ],
+      "auth-okta": [
+        "dist/auth-okta"
+      ],
+      "auth-okta/*": [
+        "dist/auth-okta/*"
       ]
     }
   }

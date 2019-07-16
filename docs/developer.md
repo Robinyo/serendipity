@@ -166,6 +166,7 @@ To build the project:
 ```
 ng build utils && \
 ng build auth && \
+ng build auth-okta && \
 ng build serendipity-components && \
 ng build dashboard-widgets && \
 ng build dashboard && \

@@ -3,7 +3,7 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 
 import { Observable } from 'rxjs';
 
-import { AuthService } from '../../services/auth/auth.service';
+import { LoggerService } from 'utils';
 
 @Injectable({
   providedIn: 'root'
@@ -11,45 +11,13 @@ import { AuthService } from '../../services/auth/auth.service';
 export class AuthGuard implements CanActivate {
 
   constructor(private router: Router,
-              private authService: AuthService) {}
+              private logger: LoggerService) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-    if (this.authService.isAuthenticated()) {
-      return true;
-    }
+    this.logger.info('AuthGuard: canActivate()');
 
-    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
     return false;
-
   }
 
 }
-
-/*
-
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-
-    const currentUser = this.authService.currentUserValue;
-
-    if (currentUser) {
-      return true;
-    }
-
-    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
-    return false;
-
-  }
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthGuard implements CanActivate {
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return true;
-  }
-}
-
-*/

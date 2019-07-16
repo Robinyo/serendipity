@@ -331,41 +331,6 @@
         }
       }
     },
-    "auth": {
-      "root": "projects/auth",
-      "sourceRoot": "projects/auth/src",
-      "projectType": "library",
-      "prefix": "auth",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/auth/tsconfig.lib.json",
-            "project": "projects/auth/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/auth/src/test.ts",
-            "tsConfig": "projects/auth/tsconfig.spec.json",
-            "karmaConfig": "projects/auth/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/auth/tsconfig.lib.json",
-              "projects/auth/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "dashboard": {
       "root": "projects/dashboard",
       "sourceRoot": "projects/dashboard/src",
@@ -428,6 +393,76 @@
             "tsConfig": [
               "projects/dashboard-widgets/tsconfig.lib.json",
               "projects/dashboard-widgets/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "auth-okta": {
+      "root": "projects/auth-okta",
+      "sourceRoot": "projects/auth-okta/src",
+      "projectType": "library",
+      "prefix": "auth-okta",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/auth-okta/tsconfig.lib.json",
+            "project": "projects/auth-okta/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/auth-okta/src/test.ts",
+            "tsConfig": "projects/auth-okta/tsconfig.spec.json",
+            "karmaConfig": "projects/auth-okta/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/auth-okta/tsconfig.lib.json",
+              "projects/auth-okta/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "auth": {
+      "root": "projects/auth",
+      "sourceRoot": "projects/auth/src",
+      "projectType": "library",
+      "prefix": "auth",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/auth/tsconfig.lib.json",
+            "project": "projects/auth/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/auth/src/test.ts",
+            "tsConfig": "projects/auth/tsconfig.spec.json",
+            "karmaConfig": "projects/auth/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/auth/tsconfig.lib.json",
+              "projects/auth/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

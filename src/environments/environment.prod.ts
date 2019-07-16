@@ -1,4 +1,10 @@
-export const environment = {
+import { enableProdMode } from '@angular/core';
+
+import { Environment } from './models';
+
+enableProdMode();
+
+export const environment: Environment = {
 
   production: true,
 
@@ -33,3 +39,5 @@ export const environment = {
   sentryDsn: ''
 
 };
+
+// https://github.com/PatrickJS/angular-starter/blob/master/src/environments/environment.prod.ts

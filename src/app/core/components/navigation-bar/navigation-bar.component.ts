@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
+// import { AuthOktaService } from 'auth-okta';
 import { AuthService } from 'auth';
 
 import { LoggerService } from 'utils';
@@ -33,9 +34,7 @@ export class NavigationBarComponent {
   }
 
   public logout() {
-
     this.authService.logout(this.returnUrl || '/');
-    // this.router.navigate(['/']);
   }
 
 }

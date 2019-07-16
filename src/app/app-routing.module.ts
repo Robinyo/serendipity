@@ -1,32 +1,39 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard, OktaLoginComponent } from 'auth';
+//
+// Auth libs
+//
+
+import { AuthModule, AuthGuard } from 'auth';
+import { AuthOktaModule, AuthOktaGuard } from 'auth-okta';
 
 import { PlaceholderComponent } from '@app/core/components/placeholder/placeholder.component';
 
 const routes: Routes = [
 
   {
-    path: 'login',
-    component: OktaLoginComponent
-  },
-  {
     path: 'sales/accounts',
     component: PlaceholderComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthOktaGuard],
+    // canActivate: [AuthGuard],
+    canActivate: [AuthOktaGuard],
     runGuardsAndResolvers: 'always'
   },
   {
     path: 'sales/leads',
     component: PlaceholderComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthOktaGuard],
+    // canActivate: [AuthGuard],
+    canActivate: [AuthOktaGuard],
     runGuardsAndResolvers: 'always'
   },
   {
     path: 'sales/opportunities',
     component: PlaceholderComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthOktaGuard],
+    // canActivate: [AuthGuard],
+    canActivate: [AuthOktaGuard],
     runGuardsAndResolvers: 'always'
   },
 
@@ -42,8 +49,18 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'}) ],
-  exports: [ RouterModule ]
+  imports: [
+    AuthModule,
+    AuthOktaModule,
+    RouterModule.forChild(routes)
+  ],
+  providers: [
+    AuthOktaGuard
+    // { provide: AuthGuard, useClass: AuthOktaGuard }
+  ],
+  exports: [
+    RouterModule
+  ]
 })
 export class AppRoutingModule {}
 

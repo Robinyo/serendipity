@@ -10,10 +10,11 @@ import { TaskComponent } from './components/task/task.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 
 //
-// Auth lib
+// Auth libs
 //
 
-import { AuthModule } from 'auth';
+import { AuthModule, AuthService } from 'auth';
+import { AuthOktaModule, AuthOktaService } from 'auth-okta';
 
 //
 // Utils lib
@@ -32,6 +33,7 @@ import { DynamicFormsModule } from 'dynamic-forms';
   imports: [
     AngularMaterialModule,
     AuthModule,
+    AuthOktaModule,
     CommonModule,
     DynamicFormsModule,
     FlexLayoutModule,
@@ -41,6 +43,7 @@ import { DynamicFormsModule } from 'dynamic-forms';
   ],
   declarations: [ TaskComponent, TaskListComponent ],
   providers: [
+    { provide: AuthService, useClass: AuthOktaService },
     { provide: LoggerService, useClass: ConsoleLoggerService }
   ],
   exports: [ TaskComponent, TaskListComponent ]

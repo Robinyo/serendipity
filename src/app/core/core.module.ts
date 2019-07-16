@@ -14,7 +14,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { PlaceholderComponent } from './components/placeholder/placeholder.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { NavComponent } from './components/nav/nav.component';
-// import { LoginComponent } from './components/login/login.component';
 
 import { httpInterceptorProviders } from './http-interceptors';
 
@@ -34,10 +33,11 @@ import { AngularFireModule } from '@angular/fire';
 // import { AngularFireAuthModule } from '@angular/fire/auth';
 
 //
-// Auth lib
+// Auth libs
 //
 
-import { AuthModule } from 'auth';
+import { AuthModule, AuthService } from 'auth';
+import { AuthOktaModule, AuthOktaService } from 'auth-okta';
 
 //
 // Dashboard Widgets lib
@@ -87,18 +87,21 @@ import { MAT_DATE_LOCALE } from '@angular/material';
       }
     }),
 
-    AuthModule.forRoot(environment),
+    AuthModule,
+    AuthOktaModule.forRoot(environment),
     DynamicFormsModule.forRoot(environment),
     UtilsModule.forRoot(environment),
     SalesModule,
 
-    RouterModule  // There is no directive with "exportAs" set to "routerLinkActive ...
+    // RouterModule  // There is no directive with "exportAs" set to "routerLinkActive ...
+    RouterModule.forRoot([])
   ],
   declarations: [ PlaceholderComponent, NavigationBarComponent, NavComponent ],
   providers: [
-    httpInterceptorProviders,
+    { provide: AuthService, useClass: AuthOktaService },
     { provide: LoggerService, useClass: ConsoleLoggerService },
-    { provide: MAT_DATE_LOCALE, useValue: environment.defaultLanguage }
+    { provide: MAT_DATE_LOCALE, useValue: environment.defaultLanguage },
+    httpInterceptorProviders
   ],
   exports: [ PlaceholderComponent, NavigationBarComponent, NavComponent ] // TranslateModule
 })

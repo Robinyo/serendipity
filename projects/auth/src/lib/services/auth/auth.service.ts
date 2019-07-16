@@ -1,51 +1,26 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import { OktaAuthService } from '@okta/okta-angular';
-
-import { AuthConfig } from '../../models/models';
-import { AuthConfigService } from '../config.service';
+import { Auth } from './auth';
 
 import { LoggerService } from 'utils';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService extends Auth {
 
-  private authenticated: boolean;
-  private accessToken = '';
+  constructor(private logger: LoggerService) {
 
-  constructor(public auth: OktaAuthService,
-              @Inject(AuthConfigService) private config: AuthConfig,
-              private logger: LoggerService) {
+    super();
 
-    this.auth.$authenticationState.subscribe(
-      (authenticated: boolean) => {
-
-        this.authenticated = authenticated;
-
-        this.accessToken = '';
-
-        if (this.authenticated) {
-          this.setAccessToken().then(() => {
-            this.logger.warn('AuthService accessToken: ' + this.accessToken);
-          });
-        }
-
-      }
-    );
-
+    this.logger.info('AuthService: constructor()');
   }
 
-  public isAuthenticated() {
+  public isAuthenticated(): boolean {
     return this.authenticated;
   }
 
-  public async setAccessToken() {
-    this.accessToken = await this.auth.getAccessToken();
-  }
-
-  public getAccessToken() {
+  public getAccessToken(): string {
     return this.accessToken;
   }
 
@@ -63,56 +38,7 @@ export class AuthService {
 
   public logout(returnUrl: string) {
 
-    this.auth.logout(returnUrl);
+    return;
   }
 
 }
-
-// https://github.com/okta/okta-oidc-js/blob/master/packages/okta-angular/src/okta/services/okta.service.ts
-
-// https://blog.angular-university.io/rxjs-switchmap-operator/ - Simulating HTTP requests
-// https://gist.github.com/staltz/868e7e9bc2a7b8c1f754 The introduction to Reactive Programming you've been missing
-
-/*
-
-
-export class AuthService {
-
-  private userSubject: BehaviorSubject<User>;
-  private user: Observable<User>;
-
-  constructor() {
-
-    this.userSubject = new BehaviorSubject<User>(null);
-    this.user = this.userSubject.asObservable();
-  }
-
-  public isAuthenticated() {
-    return this.getUser();
-  }
-
-  public getUser() {
-
-    try {
-
-      return this.userSubject.value;
-
-    } catch (error) {
-      return undefined;
-    }
-
-  }
-
-  public login(username: string, password: string) {
-
-    this.userSubject.next({ username: username, password: password });
-    return this.user;
-  }
-
-  public logout() {
-    this.userSubject.next(null);
-  }
-
-}
-
-*/

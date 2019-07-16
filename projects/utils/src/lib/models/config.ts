@@ -1,5 +1,3 @@
-// See: src/environment.ts
-
 export interface Config {
 
   production: boolean;
@@ -22,6 +20,7 @@ export interface Config {
     issuer: string,
     redirectUri: string,
     scope: string,
+    responseType: string,
     testing: {
       disableHttpsCheck: boolean
     }
