@@ -21,8 +21,7 @@ const routes: Routes = [
     path: 'sales/activities',
     component: ActivitiesComponent,
     // canActivate: [AuthOktaGuard],
-    // canActivate: [AuthGuard],
-    canActivate: [AuthOktaGuard],
+    canActivate: [AuthGuard],
     canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
   },
@@ -36,8 +35,7 @@ const routes: Routes = [
     path: 'sales/dashboards',
     component: DashboardComponent,
     // canActivate: [AuthOktaGuard],
-    // canActivate: [AuthGuard],
-    canActivate: [AuthOktaGuard],
+    canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always'
   },
 
@@ -45,8 +43,7 @@ const routes: Routes = [
     path: 'sales/contacts',
     component: ContactsComponent,
     // canActivate: [AuthOktaGuard],
-    // canActivate: [AuthGuard],
-    canActivate: [AuthOktaGuard],
+    canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always'
   },
 
@@ -54,8 +51,7 @@ const routes: Routes = [
     path: 'sales/contacts/:id',
     component: ContactComponent,
     // canActivate: [AuthOktaGuard],
-    // canActivate: [AuthGuard],
-    canActivate: [AuthOktaGuard],
+    canActivate: [AuthGuard],
     canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
   }
@@ -69,8 +65,8 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   providers: [
-    AuthOktaGuard
-    // { provide: AuthGuard, useClass: AuthOktaGuard }
+    // AuthOktaGuard
+    { provide: AuthGuard, useClass: AuthOktaGuard }
   ],
   exports: [
     RouterModule
