@@ -9,11 +9,16 @@ import { AuthOktaConfigService } from './services/config.service';
 import { LoginComponent } from './components/login/login.component';
 
 //
+// Auth lib
+//
+
+import { AuthModule } from 'auth';
+
+//
 // Utils lib
 //
 
 import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
-import { AngularMaterialModule } from 'utils';
 
 //
 // LibRoutingModule: https://angular.io/guide/router#routing-module-order
@@ -23,17 +28,18 @@ import { LibRoutingModule } from './lib-routing.module';
 
 @NgModule({
   imports: [
+    AuthModule,
     CommonModule,
     OktaAuthModule,
     UtilsModule,
 
     LibRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
-  declarations: [ LoginComponent ], // LoginComponent
+  declarations: [ LoginComponent ],
   providers: [
     { provide: LoggerService, useClass: ConsoleLoggerService }
   ],
-  exports: [] // LoginComponent
+  exports: []
 })
 export class AuthOktaModule {
 

@@ -5,19 +5,23 @@ import { OktaAuthService } from '@okta/okta-angular';
 import { AuthOktaConfig } from '../../models/models';
 import { AuthOktaConfigService } from '../config.service';
 
+import { Auth } from 'auth';
+
 import { LoggerService } from 'utils';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthOktaService {
+export class AuthOktaService extends Auth {
 
-  private authenticated: boolean;
-  private accessToken = '';
+  // private authenticated: boolean;
+  // private accessToken = '';
 
   constructor(public auth: OktaAuthService,
               @Inject(AuthOktaConfigService) private config: AuthOktaConfig,
               private logger: LoggerService) {
+
+    super();
 
     this.auth.$authenticationState.subscribe(
       (authenticated: boolean) => {

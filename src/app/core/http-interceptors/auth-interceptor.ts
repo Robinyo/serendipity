@@ -4,14 +4,12 @@ import {
 } from '@angular/common/http';
 
 // import { AuthService } from 'auth';
-// import { AuthOktaService } from 'auth-okta';
 import { AuthOktaService } from 'auth-okta';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(// private auth: AuthService
-              private auth: AuthOktaService) {}
+  constructor(private auth: AuthOktaService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
