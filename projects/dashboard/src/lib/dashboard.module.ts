@@ -26,7 +26,8 @@ import { TimelineComponent } from 'dashboard-widgets';
 // Utils lib
 //
 
-import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
+// import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
+import { UtilsModule, LoggerService, loggerProviders } from 'utils';
 import { AngularMaterialModule } from 'utils';
 
 @NgModule({
@@ -48,7 +49,8 @@ import { AngularMaterialModule } from 'utils';
   ],
   declarations: [ DashboardComponent ],
   providers: [
-    { provide: LoggerService, useClass: ConsoleLoggerService }
+    // { provide: LoggerService, useClass: ConsoleLoggerService }
+    loggerProviders
   ],
   exports: [ DashboardComponent ],
   entryComponents: [

@@ -79,6 +79,12 @@
       ],
       "auth-okta/*": [
         "dist/auth-okta/*"
+      ],
+      "auth-local": [
+        "dist/auth-local"
+      ],
+      "auth-local/*": [
+        "dist/auth-local/*"
       ]
     }
   }

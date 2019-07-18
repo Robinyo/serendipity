@@ -33,10 +33,8 @@ import { AngularFireModule } from '@angular/fire';
 // Auth libs
 //
 
-// import { AuthModule, AuthService } from 'auth';
-// import { AuthOktaModule, AuthOktaService } from 'auth-okta';
 import { AuthModule } from 'auth';
-import { AuthOktaModule } from 'auth-okta';
+import { AuthOktaModule, authProviders } from 'auth-okta';
 
 //
 // Dashboard Widgets lib
@@ -60,7 +58,8 @@ import { SalesModule } from 'sales';
 // Utils lib
 //
 
-import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
+// import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
+import { UtilsModule, LoggerService, loggerProviders } from 'utils';
 import { AngularMaterialModule } from 'utils';
 
 import { MAT_DATE_LOCALE } from '@angular/material';
@@ -96,10 +95,10 @@ import { MAT_DATE_LOCALE } from '@angular/material';
   ],
   declarations: [ PlaceholderComponent, NavigationBarComponent, NavComponent ],
   providers: [
-    // { provide: AuthService, useClass: AuthOktaService },
-    { provide: LoggerService, useClass: ConsoleLoggerService },
+    authProviders,
+    httpInterceptorProviders,
+    loggerProviders,
     { provide: MAT_DATE_LOCALE, useValue: environment.defaultLanguage },
-    httpInterceptorProviders
   ],
   exports: [ PlaceholderComponent, NavigationBarComponent, NavComponent ] // TranslateModule
 })

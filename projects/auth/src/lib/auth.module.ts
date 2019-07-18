@@ -5,7 +5,8 @@ import { CommonModule } from '@angular/common';
 // Utils lib
 //
 
-import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
+// import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
+import { UtilsModule, LoggerService, loggerProviders } from 'utils';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
   ],
   declarations: [],
   providers: [
-    { provide: LoggerService, useClass: ConsoleLoggerService }
+    // { provide: LoggerService, useClass: ConsoleLoggerService }
+    loggerProviders
   ],
   exports: []
 })

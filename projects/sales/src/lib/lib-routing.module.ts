@@ -5,8 +5,10 @@ import { RouterModule, Routes } from '@angular/router';
 // Auth libs
 //
 
-import { AuthModule, AuthGuard } from 'auth';
-import { AuthOktaModule, AuthOktaGuard } from 'auth-okta';
+// import { AuthModule, AuthGuard } from 'auth';
+// import { AuthOktaModule, authProviders } from 'auth-okta';
+import { AuthGuard } from 'auth';
+// import { authProviders } from 'auth-okta';
 
 import { CanDeactivateGuard } from './guards/can-deactivate/can-deactivate.guard';
 
@@ -20,7 +22,6 @@ const routes: Routes = [
   {
     path: 'sales/activities',
     component: ActivitiesComponent,
-    // canActivate: [AuthOktaGuard],
     canActivate: [AuthGuard],
     canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
@@ -34,7 +35,6 @@ const routes: Routes = [
   {
     path: 'sales/dashboards',
     component: DashboardComponent,
-    // canActivate: [AuthOktaGuard],
     canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always'
   },
@@ -42,7 +42,6 @@ const routes: Routes = [
   {
     path: 'sales/contacts',
     component: ContactsComponent,
-    // canActivate: [AuthOktaGuard],
     canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always'
   },
@@ -50,7 +49,6 @@ const routes: Routes = [
   {
     path: 'sales/contacts/:id',
     component: ContactComponent,
-    // canActivate: [AuthOktaGuard],
     canActivate: [AuthGuard],
     canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
@@ -60,13 +58,14 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    AuthModule,
-    AuthOktaModule,
+    // AuthModule,
+    // AuthOktaModule,
     RouterModule.forChild(routes)
   ],
   providers: [
+    // authProviders
     // AuthOktaGuard
-    { provide: AuthGuard, useClass: AuthOktaGuard }
+    // { provide: AuthGuard, useClass: AuthOktaGuard }
   ],
   exports: [
     RouterModule
@@ -75,17 +74,3 @@ const routes: Routes = [
 export class LibRoutingModule {}
 
 // https://stackoverflow.com/questions/40380726/angular2-router-canactivate-after-logout
-
-/*
-
-import { CanActivateGuard } from './guards/can-activate/can-activate.guard';
-import { CanDeactivateGuard } from './guards/can-deactivate/can-deactivate.guard';
-
-  {
-    path: 'sales/activities',
-    component: ActivitiesComponent,
-    canActivate: [CanActivateGuard],
-    canDeactivate: [CanDeactivateGuard]
-  }
-
-*/

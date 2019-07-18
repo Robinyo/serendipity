@@ -118,8 +118,8 @@ export class DashboardComponent implements OnInit, OnChanges, OnDestroy {
 
       this.items = data.widgets;
 
-      this.logger.info('Dashboard Id: ' + JSON.stringify(data.id));
-      this.logger.info('Widgets: ' + JSON.stringify(this.items));
+      // this.logger.info('Dashboard Id: ' + JSON.stringify(data.id));
+      // this.logger.info('Widgets: ' + JSON.stringify(this.items));
     });
 
   }
@@ -256,7 +256,7 @@ export class DashboardComponent implements OnInit, OnChanges, OnDestroy {
     // this.renderer.setStyle(gridsterPreview[0], 'display', 'none !important');
     this.renderer.setStyle(gridsterPreviewElements[0], 'background', '#fafafa');
 
-    this.logger.info('Widgets: ' + JSON.stringify(this.items));
+    // this.logger.info('Widgets: ' + JSON.stringify(this.items));
 
   }
 

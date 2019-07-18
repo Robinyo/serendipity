@@ -18,7 +18,8 @@ import { AuthModule } from 'auth';
 // Utils lib
 //
 
-import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
+// import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
+import { UtilsModule, LoggerService, loggerProviders } from 'utils';
 
 //
 // LibRoutingModule: https://angular.io/guide/router#routing-module-order
@@ -37,7 +38,8 @@ import { LibRoutingModule } from './lib-routing.module';
   ],
   declarations: [ LoginComponent ],
   providers: [
-    { provide: LoggerService, useClass: ConsoleLoggerService }
+    // { provide: LoggerService, useClass: ConsoleLoggerService }
+    loggerProviders
   ],
   exports: []
 })

@@ -87,7 +87,7 @@ export class NavComponent implements OnInit, OnDestroy {
     this.subscription = this.dashboardService.getToolPaletteItems().subscribe(data => {
 
       this.toolPaletteItems = data;
-      this.logger.info('toolPaletteItems: ' + JSON.stringify(this.toolPaletteItems));
+      // this.logger.info('toolPaletteItems: ' + JSON.stringify(this.toolPaletteItems));
     });
 
   }

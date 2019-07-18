@@ -5,6 +5,7 @@ import { OktaAuthService } from '@okta/okta-angular';
 import { AuthOktaConfig } from '../../models/models';
 import { AuthOktaConfigService } from '../config.service';
 
+// import { Auth, User } from 'auth';
 import { Auth } from 'auth';
 
 import { LoggerService } from 'utils';
@@ -14,8 +15,8 @@ import { LoggerService } from 'utils';
 })
 export class AuthOktaService extends Auth {
 
-  // private authenticated: boolean;
-  // private accessToken = '';
+  // protected authenticated = false;
+  // protected accessToken = '';
 
   constructor(public auth: OktaAuthService,
               @Inject(AuthOktaConfigService) private config: AuthOktaConfig,
@@ -32,7 +33,7 @@ export class AuthOktaService extends Auth {
 
         if (this.authenticated) {
           this.setAccessToken().then(() => {
-            this.logger.warn('AuthService accessToken: ' + this.accessToken);
+            this.logger.info('AuthOktaService accessToken: ' + this.accessToken);
           });
         }
 
@@ -41,7 +42,7 @@ export class AuthOktaService extends Auth {
 
   }
 
-  public isAuthenticated() {
+  public isAuthenticated(): boolean {
     return this.authenticated;
   }
 
@@ -49,7 +50,7 @@ export class AuthOktaService extends Auth {
     this.accessToken = await this.auth.getAccessToken();
   }
 
-  public getAccessToken() {
+  public getAccessToken(): string {
     return this.accessToken;
   }
 

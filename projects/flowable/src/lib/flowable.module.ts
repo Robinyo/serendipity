@@ -13,14 +13,15 @@ import { TaskListComponent } from './components/task-list/task-list.component';
 // Auth libs
 //
 
-import { AuthModule, AuthService } from 'auth';
-import { AuthOktaModule, AuthOktaService } from 'auth-okta';
+import { AuthModule } from 'auth';
+import { AuthOktaModule, authProviders } from 'auth-okta';
 
 //
 // Utils lib
 //
 
-import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
+// import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
+import { UtilsModule, LoggerService, loggerProviders } from 'utils';
 import { AngularMaterialModule } from 'utils';
 
 //
@@ -43,17 +44,16 @@ import { DynamicFormsModule } from 'dynamic-forms';
   ],
   declarations: [ TaskComponent, TaskListComponent ],
   providers: [
-    { provide: AuthService, useClass: AuthOktaService },
-    { provide: LoggerService, useClass: ConsoleLoggerService }
+    authProviders,
+    loggerProviders
   ],
   exports: [ TaskComponent, TaskListComponent ]
 })
 export class FlowableModule {
 
   constructor(private logger: LoggerService) {
+
     this.logger.info('Flowable Module initialised');
   }
 
 }
-
-// import { AngularPageVisibilityModule } from 'angular-page-visibility';
