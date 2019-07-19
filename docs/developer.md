@@ -313,6 +313,7 @@ firebase list
 
 ### Authentication
 
+* [auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth) library
 * [auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library
 * [auth-okta](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta) library
 
