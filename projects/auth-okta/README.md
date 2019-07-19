@@ -10,6 +10,54 @@ ng build auth && \
 ng build auth-okta
 ```
 
+The Auth providers are set in the project's Core module:
+
+core.module.ts:
+
+```
+//
+// Auth libs
+//
+
+import { AuthModule } from 'auth';
+import { AuthOktaModule, authProviders } from 'auth-okta';
+import { httpInterceptorProviders } from './http-interceptors';
+
+...
+
+@NgModule({
+  imports: [
+    ...
+    AuthModule,
+    AuthOktaModule.forRoot(environment),
+    ...
+    RouterModule
+  ],
+  declarations: [ ... ],
+  providers: [
+    authProviders,
+    httpInterceptorProviders,
+    ...
+  ],
+  exports: [ ... ]
+})
+```
+
+**Note:** At present, there is an issue that requires the `AuthOktaService` to be directly referenced in the Nav Component.
+
+nav.component.ts:
+
+```
+// import { AuthService } from 'auth';
+import { AuthOktaService } from 'auth-okta';
+
+...
+
+constructor(private authService: AuthOktaService) {}
+
+...
+```
+
 ## Resources 
 
 ### Auth Resources
