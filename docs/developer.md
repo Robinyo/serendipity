@@ -313,6 +313,8 @@ firebase list
 
 ### Authentication
 
+### Authentication Roadmap
+
 Provide support for OpenID Connect (OIDC) using Okta (auth-okta library).
 
 Provide support for local Authentication (auth-local library).
@@ -339,7 +341,6 @@ constructor(private authService: AuthOktaService) {}
 
 ...
 ```
-
 
 ### Code scaffolding
 
