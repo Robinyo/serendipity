@@ -311,6 +311,36 @@ firebase login --reauth
 firebase list
 ```
 
+### Authentication
+
+Provide support for OpenID Connect (OIDC) using Okta (auth-okta library).
+
+Provide support for local Authentication (auth-local library).
+
+core.module.ts:
+
+```
+  providers: [
+    authProviders,
+    httpInterceptorProviders,
+    ...
+  ],
+```
+
+nav.component.ts:
+
+```
+// import { AuthService } from 'auth';
+import { AuthOktaService } from 'auth-okta';
+
+...
+
+constructor(private authService: AuthOktaService) {}
+
+...
+```
+
+
 ### Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. 

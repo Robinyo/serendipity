@@ -15,8 +15,6 @@ import { PlaceholderComponent } from './components/placeholder/placeholder.compo
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { NavComponent } from './components/nav/nav.component';
 
-import { httpInterceptorProviders } from './http-interceptors';
-
 import { environment } from '@env/environment';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
@@ -35,6 +33,7 @@ import { AngularFireModule } from '@angular/fire';
 
 import { AuthModule } from 'auth';
 import { AuthOktaModule, authProviders } from 'auth-okta';
+import { httpInterceptorProviders } from './http-interceptors';
 
 //
 // Dashboard Widgets lib

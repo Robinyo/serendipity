@@ -19,8 +19,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 // Auth libs
 //
 
-import { AuthModule } from 'auth';
-import { AuthOktaModule, authProviders } from 'auth-okta';
+// import { AuthModule } from 'auth';
+// import { AuthOktaModule, authProviders } from 'auth-okta';
 
 //
 // Serendipity Components lib
@@ -62,8 +62,8 @@ import { LibRoutingModule } from './lib-routing.module';
 
 @NgModule({
   imports: [
-    AuthModule,
-    AuthOktaModule,
+    // AuthModule,
+    // AuthOktaModule,
 
     AngularMaterialModule,
     CommonModule,
@@ -93,7 +93,7 @@ import { LibRoutingModule } from './lib-routing.module';
     SnackBarComponent
   ],
   providers: [
-    authProviders,
+    // authProviders,
     loggerProviders
   ],
   exports: [

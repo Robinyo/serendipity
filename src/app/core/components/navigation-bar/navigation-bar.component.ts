@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
-// import { AuthService } from 'auth';
-import { AuthOktaService } from 'auth-okta';
+import { AuthService } from 'auth';
 
 import { LoggerService } from 'utils';
 
@@ -17,7 +16,7 @@ export class NavigationBarComponent {
 
   private returnUrl = '/';
 
-  constructor(private authService: AuthOktaService,
+  constructor(private authService: AuthService,
               private router: Router,
               private logger: LoggerService) {
 

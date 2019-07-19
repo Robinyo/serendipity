@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-// import { AuthOktaService } from 'auth-okta';
 import { AuthService } from 'auth';
 
 import { CollectionService } from '../abstract/collection/collection.service';

@@ -43,6 +43,9 @@ export class AuthOktaService extends Auth {
   }
 
   public isAuthenticated(): boolean {
+
+    this.logger.info('AuthOktaService isAuthenticated(): ' + this.authenticated);
+
     return this.authenticated;
   }
 
@@ -51,6 +54,9 @@ export class AuthOktaService extends Auth {
   }
 
   public getAccessToken(): string {
+
+    this.logger.info('AuthOktaService getAccessToken()');
+
     return this.accessToken;
   }
 

@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     if (this.screenFull.enabled) {
 
-      this.logger.info('DashboardComponent: Screenfull change handler registered');
+      this.logger.info('Sales DashboardComponent: Screenfull change handler registered');
 
       this.screenFull.on('change', () => {
 
@@ -69,7 +69,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.subscription = this.dashboardService.getDashboards().subscribe(data => {
 
       this.items = data;
-      this.logger.info('Dashboards: ' + JSON.stringify(this.items));
+      // this.logger.info('Sales Dashboards: ' + JSON.stringify(this.items));
 
     });
   }
@@ -155,7 +155,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.dashboardId = item.id;
     this.dashboardName = item.name;
 
-    this.logger.info('Dashboard Id: ' + this.dashboardId);
+    // this.logger.info('Sales Dashboard Id: ' + this.dashboardId);
   }
 
 }
