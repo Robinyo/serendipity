@@ -313,11 +313,11 @@ firebase list
 
 ### Authentication
 
-### Authentication Roadmap
+#### Authentication Roadmap
 
-Provide support for OpenID Connect (OIDC) using Okta (auth-okta library).
+Provide support for local Authentication ([auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library).
 
-Provide support for local Authentication (auth-local library).
+Provide support for OpenID Connect (OIDC) using Okta ([auth-okta](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta) library).
 
 core.module.ts:
 

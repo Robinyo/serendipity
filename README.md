@@ -24,13 +24,13 @@ Use TypeScript, Node.js, Express and TypeORM to build a [RESTful API](https://gi
 
 ## Screen Shots
 
-Login:
+Login ([auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library):
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/login.png">
 </p>
 
-Okta Login:
+Okta Login ([auth-okta](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta) library)
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/okta-login.png">
