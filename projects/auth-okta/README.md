@@ -9,8 +9,9 @@ ng build utils && \
 ng build auth && \
 ng build auth-okta
 ```
+### Auth Providers
 
-The Auth providers are set in the project's Core module:
+The Auth providers are configured in the project's Core module:
 
 core.module.ts:
 
@@ -21,13 +22,13 @@ core.module.ts:
 
 import { AuthModule } from 'auth';
 import { AuthOktaModule, authProviders } from 'auth-okta';
+// import { AuthAuth0Module, authProviders } from 'auth-auth0';
 import { httpInterceptorProviders } from './http-interceptors';
 
 ...
 
 @NgModule({
   imports: [
-    ...
     AuthModule,
     AuthOktaModule.forRoot(environment),
     ...
