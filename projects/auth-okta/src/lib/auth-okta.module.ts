@@ -1,12 +1,14 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { OktaAuthModule, OKTA_CONFIG } from '@okta/okta-angular';
+// import { OktaAuthModule, OKTA_CONFIG } from '@okta/okta-angular';
+import { OktaAuthModule, OKTA_CONFIG } from 'okta-angular';
 
 import { AuthOktaConfig } from './models/models';
 import { AuthOktaConfigService } from './services/config.service';
 
 import { LoginComponent } from './components/login/login.component';
+import { CallbackComponent } from './components/callback/callback.component';
 
 //
 // Auth lib
@@ -36,7 +38,7 @@ import { LibRoutingModule } from './lib-routing.module';
 
     LibRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
-  declarations: [ LoginComponent ],
+  declarations: [ CallbackComponent, LoginComponent ],
   providers: [
     // { provide: LoggerService, useClass: ConsoleLoggerService }
     loggerProviders

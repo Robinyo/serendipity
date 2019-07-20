@@ -23,12 +23,15 @@ export const environment: Environment = {
 
   oidc: {
     clientId: '',
+    code_challenge: '',
+    code_challenge_method: 'S256',
     issuer: '',
-    redirectUri: 'http://localhost:4200/implicit/callback',
+    redirectUri: 'http://localhost:4200/authorization-code/callback',
+    responseType: 'code',
     scope: 'openid profile email phone address groups',
-    responseType: 'id_token token',
+    state: '',
     testing: {
-      disableHttpsCheck: false
+      disableHttpsCheck: true
     }
   },
 

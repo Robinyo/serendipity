@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 
-import { OktaAuthService } from '@okta/okta-angular';
+// import { OktaAuthService } from '@okta/okta-angular';
+import { OktaAuthService } from 'okta-angular';
 
 import { AuthOktaConfig } from '../../models/models';
 import { AuthOktaConfigService } from '../config.service';

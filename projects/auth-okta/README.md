@@ -81,7 +81,7 @@ constructor(private authService: AuthOktaService) {}
 ### Other Auth Libraries
 * GitHub: [oidc-client-js](https://github.com/IdentityModel/oidc-client-js)
 
-**Note:** This library (above) currently supports the 'OAuth 2.0 Authorization Code Flow with PKCE'.
+**Note:** This library (above) currently supports the 'OAuth 2.0 Authorization Code Grant (or OIDC Authorization Code Flow) with PKCE'
 
 ### Authorisation Servers
 * GitHub: [Keycloak - Open Source Identity and Access Management](https://www.keycloak.org/)

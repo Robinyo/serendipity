@@ -17,10 +17,13 @@ export interface Config {
 
   oidc: {
     clientId: string,
+    code_challenge: string;
+    code_challenge_method: string;
     issuer: string,
     redirectUri: string,
-    scope: string,
     responseType: string,
+    scope: string,
+    state: string;
     testing: {
       disableHttpsCheck: boolean
     }

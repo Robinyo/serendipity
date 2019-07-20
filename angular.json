@@ -505,6 +505,41 @@
           }
         }
       }
+    },
+    "okta-angular": {
+      "root": "projects/okta-angular",
+      "sourceRoot": "projects/okta-angular/src",
+      "projectType": "library",
+      "prefix": "okta-angular",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/okta-angular/tsconfig.lib.json",
+            "project": "projects/okta-angular/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/okta-angular/src/test.ts",
+            "tsConfig": "projects/okta-angular/tsconfig.spec.json",
+            "karmaConfig": "projects/okta-angular/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/okta-angular/tsconfig.lib.json",
+              "projects/okta-angular/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "serendipity"

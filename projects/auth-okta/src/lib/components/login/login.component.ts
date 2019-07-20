@@ -24,3 +24,5 @@ export class LoginComponent implements AfterViewInit, OnInit {
   }
 
 }
+
+// https://github.com/okta/okta-oidc-js/blob/master/packages/okta-angular/src/okta/components/login-redirect.component.ts

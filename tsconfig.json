@@ -85,6 +85,12 @@
       ],
       "auth-local/*": [
         "dist/auth-local/*"
+      ],
+      "okta-angular": [
+        "dist/okta-angular"
+      ],
+      "okta-angular/*": [
+        "dist/okta-angular/*"
       ]
     }
   }
