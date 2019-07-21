@@ -29,7 +29,7 @@ export const environment: Environment = {
     redirectUri: 'http://localhost:4200/authorization-code/callback',
     responseType: 'code',
     scope: 'openid profile email phone address groups',
-    state: '',
+    state: 'state-8600b31f-52d1-4dca-987c-386e3d8967e9',
     testing: {
       disableHttpsCheck: true
     }

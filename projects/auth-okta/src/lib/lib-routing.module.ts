@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // import { OktaCallbackComponent } from '@okta/okta-angular';
-import { OktaCallbackComponent } from 'okta-angular';
+import { OktaAuthorizationCodeCallbackComponent } from 'okta-angular';
+import { OktaImplicitCallbackComponent } from 'okta-angular';
 
 import { LoginComponent } from './components/login/login.component';
-import { CallbackComponent } from './components/callback/callback.component';
 
 const routes: Routes = [
 
@@ -16,12 +16,12 @@ const routes: Routes = [
 
   {
     path: 'authorization-code/callback',
-    component: CallbackComponent
+    component: OktaAuthorizationCodeCallbackComponent
   },
 
   {
      path: 'implicit/callback',
-    component: OktaCallbackComponent
+    component: OktaImplicitCallbackComponent
   }
 
 ];

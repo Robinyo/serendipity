@@ -12,6 +12,6 @@
 
 import { Router } from '@angular/router';
 
-import { OktaAuthService } from '../services/okta-auth.service';
+import { OktaAuthService } from '../services/auth/okta-auth.service';
 
 export type AuthRequiredFunction = (oktaAuth: OktaAuthService, router: Router) => void;

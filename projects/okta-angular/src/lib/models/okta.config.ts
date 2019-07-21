@@ -14,6 +14,25 @@ import { InjectionToken } from '@angular/core';
 
 import { AuthRequiredFunction } from './auth-required-function';
 
+export interface OktaConfig {
+  clientId: string;
+  code_challenge: string;
+  code_challenge_method: string;
+  issuer: string;
+  onAuthRequired?: AuthRequiredFunction;
+  redirectUri: string;
+  responseType: string;
+  scope: string;
+  state: string;
+  testing: {
+    disableHttpsCheck: boolean
+  };
+}
+
+export const OKTA_CONFIG = new InjectionToken<OktaConfig>('okta.config.angular');
+
+/*
+
 export interface TestingObject {
   disableHttpsCheck: boolean;
 }
@@ -28,4 +47,4 @@ export interface OktaConfig {
   testing?: TestingObject;
 }
 
-export const OKTA_CONFIG = new InjectionToken<OktaConfig>('okta.config.angular');
+*/

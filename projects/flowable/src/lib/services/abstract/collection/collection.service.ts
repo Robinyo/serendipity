@@ -38,7 +38,7 @@ export abstract class CollectionService {
 
       this.httpOptions = {
         headers: new HttpHeaders({
-          'Content-Type':  'application/json',
+          'Content-Type': 'application/json',
           'Authorization': 'Basic ' + btoa(token)
         }),
         params: null

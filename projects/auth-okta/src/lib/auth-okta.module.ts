@@ -8,8 +8,6 @@ import { AuthOktaConfig } from './models/models';
 import { AuthOktaConfigService } from './services/config.service';
 
 import { LoginComponent } from './components/login/login.component';
-import { CallbackComponent } from './components/callback/callback.component';
-
 //
 // Auth lib
 //
@@ -20,7 +18,6 @@ import { AuthModule } from 'auth';
 // Utils lib
 //
 
-// import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
 import { UtilsModule, LoggerService, loggerProviders } from 'utils';
 
 //
@@ -38,9 +35,8 @@ import { LibRoutingModule } from './lib-routing.module';
 
     LibRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
-  declarations: [ CallbackComponent, LoginComponent ],
+  declarations: [ LoginComponent ],
   providers: [
-    // { provide: LoggerService, useClass: ConsoleLoggerService }
     loggerProviders
   ],
   exports: []
@@ -48,6 +44,7 @@ import { LibRoutingModule } from './lib-routing.module';
 export class AuthOktaModule {
 
   constructor(private logger: LoggerService) {
+
     this.logger.info('Auth Okta Module initialised');
   }
 
@@ -64,12 +61,3 @@ export class AuthOktaModule {
   }
 
 }
-
-// https://github.com/okta/samples-js-angular/blob/master/okta-hosted-login/util/default-config.ts
-
-/*
-
-    // OktaAuthModule.initAuth(oidc),
-    // { provide: OKTA_CONFIG, useValue: oidc }
-
-*/

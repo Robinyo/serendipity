@@ -10,24 +10,29 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
+import { DOCUMENT } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
-import { OktaCallbackComponent } from './components/callback.component';
-import { OktaLoginRedirectComponent } from './components/login-redirect.component';
+import { OktaAuthorizationCodeCallbackComponent } from './components/authorization-code/authorization-code.component';
+import { OktaImplicitCallbackComponent } from './components/implicit-callback/implicit-callback.component';
+import { OktaLoginRedirectComponent } from './components/login-redirect/login-redirect.component';
 
-import { OktaAuthService } from './services/okta-auth.service';
-import { OktaAuthGuard } from './guards/okta-auth.guard';
+import { OktaAuthService } from './services/auth/okta-auth.service';
+import { OktaAuthGuard } from './guards/auth/okta-auth.guard';
 import { OktaConfig, OKTA_CONFIG } from './models/okta.config';
 import { createOktaService } from './create-okta-service';
-import { Router } from '@angular/router';
 
 @NgModule({
   declarations: [
-    OktaCallbackComponent,
+    OktaAuthorizationCodeCallbackComponent,
+    OktaImplicitCallbackComponent,
     OktaLoginRedirectComponent
   ],
   exports: [
-    OktaCallbackComponent,
+    OktaAuthorizationCodeCallbackComponent,
+    OktaImplicitCallbackComponent,
     OktaLoginRedirectComponent
   ],
   providers: [
@@ -36,13 +41,16 @@ import { Router } from '@angular/router';
       provide: OktaAuthService,
       useFactory: createOktaService,
       deps: [
+        DOCUMENT,
         OKTA_CONFIG,
+        HttpClient,
         Router
       ]
     }
   ]
 })
 export class OktaAuthModule {
+
   // Deprecated. Your app should provide OKTA_CONFIG directly
   static initAuth(config: OktaConfig): ModuleWithProviders {
     return {
@@ -53,4 +61,5 @@ export class OktaAuthModule {
       ]
     };
   }
+
 }

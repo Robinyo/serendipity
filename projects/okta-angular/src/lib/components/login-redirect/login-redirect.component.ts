@@ -12,11 +12,13 @@
 
 import { Component } from '@angular/core';
 
-import { OktaAuthService } from '../services/okta-auth.service';
+import { OktaAuthService } from '../../services/auth/okta-auth.service';
 
 @Component({ template: `` })
 export class OktaLoginRedirectComponent {
+
   constructor(private okta: OktaAuthService) {
     okta.loginRedirect();
   }
+
 }

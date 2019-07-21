@@ -18,8 +18,8 @@ import {
   Router
 } from '@angular/router';
 
-import { OktaAuthService } from '../services/okta-auth.service';
-import { AuthRequiredFunction } from '../models/auth-required-function';
+import { OktaAuthService } from '../../services/auth/okta-auth.service';
+import { AuthRequiredFunction } from '../../models/auth-required-function';
 
 @Injectable()
 export class OktaAuthGuard implements CanActivate {
@@ -28,8 +28,6 @@ export class OktaAuthGuard implements CanActivate {
   /**
    * Gateway for protected route. Returns true if there is a valid accessToken,
    * otherwise it will cache the route and start the login flow.
-   * @param route
-   * @param state
    */
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (await this.oktaAuth.isAuthenticated()) {

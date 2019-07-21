@@ -33,11 +33,12 @@ export { UserClaims }      from './lib/models/user-claims';
 
 */
 
-export * from './lib/components/callback.component';
-export * from './lib/components/login-redirect.component';
+export * from './lib/components/authorization-code/authorization-code.component';
+export * from './lib/components/implicit-callback/implicit-callback.component';
+export * from './lib/components/login-redirect/login-redirect.component';
 
-export * from './lib/services/okta-auth.service';
-export * from './lib/guards/okta-auth.guard';
+export * from './lib/services/auth/okta-auth.service';
+export * from './lib/guards/auth/okta-auth.guard';
 
 export * from './lib/models/okta.config';
 export * from './lib/models/user-claims';

@@ -10,10 +10,13 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import { OktaConfig } from './models/okta.config';
+// import { DOCUMENT } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { OktaAuthService } from './services/okta-auth.service';
 
-export function createOktaService(config: OktaConfig, router: Router) {
-  return new OktaAuthService(config, router);
+import { OktaAuthService } from './services/auth/okta-auth.service';
+import { OktaConfig } from './models/okta.config';
+
+export function createOktaService(document: any, config: OktaConfig, http: HttpClient, router: Router) {
+  return new OktaAuthService(document, config, http, router);
 }

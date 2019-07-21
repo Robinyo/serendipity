@@ -12,14 +12,14 @@
 
 import { Component } from '@angular/core';
 
-import { OktaAuthService } from '../services/okta-auth.service';
+import { OktaAuthService } from '../../services/auth/okta-auth.service';
 
-@Component({template: `` })
-export class OktaCallbackComponent {
+@Component({ template: `` })
+export class OktaImplicitCallbackComponent {
+
   constructor(private okta: OktaAuthService) {
-    /**
-     * Handles the response from Okta and parses tokens.
-     */
-    okta.handleAuthentication();
+
+    okta.handleImplicitFlow();
   }
+
 }
