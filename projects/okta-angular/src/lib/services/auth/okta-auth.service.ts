@@ -158,9 +158,6 @@ export class OktaAuthService {
     this.document.location.href = url;
   }
 
-  /**
-   * Launches the login redirect.
-   */
   loginRedirect(fromUri?: string, additionalParams?: object) {
 
     if (fromUri) {
@@ -207,7 +204,7 @@ export class OktaAuthService {
 
   // https://developer.okta.com/docs/reference/api/oidc/#token
 
-  async handleAuthorizationCodeFlow(): Promise<void> {
+  async exchangeCodeForToken(): Promise<void> {
 
     const params = new URLSearchParams(this.document.location.search.substring(1));
     const code = params.get('code');
@@ -234,22 +231,46 @@ export class OktaAuthService {
 
     const urlEncoded = Object.keys(body).map(key => key + '=' + body[key]).join('&');
 
-    const response = await this.http.post<any>(endpoint, urlEncoded, httpOptions).toPromise()
-      .catch( error => {
-        console.log('error: ' + JSON.stringify(error));
+    return this.http.post<any>(endpoint, urlEncoded, httpOptions).toPromise();
+  }
+
+  async handleAuthorizationCodeFlow(): Promise<void> {
+
+    const res = await this.exchangeCodeForToken();
+
+    console.log('response: ' + JSON.stringify(res));
+
+    // https://github.com/okta/okta-auth-js/blob/0a8a4e16d75028900280ab93e561d9e4368a484f/lib/token.js
+
+    if (res['access_token']) {
+
+      this.oktaAuth.tokenManager.add('accessToken', {
+        accessToken: res['access_token'],
+        expiresAt: Number(res['expires_in']) + Math.floor(Date.now() / 1000),
+        tokenType: res['token_type'],
+        scopes: res['scope']
+        // authorizeUrl: urls.authorizeUrl,
+        // userinfoUrl: urls.userinfoUrl
       });
 
-    console.log('response: ' + JSON.stringify(response));
-
-    if (response.id_token) {
-      this.oktaAuth.tokenManager.add('idToken', response.id_token);
     }
 
-    // ERROR Error: Uncaught (in promise): AuthSdkError: Token must be an Object with scopes, expiresAt, and an idToken or
-    // accessToken properties
+    if (res['id_token']) {
 
-    if (response.access_token) {
-      this.oktaAuth.tokenManager.add('accessToken', response.access_token);
+      const jwt = this.oktaAuth.token.decode(res['id_token']);
+
+      console.log('jwt: ' + JSON.stringify(jwt));
+
+      this.oktaAuth.tokenManager.add('idToken', {
+        clientId: this.auth.clientId,
+        idToken: res['id_token'],
+        expiresAt: jwt.payload.exp,
+        scopes: res['scope'],
+        claims: jwt.payload,
+        // authorizeUrl: urls.authorizeUrl,
+        // issuer: urls.issuer
+      });
+
     }
 
     if (await this.isAuthenticated()) {
@@ -315,6 +336,19 @@ export class OktaAuthService {
 // https://developer.okta.com/code/javascript/okta_auth_sdk/
 
 // https://github.com/okta/okta-auth-js#tokenmanageraddkey-token
+
+/*
+
+// https://github.com/okta/okta-auth-js/blob/61bd9b8fb272d3a6ed998d405c62d881d713d00a/test/util/oauthUtil.js
+
+var defaultResponse = {
+  idToken: tokens.standardIdToken,
+  claims: tokens.standardIdTokenClaims,
+  expiresAt: 1449699930,
+  scopes: ['openid', 'email']
+};
+
+*/
 
 /*
 
