@@ -16,15 +16,12 @@ import { AuthRequiredFunction } from './auth-required-function';
 
 export interface OktaConfig {
   clientId: string;
-  code_challenge: string;
-  code_challenge_method: string;
-  grant_type: string;
+  grantType: string;
   issuer: string;
   onAuthRequired?: AuthRequiredFunction;
   redirectUri: string;
   responseType: string;
   scope: string;
-  state: string;
   testing: {
     disableHttpsCheck: boolean
   };

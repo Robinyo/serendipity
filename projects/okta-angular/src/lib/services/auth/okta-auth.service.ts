@@ -46,7 +46,7 @@ export class OktaAuthService {
   private observers: Observer<boolean>[];
   $authenticationState: Observable<boolean>;
 
-  private codeVerifier = '';
+  // private codeVerifier = '';
 
   constructor(@Inject(DOCUMENT) private document: any,
               @Inject(OKTA_CONFIG) private auth: OktaConfig,
@@ -189,28 +189,47 @@ export class OktaAuthService {
     };
   }
 
+  // https://github.com/dogeared/okta-auth-js-pkce-example/blob/master/src/auth/index.js
+
+  loginWithRedirect() {
+
+    console.log('loginWithRedirect()');
+
+    console.log('config: ' + JSON.stringify(this.config));
+
+    this.oktaAuth.token.getWithRedirect({
+      // responseType: this.config.responseType,
+      // scopes: this.config.scope.split(' ')
+      responseType: 'code',
+      scopes: ['openid', 'profile', 'email', 'phone', 'address', 'groups'],
+    });
+
+  }
+
   // https://developer.okta.com/docs/reference/api/oidc/#authorize
 
   async authorizationCodeRedirect() {
 
-    this.config.state = generateRandomString();
+    // this.config.state = generateRandomString();
     // this.codeVerifier = generateRandomString();
 
-    console.log('this.config.state: ' + this.config.state);
+    // console.log('this.config.state: ' + this.config.state);
     // console.log('this.codeVerifier: ' + this.codeVerifier);
 
     // this.config.code_challenge = await pkceChallengeFromVerifier(this.codeVerifier);
 
+    const state = generateRandomString();
+
     const url = this.auth.issuer + '/v1/authorize'
       + '?response_type=' + encodeURIComponent(this.config.responseType)
       + '&client_id=' + encodeURIComponent(this.config.clientId)
-      + '&state=' + encodeURIComponent(this.config.state)
+      + '&state=' + encodeURIComponent(state)
       + '&scope=' + encodeURIComponent(this.config.scope)
       + '&redirect_uri=' + encodeURIComponent(this.config.redirectUri)
       + '&code_challenge=' + encodeURIComponent('qjrzSW9gMiUgpUvqgEPE4_-8swvyCtfOVvg55o5S_es')
-      + '&code_challenge_method=' + encodeURIComponent(this.config.code_challenge_method);
+      + '&code_challenge_method=' + encodeURIComponent('S256');
 
-    // + '&code_challenge=' + encodeURIComponent(this.config.code_challenge)
+    // + '&code_challenge=' + encodeURIComponent(this.config.codeChallenge)
 
     this.document.location.href = url;
   }
@@ -226,7 +245,7 @@ export class OktaAuthService {
     console.log('code: ' + code);
     console.log('state: ' + state);
 
-    console.log('this.config.state: ' + this.config.state);
+    // console.log('this.config.state: ' + this.config.state);
     // console.log('this.codeVerifier: ' + this.codeVerifier);
 
     // if (state !== this.config.state) {

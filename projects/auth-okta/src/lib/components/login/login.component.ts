@@ -22,6 +22,7 @@ export class LoginComponent implements AfterViewInit, OnInit {
 
     // this.authService.auth.loginRedirect();
     this.authService.auth.authorizationCodeRedirect();
+    // this.authService.auth.loginWithRedirect();
   }
 
 }
