@@ -20,7 +20,7 @@ export class LoginComponent implements AfterViewInit, OnInit {
 
     this.logger.info('LoginComponent: ngAfterViewInit()');
 
-    // this.authService.auth.implicitRedirect();
+    // this.authService.auth.loginRedirect();
     this.authService.auth.authorizationCodeRedirect();
   }
 

@@ -11,7 +11,9 @@ export class OktaAuthorizationCodeCallbackComponent implements OnInit {
 
   public ngOnInit() {
 
+    // this.authService.handleImplicitFlow();
     this.authService.handleAuthorizationCodeFlow();
+
   }
 
 }

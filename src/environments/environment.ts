@@ -25,11 +25,12 @@ export const environment: Environment = {
     clientId: '',
     code_challenge: '',
     code_challenge_method: 'S256',
+    grant_type: 'authorization_code',
     issuer: '',
     redirectUri: 'http://localhost:4200/authorization-code/callback',
     responseType: 'code',
     scope: 'openid profile email phone address groups',
-    state: 'state-8600b31f-52d1-4dca-987c-386e3d8967e9',
+    state: '',
     testing: {
       disableHttpsCheck: true
     }

@@ -19,6 +19,7 @@ export interface Config {
     clientId: string,
     code_challenge: string,
     code_challenge_method: string,
+    grant_type: string,
     issuer: string,
     redirectUri: string,
     responseType: string,

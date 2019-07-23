@@ -18,6 +18,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { Observable, Observer } from 'rxjs';
 
 import * as OktaAuth from '@okta/okta-auth-js';
+import { base64urlencode, generateRandomString, pkceChallengeFromVerifier, sha256 } from './pkce-utils';
 
 import {
   assertIssuer,
@@ -44,6 +45,8 @@ export class OktaAuthService {
   private config: OktaConfig;
   private observers: Observer<boolean>[];
   $authenticationState: Observable<boolean>;
+
+  private codeVerifier = '';
 
   constructor(@Inject(DOCUMENT) private document: any,
               @Inject(OKTA_CONFIG) private auth: OktaConfig,
@@ -142,22 +145,6 @@ export class OktaAuthService {
     return this.config;
   }
 
-  // https://developer.okta.com/docs/reference/api/oidc/#authorize
-
-  async authorizationCodeRedirect() {
-
-    const url = this.auth.issuer + '/v1/authorize'
-      + '?response_type=' + encodeURIComponent(this.auth.responseType)
-      + '&client_id=' + encodeURIComponent(this.auth.clientId)
-      + '&state=' + encodeURIComponent(this.auth.state)
-      + '&scope=' + encodeURIComponent(this.auth.scope)
-      + '&redirect_uri=' + encodeURIComponent(this.auth.redirectUri)
-      + '&code_challenge=' + encodeURIComponent(this.auth.code_challenge)
-      + '&code_challenge_method=' + encodeURIComponent(this.auth.code_challenge_method);
-
-    this.document.location.href = url;
-  }
-
   loginRedirect(fromUri?: string, additionalParams?: object) {
 
     if (fromUri) {
@@ -202,6 +189,32 @@ export class OktaAuthService {
     };
   }
 
+  // https://developer.okta.com/docs/reference/api/oidc/#authorize
+
+  async authorizationCodeRedirect() {
+
+    this.config.state = generateRandomString();
+    // this.codeVerifier = generateRandomString();
+
+    console.log('this.config.state: ' + this.config.state);
+    // console.log('this.codeVerifier: ' + this.codeVerifier);
+
+    // this.config.code_challenge = await pkceChallengeFromVerifier(this.codeVerifier);
+
+    const url = this.auth.issuer + '/v1/authorize'
+      + '?response_type=' + encodeURIComponent(this.config.responseType)
+      + '&client_id=' + encodeURIComponent(this.config.clientId)
+      + '&state=' + encodeURIComponent(this.config.state)
+      + '&scope=' + encodeURIComponent(this.config.scope)
+      + '&redirect_uri=' + encodeURIComponent(this.config.redirectUri)
+      + '&code_challenge=' + encodeURIComponent('qjrzSW9gMiUgpUvqgEPE4_-8swvyCtfOVvg55o5S_es')
+      + '&code_challenge_method=' + encodeURIComponent(this.config.code_challenge_method);
+
+    // + '&code_challenge=' + encodeURIComponent(this.config.code_challenge)
+
+    this.document.location.href = url;
+  }
+
   // https://developer.okta.com/docs/reference/api/oidc/#token
 
   async exchangeCodeForToken(): Promise<void> {
@@ -213,7 +226,14 @@ export class OktaAuthService {
     console.log('code: ' + code);
     console.log('state: ' + state);
 
-    const endpoint = this.auth.issuer + '/v1/token';
+    console.log('this.config.state: ' + this.config.state);
+    // console.log('this.codeVerifier: ' + this.codeVerifier);
+
+    // if (state !== this.config.state) {
+    //   throw new Error('state !== this.config.state');
+    // }
+
+    const endpoint = this.config.issuer + '/v1/token';
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -223,11 +243,13 @@ export class OktaAuthService {
 
     const body = {
       grant_type: 'authorization_code',
-      client_id: this.auth.clientId,
-      redirect_uri: this.auth.redirectUri,
+      client_id: this.config.clientId,
+      redirect_uri: this.config.redirectUri,
       code: code,
       code_verifier: 'M25iVXpKU3puUjFaYWg3T1NDTDQtcW1ROUY5YXlwalNoc0hhakxifmZHag'
     };
+
+    // this.codeVerifier
 
     const urlEncoded = Object.keys(body).map(key => key + '=' + body[key]).join('&');
 
@@ -238,7 +260,7 @@ export class OktaAuthService {
 
     const res = await this.exchangeCodeForToken();
 
-    console.log('response: ' + JSON.stringify(res));
+    console.log('res: ' + JSON.stringify(res));
 
     // https://github.com/okta/okta-auth-js/blob/0a8a4e16d75028900280ab93e561d9e4368a484f/lib/token.js
 
@@ -262,7 +284,7 @@ export class OktaAuthService {
       console.log('jwt: ' + JSON.stringify(jwt));
 
       this.oktaAuth.tokenManager.add('idToken', {
-        clientId: this.auth.clientId,
+        clientId: this.config.clientId,
         idToken: res['id_token'],
         expiresAt: jwt.payload.exp,
         scopes: res['scope'],
@@ -333,4 +355,128 @@ export class OktaAuthService {
   }
 }
 
+/*
+
+{
+  "code_verifier":"M25iVXpKU3puUjFaYWg3T1NDTDQtcW1ROUY5YXlwalNoc0hhakxifmZHag",
+  "code_challenge":"qjrzSW9gMiUgpUvqgEPE4_-8swvyCtfOVvg55o5S_es"
+}
+
+*/
+
 // https://developer.okta.com/code/javascript/okta_auth_sdk/
+
+// https://mrcoles.com/javascript-promises-and-errors/
+
+// https://github.com/dogeared/okta-auth-js-pkce-example/blob/master/src/auth/index.js
+
+/*
+
+  async authorizationCodeRedirect() {
+
+    this.auth.state = generateRandomString();
+    this.codeVerifier = generateRandomString();
+
+    console.log('this.auth.state: ' + this.auth.state);
+    console.log('this.codeVerifier: ' + this.codeVerifier);
+
+    this.auth.code_challenge = await pkceChallengeFromVerifier(this.codeVerifier);
+
+    const url = this.auth.issuer + '/v1/authorize'
+      + '?response_type=' + encodeURIComponent(this.auth.responseType)
+      + '&client_id=' + encodeURIComponent(this.auth.clientId)
+      + '&state=' + encodeURIComponent(this.auth.state)
+      + '&scope=' + encodeURIComponent(this.auth.scope)
+      + '&redirect_uri=' + encodeURIComponent(this.auth.redirectUri)
+      + '&code_challenge=' + encodeURIComponent(this.auth.code_challenge)
+      + '&code_challenge_method=' + encodeURIComponent(this.auth.code_challenge_method);
+
+    this.document.location.href = url;
+  }
+
+
+  async exchangeCodeForToken(): Promise<void> {
+
+    const params = new URLSearchParams(this.document.location.search.substring(1));
+    const code = params.get('code');
+    const state = params.get('state');
+
+    console.log('code: ' + code);
+    console.log('state: ' + state);
+
+    console.log('this.auth.state: ' + this.auth.state);
+    console.log('this.codeVerifier: ' + this.codeVerifier);
+
+    // if (state !== this.auth.state) {
+    //   throw new Error('state !== this.auth.state');
+    // }
+
+    const endpoint = this.auth.issuer + '/v1/token';
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      })
+    };
+
+    const body = {
+      grant_type: 'authorization_code',
+      client_id: this.auth.clientId,
+      redirect_uri: this.auth.redirectUri,
+      code: code,
+      code_verifier: this.codeVerifier
+    };
+
+    const urlEncoded = Object.keys(body).map(key => key + '=' + body[key]).join('&');
+
+    return this.http.post<any>(endpoint, urlEncoded, httpOptions).toPromise();
+  }
+
+  async handleAuthorizationCodeFlow(): Promise<void> {
+
+    const res = await this.exchangeCodeForToken();
+
+    console.log('res: ' + JSON.stringify(res));
+
+    // https://github.com/okta/okta-auth-js/blob/0a8a4e16d75028900280ab93e561d9e4368a484f/lib/token.js
+
+    if (res['access_token']) {
+
+      this.oktaAuth.tokenManager.add('accessToken', {
+        accessToken: res['access_token'],
+        expiresAt: Number(res['expires_in']) + Math.floor(Date.now() / 1000),
+        tokenType: res['token_type'],
+        scopes: res['scope']
+        // authorizeUrl: urls.authorizeUrl,
+        // userinfoUrl: urls.userinfoUrl
+      });
+
+    }
+
+    if (res['id_token']) {
+
+      const jwt = this.oktaAuth.token.decode(res['id_token']);
+
+      console.log('jwt: ' + JSON.stringify(jwt));
+
+      this.oktaAuth.tokenManager.add('idToken', {
+        clientId: this.auth.clientId,
+        idToken: res['id_token'],
+        expiresAt: jwt.payload.exp,
+        scopes: res['scope'],
+        claims: jwt.payload
+        // authorizeUrl: urls.authorizeUrl,
+        // issuer: urls.issuer
+      });
+
+    }
+
+    if (await this.isAuthenticated()) {
+      this.emitAuthenticationState(true);
+    }
+
+    const fromUri = this.getFromUri();
+    this.router.navigate([fromUri.uri], fromUri.extras);
+  }
+
+*/

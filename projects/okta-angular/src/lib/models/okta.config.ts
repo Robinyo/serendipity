@@ -18,6 +18,7 @@ export interface OktaConfig {
   clientId: string;
   code_challenge: string;
   code_challenge_method: string;
+  grant_type: string;
   issuer: string;
   onAuthRequired?: AuthRequiredFunction;
   redirectUri: string;
