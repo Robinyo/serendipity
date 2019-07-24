@@ -44,11 +44,14 @@ import { httpInterceptorProviders } from './http-interceptors';
 })
 ```
 
-## Resources 
+## Resources
 
 ### Auth Resources
 * Internet Engineering Task Force: [OAuth 2.0 for Browser-Based Apps](https://datatracker.ietf.org/doc/draft-ietf-oauth-browser-based-apps/)
 * Internet Engineering Task Force: [OAuth 2.0 Security Best Current Practice](https://datatracker.ietf.org/doc/draft-ietf-oauth-security-topics/)
+
+### Additional Auth Resources
+* Robert Broeckelmann's blog: [API Management, Integration, and Identity–especially where these three intersect](https://medium.com/@robert.broeckelmann)
 * Brock Allen's blog: [The State of the Implicit Flow in OAuth2](https://brockallen.com/2019/01/03/the-state-of-the-implicit-flow-in-oauth2/)
 * Auth0 blog: [OAuth2 Implicit Grant and SPA](https://auth0.com/blog/oauth2-implicit-grant-and-spa/)
 * Scott Brady's blog: [SPA Authentication using OpenID Connect, Angular CLI and oidc-client](https://www.scottbrady91.com/Angular/SPA-Authentiction-using-OpenID-Connect-Angular-CLI-and-oidc-client)
@@ -66,7 +69,7 @@ import { httpInterceptorProviders } from './http-interceptors';
 ### Other Auth Libraries
 * GitHub: [oidc-client-js](https://github.com/IdentityModel/oidc-client-js)
 
-**Note:** This library (above) currently supports the 'OAuth 2.0 Authorization Code Grant (or OIDC Authorization Code Flow) with PKCE'
+**Note:** This library (above) currently supports the 'OAuth 2.0 Authorization Code Flow with PKCE'.
 
 ### Authorisation Servers
 * GitHub: [Keycloak - Open Source Identity and Access Management](https://www.keycloak.org/)
