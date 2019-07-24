@@ -22,6 +22,7 @@ core.module.ts:
 
 import { AuthModule } from 'auth';
 import { AuthAuth0Module, authProviders } from 'auth-auth0';
+// import { AuthOktaModule, authProviders } from 'auth-okta';
 import { httpInterceptorProviders } from './http-interceptors';
 
 ...
@@ -41,22 +42,6 @@ import { httpInterceptorProviders } from './http-interceptors';
   ],
   exports: [ ... ]
 })
-```
-
-**Note:** At present, there is an issue that requires the `Auth0AuthService` to be directly referenced in the Nav Component.
-
-nav.component.ts:
-
-```
-// import { AuthService } from 'auth';
-// import { AuthOktaService } from 'auth-okta';
-import { Auth0AuthService } from 'auth-auth0';
-
-...
-
-constructor(private authService: Auth0AuthService) {}
-
-...
 ```
 
 ## Resources 
