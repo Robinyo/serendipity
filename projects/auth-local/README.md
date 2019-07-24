@@ -1,4 +1,4 @@
-# Auth Local - Local Authentication (AuthN) library
+# Local Authentication (AuthN) library
 
 ### Development
 

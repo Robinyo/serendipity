@@ -1,4 +1,4 @@
-# Auth - Authentication (AuthN) library
+# Auth Authentication (AuthN) library
 
 The Auth library provides an Authentication interface and includes a placeholder `AuthService` and `AuthGuard`.
 
