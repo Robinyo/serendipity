@@ -15,7 +15,7 @@ export interface Config {
     messagingSenderId: string
   };
 
-  oidc: {
+  okta: {
     clientId: string,
     grantType: string,
     issuer: string,
@@ -25,6 +25,12 @@ export interface Config {
     testing: {
       disableHttpsCheck: boolean
     }
+  };
+
+  auth0: {
+    domain: string,
+    client_id: string;
+    redirect_uri: string;
   };
 
   storageUriPrefix: string;

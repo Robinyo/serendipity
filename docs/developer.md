@@ -169,6 +169,10 @@ ng build utils && \
 ng build auth && \
 ng build okta-angular && \
 ng build auth-okta && \
+
+ng build utils && \
+ng build auth && \
+ng build auth-auth0 && \
 ng build serendipity-components && \
 ng build dashboard-widgets && \
 ng build dashboard && \

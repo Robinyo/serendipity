@@ -540,6 +540,41 @@
           }
         }
       }
+    },
+    "auth-auth0": {
+      "root": "projects/auth-auth0",
+      "sourceRoot": "projects/auth-auth0/src",
+      "projectType": "library",
+      "prefix": "auth-auth0",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/auth-auth0/tsconfig.lib.json",
+            "project": "projects/auth-auth0/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/auth-auth0/src/test.ts",
+            "tsConfig": "projects/auth-auth0/tsconfig.spec.json",
+            "karmaConfig": "projects/auth-auth0/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/auth-auth0/tsconfig.lib.json",
+              "projects/auth-auth0/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "serendipity"

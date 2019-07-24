@@ -21,7 +21,7 @@ export const environment: Environment = {
     messagingSenderId: ''
   },
 
-  oidc: {
+  okta: {
     clientId: '',
     grantType: 'authorization_code',
     issuer: '',
@@ -31,6 +31,12 @@ export const environment: Environment = {
     testing: {
       disableHttpsCheck: true
     }
+  },
+
+  auth0: {
+    client_id: '',
+    domain: '',
+    redirect_uri: 'http://localhost:4200/implicit/callback'
   },
 
   storageUriPrefix: 'https://firebasestorage.googleapis.com/v0/b/',

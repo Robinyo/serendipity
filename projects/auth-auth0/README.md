@@ -1,4 +1,4 @@
-# Okta Authentication (AuthN) library
+# Auth0 Authentication (AuthN) library
 
 ### Development
 
@@ -7,7 +7,7 @@ To build the library:
 ```
 ng build utils && \
 ng build auth && \
-ng build auth-okta
+ng build auth-auth0
 ```
 ### Auth Providers
 
@@ -21,8 +21,7 @@ core.module.ts:
 //
 
 import { AuthModule } from 'auth';
-import { AuthOktaModule, authProviders } from 'auth-okta';
-// import { AuthAuth0Module, authProviders } from 'auth-auth0';
+import { AuthAuth0Module, authProviders } from 'auth-auth0';
 import { httpInterceptorProviders } from './http-interceptors';
 
 ...
@@ -30,7 +29,7 @@ import { httpInterceptorProviders } from './http-interceptors';
 @NgModule({
   imports: [
     AuthModule,
-    AuthOktaModule.forRoot(environment),
+    AuthoAuthModule.forRoot(environment),
     ...
     RouterModule
   ],
@@ -44,17 +43,18 @@ import { httpInterceptorProviders } from './http-interceptors';
 })
 ```
 
-**Note:** At present, there is an issue that requires the `AuthOktaService` to be directly referenced in the Nav Component.
+**Note:** At present, there is an issue that requires the `Auth0AuthService` to be directly referenced in the Nav Component.
 
 nav.component.ts:
 
 ```
 // import { AuthService } from 'auth';
-import { AuthOktaService } from 'auth-okta';
+// import { AuthOktaService } from 'auth-okta';
+import { Auth0AuthService } from 'auth-auth0';
 
 ...
 
-constructor(private authService: AuthOktaService) {}
+constructor(private authService: Auth0AuthService) {}
 
 ...
 ```

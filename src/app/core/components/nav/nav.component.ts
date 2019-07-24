@@ -4,8 +4,9 @@ import { MatSidenav } from '@angular/material';
 
 import { Subscription } from 'rxjs';
 
-// import { AuthService } from 'auth';
-import { AuthOktaService } from 'auth-okta';
+import { AuthService } from 'auth';
+// import { AuthOktaService } from 'auth-okta';
+// import { Auth0AuthService } from 'auth-auth0';
 
 import { SidenavService } from 'serendipity-components';
 import { MockDashboardService, ToolPaletteItem } from 'dashboard';
@@ -68,7 +69,7 @@ export class NavComponent implements OnInit, OnDestroy {
               private renderer: Renderer2,
               private commandBarSidenavService: SidenavService,
               private dashboardService: MockDashboardService,
-              private authService: AuthOktaService,
+              private authService: AuthService,
               private logger: LoggerService) {}
 
   public ngOnInit(): void {

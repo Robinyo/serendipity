@@ -32,7 +32,8 @@ import { AngularFireModule } from '@angular/fire';
 //
 
 import { AuthModule } from 'auth';
-import { AuthOktaModule, authProviders } from 'auth-okta';
+// import { AuthOktaModule, authProviders } from 'auth-okta';
+import { Auth0AuthModule, authProviders } from 'auth-auth0';
 import { httpInterceptorProviders } from './http-interceptors';
 
 //
@@ -85,7 +86,8 @@ import { MAT_DATE_LOCALE } from '@angular/material';
     }),
 
     AuthModule,
-    AuthOktaModule.forRoot(environment),
+    // AuthOktaModule.forRoot(environment),
+    Auth0AuthModule.forRoot(environment),
     DynamicFormsModule.forRoot(environment),
     UtilsModule.forRoot(environment),
     SalesModule,

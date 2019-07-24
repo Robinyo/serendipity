@@ -20,7 +20,7 @@ const routes: Routes = [
   },
 
   {
-     path: 'implicit/callback',
+    path: 'implicit/callback',
     component: OktaImplicitCallbackComponent
   }
 

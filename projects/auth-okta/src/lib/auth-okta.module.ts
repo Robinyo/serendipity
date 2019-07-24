@@ -1,13 +1,13 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// import { OktaAuthModule, OKTA_CONFIG } from '@okta/okta-angular';
 import { OktaAuthModule, OKTA_CONFIG } from 'okta-angular';
 
 import { AuthOktaConfig } from './models/models';
 import { AuthOktaConfigService } from './services/config.service';
 
 import { LoginComponent } from './components/login/login.component';
+
 //
 // Auth lib
 //
@@ -54,7 +54,7 @@ export class AuthOktaModule {
       ngModule: AuthOktaModule,
       providers: [
         { provide: AuthOktaConfigService, useValue: config },
-        { provide: OKTA_CONFIG, useValue: config.oidc }
+        { provide: OKTA_CONFIG, useValue: config.okta }
       ]
     };
 

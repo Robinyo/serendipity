@@ -91,6 +91,12 @@
       ],
       "okta-angular/*": [
         "dist/okta-angular/*"
+      ],
+      "auth-auth0": [
+        "dist/auth-auth0"
+      ],
+      "auth-auth0/*": [
+        "dist/auth-auth0/*"
       ]
     }
   }
