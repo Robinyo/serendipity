@@ -44,6 +44,16 @@ import { Auth0AuthModule, authProviders } from 'auth-auth0';
 export class AppModule {}
 ```
 
+Note: For all new Auth0 tenants **seamless SSO is enabled and cannot be disabled**. 
+When signing in (for example, via the Authorization Code Flow with PKCE) you will receive a 404 from the following endpoint:
+
+```
+GET https://<DOMAIN>/user/ssodata
+```
+
+Although this error is unrelated to the [standards-based](https://www.ietf.org/) activity (i.e., OIDC Authorization Code Flow with PKCE) you are trying to perform,
+ you will receive this error whenever signing into Auth0.
+
 ## Resources
 
 ### Auth0 Auth Libraries

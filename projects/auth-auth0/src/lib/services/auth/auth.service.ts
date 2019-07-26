@@ -99,13 +99,13 @@ export class Auth0AuthService extends Auth {
 
      this.logger.info('Auth0AuthService: handleRedirectCallback()');
 
-     const res = await this.auth.handleRedirectCallback();
-
+     // const res = await this.auth.handleRedirectCallback();
      // console.log('res: ' + JSON.stringify(res));
-
      // const authstate = await this.auth.isAuthenticated();
      // this.logger.info('Auth0AuthService handleRedirectCallback() authstate: ' + authstate);
      // this.authenticated = authstate;
+
+     const res = await this.auth.handleRedirectCallback();
 
      this.authenticated = await this.auth.isAuthenticated();
 
