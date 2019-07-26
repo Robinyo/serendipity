@@ -326,14 +326,14 @@ firebase list
 The project's Auth providers are configured in the App [module](https://github.com/Robinyo/serendipity/blob/master/src/app/app.module.ts):
 
 ```
+...
+
 //
 // Auth libs
 //
 
 import { Auth0AuthModule, authProviders } from 'auth-auth0';
 // import { AuthOktaModule, authProviders } from 'auth-okta';
-
-...
 
 @NgModule({
   imports: [
