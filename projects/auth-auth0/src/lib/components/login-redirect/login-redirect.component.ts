@@ -5,7 +5,7 @@ import { Auth0AuthService } from '../../services/auth/auth.service';
 import { LoggerService } from 'utils';
 
 @Component({ template: `` })
-export class LoginRedirectComponent implements AfterViewInit, OnInit {
+export class LoginRedirectComponent implements OnInit, AfterViewInit {
 
   constructor(private authService: Auth0AuthService,
               private logger: LoggerService) {

@@ -25,7 +25,8 @@ export class NavigationBarComponent {
       if (event instanceof NavigationEnd) {
 
         this.returnUrl = event.url;
-        this.logger.info('returnUrl: ' + this.returnUrl);
+
+        this.logger.info('NavigationBarComponent returnUrl: ' + this.returnUrl);
       }
 
     });
@@ -33,6 +34,7 @@ export class NavigationBarComponent {
   }
 
   public logout() {
+
     this.authService.logout(this.returnUrl || '/');
   }
 

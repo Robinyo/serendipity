@@ -16,11 +16,3 @@ export class NoopInterceptor implements HttpInterceptor {
 }
 
 // https://angular.io/guide/http#intercepting-requests-and-responses
-
-/*
-
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-
-{ provide: HTTP_INTERCEPTORS, useClass: NoopInterceptor, multi: true }
-
-*/

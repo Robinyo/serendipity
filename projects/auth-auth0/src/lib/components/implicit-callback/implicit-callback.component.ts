@@ -1,17 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 
 import { Auth0AuthService } from '../../services/auth/auth.service';
 
-@Component({ template: `` })
-export class ImplicitCallbackComponent implements OnInit {
+import { LoggerService } from 'utils';
 
-  constructor(private authService: Auth0AuthService) {
+@Component({ template: `` })
+export class ImplicitCallbackComponent implements OnInit, AfterViewInit {
+
+  constructor(private authService: Auth0AuthService,
+              private logger: LoggerService) {
   }
 
-  public ngOnInit() {
+  ngOnInit() {
 
-    // this.authService.handleImplicitFlow();
+    this.logger.info('ImplicitCallbackComponent: ngOnInit()');
+  }
 
+  public ngAfterViewInit() {
+
+    this.logger.info('ImplicitCallbackComponent: ngAfterViewInit()');
+
+    // this.authService.handleRedirectCallback();
   }
 
 }

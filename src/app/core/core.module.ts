@@ -34,7 +34,6 @@ import { AngularFireModule } from '@angular/fire';
 import { AuthModule } from 'auth';
 // import { AuthOktaModule, authProviders } from 'auth-okta';
 import { Auth0AuthModule, authProviders } from 'auth-auth0';
-import { httpInterceptorProviders } from './http-interceptors';
 
 //
 // Dashboard Widgets lib
@@ -97,9 +96,11 @@ import { MAT_DATE_LOCALE } from '@angular/material';
   declarations: [ PlaceholderComponent, NavigationBarComponent, NavComponent ],
   providers: [
     authProviders,
-    httpInterceptorProviders,
-    loggerProviders,
-    { provide: MAT_DATE_LOCALE, useValue: environment.defaultLanguage },
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: environment.defaultLanguage
+    },
+    loggerProviders
   ],
   exports: [ PlaceholderComponent, NavigationBarComponent, NavComponent ] // TranslateModule
 })

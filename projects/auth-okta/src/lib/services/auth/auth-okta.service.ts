@@ -24,8 +24,7 @@ export class AuthOktaService extends Auth {
 
     super();
 
-    this.auth.$authenticationState.subscribe(
-      (authenticated: boolean) => {
+    this.auth.$authenticationState.subscribe((authenticated: boolean) => {
 
         this.authenticated = authenticated;
 
