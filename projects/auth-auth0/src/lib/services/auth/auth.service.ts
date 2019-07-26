@@ -20,8 +20,8 @@ import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
 export class Auth0AuthService extends Auth {
 
   authState$ = new BehaviorSubject(false);
-  // $profile = new BehaviorSubject<User>(null);
-  // $profile = new BehaviorSubject<any>(null);
+  // profile$ = new BehaviorSubject<User>(null);
+  // profile$ = new BehaviorSubject<any>(null);
 
   private auth: Auth0Client;
 
