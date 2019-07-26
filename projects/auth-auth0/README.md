@@ -42,7 +42,7 @@ import { Auth0AuthModule, authProviders } from 'auth-auth0';
 export class AppModule {}
 ```
 
-## Auth0 tenants
+## Auth0 Tenants
 
 For all new Auth0 tenants **seamless SSO is enabled and cannot be disabled**. 
 When signing in (for example, via the Authorization Code Flow with PKCE) you will receive a 404 from the following endpoint:
