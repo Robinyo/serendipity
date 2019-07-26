@@ -12,9 +12,7 @@ ng build auth-auth0
 
 ## Auth Providers
 
-The project's Auth providers are configured in the App module:
-
-[app.module.ts](https://github.com/Robinyo/serendipity/blob/master/src/app/app.module.ts):
+The project's Auth providers are configured in the App [module](https://github.com/Robinyo/serendipity/blob/master/src/app/app.module.ts):
 
 ```
 //
