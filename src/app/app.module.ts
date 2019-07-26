@@ -12,9 +12,8 @@ import { angularMaterialProviders } from './providers';
 // Auth libs
 //
 
-// import { AuthModule } from 'auth';
-// import { AuthOktaModule, authProviders } from 'auth-okta';
 import { Auth0AuthModule, authProviders } from 'auth-auth0';
+// import { AuthOktaModule, authProviders } from 'auth-okta';
 
 //
 // Utils lib

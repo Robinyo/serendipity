@@ -19,9 +19,8 @@ The project's Auth providers are configured in the App [module](https://github.c
 // Auth libs
 //
 
-// import { AuthModule } from 'auth';
-// import { AuthOktaModule, authProviders } from 'auth-okta';
 import { Auth0AuthModule, authProviders } from 'auth-auth0';
+// import { AuthOktaModule, authProviders } from 'auth-okta';
 
 ...
 
@@ -35,7 +34,8 @@ import { Auth0AuthModule, authProviders } from 'auth-auth0';
   declarations: [ AppComponent ],
   providers: [
     loggerProviders,
-    authProviders
+    authProviders,
+    angularMaterialProviders
   ],
   bootstrap: [ AppComponent ]
 })
