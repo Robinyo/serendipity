@@ -1,10 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 
-import { Auth0AuthGuard } from './guards/auth/auth.guard';
-import { Auth0AuthService } from './services/auth/auth.service';
-import { authServiceFactory } from './auth-service.factory';
 import { Auth0Config } from './models/models';
 import { Auth0ConfigService } from './services/config.service';
 
@@ -16,7 +12,7 @@ import { ImplicitCallbackComponent } from './components/implicit-callback/implic
 // Auth lib
 //
 
-import { AuthModule } from 'auth';
+// import { AuthModule } from 'auth';
 
 //
 // Utils lib
@@ -32,7 +28,7 @@ import { LibRoutingModule } from './lib-routing.module';
 
 @NgModule({
   imports: [
-    AuthModule,
+    // AuthModule,
     CommonModule,
     UtilsModule,
 
@@ -42,23 +38,7 @@ import { LibRoutingModule } from './lib-routing.module';
     AuthorizationCodeCallbackComponent,
     LoginRedirectComponent,
     ImplicitCallbackComponent
-  ],
-  providers: [
-    /*
-    Auth0AuthGuard,
-    {
-      provide: Auth0AuthService,
-      useFactory: authServiceFactory,
-      deps: [
-        Auth0ConfigService,
-        Router,
-        LoggerService
-      ]
-    },
-    */
-    loggerProviders
-  ],
-  exports: []
+  ]
 })
 export class Auth0AuthModule {
 
@@ -79,3 +59,24 @@ export class Auth0AuthModule {
   }
 
 }
+
+/*
+
+  providers: [
+    Auth0AuthGuard,
+    {
+      provide: Auth0AuthService,
+      useFactory: authServiceFactory,
+      deps: [
+        Auth0ConfigService,
+        Router,
+        LoggerService
+      ]
+    },
+    loggerProviders
+  ],
+
+
+*/
+
+

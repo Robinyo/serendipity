@@ -5,20 +5,13 @@ import { CommonModule } from '@angular/common';
 // Utils lib
 //
 
-// import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
-import { UtilsModule, LoggerService, loggerProviders } from 'utils';
+import { UtilsModule, LoggerService } from 'utils';
 
 @NgModule({
   imports: [
     CommonModule,
     UtilsModule
-  ],
-  declarations: [],
-  providers: [
-    // { provide: LoggerService, useClass: ConsoleLoggerService }
-    loggerProviders
-  ],
-  exports: []
+  ]
 })
 export class AuthModule {
 
@@ -27,3 +20,15 @@ export class AuthModule {
   }
 
 }
+
+/*
+
+// import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
+// import { UtilsModule, LoggerService, loggerProviders } from 'utils';
+
+  providers: [
+    // { provide: LoggerService, useClass: ConsoleLoggerService }
+    loggerProviders
+  ],
+
+*/

@@ -11,20 +11,14 @@ import { TimelineComponent } from './highcharts-angular/components/timeline/time
 // Utils lib
 //
 
-// import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
-import { UtilsModule, LoggerService, loggerProviders } from 'utils';
+import { UtilsModule, LoggerService } from 'utils';
 
 @NgModule({
   imports: [
-    // AngularMaterialModule,
     HighchartsChartModule,
     UtilsModule
   ],
   declarations: [ FunnelChartComponent, ParliamentChartComponent, PieChartComponent, TimelineComponent ],
-  providers: [
-    // { provide: LoggerService, useClass: ConsoleLoggerService }
-    loggerProviders
-  ],
   exports: [ FunnelChartComponent, ParliamentChartComponent, PieChartComponent, TimelineComponent ]
 })
 export class DashboardWidgetsModule {

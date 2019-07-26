@@ -1,27 +1,50 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { MAT_DATE_LOCALE } from '@angular/material';
+
+import { environment } from '@env/environment';
+
 import { CoreModule } from './core/core.module';
-// import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+
+//
+// Auth libs
+//
+
+// import { AuthModule } from 'auth';
+// import { AuthOktaModule, authProviders } from 'auth-okta';
+import { Auth0AuthModule, authProviders } from 'auth-auth0';
 
 //
 // Utils lib
 //
 
-import { LoggerService } from 'utils';
+import { LoggerService, loggerProviders } from 'utils';
+
+//
+// App Routing Module
+//
+
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   imports: [
     BrowserModule,
+    Auth0AuthModule.forRoot(environment),
     CoreModule,
-    // SharedModule,
     AppRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
   declarations: [ AppComponent ],
-  providers: [],
+  providers: [
+    loggerProviders,
+    authProviders,
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: environment.defaultLanguage
+    }
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {

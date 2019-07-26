@@ -5,10 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 // Auth libs
 //
 
-// import { AuthModule, AuthGuard } from 'auth';
-// import { AuthOktaModule, authProviders } from 'auth-okta';
 import { AuthGuard } from 'auth';
-// import { authProviders } from 'auth-okta';
 
 import { CanDeactivateGuard } from './guards/can-deactivate/can-deactivate.guard';
 
@@ -57,19 +54,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    // AuthModule,
-    // AuthOktaModule,
-    RouterModule.forChild(routes)
-  ],
-  providers: [
-    // authProviders
-    // AuthOktaGuard
-    // { provide: AuthGuard, useClass: AuthOktaGuard }
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [ RouterModule.forChild(routes) ],
+  exports: [ RouterModule ]
 })
 export class LibRoutingModule {}
 

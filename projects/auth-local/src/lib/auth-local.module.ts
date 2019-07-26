@@ -21,8 +21,7 @@ import { DynamicFormsModule } from 'dynamic-forms';
 // Utils lib
 //
 
-// import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
-import { UtilsModule, LoggerService, loggerProviders } from 'utils';
+import { UtilsModule, LoggerService } from 'utils';
 import { AngularMaterialModule } from 'utils';
 
 @NgModule({
@@ -35,10 +34,6 @@ import { AngularMaterialModule } from 'utils';
     UtilsModule
   ],
   declarations: [ LoginComponent ],
-  providers: [
-    // { provide: LoggerService, useClass: ConsoleLoggerService }
-    loggerProviders
-  ],
   exports: [ LoginComponent ]
 })
 export class AuthLocalModule {

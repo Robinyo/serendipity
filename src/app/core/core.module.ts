@@ -1,6 +1,5 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -28,14 +27,6 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 import { AngularFireModule } from '@angular/fire';
 
 //
-// Auth libs
-//
-
-import { AuthModule } from 'auth';
-// import { AuthOktaModule, authProviders } from 'auth-okta';
-import { Auth0AuthModule, authProviders } from 'auth-auth0';
-
-//
 // Dashboard Widgets lib
 //
 
@@ -57,11 +48,8 @@ import { SalesModule } from 'sales';
 // Utils lib
 //
 
-// import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
-import { UtilsModule, LoggerService, loggerProviders } from 'utils';
+import { UtilsModule, LoggerService } from 'utils';
 import { AngularMaterialModule } from 'utils';
-
-import { MAT_DATE_LOCALE } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -70,7 +58,6 @@ import { MAT_DATE_LOCALE } from '@angular/material';
     AngularMaterialModule,
     BrowserAnimationsModule,
     CommonModule,
-    // DragDropModule,
     FlexLayoutModule,
     HighchartsChartModule,
     HttpClientModule,
@@ -84,25 +71,14 @@ import { MAT_DATE_LOCALE } from '@angular/material';
       }
     }),
 
-    AuthModule,
-    // AuthOktaModule.forRoot(environment),
-    Auth0AuthModule.forRoot(environment),
     DynamicFormsModule.forRoot(environment),
-    UtilsModule.forRoot(environment),
     SalesModule,
+    UtilsModule.forRoot(environment),
 
     RouterModule  // There is no directive with "exportAs" set to "routerLinkActive ...
   ],
   declarations: [ PlaceholderComponent, NavigationBarComponent, NavComponent ],
-  providers: [
-    authProviders,
-    {
-      provide: MAT_DATE_LOCALE,
-      useValue: environment.defaultLanguage
-    },
-    loggerProviders
-  ],
-  exports: [ PlaceholderComponent, NavigationBarComponent, NavComponent ] // TranslateModule
+  exports: [ PlaceholderComponent, NavigationBarComponent, NavComponent ]
 })
 export class CoreModule {
 

@@ -21,8 +21,7 @@ import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/conf
 // Utils lib
 //
 
-// import { UtilsModule, LoggerService, ConsoleLoggerService } from 'utils';
-import { UtilsModule, LoggerService, loggerProviders } from 'utils';
+import { UtilsModule, LoggerService } from 'utils';
 import { AngularMaterialModule } from 'utils';
 
 @NgModule({
@@ -36,21 +35,21 @@ import { AngularMaterialModule } from 'utils';
     AlertDialogComponent,
     ConfirmDialogComponent,
     ActivityBarComponent,
-    CommandBarComponent ],
-  providers: [
-    // { provide: LoggerService, useClass: ConsoleLoggerService }
-    loggerProviders
+    CommandBarComponent
   ],
   exports: [
     ActivityBarComponent,
-    CommandBarComponent ],
+    CommandBarComponent
+  ],
   entryComponents: [
     AlertDialogComponent,
-    ConfirmDialogComponent ]
+    ConfirmDialogComponent
+  ]
 })
 export class SerendipityComponentsModule {
 
   constructor(private logger: LoggerService) {
+
     this.logger.info('Serendipity Components Module initialised');
   }
 

@@ -16,13 +16,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 // import { InMemoryDataService } from './services/mocks/api/in-memory-data.service';
 
 //
-// Auth libs
-//
-
-// import { AuthModule } from 'auth';
-// import { AuthOktaModule, authProviders } from 'auth-okta';
-
-//
 // Serendipity Components lib
 //
 
@@ -50,7 +43,7 @@ import { FlowableModule } from 'flowable';
 // Utils lib
 //
 
-import { UtilsModule, LoggerService, loggerProviders } from 'utils';
+import { UtilsModule, LoggerService } from 'utils';
 import { AngularMaterialModule } from 'utils';
 import { StaticInjectorService } from 'utils';
 
@@ -62,9 +55,6 @@ import { LibRoutingModule } from './lib-routing.module';
 
 @NgModule({
   imports: [
-    // AuthModule,
-    // AuthOktaModule,
-
     AngularMaterialModule,
     CommonModule,
     DashboardModule,
@@ -91,10 +81,6 @@ import { LibRoutingModule } from './lib-routing.module';
     DashboardComponent,
 
     SnackBarComponent
-  ],
-  providers: [
-    // authProviders,
-    loggerProviders
   ],
   exports: [
     AccountsComponent,

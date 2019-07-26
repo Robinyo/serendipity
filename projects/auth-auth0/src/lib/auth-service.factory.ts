@@ -7,5 +7,8 @@ import { LoggerService } from 'utils';
 
 // AoT requires an exported function for factories
 export function authServiceFactory(config: Auth0Config, router: Router, logger: LoggerService) {
+
+  console.log('authServiceFactory()');
+
   return new Auth0AuthService(config, router, logger);
 }

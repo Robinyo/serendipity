@@ -36,7 +36,7 @@ export const environment: Environment = {
   auth0: {
     client_id: '',
     domain: '',
-    redirect_uri: 'http://localhost:4200/implicit/callback'
+    redirect_uri: 'http://localhost:4200/authorization-code/callback'
   },
 
   storageUriPrefix: 'https://firebasestorage.googleapis.com/v0/b/',
