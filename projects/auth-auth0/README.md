@@ -1,6 +1,6 @@
 # Auth0 Authentication (AuthN) library
 
-### Development
+## Development
 
 To build the library:
 
@@ -10,11 +10,11 @@ ng build auth && \
 ng build auth-auth0
 ```
 
-### Auth Providers
+## Auth Providers
 
-The Auth providers are configured in the project's App module:
+The project's Auth providers are configured in the App module:
 
-app.module.ts:
+[app.module.ts](https://github.com/Robinyo/serendipity/blob/master/src/app/app.module.ts):
 
 ```
 //
