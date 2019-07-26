@@ -125,6 +125,7 @@ npm install
 
 ng build utils && \
 ng build auth && \
+ng build auth-auth0 && \
 ng build auth-okta && \
 ng build serendipity-components && \
 ng build dashboard-widgets && \
@@ -167,12 +168,8 @@ To build the project:
 ```
 ng build utils && \
 ng build auth && \
-ng build okta-angular && \
-ng build auth-okta && \
-
-ng build utils && \
-ng build auth && \
 ng build auth-auth0 && \
+ng build auth-okta && \
 ng build serendipity-components && \
 ng build dashboard-widgets && \
 ng build dashboard && \
@@ -208,6 +205,7 @@ To build the project:
 ```
 ng build utils && \
 ng build auth && \
+ng build auth-auth0 && \
 ng build auth-okta && \
 ng build serendipity-components && \
 ng build dashboard-widgets && \

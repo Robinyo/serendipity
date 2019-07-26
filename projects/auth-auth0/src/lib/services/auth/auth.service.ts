@@ -122,11 +122,11 @@ export class Auth0AuthService extends Auth {
     this.logger.info('returnUrl: ' + returnUrl);
 
     this.authState$.next(false);
-    // this.authState$.next(null);
 
     this.auth.logout({
       client_id: this.config.auth0.client_id,
-      returnTo: window.location.origin + returnUrl
+      // returnTo: window.location.origin + returnUrl
+      returnTo: window.location.origin
     });
 
   }
@@ -146,4 +146,3 @@ export class Auth0AuthService extends Auth {
 }
 
 // https://stackoverflow.com/questions/39494058/behaviorsubject-vs-observable
-

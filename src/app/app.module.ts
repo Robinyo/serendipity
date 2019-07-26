@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { MAT_DATE_LOCALE } from '@angular/material';
+import { CoreModule } from './core/core.module';
+import { AppComponent } from './app.component';
 
 import { environment } from '@env/environment';
 
-import { CoreModule } from './core/core.module';
-
-import { AppComponent } from './app.component';
+import { angularMaterialProviders } from './providers';
 
 //
 // Auth libs
@@ -24,7 +23,7 @@ import { Auth0AuthModule, authProviders } from 'auth-auth0';
 import { LoggerService, loggerProviders } from 'utils';
 
 //
-// App Routing Module
+// AppRoutingModule: https://angular.io/guide/router#routing-module-order
 //
 
 import { AppRoutingModule } from './app-routing.module';
@@ -40,10 +39,7 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [
     loggerProviders,
     authProviders,
-    {
-      provide: MAT_DATE_LOCALE,
-      useValue: environment.defaultLanguage
-    }
+    angularMaterialProviders
   ],
   bootstrap: [ AppComponent ]
 })

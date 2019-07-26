@@ -9,12 +9,6 @@ import { LoginRedirectComponent } from './components/login-redirect/login-redire
 import { ImplicitCallbackComponent } from './components/implicit-callback/implicit-callback.component';
 
 //
-// Auth lib
-//
-
-// import { AuthModule } from 'auth';
-
-//
 // Utils lib
 //
 
@@ -59,24 +53,3 @@ export class Auth0AuthModule {
   }
 
 }
-
-/*
-
-  providers: [
-    Auth0AuthGuard,
-    {
-      provide: Auth0AuthService,
-      useFactory: authServiceFactory,
-      deps: [
-        Auth0ConfigService,
-        Router,
-        LoggerService
-      ]
-    },
-    loggerProviders
-  ],
-
-
-*/
-
-
