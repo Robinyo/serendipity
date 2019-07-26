@@ -318,8 +318,40 @@ firebase list
 
 * [auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth) library
 * [auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library
+* [auth-auth0](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0) library
 * [auth-okta](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta) library
 
+#### Authentication Providers
+
+The project's Auth providers are configured in the App [module](https://github.com/Robinyo/serendipity/blob/master/src/app/app.module.ts):
+
+```
+//
+// Auth libs
+//
+
+import { Auth0AuthModule, authProviders } from 'auth-auth0';
+// import { AuthOktaModule, authProviders } from 'auth-okta';
+
+...
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    Auth0AuthModule.forRoot(environment),
+    CoreModule,
+    AppRoutingModule
+  ],
+  declarations: [ AppComponent ],
+  providers: [
+    loggerProviders,
+    authProviders
+  ],
+  bootstrap: [ AppComponent ]
+})
+export class AppModule {}
+``` 
+ 
 ### Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. 
