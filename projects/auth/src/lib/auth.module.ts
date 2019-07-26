@@ -5,12 +5,11 @@ import { CommonModule } from '@angular/common';
 // Utils lib
 //
 
-import { UtilsModule, LoggerService } from 'utils';
+import { LoggerService } from 'utils';
 
 @NgModule({
   imports: [
-    CommonModule,
-    UtilsModule
+    CommonModule
   ]
 })
 export class AuthModule {

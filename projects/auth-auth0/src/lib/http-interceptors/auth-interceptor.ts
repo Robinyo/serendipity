@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 
-import { Auth0AuthService } from '../services/auth/auth.service';
+import { AuthService } from 'auth';
 
 import { LoggerService } from 'utils';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private authService: Auth0AuthService,
+  constructor(private authService: AuthService,
               private logger: LoggerService) {
 
-    this.logger.info('AuthInterceptor: constructor()');
+    // this.logger.info('AuthInterceptor: constructor()');
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
@@ -20,7 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     if (accessToken) {
 
-      this.logger.info('AuthInterceptor: intercept() Bearer ' + accessToken);
+      // this.logger.info('AuthInterceptor: intercept() Bearer ' + accessToken);
 
       const authReq = req.clone({ setHeaders: { Authorization: 'Bearer ' + accessToken } });
       return next.handle(authReq);

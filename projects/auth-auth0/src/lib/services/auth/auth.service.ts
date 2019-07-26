@@ -101,19 +101,15 @@ export class Auth0AuthService extends Auth {
 
      const res = await this.auth.handleRedirectCallback();
 
-     console.log('res: ' + JSON.stringify(res));
+     // console.log('res: ' + JSON.stringify(res));
 
-     const authstate = await this.auth.isAuthenticated();
+     // const authstate = await this.auth.isAuthenticated();
+     // this.logger.info('Auth0AuthService handleRedirectCallback() authstate: ' + authstate);
+     // this.authenticated = authstate;
 
-     this.logger.info('Auth0AuthService handleRedirectCallback() authstate: ' + authstate);
+     this.authenticated = await this.auth.isAuthenticated();
 
-     //
-     // ???
-     //
-
-     this.authenticated = authstate;
-
-     this.authState$.next(authstate);
+     this.authState$.next(this.authenticated);
 
      this.router.navigate(['/']);
   }
@@ -125,8 +121,8 @@ export class Auth0AuthService extends Auth {
     this.logger.info('window.location.origin: ' + window.location.origin);
     this.logger.info('returnUrl: ' + returnUrl);
 
-    // this.authState$.next(false);
-    this.authState$.next(null);
+    this.authState$.next(false);
+    // this.authState$.next(null);
 
     this.auth.logout({
       client_id: this.config.auth0.client_id,

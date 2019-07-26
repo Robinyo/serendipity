@@ -5,10 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 // Auth libs
 //
 
-// import { AuthModule, AuthGuard } from 'auth';
-// import { AuthOktaModule, authProviders } from 'auth-okta';
 import { AuthGuard } from 'auth';
-// import { authProviders } from 'auth-okta';
 
 import { PlaceholderComponent } from '@app/core/components/placeholder/placeholder.component';
 
@@ -46,12 +43,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    // AuthModule,
-    // AuthOktaModule,
     RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})
-  ],
-  providers: [
-    // authProviders
   ],
   exports: [
     RouterModule

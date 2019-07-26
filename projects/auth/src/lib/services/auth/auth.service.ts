@@ -24,6 +24,14 @@ export class AuthService extends Auth {
     return this.accessToken;
   }
 
+  public loginWithRedirect() {
+    return;
+  }
+
+  public async handleRedirectCallback(): Promise<void> {
+    return;
+  }
+
   // TODO -> See: collection.service.ts
 
   public getUser() {

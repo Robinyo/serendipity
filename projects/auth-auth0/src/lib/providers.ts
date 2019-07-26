@@ -14,16 +14,12 @@ export const authProviders = [
   {
     provide: AuthService,
     useClass: Auth0AuthService
-  }
-
-  /*
+  },
   {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
   }
-  */
-
 ];
 
 /*

@@ -18,7 +18,7 @@ import { ImplicitCallbackComponent } from './components/implicit-callback/implic
 // Utils lib
 //
 
-import { UtilsModule, LoggerService, loggerProviders } from 'utils';
+import { UtilsModule, LoggerService } from 'utils';
 
 //
 // LibRoutingModule: https://angular.io/guide/router#routing-module-order

@@ -21,17 +21,3 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
 }
-
-/*
-
-    // this.translate.get('RESET_PASSWORD_MESSAGE').subscribe(value => {
-    //   this.alertMessage = value;
-    // });
-
-import { LoggerService } from '@app/core';
-
-  constructor(private logger: LoggerService) {
-
-  }
-
-*/

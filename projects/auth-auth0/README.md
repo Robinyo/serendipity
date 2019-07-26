@@ -11,37 +11,36 @@ ng build auth-auth0
 ```
 ### Auth Providers
 
-The Auth providers are configured in the project's Core module:
+The Auth providers are configured in the project's App module:
 
-core.module.ts:
+app.module.ts:
 
 ```
 //
 // Auth libs
 //
 
-import { AuthModule } from 'auth';
-import { AuthAuth0Module, authProviders } from 'auth-auth0';
+// import { AuthModule } from 'auth';
 // import { AuthOktaModule, authProviders } from 'auth-okta';
-import { httpInterceptorProviders } from './http-interceptors';
+import { Auth0AuthModule, authProviders } from 'auth-auth0';
 
 ...
 
 @NgModule({
   imports: [
-    AuthModule,
-    AuthoAuthModule.forRoot(environment),
-    ...
-    RouterModule
+    BrowserModule,
+    Auth0AuthModule.forRoot(environment),
+    CoreModule,
+    AppRoutingModule
   ],
-  declarations: [ ... ],
+  declarations: [ AppComponent ],
   providers: [
-    authProviders,
-    httpInterceptorProviders,
-    ...
+    loggerProviders,
+    authProviders
   ],
-  exports: [ ... ]
+  bootstrap: [ AppComponent ]
 })
+export class AppModule {}
 ```
 
 ## Resources
