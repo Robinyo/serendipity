@@ -345,7 +345,8 @@ import { Auth0AuthModule, authProviders } from 'auth-auth0';
   declarations: [ AppComponent ],
   providers: [
     loggerProviders,
-    authProviders
+    authProviders,
+    angularMaterialProviders
   ],
   bootstrap: [ AppComponent ]
 })
@@ -441,7 +442,7 @@ or
 git push origin <tag>
 ```
 
-### WebStrom
+### WebStorm
 
 To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Languages & Frameworks -> TypeScript and clear the 'Angular Language Service' checkbox.
 
