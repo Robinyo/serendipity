@@ -47,6 +47,7 @@
     "@auth0/auth0-spa-js": "^1.1.1",
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
+    "@okta/okta-auth-js": "^2.6.1",
     "angular-gridster2": "^7.2.0",
     "core-js": "^2.6.9",
     "date-fns": "^1.30.1",

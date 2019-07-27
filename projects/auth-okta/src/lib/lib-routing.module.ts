@@ -1,27 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-// import { OktaCallbackComponent } from '@okta/okta-angular';
-import { OktaAuthorizationCodeCallbackComponent } from 'okta-angular';
-import { OktaImplicitCallbackComponent } from 'okta-angular';
-
-import { LoginComponent } from './components/login/login.component';
+import { AuthorizationCodeCallbackComponent } from './components/authorization-code/authorization-code.component';
+import { LoginRedirectComponent } from './components/login-redirect/login-redirect.component';
+import { ImplicitCallbackComponent } from './components/implicit-callback/implicit-callback.component';
 
 const routes: Routes = [
 
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginRedirectComponent
   },
 
   {
     path: 'authorization-code/callback',
-    component: OktaAuthorizationCodeCallbackComponent
+    component: AuthorizationCodeCallbackComponent
   },
 
   {
     path: 'implicit/callback',
-    component: OktaImplicitCallbackComponent
+    component: ImplicitCallbackComponent
   }
 
 ];

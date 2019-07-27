@@ -17,10 +17,12 @@ export class AuthService extends Auth {
   }
 
   public isAuthenticated(): boolean {
+
     return this.authenticated;
   }
 
   public getAccessToken(): string {
+
     return this.accessToken;
   }
 

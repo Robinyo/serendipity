@@ -9,10 +9,10 @@ import { Auth0ConfigService } from '../config.service';
 // import { Auth, User } from 'auth';
 import { Auth } from 'auth';
 
-import { LoggerService } from 'utils';
-
 import createAuth0Client from '@auth0/auth0-spa-js';
 import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
+
+import { LoggerService } from 'utils';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +32,8 @@ export class Auth0AuthService extends Auth {
     super();
 
     this.logger.info('Auth0AuthService: constructor()');
+
+    this.logger.info('OktaAuthService this.config.auth0: ' + JSON.stringify(this.config.auth0));
 
     createAuth0Client(this.config.auth0).then(auth0Client => {
 
@@ -61,8 +63,6 @@ export class Auth0AuthService extends Auth {
 
       });
 
-    }).catch(e => {
-        console.error(`.catch(${e})`);
     });
 
   }
@@ -74,18 +74,18 @@ export class Auth0AuthService extends Auth {
     return this.authenticated;
   }
 
-  public async setAccessToken() {
-
-    this.logger.info('Auth0AuthService: setAccessToken()');
-
-    this.accessToken = await this.auth.getTokenSilently();
-  }
-
   public getAccessToken(): string {
 
     this.logger.info('Auth0AuthService: getAccessToken()');
 
     return this.accessToken;
+  }
+
+  public async setAccessToken() {
+
+    this.logger.info('Auth0AuthService: setAccessToken()');
+
+    this.accessToken = await this.auth.getTokenSilently();
   }
 
   public loginWithRedirect() {
@@ -105,7 +105,7 @@ export class Auth0AuthService extends Auth {
      // this.logger.info('Auth0AuthService handleRedirectCallback() authstate: ' + authstate);
      // this.authenticated = authstate;
 
-     const res = await this.auth.handleRedirectCallback();
+     await this.auth.handleRedirectCallback();
 
      this.authenticated = await this.auth.isAuthenticated();
 

@@ -21,7 +21,7 @@ export interface Config {
     issuer: string,
     redirectUri: string,
     responseType: string,
-    scope: string,
+    scope: string[],
     testing: {
       disableHttpsCheck: boolean
     }
@@ -40,3 +40,19 @@ export interface Config {
   sentryDsn: string;
 
 }
+
+/*
+
+  okta: {
+    clientId: string,
+    grantType: string,
+    issuer: string,
+    redirectUri: string,
+    responseType: string,
+    scope: string,
+    testing: {
+      disableHttpsCheck: boolean
+    }
+  };
+
+*/

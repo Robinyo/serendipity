@@ -1,1 +1,1 @@
-export const AuthOktaConfigService = 'Auth Okta Config';
+export const OktaConfigService = 'Okta Config';
