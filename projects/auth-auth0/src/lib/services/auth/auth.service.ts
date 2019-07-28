@@ -6,8 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Auth0Config } from '../../models/models';
 import { Auth0ConfigService } from '../config.service';
 
-// import { Auth, User } from 'auth';
-import { Auth } from 'auth';
+import { Auth, User } from 'auth';
 
 import createAuth0Client from '@auth0/auth0-spa-js';
 import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
@@ -20,8 +19,7 @@ import { LoggerService } from 'utils';
 export class Auth0AuthService extends Auth {
 
   authState$ = new BehaviorSubject(false);
-  // profile$ = new BehaviorSubject<User>(null);
-  // profile$ = new BehaviorSubject<any>(null);
+  user: User;
 
   private auth: Auth0Client;
 
@@ -50,19 +48,52 @@ export class Auth0AuthService extends Auth {
           this.logger.info('Auth0AuthService isAuthenticated(): ' + this.authenticated);
 
           this.authenticated = authenticated;
-
           this.accessToken = '';
 
           if (this.authenticated) {
+
             this.setAccessToken().then(() => {
+
               this.logger.info('Auth0AuthService accessToken: ' + this.accessToken);
+
+              this.auth.getUser().then(userProfile => {
+
+                // https://auth0.com/docs/rules/references/user-object#properties-of-the-user-object
+                // https://auth0.com/docs/scopes/current/oidc-scopes
+                // scope: 'openid profile email'
+
+                this.user = {
+                  name: userProfile.name,
+                  givenName: userProfile.given_name,
+                  middleName: userProfile.middle_name,
+                  familyName: userProfile.family_name,
+                  nickname: userProfile.nickname,
+                    // preferredUsername: userProfile.preferred_username
+                    // profile: userProfile.profile
+                  picture: userProfile.picture,
+                    // website: userProfile.website
+                    // gender: userProfile.gender
+                    // birthdate: userProfile.birthdate
+                    // zoneinfo: userProfile.zoneinfo
+                    // locale: userProfile.locale
+                  updatedAt: userProfile.updated_at,
+                  email: userProfile.email,
+                  emailVerified: userProfile.email_verified,
+                    // address: userProfile.address
+                  // phoneNumber: userProfile.phone_number,
+                  // phoneNumberVerified: userProfile.phone_verified
+                };
+
+                this.logger.info('OktaAuthService this.user: ' + JSON.stringify(this.user));
+
+              });
+
             });
-          }
+
+          } // end if (this.authenticated)
 
         });
-
       });
-
     });
 
   }
@@ -72,20 +103,6 @@ export class Auth0AuthService extends Auth {
     this.logger.info('Auth0AuthService isAuthenticated(): ' + this.authenticated);
 
     return this.authenticated;
-  }
-
-  public getAccessToken(): string {
-
-    this.logger.info('Auth0AuthService: getAccessToken()');
-
-    return this.accessToken;
-  }
-
-  public async setAccessToken() {
-
-    this.logger.info('Auth0AuthService: setAccessToken()');
-
-    this.accessToken = await this.auth.getTokenSilently();
   }
 
   public loginWithRedirect() {
@@ -114,6 +131,27 @@ export class Auth0AuthService extends Auth {
      this.router.navigate(['/']);
   }
 
+  public geUserProfile(): User {
+
+    this.logger.info('Auth0AuthService: getAccessToken()');
+
+    return this.user;
+  }
+
+  public getAccessToken(): string {
+
+    this.logger.info('Auth0AuthService: getAccessToken()');
+
+    return this.accessToken;
+  }
+
+  public async setAccessToken() {
+
+    this.logger.info('Auth0AuthService: setAccessToken()');
+
+    this.accessToken = await this.auth.getTokenSilently();
+  }
+
   public logout(returnUrl: string) {
 
     this.logger.info('Auth0AuthService: logout()');
@@ -131,6 +169,8 @@ export class Auth0AuthService extends Auth {
     });
 
   }
+
+
 
   // TODO -> See: collection.service.ts
 

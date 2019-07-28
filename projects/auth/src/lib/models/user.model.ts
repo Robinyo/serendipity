@@ -5,6 +5,47 @@ export interface User {
   // profile: name, family_name, given_name, middle_name, nickname, preferred_username, profile, picture, website, gender, birthdate,
   // zoneinfo, locale, and updated_at.
   name?: string;
+  givenName?: string;
+  middleName?: string;
+  familyName?: string;
+  nickname?: string;
+  preferredUsername?: string;
+  profile?: string;
+  picture?: string;
+  website?: string;
+  gender?: string;
+  birthdate?: string;
+  zoneinfo?: string;
+  locale?: string;
+  updatedAt?: string;
+
+  // email: email and email_verified.
+  email?: string;
+  emailVerified?: boolean;
+
+  // address: address
+  address?: object;
+
+  // phone: phone_number and phone_number_verified.
+  phoneNumber?: string;
+  phoneNumberVerified?: boolean;
+
+  // TODO -> See: collection.service.ts
+
+  username?: string;
+  password?: string;
+
+}
+
+/*
+
+export interface User {
+
+  // sub?: string;
+
+  // profile: name, family_name, given_name, middle_name, nickname, preferred_username, profile, picture, website, gender, birthdate,
+  // zoneinfo, locale, and updated_at.
+  name?: string;
   family_name?: string;
   given_name?: string;
   middle_name?: string;
@@ -31,6 +72,8 @@ export interface User {
   phone_number_verified?: boolean;
 
 }
+
+*/
 
 /*
 

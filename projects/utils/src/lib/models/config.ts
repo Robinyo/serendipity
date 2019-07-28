@@ -28,9 +28,10 @@ export interface Config {
   };
 
   auth0: {
-    domain: string,
     client_id: string;
+    domain: string,
     redirect_uri: string;
+    scope: string,
   };
 
   storageUriPrefix: string;
