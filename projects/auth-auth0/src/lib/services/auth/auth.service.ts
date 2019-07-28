@@ -125,6 +125,7 @@ export class Auth0AuthService extends Auth {
 
     this.auth.logout({
       client_id: this.config.auth0.client_id,
+      // returnUrl must be specified as an Allowed Callback URL in the Auth0 console
       // returnTo: window.location.origin + returnUrl
       returnTo: window.location.origin
     });

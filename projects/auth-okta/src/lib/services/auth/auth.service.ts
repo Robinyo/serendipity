@@ -126,7 +126,6 @@ export class OktaAuthService extends Auth {
      });
 
      this.authenticated = await this._isAuthenticated();
-     // this.authenticated = true;
 
      this.authState$.next(this.authenticated);
 
@@ -190,6 +189,7 @@ export class OktaAuthService extends Auth {
 
     const accessToken = await this._getAccessToken();
     const idToken = await this._getIdToken();
+
     return !!(accessToken || idToken);
   }
 

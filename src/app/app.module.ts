@@ -12,8 +12,8 @@ import { angularMaterialProviders } from './providers';
 // Auth libs
 //
 
-// import { Auth0AuthModule, authProviders } from 'auth-auth0';
-import { OktaAuthModule, authProviders } from 'auth-okta';
+import { Auth0AuthModule, authProviders } from 'auth-auth0';
+// import { OktaAuthModule, authProviders } from 'auth-okta';
 
 //
 // Utils lib
@@ -30,8 +30,8 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   imports: [
     BrowserModule,
-    // Auth0AuthModule.forRoot(environment),
-    OktaAuthModule.forRoot(environment),
+    Auth0AuthModule.forRoot(environment),
+    // OktaAuthModule.forRoot(environment),
     CoreModule,
     AppRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
