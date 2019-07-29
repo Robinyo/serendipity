@@ -37,7 +37,7 @@ export const environment: Environment = {
     client_id: '',
     domain: '',
     redirect_uri: 'http://localhost:4200/authorization-code/callback',
-    scope: 'openid profile email'
+    scope: 'openid profile email phone address'
   },
 
 

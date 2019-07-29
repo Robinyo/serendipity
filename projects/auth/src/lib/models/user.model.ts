@@ -1,6 +1,10 @@
+//
+// Normalised User Model (i.e., givenName NOT given_name)
+//
+
 export interface User {
 
-  // sub?: string;
+  sub?: string;
 
   // profile: name, family_name, given_name, middle_name, nickname, preferred_username, profile, picture, website, gender, birthdate,
   // zoneinfo, locale, and updated_at.

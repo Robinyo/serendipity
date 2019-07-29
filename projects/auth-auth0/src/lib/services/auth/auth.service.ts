@@ -58,11 +58,16 @@ export class Auth0AuthService extends Auth {
 
               this.auth.getUser().then(userProfile => {
 
+                this.logger.info('OktaAuthService userProfile: ' + JSON.stringify(userProfile));
+
                 // https://auth0.com/docs/rules/references/user-object#properties-of-the-user-object
                 // https://auth0.com/docs/scopes/current/oidc-scopes
-                // scope: 'openid profile email'
+                // scope: 'openid profile email phone address'
+
+                // Create normalised User (i.e., givenName NOT given_name)
 
                 this.user = {
+                  sub: userProfile.sub,
                   name: userProfile.name,
                   givenName: userProfile.given_name,
                   middleName: userProfile.middle_name,
@@ -79,6 +84,7 @@ export class Auth0AuthService extends Auth {
                   updatedAt: userProfile.updated_at,
                   email: userProfile.email,
                   emailVerified: userProfile.email_verified,
+
                     // address: userProfile.address
                   // phoneNumber: userProfile.phone_number,
                   // phoneNumberVerified: userProfile.phone_verified

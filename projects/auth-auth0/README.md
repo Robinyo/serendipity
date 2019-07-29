@@ -51,8 +51,8 @@ When signing in (for example, via the Authorization Code Flow with PKCE) you wil
 GET https://<DOMAIN>/user/ssodata
 ```
 
-Although this error is unrelated to the [standards-based](https://www.ietf.org/) activity you are trying to perform,
- you will receive this error whenever signing into Auth0.
+You will receive this error when signing into Auth0 (although this error is unrelated to the [standards-based](https://www.ietf.org/) 
+activity you are trying to perform).
 
 ## Resources
 
