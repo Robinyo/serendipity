@@ -10,7 +10,7 @@ export interface ColumnDef {
   class?: string;
 }
 
-export interface Contact {
+export interface Individual {
 
   id?: string;
   displayName?: string;
@@ -45,6 +45,9 @@ export interface Contact {
 
 }
 
+// tslint:disable-next-line:no-empty-interface
+export interface Contact extends Individual {}
+
 // leftToRight?: boolean;
 // namePrefix?: string;
 // nameSuffix?: string;
@@ -60,6 +63,7 @@ export interface Contact {
 // label address e.g. GPO BOX 123
 // parliamentary title
 
+/*
 
 export interface User {
   uid?: string;
@@ -80,6 +84,8 @@ export interface UserPreferences {
   language?: string;
   email?: string;
 }
+
+*/
 
 /*
 
