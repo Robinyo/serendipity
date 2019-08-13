@@ -1,8 +1,8 @@
-/**
- * The DTO's for the Core services.
- */
-
 // https://google.github.io/styleguide/jsoncstyleguide.xml
+
+import { Individual } from './individual';
+
+export * from './individual';
 
 export interface ColumnDef {
   name?: string;
@@ -10,43 +10,10 @@ export interface ColumnDef {
   class?: string;
 }
 
-export interface Individual {
-
-  id?: string;
-  displayName?: string;
-  title?: string;
-  givenName?: string;
-  middleName?: string;     // otherNames
-  familyName?: string;
-  honorific?: string;
-  salutation?: string;     // formalSalutation
-  preferredName?: string;  // informalSalutation
-  initials?: string;
-  gender?: string;
-  email?: string;
-  phoneNumber?: string;
-  photoUrl?: string;
-
-  'organisation': {
-    id?: string;
-    name?: string;
-    phoneNumber?: string;
-  };
-
-  'address': {
-    id?: string;
-    line1?: string;
-    line2?: string;
-    city?: string;
-    state?: string;
-    postalCode?: string;
-    // country?: string;
-  };
-
-}
-
 // tslint:disable-next-line:no-empty-interface
 export interface Contact extends Individual {}
+
+
 
 // leftToRight?: boolean;
 // namePrefix?: string;

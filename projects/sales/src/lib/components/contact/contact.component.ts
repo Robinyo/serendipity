@@ -117,7 +117,8 @@ export class ContactComponent implements OnInit, OnDestroy {
 
           this.item = data;
           this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
-          this.dynamicFormService.initGroup(this.addressInformationGroup, this.item);
+          // this.dynamicFormService.initGroup(this.addressInformationGroup, this.item);
+          this.dynamicFormService.initGroup(this.addressInformationGroup, this.item.addresses[0]);
         });
 
       }
