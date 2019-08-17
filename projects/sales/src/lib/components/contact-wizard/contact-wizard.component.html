@@ -43,7 +43,7 @@
       <mat-vertical-stepper linear="false">
 
         <mat-step [stepControl]="generalInformationGroup">
-          <ng-template matStepLabel>Profile</ng-template>
+          <ng-template matStepLabel>General Information</ng-template>
           <dynamic-form autocomplete="off"
                         [className]="'crm-nested-grid-container'"
                         [formGroup]="generalInformationGroup"
@@ -53,7 +53,7 @@
         </mat-step>
 
         <mat-step [stepControl]="generalInformationGroup">
-          <ng-template matStepLabel>Address</ng-template>
+          <ng-template matStepLabel>Address Information</ng-template>
           <dynamic-form autocomplete="off"
                         [className]="'crm-nested-grid-container'"
                         [formGroup]="addressInformationGroup"
