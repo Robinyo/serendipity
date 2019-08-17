@@ -2,7 +2,7 @@
 
   {
     "type": "input",
-    "id": "displayName",
+    "id": "party.displayName",
     "label": "Full Name",
     "appearance": "outline",
     "autocomplete": "name",

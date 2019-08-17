@@ -106,6 +106,15 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     modelSubscription = this.contactsService.findOne(this.id).subscribe(data => {
 
+      if (data.party.roles.length) {
+
+        data.organisation = {
+          name: data.party.roles[0].reciprocalPartyName,
+          phoneNumber: data.phoneNumber
+        };
+
+      }
+
       this.item = data;
       this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
       this.dynamicFormService.initGroup(this.addressInformationGroup, this.item.party.addresses[0]);
