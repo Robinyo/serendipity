@@ -20,7 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     if (accessToken) {
 
-      this.logger.info('AuthInterceptor: intercept() Bearer ' + accessToken);
+      // this.logger.info('AuthInterceptor: intercept() Bearer ' + accessToken);
 
       const authReq = req.clone({ setHeaders: { Authorization: 'Bearer ' + accessToken } });
       return next.handle(authReq);

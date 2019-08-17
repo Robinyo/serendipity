@@ -1,6 +1,5 @@
 <crm-command-bar>
 
-  <!--   <ng-container *ngIf="newContact"> -->
   <ng-container>
 
     <button mat-button class="crm-command-bar-button"
@@ -19,31 +18,27 @@
 
   </ng-container>
 
-  <ng-container *ngIf="!newContact">
+  <button mat-button class="crm-command-bar-button" (click)="onNew()">
+    <mat-icon>add</mat-icon>
+    NEW
+  </button>
 
-    <button mat-button class="crm-command-bar-button" (click)="onNew()">
-      <mat-icon>add</mat-icon>
-      NEW
-    </button>
+  <!--
+  <button mat-button class="crm-command-bar-button" [disabled]="true">
+    <mat-icon>visibility</mat-icon>
+    ACTIVATE
+  </button>
 
-    <!--
-    <button mat-button class="crm-command-bar-button" [disabled]="true">
-      <mat-icon>visibility</mat-icon>
-      ACTIVATE
-    </button>
+  <button mat-button class="crm-command-bar-button" [disabled]="true">
+    <mat-icon>visibility_off</mat-icon>
+    DEACTIVATE
+  </button>
+  -->
 
-    <button mat-button class="crm-command-bar-button" [disabled]="true">
-      <mat-icon>visibility_off</mat-icon>
-      DEACTIVATE
-    </button>
-    -->
-
-    <button mat-button class="crm-command-bar-button" [disabled]="true">
-      <mat-icon>link</mat-icon>
-      EMAIL A LINK
-    </button>
-
-  </ng-container>
+  <button mat-button class="crm-command-bar-button" [disabled]="true">
+    <mat-icon>link</mat-icon>
+    EMAIL A LINK
+  </button>
 
   <div fxFlex fxLayout fxLayoutAlign="flex-end">
 
@@ -133,7 +128,7 @@
 
     </div>
 
-  </ng-container> <!-- gridContainer -->
+  </ng-container>
 
   <!-- Skeleton template -->
 

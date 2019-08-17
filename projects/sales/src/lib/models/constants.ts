@@ -43,10 +43,8 @@ export const MARGIN_MOBILE  = 0;
 export const ALPHABET: string[] = [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
   'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' ];
 
-// displayedColumns = [ 'displayName', 'email', 'organisation.name', 'organisation.phoneNumber', 'id' ];
-
-export const CONTACT_COLUMNS_DESKTOP = [ 'displayName', 'email', 'organisation.name', 'organisation.phoneNumber', 'id' ];
-export const CONTACT_COLUMNS_MOBILE  = [ 'displayName', 'id' ];
+export const CONTACT_COLUMNS_DESKTOP = [ 'party.displayName', 'email', 'organisation.name', 'organisation.phoneNumber', 'id' ];
+export const CONTACT_COLUMNS_MOBILE  = [ 'party.displayName', 'id' ];
 
 //
 // TODO

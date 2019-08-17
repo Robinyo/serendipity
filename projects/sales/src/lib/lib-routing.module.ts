@@ -12,6 +12,7 @@ import { CanDeactivateGuard } from './guards/can-deactivate/can-deactivate.guard
 import { ActivitiesComponent } from './components/activities/activities.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { ContactWizardComponent } from './components/contact-wizard/contact-wizard.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
@@ -40,6 +41,14 @@ const routes: Routes = [
     path: 'sales/contacts',
     component: ContactsComponent,
     canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
+  },
+
+  {
+    path: 'sales/contacts/new',
+    component: ContactWizardComponent,
+    canActivate: [AuthGuard],
+    // canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
   },
 

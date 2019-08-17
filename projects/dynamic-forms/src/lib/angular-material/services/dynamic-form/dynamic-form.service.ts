@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 
-import { Observable } from 'rxjs';
+// import { Observable } from 'rxjs';
 
 import { DynamicFormsConfig } from '../../../models/models';
 import { DynamicFormsConfigService } from '../../../services/config.service';
@@ -39,8 +39,12 @@ export class DynamicFormService {
     this.logger.info('DynamicFormService: uriPrefrix: ' + this.uriPrefix);
   }
 
-  public getFormMetadata(formId: string): Observable<DynamicFormControlModel[]> {
-    return this.httpClient.get<DynamicFormControlModel[]>(this.uriPrefix + formId + this.uriSuffix);
+  // public getFormMetadata(formId: string): Observable<DynamicFormControlModel[]> {
+  //   return this.httpClient.get<DynamicFormControlModel[]>(this.uriPrefix + formId + this.uriSuffix);
+  // }
+
+  public getFormMetadata(formId: string): Promise<DynamicFormControlModel[]> {
+    return this.httpClient.get<DynamicFormControlModel[]>(this.uriPrefix + formId + this.uriSuffix).toPromise();
   }
 
   // https://angular.io/api/forms/FormControl

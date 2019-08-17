@@ -15,11 +15,11 @@ export class ContactsService {
 
   constructor(private httpClient: HttpClient) {}
 
-  public list(): Observable<Contact[]>   {
+  public find(): Observable<Contact[]>   {
     return this.httpClient.get<Contact[]>(this.contactsUrl);
   }
 
-  public get(id: string): Observable<Contact>   {
+  public findOne(id: string): Observable<Contact>   {
     return this.httpClient.get<Contact>(this.contactsUrl + id);
   }
 

@@ -30,8 +30,6 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
   public taskFormGroup: FormGroup;
   public taskModel: DynamicFormModel;
 
-  protected subscriptions: Subscription[] = [];
-
   constructor(private dynamicFormService: DynamicFormService,
               private tasksService: TasksService,
               private formsService: FormsService,
@@ -45,49 +43,28 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
     this.logger.info('TaskComponent: ngOnChanges()');
 
-    this.unsubscribe();
-
     // TODO
     this.taskModel = null;
     this.taskFormGroup = null;
 
     if (this.task && this.task.formKey) {
-      this.subscribe();
+      this.createForm();
     }
 
   }
 
-  protected subscribe() {
+  async createForm() {
 
-    this.logger.info('TaskComponent: subscribe()');
+    this.logger.info('TaskComponent: createForm()');
 
-    this.logger.info('TaskComponent - formId: ' + this.task.formKey);
+    this.logger.info('TaskComponent createForm() formId: ' + this.task.formKey);
 
-    let formSubscription: Subscription = new Subscription();
-    this.subscriptions.push(formSubscription);
-
-    formSubscription = this.dynamicFormService.getFormMetadata(this.task.formKey).subscribe(metaData => {
-
-      this.taskModel = metaData;
-      this.taskFormGroup = this.dynamicFormService.createGroup(this.taskModel);
-    });
-
-  }
-
-  protected unsubscribe(): void {
-
-    this.logger.info('TaskComponent: unsubscribe()');
-
-    this.subscriptions.forEach(subscription => {
-      subscription.unsubscribe();
-    });
-
+    this.taskModel = await this.dynamicFormService.getFormMetadata(this.task.formKey);
+    this.taskFormGroup = this.dynamicFormService.createGroup(this.taskModel);
   }
 
   public ngOnDestroy() {
-
     this.logger.info('TaskComponent: ngOnDestroy()');
-    this.unsubscribe();
   }
 
   //
@@ -165,6 +142,26 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
   }
 
 }
+
+/*
+protected subscribe() {
+
+  this.logger.info('TaskComponent: subscribe()');
+
+  this.logger.info('TaskComponent - formId: ' + this.task.formKey);
+
+  let formSubscription: Subscription = new Subscription();
+  this.subscriptions.push(formSubscription);
+
+  formSubscription = this.dynamicFormService.getFormMetadata(this.task.formKey).subscribe(metaData => {
+
+    this.taskModel = metaData;
+    this.taskFormGroup = this.dynamicFormService.createGroup(this.taskModel);
+  });
+
+}
+*/
+
 
 /*
 

@@ -485,6 +485,7 @@ To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Lang
 * Material.io: [Material Design, make beautiful products, faster](https://material.io/)
 * GitHub: [Material Design for Angular](https://github.com/angular/material2)
 * GitHub: [Covalent - The Teradata UI Platform built on Angular Material](https://teradata.github.io/covalent/#/docs)
+* GitHub: [NiFi Flow Design System](https://github.com/apache/nifi-fds)
 
 ### Angular Component Libraries
 

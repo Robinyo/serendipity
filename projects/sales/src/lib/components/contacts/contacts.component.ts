@@ -38,7 +38,8 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
   public columnDefs: ColumnDef[] = [
     {
-      name: 'displayName',
+      // name: 'displayName',
+      name: 'party.displayName',
       displayName: 'FULL NAME',
       class: 'anchor'
     },
@@ -111,12 +112,26 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
     this.logger.info('ContactsPage: subscribe()');
 
-    this.subscription = this.contactsService.list().subscribe(data => {
+    this.subscription = this.contactsService.find().subscribe(data => {
+
+      // this.logger.info('ContactsPage subscribe() data: ' + JSON.stringify(data));
 
       data.map(a => {
+
         a.id = btoa(a.id);
+
+        if (a.party.roles.length) {
+
+          a.organisation = {
+            name: a.party.roles[0].reciprocalPartyName,
+            phoneNumber: a.phoneNumber
+          };
+
+        }
+
         return { ...a };
-       });
+
+      });
 
       this.items = data;
 
@@ -150,7 +165,8 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
     this.logger.info('ContactsPage: onNew()');
 
     // btoa(0) === 'MA=='
-    this.router.navigate(['sales/contacts/MA==']);
+    // this.router.navigate(['sales/contacts/MA==']);
+    this.router.navigate(['sales/contacts/new']);
   }
 
   public onToggleSidenav() {

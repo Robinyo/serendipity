@@ -51,7 +51,7 @@ export class AccountsComponent implements OnInit {
 
   protected subscribe() {
 
-    this.subscription = this.contactsService.list().subscribe(data => {
+    this.subscription = this.contactsService.find().subscribe(data => {
 
       this.items = data;
       // this.dataSource.data = this.items;

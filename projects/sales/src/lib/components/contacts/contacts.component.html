@@ -31,7 +31,7 @@
   <h1 class="crm-component-title"> {{ 'CONTACTS_HEADER' | translate }} </h1>
 </div>
 
-<div #contentContainer class="crm-content-container">
+<div class="crm-content-container">
 
   <ng-container *ngIf="!items; then skeleton"> </ng-container>
 
@@ -134,7 +134,7 @@
 
     </table>
 
-  </div>
+  </div> <!-- crm-table-container -->
 
   <!-- Skeleton template -->
 
@@ -146,7 +146,7 @@
 
   </ng-template>
 
-</div> <!-- contentContainer -->
+</div> <!-- crm-content-container -->
 
 <!--
 

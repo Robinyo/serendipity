@@ -72,6 +72,12 @@ Contacts:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/contacts-web.png">
 </p>
 
+Contact Wizard:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/contact-wizard.png">
+</p>
+
 Contact:
 
 <p align="center">

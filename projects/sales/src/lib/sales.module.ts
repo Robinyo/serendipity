@@ -9,8 +9,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AccountsComponent } from './components/accounts/accounts.component';
 import { ActivitiesComponent } from './components/activities/activities.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
-import { SnackBarComponent, ContactComponent } from './components/contact/contact.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { ContactWizardComponent } from './components/contact-wizard/contact-wizard.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 // import { InMemoryDataService } from './services/mocks/api/in-memory-data.service';
@@ -78,6 +80,7 @@ import { LibRoutingModule } from './lib-routing.module';
     ActivitiesComponent,
     ContactsComponent,
     ContactComponent,
+    ContactWizardComponent,
     DashboardComponent,
 
     SnackBarComponent
@@ -87,6 +90,7 @@ import { LibRoutingModule } from './lib-routing.module';
     ActivitiesComponent,
     ContactsComponent,
     ContactComponent,
+    ContactWizardComponent,
     DashboardComponent
 
     // SnackBarComponent

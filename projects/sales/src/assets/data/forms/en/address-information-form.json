@@ -44,6 +44,14 @@
     "autocomplete": "postal-code",
 
     "gridItemClass": "grid-column-3"
+  },
+  {
+    "type": "input",
+    "id": "addressType",
+    "label": "Address Type",
+    "appearance": "outline",
+
+    "gridItemClass": "grid-column-1"
   }
 
 ]

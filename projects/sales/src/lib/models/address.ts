@@ -1,6 +1,6 @@
 export interface Address {
 
-  id?: string;
+  id?: number;
   line1?: string;
   line2?: string;
   city?: string;

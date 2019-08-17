@@ -2,14 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Subscription} from 'rxjs';
-// import { first } from 'rxjs/operators';
-
 import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
 import { AuthService } from 'auth';
 
 import { LoggerService } from 'utils';
+
+export const LOGIN_FORM = 'login-form';
 
 @Component({
   selector: 'auth-local-login',
@@ -22,8 +21,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public formGroup: FormGroup;
   public formModel: DynamicFormModel;
-
-  protected subscriptions: Subscription[] = [];
 
   private returnUrl: string;
 
@@ -43,41 +40,20 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     } else {
 
-      this.subscribe();
+      this.createForm();
       this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
   }
 
-  protected subscribe() {
+  async createForm() {
 
-    this.logger.info('LoginComponent: subscribe()');
-
-    let formSubscription: Subscription = new Subscription();
-    this.subscriptions.push(formSubscription);
-
-    formSubscription = this.dynamicFormService.getFormMetadata('login').subscribe(metaData => {
-
-      this.formModel = metaData;
-      this.formGroup = this.dynamicFormService.createGroup(this.formModel);
-    });
-
-  }
-
-  protected unsubscribe(): void {
-
-    this.logger.info('LoginComponent: unsubscribe()');
-
-    this.subscriptions.forEach(subscription => {
-      subscription.unsubscribe();
-    });
-
+    this.formModel = await this.dynamicFormService.getFormMetadata(LOGIN_FORM);
+    this.formGroup = this.dynamicFormService.createGroup(this.formModel);
   }
 
   public ngOnDestroy() {
-
     this.logger.info('LoginComponent: ngOnDestroy()');
-    this.unsubscribe();
   }
 
   //
@@ -93,7 +69,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     return valid;
-
   }
 
   //
@@ -103,33 +78,48 @@ export class LoginComponent implements OnInit, OnDestroy {
   public onSubmit() {
 
     this.router.navigate([this.returnUrl]);
-
   }
-
-  /*
-  public onSubmit() {
-
-    const username = this.formGroup.controls.username.value;
-    const password = this.formGroup.controls.password.value;
-
-    this.authService.login(username, password).pipe(first()).subscribe(data => {
-
-        this.router.navigate([this.returnUrl]);
-
-      },
-      error => {
-        this.logger.error('LoginComponent: onSubmit()');
-      });
-
-  }
-  */
-
 
 }
 
 // https://github.com/cornflourblue/angular-7-registration-login-example-cli/blob/master/src/app/login/login.component.ts
 
 // https://github.com/okta/okta-oidc-js/blob/master/packages/okta-angular/src/okta/services/okta.service.ts
+
+/*
+protected subscribe() {
+
+  this.logger.info('LoginComponent: subscribe()');
+
+  let formSubscription: Subscription = new Subscription();
+  this.subscriptions.push(formSubscription);
+
+  formSubscription = this.dynamicFormService.getFormMetadata('login').subscribe(metaData => {
+
+    this.formModel = metaData;
+    this.formGroup = this.dynamicFormService.createGroup(this.formModel);
+  });
+
+}
+*/
+
+/*
+public onSubmit() {
+
+  const username = this.formGroup.controls.username.value;
+  const password = this.formGroup.controls.password.value;
+
+  this.authService.login(username, password).pipe(first()).subscribe(data => {
+
+      this.router.navigate([this.returnUrl]);
+
+    },
+    error => {
+      this.logger.error('LoginComponent: onSubmit()');
+    });
+
+}
+*/
 
 /*
 

@@ -48,6 +48,10 @@ $theme: mat-light-theme($primary, $accent, $warn);
 
 // top, right, bottom, and left
 
+.mat-vertical-content {
+  padding: 24px 24px 24px 24px !important;
+}
+
 html, body {
   height: 100%;
   overflow: hidden;
