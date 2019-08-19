@@ -9,8 +9,6 @@
   <b>You can use it to transform your organisation by connecting your customers, products, people and operations.</b></br>
 </p>
 
-<br />
-
 ![divider](./divider.png)
 
 ## ❯ Demo
