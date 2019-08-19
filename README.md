@@ -25,6 +25,13 @@ Firebase Hosting: [Serendipity](https://serendipity-f7626.firebaseapp.com)
 
 ![divider](./divider.png)
 
+## ❯ Features
+
+- **Beautiful Code** thanks to the:
+  - Angular [Style Guide](https://angular.io/guide/styleguide)
+
+![divider](./divider.png)
+
 ## ❯ Roadmap
 
 Use TypeScript, Node.js, Express and TypeORM to build a [RESTful API](https://github.com/Robinyo/serendipity-api) for Serendipity:
