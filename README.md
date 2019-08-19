@@ -27,8 +27,7 @@ Firebase Hosting: [Serendipity](https://serendipity-f7626.firebaseapp.com)
 
 ## ❯ Features
 
-- **Beautiful Code** thanks to the:
-  - Angular [Style Guide](https://angular.io/guide/styleguide)
+- **Beautiful Code** thanks to the Angular [Style Guide](https://angular.io/guide/styleguide)
 
 ![divider](./divider.png)
 
