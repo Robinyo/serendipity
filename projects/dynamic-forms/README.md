@@ -1,5 +1,7 @@
 # Dynamic Forms Library Documentation
 
+![divider](../../../divider.png)
+
 ## Resources 
 
 ## Angular Form Libraries
@@ -14,3 +16,5 @@
 
 * CSS Tricks: [A Complete Guide to CSS Grid Layout](https://css-tricks.com/snippets/css/complete-guide-grid/)
 * Grid By Example: [CSS Grid Layout by Example](https://gridbyexample.com/learn/)
+
+![divider](../../../divider.png)
