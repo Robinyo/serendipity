@@ -1,4 +1,4 @@
-<h1 align="center">Dynamic Forms</h1>
+# Dynamic Forms
 
 ![divider](./divider.png)
 
