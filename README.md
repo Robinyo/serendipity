@@ -27,7 +27,7 @@ Firebase Hosting: [Serendipity](https://serendipity-f7626.firebaseapp.com)
 
 ## ❯ Features
 
-- **AuthN & AuthZ** thanks to ([auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local), ([auth-auth0](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0)) and ([auth-okta](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta))
+- **AuthN & AuthZ** thanks to [auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local), [auth-auth0](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0) and [auth-okta](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta))
 - **Beautiful Code** thanks to Angular's [Style Guide](https://angular.io/guide/styleguide)
 - **Contemporary UI** thanks to Angular [Material](https://material.angular.io/)
 - **Dashboards and Dashboard Widgets** thanks to Angular [Gridster 2](https://github.com/tiberiuzuld/angular-gridster2) and Angular [Highcharts](https://github.com/highcharts/highcharts-angular)
