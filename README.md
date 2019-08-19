@@ -30,7 +30,7 @@ Firebase Hosting: [Serendipity](https://serendipity-f7626.firebaseapp.com)
 - **Beautiful Code** thanks to Angular's [Style Guide](https://angular.io/guide/styleguide)
 - **Contemporary UI** thanks to Angular [Material](https://material.angular.io/)
 - **Dynamic Forms** thanks to Angular's support for [Reactive Forms](https://angular.io/guide/reactive-forms)
-- **Dashboards and Dashboard Widgets** thanks to [Angular Gridster](https://github.com/tiberiuzuld/angular-gridster2) 2 and [Highcharts](https://github.com/highcharts/highcharts-angular)
+- **Dashboards and Dashboard Widgets** thanks to Angular [Gridster 2](https://github.com/tiberiuzuld/angular-gridster2) and [Highcharts](https://github.com/highcharts/highcharts-angular)
 
 
 ![divider](./divider.png)
