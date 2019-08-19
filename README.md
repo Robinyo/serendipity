@@ -1,20 +1,33 @@
-# Serendipity CRM
+<p align="center">
+  <img src="./serendipity-logo.svg" alt="Serendipity" width="400"/>
+</p>
 
-Serendipity is an open source customer relationship management (CRM) solution.
+<h1 align="center">Serendipity CRM</h1>
 
-You can use it to transform your organisation by connecting your customers, products, people and operations.
+<p align="center">
+  <b>Serendipity is an open source customer relationship management (CRM) solution..</b></br>
+  <b>You can use it to transform your organisation by connecting your customers, products, people and operations.</b></br>
+</p>
 
-## Demo
+<br />
+
+![divider](./divider.png)
+
+## ❯ Demo
 
 Firebase Hosting: [Serendipity](https://serendipity-f7626.firebaseapp.com)
 
 **Note:** The demo hasn't been updated in a while as I am currently working on a containerised deployment that includes Serendipity's REST API. 
 
-## Quick Links
+![divider](./divider.png)
+
+## ❯ Quick Links
 
 [Documentation, demos, and guides](docs/README.md)
 
-## Roadmap
+![divider](./divider.png)
+
+## ❯ Roadmap
 
 Use TypeScript, Node.js, Express and TypeORM to build a [RESTful API](https://github.com/Robinyo/serendipity-api) for Serendipity:
 
@@ -22,7 +35,9 @@ Use TypeScript, Node.js, Express and TypeORM to build a [RESTful API](https://gi
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/redoc.png">
 </p>
 
-## Screen Shots
+![divider](./divider.png)
+
+## ❯ Screen Shots
 
 Login ([auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library):
 
@@ -106,9 +121,9 @@ Serendipity is a [progressive web application](https://developers.google.com/web
 
 You can customise and extend Serendipity using Angular, Angular libraries and Serendipity's [plugin](docs/developer.md) framework.
 
-## Resources 
+![divider](./divider.png)
 
-### Blog Posts 
+## ❯ Resources 
 
 * Rob Ferguson's blog: [Getting started with Angular Material](https://robferguson.org/blog/2018/11/05/getting-started-with-angular-material/)
 * Rob Ferguson's blog: [Angular Material: toolbar and sidenav](https://robferguson.org/blog/2018/11/10/angular-material-toolbar-and-sidenav/)
@@ -119,3 +134,5 @@ You can customise and extend Serendipity using Angular, Angular libraries and Se
 * Rob Ferguson's blog: [Flowable's REST API - Part 2](https://robferguson.org/blog/2019/01/02/flowable-rest-api-part-2/)
 * Rob Ferguson's blog: [Flowable's REST API - Part 3](https://robferguson.org/blog/2019/01/03/flowable-rest-api-part-3/)
 * Rob Ferguson's blog: [Dashboards and Dashboard Widgets - Part 1](https://robferguson.org/blog/2019/06/22/dashboards-and-dashboard-widgets-part-1/)
+
+![divider](./divider.png)
