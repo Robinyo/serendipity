@@ -27,11 +27,11 @@ Firebase Hosting: [Serendipity](https://serendipity-f7626.firebaseapp.com)
 
 ## ❯ Features
 
+- **AuthN & AuthZ** thanks to ([auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local), ([auth-auth0](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0)) and ([auth-okta](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta))
 - **Beautiful Code** thanks to Angular's [Style Guide](https://angular.io/guide/styleguide)
 - **Contemporary UI** thanks to Angular [Material](https://material.angular.io/)
-- **Dynamic Forms** thanks to Angular's support for [Reactive Forms](https://angular.io/guide/reactive-forms)
-- **Dashboards and Dashboard Widgets** thanks to Angular [Gridster 2](https://github.com/tiberiuzuld/angular-gridster2) and [Highcharts](https://github.com/highcharts/highcharts-angular)
-
+- **Dashboards and Dashboard Widgets** thanks to Angular [Gridster 2](https://github.com/tiberiuzuld/angular-gridster2) and Angular [Highcharts](https://github.com/highcharts/highcharts-angular)
+- **Dynamic Forms** (take a look at the Dynamic Forms Library [documentation](https://github.com/Robinyo/serendipity/tree/master/projects/dynamic-forms))
 
 ![divider](./divider.png)
 
