@@ -1,4 +1,10 @@
-# Dynamic Forms
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/sample-form.png" alt="Dynamic Forms" width="400"/>
+</p>
+
+<h1 align="center">Dynamic Forms</h1>
+
+![divider](./divider.png)
 
 ## ❯ Development
 
