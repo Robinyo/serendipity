@@ -1,7 +1,5 @@
 # Dynamic Forms
 
-![divider](./divider.png)
-
 ## ❯ Development
 
 To build the library:
@@ -126,6 +124,8 @@ The [auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/aut
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/login.png">
 </p> 
+
+![divider](./divider.png)
 
 ## ❯ Resources 
 
