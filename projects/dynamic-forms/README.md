@@ -1,5 +1,9 @@
 # Dynamic Forms
 
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/login.png">
+</p> 
+
 ![divider](./divider.png)
 
 ## ❯ Development
@@ -12,13 +16,7 @@ ng build dynamic-forms
 ```
 ### Basic Usage
 
-1. Define your form:
- 
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/login.png">
-</p> 
- 
-[login-form.json](https://github.com/Robinyo/serendipity/blob/master/projects/sales/src/assets/data/forms/en/login-form.json):
+1. Define your form ([login-form.json](https://github.com/Robinyo/serendipity/blob/master/projects/sales/src/assets/data/forms/en/login-form.json)):
 
 
 ```
@@ -120,13 +118,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 3. Add a `dynamic-form` to your template and bind its [className], [formGroup] and [model] properties:
 
 ```
-  <dynamic-form autocomplete="off"
-                [className]="'nested-grid-container'"
-                [formGroup]="formGroup"
-                [model]="formModel">
-  </dynamic-form>
+<dynamic-form autocomplete="off"
+              [className]="'nested-grid-container'"
+              [formGroup]="formGroup"
+              [model]="formModel">
+</dynamic-form>
 ```
-
 
 ## ❯ Resources 
 
