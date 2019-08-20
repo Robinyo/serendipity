@@ -2,6 +2,66 @@
 
 ![divider](./divider.png)
 
+## ❯ Development
+
+To build the library:
+
+```
+ng build utils && \
+ng build dynamic-forms
+```
+### Declarative Form Layout
+
+A basic form ([login-form.json](https://github.com/Robinyo/serendipity/blob/master/projects/sales/src/assets/data/forms/en/login-form.json)):
+
+```
+[
+
+  {
+    "type": "input",
+    "id": "username",
+    "label": "Username",
+    "placeholder": "flowable",
+    "appearance": "fill",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a username"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1",
+    "required": true
+  },
+  {
+    "type": "input",
+    "inputType": "password",
+    "id": "password",
+    "label": "Password",
+    "placeholder": "test",
+    "appearance": "fill",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a password"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1",
+    "required": true
+  }
+
+]
+
+```
+
+
 ## ❯ Resources 
 
 ### Angular Form Libraries
