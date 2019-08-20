@@ -121,6 +121,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 </dynamic-form>
 ```
 
+The [auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library's Sign In form:
+
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/login.png">
 </p> 
