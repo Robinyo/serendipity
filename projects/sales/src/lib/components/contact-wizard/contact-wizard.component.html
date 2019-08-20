@@ -45,7 +45,7 @@
         <mat-step [stepControl]="generalInformationGroup">
           <ng-template matStepLabel>General Information</ng-template>
           <dynamic-form autocomplete="off"
-                        [className]="'crm-nested-grid-container'"
+                        className="crm-nested-grid-container"
                         [formGroup]="generalInformationGroup"
                         [model]="generalInformationModel"
                         (customEvent)="onCustomEvent($event)">
@@ -55,7 +55,7 @@
         <mat-step [stepControl]="generalInformationGroup">
           <ng-template matStepLabel>Address Information</ng-template>
           <dynamic-form autocomplete="off"
-                        [className]="'crm-nested-grid-container'"
+                        className="crm-nested-grid-container"
                         [formGroup]="addressInformationGroup"
                         [model]="addressInformationModel"
                         (customEvent)="onCustomEvent($event)">

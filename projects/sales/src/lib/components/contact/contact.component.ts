@@ -104,7 +104,7 @@ export class ContactComponent implements OnInit, OnDestroy {
     let modelSubscription: Subscription = new Subscription();
     this.subscriptions.push(modelSubscription);
 
-    modelSubscription = this.contactsService.findOne(this.id).subscribe(data => {
+    modelSubscription = this.contactsService.findOne(this.id).subscribe((data: Contact) => {
 
       if (data.party.roles.length) {
 
@@ -115,7 +115,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
       }
 
-      this.item = data;
+      this.item = { ...data };
       this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
       this.dynamicFormService.initGroup(this.addressInformationGroup, this.item.party.addresses[0]);
     });

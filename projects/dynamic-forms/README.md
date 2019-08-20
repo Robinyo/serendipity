@@ -109,17 +109,15 @@ export class LoginComponent implements OnInit, OnDestroy {
 }
 ```
 
-3. Add a `dynamic-form` to your template and bind its [className], [formGroup] and [model] properties:
+3. Add a `dynamic-form` to your template and bind its [formGroup] and [model] properties:
 
 ```
 <dynamic-form autocomplete="off"
-              [className]="'nested-grid-container'"
-              [formGroup]="formGroup"
-              [model]="formModel">
+  className="nested-grid-container"
+  [formGroup]="formGroup"
+  [model]="formModel">
 </dynamic-form>
 ```
-
-
 
 ![divider](./divider.png)
 

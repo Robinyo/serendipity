@@ -32,8 +32,7 @@ export class FormsService extends CollectionService {
 
     this.logger.info('FormsService submitFormData() - endpoint: ' + endpoint);
 
-    return this.httpClient.post<any>(endpoint, body, this.getHttpOptions(null))
-    .pipe(
+    return this.httpClient.post<any>(endpoint, body, this.getHttpOptions()).pipe(
       tap(() => {
         this.logger.info('FormsService: submitFormData() completed');
       }),

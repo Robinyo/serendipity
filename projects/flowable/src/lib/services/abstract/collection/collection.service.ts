@@ -19,7 +19,7 @@ export abstract class CollectionService {
 
   }
 
-  protected getHttpOptions(params: HttpParams) {
+  protected getHttpOptions(params: HttpParams = null) {
 
     this.logger.info('CollectionService: getHttpOptions()');
 

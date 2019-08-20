@@ -44,8 +44,7 @@ export class TasksService extends CollectionService {
 
     const params = new HttpParams().set('sort', sort).set('order', order);
 
-    return this.httpClient.get<TaskListModel>(endpoint, this.getHttpOptions(params))
-    .pipe(
+    return this.httpClient.get<TaskListModel>(endpoint, this.getHttpOptions(params)).pipe(
       tap(() => {
         this.logger.info('TasksService: getTasks() completed');
       }),
@@ -62,13 +61,12 @@ export class TasksService extends CollectionService {
 
     this.logger.info('TasksService completeTask() - endpoint: ' + endpoint);
 
-    return this.httpClient.post<any>(endpoint, completeTaskBody, this.getHttpOptions(null))
-      .pipe(
-        tap(() => {
-          this.logger.info('TasksService: completeTask() completed');
-        }),
-        catchError(this.handleError('completeTask', []))
-      );
+    return this.httpClient.post<any>(endpoint, completeTaskBody, this.getHttpOptions()).pipe(
+      tap(() => {
+        this.logger.info('TasksService: completeTask() completed');
+      }),
+      catchError(this.handleError('completeTask', []))
+    );
 
   }
 
