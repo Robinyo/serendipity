@@ -1,9 +1,5 @@
 # Dynamic Forms
 
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/login.png">
-</p> 
-
 ![divider](./divider.png)
 
 ## ❯ Development
@@ -124,6 +120,10 @@ export class LoginComponent implements OnInit, OnDestroy {
               [model]="formModel">
 </dynamic-form>
 ```
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/login.png">
+</p> 
 
 ## ❯ Resources 
 
