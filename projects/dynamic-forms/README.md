@@ -10,9 +10,16 @@ To build the library:
 ng build utils && \
 ng build dynamic-forms
 ```
-### Declarative Form Layout
+### Basic Usage
 
-A basic form ([login-form.json](https://github.com/Robinyo/serendipity/blob/master/projects/sales/src/assets/data/forms/en/login-form.json)):
+1. Define your form:
+ 
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/login.png">
+</p> 
+ 
+([login-form.json](https://github.com/Robinyo/serendipity/blob/master/projects/sales/src/assets/data/forms/en/login-form.json)):
+
 
 ```
 [
@@ -59,6 +66,64 @@ A basic form ([login-form.json](https://github.com/Robinyo/serendipity/blob/mast
 
 ]
 
+```
+
+2. Use the `DynamicFormService` to create your form:
+
+```
+...
+import { FormGroup } from '@angular/forms';
+import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
+
+import { AuthService } from 'auth';
+import { LoggerService } from 'utils';
+
+export const LOGIN_FORM = 'login-form';
+
+export class LoginComponent implements OnInit, OnDestroy {
+
+  public formGroup: FormGroup;
+  public formModel: DynamicFormModel;
+
+  private returnUrl: string;
+
+  constructor(private authService: AuthService,
+              private dynamicFormService: DynamicFormService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private logger: LoggerService) {}
+
+  public ngOnInit() {
+
+    if (this.authService.isAuthenticated()) {
+
+      this.router.navigate(['/']);
+
+    } else {
+
+      this.createForm();
+      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    }
+
+  }
+
+  async createForm() {
+
+    this.formModel = await this.dynamicFormService.getFormMetadata(LOGIN_FORM);
+    this.formGroup = this.dynamicFormService.createGroup(this.formModel);
+  }
+  
+}
+```
+
+3. Add a `dynamic-form` to your template and bind its [className], [formGroup] and [model] properties:
+
+```
+      <dynamic-form autocomplete="off"
+                    [className]="'nested-grid-container'"
+                    [formGroup]="formGroup"
+                    [model]="formModel">
+      </dynamic-form>
 ```
 
 
