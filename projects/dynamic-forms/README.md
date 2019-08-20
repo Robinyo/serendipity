@@ -1,7 +1,5 @@
 <h1 align="center">Dynamic Forms</h1>
 
-![divider](./divider.png)
-
 ## ❯ Development
 
 To build the library:
