@@ -125,7 +125,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 ## ❯ Screen Shots
 
-The Auth [local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library's **Sign In** form:
+The Auth [Local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library's **Sign In** form:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/login.png">
