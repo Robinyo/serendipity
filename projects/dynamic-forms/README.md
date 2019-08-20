@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/sample-form.png" alt="Dynamic Forms"/>
-</p>
-
 <h1 align="center">Dynamic Forms</h1>
 
 ![divider](./divider.png)
@@ -125,11 +121,23 @@ export class LoginComponent implements OnInit, OnDestroy {
 </dynamic-form>
 ```
 
-The [auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library's Sign In form:
+
+
+![divider](./divider.png)
+
+## ❯ Screen Shots
+
+The [auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library's **Sign In** form:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/login.png">
-</p> 
+</p>
+
+The [Flowable](https://github.com/Robinyo/serendipity/tree/master/projects/flowable) library's **Leave Application** form:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/sample-form.png"/>
+</p>
 
 ![divider](./divider.png)
 
