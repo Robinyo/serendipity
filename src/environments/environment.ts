@@ -13,18 +13,18 @@ export const environment: Environment = {
   isDebugMode: true,
 
   firebase: {
-    apiKey: 'AIzaSyASxWQ8whc3CrA6EXYII07d_xa3q27RVDc',
-    authDomain: 'serendipity-f7626.firebaseapp.com',
-    databaseURL: 'https://serendipity-f7626.firebaseio.com',
-    projectId: 'serendipity-f7626',
-    storageBucket: 'serendipity-f7626.appspot.com',
-    messagingSenderId: '582668248299'
+    apiKey: '',
+    authDomain: '',
+    databaseURL: '',
+    projectId: '',
+    storageBucket: '',
+    messagingSenderId: ''
   },
 
   okta: {
-    clientId: '0oatga8ebA4IkGg5U356',
+    clientId: '',
     grantType: 'authorization_code',
-    issuer: 'https://dev-335467.okta.com/oauth2/default',
+    issuer: '',
     redirectUri: 'http://localhost:4200/authorization-code/callback',
     responseType: 'code',
     scope: ['openid', 'profile', 'email', 'phone', 'address', 'groups'],
@@ -34,8 +34,8 @@ export const environment: Environment = {
   },
 
   auth0: {
-    client_id: 'vnq8n7pd6oyeqU07WSV93DEKxd8vRhcT',
-    domain: 'dev-1uv3ymem.au.auth0.com',
+    client_id: '',
+    domain: '',
     redirect_uri: 'http://localhost:4200/authorization-code/callback',
     scope: 'openid profile email phone address'
   },
