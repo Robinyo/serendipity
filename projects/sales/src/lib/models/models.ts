@@ -1,8 +1,12 @@
 // https://google.github.io/styleguide/jsoncstyleguide.xml
 
+import { Address } from './address';
 import { Individual } from './individual';
+import { Party } from './party';
 
+export * from './address';
 export * from './individual';
+export * from './party';
 
 export interface ColumnDef {
   name?: string;
@@ -10,8 +14,11 @@ export interface ColumnDef {
   class?: string;
 }
 
+
 // tslint:disable-next-line:no-empty-interface
-export interface Contact extends Individual {}
+// export interface Contact extends Individual {}
+export class Contact extends Individual {}
+
 
 
 

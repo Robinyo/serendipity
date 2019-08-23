@@ -1,5 +1,7 @@
 import { HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 
+import { HttpOptions } from '../../../models/http';
+
 import { Observable, of, throwError } from 'rxjs';
 
 import { LoggerService } from 'utils';
@@ -7,15 +9,15 @@ import { LoggerService } from 'utils';
 export abstract class CollectionService {
 
   // protected contactsUrl = 'api/contacts/';
-  protected contactsUrl = 'http://localhost:3001/api/individuals/';
+  protected readonly contactsUrl = 'http://localhost:3001/api/individuals/';
 
-  protected httpOptions;
+  protected httpOptions: HttpOptions;
 
   constructor(protected logger: LoggerService) {}
 
-  protected getHttpOptions(params: HttpParams = null) {
+  protected getHttpOptions(params: HttpParams = null): HttpOptions {
 
-    this.logger.info('CollectionService: getHttpOptions()');
+    // his.logger.info('CollectionService: getHttpOptions()');
 
     if (!this.httpOptions) {
 
@@ -23,6 +25,7 @@ export abstract class CollectionService {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
         }),
+        observe: 'response',
         params: null
       };
 
@@ -77,6 +80,34 @@ export abstract class CollectionService {
 }
 
 // https://angular.io/guide/http#getting-error-details
+
+// https://stackoverflow.com/questions/47761262/angular-4-5-httpclient-argument-of-type-string-is-not-assignable-to-body/47761516#47761516
+
+/*
+
+  protected getHttpOptions(params: HttpParams = null) {
+
+    this.logger.info('CollectionService: getHttpOptions()');
+
+    if (!this.httpOptions) {
+
+      this.httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        }),
+        params: null
+      };
+
+    }
+
+    this.httpOptions.params = params;
+
+    // this.logger.info(JSON.stringify(this.httpOptions));
+
+    return this.httpOptions;
+  }
+
+*/
 
 /*
 

@@ -1,9 +1,15 @@
+// import 'reflect-metadata';
+// import { Type } from 'class-transformer';
+
 // import { Party } from './party';
 
-export interface Organisation {
+// export interface Organisation {
+
+export class Organisation {
 
   id?: number;
-  // party: Party;
+  // @Type(() => Party)
+  // party?: Party;
   name?: string;
   phoneNumber?: string;
 

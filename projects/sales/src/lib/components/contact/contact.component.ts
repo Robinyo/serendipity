@@ -226,13 +226,6 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.openSnackBar();
   }
 
-  public onClose() {
-
-    this.logger.info('ContactPage: onClose()');
-
-    this.router.navigate([CONTACTS]);
-  }
-
   public onSaveAndClose() {
 
     this.logger.info('ContactPage: onSaveAndClose()');
@@ -241,6 +234,45 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.openSnackBar();
     this.router.navigate([CONTACTS]);
   }
+
+  public onDeactivate() {
+
+    this.logger.info('ContactPage: onDeactivate()');
+
+    this.dialogService.openConfirm({
+      title: 'Contact',
+      message: 'Are you sure you want to delete this contact?',
+      acceptButton: 'OK',
+      cancelButton: 'CANCEL'
+    }).afterClosed().subscribe(response => {
+
+      // this.logger.info(`ContactPage onDeactivate() response: ${response}`);
+
+      if (response) {
+
+        this.logger.info('ContactPage onDeactivate() response: true');
+
+        const subscription: Subscription = this.contactsService.delete(this.item.id).subscribe(() => {
+
+          subscription.unsubscribe();
+
+          this.router.navigate([CONTACTS]);
+
+        });
+
+      }
+
+    });
+
+  }
+
+  public onClose() {
+
+    this.logger.info('ContactPage: onClose()');
+
+    this.router.navigate([CONTACTS]);
+  }
+
 
   public onCustomEvent(event: DynamicFormControlCustomEvent) {
 

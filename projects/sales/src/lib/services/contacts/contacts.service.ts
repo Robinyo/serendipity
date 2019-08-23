@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpParams, HttpResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -43,6 +43,30 @@ export class ContactsService extends CollectionService {
 
   }
 
+  public create(contact: Contact): Observable<HttpResponse<Contact>> {
+
+    return this.httpClient.post<HttpResponse<Contact>>(this.contactsUrl, contact, this.getHttpOptions()).pipe(
+      tap(() => {
+        this.logger.info('ContactsService: create() completed');
+      }),
+      catchError(this.handleError)
+    );
+
+  }
+
+  /*
+
+    public create(contact: Contact): Observable<HttpResponse<Contact>> {
+
+    return this.httpClient.post<Contact>(this.contactsUrl, contact, this.getHttpOptions()).pipe(
+      tap(() => {
+        this.logger.info('ContactsService: create() completed');
+      }),
+      catchError(this.handleError)
+    );
+
+  }
+
   public create(contact: Contact): Observable<HttpEvent<Contact>> {
 
     return this.httpClient.post<Contact>(this.contactsUrl, contact, this.getHttpOptions()).pipe(
@@ -54,6 +78,20 @@ export class ContactsService extends CollectionService {
 
   }
 
+  */
+
+  public update(id: string, contact: Contact) {
+
+    return this.httpClient.patch<Contact>(this.contactsUrl + id, contact, this.getHttpOptions()).pipe(
+      tap(() => {
+        this.logger.info('ContactsService: patch() completed');
+      }),
+      catchError(this.handleError)
+    );
+
+  }
+
+  /*
   public update(contact: Contact): Observable<HttpEvent<Contact>> {
 
     return this.httpClient.patch<Contact>(this.contactsUrl, contact, this.getHttpOptions()).pipe(
@@ -64,6 +102,7 @@ export class ContactsService extends CollectionService {
     );
 
   }
+  */
 
   public delete(id: string): Observable<Contact> {
 
@@ -76,6 +115,8 @@ export class ContactsService extends CollectionService {
   }
 
 }
+
+// https://angular.io/guide/http#reading-the-full-response
 
 // https://angular.io/guide/http#getting-error-details
 

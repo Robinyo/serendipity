@@ -1,4 +1,9 @@
-export interface Role {
+// import 'reflect-metadata';
+// import { Type } from 'class-transformer';
+
+// export interface Role {
+
+export class Role {
 
   id?: number;
   role?: string;
@@ -6,10 +11,9 @@ export interface Role {
   partyType?: string;
   partyName?: string;
   relationship?: string;
-  reciprocalRole: string;
-  reciprocalPartyId: string;
-  reciprocalPartyType: string;
-  reciprocalPartyName: string;
+  reciprocalRole?: string;
+  reciprocalPartyId?: string;
+  reciprocalPartyType?: string;
+  reciprocalPartyName?: string;
 
 }
-

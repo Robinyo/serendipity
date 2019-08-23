@@ -28,12 +28,13 @@
     <mat-icon>visibility</mat-icon>
     ACTIVATE
   </button>
+  -->
 
-  <button mat-button class="crm-command-bar-button" [disabled]="true">
+  <button mat-button class="crm-command-bar-button"
+    (click)="onDeactivate()">
     <mat-icon>visibility_off</mat-icon>
     DEACTIVATE
   </button>
-  -->
 
   <button mat-button class="crm-command-bar-button" [disabled]="true">
     <mat-icon>link</mat-icon>

@@ -125,6 +125,49 @@ export class DynamicFormService {
 
   }
 
+  public value(formGroup: FormGroup, item): void {
+
+    this.logger.info('DynamicFormService: value()');
+
+    for (const field of Object.keys(formGroup.controls)) {
+
+      this.logger.info('field: ' + field);
+
+      // embeddedObject, for example party.displayName
+      const embeddedObject = field.split('.');
+
+      switch (embeddedObject.length) {
+
+        case 1:
+
+          item[field] = formGroup.controls[field].value;
+          break;
+
+        case 2:
+
+          // const iterator = embeddedObject.values();
+
+          // for (const element of iterator) {
+          //   this.logger.info('element: ' + element);
+          // }
+
+          // this.logger.info(embeddedObject[0] + ': ' + JSON.stringify(item[embeddedObject[0]]));
+          // this.logger.info(embeddedObject[1] + ': ' + item[embeddedObject[0]][embeddedObject[1]]);
+
+          item[embeddedObject[0]][embeddedObject[1]] = formGroup.controls[field].value;
+          break;
+
+        default:
+
+          this.logger.error('DynamicFormService: Invalid embedded object depth');
+          break;
+
+      }
+
+    }
+
+  }
+
   private getProperty = (obj, path) => (
     path.split('.').reduce((o, p) => o && o[p], obj)
   )
