@@ -1,7 +1,11 @@
-// import 'reflect-metadata';
-// import { Type } from 'class-transformer';
+import 'reflect-metadata';
+import { Type } from 'class-transformer';
 
-// export interface Address {
+import { Location } from './location';
+
+// https://github.com/typestack/class-transformer/issues/108
+
+// @dynamic
 export class Address {
 
   constructor(
@@ -14,6 +18,10 @@ export class Address {
     addressType: string = ''
   ) {
 
+    this.location = {
+      type: 'Address'
+    } ;
+
     this.line1 = line1;
     this.line2 = line2;
     this.city = city;
@@ -24,7 +32,13 @@ export class Address {
 
   }
 
-  id?: number;
+  get id(): string {
+    return this.location.id;
+  }
+
+  @Type(() => Location)
+  location?: Location;
+
   line1?: string;
   line2?: string;
   city?: string;

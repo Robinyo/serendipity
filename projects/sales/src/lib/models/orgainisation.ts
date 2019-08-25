@@ -1,16 +1,25 @@
-// import 'reflect-metadata';
-// import { Type } from 'class-transformer';
+import 'reflect-metadata';
+import { Expose, Type } from 'class-transformer';
 
-// import { Party } from './party';
+import { Party } from './party';
 
-// export interface Organisation {
+// https://github.com/typestack/class-transformer/issues/108
 
+// @dynamic
 export class Organisation {
 
-  id?: number;
-  // @Type(() => Party)
-  // party?: Party;
+  // get id(): string {
+  //   return this.party.id;
+  // }
+
+  @Expose()
+  @Type(() => Party)
+  party?: Party;
+
+  @Expose()
   name?: string;
+
+  @Expose()
   phoneNumber?: string;
 
 }

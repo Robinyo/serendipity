@@ -54,31 +54,7 @@ export class ContactsService extends CollectionService {
 
   }
 
-  /*
 
-    public create(contact: Contact): Observable<HttpResponse<Contact>> {
-
-    return this.httpClient.post<Contact>(this.contactsUrl, contact, this.getHttpOptions()).pipe(
-      tap(() => {
-        this.logger.info('ContactsService: create() completed');
-      }),
-      catchError(this.handleError)
-    );
-
-  }
-
-  public create(contact: Contact): Observable<HttpEvent<Contact>> {
-
-    return this.httpClient.post<Contact>(this.contactsUrl, contact, this.getHttpOptions()).pipe(
-      tap(() => {
-        this.logger.info('ContactsService: create() completed');
-      }),
-      catchError(this.handleError)
-    );
-
-  }
-
-  */
 
   public update(id: string, contact: Contact) {
 
@@ -123,6 +99,32 @@ export class ContactsService extends CollectionService {
 // https://firebase.google.com/docs/firestore/reference/rest/
 
 // https://www.csvjson.com/csv2json
+
+/*
+
+  public create(contact: Contact): Observable<HttpResponse<Contact>> {
+
+  return this.httpClient.post<Contact>(this.contactsUrl, contact, this.getHttpOptions()).pipe(
+    tap(() => {
+      this.logger.info('ContactsService: create() completed');
+    }),
+    catchError(this.handleError)
+  );
+
+}
+
+public create(contact: Contact): Observable<HttpEvent<Contact>> {
+
+  return this.httpClient.post<Contact>(this.contactsUrl, contact, this.getHttpOptions()).pipe(
+    tap(() => {
+      this.logger.info('ContactsService: create() completed');
+    }),
+    catchError(this.handleError)
+  );
+
+}
+
+*/
 
 /*
 

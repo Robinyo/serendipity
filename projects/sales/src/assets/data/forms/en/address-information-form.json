@@ -7,6 +7,15 @@
     "appearance": "outline",
     "autocomplete": "address-line1",
 
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter an Address Line 1"
+      }
+    ],
+
     "gridItemClass": "grid-column-1-span-2"
   },
   {
@@ -25,6 +34,15 @@
     "appearance": "outline",
     "autocomplete": "address-level2",
 
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a City"
+      }
+    ],
+
     "gridItemClass": "grid-column-1"
   },
   {
@@ -33,6 +51,15 @@
     "label": "State",
     "appearance": "outline",
     "autocomplete": "address-level1",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a State"
+      }
+    ],
 
     "gridItemClass": "grid-column-2"
   },
@@ -43,6 +70,15 @@
     "appearance": "outline",
     "autocomplete": "postal-code",
 
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a Postal Code"
+      }
+    ],
+
     "gridItemClass": "grid-column-3"
   },
   {
@@ -50,6 +86,15 @@
     "id": "addressType",
     "label": "Address Type",
     "appearance": "outline",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter an Address Type"
+      }
+    ],
 
     "gridItemClass": "grid-column-1"
   }

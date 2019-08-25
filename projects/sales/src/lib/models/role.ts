@@ -1,8 +1,9 @@
 // import 'reflect-metadata';
 // import { Type } from 'class-transformer';
 
-// export interface Role {
+// https://github.com/typestack/class-transformer/issues/108
 
+// @dynamic
 export class Role {
 
   id?: number;

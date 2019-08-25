@@ -118,7 +118,8 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
       data.map(a => {
 
-        a.id = btoa(a.id);
+        // a.id = btoa(a.id);
+        a.party.id = btoa(a.party.id);
 
         if (a.party.roles.length) {
 

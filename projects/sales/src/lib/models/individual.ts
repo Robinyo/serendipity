@@ -1,16 +1,8 @@
 import 'reflect-metadata';
 import { Expose, Type } from 'class-transformer';
 
-// import { forwardRef } from '@angular/core';
-
 import { Organisation } from './orgainisation';
 import { Party } from './party';
-
-// export function serializeType<T>(object: T) {
-//   return function () { return object; };
-// }
-
-// export interface Individual {
 
 // https://github.com/typestack/class-transformer/issues/108
 
@@ -51,19 +43,16 @@ export class Individual {
 
   }
 
-  @Expose()
-  id?: string;
+  // get id(): string {
+  //   return this.party.id;
+  // }
 
   @Expose()
   @Type(() => Party)
-  // @Type(serializeType(Party))
-  // @Type(forwardRef(() => Party) as any)
   party?: Party;
 
   @Expose()
   @Type(() => Organisation)
-  // @Type(serializeType(Organisation))
-  // @Type(forwardRef(() => Organisation) as any)
   organisation?: Organisation;
 
   @Expose()
@@ -110,6 +99,16 @@ export class Individual {
 // https://github.com/angular/angular/issues/21123
 // https://github.com/angular/angular/issues/20216
 
+// export interface Individual {
+
+// import { forwardRef } from '@angular/core';
+
+// export function serializeType<T>(object: T) {
+//   return function () { return object; };
+// }
+
+// @Type(serializeType(Party))
+// @Type(forwardRef(() => Party) as any)
 
 /*
 

@@ -41,7 +41,8 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   public containerHeight: number;
 
-  public id = 'MA==';
+  // public id = 'MA==';
+  public partyId: string;
   public item: Contact;
 
   protected subscriptions: Subscription[] = [];
@@ -75,15 +76,15 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.containerHeight = this.tableContainer.nativeElement.offsetHeight -
       (this.navBarHeight + this.cmdBarHeight + this.viewBarHeight + this.margin);
 
-    // this.id = this.route.snapshot.paramMap.get('id');
+    // this.partyId = this.route.snapshot.paramMap.get('id');
 
     let paramSubscription: Subscription = new Subscription();
     this.subscriptions.push(paramSubscription);
 
     paramSubscription = this.route.paramMap.subscribe(params =>  {
 
-      this.id = params.get('id');
-      this.id = atob(this.id);
+      this.partyId = params.get('id');
+      this.partyId = atob(this.partyId);
 
       this.subscribe();
 
@@ -104,7 +105,7 @@ export class ContactComponent implements OnInit, OnDestroy {
     let modelSubscription: Subscription = new Subscription();
     this.subscriptions.push(modelSubscription);
 
-    modelSubscription = this.contactsService.findOne(this.id).subscribe((data: Contact) => {
+    modelSubscription = this.contactsService.findOne(this.partyId).subscribe((data: Contact) => {
 
       if (data.party.roles.length) {
 
@@ -252,7 +253,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
         this.logger.info('ContactPage onDeactivate() response: true');
 
-        const subscription: Subscription = this.contactsService.delete(this.item.id).subscribe(() => {
+        const subscription: Subscription = this.contactsService.delete(this.item.party.id).subscribe(() => {
 
           subscription.unsubscribe();
 

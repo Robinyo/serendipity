@@ -4,12 +4,12 @@ import { Type } from 'class-transformer';
 import { Address } from './address';
 import { Role } from './role';
 
-// export interface Party {
+// https://github.com/typestack/class-transformer/issues/108
 
 // @dynamic
 export class Party {
 
-  id?: number;
+  id?: string;
   partyType?: string;
   displayName?: string;
 
@@ -20,3 +20,5 @@ export class Party {
   roles?: Role[];
 
 }
+
+// export interface Party {
