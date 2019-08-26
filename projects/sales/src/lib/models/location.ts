@@ -6,6 +6,12 @@ import 'reflect-metadata';
 // @dynamic
 export class Location {
 
+  constructor(
+    type: string = 'Location'
+  ) {
+    this.type = type;
+  }
+
   id?: string;
   type?: string;
 

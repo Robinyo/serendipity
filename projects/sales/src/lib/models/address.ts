@@ -18,9 +18,7 @@ export class Address {
     addressType: string = ''
   ) {
 
-    this.location = {
-      type: 'Address'
-    } ;
+    this.location = new Location('Address');
 
     this.line1 = line1;
     this.line2 = line2;

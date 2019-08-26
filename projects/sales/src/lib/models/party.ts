@@ -10,7 +10,7 @@ import { Role } from './role';
 export class Party {
 
   id?: string;
-  partyType?: string;
+  type?: string;
   displayName?: string;
 
   @Type(() => Address)

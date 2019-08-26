@@ -57,12 +57,12 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
   async createWizardSteps() {
 
     this.logger.info('ContactWizardComponent: createWizardSteps()');
-    
+
     // Sample Data :)
 
     this.item = new Contact(
       {
-        partyType: 'Individual',
+        type: 'Individual',
         displayName: 'Ferguson, Rob',
         addresses: [],
         roles: []
