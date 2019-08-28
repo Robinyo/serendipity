@@ -27,7 +27,8 @@ interface ROUTE {
 })
 export class NavComponent implements OnInit, OnDestroy {
 
-  @ViewChild('commandbarSidenav') public sidenav: MatSidenav;
+  @ViewChild('commandbarSidenav', {static: false})
+  public sidenav: MatSidenav;
 
   myWorkRoutes: ROUTE[] = [
     {

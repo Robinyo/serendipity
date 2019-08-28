@@ -12,7 +12,7 @@ import { LoggerService } from 'utils';
 })
 export class ActivitiesComponent implements OnInit {
 
-  @ViewChild(TaskListComponent)
+  @ViewChild(TaskListComponent, {static: false})
   private taskList: TaskListComponent;
 
   constructor(private logger: LoggerService) {}

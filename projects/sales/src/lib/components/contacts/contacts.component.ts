@@ -27,7 +27,8 @@ import { SidenavService } from 'serendipity-components';
 })
 export class ContactsComponent extends CollectionComponent implements AfterViewInit, OnInit {
 
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, {static: false})
+  public sort: MatSort;
 
   public items: Array<Contact>;
 

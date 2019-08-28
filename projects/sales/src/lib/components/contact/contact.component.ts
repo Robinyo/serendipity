@@ -47,7 +47,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   protected subscriptions: Subscription[] = [];
 
-  @ViewChild('contentContainer')
+  @ViewChild('contentContainer', {static: true})
   private tableContainer: ElementRef;
 
   public generalInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];

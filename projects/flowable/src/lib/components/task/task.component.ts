@@ -107,9 +107,10 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
         value = this.taskFormGroup.value[controlModel.id.valueOf()];
 
-        // TODO handle locales, etc.
+        // TODO: handle locales, etc.
         if (type === 'date') {
-          value = format(value, 'DD-MM-YYYY');
+          const date: Date = new Date(value);
+          value = format(date, 'DD-MM-YYYY');
         }
 
         properties.push({
