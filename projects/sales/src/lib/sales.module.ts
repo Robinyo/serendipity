@@ -1,5 +1,6 @@
 import { Injector, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { TranslateModule } from '@ngx-translate/core';
@@ -60,6 +61,7 @@ import { LibRoutingModule } from './lib-routing.module';
     AngularMaterialModule,
     CommonModule,
     DashboardModule,
+    DragDropModule,
     FlexLayoutModule,
     FlowableModule,
     // HttpClientModule,

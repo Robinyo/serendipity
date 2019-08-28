@@ -1,7 +1,6 @@
-import 'reflect-metadata';
-import { plainToClass } from 'class-transformer';
-
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+
 import { FormGroup } from '@angular/forms';
 
 import { MatSnackBar } from '@angular/material';
@@ -29,6 +28,21 @@ import { SnackBarComponent } from '../snack-bar/snack-bar.component';
   styleUrls: ['./contact-wizard.component.scss']
 })
 export class ContactWizardComponent implements OnInit, OnDestroy {
+
+  todo = [
+    'Get to work',
+    'Pick up groceries',
+    'Go home',
+    'Fall asleep'
+  ];
+
+  done = [
+    'Get up',
+    'Brush teeth',
+    'Take a shower',
+    'Check e-mail',
+    'Walk dog'
+  ];
 
   public generalInformationModel: DynamicFormModel;
   public generalInformationGroup: FormGroup;
@@ -58,41 +72,12 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
 
     this.logger.info('ContactWizardComponent: createWizardSteps()');
 
-    // Sample Data :)
 
-    this.item = new Contact(
-      {
-        type: 'Individual',
-        displayName: 'Ferguson, Rob',
-        addresses: [],
-        roles: []
-      },
-      {
-        name: 'Van Orton Trading Pty Ltd',
-        phoneNumber: '(02) 9999 9999'
-      },
-      '',
-      'Robert',
-      '',
-      'Ferguson',
-      '',
-      '',
-      'Rob',
-      'R.',
-      'MALE',
-      'rob.ferguson@robferguson.org',
-      '(02) 9999 9999',
-      ''
-    );
+    //
+    // To save me some typing ...
+    //
 
-    const address = new Address(
-      '93 Janet Street', '',
-      'Merewether', 'NSW', '2291',
-      'Australia',
-      'Principal Place of Residence'
-    );
-
-    this.item.party.addresses.push(address);
+    this.createSampleContact();
 
     this.generalInformationModel = await this.dynamicFormService.getFormMetadata(GENERAL_INFORMATION_GROUP);
     this.generalInformationGroup = this.dynamicFormService.createGroup(this.generalInformationModel);
@@ -107,6 +92,17 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
   public ngOnDestroy() {
 
     this.logger.info('ContactWizardComponent: ngOnDestroy()');
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
   }
 
   //
@@ -177,6 +173,44 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
 
   }
 
+  private createSampleContact() {
+
+    this.item = new Contact(
+      {
+        type: 'Individual',
+        displayName: 'Ferguson, Rob',
+        addresses: [],
+        roles: []
+      },
+      {
+        name: 'Van Orton Trading Pty Ltd',
+        phoneNumber: '(02) 9999 9999'
+      },
+      '',
+      'Robert',
+      '',
+      'Ferguson',
+      '',
+      '',
+      'Rob',
+      'R.',
+      'MALE',
+      'rob.ferguson@robferguson.org',
+      '(02) 9999 9999',
+      ''
+    );
+
+    const address = new Address(
+      '93 Janet Street', '',
+      'Merewether', 'NSW', '2291',
+      'Australia',
+      'Principal Place of Residence'
+    );
+
+    this.item.party.addresses.push(address);
+
+  }
+
   //
   // Command Bar events
   //
@@ -208,7 +242,7 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
 
       const keys = response.headers.keys();
       keys.map(key => {
-        this.logger.info('ContactWizardComponent onSave() key: ' + response.headers.get(key));
+        this.logger.info('ContactWizardComponent create() key: ' + response.headers.get(key));
       });
 
       this.item = { ... response.body };
@@ -229,8 +263,28 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
   private update() {
 
     this.logger.info('ContactWizardComponent: update()');
-  }
 
+    const subscription: Subscription = this.contactsService.update(this.item.party.id, this.item).subscribe(response => {
+
+      const keys = response.headers.keys();
+      keys.map(key => {
+        this.logger.info('ContactWizardComponent update() key: ' + response.headers.get(key));
+      });
+
+      this.item = { ... response.body };
+
+      this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
+
+      this.markAsPristine();
+      this.openSnackBar();
+
+      subscription.unsubscribe();
+
+      this.isNew = false;
+
+    });
+
+  }
 
   public onClose() {
 

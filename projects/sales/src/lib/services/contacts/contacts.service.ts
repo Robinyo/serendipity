@@ -54,31 +54,16 @@ export class ContactsService extends CollectionService {
 
   }
 
+  public update(id: string, contact: Contact): Observable<HttpResponse<Contact>> {
 
-
-  public update(id: string, contact: Contact) {
-
-    return this.httpClient.patch<Contact>(this.contactsUrl + id, contact, this.getHttpOptions()).pipe(
+    return this.httpClient.patch<HttpResponse<Contact>>(this.contactsUrl + id, contact, this.getHttpOptions()).pipe(
       tap(() => {
-        this.logger.info('ContactsService: patch() completed');
+        this.logger.info('ContactsService: update() completed');
       }),
       catchError(this.handleError)
     );
 
   }
-
-  /*
-  public update(contact: Contact): Observable<HttpEvent<Contact>> {
-
-    return this.httpClient.patch<Contact>(this.contactsUrl, contact, this.getHttpOptions()).pipe(
-      tap(() => {
-        this.logger.info('ContactsService: patch() completed');
-      }),
-      catchError(this.handleError)
-    );
-
-  }
-  */
 
   public delete(id: string): Observable<Contact> {
 
@@ -140,4 +125,17 @@ public create(contact: Contact): Observable<HttpEvent<Contact>> {
       catchError(this.handleError('submitFormData', []))
     );
 
+*/
+
+/*
+public update(contact: Contact): Observable<HttpEvent<Contact>> {
+
+  return this.httpClient.patch<Contact>(this.contactsUrl, contact, this.getHttpOptions()).pipe(
+    tap(() => {
+      this.logger.info('ContactsService: patch() completed');
+    }),
+    catchError(this.handleError)
+  );
+
+}
 */
