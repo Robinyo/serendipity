@@ -21,15 +21,18 @@ The project's Auth providers are configured in the App [module](https://github.c
 // Auth libs
 //
 
+// import { LocalAuthModule, authProviders } from 'auth-local';
 import { Auth0AuthModule, authProviders } from 'auth-auth0';
-// import { AuthOktaModule, authProviders } from 'auth-okta';
+// import { OktaAuthModule, authProviders } from 'auth-okta';';
 
 @NgModule({
   imports: [
     BrowserModule,
+    // LocalAuthModule,
     Auth0AuthModule.forRoot(environment),
+    // OktaAuthModule.forRoot(environment),
     CoreModule,
-    AppRoutingModule
+    AppRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
   declarations: [ AppComponent ],
   providers: [

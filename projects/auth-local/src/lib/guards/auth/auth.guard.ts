@@ -3,21 +3,25 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 
 import { Observable } from 'rxjs';
 
-import { LoggerService } from 'utils';
+import { AuthService } from 'auth';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthLocalGuard implements CanActivate {
+export class LocalAuthGuard implements CanActivate {
 
   constructor(private router: Router,
-              private logger: LoggerService) {}
+              private authService: AuthService) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-    this.logger.info('AuthLocalGuard: canActivate()');
+    if (this.authService.isAuthenticated()) {
+      return true;
+    }
 
-    return true;
+    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+    return false;
+
   }
 
 }

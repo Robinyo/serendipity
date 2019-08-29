@@ -22,7 +22,6 @@ import { LibRoutingModule } from './lib-routing.module';
 
 @NgModule({
   imports: [
-    // AuthModule,
     CommonModule,
     UtilsModule,
 

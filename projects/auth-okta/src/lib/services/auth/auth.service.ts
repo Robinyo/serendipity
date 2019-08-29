@@ -87,6 +87,8 @@ export class OktaAuthService extends Auth {
     this.accessToken = await this._getAccessToken();
   }
 
+  public loginWithEmailAndPassword(username: string, password: string) {}
+
   public loginWithRedirect() {
 
     this.logger.info('OktaAuthService: loginWithRedirect()');

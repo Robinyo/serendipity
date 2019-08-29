@@ -6,12 +6,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './components/login/login.component';
 
 //
-// Auth lib
-//
-
-import { AuthModule } from 'auth';
-
-//
 // Dynamic Forms lib
 //
 
@@ -24,22 +18,29 @@ import { DynamicFormsModule } from 'dynamic-forms';
 import { UtilsModule, LoggerService } from 'utils';
 import { AngularMaterialModule } from 'utils';
 
+//
+// LibRoutingModule: https://angular.io/guide/router#routing-module-order
+//
+
+import { LibRoutingModule } from './lib-routing.module';
+
 @NgModule({
   imports: [
     AngularMaterialModule,
-    AuthModule,
     CommonModule,
     DynamicFormsModule,
     FlexLayoutModule,
-    UtilsModule
+    UtilsModule,
+
+    LibRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
   declarations: [ LoginComponent ],
   exports: [ LoginComponent ]
 })
-export class AuthLocalModule {
+export class LocalAuthModule {
 
   constructor(private logger: LoggerService) {
-    this.logger.info('Auth Local Module initialised');
+    this.logger.info('Local Auth Module initialised');
   }
 
 }

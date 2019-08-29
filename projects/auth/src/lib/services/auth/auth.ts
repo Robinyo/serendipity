@@ -7,6 +7,8 @@ export abstract class Auth {
 
   public abstract getAccessToken(): string;
 
+  public abstract loginWithEmailAndPassword(email: string, password: string);
+
   public abstract loginWithRedirect();
 
   public abstract async handleRedirectCallback(): Promise<void>;

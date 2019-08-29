@@ -77,7 +77,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public onSubmit() {
 
-    this.router.navigate([this.returnUrl]);
+    this.authService.loginWithEmailAndPassword(this.formGroup.controls['username'].value,
+      this.formGroup.controls['password'].value);
   }
 
 }
@@ -85,6 +86,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 // https://github.com/cornflourblue/angular-7-registration-login-example-cli/blob/master/src/app/login/login.component.ts
 
 // https://github.com/okta/okta-oidc-js/blob/master/packages/okta-angular/src/okta/services/okta.service.ts
+
+
+
+
 
 /*
 protected subscribe() {

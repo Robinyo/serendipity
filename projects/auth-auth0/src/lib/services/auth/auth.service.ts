@@ -111,6 +111,8 @@ export class Auth0AuthService extends Auth {
     return this.authenticated;
   }
 
+  public loginWithEmailAndPassword(username: string, password: string) {}
+
   public loginWithRedirect() {
 
     this.logger.info('Auth0AuthService: loginWithRedirect()');
