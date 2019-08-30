@@ -1,0 +1,77 @@
+[
+
+  {
+    "type": "input",
+    "id": "username",
+    "label": "Email",
+    "appearance": "fill",
+
+    "validators": [
+      {
+        "name": "email",
+        "args": null,
+        "propertyName": "email",
+        "message": "Please enter a valid email address"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1",
+    "required": true
+  },
+  {
+    "type": "input",
+    "inputType": "password",
+    "id": "password",
+    "label": "Password",
+    "appearance": "fill",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a password"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1",
+    "required": true
+  },
+  {
+    "type": "input",
+    "id": "givenName",
+    "label": "Given Name",
+    "appearance": "fill",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a given name"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1",
+    "required": true
+  },
+  {
+    "type": "input",
+    "id": "familyName",
+    "label": "Family Name",
+    "appearance": "fill",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a family name"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1",
+    "required": true
+  }
+
+]

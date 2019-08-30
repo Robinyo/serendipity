@@ -62,6 +62,8 @@ export class LocalAuthService extends Auth {
 
   }
 
+  public createUserWithEmailAndPassword(user: User) {}
+
   public loginWithEmailAndPassword(username: string, password: string) {
 
     this.userSubject.next({ username: username, password: password });

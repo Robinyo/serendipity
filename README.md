@@ -47,10 +47,14 @@ Use TypeScript, Node.js, Express and TypeORM to build a [RESTful API](https://gi
 
 ## ❯ Screen Shots
 
-Login ([auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library):
+Local Auth Login ([auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library):
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/login.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-login.png">
+</p>
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-register.png">
 </p>
 
 Auth0 Login ([auth-auth0](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0) library)

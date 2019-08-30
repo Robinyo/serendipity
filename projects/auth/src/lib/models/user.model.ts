@@ -6,6 +6,9 @@ export interface User {
 
   sub?: string;
 
+  username?: string;
+  password?: string;
+
   // profile: name, family_name, given_name, middle_name, nickname, preferred_username, profile, picture, website, gender, birthdate,
   // zoneinfo, locale, and updated_at.
   name?: string;
@@ -33,11 +36,6 @@ export interface User {
   // phone: phone_number and phone_number_verified.
   phoneNumber?: string;
   phoneNumberVerified?: boolean;
-
-  // TODO -> See: collection.service.ts
-
-  username?: string;
-  password?: string;
 
 }
 

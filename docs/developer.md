@@ -131,6 +131,7 @@ ng build serendipity-components && \
 ng build dashboard-widgets && \
 ng build dashboard && \
 ng build dynamic-forms && \
+ng build auth-local && \
 ng build flowable && \
 ng build sales
 

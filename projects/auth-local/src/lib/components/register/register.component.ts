@@ -8,17 +8,16 @@ import { AuthService } from 'auth';
 
 import { LoggerService } from 'utils';
 
-const LOGIN_FORM = 'email-password-form';
+const REGISTER_FORM = 'register-form';
 
 @Component({
-  selector: 'auth-local-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'auth-local-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class RegisterComponent  implements OnInit, OnDestroy {
 
-  public signInButton = 'SIGN IN';
-  public signUpButton = 'SIGN UP';
+  public registerButton = 'REGISTER';
 
   public formGroup: FormGroup;
   public formModel: DynamicFormModel;
@@ -33,7 +32,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
 
-    this.logger.info('LoginComponent: ngOnInit()');
+    this.logger.info('RegisterComponent: ngOnInit()');
 
     if (this.authService.isAuthenticated()) {
 
@@ -49,12 +48,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   async createForm() {
 
-    this.formModel = await this.dynamicFormService.getFormMetadata(LOGIN_FORM);
+    this.formModel = await this.dynamicFormService.getFormMetadata(REGISTER_FORM);
     this.formGroup = this.dynamicFormService.createGroup(this.formModel);
   }
 
   public ngOnDestroy() {
-    this.logger.info('LoginComponent: ngOnDestroy()');
+    this.logger.info('RegisterComponent: ngOnDestroy()');
   }
 
   //
@@ -78,14 +77,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public onSubmit() {
 
-    this.authService.loginWithEmailAndPassword(this.formGroup.controls['username'].value,
-      this.formGroup.controls['password'].value);
-  }
-
-  public onRegister() {
-
-    this.router.navigate(['/register']);
+    // this.authService.loginWithEmailAndPassword(this.formGroup.controls['username'].value,
+    //   this.formGroup.controls['password'].value);
   }
 
 }
-

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 //
 // Dynamic Forms lib
@@ -34,8 +35,8 @@ import { LibRoutingModule } from './lib-routing.module';
 
     LibRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
-  declarations: [ LoginComponent ],
-  exports: [ LoginComponent ]
+  declarations: [ LoginComponent, RegisterComponent ],
+  exports: [ LoginComponent, RegisterComponent ]
 })
 export class LocalAuthModule {
 

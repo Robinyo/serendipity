@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { Auth } from './auth';
 
+import { User } from '../../models/user.model';
+
 import { LoggerService } from 'utils';
 
 @Injectable({
@@ -23,6 +25,8 @@ export class AuthService extends Auth {
   public getAccessToken(): string {
     return this.accessToken;
   }
+
+  public createUserWithEmailAndPassword(user: User) {}
 
   public loginWithEmailAndPassword(username: string, password: string) {}
 

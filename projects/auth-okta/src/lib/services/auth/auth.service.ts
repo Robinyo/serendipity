@@ -6,8 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 import { OktaConfig } from '../../models/models';
 import { OktaConfigService } from '../config.service';
 
-// import { Auth, User } from 'auth';
-import { Auth } from 'auth';
+import { Auth, User } from 'auth';
 
 import OktaAuth from '@okta/okta-auth-js';
 
@@ -86,6 +85,8 @@ export class OktaAuthService extends Auth {
 
     this.accessToken = await this._getAccessToken();
   }
+
+  public createUserWithEmailAndPassword(user: User) {}
 
   public loginWithEmailAndPassword(username: string, password: string) {}
 

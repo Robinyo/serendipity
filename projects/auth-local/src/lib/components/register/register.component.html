@@ -6,7 +6,7 @@
 
     <mat-card-content *ngIf="formGroup">
 
-      <h2>Sign in</h2>
+      <h2>Create account</h2>
 
       <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
 
@@ -17,17 +17,10 @@
       </dynamic-form>
 
       <mat-card-actions class="sign-in-card-actions" fxLayoutAlign="flex-end">
-        <button mat-raised-button color="accent" [disabled]="!isValid()" (click)="onSubmit()"> {{ signInButton }} </button>
+        <button mat-raised-button color="accent" [disabled]="!isValid()" (click)="onSubmit()"> {{ registerButton }} </button>
       </mat-card-actions>
 
-      <mat-divider></mat-divider>
-
     </mat-card-content>
-
-    <mat-card-footer class="sign-in-card-footer" fxLayoutAlign="center center">
-      Don't have an Account?
-      <button mat-raised-button color="primary" class="register-button" (click)="onRegister()"> {{ signUpButton }} </button>
-    </mat-card-footer>
 
   </mat-card>
 

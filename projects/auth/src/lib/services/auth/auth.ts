@@ -1,3 +1,5 @@
+import { User } from '../../models/user.model';
+
 export abstract class Auth {
 
   protected authenticated = false;
@@ -6,6 +8,8 @@ export abstract class Auth {
   public abstract isAuthenticated(): boolean;
 
   public abstract getAccessToken(): string;
+
+  public abstract createUserWithEmailAndPassword(user: User);
 
   public abstract loginWithEmailAndPassword(email: string, password: string);
 
