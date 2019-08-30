@@ -17,7 +17,7 @@
       </dynamic-form>
 
       <mat-card-actions class="sign-in-card-actions" fxLayoutAlign="flex-end">
-        <button mat-raised-button color="accent" [disabled]="!isValid()" (click)="onSubmit()"> {{ signInButton }} </button>
+        <button mat-raised-button color="accent" [disabled]="!isValid()" (click)="onSubmit()"> {{ loginButton }} </button>
       </mat-card-actions>
 
       <mat-divider></mat-divider>
@@ -26,9 +26,18 @@
 
     <mat-card-footer class="sign-in-card-footer" fxLayoutAlign="center center">
       Don't have an Account?
-      <button mat-raised-button color="primary" class="register-button" (click)="onRegister()"> {{ signUpButton }} </button>
+      <button mat-button color="accent" class="register-button" (click)="onRegister()"> {{ registerButton }} </button>
     </mat-card-footer>
 
   </mat-card>
 
 </div>
+
+<!--
+
+    <mat-card-footer class="sign-in-card-footer" fxLayoutAlign="center center">
+      Don't have an Account?
+      <button mat-raised-button color="primary" class="register-button" (click)="onRegister()"> {{ signUpButton }} </button>
+    </mat-card-footer>
+
+-->
