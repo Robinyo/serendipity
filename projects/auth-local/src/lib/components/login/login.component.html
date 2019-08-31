@@ -25,19 +25,11 @@
     </mat-card-content>
 
     <mat-card-footer class="sign-in-card-footer" fxLayoutAlign="center center">
-      Don't have an Account?
-      <button mat-button color="accent" class="register-button" (click)="onRegister()"> {{ registerButton }} </button>
+      Don't have an Account?&nbsp;
+      <a [routerLink]="" (click)="onRegister()"> {{ registerButton }} </a>
     </mat-card-footer>
 
   </mat-card>
 
 </div>
 
-<!--
-
-    <mat-card-footer class="sign-in-card-footer" fxLayoutAlign="center center">
-      Don't have an Account?
-      <button mat-raised-button color="primary" class="register-button" (click)="onRegister()"> {{ signUpButton }} </button>
-    </mat-card-footer>
-
--->
