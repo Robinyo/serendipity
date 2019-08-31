@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpParams, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 
 import { CollectionService } from '../abstract/collection/collection.service';
 
-import { Contact } from '../../models/models';
+import { Contact } from '../../models/contact';
+import { ContactAdapter } from '../../adapters/contact.adapter';
 
 import { LoggerService } from 'utils';
 
@@ -15,11 +16,26 @@ import { LoggerService } from 'utils';
 })
 export class ContactsService extends CollectionService {
 
-  constructor(protected httpClient: HttpClient,
+  constructor(private httpClient: HttpClient,
+              private adapter: ContactAdapter,
               protected logger: LoggerService) {
 
     super(logger);
   }
+
+  public find(): Observable<Contact[]> {
+
+    return this.httpClient.get(this.contactsUrl).pipe(
+      map((data: any[]) => data.map(item => this.adapter.adapt(item))),
+      tap(() => {
+        this.logger.info('ContactsService: find() completed');
+      }),
+      catchError(this.handleError)
+    );
+
+  }
+
+  /*
 
   public find(): Observable<Contact[]> {
 
@@ -32,6 +48,22 @@ export class ContactsService extends CollectionService {
 
   }
 
+  */
+
+  public findOne(id: string): Observable<Contact> {
+
+    return this.httpClient.get(this.contactsUrl + id).pipe(
+      map((item: any) => this.adapter.adapt(item)),
+      tap(() => {
+        this.logger.info('ContactsService: findOne() completed');
+      }),
+      catchError(this.handleError)
+    );
+
+  }
+
+  /*
+
   public findOne(id: string): Observable<Contact> {
 
     return this.httpClient.get<Contact>(this.contactsUrl + id).pipe(
@@ -42,6 +74,8 @@ export class ContactsService extends CollectionService {
     );
 
   }
+
+  */
 
   public create(contact: Contact): Observable<HttpResponse<Contact>> {
 
@@ -80,62 +114,3 @@ export class ContactsService extends CollectionService {
 // https://angular.io/guide/http#reading-the-full-response
 
 // https://angular.io/guide/http#getting-error-details
-
-// https://firebase.google.com/docs/firestore/reference/rest/
-
-// https://www.csvjson.com/csv2json
-
-/*
-
-  public create(contact: Contact): Observable<HttpResponse<Contact>> {
-
-  return this.httpClient.post<Contact>(this.contactsUrl, contact, this.getHttpOptions()).pipe(
-    tap(() => {
-      this.logger.info('ContactsService: create() completed');
-    }),
-    catchError(this.handleError)
-  );
-
-}
-
-public create(contact: Contact): Observable<HttpEvent<Contact>> {
-
-  return this.httpClient.post<Contact>(this.contactsUrl, contact, this.getHttpOptions()).pipe(
-    tap(() => {
-      this.logger.info('ContactsService: create() completed');
-    }),
-    catchError(this.handleError)
-  );
-
-}
-
-*/
-
-/*
-
-    // const sort = 'createTime';
-    // const order = 'desc';
-    // const params = new HttpParams().set('sort', sort).set('order', order);
-
-    return this.httpClient.post<Contact>(endpoint, body, this.getHttpOptions(null))
-    .pipe(
-      tap(() => {
-        this.logger.info('FormsService: submitFormData() completed');
-      }),
-      catchError(this.handleError('submitFormData', []))
-    );
-
-*/
-
-/*
-public update(contact: Contact): Observable<HttpEvent<Contact>> {
-
-  return this.httpClient.patch<Contact>(this.contactsUrl, contact, this.getHttpOptions()).pipe(
-    tap(() => {
-      this.logger.info('ContactsService: patch() completed');
-    }),
-    catchError(this.handleError)
-  );
-
-}
-*/

@@ -7,7 +7,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Subscription} from 'rxjs';
 
 import { ContactsService } from '../../services/contacts/contacts.service';
-import { ColumnDef, Contact } from '../../models/models';
+import { ColumnDef } from '../../models/column';
+import { Contact } from '../../models/contact';
 
 import { CollectionComponent } from '../abstract/collection.component';
 
@@ -69,6 +70,7 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
               private breakpointObserver: BreakpointObserver,
               private contactsService: ContactsService,
               private commandBarSidenavService: SidenavService) {
+
     super();
   }
 
@@ -117,24 +119,6 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
       // this.logger.info('ContactsPage subscribe() data: ' + JSON.stringify(data));
 
-      data.map(a => {
-
-        // a.id = btoa(a.id);
-        a.party.id = btoa(a.party.id);
-
-        if (a.party.roles.length) {
-
-          a.organisation = {
-            name: a.party.roles[0].reciprocalPartyName,
-            phoneNumber: a.phoneNumber
-          };
-
-        }
-
-        return { ...a };
-
-      });
-
       this.items = data;
 
       this.dataSource = new MatTableDataSource(this.items);
@@ -146,6 +130,7 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
   }
 
   public refresh() {
+
     this.logger.info('ContactsPage: refresh()');
   }
 
@@ -166,8 +151,6 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
     this.logger.info('ContactsPage: onNew()');
 
-    // btoa(0) === 'MA=='
-    // this.router.navigate(['sales/contacts/MA==']);
     this.router.navigate(['sales/contacts/new']);
   }
 
@@ -194,4 +177,26 @@ function pathDataAccessor(item: any, path: string): any {
     // btoa(0) === 'MA=='
     // this.router.navigate(['sales/contacts/MA==', { new: true }]);
 
+*/
+
+// this.logger.info('ContactsPage subscribe() data: ' + JSON.stringify(data));
+
+/*
+data.map(a => {
+
+  // a.id = btoa(a.id);
+  a.party.id = btoa(a.party.id);
+
+  if (a.party.roles.length) {
+
+    a.organisation = {
+      name: a.party.roles[0].reciprocalPartyName,
+      phoneNumber: a.phoneNumber
+    };
+
+  }
+
+  return { ...a };
+
+});
 */

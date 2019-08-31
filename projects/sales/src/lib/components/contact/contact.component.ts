@@ -11,7 +11,7 @@ import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
 import { ContactsService } from '../../services/contacts/contacts.service';
-import { Contact } from '../../models/models';
+import { Contact } from '../../models/contact';
 
 import { CONTACTS } from '../../models/constants';
 import { GENERAL_INFORMATION_GROUP, ADDRESS_INFORMATION_GROUP } from '../../models/form-ids';
@@ -105,18 +105,11 @@ export class ContactComponent implements OnInit, OnDestroy {
     let modelSubscription: Subscription = new Subscription();
     this.subscriptions.push(modelSubscription);
 
-    modelSubscription = this.contactsService.findOne(this.partyId).subscribe((data: Contact) => {
+    modelSubscription = this.contactsService.findOne(this.partyId).subscribe(data => {
 
-      if (data.party.roles.length) {
+      this.logger.info('ContactsPage subscribe() data: ' + JSON.stringify(data));
 
-        data.organisation = {
-          name: data.party.roles[0].reciprocalPartyName,
-          phoneNumber: data.phoneNumber
-        };
-
-      }
-
-      this.item = { ...data };
+      this.item = data;
       this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
       this.dynamicFormService.initGroup(this.addressInformationGroup, this.item.party.addresses[0]);
     });
@@ -253,7 +246,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
         this.logger.info('ContactPage onDeactivate() response: true');
 
-        const subscription: Subscription = this.contactsService.delete(this.item.party.id).subscribe(() => {
+        const subscription: Subscription = this.contactsService.delete(this.partyId).subscribe(() => {
 
           subscription.unsubscribe();
 
@@ -300,3 +293,16 @@ export class ContactComponent implements OnInit, OnDestroy {
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
+
+/*
+if (data.party.roles.length) {
+
+  data.organisation = {
+    name: data.party.roles[0].reciprocalPartyName,
+    phoneNumber: data.phoneNumber
+  };
+
+}
+
+this.item = { ...data };
+*/

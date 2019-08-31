@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Auth } from './auth';
 
-import { User } from '../../models/user.model';
+import { User } from '../../models/user';
 
 import { LoggerService } from 'utils';
 

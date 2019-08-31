@@ -1,43 +1,24 @@
+// import { User } from './user';
+
 //
 // Normalised User Model (i.e., givenName NOT given_name)
 //
 
-export interface User {
+// export class UserModel implements User {}
 
-  sub?: string;
+// https://openid.net/specs/openid-connect-basic-1_0.html
 
-  username?: string;
-  password?: string;
+/*
 
-  // profile: name, family_name, given_name, middle_name, nickname, preferred_username, profile, picture, website, gender, birthdate,
-  // zoneinfo, locale, and updated_at.
-  name?: string;
-  givenName?: string;
-  middleName?: string;
-  familyName?: string;
-  nickname?: string;
-  preferredUsername?: string;
-  profile?: string;
-  picture?: string;
-  website?: string;
-  gender?: string;
-  birthdate?: string;
-  zoneinfo?: string;
-  locale?: string;
-  updatedAt?: string;
+profile: This scope value requests access to the End-User's default profile Claims, which are: name, family_name, given_name, middle_name,
+         nickname, preferred_username, profile, picture, website, gender, birthdate, zoneinfo, locale, and updated_at.
+email:   This scope value requests access to the email and email_verified Claims.
+address: This scope value requests access to the address Claim.
+phone:   This scope value requests access to the phone_number and phone_number_verified Claims.
 
-  // email: email and email_verified.
-  email?: string;
-  emailVerified?: boolean;
+*/
 
-  // address: address
-  address?: object;
-
-  // phone: phone_number and phone_number_verified.
-  phoneNumber?: string;
-  phoneNumberVerified?: boolean;
-
-}
+// https://auth0.com/docs/scopes/current/oidc-scopes
 
 /*
 
@@ -113,17 +94,3 @@ export interface User {
 }
 
 */
-
-// https://openid.net/specs/openid-connect-basic-1_0.html
-
-/*
-
-profile: This scope value requests access to the End-User's default profile Claims, which are: name, family_name, given_name, middle_name,
-         nickname, preferred_username, profile, picture, website, gender, birthdate, zoneinfo, locale, and updated_at.
-email:   This scope value requests access to the email and email_verified Claims.
-address: This scope value requests access to the address Claim.
-phone:   This scope value requests access to the phone_number and phone_number_verified Claims.
-
-*/
-
-// https://auth0.com/docs/scopes/current/oidc-scopes

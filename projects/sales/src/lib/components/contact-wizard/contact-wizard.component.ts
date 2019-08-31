@@ -17,7 +17,8 @@ import { LoggerService } from 'utils';
 
 import { CONTACTS } from '../../models/constants';
 import { ADDRESS_INFORMATION_GROUP, GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
-import { Address, Contact } from '../../models/models';
+import { Address } from '../../models/address';
+import { Contact } from '../../models/contact';
 
 import { ContactsService } from '../../services/contacts/contacts.service';
 import { SnackBarComponent } from '../snack-bar/snack-bar.component';
@@ -176,16 +177,6 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
   private createSampleContact() {
 
     this.item = new Contact(
-      {
-        type: 'Individual',
-        displayName: 'Ferguson, Rob',
-        addresses: [],
-        roles: []
-      },
-      {
-        name: 'Van Orton Trading Pty Ltd',
-        phoneNumber: '(02) 9999 9999'
-      },
       '',
       'Robert',
       '',
@@ -199,6 +190,11 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
       '(02) 9999 9999',
       ''
     );
+
+    this.item.party.displayName = 'Ferguson, Rob';
+
+    this.item.organisation.name = 'Van Orton Trading Pty Ltd';
+    this.item.organisation.phoneNumber = '(02) 9999 9999';
 
     const address = new Address(
       '93 Janet Street', '',
