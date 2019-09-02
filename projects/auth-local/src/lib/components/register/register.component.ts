@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
-// import { AuthService, User } from 'auth';
 import { AuthService, User } from 'auth';
 
 import { LoggerService } from 'utils';
@@ -78,9 +77,26 @@ export class RegisterComponent  implements OnInit, OnDestroy {
 
   public onSubmit() {
 
+    const user: User = new User(
+      this.formGroup.controls['username'].value,
+      this.formGroup.controls['password'].value,
+      this.formGroup.controls['givenName'].value,
+      this.formGroup.controls['familyName'].value
+    );
+
+    this.authService.createUserWithEmailAndPassword(user);
+  }
+
+}
+
+/*
+
+  public async onSubmit() {
+
     // const user: User = new User();
 
     // this.authService.createUserWithEmailAndPassword(user);
   }
 
-}
+*/
+

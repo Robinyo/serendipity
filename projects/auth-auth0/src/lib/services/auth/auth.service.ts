@@ -67,6 +67,9 @@ export class Auth0AuthService extends Auth {
                 // Create normalised User (i.e., givenName NOT given_name)
 
                 this.user = {
+
+                  username: userProfile.email,
+
                   sub: userProfile.sub,
                   name: userProfile.name,
                   givenName: userProfile.given_name,

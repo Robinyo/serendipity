@@ -1,8 +1,59 @@
-// https://www.typescriptlang.org/docs/handbook/interfaces.html
+export class User {
 
-// One of TypeScript’s core principles is that type checking focuses on the shape that values have. This is sometimes called “duck typing”
-// or “structural subtyping”. In TypeScript, interfaces fill the role of naming these types, and are a powerful way of defining contracts
-// within your code as well as contracts with code outside of your project.
+  public id?: string;
+
+  public sub?: string;
+
+  constructor(
+    public username: string = '',
+    password = '',
+    public givenName: string = '',
+    public familyName: string = ''
+  ) {
+
+    this.password = password;
+    this.email = username;
+    this.emailVerified = false;
+  }
+
+  public password?: string;
+
+  // profile: name, family_name, given_name, middle_name, nickname, preferred_username, profile, picture, website, gender, birthdate,
+  // zoneinfo, locale, and updated_at
+  public name?: string;
+  // public givenName?: string;
+  public middleName?: string;
+  // public familyName?: string;
+  public nickname?: string;
+  public preferredUsername?: string;
+  public profile?: string;
+  public picture?: string;
+  public website?: string;
+  public gender?: string;
+  public birthdate?: string;
+  public zoneinfo?: string;
+  public locale?: string;
+  public updatedAt?: string;
+
+  // email: email and email_verified
+  public email: string;
+  public emailVerified: boolean;
+
+  // address: address
+  public address?: object;
+
+  // phone: phone_number and phone_number_verified.
+  public phoneNumber?: string;
+  public phoneNumberVerified?: boolean;
+
+  // [propName: string]: any;
+
+}
+
+// [propName: string]: any;
+// What we’re saying is that a User can have any number of properties ...
+
+/*
 
 export interface User {
 
@@ -12,7 +63,7 @@ export interface User {
   password?: string;
 
   // profile: name, family_name, given_name, middle_name, nickname, preferred_username, profile, picture, website, gender, birthdate,
-  // zoneinfo, locale, and updated_at.
+  // zoneinfo, locale, and updated_at
   name?: string;
   givenName?: string;
   middleName?: string;
@@ -42,6 +93,8 @@ export interface User {
   [propName: string]: any;
 
 }
+
+*/
 
 // [propName: string]: any;
 // What we’re saying is that a User can have any number of properties ...

@@ -8,7 +8,7 @@ import { AuthService } from 'auth';
 
 import { LoggerService } from 'utils';
 
-const LOGIN_FORM = 'email-password-form';
+const LOGIN_FORM = 'username-password-form';
 
 @Component({
   selector: 'auth-local-login',
