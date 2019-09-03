@@ -61,8 +61,6 @@ export class LocalAuthService extends Auth {
   public async setAccessToken() {
 
     this.logger.info('LocalAuthService: setAccessToken()');
-
-    return;
   }
 
   public getUser() {
@@ -77,12 +75,16 @@ export class LocalAuthService extends Auth {
 
   }
 
-  public createUserWithEmailAndPassword(user: User): Promise<User> {
+  public createUserWithEmailAndPassword(user: User): Promise<any> {
 
-    return this.httpClient.post<User>(this.registerUrl, user, this.getHttpOptions()).pipe(
-      tap(() => {
+    return this.httpClient.post<any>(this.registerUrl, user, this.getHttpOptions()).pipe(
+      tap((token) => {
+
+        this.accessToken = token;
 
         this.logger.info('LocalAuthService: createUserWithEmailAndPassword() completed');
+
+        // this.logger.info('token:' + JSON.stringify(token, null, 2));
 
         this.userSubject.next(user);
 
@@ -97,14 +99,18 @@ export class LocalAuthService extends Auth {
 
   }
 
-  public loginWithEmailAndPassword(username: string, password: string): Promise<User>  {
+  public loginWithEmailAndPassword(username: string, password: string): Promise<any>  {
 
     const user: User = new User(username, password);
 
-    return this.httpClient.post<User>(this.loginUrl, user, this.getHttpOptions()).pipe(
-      tap(() => {
+    return this.httpClient.post<any>(this.loginUrl, user, this.getHttpOptions()).pipe(
+      tap((token) => {
+
+        this.accessToken = token;
 
         this.logger.info('LocalAuthService: loginWithEmailAndPassword() completed');
+
+        this.logger.info('token:' + JSON.stringify(token, null, 2));
 
         this.userSubject.next(user);
 

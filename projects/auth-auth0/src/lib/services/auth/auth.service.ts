@@ -68,9 +68,11 @@ export class Auth0AuthService extends Auth {
 
                 this.user = {
 
-                  username: userProfile.email,
+                  username: userProfile.sub,
+                  // username: userProfile.email,
 
-                  sub: userProfile.sub,
+                  // sub: userProfile.sub,
+
                   name: userProfile.name,
                   givenName: userProfile.given_name,
                   middleName: userProfile.middle_name,
