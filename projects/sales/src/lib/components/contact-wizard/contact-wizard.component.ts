@@ -30,21 +30,6 @@ import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 })
 export class ContactWizardComponent implements OnInit, OnDestroy {
 
-  todo = [
-    'Get to work',
-    'Pick up groceries',
-    'Go home',
-    'Fall asleep'
-  ];
-
-  done = [
-    'Get up',
-    'Brush teeth',
-    'Take a shower',
-    'Check e-mail',
-    'Walk dog'
-  ];
-
   public generalInformationModel: DynamicFormModel;
   public generalInformationGroup: FormGroup;
 
@@ -93,17 +78,6 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
   public ngOnDestroy() {
 
     this.logger.info('ContactWizardComponent: ngOnDestroy()');
-  }
-
-  drop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex);
-    }
   }
 
   //

@@ -335,15 +335,18 @@ The project's Auth providers are configured in the App [module](https://github.c
 // Auth libs
 //
 
-import { Auth0AuthModule, authProviders } from 'auth-auth0';
-// import { AuthOktaModule, authProviders } from 'auth-okta';
+import { LocalAuthModule, authProviders } from 'auth-local';
+// import { Auth0AuthModule, authProviders } from 'auth-auth0';
+// import { OktaAuthModule, authProviders } from 'auth-okta';';
 
 @NgModule({
   imports: [
     BrowserModule,
-    Auth0AuthModule.forRoot(environment),
+    LocalAuthModule,
+    // Auth0AuthModule.forRoot(environment),
+    // OktaAuthModule.forRoot(environment),
     CoreModule,
-    AppRoutingModule
+    AppRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
   declarations: [ AppComponent ],
   providers: [
@@ -398,16 +401,21 @@ You can workaround this issue by updating the assets array inside the build targ
    
     ....
     
-    {
-      "glob": "**/*",
-      "input": "projects/sales/src/assets",
-      "output": "/assets"
-    },
-    {
-      "glob": "**/*",
-      "input": "projects/dashboard/src/assets",
-      "output": "/assets"
-    }
+      {
+        "glob": "**/*",
+        "input": "projects/auth-local/src/assets",
+        "output": "/assets"
+      },
+      {
+        "glob": "**/*",
+        "input": "projects/sales/src/assets",
+        "output": "/assets"
+      },
+      {
+        "glob": "**/*",
+        "input": "projects/dashboard/src/assets",
+        "output": "/assets"
+      }
   ]
 ```
 
