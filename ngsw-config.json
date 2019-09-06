@@ -9,7 +9,14 @@
           "/favicon.ico",
           "/index.html",
           "/*.css",
-          "/*.js"
+          "/*.js",
+          "/manifest.json",
+          "/assets/i18n/**",
+          "/assets/data/**",
+          "/assets/images/icons/**"
+        ],
+        "urls": [
+          "https://fonts.gstatic.com/**"
         ]
       }
     }, {

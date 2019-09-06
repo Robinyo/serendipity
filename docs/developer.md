@@ -224,15 +224,16 @@ The build artifacts will be stored in the `dist/serendipity` directory.
 To launch the project using [http-server](https://github.com/indexzero/http-server):
 
 ```
-http-server -p 5042 -c-1 dist/serendipity
+http-server -p 4200 -c-1 dist/serendipity
 ```
 
-**Note:** To reduce the possibility of conflicts and avoid serving stale content, test on a dedicated port and disable caching.
+**Note:** To reduce the possibility of conflicts and avoid serving stale content, test on a dedicated port (e.g., 5042) and disable caching.
 
 Navigate to:
 
 ```
-http://127.0.0.1:5042
+http://localhost:4200
+http://127.0.0.1:4200
 ```
 
 #### AoT Don'ts
@@ -491,13 +492,6 @@ To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Lang
 * Medium: [Compiling css in new Angular 6 libraries](https://medium.com/@Dor3nz/compiling-css-in-new-angular-6-libraries-26f80274d8e5)
 * GitHub: [Project Assets](https://github.com/angular/angular-cli/wiki/stories-asset-configuration)
 
-### Material Design Resources
-
-* Material.io: [Material Design, make beautiful products, faster](https://material.io/)
-* GitHub: [Material Design for Angular](https://github.com/angular/material2)
-* GitHub: [Covalent - The Teradata UI Platform built on Angular Material](https://teradata.github.io/covalent/#/docs)
-* GitHub: [NiFi Flow Design System](https://github.com/apache/nifi-fds)
-
 ### Angular Component Libraries
 
 * GitHub: [flex-layout](https://github.com/angular/flex-layout)
@@ -523,6 +517,19 @@ To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Lang
 * GitHub: [Angular in-memory Web API](https://github.com/angular/in-memory-web-api)
 * GitHub: [json-server](https://github.com/typicode/json-server)
 * GitHub: [Hotel - A simple process manager for developers](https://github.com/typicode/hotel)
+
+### Service Workers
+
+* Chris Aston: [How to preload Google Fonts using resource hints](https://ashton.codes/preload-google-fonts-using-resource-hints/)
+* GitHub: [A Hassle-Free Way to Self-Host Google Fonts](https://google-webfonts-helper.herokuapp.com/fonts)
+* GitHub: [Google Fonts Files](https://github.com/google/fonts)
+
+### Material Design Resources
+
+* Material.io: [Material Design, make beautiful products, faster](https://material.io/)
+* GitHub: [Material Design for Angular](https://github.com/angular/material2)
+* GitHub: [Covalent - The Teradata UI Platform built on Angular Material](https://teradata.github.io/covalent/#/docs)
+* GitHub: [NiFi Flow Design System](https://github.com/apache/nifi-fds)
 
 ### CSS Grid Layout
 
