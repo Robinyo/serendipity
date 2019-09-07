@@ -40,6 +40,14 @@
   padding-right: 8px;
 }
 
+.sign-in-card-divider {
+
+  @media ($mat-xsmall) {
+    visibility: hidden;
+  }
+
+}
+
 .sign-in-card-footer {
   padding: 16px;
 }
