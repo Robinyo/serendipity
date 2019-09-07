@@ -1,8 +1,14 @@
+@import "../../themes/mat-variables";
+// @import "../../themes/variables";
+
 .sign-in-container {
   height: 100vh;
   display: grid;
-  // justify-items: center;
-  // align-items: center;
+
+  @media ($mat-xsmall) {
+    color: white;
+  }
+
 }
 
 .sign-in-container > * { justify-self: center; align-self: center }
@@ -10,7 +16,15 @@
 .sign-in-card {
   width: 400px;
   height: 464px;
-  padding: 32px
+  padding: 32px;
+
+  @media ($mat-xsmall) {
+    // width - (padding * 2)
+    width: calc(100% - 64px);
+    transition: none !important;
+    box-shadow: none !important;
+  }
+
 }
 
 .nested-grid-container {
@@ -31,5 +45,17 @@
 }
 
 .register-button {
-  margin-left: 8px;
+  padding: 1px 1px;
+  // margin-left: 8px;
 }
+
+/*
+
+.sign-in-container {
+  height: 100vh;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+*/

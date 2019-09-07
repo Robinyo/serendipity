@@ -11,9 +11,19 @@
           "/*.css",
           "/*.js",
           "/manifest.json",
-          "/assets/i18n/**",
-          "/assets/data/**",
-          "/assets/images/icons/**"
+
+          "/assets/data/dashboards.json",
+          "/assets/data/forms/en/register-form.json",
+          "/assets/data/forms/en/username-password-form.json",
+          "/assets/data/tool-palette-items.json",
+          "/assets/i18n/en.json",
+          "/assets/images/icons/android-chrome-192x192.png",
+          "/assets/images/icons/bar-chart.svg",
+          "/assets/images/icons/funnel-chart.svg",
+          "/assets/images/icons/parliament-chart.svg",
+          "/assets/images/icons/pie-chart.svg",
+          "/assets/images/icons/timeline.svg"
+
         ],
         "urls": [
           "https://fonts.gstatic.com/**"
