@@ -138,7 +138,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 }
 ```
 
-3. Add a `<dynamic-form>` to your template and bind its [formGroup] and [model] properties:
+3. Add a `<dynamic-form>` to your template ([login.component.html](https://github.com/Robinyo/serendipity/blob/master/projects/auth-local/src/lib/components/login/login.component.html)) and bind its [formGroup] and [model] properties:
 
 ```
 ...
