@@ -10,7 +10,7 @@ ng build dynamic-forms
 ```
 ### Basic Usage
 
-1. Define your form ([login-form.json](https://github.com/Robinyo/serendipity/blob/master/projects/sales/src/assets/data/forms/en/login-form.json)):
+1. Define your form ([username-password-form.json](https://github.com/Robinyo/serendipity/blob/master/projects/sales/src/assets/data/forms/en/username-password-form.json)):
 
 
 ```
@@ -19,16 +19,15 @@ ng build dynamic-forms
   {
     "type": "input",
     "id": "username",
-    "label": "Username",
-    "placeholder": "flowable",
+    "label": "Email",
     "appearance": "fill",
 
     "validators": [
       {
-        "name": "required",
+        "name": "email",
         "args": null,
-        "propertyName": "required",
-        "message": "You must enter a username"
+        "propertyName": "email",
+        "message": "Please enter a valid email address"
       }
     ],
 
@@ -57,22 +56,12 @@ ng build dynamic-forms
   }
 
 ]
-
 ```
 
-2. Use the `DynamicFormService` to create your form ([login-form.json](https://github.com/Robinyo/serendipity/blob/master/projects/auth-local/src/lib/components/login/login.component.ts)):
+2. Use the `DynamicFormService` to create your form ([login.component.ts](https://github.com/Robinyo/serendipity/blob/master/projects/auth-local/src/lib/components/login/login.component.ts)):
 
 ```
 ...
-
-import { FormGroup } from '@angular/forms';
-import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
-
-import { AuthService } from 'auth';
-
-import { LoggerService } from 'utils';
-
-export const LOGIN_FORM = 'username-password-form';
 
 export class LoginComponent implements OnInit, OnDestroy {
 
@@ -92,6 +81,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
 
+    this.logger.info('LoginComponent: ngOnInit()');
+
     if (this.authService.isAuthenticated()) {
 
       this.router.navigate(['/']);
@@ -109,7 +100,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.formModel = await this.dynamicFormService.getFormMetadata(LOGIN_FORM);
     this.formGroup = this.dynamicFormService.createGroup(this.formModel);
   }
-  
+
+  public ngOnDestroy() {
+    this.logger.info('LoginComponent: ngOnDestroy()');
+  }
+
   //
   // Misc
   //
@@ -138,29 +133,39 @@ export class LoginComponent implements OnInit, OnDestroy {
   public onRegister() {
 
     this.router.navigate(['/register']);
-  }  
-  
+  }
+
 }
 ```
 
 3. Add a `dynamic-form` to your template and bind its [formGroup] and [model] properties:
 
 ```
+...
+
 <dynamic-form autocomplete="off"
   className="nested-grid-container"
   [formGroup]="formGroup"
   [model]="formModel">
 </dynamic-form>
+
+...
 ```
 
 ![divider](./divider.png)
 
 ## ❯ Screen Shots
 
-The Auth [Local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library's **Login** form:
+The Auth [Local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library's **Login** (Sign in) form:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-login.png">
+</p>
+
+The Auth [Local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library's **Register** (Create account) form:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-register.png">
 </p>
 
 The [Flowable](https://github.com/Robinyo/serendipity/tree/master/projects/flowable) library's Task Component displaying a sample **Leave Application** form:
