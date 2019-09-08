@@ -126,10 +126,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 The Auth [Local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library's **Login** form:
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/login.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-login.png">
 </p>
 
-The [Flowable](https://github.com/Robinyo/serendipity/tree/master/projects/flowable) library's **Leave Application** form:
+The [Flowable](https://github.com/Robinyo/serendipity/tree/master/projects/flowable) library's Task Component displaying a sample **Leave Application** form:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/task-component.png"/>
