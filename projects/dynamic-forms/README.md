@@ -60,7 +60,7 @@ ng build dynamic-forms
 
 ```
 
-2. Use the `DynamicFormService` to create your form:
+2. Use the `DynamicFormService` to create your form ([login-form.json](https://github.com/Robinyo/serendipity/blob/master/projects/auth-local/src/lib/components/login/login.component.ts)):
 
 ```
 ...
@@ -69,11 +69,15 @@ import { FormGroup } from '@angular/forms';
 import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
 import { AuthService } from 'auth';
+
 import { LoggerService } from 'utils';
 
-export const LOGIN_FORM = 'login-form';
+export const LOGIN_FORM = 'username-password-form';
 
 export class LoginComponent implements OnInit, OnDestroy {
+
+  public loginButton = 'SIGN IN';
+  public registerButton = 'Sign up';
 
   public formGroup: FormGroup;
   public formModel: DynamicFormModel;
@@ -105,6 +109,36 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.formModel = await this.dynamicFormService.getFormMetadata(LOGIN_FORM);
     this.formGroup = this.dynamicFormService.createGroup(this.formModel);
   }
+  
+  //
+  // Misc
+  //
+
+  public isValid() {
+
+    let valid = true;
+
+    if (this.formGroup) {
+      valid = this.formGroup.valid;
+    }
+
+    return valid;
+  }
+
+  //
+  // Command events
+  //
+
+  public onSubmit() {
+
+    this.authService.loginWithEmailAndPassword(this.formGroup.controls['username'].value,
+      this.formGroup.controls['password'].value);
+  }
+
+  public onRegister() {
+
+    this.router.navigate(['/register']);
+  }  
   
 }
 ```
