@@ -5,6 +5,8 @@ import { ComponentType } from '@angular/cdk/portal';
 import { AlertDialogComponent } from '../../components/dialogs/alert-dialog/alert-dialog.component';
 import { ConfirmDialogComponent } from '../../components/dialogs/confirm-dialog/confirm-dialog.component';
 
+import { SerendipityComponentsModule } from '../../serendipity-components.module';
+
 export interface DialogConfig extends MatDialogConfig {
   title?: string;
   message: string;
@@ -19,8 +21,11 @@ export interface ConfirmDialogConfig extends DialogConfig {
   cancelButton?: string;
 }
 
+// https://angular.io/guide/providers#providedin-and-ngmodules
+
 @Injectable({
-  providedIn: 'root'
+  // providedIn: 'root'
+  providedIn: SerendipityComponentsModule
 })
 export class DialogService {
 

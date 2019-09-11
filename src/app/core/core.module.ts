@@ -42,7 +42,7 @@ import { DynamicFormsModule } from 'dynamic-forms';
 // Sales lib
 //
 
-import { SalesModule } from 'sales';
+// import { SalesModule } from 'sales';
 
 //
 // Utils lib
@@ -72,7 +72,7 @@ import { AngularMaterialModule } from 'utils';
     }),
 
     DynamicFormsModule.forRoot(environment),
-    SalesModule,
+    // SalesModule,
     UtilsModule.forRoot(environment),
 
     RouterModule  // There is no directive with "exportAs" set to "routerLinkActive ...

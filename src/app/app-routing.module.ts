@@ -11,6 +11,26 @@ import { PlaceholderComponent } from '@app/core/components/placeholder/placehold
 
 const routes: Routes = [
 
+  //
+  // https://angular.io/guide/lazy-loading-ngmodules#routes-at-the-app-level
+  //
+
+  // ng build --prod --source-map
+  //
+  // ERROR in ./src/app/app-routing.module.ts
+  // Module not found: Error: Can't resolve './../../dist/sales/lib/sales.module.d.ngfactory' in
+  //   '/Users/robferguson/workspace/Robinyo/serendipity/src/app'
+
+  // {
+  //   path: 'sales',
+  //   loadChildren: () => import('sales').then(lib => lib.SalesModule)
+  // },
+
+  {
+    path: 'sales',
+    loadChildren: './lazy-loading/sales-lib-wrapper.module#SalesLibWrapperModule'
+  },
+
   {
     path: 'sales/accounts',
     component: PlaceholderComponent,
@@ -36,7 +56,8 @@ const routes: Routes = [
 
   {
     path: '**',
-    redirectTo: 'sales/dashboards'
+    redirectTo: 'sales/accounts'
+    // redirectTo: 'sales/dashboards'
   }
 
 ];
@@ -50,5 +71,7 @@ const routes: Routes = [
   ]
 })
 export class AppRoutingModule {}
+
+// https://github.com/tomastrajan/angular-lazy-lib-demo/blob/master/projects/some-app/src/app/app-routing.module.ts
 
 // https://stackoverflow.com/questions/40380726/angular2-router-canactivate-after-logout

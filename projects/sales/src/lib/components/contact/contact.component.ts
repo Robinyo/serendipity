@@ -16,9 +16,9 @@ import { Contact } from '../../models/contact';
 import { CONTACTS } from '../../models/constants';
 import { GENERAL_INFORMATION_GROUP, ADDRESS_INFORMATION_GROUP } from '../../models/form-ids';
 
-import { LoggerService } from 'utils';
-
 import { DialogService } from 'serendipity-components';
+
+import { LoggerService } from 'utils';
 
 import {
   NAVIGATION_BAR_HEIGHT_DESKTOP,

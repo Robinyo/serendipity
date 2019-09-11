@@ -38,12 +38,16 @@ import { AngularMaterialModule } from 'utils';
     CommandBarComponent
   ],
   exports: [
+    AlertDialogComponent,
+    ConfirmDialogComponent,
     ActivityBarComponent,
     CommandBarComponent
   ],
   entryComponents: [
     AlertDialogComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    ActivityBarComponent,
+    CommandBarComponent
   ]
 })
 export class SerendipityComponentsModule {

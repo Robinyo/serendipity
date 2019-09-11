@@ -15,9 +15,6 @@ import { ContactWizardComponent } from './components/contact-wizard/contact-wiza
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 
-// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-// import { InMemoryDataService } from './services/mocks/api/in-memory-data.service';
-
 //
 // Serendipity Components lib
 //
@@ -64,13 +61,8 @@ import { LibRoutingModule } from './lib-routing.module';
     DragDropModule,
     FlexLayoutModule,
     FlowableModule,
-    // HttpClientModule,
     ReactiveFormsModule,
-
-    // HttpClientInMemoryWebApiModule.forFeature(InMemoryDataService, { passThruUnknownUrl: true, delay: 1000 }),
-
     TranslateModule.forChild(),
-
     UtilsModule,
     SerendipityComponentsModule,
     DynamicFormsModule,
@@ -84,20 +76,11 @@ import { LibRoutingModule } from './lib-routing.module';
     ContactComponent,
     ContactWizardComponent,
     DashboardComponent,
-
     SnackBarComponent
   ],
-  exports: [
-    AccountsComponent,
-    ActivitiesComponent,
-    ContactsComponent,
-    ContactComponent,
-    ContactWizardComponent,
-    DashboardComponent
-
-    // SnackBarComponent
-  ],
-  entryComponents: [ SnackBarComponent ]
+  entryComponents: [
+    SnackBarComponent
+  ]
 })
 export class SalesModule {
 
@@ -110,3 +93,24 @@ export class SalesModule {
   }
 
 }
+
+/*
+
+  entryComponents: [ SnackBarComponent ]
+  exports: [
+    AccountsComponent,
+    ActivitiesComponent,
+    ContactsComponent,
+    ContactComponent,
+    ContactWizardComponent,
+    DashboardComponent
+
+    // SnackBarComponent
+  ],
+
+*/
+
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryDataService } from './services/mocks/api/in-memory-data.service';
+
+// HttpClientInMemoryWebApiModule.forFeature(InMemoryDataService, { passThruUnknownUrl: true, delay: 1000 }),
