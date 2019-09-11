@@ -78,6 +78,15 @@ export class DynamicInputComponent implements OnInit {
 
 /*
 
+ERROR: projects/dynamic-forms/src/lib/angular-material/components/dynamic-input/dynamic-input.component.ts(11,21): Type 'string'
+ is not assignable to type 'MatFormFieldAppearance'.
+
+    <mat-form-field [appearance]="model.appearance"
+
+*/
+
+/*
+
       <span matPrefix>
         <ng-container *ngIf="model.prefixIconName" ngProjectAs="mat-icon">
           <mat-icon matPrefix> {{ model.prefixIconName }} </mat-icon>

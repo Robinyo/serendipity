@@ -24,7 +24,7 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 
 // https://github.com/angular/angularfire2/blob/master/docs/install-and-setup.md
 
-import { AngularFireModule } from '@angular/fire';
+// import { AngularFireModule } from '@angular/fire';
 
 //
 // Dashboard Widgets lib
@@ -53,7 +53,7 @@ import { AngularMaterialModule } from 'utils';
 
 @NgModule({
   imports: [
-    AngularFireModule.initializeApp(environment.firebase),
+    // AngularFireModule.initializeApp(environment.firebase),
     // The Angular Material module must be imported after Angular's BrowserModule, as the import order matters for NgModules.
     AngularMaterialModule,
     BrowserAnimationsModule,

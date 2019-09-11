@@ -6,7 +6,6 @@ import { LocalAuthGuard } from './guards/auth/auth.guard';
 import { LocalAuthService } from './services/auth/auth.service';
 import { AuthInterceptor } from './http-interceptors/auth-interceptor';
 
-
 export const authProviders = [
   {
     provide: AuthGuard,

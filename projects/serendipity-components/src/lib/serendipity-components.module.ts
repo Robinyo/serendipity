@@ -32,22 +32,22 @@ import { AngularMaterialModule } from 'utils';
     UtilsModule
   ],
   declarations: [
-    AlertDialogComponent,
-    ConfirmDialogComponent,
     ActivityBarComponent,
-    CommandBarComponent
+    CommandBarComponent,
+    AlertDialogComponent,
+    ConfirmDialogComponent
   ],
   exports: [
-    AlertDialogComponent,
-    ConfirmDialogComponent,
     ActivityBarComponent,
-    CommandBarComponent
+    CommandBarComponent,
+    AlertDialogComponent,
+    ConfirmDialogComponent
   ],
   entryComponents: [
-    AlertDialogComponent,
-    ConfirmDialogComponent,
     ActivityBarComponent,
-    CommandBarComponent
+    CommandBarComponent,
+    AlertDialogComponent,
+    ConfirmDialogComponent
   ]
 })
 export class SerendipityComponentsModule {

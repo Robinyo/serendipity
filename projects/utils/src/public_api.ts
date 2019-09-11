@@ -3,10 +3,8 @@
  */
 
 export * from './lib/services/injector/static-injector.service';
-
 export * from './lib/services/logger/logger.service';
-// export * from './lib/services/logger/console-logger.service';
-export * from './lib/services/logger/logger.providers';
+export * from './lib/providers';
 
 export * from './lib/models/config';
 export * from './lib/models/models';

@@ -57,6 +57,15 @@ export class DynamicDatepickerComponent implements OnInit {
 
 /*
 
+ERROR: projects/dynamic-forms/src/lib/angular-material/components/dynamic-input/dynamic-input.component.ts(11,21): Type 'string'
+ is not assignable to type 'MatFormFieldAppearance'.
+
+    <mat-form-field [appearance]="model.appearance"
+
+*/
+
+/*
+
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 
       <ng-container *ngIf="model.label" ngProjectAs="mat-label">
