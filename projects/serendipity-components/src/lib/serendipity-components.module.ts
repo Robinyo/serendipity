@@ -24,6 +24,13 @@ import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/conf
 import { UtilsModule, LoggerService } from 'utils';
 import { AngularMaterialModule } from 'utils';
 
+const serendipityComponents = [
+  ActivityBarComponent,
+  CommandBarComponent,
+  AlertDialogComponent,
+  ConfirmDialogComponent
+] ;
+
 @NgModule({
   imports: [
     AngularMaterialModule,
@@ -32,22 +39,13 @@ import { AngularMaterialModule } from 'utils';
     UtilsModule
   ],
   declarations: [
-    ActivityBarComponent,
-    CommandBarComponent,
-    AlertDialogComponent,
-    ConfirmDialogComponent
+    serendipityComponents
   ],
   exports: [
-    ActivityBarComponent,
-    CommandBarComponent,
-    AlertDialogComponent,
-    ConfirmDialogComponent
+    serendipityComponents
   ],
   entryComponents: [
-    ActivityBarComponent,
-    CommandBarComponent,
-    AlertDialogComponent,
-    ConfirmDialogComponent
+    serendipityComponents
   ]
 })
 export class SerendipityComponentsModule {
