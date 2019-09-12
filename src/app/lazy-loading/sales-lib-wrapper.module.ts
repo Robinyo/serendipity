@@ -3,6 +3,6 @@ import { NgModule } from '@angular/core';
 import { SalesModule } from 'sales';
 
 @NgModule({
-  imports: [SalesModule]
+  imports: [ SalesModule ]
 })
 export class SalesLibWrapperModule {}

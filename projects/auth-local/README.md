@@ -49,5 +49,9 @@ export class AppModule {}
 
 ## Resources
 
+### Auth Resources
+* Firebase: [Sign in a user with an email address and password](https://firebase.google.com/docs/auth/web/password-auth)
+* Firebase: [User Credential](https://firebase.google.com/docs/reference/js/firebase.auth.html#usercredential)
+
 ### Authorisation Servers
 * GitHub: [Keycloak - Open Source Identity and Access Management](https://www.keycloak.org/)

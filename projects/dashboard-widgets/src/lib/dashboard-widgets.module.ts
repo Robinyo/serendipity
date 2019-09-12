@@ -29,3 +29,5 @@ export class DashboardWidgetsModule {
   }
 
 }
+
+// https://medium.com/lacolaco-blog/angular-dynamic-importing-large-libraries-8ec079603d0

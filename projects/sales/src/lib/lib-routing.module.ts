@@ -18,10 +18,10 @@ import { CanDeactivateGuard } from './guards/can-deactivate/can-deactivate.guard
 //
 // As we are lazy loading the Sales module in the App routing module, every route (in this module) is a child route.
 //
-//   {
-//     path: 'sales',
-//     loadChildren: () => import('sales').then(lib => lib.SalesModule)
-//   },
+// {
+//   path: 'sales',
+//     loadChildren: './lazy-loading/sales-lib-wrapper.module#SalesLibWrapperModule'
+// }
 //
 
 const routes: Routes = [

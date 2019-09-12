@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-
 import { MatSidenav } from '@angular/material';
+
+// import { SerendipityComponentsModule } from '../../serendipity-components.module';
 
 @Injectable({
   providedIn: 'root'
+  // providedIn: SerendipityComponentsModule
 })
 export class SidenavService {
 
