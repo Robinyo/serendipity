@@ -4,9 +4,8 @@ import { Subscription } from 'rxjs';
 
 import { SidenavService } from 'serendipity-components';
 
-import { DashboardWidgetService } from 'dashboard-widgets';
-
 import { Dashboard, MockDashboardService } from 'dashboard';
+import { DashboardWidgetService } from 'dashboard-widgets';
 
 import { LoggerService } from 'utils';
 

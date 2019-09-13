@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 
-import { environment } from '@env/environment';
+// import { environment } from '@env/environment';
 
 import { angularMaterialProviders } from './providers';
 

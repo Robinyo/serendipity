@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 
 import { HighchartsChartModule } from 'highcharts-angular';
 
+//
+// Widgets
+//
+
 import { FunnelChartComponent } from './highcharts-angular/components/funnel-chart/funnel-chart.component';
 import { ParliamentChartComponent } from './highcharts-angular/components/parliament-chart/parliament-chart.component';
 import { PieChartComponent } from './highcharts-angular/components/pie-chart/pie-chart.component';

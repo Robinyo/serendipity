@@ -19,8 +19,7 @@ import { SerendipityComponentsModule } from 'serendipity-components';
 
 import { DynamicModule } from 'ng-dynamic-component';
 import { DashboardWidgetsModule } from 'dashboard-widgets';
-import { FunnelChartComponent, ParliamentChartComponent, PieChartComponent } from 'dashboard-widgets';
-import { TimelineComponent } from 'dashboard-widgets';
+import { FunnelChartComponent, ParliamentChartComponent, PieChartComponent, TimelineComponent } from 'dashboard-widgets';
 
 //
 // Utils lib
@@ -29,30 +28,34 @@ import { TimelineComponent } from 'dashboard-widgets';
 import { UtilsModule, LoggerService } from 'utils';
 import { AngularMaterialModule } from 'utils';
 
+const dashboardWidgets = [
+  FunnelChartComponent,
+  ParliamentChartComponent,
+  PieChartComponent,
+  TimelineComponent
+];
+
 @NgModule({
   imports: [
     AngularMaterialModule,
     CommonModule,
-    // DragDropModule,
     DashboardWidgetsModule,
-    DynamicModule.withComponents([
-      FunnelChartComponent,
-      ParliamentChartComponent,
-      PieChartComponent,
-      TimelineComponent
-    ]),
+    DynamicModule.withComponents(
+      dashboardWidgets
+    ),
     FlexLayoutModule,
     GridsterModule,
     SerendipityComponentsModule,
     UtilsModule
   ],
-  declarations: [ DashboardComponent ],
-  exports: [ DashboardComponent ],
+  declarations: [
+    DashboardComponent
+  ],
+  exports: [
+    DashboardComponent
+  ],
   entryComponents: [
-    FunnelChartComponent,
-    ParliamentChartComponent,
-    PieChartComponent,
-    TimelineComponent
+    ...dashboardWidgets
   ]
 })
 export class DashboardModule {

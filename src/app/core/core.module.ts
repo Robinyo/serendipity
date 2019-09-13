@@ -19,18 +19,10 @@ import { environment } from '@env/environment';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 
 //
-// Firebase Hosting
+// Serendipity Components lib
 //
 
-// https://github.com/angular/angularfire2/blob/master/docs/install-and-setup.md
-
-// import { AngularFireModule } from '@angular/fire';
-
-//
-// Dashboard Widgets lib
-//
-
-import { HighchartsChartModule } from 'highcharts-angular';
+import { SerendipityComponentsModule } from 'serendipity-components';
 
 //
 // Dynamic Forms lib
@@ -59,8 +51,8 @@ import { AngularMaterialModule } from 'utils';
     BrowserAnimationsModule,
     CommonModule,
     FlexLayoutModule,
-    HighchartsChartModule,
     HttpClientModule,
+    SerendipityComponentsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 
     TranslateModule.forRoot({
@@ -108,3 +100,13 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 // https://stackoverflow.com/questions/50860898/angular-6-services-providedin-root-vs-coremodule
+
+// https://github.com/angular/angular/issues/29848 -> Keep CoreModule as preferred location for app-wide single-use components
+
+//
+// Firebase Hosting
+//
+
+// https://github.com/angular/angularfire2/blob/master/docs/install-and-setup.md
+
+// import { AngularFireModule } from '@angular/fire';

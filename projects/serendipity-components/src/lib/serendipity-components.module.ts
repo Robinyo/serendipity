@@ -39,13 +39,13 @@ const serendipityComponents = [
     UtilsModule
   ],
   declarations: [
-    serendipityComponents
-  ],
+    ...serendipityComponents
+    ],
   exports: [
-    serendipityComponents
-  ],
+    ...serendipityComponents
+    ],
   entryComponents: [
-    serendipityComponents
+    ...serendipityComponents
   ]
 })
 export class SerendipityComponentsModule {

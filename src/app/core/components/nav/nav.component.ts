@@ -66,8 +66,8 @@ export class NavComponent implements OnInit, OnDestroy {
 
   protected subscription: Subscription;
 
-  constructor(private elementRef: ElementRef,
-              private renderer: Renderer2,
+  constructor(// private elementRef: ElementRef,
+              // private renderer: Renderer2,
               private commandBarSidenavService: SidenavService,
               private dashboardService: MockDashboardService,
               private authService: AuthService,
@@ -87,9 +87,7 @@ export class NavComponent implements OnInit, OnDestroy {
     this.logger.info('NavComponent: subscribe()');
 
     this.subscription = this.dashboardService.getToolPaletteItems().subscribe(data => {
-
       this.toolPaletteItems = data;
-      // this.logger.info('toolPaletteItems: ' + JSON.stringify(this.toolPaletteItems));
     });
 
   }
@@ -129,3 +127,5 @@ export class NavComponent implements OnInit, OnDestroy {
 
 // https://github.com/tiberiuzuld/angular-gridster2/blob/master/src/app/sections/emptyCell/emptyCell.component.html
 // https://github.com/tiberiuzuld/angular-gridster2/blob/master/src/app/sections/emptyCell/emptyCell.component.ts
+
+// this.logger.info('toolPaletteItems: ' + JSON.stringify(this.toolPaletteItems));

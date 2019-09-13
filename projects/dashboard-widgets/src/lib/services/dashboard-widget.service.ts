@@ -2,8 +2,11 @@ import { Injectable } from '@angular/core';
 
 import * as Highcharts from 'highcharts';
 
+import { DashboardWidgetsModule } from '../dashboard-widgets.module';
+
 @Injectable({
-  providedIn: 'root'
+  // providedIn: 'root'
+  providedIn: DashboardWidgetsModule
 })
 export class DashboardWidgetService {
 

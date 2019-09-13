@@ -51,7 +51,8 @@ import { StaticInjectorService } from 'utils';
 // LibRoutingModule: https://angular.io/guide/router#routing-module-order
 //
 
-import { LibRoutingModule } from './lib-routing.module';
+// import { LibRoutingModule } from './lib-routing.module';
+import { LazyLibRoutingModule } from './lazy-lib-routing.module';
 
 @NgModule({
   imports: [
@@ -67,7 +68,9 @@ import { LibRoutingModule } from './lib-routing.module';
     SerendipityComponentsModule,
     DynamicFormsModule,
 
-    LibRoutingModule  // https://angular.io/guide/router#routing-module-order
+    // https://angular.io/guide/router#routing-module-order
+    // LibRoutingModule
+    LazyLibRoutingModule
   ],
   declarations: [
     AccountsComponent,
