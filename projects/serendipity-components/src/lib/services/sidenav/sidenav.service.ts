@@ -1,18 +1,24 @@
 import { Injectable } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 
-import { SerendipityComponentsModule } from '../../serendipity-components.module';
+import { LoggerService } from 'utils';
 
 @Injectable({
-  // providedIn: 'root'
-  providedIn: SerendipityComponentsModule
+  providedIn: 'root'
 })
 export class SidenavService {
 
   private sidenav: MatSidenav;
   private opened = false;
 
+  constructor(private logger: LoggerService) {}
+
   public setSidenav(sidenav: MatSidenav) {
+
+    if (!sidenav) {
+      this.logger.error('NavComponent: sidenav cannot be null');
+    }
+
     this.sidenav = sidenav;
   }
 

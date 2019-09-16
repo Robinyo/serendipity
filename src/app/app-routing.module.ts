@@ -32,19 +32,22 @@ const routes: Routes = [
   },
 
   {
-    path: 'sales/accounts',
+    // path: 'sales/accounts',
+    path: 'accounts',
     component: PlaceholderComponent,
     canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always'
   },
   {
-    path: 'sales/leads',
+    // path: 'sales/leads',
+    path: 'leads',
     component: PlaceholderComponent,
     canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always'
   },
   {
-    path: 'sales/opportunities',
+    // path: 'sales/opportunities',
+    path: 'opportunities',
     component: PlaceholderComponent,
     canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always'
@@ -56,8 +59,7 @@ const routes: Routes = [
 
   {
     path: '**',
-    redirectTo: 'sales/accounts'
-    // redirectTo: 'sales/dashboards'
+    redirectTo: 'accounts'
   }
 
 ];
