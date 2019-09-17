@@ -235,6 +235,23 @@ Navigate to:
 http://localhost:4200
 ```
 
+### Webpack Bundle Analyzer
+
+By default, NgModules are eagerly loaded, which means that as soon as the app loads, so do all the NgModules.
+However, Angular also provides support for lazy-loading NgModules. Lazy loading helps keep initial bundle sizes smaller, 
+which in turn helps decrease load times.
+
+To help you visualise bundle sizes you can use the [Webpack Bundle Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer):
+
+```
+ng build --prod --stats-json
+./node_modules/webpack-bundle-analyzer/lib/bin/analyzer.js ./dist/serendipity/stats.json
+```
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/web-bundle-analyzer.png">
+</p>
+
 #### AoT Don'ts
 
 The following are some things that will make AoT compile fail.
