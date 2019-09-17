@@ -241,7 +241,7 @@ By default, NgModules are eagerly loaded, which means that as soon as the app lo
 However, Angular also provides support for lazy-loading NgModules. Lazy loading helps keep initial bundle sizes smaller, 
 which in turn helps decrease load times.
 
-To help you visualise bundle sizes you can use the [Webpack Bundle Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer). For example:
+To help you visualise bundle sizes you can use the [Webpack Bundle Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer), for example:
 
 ```
 ng build --prod --stats-json && ./node_modules/webpack-bundle-analyzer/lib/bin/analyzer.js ./dist/serendipity/stats.json
