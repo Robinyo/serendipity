@@ -246,7 +246,7 @@ To help you visualise bundle sizes you can use the [Webpack Bundle Analyzer](htt
 For example ("target": "es5"):
 
 ```
-ng build --prod --stats-json && ./node_modules/webpack-bundle-analyzer/lib/bin/analyzer.js ./dist/serendipity/stats.json
+ng build --prod --named-chunks --stats-json && ./node_modules/webpack-bundle-analyzer/lib/bin/analyzer.js ./dist/serendipity/stats.json
 ```
 
 <p align="center">
@@ -256,7 +256,7 @@ ng build --prod --stats-json && ./node_modules/webpack-bundle-analyzer/lib/bin/a
 For example ("target": "es2015"):
 
 ```
-ng build --prod --stats-json && ./node_modules/webpack-bundle-analyzer/lib/bin/analyzer.js ./dist/serendipity/stats-es2015.json
+ng build --prod --named-chunks --stats-json && ./node_modules/webpack-bundle-analyzer/lib/bin/analyzer.js ./dist/serendipity/stats-es2015.json
 ```
 
 <p align="center">
