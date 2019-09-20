@@ -26,10 +26,35 @@ const routes: Routes = [
   //   loadChildren: () => import('sales').then(lib => lib.SalesModule)
   // },
 
+  //
+  // Reference the lib wrapper module using a relative path
+  //
+
   {
     path: 'sales',
     loadChildren: './lazy-loading/sales-lib-wrapper.module#SalesLibWrapperModule'
   },
+
+  /*
+
+  {
+    // path: 'sales/leads',
+    path: 'leads',
+    component: PlaceholderComponent,
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
+  },
+
+  {
+    // path: 'sales/leads',
+    path: 'leads',
+    loadChildren: './lazy-loading/dashboard-lib-wrapper.module#DashboardLibWrapperModule',
+    component: PlaceholderComponent,
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
+  },
+
+  */
 
   {
     // path: 'sales/accounts',
@@ -38,6 +63,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always'
   },
+
   {
     // path: 'sales/leads',
     path: 'leads',
@@ -45,6 +71,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always'
   },
+
   {
     // path: 'sales/opportunities',
     path: 'opportunities',

@@ -42,6 +42,7 @@ import { AngularMaterialModule } from 'utils';
 export class DynamicFormsModule {
 
   constructor(private logger: LoggerService) {
+
     this.logger.info('Dynamic Forms Module initialised');
   }
 

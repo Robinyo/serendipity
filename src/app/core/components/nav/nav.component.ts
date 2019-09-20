@@ -45,7 +45,7 @@ export class NavComponent implements OnInit, OnDestroy {
   customerRoutes: ROUTE[] = [
     {
       icon: 'contacts',
-      route: 'sales/accounts',
+      route: 'accounts',        // sales/accounts
       title: 'Accounts',
     }, {
       icon: 'people',
@@ -53,11 +53,11 @@ export class NavComponent implements OnInit, OnDestroy {
       title: 'Contacts',
     }, {
       icon: 'settings_phone',
-      route: 'sales/leads',
+      route: 'leads',           // sales/leads
       title: 'Leads',
     }, {
       icon: 'account_box',
-      route: 'sales/opportunities',
+      route: 'opportunities',   // sales/opportunities
       title: 'Opportunities',
     }
   ];

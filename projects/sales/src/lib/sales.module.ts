@@ -1,6 +1,7 @@
+// import { Injector, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Injector, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+// import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { TranslateModule } from '@ngx-translate/core';
@@ -59,7 +60,7 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
     AngularMaterialModule,
     CommonModule,
     DashboardModule,
-    DragDropModule,
+    // DragDropModule,
     FlexLayoutModule,
     FlowableModule,
     ReactiveFormsModule,
@@ -84,6 +85,7 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
   entryComponents: [
     SnackBarComponent
   ]
+  // schemas: [ NO_ERRORS_SCHEMA ]
 })
 export class SalesModule {
 
@@ -96,6 +98,19 @@ export class SalesModule {
   }
 
 }
+
+/*
+
+1. If 'dashboard' is an Angular component, then verify that it is part of this module.
+2. To allow any element add 'NO_ERRORS_SCHEMA' to the '@NgModule.schemas' of this component. ("
+<div class="crm-dashboard-container">
+
+  [ERROR ->]<dashboard [dashboardId]="dashboardId"></dashboard>
+
+</div>
+")
+
+*/
 
 /*
 

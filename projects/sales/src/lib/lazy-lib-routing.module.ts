@@ -34,6 +34,18 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always'
   },
 
+  /*
+
+  {
+    path: 'dashboards',
+    loadChildren: './lazy-loading/dashboard-lib-wrapper.module#DashboardLibWrapperModule',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
+  },
+
+  */
+
   {
     path: 'dashboards',
     component: DashboardComponent,
