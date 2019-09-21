@@ -53,66 +53,6 @@ const routes: Routes = [
     ]
   },
 
-  /*
-
-  {
-    path: 'sales',
-    children: [
-      {
-        path: '',
-        loadChildren: './lazy-loading/sales-lib-wrapper.module#SalesLibWrapperModule'
-      },
-      {
-        path: 'library-dashboard',
-        loadChildren: './lazy-loading/dashboard-lib-wrapper.module#DashboardLibWrapperModule'
-      },
-      {
-        path: 'library-dashboard-widgets',
-        loadChildren: './lazy-loading/dashboard-widgets-lib-wrapper.module#DashboardWidgetsLibWrapperModule'
-      },
-      {
-        path: 'library-dynamic-forms',
-        loadChildren: './lazy-loading/dynamic-forms-lib-wrapper.module#DynamicFormsLibWrapperModule'
-      }
-
-    ]
-  },
-
-  {
-    path: 'sales',
-    loadChildren: './lazy-loading/sales-lib-wrapper.module#SalesLibWrapperModule'
-  },
-
-  {
-    path: 'sales',
-    loadChildren: './lazy-loading/sales-lib-wrapper.module#SalesLibWrapperModule',
-    children: [
-      {
-        path: 'library-1',
-        loadChildren: './lazy-loading/dashboard-lib-wrapper.module#DashboardLibWrapperModule'
-      }
-    ]
-  },
-
-  {
-    // path: 'sales/leads',
-    path: 'leads',
-    component: PlaceholderComponent,
-    canActivate: [AuthGuard],
-    runGuardsAndResolvers: 'always'
-  },
-
-  {
-    // path: 'sales/leads',
-    path: 'leads',
-    loadChildren: './lazy-loading/dashboard-lib-wrapper.module#DashboardLibWrapperModule',
-    component: PlaceholderComponent,
-    canActivate: [AuthGuard],
-    runGuardsAndResolvers: 'always'
-  },
-
-  */
-
   {
     // path: 'sales/accounts',
     path: 'accounts',
@@ -163,3 +103,64 @@ export class AppRoutingModule {}
 // https://github.com/tomastrajan/angular-lazy-lib-demo/blob/master/projects/some-app/src/app/app-routing.module.ts
 
 // https://stackoverflow.com/questions/40380726/angular2-router-canactivate-after-logout
+
+
+/*
+
+{
+  path: 'sales',
+  children: [
+    {
+      path: '',
+      loadChildren: './lazy-loading/sales-lib-wrapper.module#SalesLibWrapperModule'
+    },
+    {
+      path: 'library-dashboard',
+      loadChildren: './lazy-loading/dashboard-lib-wrapper.module#DashboardLibWrapperModule'
+    },
+    {
+      path: 'library-dashboard-widgets',
+      loadChildren: './lazy-loading/dashboard-widgets-lib-wrapper.module#DashboardWidgetsLibWrapperModule'
+    },
+    {
+      path: 'library-dynamic-forms',
+      loadChildren: './lazy-loading/dynamic-forms-lib-wrapper.module#DynamicFormsLibWrapperModule'
+    }
+
+  ]
+},
+
+{
+  path: 'sales',
+  loadChildren: './lazy-loading/sales-lib-wrapper.module#SalesLibWrapperModule'
+},
+
+{
+  path: 'sales',
+  loadChildren: './lazy-loading/sales-lib-wrapper.module#SalesLibWrapperModule',
+  children: [
+    {
+      path: 'library-1',
+      loadChildren: './lazy-loading/dashboard-lib-wrapper.module#DashboardLibWrapperModule'
+    }
+  ]
+},
+
+{
+  // path: 'sales/leads',
+  path: 'leads',
+  component: PlaceholderComponent,
+  canActivate: [AuthGuard],
+  runGuardsAndResolvers: 'always'
+},
+
+{
+  // path: 'sales/leads',
+  path: 'leads',
+  loadChildren: './lazy-loading/dashboard-lib-wrapper.module#DashboardLibWrapperModule',
+  component: PlaceholderComponent,
+  canActivate: [AuthGuard],
+  runGuardsAndResolvers: 'always'
+},
+
+*/
