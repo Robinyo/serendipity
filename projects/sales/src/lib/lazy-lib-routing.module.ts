@@ -34,18 +34,6 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always'
   },
 
-  /*
-
-  {
-    path: 'dashboards',
-    loadChildren: './lazy-loading/dashboard-lib-wrapper.module#DashboardLibWrapperModule',
-    component: DashboardComponent,
-    canActivate: [AuthGuard],
-    runGuardsAndResolvers: 'always'
-  },
-
-  */
-
   {
     path: 'dashboards',
     component: DashboardComponent,
@@ -84,3 +72,15 @@ const routes: Routes = [
 export class LazyLibRoutingModule {}
 
 // https://stackoverflow.com/questions/40380726/angular2-router-canactivate-after-logout
+
+/*
+
+{
+  path: 'dashboards',
+  loadChildren: './lazy-loading/dashboard-lib-wrapper.module#DashboardLibWrapperModule',
+  component: DashboardComponent,
+  canActivate: [AuthGuard],
+  runGuardsAndResolvers: 'always'
+},
+
+*/

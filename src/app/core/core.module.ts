@@ -25,16 +25,10 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 import { SerendipityComponentsModule } from 'serendipity-components';
 
 //
-// Dynamic Forms lib
 //
-
-import { DynamicFormsModule } from 'dynamic-forms';
-
+// Lazy Loaded Libs -> app.module.ts
 //
-// Sales lib
 //
-
-// import { SalesModule } from 'sales';
 
 //
 // Utils lib
@@ -63,8 +57,6 @@ import { AngularMaterialModule } from 'utils';
       }
     }),
 
-    DynamicFormsModule.forRoot(environment),
-    // SalesModule,
     UtilsModule.forRoot(environment),
 
     RouterModule  // There is no directive with "exportAs" set to "routerLinkActive ...

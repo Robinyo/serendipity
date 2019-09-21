@@ -11,6 +11,8 @@ import { DynamicFormControlModel } from '../../models/dynamic-form-control.model
 import { DynamicFormModel } from '../../models/dynamic-form.model';
 import { ValidatorModel } from '../../models/validator.model';
 
+import { DynamicFormsModule } from '../../../dynamic-forms.module';
+
 import { LoggerService } from 'utils';
 
 // https://github.com/udos86/ng-dynamic-forms/blob/master/packages/core/src/service/dynamic-form-validation.service.ts
@@ -21,7 +23,8 @@ import { LoggerService } from 'utils';
 export type ValidatorFactory = (args: any) => ValidatorFn;
 
 @Injectable({
-  providedIn: 'root'
+  // providedIn: 'root'
+  providedIn: DynamicFormsModule
 })
 export class DynamicFormService {
 

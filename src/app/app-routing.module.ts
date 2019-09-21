@@ -27,15 +27,72 @@ const routes: Routes = [
   // },
 
   //
-  // Reference the lib wrapper module using a relative path
+  // Reference the lib wrapper modules using a relative path
   //
+
+  {
+    path: 'sales',
+    children: [
+      {
+        path: '',
+        loadChildren: './lazy-loading/sales-lib-wrapper.module#SalesLibWrapperModule'
+      },
+      {
+        path: '',
+        loadChildren: './lazy-loading/dashboard-lib-wrapper.module#DashboardLibWrapperModule'
+      },
+      {
+        path: '',
+        loadChildren: './lazy-loading/dashboard-widgets-lib-wrapper.module#DashboardWidgetsLibWrapperModule'
+      },
+      {
+        path: '',
+        loadChildren: './lazy-loading/dynamic-forms-lib-wrapper.module#DynamicFormsLibWrapperModule'
+      }
+
+    ]
+  },
+
+  /*
+
+  {
+    path: 'sales',
+    children: [
+      {
+        path: '',
+        loadChildren: './lazy-loading/sales-lib-wrapper.module#SalesLibWrapperModule'
+      },
+      {
+        path: 'library-dashboard',
+        loadChildren: './lazy-loading/dashboard-lib-wrapper.module#DashboardLibWrapperModule'
+      },
+      {
+        path: 'library-dashboard-widgets',
+        loadChildren: './lazy-loading/dashboard-widgets-lib-wrapper.module#DashboardWidgetsLibWrapperModule'
+      },
+      {
+        path: 'library-dynamic-forms',
+        loadChildren: './lazy-loading/dynamic-forms-lib-wrapper.module#DynamicFormsLibWrapperModule'
+      }
+
+    ]
+  },
 
   {
     path: 'sales',
     loadChildren: './lazy-loading/sales-lib-wrapper.module#SalesLibWrapperModule'
   },
 
-  /*
+  {
+    path: 'sales',
+    loadChildren: './lazy-loading/sales-lib-wrapper.module#SalesLibWrapperModule',
+    children: [
+      {
+        path: 'library-1',
+        loadChildren: './lazy-loading/dashboard-lib-wrapper.module#DashboardLibWrapperModule'
+      }
+    ]
+  },
 
   {
     // path: 'sales/leads',
@@ -100,6 +157,8 @@ const routes: Routes = [
   ]
 })
 export class AppRoutingModule {}
+
+// https://github.com/angular/angular/issues/10981
 
 // https://github.com/tomastrajan/angular-lazy-lib-demo/blob/master/projects/some-app/src/app/app-routing.module.ts
 
