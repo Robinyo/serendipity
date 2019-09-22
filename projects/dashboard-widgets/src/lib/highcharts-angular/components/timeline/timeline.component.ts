@@ -1,25 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 
-import * as Highcharts from 'highcharts';
+import { normalizeCommonJSImport } from '../../normalizeCommonJSImport';
 
-import timeline from 'highcharts/modules/timeline';
-// timeline(Highcharts);
+// import * as Highcharts from 'highcharts';
+// WebStorm -> tsconfig.lib.json
+const loadHighcharts = normalizeCommonJSImport(
+  import('highcharts'),
+);
+
+// import funnel from 'highcharts/modules/funnel';
+const loadTimeline = normalizeCommonJSImport(
+  import('highcharts/modules/timeline'),
+);
+
+import { LoggerService } from 'utils';
 
 @Component({
   selector: 'widget-timeline',
   template: `
-    <highcharts-chart
-      [Highcharts]="Highcharts"
-      [options]="chartOptions"
-      style="width: 100%; height: calc(100% - 40px); display: inline-block;">
-    </highcharts-chart>
+    <ng-container *ngIf="highcharts">
+      <highcharts-chart
+        [highcharts]="highcharts"
+        [options]="chartOptions"
+        style="width: 100%; height: calc(100% - 40px); display: inline-block;">
+      </highcharts-chart>
+    </ng-container>
   `
 })
 export class TimelineComponent implements OnInit {
 
-  Highcharts: typeof Highcharts = Highcharts;
+  // Highcharts: typeof Highcharts = Highcharts;
+  highcharts: any;
+  timeline: any;
 
-  chartOptions: Highcharts.Options = <any>{
+  // chartOptions: Highcharts.Options = <any>{
+  chartOptions: any = {
 
     chart: {
       type: 'timeline'
@@ -77,10 +92,17 @@ export class TimelineComponent implements OnInit {
 
   };
 
-  constructor() {
+  constructor(private logger: LoggerService) {}
 
-    timeline(this.Highcharts);
+  public async ngOnInit() {
+
+    this.logger.info('TimelineComponent: ngOnInit()');
+
+    this.highcharts = await loadHighcharts;
+
+    this.timeline = await loadTimeline;
+
+    this.timeline(this.highcharts);
   }
 
-  ngOnInit() {}
 }

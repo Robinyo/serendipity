@@ -1,25 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 
-import * as Highcharts from 'highcharts';
+import { normalizeCommonJSImport } from '../../normalizeCommonJSImport';
 
-import funnel from 'highcharts/modules/funnel';
-// funnel(Highcharts);
+// import * as Highcharts from 'highcharts';
+// WebStorm -> tsconfig.lib.json
+const loadHighcharts = normalizeCommonJSImport(
+  import('highcharts'),
+);
+
+// import funnel from 'highcharts/modules/funnel';
+const loadFunnelChart = normalizeCommonJSImport(
+  import('highcharts/modules/funnel'),
+);
+
+import { LoggerService } from 'utils';
 
 @Component({
   selector: 'widget-funnel-chart',
   template: `
-    <highcharts-chart
-      [Highcharts]="Highcharts"
-      [options]="chartOptions"
-      style="width: 100%; height: calc(100% - 40px); display: inline-block;">
-    </highcharts-chart>
+    <ng-container *ngIf="highcharts">
+      <highcharts-chart
+        [highcharts]="highcharts"
+        [options]="chartOptions"
+        style="width: 100%; height: calc(100% - 40px); display: inline-block;">
+      </highcharts-chart>
+    </ng-container>
   `
 })
 export class FunnelChartComponent implements OnInit {
 
-  Highcharts: typeof Highcharts = Highcharts;
+  // Highcharts: typeof Highcharts = Highcharts;
+  highcharts: any;
+  funnelChart: any;
 
-  chartOptions: Highcharts.Options = <any>{
+  // chartOptions: Highcharts.Options = <any>{
+  chartOptions: any = {
 
   chart: {
       type: 'funnel'
@@ -73,12 +88,18 @@ export class FunnelChartComponent implements OnInit {
 
   };
 
-  constructor() {
+  constructor(private logger: LoggerService) {}
 
-    funnel(this.Highcharts);
+  public async ngOnInit() {
+
+    this.logger.info('FunnelChartComponent: ngOnInit()');
+
+    this.highcharts = await loadHighcharts;
+
+    this.funnelChart = await loadFunnelChart;
+
+    this.funnelChart(this.highcharts);
   }
-
-  ngOnInit() {}
 
 }
 

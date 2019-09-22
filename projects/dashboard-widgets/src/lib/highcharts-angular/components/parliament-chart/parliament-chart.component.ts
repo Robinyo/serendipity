@@ -1,25 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 
-import * as Highcharts from 'highcharts';
+import { normalizeCommonJSImport } from '../../normalizeCommonJSImport';
 
-import item from 'highcharts/modules/item-series';
-// item(Highcharts);
+// import * as Highcharts from 'highcharts';
+// WebStorm -> tsconfig.lib.json
+const loadHighcharts = normalizeCommonJSImport(
+  import('highcharts'),
+);
+
+// import item from 'highcharts/modules/item-series';
+const loadItemSeries = normalizeCommonJSImport(
+  import('highcharts/modules/item-series'),
+);
+
+import { LoggerService } from 'utils';
 
 @Component({
   selector: 'widget-parliament-chart',
   template: `
-    <highcharts-chart
-      [Highcharts]="Highcharts"
-      [options]="chartOptions"
-      style="width: 100%; height: calc(100% - 40px); display: inline-block;">
-    </highcharts-chart>
+    <ng-container *ngIf="highcharts">
+      <highcharts-chart
+        [highcharts]="highcharts"
+        [options]="chartOptions"
+        style="width: 100%; height: calc(100% - 40px); display: inline-block;">
+      </highcharts-chart>
+    </ng-container>
   `
 })
 export class ParliamentChartComponent implements OnInit {
 
-  Highcharts: typeof Highcharts = Highcharts;
+  // Highcharts: typeof Highcharts = Highcharts;
+  highcharts: any;
+  itemSeries: any;
 
-  chartOptions: Highcharts.Options = <any>{
+  // chartOptions: Highcharts.Options = <any>{
+  chartOptions: any = {
 
     chart: {
       type: 'item'
@@ -63,10 +78,17 @@ export class ParliamentChartComponent implements OnInit {
 
   };
 
-  constructor() {
+  constructor(private logger: LoggerService) {}
 
-    item(this.Highcharts);
+  public async ngOnInit() {
+
+    this.logger.info('ParliamentChartComponent: ngOnInit()');
+
+    this.highcharts = await loadHighcharts;
+
+    this.itemSeries = await loadItemSeries;
+
+    this.itemSeries(this.highcharts);
   }
 
-  ngOnInit() {}
 }

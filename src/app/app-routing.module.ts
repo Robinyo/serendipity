@@ -36,20 +36,7 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: './lazy-loading/sales-lib-wrapper.module#SalesLibWrapperModule'
-      },
-      {
-        path: '',
-        loadChildren: './lazy-loading/dashboard-lib-wrapper.module#DashboardLibWrapperModule'
-      },
-      {
-        path: '',
-        loadChildren: './lazy-loading/dashboard-widgets-lib-wrapper.module#DashboardWidgetsLibWrapperModule'
-      },
-      {
-        path: '',
-        loadChildren: './lazy-loading/dynamic-forms-lib-wrapper.module#DynamicFormsLibWrapperModule'
       }
-
     ]
   },
 
@@ -104,6 +91,74 @@ export class AppRoutingModule {}
 
 // https://stackoverflow.com/questions/40380726/angular2-router-canactivate-after-logout
 
+/*
+{
+  path: '',
+  loadChildren: './lazy-loading/dashboard-widgets-lib-wrapper.module#DashboardWidgetsLibWrapperModule'
+},
+{
+  path: '',
+  loadChildren: './lazy-loading/dashboard-lib-wrapper.module#DashboardLibWrapperModule'
+},
+*/
+
+/*
+
+  {
+    path: 'sales',
+    children: [
+      {
+        path: '',
+        loadChildren: './lazy-loading/flowable-lib-wrapper.module#FlowableLibWrapperModule'
+      },
+      {
+        path: '',
+        loadChildren: './lazy-loading/dashboard-widgets-lib-wrapper.module#DashboardWidgetsLibWrapperModule'
+      },
+      {
+        path: '',
+        loadChildren: './lazy-loading/dashboard-lib-wrapper.module#DashboardLibWrapperModule'
+      },
+      {
+        path: '',
+        loadChildren: './lazy-loading/sales-lib-wrapper.module#SalesLibWrapperModule'
+      }
+    ]
+  },
+
+*/
+
+/*
+
+      {
+        path: '',
+        loadChildren: './lazy-loading/highcharts-lib-wrapper.module#HighchartsLibWrapperModule'
+      },
+
+  {
+    path: 'sales',
+    children: [
+      {
+        path: '',
+        loadChildren: './lazy-loading/sales-lib-wrapper.module#SalesLibWrapperModule'
+      },
+      {
+        path: '',
+        loadChildren: './lazy-loading/dashboard-lib-wrapper.module#DashboardLibWrapperModule'
+      },
+      {
+        path: '',
+        loadChildren: './lazy-loading/dashboard-widgets-lib-wrapper.module#DashboardWidgetsLibWrapperModule'
+      },
+      {
+        path: '',
+        loadChildren: './lazy-loading/dynamic-forms-lib-wrapper.module#DynamicFormsLibWrapperModule'
+      }
+
+    ]
+  },
+
+*/
 
 /*
 

@@ -1,23 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 
-import * as Highcharts from 'highcharts';
+import { normalizeCommonJSImport } from '../../normalizeCommonJSImport';
+
+// import * as Highcharts from 'highcharts';
+// WebStorm -> tsconfig.lib.json
+const loadHighcharts = normalizeCommonJSImport(
+  import('highcharts'),
+);
+
+import { LoggerService } from 'utils';
 
 @Component({
   selector: 'widget-pie-chart',
   template: `
-    <highcharts-chart
-      [Highcharts]="Highcharts"
-      [options]="chartOptions"
-      style="width: 100%; height: calc(100% - 40px); display: inline-block;">
-    </highcharts-chart>
+    <ng-container *ngIf="highcharts">
+      <highcharts-chart
+        [highcharts]="highcharts"
+        [options]="chartOptions"
+        style="width: 100%; height: calc(100% - 40px); display: inline-block;">
+      </highcharts-chart>
+    </ng-container>
   `,
   styles: []
 })
 export class PieChartComponent implements OnInit {
 
-  Highcharts: typeof Highcharts = Highcharts;
+  // Highcharts: typeof Highcharts = Highcharts;
+  highcharts: any;
 
-  chartOptions: Highcharts.Options = <any>{
+  // chartOptions: Highcharts.Options = <any>{
+  chartOptions: any = {
 
     chart: {
       plotBackgroundColor: null,
@@ -80,8 +92,14 @@ export class PieChartComponent implements OnInit {
 
   };
 
-  constructor() {}
+  constructor(private logger: LoggerService) {}
 
-  ngOnInit() {}
+  public async ngOnInit() {
+
+    this.logger.info('PieChartComponent: ngOnInit()');
+
+    this.highcharts = await loadHighcharts;
+
+  }
 
 }
