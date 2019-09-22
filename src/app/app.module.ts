@@ -28,7 +28,7 @@ import { LoggerService, loggerProviders } from 'utils';
 //
 //
 
-// import { DynamicFormsModule } from 'dynamic-forms';
+import { DynamicFormsModule } from 'dynamic-forms';
 // import { SalesModule } from 'sales';
 
 //
@@ -44,7 +44,7 @@ import { AppRoutingModule } from './app-routing.module';
     // Auth0AuthModule.forRoot(environment),
     // OktaAuthModule.forRoot(environment),
     CoreModule,
-    // DynamicFormsModule.forRoot(environment),
+    DynamicFormsModule.forRoot(environment),
     // SalesModule,
     AppRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
