@@ -147,5 +147,6 @@ You can customise and extend Serendipity using Angular, Angular libraries and Se
 * Rob Ferguson's blog: [Flowable's REST API - Part 3](https://robferguson.org/blog/2019/01/03/flowable-rest-api-part-3/)
 * Rob Ferguson's blog: [Dashboards and Dashboard Widgets - Part 1](https://robferguson.org/blog/2019/06/22/dashboards-and-dashboard-widgets-part-1/)
 * Rob Ferguson's blog: [Lazy Loading Angular Libraries](https://robferguson.org/blog/2019/09/12/lazy-loading-angular-libraries/)
+* Rob Ferguson's blog: [Dynamically Importing Highcharts](https://robferguson.org/blog/2019/09/23/dynamically-importing-highcharts/)
 
 ![divider](./divider.png)
