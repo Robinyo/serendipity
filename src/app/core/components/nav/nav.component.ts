@@ -4,12 +4,16 @@ import { MatSidenav } from '@angular/material';
 
 import { Subscription } from 'rxjs';
 
+import { TranslateService } from '@ngx-translate/core';
+
 import { AuthService } from 'auth';
 // import { AuthOktaService } from 'auth-okta';
 // import { Auth0AuthService } from 'auth-auth0';
 
 import { SidenavService } from 'serendipity-components';
 import { MockDashboardService, ToolPaletteItem } from 'dashboard';
+
+
 
 import { LoggerService } from 'utils';
 
@@ -71,6 +75,7 @@ export class NavComponent implements OnInit, OnDestroy {
               private commandBarSidenavService: SidenavService,
               private dashboardService: MockDashboardService,
               private authService: AuthService,
+              private translate: TranslateService,
               private logger: LoggerService) {}
 
   public ngOnInit(): void {
@@ -78,6 +83,34 @@ export class NavComponent implements OnInit, OnDestroy {
     this.logger.info('NavComponent: ngOnInit()');
 
     this.commandBarSidenavService.setSidenav(this.sidenav);
+
+    // myWorkRoutes
+
+    this.translate.get('ACTIVITIES_HEADER').subscribe(value => {
+      this.myWorkRoutes[0].title = value;
+    });
+
+    this.translate.get('DASHBOARDS_HEADER').subscribe(value => {
+      this.myWorkRoutes[1].title = value;
+    });
+
+    // customerRoutes
+
+    this.translate.get('ACCOUNTS_HEADER').subscribe(value => {
+      this.customerRoutes[0].title = value;
+    });
+
+    this.translate.get('CONTACTS_HEADER').subscribe(value => {
+      this.customerRoutes[1].title = value;
+    });
+
+    this.translate.get('LEADS_HEADER').subscribe(value => {
+      this.customerRoutes[2].title = value;
+    });
+
+    this.translate.get('OPPORTUNITIES_HEADER').subscribe(value => {
+      this.customerRoutes[3].title = value;
+    });
 
     this.subscribe();
   }

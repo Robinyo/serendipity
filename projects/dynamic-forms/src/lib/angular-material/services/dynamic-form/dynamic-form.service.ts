@@ -36,8 +36,7 @@ export class DynamicFormService {
               private httpClient: HttpClient,
               private logger: LoggerService) {
 
-    // this.url = this.url + this.config.defaultLanguage + '/';
-    this.uriPrefix = this.uriPrefix + this.config.defaultLanguage.split('-')[0] + '/';
+    // this.uriPrefix = this.uriPrefix + this.config.defaultLanguage.split('-')[0] + '/';
 
     this.logger.info('DynamicFormService: uriPrefrix: ' + this.uriPrefix);
   }

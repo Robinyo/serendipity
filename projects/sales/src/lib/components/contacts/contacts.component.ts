@@ -42,7 +42,7 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
     {
       // name: 'displayName',
       name: 'party.displayName',
-      displayName: 'FULL NAME',
+      displayName: 'FULL NAME',  // VOLLSTÄNDIGER NAME -> FULL NAME
       class: 'anchor'
     },
     {
@@ -52,12 +52,12 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
     },
     {
       name: 'organisation.name',
-      displayName: 'COMPANY NAME',
+      displayName: 'COMPANY NAME',  // NAME DER FIRMA -> COMPANY NAME
       class: 'anchor'
     },
     {
       name: 'organisation.phoneNumber',
-      displayName: 'BUSINESS PHONE',
+      displayName: 'BUSINESS PHONE',  // GESCHÄFTSTELEFON -> BUSINESS PHONE
       class: ''
     }
   ];
