@@ -1,0 +1,24 @@
+[
+
+  {
+    "name": "party.displayName",
+    "displayName": "FULL_NAME",
+    "class": "anchor"
+  },
+  {
+    "name": "email",
+    "displayName": "EMAIL",
+    "class": ""
+  },
+  {
+    "name":  "organisation.name",
+    "displayName": "COMPANY_NAME",
+    "class": "anchor"
+  },
+  {
+    "name":  "organisation.phoneNumber",
+    "displayName": "BUSINESS_PHONE",
+    "class": ""
+  }
+
+]

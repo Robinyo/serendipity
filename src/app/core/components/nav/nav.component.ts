@@ -13,7 +13,7 @@ import { MockDashboardService, ToolPaletteItem } from 'dashboard';
 
 import { ConfigService, LoggerService } from 'utils';
 
-interface ROUTE {
+interface SideNavRoute {
   icon?: string;
   route?: string;
   title?: string;
@@ -30,8 +30,8 @@ export class NavComponent implements OnInit, OnDestroy {
   @ViewChild('commandbarSidenav', {static: true})
   public sidenav: MatSidenav;
 
-  public myWorkRoutes: ROUTE[];
-  public customerRoutes: ROUTE[];
+  public myWorkRoutes: SideNavRoute[];
+  public customerRoutes: SideNavRoute[];
 
   public toolPaletteItems: ToolPaletteItem[];
 
@@ -57,7 +57,7 @@ export class NavComponent implements OnInit, OnDestroy {
 
   async loadNavListItems() {
 
-    this.myWorkRoutes = await this.configService.getNavListMetadata('my-work-routes');
+    this.myWorkRoutes = await this.configService.get('my-work-routes');
 
     this.myWorkRoutes.forEach(route => {
 
@@ -67,7 +67,7 @@ export class NavComponent implements OnInit, OnDestroy {
 
     });
 
-    this.customerRoutes = await this.configService.getNavListMetadata('customer-routes');
+    this.customerRoutes = await this.configService.get('customer-routes');
 
     this.customerRoutes.forEach(route => {
 

@@ -6,14 +6,14 @@
             [disabled]="!isDirty() || !isValid()"
             (click)="onSave()">
       <mat-icon>save</mat-icon>
-      SAVE
+      {{ 'SAVE' | translate }}
     </button>
 
     <button mat-button class="crm-command-bar-button"
             [disabled]="!isDirty() || !isValid()"
             (click)="onSaveAndClose()">
       <mat-icon>arrow_back</mat-icon>
-      SAVE & CLOSE
+      {{ 'SAVE_AND_CLOSE' | translate }}
     </button>
   </ng-container>
 

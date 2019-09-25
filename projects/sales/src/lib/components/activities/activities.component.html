@@ -2,12 +2,12 @@
 
   <button mat-button class="crm-command-bar-button" [disabled]="true">
     <mat-icon>add</mat-icon>
-    NEW
+    {{ 'NEW' | translate }}
   </button>
 
   <button mat-button class="crm-command-bar-button" (click)="onRefresh()">
     <mat-icon>refresh</mat-icon>
-    REFRESH
+    {{ 'REFRESH' | translate }}
   </button>
 
 </crm-command-bar>

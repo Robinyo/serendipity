@@ -6,6 +6,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { Subscription} from 'rxjs';
 
+import { TranslateService } from '@ngx-translate/core';
+
 import { ContactsService } from '../../services/contacts/contacts.service';
 import { ColumnDef } from '../../models/column';
 import { Contact } from '../../models/contact';
@@ -18,6 +20,8 @@ import {
   CONTACT_COLUMNS_MOBILE,
   MAT_XSMALL
 } from '../../models/constants';
+
+import { ConfigService } from 'utils';
 
 import { SidenavService } from 'serendipity-components';
 
@@ -38,29 +42,7 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
   public alphabet = ALPHABET;
 
-  public columnDefs: ColumnDef[] = [
-    {
-      // name: 'displayName',
-      name: 'party.displayName',
-      displayName: 'FULL NAME',  // VOLLSTÄNDIGER NAME -> FULL NAME
-      class: 'anchor'
-    },
-    {
-      name: 'email',
-      displayName: 'EMAIL',
-      class: ''
-    },
-    {
-      name: 'organisation.name',
-      displayName: 'COMPANY NAME',  // NAME DER FIRMA -> COMPANY NAME
-      class: 'anchor'
-    },
-    {
-      name: 'organisation.phoneNumber',
-      displayName: 'BUSINESS PHONE',  // GESCHÄFTSTELEFON -> BUSINESS PHONE
-      class: ''
-    }
-  ];
+  public columnDefs: ColumnDef[];
 
   public selectedFooterItemId = 'All';
 
@@ -68,7 +50,9 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
   constructor(private router: Router,
               private breakpointObserver: BreakpointObserver,
+              private configService: ConfigService,
               private contactsService: ContactsService,
+              private translate: TranslateService,
               private commandBarSidenavService: SidenavService) {
 
     super();
@@ -87,6 +71,8 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
     } else {
       this.displayedColumns = CONTACT_COLUMNS_DESKTOP;
     }
+
+    this.loadColumnDefs();
 
   }
 
@@ -107,6 +93,20 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
       }
 
     });
+  }
+
+  async loadColumnDefs() {
+
+    this.columnDefs = await this.configService.get('contacts-column-defs');
+
+    this.columnDefs.forEach(column => {
+
+      this.translate.get(column.displayName).subscribe(value => {
+        column.displayName = value;
+      });
+
+    });
+
   }
 
   // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding

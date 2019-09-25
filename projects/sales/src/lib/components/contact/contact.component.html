@@ -6,21 +6,21 @@
         [disabled]="!isDirty() || !isValid()"
         (click)="onSave()">
       <mat-icon>save</mat-icon>
-      SAVE
+      {{ 'SAVE' | translate }}
     </button>
 
     <button mat-button class="crm-command-bar-button"
         [disabled]="!isDirty() || !isValid()"
         (click)="onSaveAndClose()">
       <mat-icon>arrow_back</mat-icon>
-      SAVE & CLOSE
+      {{ 'SAVE_AND_CLOSE' | translate }}
     </button>
 
   </ng-container>
 
   <button mat-button class="crm-command-bar-button" (click)="onNew()">
     <mat-icon>add</mat-icon>
-    NEW
+    {{ 'NEW' | translate }}
   </button>
 
   <!--
@@ -33,12 +33,12 @@
   <button mat-button class="crm-command-bar-button"
     (click)="onDeactivate()">
     <mat-icon>visibility_off</mat-icon>
-    DEACTIVATE
+    {{ 'DEACTIVATE' | translate }}
   </button>
 
   <button mat-button class="crm-command-bar-button" [disabled]="true">
     <mat-icon>link</mat-icon>
-    EMAIL A LINK
+    {{ 'EMAIL_A_LINK' | translate }}
   </button>
 
   <div fxFlex fxLayout fxLayoutAlign="flex-end">
