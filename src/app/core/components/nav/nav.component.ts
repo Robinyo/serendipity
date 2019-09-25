@@ -7,8 +7,6 @@ import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from 'auth';
-// import { AuthOktaService } from 'auth-okta';
-// import { Auth0AuthService } from 'auth-auth0';
 
 import { SidenavService } from 'serendipity-components';
 import { MockDashboardService, ToolPaletteItem } from 'dashboard';
