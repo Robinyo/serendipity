@@ -1,0 +1,23 @@
+[
+
+  {
+    "icon":  "contacts",
+    "route": "accounts",
+    "title": "ACCOUNTS"
+  },
+  {
+    "icon":  "people",
+    "route": "sales/contacts",
+    "title": "CONTACTS"
+  },
+  {
+    "icon":  "settings_phone",
+    "route": "leads",
+    "title": "LEADS"
+  },
+  {
+    "icon":  "account_box",
+    "route": "opportunities",
+    "title": "OPPORTUNITIES"
+  }
+]

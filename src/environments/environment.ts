@@ -7,8 +7,8 @@ import { Environment } from './models';
 export const environment: Environment = {
 
   production: false,
-  
-  defaultLanguage: 'en-GB',
+
+  defaultLanguage: 'en-gb', // // 'en-gb', 'de-ch'
 
   isDebugMode: true,
 

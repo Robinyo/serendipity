@@ -87,8 +87,8 @@ export class CoreModule {
 }
 
 // AoT requires an exported function for factories
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
 }
 
 // https://stackoverflow.com/questions/50860898/angular-6-services-providedin-root-vs-coremodule

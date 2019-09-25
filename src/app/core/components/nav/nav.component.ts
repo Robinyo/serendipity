@@ -13,9 +13,7 @@ import { AuthService } from 'auth';
 import { SidenavService } from 'serendipity-components';
 import { MockDashboardService, ToolPaletteItem } from 'dashboard';
 
-
-
-import { LoggerService } from 'utils';
+import { ConfigService, LoggerService } from 'utils';
 
 interface ROUTE {
   icon?: string;
@@ -34,47 +32,17 @@ export class NavComponent implements OnInit, OnDestroy {
   @ViewChild('commandbarSidenav', {static: true})
   public sidenav: MatSidenav;
 
-  myWorkRoutes: ROUTE[] = [
-    {
-      icon: 'assignment',
-      route: 'sales/activities',
-      title: 'Activities',
-    }, {
-      icon: 'dashboard',
-      route: 'sales/dashboards',
-      title: 'Dashboards',
-    }
-  ];
-
-  customerRoutes: ROUTE[] = [
-    {
-      icon: 'contacts',
-      route: 'accounts',        // sales/accounts
-      title: 'Accounts',
-    }, {
-      icon: 'people',
-      route: 'sales/contacts',
-      title: 'Contacts',
-    }, {
-      icon: 'settings_phone',
-      route: 'leads',           // sales/leads
-      title: 'Leads',
-    }, {
-      icon: 'account_box',
-      route: 'opportunities',   // sales/opportunities
-      title: 'Opportunities',
-    }
-  ];
+  public myWorkRoutes: ROUTE[];
+  public customerRoutes: ROUTE[];
 
   public toolPaletteItems: ToolPaletteItem[];
 
   protected subscription: Subscription;
 
-  constructor(// private elementRef: ElementRef,
-              // private renderer: Renderer2,
-              private commandBarSidenavService: SidenavService,
+  constructor(private commandBarSidenavService: SidenavService,
               private dashboardService: MockDashboardService,
               private authService: AuthService,
+              private configService: ConfigService,
               private translate: TranslateService,
               private logger: LoggerService) {}
 
@@ -84,35 +52,33 @@ export class NavComponent implements OnInit, OnDestroy {
 
     this.commandBarSidenavService.setSidenav(this.sidenav);
 
-    // myWorkRoutes
-
-    this.translate.get('ACTIVITIES_HEADER').subscribe(value => {
-      this.myWorkRoutes[0].title = value;
-    });
-
-    this.translate.get('DASHBOARDS_HEADER').subscribe(value => {
-      this.myWorkRoutes[1].title = value;
-    });
-
-    // customerRoutes
-
-    this.translate.get('ACCOUNTS_HEADER').subscribe(value => {
-      this.customerRoutes[0].title = value;
-    });
-
-    this.translate.get('CONTACTS_HEADER').subscribe(value => {
-      this.customerRoutes[1].title = value;
-    });
-
-    this.translate.get('LEADS_HEADER').subscribe(value => {
-      this.customerRoutes[2].title = value;
-    });
-
-    this.translate.get('OPPORTUNITIES_HEADER').subscribe(value => {
-      this.customerRoutes[3].title = value;
-    });
+    this.loadNavListItems();
 
     this.subscribe();
+  }
+
+  async loadNavListItems() {
+
+    this.myWorkRoutes = await this.configService.getNavListMetadata('my-work-routes');
+
+    this.myWorkRoutes.forEach(route => {
+
+      this.translate.get(route.title).subscribe(value => {
+        route.title = value;
+      });
+
+    });
+
+    this.customerRoutes = await this.configService.getNavListMetadata('customer-routes');
+
+    this.customerRoutes.forEach(route => {
+
+      this.translate.get(route.title).subscribe(value => {
+        route.title = value;
+      });
+
+    });
+
   }
 
   protected subscribe() {

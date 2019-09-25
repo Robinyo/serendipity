@@ -8,7 +8,7 @@ export const environment: Environment = {
 
   production: true,
 
-  defaultLanguage: 'en-GB',
+  defaultLanguage: 'en-gb', // // 'en-gb', 'de-ch'
 
   isDebugMode: false,
 
