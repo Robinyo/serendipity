@@ -18,6 +18,7 @@
 - **Contemporary UI** thanks to Angular [Material](https://material.angular.io/)
 - **Dashboards and Dashboard Widgets** thanks to Angular [Gridster 2](https://github.com/tiberiuzuld/angular-gridster2) and [Highcharts](https://github.com/highcharts/highcharts-angular) Angular
 - **Dynamic Forms** (take a look at the Dynamic Forms [documentation](https://github.com/Robinyo/serendipity/tree/master/projects/dynamic-forms))
+- **Internationalization** thanks to [@ngx-translate](https://github.com/ngx-translate/core)
 
 ![divider](./divider.png)
 
@@ -46,6 +47,12 @@ Use TypeScript, Node.js, Express and TypeORM to build a [RESTful API](https://gi
 ![divider](./divider.png)
 
 ## ❯ Screen Shots
+
+Auf Deutsch:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/dashboard-de.png">
+</p>
 
 Local Auth Login ([auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library):
 
