@@ -72,7 +72,7 @@ export class CoreModule {
 
     this.logger.info('Core Module initialised');
 
-    // 'en-GB' -> 'en'
+    // 'en-gb' -> 'en'
     const defaultLanguage = environment.defaultLanguage.split('-')[0];
 
     this.logger.info('Default Language: ' + defaultLanguage);
