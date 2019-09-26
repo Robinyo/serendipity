@@ -89,3 +89,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 }
 
+/*
+
+    this.authService.loginWithEmailAndPassword(this.formGroup.controls['username'].value,
+      this.formGroup.controls['password'].value);
+
+*/

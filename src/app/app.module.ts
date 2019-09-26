@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { CoreModule } from './core/core.module';
@@ -21,6 +22,9 @@ import { LocalAuthModule, authProviders } from 'auth-local';
 //
 
 import { LoggerService, loggerProviders } from 'utils';
+
+import { GlobalErrorHandler } from './error-handler';
+import { HttpErrorInterceptor } from './core/http-interceptors/error-interceptor';
 
 //
 //
@@ -52,7 +56,16 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [
     loggerProviders,
     authProviders,
-    angularMaterialProviders
+    angularMaterialProviders,
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [ AppComponent ]
 })
