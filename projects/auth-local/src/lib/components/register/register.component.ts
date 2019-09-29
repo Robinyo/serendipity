@@ -77,26 +77,20 @@ export class RegisterComponent  implements OnInit, OnDestroy {
 
   public onSubmit() {
 
-    const user: User = new User(
-      this.formGroup.controls['username'].value,
-      this.formGroup.controls['password'].value,
-      this.formGroup.controls['givenName'].value,
-      this.formGroup.controls['familyName'].value
-    );
+    // <dynamic-form (keyup.enter)="onSubmit()" ... >
 
-    this.authService.createUserWithEmailAndPassword(user);
+    if (this.isValid()) {
+
+      const user: User = new User(
+        this.formGroup.controls['username'].value,
+        this.formGroup.controls['password'].value,
+        this.formGroup.controls['givenName'].value,
+        this.formGroup.controls['familyName'].value
+      );
+
+      this.authService.createUserWithEmailAndPassword(user);
+    }
+
   }
 
 }
-
-/*
-
-  public async onSubmit() {
-
-    // const user: User = new User();
-
-    // this.authService.createUserWithEmailAndPassword(user);
-  }
-
-*/
-

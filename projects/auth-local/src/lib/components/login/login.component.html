@@ -10,14 +10,24 @@
 
       <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
 
-      <dynamic-form autocomplete="off"
+      <dynamic-form (keyup.enter)="onSubmit()"
+                    autocomplete="off"
                     [className]="'nested-grid-container'"
                     [formGroup]="formGroup"
                     [model]="formModel">
       </dynamic-form>
 
       <mat-card-actions class="sign-in-card-actions" fxLayoutAlign="flex-end">
-        <button mat-raised-button color="accent" [disabled]="!isValid()" (click)="onSubmit()"> {{ loginButton }} </button>
+
+        <!-- type="submit" only works if the button is part of the <dynamic-form> -->
+
+        <button mat-raised-button
+                color="accent"
+                [disabled]="!isValid()"
+                (click)="onSubmit()">
+          {{ loginButton }}
+        </button>
+
       </mat-card-actions>
 
       <mat-divider class="sign-in-card-divider"></mat-divider>

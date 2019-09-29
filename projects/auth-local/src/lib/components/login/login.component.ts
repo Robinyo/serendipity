@@ -78,8 +78,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public onSubmit() {
 
-    this.authService.loginWithEmailAndPassword(this.formGroup.controls['username'].value,
-      this.formGroup.controls['password'].value);
+    // <dynamic-form (keyup.enter)="onSubmit()" ... >
+
+    if (this.isValid()) {
+
+      this.authService.loginWithEmailAndPassword(this.formGroup.controls['username'].value,
+        this.formGroup.controls['password'].value);
+    }
+
   }
 
   public onRegister() {
