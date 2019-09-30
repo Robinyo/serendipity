@@ -86,9 +86,15 @@ export class OktaAuthService extends Auth {
     this.accessToken = await this._getAccessToken();
   }
 
-  public createUserWithEmailAndPassword(user: User) {}
+  public createUserWithEmailAndPassword(user: User): Promise<any> {
 
-  public loginWithEmailAndPassword(username: string, password: string) {}
+    return Promise.reject('AuthService: createUserWithEmailAndPassword()');
+  }
+
+  public loginWithEmailAndPassword(username: string, password: string): Promise<any> {
+
+    return Promise.reject('AuthService: loginWithEmailAndPassword()');
+  }
 
   public loginWithRedirect() {
 

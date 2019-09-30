@@ -14,6 +14,6 @@ export class GlobalErrorHandler implements ErrorHandler {
 
     this.logger.info('GlobalErrorHandler: handleError()');
 
-    this.logger.error(error);
+    // this.logger.error(error);
   }
 }

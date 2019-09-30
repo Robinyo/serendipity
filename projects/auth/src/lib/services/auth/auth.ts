@@ -9,9 +9,8 @@ export abstract class Auth {
 
   public abstract getAccessToken(): string;
 
-  public abstract createUserWithEmailAndPassword(user: User);
-
-  public abstract loginWithEmailAndPassword(email: string, password: string);
+  public abstract createUserWithEmailAndPassword(user: User): Promise<any>;
+  public abstract loginWithEmailAndPassword(email: string, password: string): Promise<any>;
 
   public abstract loginWithRedirect();
 

@@ -86,7 +86,10 @@ export class RegisterComponent  implements OnInit, OnDestroy {
         this.formGroup.controls['familyName'].value
       );
 
-      this.authService.createUserWithEmailAndPassword(user);
+      this.authService.createUserWithEmailAndPassword(user).catch(error => {
+
+        window.alert(error.message);
+      });
     }
 
   }

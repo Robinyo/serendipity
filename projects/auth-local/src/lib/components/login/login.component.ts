@@ -80,7 +80,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (this.isValid()) {
 
       this.authService.loginWithEmailAndPassword(this.formGroup.controls['username'].value,
-        this.formGroup.controls['password'].value);
+        this.formGroup.controls['password'].value).catch(error => {
+
+          window.alert(error.message);
+      });
+
     }
 
   }
@@ -94,7 +98,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 /*
 
-    this.authService.loginWithEmailAndPassword(this.formGroup.controls['username'].value,
-      this.formGroup.controls['password'].value);
+          // "error": {
+          //   "code": 400,
+          //   "message": "Invalid argument",
+          //   "status": "INVALID_ARGUMENT"
+          // }
 
 */
