@@ -2,11 +2,11 @@
 
   <mat-card class="sign-in-card">
 
-    <h1>Serendipity CRM</h1>
+    <h1> {{ 'APP_NAME' | translate }} </h1>
 
     <mat-card-content *ngIf="formGroup">
 
-      <h2>Create account</h2>
+      <h2> {{ 'REGISTER_LABEL' | translate }} </h2>
 
       <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
 
@@ -25,7 +25,7 @@
                 color="accent"
                 [disabled]="!isValid()"
                 (click)="onSubmit()">
-          {{ registerButton }}
+          {{ 'REGISTER_BUTTON' | translate }}
         </button>
 
       </mat-card-actions>

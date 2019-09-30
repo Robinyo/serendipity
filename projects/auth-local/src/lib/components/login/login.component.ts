@@ -17,9 +17,6 @@ const LOGIN_FORM = 'username-password-form';
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-  public loginButton = 'SIGN IN';
-  public registerButton = 'Sign up';
-
   public formGroup: FormGroup;
   public formModel: DynamicFormModel;
 

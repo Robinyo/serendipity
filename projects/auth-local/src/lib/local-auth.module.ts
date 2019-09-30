@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { TranslateModule } from '@ngx-translate/core';
 
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+
+//
+// Serendipity Components lib
+//
+
+// import { SerendipityComponentsModule } from 'serendipity-components';
 
 //
 // Dynamic Forms lib
@@ -31,6 +38,8 @@ import { LibRoutingModule } from './lib-routing.module';
     CommonModule,
     DynamicFormsModule,
     FlexLayoutModule,
+    // SerendipityComponentsModule
+    TranslateModule.forChild(),
     UtilsModule,
 
     LibRoutingModule  // https://angular.io/guide/router#routing-module-order

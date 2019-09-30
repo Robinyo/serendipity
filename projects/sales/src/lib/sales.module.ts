@@ -1,12 +1,10 @@
-// import { Injector, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Injector, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { TranslateModule } from '@ngx-translate/core';
-
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AccountsComponent } from './components/accounts/accounts.component';
 import { ActivitiesComponent } from './components/activities/activities.component';
@@ -85,7 +83,6 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
   entryComponents: [
     SnackBarComponent
   ]
-  // schemas: [ NO_ERRORS_SCHEMA ]
 })
 export class SalesModule {
 

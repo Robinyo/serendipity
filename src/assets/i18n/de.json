@@ -1,5 +1,14 @@
 {
+  "APP_NAME": "Serendipity CRM",
   "APP_TOOLBAR_TITLE": "Serendipity CRM",
+
+  "LOGIN_BUTTON": "EINLOGGEN",
+  "LOGIN_LABEL": "Anmelden",
+  "DONT_HAVE_AN_ACCOUNT_LABEL": "Sie haben noch keinen Account?",
+  "SIGN_UP_BUTTON": "Anmelden",
+
+  "REGISTER_BUTTON": "REGISTRIEREN",
+  "REGISTER_LABEL": "Konto erstellen",
 
   "MY_WORK": "Meine Arbeit",
   "CUSTOMERS": "Kunden",

@@ -2,11 +2,11 @@
 
   <mat-card class="sign-in-card">
 
-    <h1>Serendipity CRM</h1>
+    <h1> {{ 'APP_NAME' | translate }} </h1>
 
     <mat-card-content *ngIf="formGroup">
 
-      <h2>Sign in</h2>
+      <h2> {{ 'LOGIN_LABEL' | translate }} </h2>
 
       <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
 
@@ -25,7 +25,7 @@
                 color="accent"
                 [disabled]="!isValid()"
                 (click)="onSubmit()">
-          {{ loginButton }}
+          {{ 'LOGIN_BUTTON' | translate }}
         </button>
 
       </mat-card-actions>
@@ -35,11 +35,19 @@
     </mat-card-content>
 
     <mat-card-footer class="sign-in-card-footer" fxLayoutAlign="center center">
-      Don't have an Account?&nbsp;
-      <a [routerLink]="" (click)="onRegister()"> {{ registerButton }} </a>
+      {{ 'DONT_HAVE_AN_ACCOUNT_LABEL' | translate }}&nbsp;
+      <a [routerLink]="" (click)="onRegister()"> {{ 'SIGN_UP_BUTTON' | translate }} </a>
     </mat-card-footer>
 
   </mat-card>
 
 </div>
 
+<!--
+
+    <mat-card-footer class="sign-in-card-footer" fxLayoutAlign="center center">
+      Don't have an Account?&nbsp;
+      <a [routerLink]="" (click)="onRegister()"> {{ registerButton }} </a>
+    </mat-card-footer>
+
+-->

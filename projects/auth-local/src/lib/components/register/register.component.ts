@@ -17,8 +17,6 @@ const REGISTER_FORM = 'register-form';
 })
 export class RegisterComponent  implements OnInit, OnDestroy {
 
-  public registerButton = 'REGISTER';
-
   public formGroup: FormGroup;
   public formModel: DynamicFormModel;
 
