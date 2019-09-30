@@ -161,7 +161,6 @@ export class LocalAuthService extends Auth {
     return this.httpOptions;
   }
 
-
 }
 
 // https://blog.angularindepth.com/expecting-the-unexpected-best-practices-for-error-handling-in-angular-21c3662ef9e4
