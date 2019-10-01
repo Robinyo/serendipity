@@ -32,8 +32,10 @@ $custom-typography: mat-typography-config(
 // https://material.io/design/color/the-color-system.html
 // https://github.com/angular/material2/blob/master/src/lib/core/theming/_palette.scss
 
-@import "./mat-variables";
-@import "./variables";
+// @import "./mat-variables";
+// @import "./variables";
+@import "../../projects/utils/src/lib/angular-material/mat-variables";
+@import "../../projects/utils/src/lib/angular-material/variables";
 @import "./palette";
 
 $primary: mat-palette($mat-black, 900);

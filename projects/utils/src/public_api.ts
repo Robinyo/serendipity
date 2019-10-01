@@ -17,5 +17,5 @@ export * from './lib/utils.module';
 // Angular Material module
 //
 
-export * from './lib/angular-material.module';
+export * from './lib/angular-material/angular-material.module';
 

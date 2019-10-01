@@ -1,5 +1,7 @@
-@import "../../themes/mat-variables";
-@import "../../themes/variables";
+// @import "../../themes/mat-variables";
+// @import "../../themes/variables";
+@import "../../../../../../projects/utils/src/lib/angular-material/mat-variables";
+@import "../../../../../../projects/utils/src/lib/angular-material/variables";
 
 .crm-activity-bar-row {
   height: $crm-activity-bar-height-desktop !important;

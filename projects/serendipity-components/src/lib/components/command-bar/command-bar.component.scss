@@ -1,5 +1,7 @@
-@import "../../themes/mat-variables";
-@import "../../themes/variables";
+// @import "../../themes/mat-variables";
+// @import "../../themes/variables";
+@import "../../../../../../projects/utils/src/lib/angular-material/mat-variables";
+@import "../../../../../../projects/utils/src/lib/angular-material/variables";
 
 .crm-command-bar-row {
   height: $crm-command-bar-height-desktop !important;
