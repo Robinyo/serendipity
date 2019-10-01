@@ -88,7 +88,12 @@ export class RegisterComponent  implements OnInit, OnDestroy {
 
       this.authService.createUserWithEmailAndPassword(user).catch(error => {
 
-        window.alert(error.message);
+        if (error.details.message) {
+          window.alert(error.details.message);
+        } else {
+          window.alert(error.message);
+        }
+
       });
     }
 
