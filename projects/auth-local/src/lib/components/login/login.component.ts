@@ -85,7 +85,11 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.authService.loginWithEmailAndPassword(this.formGroup.controls['username'].value,
         this.formGroup.controls['password'].value).catch(error => {
 
-        const message = error.details.message ? error.details.message : error.message;
+        let message = error.message;
+
+        if (error.details) {
+          message = error.details.message;
+        }
 
         this.dialogService.openAlert({
           title: 'Alert',
@@ -107,6 +111,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 }
 
 /*
+
+        let message = error.message;
+
+        if (error.details) {
+          message = error.details.message ? error.details.message : error.message;
+        }
 
           if (error.details.message) {
             window.alert(error.details.message);

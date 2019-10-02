@@ -91,7 +91,11 @@ export class RegisterComponent  implements OnInit, OnDestroy {
 
       this.authService.createUserWithEmailAndPassword(user).catch(error => {
 
-        const message = error.details.message ? error.details.message : error.message;
+        let message = error.message;
+
+        if (error.details) {
+          message = error.details.message;
+        }
 
         this.dialogService.openAlert({
           title: 'Alert',
@@ -107,6 +111,8 @@ export class RegisterComponent  implements OnInit, OnDestroy {
 }
 
 /*
+
+        // const message = error.details.message ? error.details.message : error.message;
 
         if (error.details.message) {
           window.alert(error.details.message);

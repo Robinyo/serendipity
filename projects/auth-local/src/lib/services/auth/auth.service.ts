@@ -94,6 +94,10 @@ export class LocalAuthService extends Auth {
 
     })).toPromise().catch(error => {
 
+      if (error === undefined) {
+        error = new Error('Connection refused');
+      }
+
       throw error;
 
     });
@@ -121,6 +125,10 @@ export class LocalAuthService extends Auth {
         this.router.navigate(['/']);
 
       })).toPromise().catch(error => {
+
+        if (error === undefined) {
+          error = new Error('Connection refused');
+        }
 
       throw error;
 
