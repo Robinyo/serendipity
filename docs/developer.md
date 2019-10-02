@@ -124,10 +124,10 @@ cd serendipity
 npm install
 
 ng build utils && \
+ng build serendipity-components && \
 ng build auth && \
 ng build auth-auth0 && \
 ng build auth-okta && \
-ng build serendipity-components && \
 ng build dashboard-widgets && \
 ng build dashboard && \
 ng build dynamic-forms && \
@@ -168,10 +168,10 @@ To build the project:
 
 ```
 ng build utils && \
+ng build serendipity-components && \
 ng build auth && \
 ng build auth-auth0 && \
 ng build auth-okta && \
-ng build serendipity-components && \
 ng build dashboard-widgets && \
 ng build dashboard && \
 ng build dynamic-forms && \
@@ -206,10 +206,10 @@ To build the project:
 
 ```
 ng build utils && \
+ng build serendipity-components && \
 ng build auth && \
 ng build auth-auth0 && \
 ng build auth-okta && \
-ng build serendipity-components && \
 ng build dashboard-widgets && \
 ng build dashboard && \
 ng build dynamic-forms && \

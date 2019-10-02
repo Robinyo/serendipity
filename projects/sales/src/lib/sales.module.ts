@@ -15,6 +15,14 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 
 //
+// Utils lib
+//
+
+import { UtilsModule, LoggerService } from 'utils';
+import { AngularMaterialModule } from 'utils';
+import { StaticInjectorService } from 'utils';
+
+//
 // Serendipity Components lib
 //
 
@@ -37,14 +45,6 @@ import { DynamicFormsModule } from 'dynamic-forms';
 //
 
 import { FlowableModule } from 'flowable';
-
-//
-// Utils lib
-//
-
-import { UtilsModule, LoggerService } from 'utils';
-import { AngularMaterialModule } from 'utils';
-import { StaticInjectorService } from 'utils';
 
 //
 // LibRoutingModule: https://angular.io/guide/router#routing-module-order

@@ -8,23 +8,23 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 
 //
+// Utils lib
+//
+
+import { UtilsModule, LoggerService } from 'utils';
+import { AngularMaterialModule } from 'utils';
+
+//
 // Serendipity Components lib
 //
 
-// import { SerendipityComponentsModule } from 'serendipity-components';
+import { SerendipityComponentsModule } from 'serendipity-components';
 
 //
 // Dynamic Forms lib
 //
 
 import { DynamicFormsModule } from 'dynamic-forms';
-
-//
-// Utils lib
-//
-
-import { UtilsModule, LoggerService } from 'utils';
-import { AngularMaterialModule } from 'utils';
 
 //
 // LibRoutingModule: https://angular.io/guide/router#routing-module-order
@@ -38,7 +38,7 @@ import { LibRoutingModule } from './lib-routing.module';
     CommonModule,
     DynamicFormsModule,
     FlexLayoutModule,
-    // SerendipityComponentsModule
+    SerendipityComponentsModule,
     TranslateModule.forChild(),
     UtilsModule,
 

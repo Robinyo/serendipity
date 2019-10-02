@@ -6,9 +6,11 @@ import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
 import { AuthService } from 'auth';
 
-import { LoggerService } from 'utils';
+import { LOGIN_FORM } from '../../constants/form-ids';
 
-const LOGIN_FORM = 'username-password-form';
+import { DialogService } from 'serendipity-components';
+
+import { LoggerService } from 'utils';
 
 @Component({
   selector: 'auth-local-login',
@@ -22,10 +24,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private returnUrl: string;
 
-  constructor(private authService: AuthService,
-              private dynamicFormService: DynamicFormService,
-              private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
               private router: Router,
+              private authService: AuthService,
+              private dialogService: DialogService,
+              private dynamicFormService: DynamicFormService,
               private logger: LoggerService) {}
 
   public ngOnInit() {
@@ -82,11 +85,13 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.authService.loginWithEmailAndPassword(this.formGroup.controls['username'].value,
         this.formGroup.controls['password'].value).catch(error => {
 
-          if (error.details.message) {
-            window.alert(error.details.message);
-          } else {
-            window.alert(error.message);
-          }
+        const message = error.details.message ? error.details.message : error.message;
+
+        this.dialogService.openAlert({
+          title: 'Alert',
+          message: message,
+          closeButton: 'CLOSE'
+        });
 
       });
 
@@ -100,3 +105,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
 }
+
+/*
+
+          if (error.details.message) {
+            window.alert(error.details.message);
+          } else {
+            window.alert(error.message);
+          }
+
+
+*/
