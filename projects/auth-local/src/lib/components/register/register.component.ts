@@ -109,15 +109,3 @@ export class RegisterComponent  implements OnInit, OnDestroy {
   }
 
 }
-
-/*
-
-        // const message = error.details.message ? error.details.message : error.message;
-
-        if (error.details.message) {
-          window.alert(error.details.message);
-        } else {
-          window.alert(error.message);
-        }
-
-*/

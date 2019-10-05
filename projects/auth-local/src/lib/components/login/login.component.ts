@@ -109,20 +109,3 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
 }
-
-/*
-
-        let message = error.message;
-
-        if (error.details) {
-          message = error.details.message ? error.details.message : error.message;
-        }
-
-          if (error.details.message) {
-            window.alert(error.details.message);
-          } else {
-            window.alert(error.message);
-          }
-
-
-*/
