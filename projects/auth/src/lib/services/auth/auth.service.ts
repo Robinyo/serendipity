@@ -26,6 +26,10 @@ export class AuthService extends Auth {
     return this.accessToken;
   }
 
+  public getIdToken(): string {
+    return this.idToken;
+  }
+
   public createUserWithEmailAndPassword(user: User): Promise<any> {
 
     return Promise.reject('AuthService: createUserWithEmailAndPassword()');

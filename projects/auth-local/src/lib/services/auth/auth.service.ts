@@ -45,34 +45,20 @@ export class LocalAuthService extends Auth {
   }
 
   public isAuthenticated(): boolean {
-
-    this.logger.info('LocalAuthService isAuthenticated(): ' + this.authenticated);
-
     return this.authenticated;
   }
 
   public getAccessToken(): string {
-
-    this.logger.info('LocalAuthService: getAccessToken()');
-
     return this.accessToken;
+  }
+
+  public getIdToken(): string {
+    return this.idToken;
   }
 
   public async setAccessToken() {
 
     this.logger.info('LocalAuthService: setAccessToken()');
-  }
-
-  public getUser() {
-
-    try {
-
-      return this.userSubject.value;
-
-    } catch (error) {
-      return undefined;
-    }
-
   }
 
   public createUserWithEmailAndPassword(user: User): Promise<any> {
@@ -138,6 +124,24 @@ export class LocalAuthService extends Auth {
 
   public loginWithRedirect() {}
   public async handleRedirectCallback(): Promise<void> {}
+
+  // TODO -> See: collection.service.ts
+
+  public getUser() {
+
+    try {
+
+      return this.userSubject.value;
+
+    } catch (error) {
+      return undefined;
+    }
+
+  }
+
+  // public login() {
+  //   return;
+  // }
 
   public logout(returnUrl: string) {
 

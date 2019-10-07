@@ -110,20 +110,25 @@ export class Auth0AuthService extends Auth {
   }
 
   public isAuthenticated(): boolean {
-
-    this.logger.info('Auth0AuthService isAuthenticated(): ' + this.authenticated);
-
     return this.authenticated;
+  }
+
+  public getAccessToken(): string {
+    return this.accessToken;
+  }
+
+  public getIdToken(): string {
+    return this.idToken;
   }
 
   public createUserWithEmailAndPassword(user: User): Promise<any> {
 
-    return Promise.reject('AuthService: createUserWithEmailAndPassword()');
+    return Promise.reject('Auth0AuthService: createUserWithEmailAndPassword()');
   }
 
   public loginWithEmailAndPassword(username: string, password: string): Promise<any> {
 
-    return Promise.reject('AuthService: loginWithEmailAndPassword()');
+    return Promise.reject('Auth0AuthService: loginWithEmailAndPassword()');
   }
 
   public loginWithRedirect() {
@@ -159,13 +164,6 @@ export class Auth0AuthService extends Auth {
     return this.user;
   }
 
-  public getAccessToken(): string {
-
-    this.logger.info('Auth0AuthService: getAccessToken()');
-
-    return this.accessToken;
-  }
-
   public async setAccessToken() {
 
     this.logger.info('Auth0AuthService: setAccessToken()');
@@ -190,8 +188,6 @@ export class Auth0AuthService extends Auth {
     });
 
   }
-
-
 
   // TODO -> See: collection.service.ts
 

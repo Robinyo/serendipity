@@ -66,17 +66,15 @@ export class OktaAuthService extends Auth {
   }
 
   public isAuthenticated(): boolean {
-
-    this.logger.info('OktaAuthService isAuthenticated(): ' + this.authenticated);
-
     return this.authenticated;
   }
 
   public getAccessToken(): string {
-
-    this.logger.info('OktaAuthService: getAccessToken()');
-
     return this.accessToken;
+  }
+
+  public getIdToken(): string {
+    return this.idToken;
   }
 
   public async setAccessToken() {
@@ -141,15 +139,6 @@ export class OktaAuthService extends Auth {
      this.router.navigate(['/']);
   }
 
-  public logout(returnUrl: string) {
-
-    this.logger.info('OktaAuthService: logout()');
-
-    this.logger.info('returnUrl: ' + returnUrl);
-
-    this._logout(returnUrl);
-  }
-
   // TODO -> See: collection.service.ts
 
   public getUser() {
@@ -161,6 +150,19 @@ export class OktaAuthService extends Auth {
 
     return;
   }
+
+  public logout(returnUrl: string) {
+
+    this.logger.info('OktaAuthService: logout()');
+
+    this.logger.info('returnUrl: ' + returnUrl);
+
+    this._logout(returnUrl);
+  }
+
+  //
+  // Private methods
+  //
 
   private async _getIdToken(): Promise<string | undefined> {
 
