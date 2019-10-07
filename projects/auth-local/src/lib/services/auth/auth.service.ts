@@ -63,9 +63,13 @@ export class LocalAuthService extends Auth {
 
   public createUserWithEmailAndPassword(user: User): Promise<any> {
 
-    return this.httpClient.post<any>(this.registerUrl, user, this.getHttpOptions()).pipe(tap((token) => {
+    return this.httpClient.post<any>(this.registerUrl, user, this.getHttpOptions()).pipe(
 
-        this.accessToken = token;
+      tap((tokens) => {
+
+        // this.accessToken = token;
+        this.accessToken = tokens.access_token;
+        this.idToken = tokens.id_token;
 
         this.logger.info('LocalAuthService: createUserWithEmailAndPassword() completed');
 
@@ -96,13 +100,15 @@ export class LocalAuthService extends Auth {
 
     return this.httpClient.post<any>(this.loginUrl, user, this.getHttpOptions()).pipe(
 
-      tap((token) => {
+      tap((tokens) => {
 
-        this.accessToken = token;
+        // this.accessToken = token;
+        this.accessToken = tokens.access_token;
+        this.idToken = tokens.id_token;
 
         this.logger.info('LocalAuthService: loginWithEmailAndPassword() completed');
 
-        this.logger.info('token:' + JSON.stringify(token, null, 2));
+        this.logger.info('tokens:' + JSON.stringify(tokens, null, 2));
 
         this.userSubject.next(user);
 
