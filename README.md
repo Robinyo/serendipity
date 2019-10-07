@@ -142,7 +142,9 @@ You can customise and extend Serendipity using Angular, Angular libraries and Se
 
 ![divider](./divider.png)
 
-## ❯ Resources 
+## ❯ Resources
+
+### Blog Posts
 
 * Rob Ferguson's blog: [Getting started with Angular Material](https://robferguson.org/blog/2018/11/05/getting-started-with-angular-material/)
 * Rob Ferguson's blog: [Angular Material: toolbar and sidenav](https://robferguson.org/blog/2018/11/10/angular-material-toolbar-and-sidenav/)
@@ -155,5 +157,30 @@ You can customise and extend Serendipity using Angular, Angular libraries and Se
 * Rob Ferguson's blog: [Dashboards and Dashboard Widgets - Part 1](https://robferguson.org/blog/2019/06/22/dashboards-and-dashboard-widgets-part-1/)
 * Rob Ferguson's blog: [Lazy Loading Angular Libraries](https://robferguson.org/blog/2019/09/12/lazy-loading-angular-libraries/)
 * Rob Ferguson's blog: [Dynamically Importing Highcharts](https://robferguson.org/blog/2019/09/23/dynamically-importing-highcharts/)
+
+### Digital Identity Resources
+
+* dta.gov.au: [The Trusted Digital Identity Framework](https://www.dta.gov.au/our-projects/digital-identity/trusted-digital-identity-framework)
+* dta.gov.au: [OpenID Connect 1.0 Profile](https://www.dta.gov.au/our-projects/digital-identity/trusted-digital-identity-framework/framework-documents#openid-connect-1-0-profile)
+* dta.gov.au: [Gatekeeper Public Key Infrastructure Framework](https://www.dta.gov.au/our-projects/digital-identity/gatekeeper-public-key-infrastructure-framework)
+
+### REST API Resources
+
+* GitHub: [RESTful API Design Guidelines](https://github.com/Robinyo/restful-api-design-guidelines)
+* JSON API: [A Specficiation for Building API's in JSON](https://jsonapi.org/)
+
+### OpenAPI Resources
+
+* Swagger.io: [What Is OpenAPI?](https://swagger.io/docs/specification/about/)
+
+### Schema Resources
+
+* Schema.org: [A collaborative, community activity with a mission to create schemas for structured data](https://swagger.io/docs/specification/about/)
+* JSON-LD: [JSON for Linking Data](https://json-ld.org)
+
+### Sample Data
+
+* Wikipedia: [List of political parties in Australia](https://en.wikipedia.org/wiki/List_of_political_parties_in_Australia)
+* Australian Parliament: [Mail Labels for Australian Senators](https://www.aph.gov.au/Senators_and_Members/Guidelines_for_Contacting_Senators_and_Members/Address_labels_and_CSV_files)
 
 ![divider](./divider.png)
