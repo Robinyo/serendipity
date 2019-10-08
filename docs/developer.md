@@ -488,20 +488,25 @@ To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Lang
 ## Resources 
 
 ### Auth0 Auth Libraries
+
 * GitHub: [Auth0 Authentication for Single Page Applications with PKCE](https://github.com/auth0/auth0-spa-js)
 
 ### Okta Auth Libraries
+
 * GitHub: [Okta Auth JavaScript SDK](https://github.com/okta/okta-auth-js)
 
 ### Auth Resources
+
 * Internet Engineering Task Force: [OAuth 2.0 for Browser-Based Apps](https://datatracker.ietf.org/doc/draft-ietf-oauth-browser-based-apps/)
 * Internet Engineering Task Force: [OAuth 2.0 Security Best Current Practice](https://datatracker.ietf.org/doc/draft-ietf-oauth-security-topics/)
 
 ### Additional Auth Resources
+
 * Auth0's blog: [The Auth0 SPA JS SDK](https://auth0.com/blog/introducing-auth0-single-page-apps-spa-js-sdk/)
 * Okta's blog: [Is the OAuth 2.0 Implicit Flow Dead?](https://developer.okta.com/blog/2019/05/01/is-the-oauth-implicit-flow-dead)
 
 ### Authorisation Servers
+
 * GitHub: [Keycloak - Open Source Identity and Access Management](https://www.keycloak.org/)
 
 ### Angular Resources
@@ -545,7 +550,7 @@ To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Lang
 * GitHub: [json-server](https://github.com/typicode/json-server)
 * GitHub: [Hotel - A simple process manager for developers](https://github.com/typicode/hotel)
 
-### Service Workers
+### Font Resources
 
 * Chris Aston: [How to preload Google Fonts using resource hints](https://ashton.codes/preload-google-fonts-using-resource-hints/)
 * GitHub: [A Hassle-Free Way to Self-Host Google Fonts](https://google-webfonts-helper.herokuapp.com/fonts)

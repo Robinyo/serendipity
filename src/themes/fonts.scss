@@ -1,0 +1,28 @@
+// https://google-webfonts-helper.herokuapp.com/fonts/open-sans?subsets=latin
+
+//
+// Modern Browsers
+//
+
+/* open-sans-300 - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'),
+  url('assets/fonts/open-sans-v17-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('assets/fonts/open-sans-v17-latin-300.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/*
+
+<!--
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+<link rel="preload" href="https://fonts.gstatic.com/s/materialicons/v48/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN_r8OUuhpKKSTjw.woff2" as="font" type="font/woff2" crossorigin>
+-->
+
+*/
+
+// @import url('https://fonts.googleapis.com/css?family=Open+Sans:300');
