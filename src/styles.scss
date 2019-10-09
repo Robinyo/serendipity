@@ -1,4 +1,524 @@
-// https://material.angular.io/guide/theming
-// https://material.angular.io/guide/theming-your-components
+/* You can add global styles to this file, and also import other style files */
 
+// @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import "./themes/black-deep-orange.theme";
+
+// top, right, bottom, and left
+
+.mat-vertical-content {
+  padding: 24px 24px 24px 24px !important;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  margin: 0;
+  // font-family: Roboto, "Helvetica Neue", sans-serif;
+  // font-family: RobotoDraft, "Helvetica Neue", sans-serif;
+  font-family: 'Open Sans', sans-serif;
+}
+
+// auth-local - login, register
+
+.mat-drawer-container {
+
+  @media ($mat-xsmall) {
+    background-color: white;
+  }
+
+}
+
+/*
+
+.mat-drawer-content {
+  overflow: hidden !important;
+}
+
+*/
+
+#app-content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+}
+
+// TODO
+
+.list-item-active {
+  font-weight: bold;
+  color: mat-color($light-theme-accent, darker) !important;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.crm-navigation-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 998;
+}
+
+.crm-command-bar {
+  position: fixed;
+  top: $mat-toolbar-height-desktop;
+  left: 0;
+  right: 0;
+  z-index: 997;
+  height: $crm-command-bar-height-desktop !important;
+  min-height: $crm-command-bar-height-desktop !important;
+
+  @media ($mat-xsmall) {
+    top: $mat-toolbar-height-mobile;
+    height: $crm-command-bar-height-mobile !important;
+    min-height: $crm-command-bar-height-mobile !important;
+  }
+
+  background-color: #f5f5f5;
+
+}
+
+// $command-bar-sidenav-width: 240px;  // menu item layout
+$command-bar-sidenav-width: 160px; // card layout
+
+.crm-command-bar-sidenav {
+  margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
+  width: $command-bar-sidenav-width !important;
+
+  @media ($mat-xsmall) {
+    margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile;
+  }
+}
+
+.crm-activity-bar {
+  height: $crm-activity-bar-height-desktop !important;
+  min-height: $crm-activity-bar-height-desktop !important;
+
+  margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
+
+  @media ($mat-xsmall) {
+    height: $crm-activity-bar-height-mobile !important;
+    min-height: $crm-activity-bar-height-mobile !important;
+
+    margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile;
+  }
+
+  background-color: transparent;
+
+}
+
+//
+// https://material.angular.io/guide/customizing-component-styles
+//
+
+/*
+
+::ng-deep .mat-menu-content {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+::ng-deep .mat-menu-item {
+  line-height: 40px !important;
+  height: 40px !important;
+}
+
+*/
+
+.crm-spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
+  // 64 + 56 + 96
+  height: calc(100vh - 216px);
+  width: 100%;
+
+  @media ($mat-xsmall) {
+    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
+    // 56 + 0 + 84
+    height: calc(100vh - 140px);
+  }
+
+}
+
+.crm-component-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: $crm-view-bar-height-desktop;
+  min-height: $crm-view-bar-height-desktop;
+
+  margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
+
+  @media ($mat-xsmall) {
+    height: $crm-view-bar-height-mobile;
+    min-height: $crm-view-bar-height-mobile;
+
+    margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile;
+  }
+
+}
+
+.crm-component-title {
+  // margin-top: $crm-component-title-margin;
+  // margin-bottom: $crm-component-title-margin;
+  // vertical-align: middle;
+  // padding-top: 12px;
+  margin: 0;
+  // text-align: center;
+}
+
+/*
+.crm-content-container {
+  height: 100%;
+}
+*/
+
+.crm-content-container {
+  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
+  // 64 + 56 + 96
+  height: calc(100vh - 216px);
+  width: 100%;
+
+  @media ($mat-xsmall) {
+    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
+    // 56 + 0 + 84
+    height: calc(100vh - 140px);
+  }
+
+  // background-color: black;
+}
+
+$table-margin-desktop: 32px;
+$table-margin-mobile: 0;
+
+.crm-table-container {
+  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
+  // 64 + 56 + 96 + 32
+  height: calc(100vh - 248px);
+
+  margin-left: $table-margin-desktop;
+  margin-right: $table-margin-desktop;
+  overflow: auto;
+
+  // margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
+
+  @media ($mat-xsmall) {
+    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
+    // 56 + 0 + 84 + 0
+    height: calc(100vh - 140px);
+
+    margin-left: $table-margin-mobile;
+    margin-right: $table-margin-mobile;
+  }
+
+  // background-color: black;
+}
+
+.crm-table {
+  width: 100%;
+}
+
+.crm-dashboard-container {
+  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
+  // 64 + 56 + 96
+  height: calc(100vh - 216px);
+  width: 100%;
+
+  @media ($mat-xsmall) {
+    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
+    // 56 + 0 + 84
+    height: calc(100vh - 140px);
+  }
+}
+
+:fullscreen .crm-navigation-bar {
+  display: none;
+}
+
+:fullscreen .crm-command-bar {
+  display: none;
+}
+
+:fullscreen .crm-activity-bar {
+  display: none;
+}
+
+:fullscreen .crm-component-title-container {
+  margin-top: 0;
+}
+
+:fullscreen .crm-dashboard-container {
+  // $crm-view-bar-height-desktop
+  height: calc(100vh - 96px);
+}
+
+
+$task-list-width: 320px; // 240px;
+
+.crm-activities-container {
+  display: grid;
+  grid-template-columns: $task-list-width auto;
+  // grid-template-rows: 100%; deprecated
+  // grid-template-rows: auto;
+  // grid-template-rows: minmax(250px, auto);
+  column-gap: 32px;
+  // row-gap: 1em;
+
+  margin-top: 0;
+  margin-left: 32px;
+  margin-bottom: 32px;
+  margin-right: 32px;
+
+  // overflow: auto;
+  // overflow: hidden;
+}
+
+.crm-task-list-container {
+  // background: white;
+  border: 1px solid lightgray;
+}
+
+.crm-task-container {
+  background: white;
+  border: 1px solid lightgray;
+  padding-top: 0;
+  margin-top: 0;
+  // background: whitesmoke;
+
+  // padding-left: 32px;
+  // padding-right: 32px;
+
+  // overflow: auto;
+
+  // height: 100%;
+  // height: calc(100vh - ($mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-component-title-margin));
+  // height: calc(100vh - 64 + 56 + 16);
+
+  // height: 100vh;
+  // height: calc(100vh - 64px + 56px + 16px);
+  // height: calc(100vh - 96px);
+  // height: calc(100vh - 128px);
+
+  // height: 400px;
+  height: calc(100vh - 256px);
+
+  @media ($mat-xsmall) {
+    height: calc(100vh - 200px);
+  }
+
+}
+
+.crm-task-list-icon {
+  // margin: 0 12px 0 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.crm-grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 32px;
+  row-gap: 1em;
+
+  margin-top: 0;
+  margin-left: 32px;
+  margin-bottom: 32px;
+  margin-right: 32px;
+}
+
+.crm-snack-bar {
+  // background: #00b862;
+  text-align: center;
+}
+
+//
+// Dynamic Reactive Forms
+//
+
+.crm-prefix-icon {
+  cursor: pointer;
+}
+
+.crm-suffix-icon {
+  cursor: pointer;
+}
+
+.crm-nested-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 16px;
+  row-gap: 1em;
+}
+
+.grid-column-1 {
+  grid-column: 1;
+}
+
+.grid-column-1-span-2 {
+  grid-column: 1 / span 2;
+}
+
+.grid-column-2 {
+  grid-column: 2;
+}
+
+.grid-column-2-span-2 {
+  grid-column: 2 / span 2;
+  // min-width: 180px;
+}
+
+.grid-column-3 {
+  grid-column: 3;
+}
+
+.grid-column-4 {
+  grid-column: 4;
+}
+
+.grid-row-2 {
+  grid-row: 2;
+}
+
+//
+// Library elements
+//
+
+/*
+
+.lib-component-title {
+
+  margin-top: $mat-toolbar-height-desktop + $crm-component-title-margin;
+
+  @media ($mat-xsmall) {
+    margin-top: $mat-toolbar-height-mobile + $crm-component-title-margin;
+  }
+
+  margin-bottom: $crm-component-title-margin;
+  text-align: center;
+}
+
+*/
+
+.lib-component-title {
+
+  margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-component-title-margin;
+
+  @media ($mat-xsmall) {
+    margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-component-title-margin;
+  }
+
+  margin-bottom: $crm-component-title-margin;
+  text-align: center;
+}
+
+.mat-header-row {
+  // background-color: mat-color($light-theme-accent, 300);
+  background-color: #f5f5f5;
+}
+
+.mat-footer-row {
+  // background-color: mat-color($light-theme-accent, 300);
+  background-color: #f5f5f5;
+}
+
+a:active {
+  font-weight: bold;
+  color: mat-color($light-theme-accent, darker) !important;
+  // color: blue;
+}
+
+.active {
+  font-weight: bold;
+  color: mat-color($light-theme-accent, darker) !important;
+  // color: blue;
+}
+
+.anchor {
+  // font-weight: bold;
+  color: #488aff;
+  cursor: pointer;
+}
+
+/*
+
+.mat-drawer-container {
+  top: $mat-toolbar-height-desktop;
+
+  @media ($mat-xsmall) {
+    top: $mat-toolbar-height-mobile;
+  }
+}
+
+.mat-sidenav-content {
+  top: $mat-toolbar-height-desktop;
+
+  @media ($mat-xsmall) {
+    top: $mat-toolbar-height-mobile;
+  }
+}
+
+*/
+
+/*
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+#mainContainer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+}
+
+.mat-subheader {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+*/
+
+/*
+
+.mat-header-row {
+  // background-color: mat-color($accent, 300);
+  background-color: #f5f5f5;
+}
+
+.mat-footer-row {
+  // background-color: mat-color($accent, 300);
+  background-color: #f5f5f5;
+}
+
+a:active {
+  font-weight: bold;
+  color: mat-color($accent, darker) !important;
+  // color: blue;
+}
+
+.active {
+  font-weight: bold;
+  color: mat-color($accent, darker) !important;
+  // color: blue;
+}
+
+.anchor {
+  // font-weight: bold;
+  color: #488aff;
+  cursor: pointer;
+}
+
+*/
