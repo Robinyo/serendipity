@@ -50,6 +50,22 @@ $light-theme: mat-light-theme($light-theme-primary, $light-theme-accent, $light-
 $foreground: map-get($light-theme, foreground);
 $background: map-get($light-theme, background);
 
+// top, right, bottom, and left
+
+.mat-vertical-content {
+  padding: 24px 24px 24px 24px !important;
+}
+
+// auth-local - login, register
+
+.mat-drawer-container {
+
+  @media ($mat-xsmall) {
+    background-color: white;
+  }
+
+}
+
 // https://material.angular.io/guide/theming
 // https://github.com/angular/components/blob/master/guides/theming.md
 
@@ -58,3 +74,6 @@ $background: map-get($light-theme, background);
 
 // https://material.angular.io/guide/typography
 // https://github.com/Teradata/covalent/blob/develop/src/theme.scss
+
+// https://blog.thoughtram.io/angular/2017/05/23/custom-themes-with-angular-material.html
+// https://ultimatecourses.com/blog/the-missing-guide-to-angular-material

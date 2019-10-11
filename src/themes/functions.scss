@@ -1,0 +1,19 @@
+document.documentElement.style.setProperty('--vh', `${window.innerHeight/100}px`);
+
+/*
+
+.fullheight {
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+*/
+
+@function vh($quantity) {
+  @return calc(var(--vh, 1vh) * #{$quantity});
+}
+
+.fullheight {
+  height: vh(100);
+}
+
+// https://chanind.github.io/javascript/2019/09/28/avoid-100vh-on-mobile-web.html

@@ -1,13 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
 // @import '~@angular/material/prebuilt-themes/indigo-pink.css';
-@import "./themes/black-deep-orange.theme";
+@import "./themes/light-theme";
 
-// top, right, bottom, and left
-
-.mat-vertical-content {
-  padding: 24px 24px 24px 24px !important;
-}
+// width: 100vw;
+// height: 100vh;
 
 html, body {
   height: 100%;
@@ -19,24 +16,6 @@ body {
   // font-family: RobotoDraft, "Helvetica Neue", sans-serif;
   font-family: 'Open Sans', sans-serif;
 }
-
-// auth-local - login, register
-
-.mat-drawer-container {
-
-  @media ($mat-xsmall) {
-    background-color: white;
-  }
-
-}
-
-/*
-
-.mat-drawer-content {
-  overflow: hidden !important;
-}
-
-*/
 
 #app-content {
   position: absolute;
