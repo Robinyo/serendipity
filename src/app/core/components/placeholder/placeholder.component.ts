@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  // tslint:disable-next-line:component-selector
-  selector: 'app-placeholder',
+  selector: 'crm-placeholder',
   templateUrl: './placeholder.component.html',
   styleUrls: ['./placeholder.component.scss']
 })

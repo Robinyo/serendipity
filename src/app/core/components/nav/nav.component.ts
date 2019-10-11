@@ -20,8 +20,7 @@ interface SideNavRoute {
 }
 
 @Component({
-  // tslint:disable-next-line:component-selector
-  selector: 'app-nav',
+  selector: 'crm-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })

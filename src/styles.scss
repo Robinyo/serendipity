@@ -20,21 +20,19 @@
 @import "../projects/utils/src/lib/angular-material/mat-variables";
 @import "../projects/utils/src/lib/angular-material/variables";
 
-@import './themes/light-theme/palette';
-
 // width: 100vw;
 // height: 100vh;
 
 html, body {
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
 }
 body {
   margin: 0;
-  // font-family: Roboto, "Helvetica Neue", sans-serif;
-  // font-family: RobotoDraft, "Helvetica Neue", sans-serif;
   font-family: 'Open Sans', sans-serif;
 }
+
+// The Nav Component hosts the Sidenav container and the Sidenav content area (i.e., the router-outlet).
 
 #app-content {
   position: absolute;
@@ -42,16 +40,12 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
+  // width: 100vw;
+  // height: 100vh;
   overflow: auto;
 }
 
-// TODO
-
-.list-item-active {
-  font-weight: bold;
-  color: mat-color($light-theme-accent, darker) !important;
-  background: rgba(0, 0, 0, 0.04);
-}
+// ------------------------------------------------------------------------------------------------------------------ //
 
 .crm-navigation-bar {
   position: fixed;
@@ -390,22 +384,6 @@ $task-list-width: 320px; // 240px;
 // Library elements
 //
 
-/*
-
-.lib-component-title {
-
-  margin-top: $mat-toolbar-height-desktop + $crm-component-title-margin;
-
-  @media ($mat-xsmall) {
-    margin-top: $mat-toolbar-height-mobile + $crm-component-title-margin;
-  }
-
-  margin-bottom: $crm-component-title-margin;
-  text-align: center;
-}
-
-*/
-
 .lib-component-title {
 
   margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-component-title-margin;
@@ -418,105 +396,8 @@ $task-list-width: 320px; // 240px;
   text-align: center;
 }
 
-.mat-header-row {
-  // background-color: mat-color($light-theme-accent, 300);
-  background-color: #f5f5f5;
-}
-
-.mat-footer-row {
-  // background-color: mat-color($light-theme-accent, 300);
-  background-color: #f5f5f5;
-}
-
-a:active {
-  font-weight: bold;
-  color: mat-color($light-theme-accent, darker) !important;
-  // color: blue;
-}
-
-.active {
-  font-weight: bold;
-  color: mat-color($light-theme-accent, darker) !important;
-  // color: blue;
-}
-
 .anchor {
   // font-weight: bold;
   color: #488aff;
   cursor: pointer;
 }
-
-/*
-
-.mat-drawer-container {
-  top: $mat-toolbar-height-desktop;
-
-  @media ($mat-xsmall) {
-    top: $mat-toolbar-height-mobile;
-  }
-}
-
-.mat-sidenav-content {
-  top: $mat-toolbar-height-desktop;
-
-  @media ($mat-xsmall) {
-    top: $mat-toolbar-height-mobile;
-  }
-}
-
-*/
-
-/*
-
-html, body {
-    height: 100%;
-    overflow: hidden;
-}
-
-#mainContainer {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    overflow: auto;
-}
-
-.mat-subheader {
-  font-size: 18px;
-  font-weight: 900;
-}
-
-*/
-
-/*
-
-.mat-header-row {
-  // background-color: mat-color($accent, 300);
-  background-color: #f5f5f5;
-}
-
-.mat-footer-row {
-  // background-color: mat-color($accent, 300);
-  background-color: #f5f5f5;
-}
-
-a:active {
-  font-weight: bold;
-  color: mat-color($accent, darker) !important;
-  // color: blue;
-}
-
-.active {
-  font-weight: bold;
-  color: mat-color($accent, darker) !important;
-  // color: blue;
-}
-
-.anchor {
-  // font-weight: bold;
-  color: #488aff;
-  cursor: pointer;
-}
-
-*/
