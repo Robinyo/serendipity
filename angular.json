@@ -46,7 +46,8 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/themes/light-theme/theme.scss"
             ],
             "scripts": []
           },

@@ -1,0 +1,9 @@
+@import '~@angular/material/theming';
+
+@import "../mat-black.palette";
+
+// Generate color palettes
+
+$light-theme-primary: mat-palette($mat-black, 900);
+$light-theme-accent:  mat-palette($mat-deep-orange, 500, A100, A400);
+$light-theme-warn:    mat-palette($mat-red, 600);

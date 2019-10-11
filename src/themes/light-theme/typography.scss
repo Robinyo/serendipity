@@ -1,0 +1,17 @@
+@import '~@angular/material/theming';
+
+/*
+
+$custom-typography: mat-typography-config(
+  $button: mat-typography-level(14px, 14px, 400)
+);
+
+$custom-toolbar-typography: mat-typography-config(
+  $title: mat-typography-level(20px, 32px, 400)
+);
+
+*/
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Open Sans, sans-serif'
+);

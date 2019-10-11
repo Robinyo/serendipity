@@ -1,44 +1,18 @@
 @import '~@angular/material/theming';
 
-@import "./fonts";
-@import "./icons";
-// @import "./mat-variables";
-@import "../../projects/utils/src/lib/angular-material/mat-variables";
+@import "../fonts";
+@import "../icons";
+@import "../../../projects/utils/src/lib/angular-material/mat-variables";
 @import "./palette";
-// @import "./variables";
-@import "../../projects/utils/src/lib/angular-material/variables";
+@import "./typography";
+@import "../../../projects/utils/src/lib/angular-material/variables";
 
-/*
-
-$custom-typography: mat-typography-config(
-  $button: mat-typography-level(14px, 14px, 400)
-);
-
-$custom-toolbar-typography: mat-typography-config(
-  $title: mat-typography-level(20px, 32px, 400)
-);
-
-*/
-
-$custom-typography: mat-typography-config(
-  $font-family: 'Open Sans, sans-serif'
-);
-
-// Generates Material’s core styles
+// Generate Material’s core styles
 
 @include mat-core($custom-typography);
 // @include mat-toolbar-typography($custom-toolbar-typography);
 
-// Generate color palettes
-
-$light-theme-primary: mat-palette($mat-black, 900);
-$light-theme-accent:  mat-palette($mat-deep-orange, 500, A100, A400);
-$light-theme-warn:    mat-palette($mat-red, 600);
-
-// Generating themes
-
-// What is a theme?
-// A theme is a set of colors that will be applied to the Angular Material components.
+// Generate a Custom Theme
 
 $light-theme: mat-light-theme($light-theme-primary, $light-theme-accent, $light-theme-warn);
 // $dark-theme: mat-dark-theme($dark-theme-primary, $dark-theme-accent, $dark-theme-warn);
