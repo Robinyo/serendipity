@@ -19,7 +19,7 @@ $light-theme: mat-light-theme($light-theme-primary, $light-theme-accent, $light-
 
 @include angular-material-theme($light-theme);
 
-/* ------------------------------------------------------------------------------------------------------------------ */
+// ------------------------------------------------------------------------------------------------------------------ //
 
 $foreground: map-get($light-theme, foreground);
 $background: map-get($light-theme, background);
@@ -50,8 +50,7 @@ $background: map-get($light-theme, background);
   background-color: #f5f5f5;
 }
 
-
-/* ------------------------------------------------------------------------------------------------------------------ */
+// ------------------------------------------------------------------------------------------------------------------ //
 
 .list-item-active {
   font-weight: bold;
@@ -70,8 +69,6 @@ a:active {
   color: mat-color($light-theme-accent, darker) !important;
   // color: blue;
 }
-
-
 
 // https://material.angular.io/guide/theming
 // https://github.com/angular/components/blob/master/guides/theming.md
