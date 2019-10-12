@@ -6,6 +6,8 @@ import { switchMap, takeUntil } from 'rxjs/operators';
 import { TasksService } from '../../services/tasks/tasks.service';
 import { TaskCompleteEvent, TaskListModel, TaskModel } from '../../models/task-list.model';
 
+import { DialogService } from 'serendipity-components';
+
 import { LoggerService } from 'utils';
 
 // const INTERVAL = 5000;
@@ -24,7 +26,8 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   private componentDestroyed: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private tasksService: TasksService,
+  constructor(private dialogService: DialogService,
+              private tasksService: TasksService,
               private logger: LoggerService) {}
 
   public ngOnInit() {
@@ -73,15 +76,26 @@ export class TaskListComponent implements OnInit, OnDestroy {
         }
 
       },
-
-      (error: Error) => {
+      (error) => {
 
         this.logger.error('TaskListComponent: subscribe() error handler');
-        window.alert(error);
 
         this.items = [];
-      },
+        this.selectedItem = null;
 
+        let message = error.message;
+
+        if (error.details) {
+          message = error.details.message;
+        }
+
+        this.dialogService.openAlert({
+          title: 'Alert',
+          message: message,
+          closeButton: 'CLOSE'
+        });
+
+     },
       () =>  {
 
         this.logger.info('TaskListComponent: subscribe() completion handler');

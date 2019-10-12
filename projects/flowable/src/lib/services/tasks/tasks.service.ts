@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-import { Observable, of, throwError } from 'rxjs';
+// import { Observable, of, throwError } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 import { AuthService } from 'auth';
@@ -11,6 +12,8 @@ import { CollectionService } from '../abstract/collection/collection.service';
 import { TaskListModel } from '../../models/task-list.model';
 
 import { LoggerService } from 'utils';
+
+const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
 
 const completeTaskBody = {
   'action' : 'complete',
@@ -29,7 +32,6 @@ export class TasksService extends CollectionService {
     super(authService, logger);
   }
 
-  // public getTasks(): Observable<TaskListModel> {
   public getTasks(): Observable<any> {
 
     this.logger.info('TasksService: getTasks()');
@@ -51,18 +53,20 @@ export class TasksService extends CollectionService {
         this.logger.info('TasksService: getTasks() completed');
 
       }),
-
-      // catchError(this.handleError('getTasks', []))
-
       catchError(error => {
 
-        // return throwError(error);
+        this.logger.info('TasksService: getTasks() -> catchError()');
 
         if (error === undefined) {
-          error = new Error('Connection refused');
-        }
 
-        throw error;
+          error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
+          throw error;
+
+        } else {
+
+          return this.handleError('Get tasks', []);
+          // return throwError(error);
+        }
 
       })
 
@@ -76,51 +80,14 @@ export class TasksService extends CollectionService {
       this.logger.info('TasksService: handleError()');
 
       // TODO: send the error to your remote logging infrastructure e.g., Sentry
-      // this.logger.error(error);
 
       // TODO: better job of transforming error for user consumption
-      // this.logger.info(operation + ' failed: ' + error.message);
+      this.logger.error(operation + ' failed: ' + error.message);
 
-      // Let the app keep running by returning an empty result
+      // Let the app keep running by returning an empty result (i.e., [])
       return of(result as T);
     };
   }
-
-  /*
-
-    public getTasks(): Promise<any> {
-
-      this.logger.info('TasksService: getTasks()');
-
-      const endpoint = `${this.processEngineUriPrefix}runtime/tasks`;
-
-      // https://www.flowable.org/docs/userguide/index.html#_request_parameters
-      const sort = 'createTime';
-      const order = 'desc';
-      // const start = 0;
-      // const size = 16;
-
-      const params = new HttpParams().set('sort', sort).set('order', order);
-
-      return this.httpClient.get(endpoint, this.getHttpOptions(params)).pipe(
-
-        tap(() => {
-
-          this.logger.info('TasksService: getTasks() completed');
-
-        })).toPromise().catch(error => {
-
-        if (error === undefined) {
-          error = new Error('Connection refused');
-        }
-
-        throw error;
-
-      });
-
-    }
-
-  */
 
   public completeTask(taskId: string): Promise<any> {
 
@@ -149,7 +116,66 @@ export class TasksService extends CollectionService {
 
 }
 
+/*
 
+public getTasks(): Promise<any> {
+
+  this.logger.info('TasksService: getTasks()');
+
+  const endpoint = `${this.processEngineUriPrefix}runtime/tasks`;
+
+  // https://www.flowable.org/docs/userguide/index.html#_request_parameters
+  const sort = 'createTime';
+  const order = 'desc';
+  // const start = 0;
+  // const size = 16;
+
+  const params = new HttpParams().set('sort', sort).set('order', order);
+
+  return this.httpClient.get(endpoint, this.getHttpOptions(params)).pipe(
+
+    tap(() => {
+
+      this.logger.info('TasksService: getTasks() completed');
+
+    })).toPromise().catch(error => {
+
+    if (error === undefined) {
+      error = new Error('Connection refused');
+    }
+
+    throw error;
+
+  });
+
+}
+
+*/
+
+// https://blog.angular-university.io/rxjs-error-handling/
+
+// https://medium.com/@krishna.acondy/a-generic-http-service-approach-for-angular-applications-a7bd8ff6a068
+
+// https://github.com/camunda-consulting/code/blob/master/snippets/camunda-tasklist-examples/camunda-angular-app/src/app/
+
+// https://github.com/Alfresco/alfresco-ng2-components/blob/development/lib/process-services/task-list/services/tasklist.service.ts
+
+// const endpoint = `${this.processEngineUriPrefix}runtime/tasks?sort=createTime&order=asc`;
+
+// https://www.flowable.org/docs/userguide/index.html#restUsageInTomcat
+// 'Accept': 'application/json',
+
+/*
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': 'Basic ' + btoa('admin:test')
+  }),
+  params: null
+};
+
+*/
 
 /*
 
@@ -201,27 +227,6 @@ import { catchError, tap } from 'rxjs/operators';
 
 }
 
-*/
-
-// https://medium.com/@krishna.acondy/a-generic-http-service-approach-for-angular-applications-a7bd8ff6a068
-
-// https://github.com/camunda-consulting/code/blob/master/snippets/camunda-tasklist-examples/camunda-angular-app/src/app/
-
-// https://github.com/Alfresco/alfresco-ng2-components/blob/development/lib/process-services/task-list/services/tasklist.service.ts
-
-// const endpoint = `${this.processEngineUriPrefix}runtime/tasks?sort=createTime&order=asc`;
-
-// https://www.flowable.org/docs/userguide/index.html#restUsageInTomcat
-// 'Accept': 'application/json',
-
-/*
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'Basic ' + btoa('admin:test')
-  }),
-  params: null
-};
 */
 
 /*
@@ -318,4 +323,3 @@ Type 'Observable<HttpEvent<TaskListModel>>' is not assignable to type 'Ob
 // this.logger(`${operation} failed: ${error.message}`);
 
 */
-

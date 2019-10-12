@@ -19,6 +19,8 @@ interface HttpOptions {
   withCredentials?: boolean;
 }
 
+const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -85,7 +87,7 @@ export class LocalAuthService extends Auth {
     })).toPromise().catch(error => {
 
       if (error === undefined) {
-        error = new Error('Connection refused');
+        error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
       }
 
       throw error;
@@ -119,7 +121,7 @@ export class LocalAuthService extends Auth {
       })).toPromise().catch(error => {
 
         if (error === undefined) {
-          error = new Error('Connection refused');
+          error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
         }
 
       throw error;
