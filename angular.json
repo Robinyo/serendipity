@@ -7,7 +7,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "crm",
+      "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
           "styleext": "scss"
@@ -166,7 +166,7 @@
       "root": "projects/sales",
       "sourceRoot": "projects/sales/src",
       "projectType": "library",
-      "prefix": "crm",
+      "prefix": "sales",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -201,7 +201,7 @@
       "root": "projects/dynamic-forms",
       "sourceRoot": "projects/dynamic-forms/src",
       "projectType": "library",
-      "prefix": "dynamic",
+      "prefix": "dynamic-forms",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -236,7 +236,7 @@
       "root": "projects/utils",
       "sourceRoot": "projects/utils/src",
       "projectType": "library",
-      "prefix": "util",
+      "prefix": "utils",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -271,7 +271,7 @@
       "root": "projects/serendipity-components",
       "sourceRoot": "projects/serendipity-components/src",
       "projectType": "library",
-      "prefix": "crm",
+      "prefix": "serendipity-component",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -306,7 +306,7 @@
       "root": "projects/flowable",
       "sourceRoot": "projects/flowable/src",
       "projectType": "library",
-      "prefix": "flow",
+      "prefix": "flowable",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

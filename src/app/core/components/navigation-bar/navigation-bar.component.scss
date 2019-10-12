@@ -1,9 +1,7 @@
-// https://material.angular.io/guide/theming-your-components
-
-$crm-toolbar-title-padding: 16px !default;
+$toolbar-title-padding: 16px !default;
 
 .toolbar-title {
-  margin: 0 $crm-toolbar-title-padding 0 $crm-toolbar-title-padding;
+  margin: 0 $toolbar-title-padding 0 $toolbar-title-padding;
 }
 
 .navigation-items {
@@ -11,65 +9,4 @@ $crm-toolbar-title-padding: 16px !default;
   padding: 0;
   margin: 0;
   cursor: pointer;
-
-  // vertical-align: middle;
 }
-
-
-/*
-
-.toolbar-icon {
-  vertical-align: middle;
-}
-
-
-.toolbar-icon {
-  display: inline-block;
-  height: 30px;
-  margin: 0 auto;
-  padding-right: 5px;
-  text-align: center;
-  vertical-align: middle;
-  width: 15%;
-}
-
-*/
-
-/*
-
-$crm-toolbar-height-desktop: 64px !default;
-$crm-toolbar-height-mobile: 56px !default;
-$crm-toolbar-row-padding: 16px !default;
-
-$crm-toolbar-title-padding: 16px !default;
-
-.crm-toolbar-fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 998;
-}
-
-.crm-toolbar-title {
-  margin: 0 $crm-toolbar-title-padding 0 $crm-toolbar-title-padding;
-}
-
-.crm-toolbar-icon {
-  display: inline-block;
-  height: 30px;
-  margin: 0 auto;
-  padding-right: 5px;
-  text-align: center;
-  vertical-align: middle;
-  width: 15%;
-}
-
-.crm-navigation-items {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
-}
-
-*/

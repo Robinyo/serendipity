@@ -20,7 +20,7 @@ interface SideNavRoute {
 }
 
 @Component({
-  selector: 'crm-nav',
+  selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })

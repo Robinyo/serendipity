@@ -1,59 +1,10 @@
-// https://material.angular.io/guide/theming-your-components
-
-.mat-sidenav-container {
-  height: 100%;
-}
-
-/*
-
-.sidenav-container {
-  height: 100%;
-}
-*/
-
-// https://github.com/angular/material2/blob/master/src/lib/core/style/_variables.scss
-
-$sidenav-width: 320px; // 240px;
-
-.mat-sidenav {
-  width: $sidenav-width;
-}
+$toolbar-title-padding: 16px !default;
+$nav-list-icon-padding: 12px !default;
 
 .toolbar-title {
-  margin: 0 16px 0 16px;
+  margin: 0 $toolbar-title-padding 0 $toolbar-title-padding;
 }
 
-.mat-subheader {
-  font-size: 18px;
-  font-weight: 900;
+.nav-list-icon {
+  margin: 0 $nav-list-icon-padding 0 $nav-list-icon-padding;
 }
-
-.app-nav-list-icon {
-  margin: 0 12px 0 12px;
-}
-
-/*
-
-.mat-sidenav-content {
-  overflow: hidden;
-}
-
-*/
-
-/*
-
-.sidenav {
-  width: 200px;
-}
-
-.sidenav .mat-toolbar {
-  background: inherit;
-}
-
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
-
-*/

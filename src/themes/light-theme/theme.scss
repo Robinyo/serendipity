@@ -25,6 +25,25 @@ $foreground: map-get($light-theme, foreground);
 $background: map-get($light-theme, background);
 
 // top, right, bottom, and left
+// width: 100vw;
+// height: 100vh;
+
+.mat-sidenav-container {
+  height: 100vh;
+}
+
+// https://github.com/angular/material2/blob/master/src/lib/core/style/_variables.scss
+
+$sidenav-width: 320px; // 240px;
+
+.mat-sidenav {
+  width: $sidenav-width;
+}
+
+.mat-subheader {
+  font-size: 18px !important;
+  font-weight: 900 !important;
+}
 
 .mat-vertical-content {
   padding: 24px 24px 24px 24px !important;

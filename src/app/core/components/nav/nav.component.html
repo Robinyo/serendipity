@@ -1,5 +1,5 @@
-<crm-navigation-bar *ngIf="isAuthenticated()" (toggleSidenav)="navigationSidenav.toggle()">
-</crm-navigation-bar>
+<app-navigation-bar *ngIf="isAuthenticated()" (toggleSidenav)="navigationSidenav.toggle()">
+</app-navigation-bar>
 
 <mat-sidenav-container autosize>
 
@@ -24,7 +24,7 @@
            (click)="navigationSidenav.close()"
            [routerLink]="[item.route]"
            routerLinkActive="list-item-active">
-          <mat-icon matListIcon class="app-nav-list-icon"> {{ item.icon }} </mat-icon>
+          <mat-icon matListIcon class="nav-list-icon"> {{ item.icon }} </mat-icon>
           {{item.title}}
         </a>
 
@@ -41,7 +41,7 @@
            (click)="navigationSidenav.close()"
            [routerLink]="[item.route]"
            routerLinkActive="list-item-active">
-          <mat-icon matListIcon class="app-nav-list-icon"> {{ item.icon }} </mat-icon>
+          <mat-icon matListIcon class="nav-list-icon"> {{ item.icon }} </mat-icon>
           {{item.title}}
         </a>
 

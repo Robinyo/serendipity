@@ -20,11 +20,13 @@
 @import "../projects/utils/src/lib/angular-material/mat-variables";
 @import "../projects/utils/src/lib/angular-material/variables";
 
+// top, right, bottom, and left
 // width: 100vw;
 // height: 100vh;
 
 html, body {
-  height: 100vh;
+  height: 100%;
+  // height: 100vh;
   overflow: hidden;
 }
 body {
@@ -57,7 +59,7 @@ body {
 
 .crm-command-bar {
   position: fixed;
-  top: $mat-toolbar-height-desktop;
+  top: $mat-toolbar-height-desktop !important;
   left: 0;
   right: 0;
   z-index: 997;
@@ -70,7 +72,7 @@ body {
     min-height: $crm-command-bar-height-mobile !important;
   }
 
-  background-color: #f5f5f5;
+  background-color: #f5f5f5 !important;
 
 }
 
@@ -78,11 +80,11 @@ body {
 $command-bar-sidenav-width: 160px; // card layout
 
 .crm-command-bar-sidenav {
-  margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
+  margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop !important;
   width: $command-bar-sidenav-width !important;
 
   @media ($mat-xsmall) {
-    margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile;
+    margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile !important;
   }
 }
 
@@ -90,16 +92,16 @@ $command-bar-sidenav-width: 160px; // card layout
   height: $crm-activity-bar-height-desktop !important;
   min-height: $crm-activity-bar-height-desktop !important;
 
-  margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
+  margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop !important;
 
   @media ($mat-xsmall) {
     height: $crm-activity-bar-height-mobile !important;
     min-height: $crm-activity-bar-height-mobile !important;
 
-    margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile;
+    margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile !important;
   }
 
-  background-color: transparent;
+  background-color: transparent !important;
 
 }
 
