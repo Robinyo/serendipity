@@ -60,12 +60,34 @@ export class TaskListComponent implements OnInit, OnDestroy {
     let modelSubscription: Subscription = new Subscription();
     this.subscriptions.push(modelSubscription);
 
-    // modelSubscription = this.tasksService.getTasks().subscribe(model => {
-    modelSubscription = this.tasksService.getTasks().subscribe((model: TaskListModel) => {
+    modelSubscription = this.tasksService.getTasks().subscribe(
 
-      this.items = model.data;
-      this.selectedItem = this.items[0];
-    });
+      (model: TaskListModel) => {
+
+        this.logger.info('TaskListComponent: subscribe() success handler');
+
+        this.items = model.data;
+
+        if (this.items && this.items.length) {
+          this.selectedItem = this.items[0];
+        }
+
+      },
+
+      (error: Error) => {
+
+        this.logger.error('TaskListComponent: subscribe() error handler');
+        window.alert(error);
+
+        this.items = [];
+      },
+
+      () =>  {
+
+        this.logger.info('TaskListComponent: subscribe() completion handler');
+      }
+
+    );
 
   }
 
@@ -94,6 +116,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
       } else {
 
         this.selectedItem = this.items[0];
+
       }
 
     });

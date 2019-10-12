@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 import { AuthService } from 'auth';
 
@@ -19,10 +18,10 @@ export class FormsService extends CollectionService {
               protected httpClient: HttpClient,
               protected logger: LoggerService) {
 
-    super(authService, httpClient, logger);
+    super(authService, logger);
   }
 
-  public submitFormData(body: any): Observable<any> {
+  public submitFormData(body: any): Promise<any> {
 
     this.logger.info('FormsService: submitFormData()');
 
@@ -32,12 +31,21 @@ export class FormsService extends CollectionService {
 
     this.logger.info('FormsService submitFormData() - endpoint: ' + endpoint);
 
-    return this.httpClient.post<any>(endpoint, body, this.getHttpOptions()).pipe(
+    return this.httpClient.post(endpoint, body, this.getHttpOptions()).pipe(
+
       tap(() => {
+
         this.logger.info('FormsService: submitFormData() completed');
-      }),
-      catchError(this.handleError('submitFormData', []))
-    );
+
+      })).toPromise().catch(error => {
+
+      if (error === undefined) {
+        error = new Error('Connection refused');
+      }
+
+      throw error;
+
+    });
 
   }
 

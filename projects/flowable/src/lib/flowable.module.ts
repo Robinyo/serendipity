@@ -1,10 +1,9 @@
 import { NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { TranslateModule } from '@ngx-translate/core';
-
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { TaskComponent } from './components/task/task.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
@@ -15,6 +14,12 @@ import { TaskListComponent } from './components/task-list/task-list.component';
 
 import { UtilsModule, LoggerService } from 'utils';
 import { AngularMaterialModule } from 'utils';
+
+//
+// Serendipity Components lib
+//
+
+import { SerendipityComponentsModule } from 'serendipity-components';
 
 //
 // Dynamic Forms lib
@@ -29,6 +34,7 @@ import { DynamicFormsModule } from 'dynamic-forms';
     DynamicFormsModule,
     FlexLayoutModule,
     ReactiveFormsModule,
+    SerendipityComponentsModule,
     TranslateModule.forChild(),
     UtilsModule
   ],

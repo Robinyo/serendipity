@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnChanges, OnDestroy, OnInit, Input, SimpleChanges, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { Subscription} from 'rxjs';
+
 
 import { TasksService } from '../../services/tasks/tasks.service';
 import { TaskCompleteEvent, TaskModel } from '../../models/task-list.model';
@@ -9,6 +9,8 @@ import { TaskCompleteEvent, TaskModel } from '../../models/task-list.model';
 import { FormsService } from '../../services/forms/forms.service';
 
 import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
+
+import { DialogService } from 'serendipity-components';
 
 import { LoggerService } from 'utils';
 
@@ -30,12 +32,14 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
   public taskFormGroup: FormGroup;
   public taskModel: DynamicFormModel;
 
-  constructor(private dynamicFormService: DynamicFormService,
-              private tasksService: TasksService,
+  constructor(private dialogService: DialogService,
+              private dynamicFormService: DynamicFormService,
               private formsService: FormsService,
+              private tasksService: TasksService,
               private logger: LoggerService) {}
 
   ngOnInit() {
+
     this.logger.info('TaskComponent: ngOnInit()');
   }
 
@@ -86,6 +90,97 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
   //
   // Command events
   //
+
+  public onComplete() {
+
+    this.logger.info('TaskComponent: onComplete()');
+
+    if (this.taskFormGroup) {
+
+      const properties: any[] = [];
+
+      let type = 'string';
+      let value = '';
+
+      this.taskModel.forEach(controlModel => {
+
+        // 'string | date'
+        type = controlModel.type === 'input' ? 'string' : controlModel.type;
+
+        value = this.taskFormGroup.value[controlModel.id.valueOf()];
+
+        // TODO: handle locales, etc.
+        if (type === 'date') {
+          const date: Date = new Date(value);
+          value = format(date, 'DD-MM-YYYY');
+        }
+
+        properties.push({
+          'id': controlModel.id,
+          'name': controlModel.name,
+          'type': type,
+          'value': value
+        });
+
+      });
+
+      const body = { 'taskId' : this.task.id, 'properties' : properties };
+
+      this.logger.info('body: ' + JSON.stringify(body));
+
+      this.formsService.submitFormData(body).then(() => {
+
+        this.completeEvent.emit({ id: this.task.id });
+
+      }).catch(error => {
+
+        let message = error.message;
+
+        if (error.details) {
+          message = error.details.message;
+        }
+
+        this.dialogService.openAlert({
+          title: 'Alert',
+          message: message,
+          closeButton: 'CLOSE'
+        });
+
+      });
+
+    } else {
+
+      this.tasksService.completeTask(this.task.id).then(() => {
+
+        this.completeEvent.emit({ id: this.task.id });
+
+      }).catch(error => {
+
+        let message = error.message;
+
+        if (error.details) {
+          message = error.details.message;
+        }
+
+        this.dialogService.openAlert({
+          title: 'Alert',
+          message: message,
+          closeButton: 'CLOSE'
+        });
+
+      });
+
+    }
+
+  }
+
+}
+
+
+
+/*
+
+import { Subscription} from 'rxjs';
 
   public onComplete() {
 
@@ -142,7 +237,7 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
   }
 
-}
+*/
 
 /*
 protected subscribe() {

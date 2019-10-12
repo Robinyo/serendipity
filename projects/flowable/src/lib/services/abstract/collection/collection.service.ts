@@ -1,6 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-
-import { Observable, of } from 'rxjs';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { AuthService, User } from 'auth';
 
@@ -14,7 +12,6 @@ export abstract class CollectionService {
   protected httpOptions = null;
 
   constructor(protected authService: AuthService,
-              protected httpClient: HttpClient,
               protected logger: LoggerService) {
 
   }
@@ -53,6 +50,14 @@ export abstract class CollectionService {
     return this.httpOptions;
   }
 
+}
+
+// https://medium.com/@krishna.acondy/a-generic-http-service-approach-for-angular-applications-a7bd8ff6a068
+
+/*
+
+// import { Observable, of } from 'rxjs';
+
   protected handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
@@ -67,6 +72,4 @@ export abstract class CollectionService {
     };
   }
 
-}
-
-// https://medium.com/@krishna.acondy/a-generic-http-service-approach-for-angular-applications-a7bd8ff6a068
+*/
