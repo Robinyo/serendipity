@@ -25,7 +25,9 @@
 - **Dynamically Importing Static Libraries** see this [post](https://robferguson.org/blog/2019/09/23/dynamically-importing-highcharts/)
 - **Internationalisation** thanks to [@ngx-translate](https://github.com/ngx-translate/core)
 - **Lazy Loading Angular Libraries** see this blog [post](https://robferguson.org/blog/2019/09/12/lazy-loading-angular-libraries/)
-- **Serendipity Components Library**  
+- **Progressive Web App (PWA)** thanks to [@angular/pwa ](https://angular.io/guide/service-worker-getting-started)
+- **Serendipity Components Library** see this blog [post](https://robferguson.org/blog/2019/06/22/dashboards-and-dashboard-widgets-part-1/)
+- **Workflow** see this blog [post](https://robferguson.org/blog/2018/12/10/getting-started-with-flowable/)
 
 ![divider](./divider.png)
 
