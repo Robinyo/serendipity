@@ -1,0 +1,9 @@
+@import "../../app/app.component";
+@import "../../app/core/components/nav/nav.component";
+
+@mixin crm-light-theme($theme) {
+
+  @include crm-app-theme($theme);
+  @include crm-nav-theme($theme);
+
+}

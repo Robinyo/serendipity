@@ -13,7 +13,7 @@
 // Your custom theme file should not be imported into other SCSS files. This will duplicate styles in your CSS output.
 // If you want to consume your theme definition object (e.g., $light-theme) in other SCSS files, then the definition of
 // the theme object should be broken into its own file, separate from the inclusion of the mat-core and
-// angular-material-theme mixins.  See: https://material.angular.io/guide/theming
+// angular-material-theme mixins. See: https://material.angular.io/guide/theming
 
 @import '~@angular/material/theming';
 

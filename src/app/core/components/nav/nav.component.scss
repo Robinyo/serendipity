@@ -1,10 +1,20 @@
-$toolbar-title-padding: 16px !default;
-$nav-list-icon-padding: 12px !default;
+@mixin crm-nav-theme($theme) {
 
-.toolbar-title {
-  margin: 0 $toolbar-title-padding 0 $toolbar-title-padding;
-}
+  $nav-list-icon-padding: 12px !default;
+  $toolbar-title-padding: 16px !default;
 
-.nav-list-icon {
-  margin: 0 $nav-list-icon-padding 0 $nav-list-icon-padding;
+  .list-item-active {
+    font-weight: bold;
+    color: mat-color(map-get($theme, accent), darker) !important;
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  .nav-list-icon {
+    margin: 0 $nav-list-icon-padding 0 $nav-list-icon-padding;
+  }
+
+  .toolbar-title {
+    margin: 0 $toolbar-title-padding 0 $toolbar-title-padding;
+  }
+
 }

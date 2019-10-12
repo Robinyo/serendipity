@@ -1,0 +1,13 @@
+@mixin crm-app-theme($theme) {
+
+  a:active {
+    font-weight: bold;
+    color: mat-color(map-get($theme, accent), darker) !important;
+  }
+
+  .active {
+    font-weight: bold;
+    color: mat-color(map-get($theme, accent), darker) !important;
+  }
+
+}

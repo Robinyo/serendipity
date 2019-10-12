@@ -3,6 +3,7 @@
 @import "../fonts";
 @import "../icons";
 @import "../../../projects/utils/src/lib/angular-material/mat-variables";
+@import "./mixins";
 @import "./palette";
 @import "./typography";
 @import "../../../projects/utils/src/lib/angular-material/variables";
@@ -18,6 +19,10 @@ $light-theme: mat-light-theme($light-theme-primary, $light-theme-accent, $light-
 // $dark-theme: mat-dark-theme($dark-theme-primary, $dark-theme-accent, $dark-theme-warn);
 
 @include angular-material-theme($light-theme);
+
+// Theme Custom components
+
+@include crm-light-theme($light-theme);
 
 // ------------------------------------------------------------------------------------------------------------------ //
 
@@ -70,24 +75,6 @@ $sidenav-width: 320px; // 240px;
 }
 
 // ------------------------------------------------------------------------------------------------------------------ //
-
-.list-item-active {
-  font-weight: bold;
-  color: mat-color($light-theme-accent, darker) !important;
-  background: rgba(0, 0, 0, 0.04);
-}
-
-a:active {
-  font-weight: bold;
-  color: mat-color($light-theme-accent, darker) !important;
-  // color: blue;
-}
-
-.active {
-  font-weight: bold;
-  color: mat-color($light-theme-accent, darker) !important;
-  // color: blue;
-}
 
 // https://material.angular.io/guide/theming
 // https://github.com/angular/components/blob/master/guides/theming.md
