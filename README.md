@@ -13,11 +13,17 @@
 
 ## ❯ Features
 
-- **AuthN & AuthZ** thanks to [auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local), [auth-auth0](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0) and [auth-okta](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta)
+- **AuthN & AuthZ** thanks to:
+  - The [Local Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library which supports email/password registration and login and [JWT](https://jwt.io/) identity, access and refresh tokens
+  - The [Auth0 Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0) library which supports Authorization Code flow with PKCE
+  - The [Okta Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta) library which supports Authorization Code flow with PKCE
 - **Beautiful Code** thanks to Angular's [Style Guide](https://angular.io/guide/styleguide)
 - **Contemporary UI** thanks to Angular [Material](https://material.angular.io/)
+- **Custom Themes** see [themes](https://github.com/Robinyo/serendipity/tree/master/src/themes)
 - **Dashboards and Dashboard Widgets** thanks to Angular [Gridster 2](https://github.com/tiberiuzuld/angular-gridster2) and [Highcharts](https://www.highcharts.com/)
-- **Dynamic Forms** (take a look at the Dynamic Forms [documentation](https://github.com/Robinyo/serendipity/tree/master/projects/dynamic-forms))
+- **Dynamic Forms** (take a look at the Dynamic Forms [documentation](https://github.com/Robinyo/serendipity/tree/master/projects/dynamic-forms)
+- **Lazy Loading Angular Libraries** see this blog [post](https://robferguson.org/blog/2019/09/12/lazy-loading-angular-libraries/)
+- **Dynamically Importing Static Libraries** see this [post](https://robferguson.org/blog/2019/09/23/dynamically-importing-highcharts/)
 - **Internationalisation** thanks to [@ngx-translate](https://github.com/ngx-translate/core)
 
 ![divider](./divider.png)
