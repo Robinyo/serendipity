@@ -32,14 +32,6 @@
 
 ![divider](./divider.png)
 
-## ❯ Demo
-
-Firebase Hosting: [Serendipity](https://serendipity-f7626.firebaseapp.com)
-
-**Note:** The demo hasn't been updated in a while as I am currently working on a containerised deployment that includes Serendipity's REST API. 
-
-![divider](./divider.png)
-
 ## ❯ Quick Links
 
 [Documentation, demos, and guides](docs/README.md)
