@@ -9,13 +9,17 @@
   "keywords": [
     "Angular",
     "Angular Material 2",
+    "AuthN",
+    "AuthZ",
     "Auth0",
     "CRM",
+    "Flowable",
+    "JWT",
     "Okta",
     "PWA"
   ],
   "author": "Rob Ferguson",
-  "homepage": "https://github.com/Robinyo/serendipity",
+  "homepage": "https://robferguson.org/blog/",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
