@@ -173,6 +173,6 @@ You can customise and extend Serendipity using Angular, Angular libraries and Se
 * dta.gov.au: [Gatekeeper Public Key Infrastructure Framework](https://www.dta.gov.au/our-projects/digital-identity/gatekeeper-public-key-infrastructure-framework)
 * dta.gov.au: [The Trusted Digital Identity Framework (TDIF)](https://www.dta.gov.au/our-projects/digital-identity/trusted-digital-identity-framework)
 * dta.gov.au: [TDIF: OpenID Connect 1.0 Profile](https://www.dta.gov.au/our-projects/digital-identity/trusted-digital-identity-framework/framework-documents#openid-connect-1-0-profile)
-* dta.gov.au: [TDIF: Attribute Profile](https://www.dta.gov.au/our-projects/digital-identity/trusted-digital-identity-framework/framework-documents#openid-connect-1-0-profile)
+* dta.gov.au: [TDIF: Attribute Profile](https://www.dta.gov.au/our-projects/digital-identity/trusted-digital-identity-framework/framework-documents#attribute-profile)
 
 ![divider](./divider.png)

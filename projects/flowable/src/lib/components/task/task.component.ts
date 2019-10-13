@@ -1,8 +1,6 @@
 import { Component, EventEmitter, OnChanges, OnDestroy, OnInit, Input, SimpleChanges, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-
-
 import { TasksService } from '../../services/tasks/tasks.service';
 import { TaskCompleteEvent, TaskModel } from '../../models/task-list.model';
 
