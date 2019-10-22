@@ -51,7 +51,7 @@
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef class="header-cell-id">
 
-            <button mat-icon-button (click)="refresh()">
+            <button mat-icon-button>
               <mat-icon matListIcon class="header-icon">autorenew</mat-icon>
             </button>
 
@@ -106,7 +106,9 @@
               </button>
 
               <div *ngFor="let character of alphabet" fxHide.xs>
-                <button id="{{ character }}" mat-button class="footer-button" (click)="onClickFilterButton(character)"
+                <button id="{{ character }}" mat-button class="footer-button"
+                        [disabled]="true"
+                        (click)="onClickFilterButton(character)"
                         [class.active]="selectedFooterItemId === character">
                   {{ character }}
                 </button>
@@ -118,11 +120,13 @@
 
               <div>
 
-                <button mat-button class="footer-button-first-page">
+                <button mat-button class="footer-button-first-page" [disabled]="true">
                   <mat-icon>skip_previous</mat-icon>
                 </button>
 
-                <button mat-button class="footer-button-previous-page">
+                <button mat-button class="footer-button-previous-page"
+                        [disabled]="! canClickPreviousPageButton()"
+                        (click)="onClickPreviousPageButton()">
                   <mat-icon>keyboard_arrow_left</mat-icon>
                 </button>
 
@@ -130,7 +134,7 @@
                 Page 1
               </span>
 
-                <button mat-button class="footer-button-last-page">
+                <button mat-button class="footer-button-next-page" (click)="onClickNextPageButton()">
                   <mat-icon>keyboard_arrow_right</mat-icon>
                 </button>
 

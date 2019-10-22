@@ -106,7 +106,7 @@ export class TasksService extends CollectionService {
       })).toPromise().catch(error => {
 
       if (error === undefined) {
-        error = new Error('Connection refused');
+        error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
       }
 
       throw error;

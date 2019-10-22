@@ -40,6 +40,8 @@ export abstract class CollectionService {
 
   // https://angular.io/guide/http#getting-error-details
 
+  /*
+
   protected handleError(error: HttpErrorResponse) {
 
     if (error.error instanceof ErrorEvent) {
@@ -61,7 +63,10 @@ export abstract class CollectionService {
 
   }
 
+  */
+
   /*
+
   protected handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
@@ -75,6 +80,7 @@ export abstract class CollectionService {
       return of(result as T);
     };
   }
+
   */
 
 }

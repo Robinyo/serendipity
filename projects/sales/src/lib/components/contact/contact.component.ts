@@ -208,7 +208,6 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     this.logger.info('ContactPage: onNew()');
 
-    // this.router.navigate([CONTACTS + '/MA==']);
     this.router.navigate([CONTACTS + '/new']);
   }
 
@@ -295,6 +294,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
 
 /*
+
 if (data.party.roles.length) {
 
   data.organisation = {
@@ -305,4 +305,5 @@ if (data.party.roles.length) {
 }
 
 this.item = { ...data };
+
 */

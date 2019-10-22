@@ -9,6 +9,8 @@ import { CollectionService } from '../abstract/collection/collection.service';
 
 import { LoggerService } from 'utils';
 
+const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -40,7 +42,7 @@ export class FormsService extends CollectionService {
       })).toPromise().catch(error => {
 
       if (error === undefined) {
-        error = new Error('Connection refused');
+        error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
       }
 
       throw error;
