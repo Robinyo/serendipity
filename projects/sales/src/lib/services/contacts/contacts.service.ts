@@ -27,11 +27,25 @@ export class ContactsService extends CollectionService {
 
   // public find(): Observable<Contact[]> {
 
-  public find(offset: number = 0, limit: number = 100): Observable<any> {
+  // path, operator, value
+  // e.g., familyName, =, B%
+  // [familyName]=B%
 
-    const queryParameters = '?offset=' + offset + '&limit=' + limit;
+  public find(offset: number = 0, limit: number = 100, value: string = ''): Observable<any> {
 
-    return this.httpClient.get(this.contactsUrl + queryParameters).pipe(
+    this.logger.info('ContactsService: find()');
+
+    let filterParam = '';
+
+    if (value.length) {
+      filterParam = '&filter[familyName]=' + value + '%';
+    }
+
+    const queryParams = '?offset=' + offset + '&limit=' + limit + filterParam;
+
+    this.logger.info('ContactsService queryParams: ' + queryParams);
+
+    return this.httpClient.get(this.contactsUrl + queryParams).pipe(
 
       map((data: any[]) => data.map(item => this.adapter.adapt(item))),
 

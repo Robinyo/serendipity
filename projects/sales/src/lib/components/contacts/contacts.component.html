@@ -107,7 +107,6 @@
 
               <div *ngFor="let character of alphabet" fxHide.xs>
                 <button id="{{ character }}" mat-button class="footer-button"
-                        [disabled]="true"
                         (click)="onClickFilterButton(character)"
                         [class.active]="selectedFooterItemId === character">
                   {{ character }}
@@ -131,7 +130,7 @@
                 </button>
 
                 <span class="footer-page-number">
-                Page 1
+                Page {{ pageNumber }}
               </span>
 
                 <button mat-button class="footer-button-next-page" (click)="onClickNextPageButton()">

@@ -19,8 +19,9 @@ export abstract class CollectionComponent implements OnInit, OnDestroy {
 
   protected subscription: Subscription;
 
-  protected offset = 0;
+  protected filter = '';
   protected limit = 100;
+  protected offset = 0;
 
   constructor() {
 

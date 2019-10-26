@@ -27,6 +27,8 @@ import { ConfigService } from 'utils';
 
 import { SidenavService } from 'serendipity-components';
 
+const ALL = 'All';
+
 @Component({
   selector: 'sales-contacts',
   templateUrl: './contacts.component.html',
@@ -46,9 +48,9 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
   public columnDefs: ColumnDef[];
 
-  public selectedFooterItemId = 'All';
+  public selectedFooterItemId = ALL;
 
-  protected subscription: Subscription;
+  public pageNumber = 1;
 
   constructor(private router: Router,
               private breakpointObserver: BreakpointObserver,
@@ -119,10 +121,7 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
     this.logger.info('ContactsComponent: subscribe()');
 
-    // const offset = 0;
-    // const limit = 100;
-
-    this.subscription = this.contactsService.find(this.offset, this.limit).subscribe(
+    this.subscription = this.contactsService.find(this.offset, this.limit, this.filter).subscribe(
 
       (data: Array<Contact>) => {
 
@@ -181,6 +180,16 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
     this.logger.info('Button Id: ' + id);
 
     this.selectedFooterItemId = id;
+
+    this.filter = this.selectedFooterItemId;
+
+    if (this.selectedFooterItemId === ALL) {
+      this.filter = '';
+    }
+
+    // this.logger.info('Filter value: ' + id);
+
+    this.refresh();
   }
 
   public canClickPreviousPageButton() {
@@ -200,6 +209,8 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
       this.offset = 0;
     }
 
+    this.pageNumber--;
+
     this.refresh();
   }
 
@@ -208,6 +219,8 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
     this.logger.info('ContactsComponent: onClickNextPageButton()');
 
     this.offset = this.offset + this.limit;
+
+    this.pageNumber++;
 
     this.refresh();
   }
