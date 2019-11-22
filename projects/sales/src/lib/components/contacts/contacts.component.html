@@ -124,7 +124,7 @@
                 </button>
 
                 <button mat-button class="footer-button-previous-page"
-                        [disabled]="! canClickPreviousPageButton()"
+                        [disabled]="!canClickPreviousPageButton()"
                         (click)="onClickPreviousPageButton()">
                   <mat-icon>keyboard_arrow_left</mat-icon>
                 </button>
@@ -133,7 +133,9 @@
                 Page {{ pageNumber }}
               </span>
 
-                <button mat-button class="footer-button-next-page" (click)="onClickNextPageButton()">
+                <button mat-button class="footer-button-next-page"
+                        [disabled]="!canClickNextPageButton()"
+                        (click)="onClickNextPageButton()">
                   <mat-icon>keyboard_arrow_right</mat-icon>
                 </button>
 
