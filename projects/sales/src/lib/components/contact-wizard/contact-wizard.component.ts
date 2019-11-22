@@ -215,7 +215,7 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
         this.logger.info('ContactWizardComponent create() key: ' + response.headers.get(key));
       });
 
-      this.item = { ... response.body };
+      this.item = { ...response.body };
 
       this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
 
@@ -241,7 +241,7 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
         this.logger.info('ContactWizardComponent update() key: ' + response.headers.get(key));
       });
 
-      this.item = { ... response.body };
+      this.item = { ...response.body };
 
       this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
 

@@ -36,7 +36,6 @@ export abstract class CollectionComponent implements OnInit, OnDestroy {
     this.subscribe();
   }
 
-  // protected subscribe(offset: number, limit: number) {
   protected subscribe() {
 
     this.logger.info('CollectionComponent: subscribe()');

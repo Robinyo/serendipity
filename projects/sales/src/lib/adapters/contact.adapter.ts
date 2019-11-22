@@ -18,7 +18,7 @@ export class ContactAdapter implements Adapter<Contact> {
 
   adapt(item: any): Contact {
 
-    // this.logger.info('item: ' + JSON.stringify(item));
+    // this.logger.info('item: ' + JSON.stringify(item, null, 2));
 
     const contact = new Contact(
       item.title,
@@ -48,7 +48,7 @@ export class ContactAdapter implements Adapter<Contact> {
 
     }
 
-    // this.logger.info('contact: ' + JSON.stringify(contact));
+    // this.logger.info('contact: ' + JSON.stringify(contact, null, 2));
 
     return contact;
   }

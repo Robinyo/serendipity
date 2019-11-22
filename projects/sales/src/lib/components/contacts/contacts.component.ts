@@ -13,6 +13,7 @@ import { DialogService } from 'serendipity-components';
 import { ContactsService } from '../../services/contacts/contacts.service';
 import { ColumnDef } from '../../models/column';
 import { Contact } from '../../models/contact';
+import { ContactAdapter } from '../../adapters/contact.adapter';
 
 import { CollectionComponent } from '../abstract/collection.component';
 
@@ -54,6 +55,7 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
   constructor(private router: Router,
               private breakpointObserver: BreakpointObserver,
+              private adapter: ContactAdapter,
               private configService: ConfigService,
               private contactsService: ContactsService,
               private dialogService: DialogService,
@@ -116,25 +118,25 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
   }
 
-  // protected subscribe(offset: number, limit: number) {
   protected subscribe() {
 
     this.logger.info('ContactsComponent: subscribe()');
 
     this.subscription = this.contactsService.find(this.offset, this.limit, this.filter).subscribe(
 
-      (data: Array<Contact>) => {
+      (response: any) => {
 
-      this.logger.info('ContactsComponent: subscribe() success handler');
+        this.logger.info('ContactsComponent: subscribe() success handler');
 
-      // this.logger.info('ContactsComponent subscribe() data: ' + JSON.stringify(data));
+        this.items = response.body.data.map((item => this.adapter.adapt(item)));
 
-      this.items = data;
+        this.logger.info('count: ' + response.body.meta.count);
+        // this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
 
-      this.dataSource = new MatTableDataSource(this.items);
-      this.dataSource.data = this.items;
-      this.dataSource.sortingDataAccessor = pathDataAccessor;
-      this.dataSource.sort = this.sort;
+        this.dataSource = new MatTableDataSource(this.items);
+        this.dataSource.data = this.items;
+        this.dataSource.sortingDataAccessor = pathDataAccessor;
+        this.dataSource.sort = this.sort;
 
       },
       (error) => {
@@ -266,6 +268,7 @@ function pathDataAccessor(item: any, path: string): any {
 // this.logger.info('ContactsPage subscribe() data: ' + JSON.stringify(data));
 
 /*
+
 data.map(a => {
 
   // a.id = btoa(a.id);
@@ -283,4 +286,57 @@ data.map(a => {
   return { ...a };
 
 });
+
+*/
+
+/*
+
+protected subscribe() {
+
+  this.logger.info('ContactsComponent: subscribe()');
+
+  this.subscription = this.contactsService.find(this.offset, this.limit, this.filter).subscribe(
+
+    (data: Array<Contact>) => {
+
+      this.logger.info('ContactsComponent: subscribe() success handler');
+
+      // this.logger.info('ContactsComponent subscribe() data: ' + JSON.stringify(data));
+
+      this.items = data;
+
+      this.dataSource = new MatTableDataSource(this.items);
+      this.dataSource.data = this.items;
+      this.dataSource.sortingDataAccessor = pathDataAccessor;
+      this.dataSource.sort = this.sort;
+
+    },
+    (error) => {
+
+      this.logger.error('ContactsComponent: subscribe() error handler');
+
+      this.items = [];
+
+      let message = error.message;
+
+      if (error.details) {
+        message = error.details.message;
+      }
+
+      this.dialogService.openAlert({
+        title: 'Alert',
+        message: message,
+        closeButton: 'CLOSE'
+      });
+
+    },
+    () =>  {
+
+      this.logger.info('ContactsComponent: subscribe() completion handler');
+    }
+
+  );
+
+}
+
 */

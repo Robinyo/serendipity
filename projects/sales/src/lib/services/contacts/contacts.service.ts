@@ -45,18 +45,23 @@ export class ContactsService extends CollectionService {
 
     this.logger.info('ContactsService queryParams: ' + queryParams);
 
-    return this.httpClient.get(this.contactsUrl + queryParams).pipe(
+    // return this.httpClient.get(this.contactsUrl + queryParams).pipe(
+    return this.httpClient.get(this.contactsUrl + queryParams, this.getHttpOptions()).pipe(
 
-      map((data: any[]) => data.map(item => this.adapter.adapt(item))),
+      // map((data: any[]) => data.map(item => this.adapter.adapt(item))),
+      // map((response: any) => response.body.data.map(item => this.adapter.adapt(item))),
 
+      // tap((response: any) => {
       tap(() => {
+
+        // this.logger.info('response: ' + JSON.stringify(response.body.data, null, 2) + '\n');
 
         this.logger.info('ContactsService: find() completed');
 
       }),
       catchError(error => {
 
-        this.logger.info('TasksService: getTasks() -> catchError()');
+        this.logger.info('ContactsService: find() -> catchError()');
 
         if (error === undefined) {
 
@@ -78,7 +83,7 @@ export class ContactsService extends CollectionService {
   protected handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
-      this.logger.info('TasksService: handleError()');
+      this.logger.info('ContactsService: handleError()');
 
       // TODO: send the error to your remote logging infrastructure e.g., Sentry
 
