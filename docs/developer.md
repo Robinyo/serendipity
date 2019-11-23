@@ -485,7 +485,11 @@ git push origin <tag>
 
 To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Languages & Frameworks -> TypeScript and clear the 'Angular Language Service' checkbox.
 
-## Resources 
+## Resources
+
+### Web Developer Resources
+
+* Google: [Web Fundamentals](https://developers.google.com/web)
 
 ### Auth0 Auth Libraries
 
@@ -552,7 +556,7 @@ To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Lang
 
 ### Font Resources
 
-* Chris Aston: [How to preload Google Fonts using resource hints](https://ashton.codes/preload-google-fonts-using-resource-hints/)
+* Chris Aston's blog: [How to preload Google Fonts using resource hints](https://ashton.codes/preload-google-fonts-using-resource-hints/)
 * GitHub: [A Hassle-Free Way to Self-Host Google Fonts](https://google-webfonts-helper.herokuapp.com/fonts)
 * GitHub: [Google Fonts Files](https://github.com/google/fonts)
 
@@ -572,6 +576,10 @@ To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Lang
 
 * Wikipedia: [List of political parties in Australia](https://en.wikipedia.org/wiki/List_of_political_parties_in_Australia)
 * Australian Parliament: [Mail Labels for Australian Senators](https://www.aph.gov.au/Senators_and_Members/Guidelines_for_Contacting_Senators_and_Members/Address_labels_and_CSV_files)
+
+### Image Resources
+
+* GitHub: [Essential Image Optimization](https://images.guide)
 
 ### Free for Developers
 
