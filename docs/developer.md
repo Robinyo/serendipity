@@ -572,11 +572,6 @@ To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Lang
 * CSS Tricks: [A Complete Guide to CSS Grid Layout](https://css-tricks.com/snippets/css/complete-guide-grid/)
 * Grid By Example: [CSS Grid Layout by Example](https://gridbyexample.com/learn/)
 
-### Sample Data
-
-* Wikipedia: [List of political parties in Australia](https://en.wikipedia.org/wiki/List_of_political_parties_in_Australia)
-* Australian Parliament: [Mail Labels for Australian Senators](https://www.aph.gov.au/Senators_and_Members/Guidelines_for_Contacting_Senators_and_Members/Address_labels_and_CSV_files)
-
 ### Image Resources
 
 * GitHub: [Essential Image Optimization](https://images.guide)
@@ -584,3 +579,8 @@ To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Lang
 ### Free for Developers
 
 * free-for.dev: [This is a list of software, services and other offerings that have free tiers for developers](https://free-for.dev/#/?id=free-fordev)
+
+### Sample Data
+
+* Wikipedia: [List of political parties in Australia](https://en.wikipedia.org/wiki/List_of_political_parties_in_Australia)
+* Australian Parliament: [Mail Labels for Australian Senators](https://www.aph.gov.au/Senators_and_Members/Guidelines_for_Contacting_Senators_and_Members/Address_labels_and_CSV_files)
