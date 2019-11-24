@@ -9,6 +9,7 @@ import { DynamicControlDirective } from './angular-material/directives/dynamic-c
 import { DynamicFormComponent } from './angular-material/containers/dynamic-form/dynamic-form.component';
 
 import { DynamicDatepickerComponent } from './angular-material/components/dynamic-datepicker/dynamic-datepicker.component';
+import { DynamicImageComponent } from './angular-material/components/dynamic-image/dynamic-image.component';
 import { DynamicInputComponent } from './angular-material/components/dynamic-input/dynamic-input.component';
 
 //
@@ -17,6 +18,12 @@ import { DynamicInputComponent } from './angular-material/components/dynamic-inp
 
 import { UtilsModule, LoggerService } from 'utils';
 import { AngularMaterialModule } from 'utils';
+
+const components: any[] = [
+  DynamicDatepickerComponent,
+  DynamicImageComponent,
+  DynamicInputComponent
+];
 
 @NgModule({
   imports: [
@@ -28,16 +35,12 @@ import { AngularMaterialModule } from 'utils';
   declarations: [
     DynamicControlDirective,
     DynamicFormComponent,
-    DynamicDatepickerComponent,
-    DynamicInputComponent
+    ...components
   ],
   exports: [
     DynamicFormComponent
   ],
-  entryComponents: [
-    DynamicDatepickerComponent,
-    DynamicInputComponent
-  ]
+  entryComponents: [ ...components ]
 })
 export class DynamicFormsModule {
 

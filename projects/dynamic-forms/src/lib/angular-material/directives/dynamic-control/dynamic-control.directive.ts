@@ -17,12 +17,14 @@ import { Subscription } from 'rxjs';
 import { DynamicFormControl, DynamicFormControlCustomEvent, DynamicFormControlModel } from '../../models/dynamic-form-control.model';
 
 import { DynamicDatepickerComponent } from '../../components/dynamic-datepicker/dynamic-datepicker.component';
+import { DynamicImageComponent } from '../../components/dynamic-image/dynamic-image.component';
 import { DynamicInputComponent } from '../../components/dynamic-input/dynamic-input.component';
 
 import { LoggerService } from 'utils';
 
 const components = {
   date: DynamicDatepickerComponent,
+  image: DynamicImageComponent,
   input: DynamicInputComponent
 };
 
