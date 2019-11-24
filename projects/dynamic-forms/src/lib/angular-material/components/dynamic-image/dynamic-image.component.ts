@@ -8,7 +8,7 @@ import { LoggerService } from 'utils';
 @Component({
   selector: 'dynamic-image',
   template: `
-    <img src="assets/images/photos/male.svg" alt="Avatar">
+    <img [src]="formGroup.controls[model.id].value" [alt]="model.label">
   `,
   styles: []
 })
@@ -31,3 +31,9 @@ export class DynamicImageComponent implements OnInit {
 }
 
 // mat-card-image
+
+/*
+
+  <img src="assets/images/photos/male.svg" alt="Avatar">
+
+*/

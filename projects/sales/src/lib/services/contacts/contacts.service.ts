@@ -123,7 +123,9 @@ export class ContactsService extends CollectionService {
   public findOne(id: string): Observable<Contact> {
 
     return this.httpClient.get(this.contactsUrl + id).pipe(
+
       map((item: any) => this.adapter.adapt(item)),
+
       tap(() => {
         this.logger.info('ContactsService: findOne() completed');
       }),

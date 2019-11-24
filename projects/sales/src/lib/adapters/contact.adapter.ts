@@ -38,6 +38,12 @@ export class ContactAdapter implements Adapter<Contact> {
     contact.party.id = btoa(item.party.id);
     contact.party.displayName = item.party.displayName;
 
+    if (contact.gender === 'Male') {
+      contact.photoUrl = 'assets/images/photos/male-avatar.svg';
+    } else {
+      contact.photoUrl = 'assets/images/photos/female-avatar.svg';
+    }
+
     contact.party.addresses = contact.party.addresses.concat(item.party.addresses);
     contact.party.roles = contact.party.roles.concat(item.party.roles);
 

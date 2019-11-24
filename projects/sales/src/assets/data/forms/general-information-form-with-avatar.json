@@ -34,6 +34,7 @@
   {
     "type": "image",
     "id": "photoUrl",
+    "label": "Avatar",
     "gridItemClass": "grid-column-3-row-1-span-3"
   },
 
