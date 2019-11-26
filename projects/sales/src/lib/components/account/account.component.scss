@@ -1,0 +1,23 @@
+// @import "../../themes/mat-variables";
+// @import "../../themes/variables";
+@import "../../../../../../projects/utils/src/lib/angular-material/mat-variables";
+@import "../../../../../../projects/utils/src/lib/angular-material/variables";
+
+// Note: Define all color and typography styles in a "theme file" for the component / plugin
+
+.mat-card {
+  padding: 0;
+}
+
+.mat-card-header {
+  background: rgba(0, 0, 0, 0.04);
+  padding-top: 8px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mat-card-content {
+  padding: 16px;
+}

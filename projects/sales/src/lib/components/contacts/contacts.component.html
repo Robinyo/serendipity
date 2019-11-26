@@ -61,26 +61,29 @@
         </ng-container>
 
         <ng-container *ngFor="let column of columnDefs" [matColumnDef]="column.name">
+
           <th mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ column.displayName }}
           </th>
           <td mat-cell *matCellDef="let row">
 
-            <!--
+            <!-- FULL NAME -->
 
-            <ng-container *ngIf="column.class === 'anchor'">
-              <a [routerLink]="[row.id]">
-                {{ getProperty(row, column.name) }}
-              </a>
-            </ng-container>
-
-            -->
-
-            <ng-container *ngIf="column.class === 'anchor'">
+            <ng-container *ngIf="column.name === 'party.displayName'">
               <a [routerLink]="[row.party.id]">
                 {{ getProperty(row, column.name) }}
               </a>
             </ng-container>
+
+            <!-- COMPANY NAME -->
+
+            <ng-container *ngIf="column.name === 'organisation.name'">
+              <a [routerLink]="['/sales/accounts', row.organisation.id]">
+                {{ getProperty(row, column.name) }}
+              </a>
+            </ng-container>
+
+            <!-- NON-ANCHOR COLUMNS -->
 
             <ng-container *ngIf="column.class !== 'anchor'">
               <a>
@@ -89,6 +92,7 @@
             </ng-container>
 
           </td>
+
         </ng-container>
 
         <ng-container matColumnDef="footer">
@@ -168,6 +172,28 @@
   </ng-template>
 
 </div> <!-- crm-content-container -->
+
+<!--
+
+            <ng-container *ngIf="column.class === 'anchor'">
+              <a [routerLink]="[row.party.id]">
+                {{ getProperty(row, column.name) }}
+              </a>
+            </ng-container>
+
+            <ng-container *ngIf="column.class !== 'anchor'">
+              <a>
+                {{ getProperty(row, column.name) }}
+              </a>
+            </ng-container>
+
+<ng-container *ngIf="column.class === 'anchor'">
+  <a [routerLink]="[row.id]">
+    {{ getProperty(row, column.name) }}
+  </a>
+</ng-container>
+
+-->
 
 <!--
 

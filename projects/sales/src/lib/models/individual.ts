@@ -1,4 +1,4 @@
-import { Organisation } from './orgainisation';
+import { OrganisationRef } from './organisationRef';
 import { Party } from './party';
 
 export class Individual {
@@ -18,12 +18,12 @@ export class Individual {
     public photoUrl: string = ''
   ) {
     this.party = new Party('Individual');
-    this.organisation = new Organisation();
+    this.organisation = new OrganisationRef();
   }
 
   public party: Party;
 
-  public organisation: Organisation;
+  public organisation: OrganisationRef;
 
 }
 

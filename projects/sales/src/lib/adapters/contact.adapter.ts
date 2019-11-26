@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Adapter } from './adapter';
 
 import { Contact } from '../models/contact';
-import { Organisation } from '../models/orgainisation';
+import { OrganisationRef } from '../models/organisationRef';
 
 import { LoggerService } from 'utils';
 
@@ -35,7 +35,10 @@ export class ContactAdapter implements Adapter<Contact> {
       item.photoUrl
     );
 
+    // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
+
     contact.party.id = btoa(item.party.id);
+
     contact.party.displayName = item.party.displayName;
 
     if (contact.gender === 'Male') {
@@ -49,9 +52,9 @@ export class ContactAdapter implements Adapter<Contact> {
 
     if (contact.party.roles.length) {
 
+      contact.organisation.id = btoa(contact.party.roles[0].reciprocalPartyId);
       contact.organisation.name = contact.party.roles[0].reciprocalPartyName;
       contact.organisation.phoneNumber = contact.phoneNumber;
-
     }
 
     // this.logger.info('contact: ' + JSON.stringify(contact, null, 2));

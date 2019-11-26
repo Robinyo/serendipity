@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AccountComponent } from './components/account/account.component';
 import { ActivitiesComponent } from './components/activities/activities.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { ContactComponent } from './components/contact/contact.component';
@@ -38,6 +39,14 @@ const routes: Routes = [
     path: 'dashboards',
     component: DashboardComponent,
     canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
+  },
+
+  {
+    path: 'accounts/:id',
+    component: AccountComponent,
+    canActivate: [AuthGuard],
+    // canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
   },
 

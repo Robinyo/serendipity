@@ -41,14 +41,6 @@ const routes: Routes = [
   },
 
   {
-    // path: 'sales/accounts',
-    path: 'accounts',
-    component: PlaceholderComponent,
-    canActivate: [AuthGuard],
-    runGuardsAndResolvers: 'always'
-  },
-
-  {
     // path: 'sales/leads',
     path: 'leads',
     component: PlaceholderComponent,
@@ -70,7 +62,7 @@ const routes: Routes = [
 
   {
     path: '**',
-    redirectTo: 'accounts'
+    redirectTo: 'leads'
   }
 
 ];
@@ -92,6 +84,16 @@ export class AppRoutingModule {}
 // https://stackoverflow.com/questions/40380726/angular2-router-canactivate-after-logout
 
 /*
+
+  {
+    // path: 'sales/accounts',
+    path: 'accounts',
+    component: PlaceholderComponent,
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
+  },
+
+
 {
   path: '',
   loadChildren: './lazy-loading/dashboard-widgets-lib-wrapper.module#DashboardWidgetsLibWrapperModule'
@@ -100,6 +102,7 @@ export class AppRoutingModule {}
   path: '',
   loadChildren: './lazy-loading/dashboard-lib-wrapper.module#DashboardLibWrapperModule'
 },
+
 */
 
 /*

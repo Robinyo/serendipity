@@ -10,11 +10,13 @@ import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 
 import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
-import { ContactsService } from '../../services/contacts/contacts.service';
-import { Contact } from '../../models/contact';
+// import { ContactsService } from '../../services/contacts/contacts.service';
+// import { Contact } from '../../models/contact';
+import { Organisation } from '../../models/organisation';
 
+import { ACCOUNTS } from '../../models/constants';
 import { CONTACTS } from '../../models/constants';
-import { GENERAL_INFORMATION_GROUP, ADDRESS_INFORMATION_GROUP } from '../../models/form-ids';
+// import { GENERAL_INFORMATION_GROUP, ADDRESS_INFORMATION_GROUP } from '../../models/form-ids';
 
 import { DialogService } from 'serendipity-components';
 
@@ -33,28 +35,28 @@ import {
 } from '../../models/constants';
 
 @Component({
-  selector: 'sales-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  selector: 'sales-account',
+  templateUrl: './account.component.html',
+  styleUrls: ['./account.component.scss']
 })
-export class ContactComponent implements OnInit, OnDestroy {
+export class AccountComponent implements OnInit, OnDestroy {
 
   public containerHeight: number;
 
   // public id = 'MA==';
   public partyId: string;
-  public item: Contact;
+  public item: Organisation;
 
   protected subscriptions: Subscription[] = [];
 
   @ViewChild('contentContainer', {static: true})
   private tableContainer: ElementRef;
 
-  public generalInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];
-  public generalInformationGroup: FormGroup;
+  // public generalInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];
+  // public generalInformationGroup: FormGroup;
 
-  public addressInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];
-  public addressInformationGroup: FormGroup;
+  // public addressInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];
+  // public addressInformationGroup: FormGroup;
 
   private navBarHeight = NAVIGATION_BAR_HEIGHT_DESKTOP;
   private cmdBarHeight = COMMAND_BAR_HEIGHT_DESKTOP;
@@ -63,7 +65,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private contactsService: ContactsService,
+              // private contactsService: ContactsService,
               private dynamicFormService: DynamicFormService,
               private dialogService: DialogService,
               private snackBar: MatSnackBar,
@@ -71,7 +73,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
 
-    this.logger.info('ContactComponent: ngOnInit()');
+    this.logger.info('AccountComponent: ngOnInit()');
 
     this.containerHeight = this.tableContainer.nativeElement.offsetHeight -
       (this.navBarHeight + this.cmdBarHeight + this.viewBarHeight + this.margin);
@@ -94,31 +96,13 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   async subscribe() {
 
-    this.logger.info('ContactComponent: subscribe()');
-
-    this.generalInformationModel = await this.dynamicFormService.getFormMetadata(GENERAL_INFORMATION_GROUP);
-    this.generalInformationGroup = this.dynamicFormService.createGroup(this.generalInformationModel);
-
-    this.addressInformationModel = await this.dynamicFormService.getFormMetadata(ADDRESS_INFORMATION_GROUP);
-    this.addressInformationGroup = this.dynamicFormService.createGroup(this.addressInformationModel);
-
-    let modelSubscription: Subscription = new Subscription();
-    this.subscriptions.push(modelSubscription);
-
-    modelSubscription = this.contactsService.findOne(this.partyId).subscribe(data => {
-
-      this.logger.info('ContactComponent subscribe() data: ' + JSON.stringify(data));
-
-      this.item = data;
-      this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
-      this.dynamicFormService.initGroup(this.addressInformationGroup, this.item.party.addresses[0]);
-    });
+    this.logger.info('AccountComponent: subscribe()');
 
   }
 
   protected unsubscribe(): void {
 
-    this.logger.info('ContactComponent: unsubscribe()');
+    this.logger.info('AccountComponent: unsubscribe()');
 
     this.subscriptions.forEach(subscription => {
       subscription.unsubscribe();
@@ -128,7 +112,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy() {
 
-    this.logger.info('ContactComponent: ngOnDestroy()');
+    this.logger.info('AccountComponent: ngOnDestroy()');
     this.unsubscribe();
   }
 
@@ -138,14 +122,14 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   public canDeactivate(): Observable<boolean> | boolean {
 
-    // this.logger.info('ContactComponent: canDeactivate()');
+    // this.logger.info('AccountComponent: canDeactivate()');
 
     if (!this.isDirty() && this.isValid()) {
       return true;
     }
 
     return this.dialogService.openConfirm({
-      title: 'Contact',
+      title: 'Account',
       message: 'Are you sure you want to leave this page?',
       acceptButton: 'OK',
       cancelButton: 'CANCEL'
@@ -155,48 +139,46 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   public isDirty() {
 
-    // this.logger.info('ContactComponent - isDirty()');
+    // this.logger.info('AccountComponent - isDirty()');
 
-    let dirty = false;
+    // let dirty = false;
+    const dirty = false;
 
-    if ((this.generalInformationGroup && this.generalInformationGroup.dirty) ||
-        (this.addressInformationGroup && this.addressInformationGroup.dirty)) {
-      dirty = true;
-    }
+    // if ((this.generalInformationGroup && this.generalInformationGroup.dirty) ||
+    //   (this.addressInformationGroup && this.addressInformationGroup.dirty)) {
+    //   dirty = true;
+    // }
 
     return dirty;
   }
 
   public isValid() {
 
-    // this.logger.info('ContactComponent - isValid()');
+    // this.logger.info('AccountComponent - isValid()');
 
-    let valid = false;
+    // let valid = false;
+    const valid = false;
 
-    if (this.generalInformationGroup && this.generalInformationGroup.valid) {
-
-      if (this.addressInformationGroup && this.addressInformationGroup.valid) {
-
-        valid = true;
-        // this.logger.info('valid: ' + valid);
-      }
-
-    }
+    // if (this.generalInformationGroup && this.generalInformationGroup.valid) {
+    //   if (this.addressInformationGroup && this.addressInformationGroup.valid) {
+    //     valid = true;
+    //   }
+    // }
 
     return valid;
   }
 
   public markAsPristine() {
 
-    // this.logger.info('ContactComponent - markAsPristine()');
+    // this.logger.info('AccountComponent - markAsPristine()');
 
-    if (this.generalInformationGroup) {
-      this.generalInformationGroup.markAsPristine();
-    }
+    // if (this.generalInformationGroup) {
+    //   this.generalInformationGroup.markAsPristine();
+    // }
 
-    if (this.addressInformationGroup) {
-      this.addressInformationGroup.markAsPristine();
-    }
+    // if (this.addressInformationGroup) {
+    //   this.addressInformationGroup.markAsPristine();
+    // }
 
   }
 
@@ -206,14 +188,14 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   public onNew() {
 
-    this.logger.info('ContactComponent: onNew()');
+    this.logger.info('AccountComponent: onNew()');
 
-    this.router.navigate([CONTACTS + '/new']);
+    this.router.navigate([ACCOUNTS + '/new']);
   }
 
   public onSave() {
 
-    this.logger.info('ContactComponent: onSave()');
+    this.logger.info('AccountComponent: onSave()');
 
     this.markAsPristine();
     this.openSnackBar();
@@ -221,7 +203,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   public onSaveAndClose() {
 
-    this.logger.info('ContactComponent: onSaveAndClose()');
+    this.logger.info('AccountComponent: onSaveAndClose()');
 
     this.markAsPristine();
     this.openSnackBar();
@@ -230,7 +212,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   public onDeactivate() {
 
-    this.logger.info('ContactComponent: onDeactivate()');
+    this.logger.info('AccountComponent: onDeactivate()');
 
     this.dialogService.openConfirm({
       title: 'Contact',
@@ -239,17 +221,16 @@ export class ContactComponent implements OnInit, OnDestroy {
       cancelButton: 'CANCEL'
     }).afterClosed().subscribe(response => {
 
-      // this.logger.info(`ContactComponent onDeactivate() response: ${response}`);
+      // this.logger.info(`ContactPage onDeactivate() response: ${response}`);
 
       if (response) {
 
-        this.logger.info('ContactComponent onDeactivate() response: true');
+        this.logger.info('AccountComponent onDeactivate() response: true');
 
-        const subscription: Subscription = this.contactsService.delete(this.partyId).subscribe(() => {
-
-          subscription.unsubscribe();
-          this.router.navigate([CONTACTS]);
-        });
+        // const subscription: Subscription = this.contactsService.delete(this.partyId).subscribe(() => {
+        //   subscription.unsubscribe();
+        //   this.router.navigate([CONTACTS]);
+        // });
 
       }
 
@@ -259,7 +240,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   public onClose() {
 
-    this.logger.info('ContactComponent: onClose()');
+    this.logger.info('AccountComponent: onClose()');
 
     this.router.navigate([CONTACTS]);
   }
@@ -267,7 +248,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   public onCustomEvent(event: DynamicFormControlCustomEvent) {
 
-    this.logger.info('ContactComponent: onCustomEvent()');
+    this.logger.info('AccountComponent: onCustomEvent()');
 
     this.dialogService.openAlert({
       title: 'Alert',

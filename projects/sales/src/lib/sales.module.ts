@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { TranslateModule } from '@ngx-translate/core';
 
+import { AccountComponent } from './components/account/account.component';
 import { AccountsComponent } from './components/accounts/accounts.component';
 import { ActivitiesComponent } from './components/activities/activities.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
@@ -72,6 +73,7 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
     LazyLibRoutingModule
   ],
   declarations: [
+    AccountComponent,
     AccountsComponent,
     ActivitiesComponent,
     ContactsComponent,
