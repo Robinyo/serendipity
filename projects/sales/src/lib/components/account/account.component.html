@@ -59,7 +59,7 @@
 </crm-command-bar>
 
 <div class="crm-component-title-container">
-  <h1 class="crm-component-title"> {{ 'CONTACT_HEADER' | translate }} </h1>
+  <h1 class="crm-component-title"> {{ 'ACCOUNT_HEADER' | translate }} </h1>
 </div>
 
 <div #contentContainer class="crm-content-container">
@@ -81,6 +81,13 @@
         <mat-card-content>
 
           <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
+
+          <dynamic-form autocomplete="off"
+                        className="crm-nested-grid-container"
+                        [formGroup]="generalInformationGroup"
+                        [model]="generalInformationModel"
+                        (customEvent)="onCustomEvent($event)">
+          </dynamic-form>
 
           <!--
           <p>

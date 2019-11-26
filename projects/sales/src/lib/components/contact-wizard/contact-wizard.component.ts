@@ -16,7 +16,7 @@ import { DialogService } from 'serendipity-components';
 import { LoggerService } from 'utils';
 
 import { CONTACTS } from '../../models/constants';
-import { ADDRESS_INFORMATION_GROUP, GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
+import { CONTACT_ADDRESS_INFORMATION_GROUP, CONTACT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
 import { Address } from '../../models/address';
 import { Contact } from '../../models/contact';
 
@@ -65,11 +65,11 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
 
     this.createSampleContact();
 
-    this.generalInformationModel = await this.dynamicFormService.getFormMetadata(GENERAL_INFORMATION_GROUP);
+    this.generalInformationModel = await this.dynamicFormService.getFormMetadata(CONTACT_GENERAL_INFORMATION_GROUP);
     this.generalInformationGroup = this.dynamicFormService.createGroup(this.generalInformationModel);
     this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
 
-    this.addressInformationModel = await this.dynamicFormService.getFormMetadata(ADDRESS_INFORMATION_GROUP);
+    this.addressInformationModel = await this.dynamicFormService.getFormMetadata(CONTACT_ADDRESS_INFORMATION_GROUP);
     this.addressInformationGroup = this.dynamicFormService.createGroup(this.addressInformationModel);
     this.dynamicFormService.initGroup(this.addressInformationGroup, this.item.party.addresses[0]);
 

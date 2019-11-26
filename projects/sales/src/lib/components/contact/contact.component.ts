@@ -14,7 +14,7 @@ import { ContactsService } from '../../services/contacts/contacts.service';
 import { Contact } from '../../models/contact';
 
 import { CONTACTS } from '../../models/constants';
-import { GENERAL_INFORMATION_GROUP, ADDRESS_INFORMATION_GROUP } from '../../models/form-ids';
+import { CONTACT_ADDRESS_INFORMATION_GROUP, CONTACT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
 
 import { DialogService } from 'serendipity-components';
 
@@ -96,10 +96,10 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     this.logger.info('ContactComponent: subscribe()');
 
-    this.generalInformationModel = await this.dynamicFormService.getFormMetadata(GENERAL_INFORMATION_GROUP);
+    this.generalInformationModel = await this.dynamicFormService.getFormMetadata(CONTACT_GENERAL_INFORMATION_GROUP);
     this.generalInformationGroup = this.dynamicFormService.createGroup(this.generalInformationModel);
 
-    this.addressInformationModel = await this.dynamicFormService.getFormMetadata(ADDRESS_INFORMATION_GROUP);
+    this.addressInformationModel = await this.dynamicFormService.getFormMetadata(CONTACT_ADDRESS_INFORMATION_GROUP);
     this.addressInformationGroup = this.dynamicFormService.createGroup(this.addressInformationModel);
 
     let modelSubscription: Subscription = new Subscription();

@@ -8,10 +8,8 @@ import { LoggerService } from 'utils';
 
 export abstract class CollectionService {
 
-  // protected contactsUrl = 'api/contacts/';
-  protected readonly contactsUrl = 'http://localhost:3001/api/individuals/';
-
   protected httpOptions: HttpOptions;
+  protected url: string;
 
   constructor(protected logger: LoggerService) {}
 

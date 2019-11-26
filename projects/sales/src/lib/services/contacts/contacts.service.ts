@@ -23,6 +23,8 @@ export class ContactsService extends CollectionService {
               protected logger: LoggerService) {
 
     super(logger);
+
+    this.url = 'http://localhost:3001/api/individuals/';
   }
 
   // public find(): Observable<Contact[]> {
@@ -46,7 +48,7 @@ export class ContactsService extends CollectionService {
     this.logger.info('ContactsService queryParams: ' + queryParams);
 
     // return this.httpClient.get(this.contactsUrl + queryParams).pipe(
-    return this.httpClient.get(this.contactsUrl + queryParams, this.getHttpOptions()).pipe(
+    return this.httpClient.get(this.url + queryParams, this.getHttpOptions()).pipe(
 
       // map((data: any[]) => data.map(item => this.adapter.adapt(item))),
       // map((response: any) => response.body.data.map(item => this.adapter.adapt(item))),
@@ -122,7 +124,7 @@ export class ContactsService extends CollectionService {
 
   public findOne(id: string): Observable<Contact> {
 
-    return this.httpClient.get(this.contactsUrl + id).pipe(
+    return this.httpClient.get(this.url + id).pipe(
 
       map((item: any) => this.adapter.adapt(item)),
 
@@ -136,7 +138,7 @@ export class ContactsService extends CollectionService {
 
   public create(contact: Contact): Observable<HttpResponse<Contact>> {
 
-    return this.httpClient.post<HttpResponse<Contact>>(this.contactsUrl, contact, this.getHttpOptions()).pipe(
+    return this.httpClient.post<HttpResponse<Contact>>(this.url, contact, this.getHttpOptions()).pipe(
       tap(() => {
         this.logger.info('ContactsService: create() completed');
       }),
@@ -147,7 +149,7 @@ export class ContactsService extends CollectionService {
 
   public update(id: string, contact: Contact): Observable<HttpResponse<Contact>> {
 
-    return this.httpClient.patch<HttpResponse<Contact>>(this.contactsUrl + id, contact, this.getHttpOptions()).pipe(
+    return this.httpClient.patch<HttpResponse<Contact>>(this.url + id, contact, this.getHttpOptions()).pipe(
       tap(() => {
         this.logger.info('ContactsService: update() completed');
       }),
@@ -158,7 +160,7 @@ export class ContactsService extends CollectionService {
 
   public delete(id: string): Observable<Contact> {
 
-    return this.httpClient.delete<Contact>(this.contactsUrl + id).pipe(
+    return this.httpClient.delete<Contact>(this.url + id).pipe(
       tap(() => {
         this.logger.info('ContactsService: delete() completed');
       }),

@@ -10,13 +10,12 @@ import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 
 import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
-// import { ContactsService } from '../../services/contacts/contacts.service';
-// import { Contact } from '../../models/contact';
-import { Organisation } from '../../models/organisation';
+import { AccountsService } from '../../services/accounts/accounts.service';
+import { Account } from '../../models/account';
 
 import { ACCOUNTS } from '../../models/constants';
 import { CONTACTS } from '../../models/constants';
-// import { GENERAL_INFORMATION_GROUP, ADDRESS_INFORMATION_GROUP } from '../../models/form-ids';
+import { ACCOUNT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
 
 import { DialogService } from 'serendipity-components';
 
@@ -43,17 +42,16 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   public containerHeight: number;
 
-  // public id = 'MA==';
   public partyId: string;
-  public item: Organisation;
+  public item: Account;
 
   protected subscriptions: Subscription[] = [];
 
   @ViewChild('contentContainer', {static: true})
   private tableContainer: ElementRef;
 
-  // public generalInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];
-  // public generalInformationGroup: FormGroup;
+  public generalInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];
+  public generalInformationGroup: FormGroup;
 
   // public addressInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];
   // public addressInformationGroup: FormGroup;
@@ -65,7 +63,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              // private contactsService: ContactsService,
+              private accountsService: AccountsService,
               private dynamicFormService: DynamicFormService,
               private dialogService: DialogService,
               private snackBar: MatSnackBar,
@@ -77,8 +75,6 @@ export class AccountComponent implements OnInit, OnDestroy {
 
     this.containerHeight = this.tableContainer.nativeElement.offsetHeight -
       (this.navBarHeight + this.cmdBarHeight + this.viewBarHeight + this.margin);
-
-    // this.partyId = this.route.snapshot.paramMap.get('id');
 
     let paramSubscription: Subscription = new Subscription();
     this.subscriptions.push(paramSubscription);
@@ -97,6 +93,20 @@ export class AccountComponent implements OnInit, OnDestroy {
   async subscribe() {
 
     this.logger.info('AccountComponent: subscribe()');
+
+    this.generalInformationModel = await this.dynamicFormService.getFormMetadata(ACCOUNT_GENERAL_INFORMATION_GROUP);
+    this.generalInformationGroup = this.dynamicFormService.createGroup(this.generalInformationModel);
+
+    let modelSubscription: Subscription = new Subscription();
+    this.subscriptions.push(modelSubscription);
+
+    modelSubscription = this.accountsService.findOne(this.partyId).subscribe(data => {
+
+      this.logger.info('AccountComponent subscribe() data: ' + JSON.stringify(data));
+
+      this.item = data;
+      this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
+    });
 
   }
 
@@ -141,13 +151,11 @@ export class AccountComponent implements OnInit, OnDestroy {
 
     // this.logger.info('AccountComponent - isDirty()');
 
-    // let dirty = false;
-    const dirty = false;
+    let dirty = false;
 
-    // if ((this.generalInformationGroup && this.generalInformationGroup.dirty) ||
-    //   (this.addressInformationGroup && this.addressInformationGroup.dirty)) {
-    //   dirty = true;
-    // }
+    if ((this.generalInformationGroup && this.generalInformationGroup.dirty)) {
+      dirty = true;
+    }
 
     return dirty;
   }
@@ -156,14 +164,11 @@ export class AccountComponent implements OnInit, OnDestroy {
 
     // this.logger.info('AccountComponent - isValid()');
 
-    // let valid = false;
-    const valid = false;
+    let valid = false;
 
-    // if (this.generalInformationGroup && this.generalInformationGroup.valid) {
-    //   if (this.addressInformationGroup && this.addressInformationGroup.valid) {
-    //     valid = true;
-    //   }
-    // }
+    if (this.generalInformationGroup && this.generalInformationGroup.valid) {
+      valid = true;
+    }
 
     return valid;
   }
@@ -172,13 +177,9 @@ export class AccountComponent implements OnInit, OnDestroy {
 
     // this.logger.info('AccountComponent - markAsPristine()');
 
-    // if (this.generalInformationGroup) {
-    //   this.generalInformationGroup.markAsPristine();
-    // }
-
-    // if (this.addressInformationGroup) {
-    //   this.addressInformationGroup.markAsPristine();
-    // }
+    if (this.generalInformationGroup) {
+      this.generalInformationGroup.markAsPristine();
+    }
 
   }
 
@@ -216,7 +217,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
     this.dialogService.openConfirm({
       title: 'Contact',
-      message: 'Are you sure you want to delete this contact?',
+      message: 'Are you sure you want to delete this account?',
       acceptButton: 'OK',
       cancelButton: 'CANCEL'
     }).afterClosed().subscribe(response => {
@@ -240,7 +241,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   public onClose() {
 
-    this.logger.info('AccountComponent: onClose()');
+    // this.logger.info('AccountComponent: onClose()');
 
     this.router.navigate([CONTACTS]);
   }

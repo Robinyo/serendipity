@@ -46,7 +46,7 @@ const routes: Routes = [
     path: 'accounts/:id',
     component: AccountComponent,
     canActivate: [AuthGuard],
-    // canDeactivate: [CanDeactivateGuard],
+    canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
   },
 
