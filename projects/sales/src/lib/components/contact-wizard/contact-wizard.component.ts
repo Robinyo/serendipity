@@ -162,7 +162,7 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
       'MALE',
       'rob.ferguson@robferguson.org',
       '(02) 9999 9999',
-      ''
+      'assets/images/photos/male-avatar.svg'
     );
 
     this.item.party.displayName = 'Ferguson, Rob';
