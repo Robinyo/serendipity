@@ -1,25 +1,136 @@
+// @import "../../themes/mat-variables";
+// @import "../../themes/variables";
+@import "../../../../../../projects/utils/src/lib/angular-material/mat-variables";
+@import "../../../../../../projects/utils/src/lib/angular-material/variables";
+
+// Note: Define all color and typography styles in a "theme file" for the component / plugin
+
+// top, right, bottom, and left
+
+//
+// Header
+//
+
+.header-toolbar {
+  background: #fafafa;
+}
+.header-title {
+  font-weight: bold;
+  padding: 0 16px 0 40px;
+}
+.header-icon {
+  margin: 0 12px 0 12px;
+}
+
+//
+// Footer
+//
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  // vertical-align: middle;
+
+  // to stop the footer from wrapping
+  white-space: nowrap;
+
+  // @media ($mat-xsmall) {
+  //   display: none !important;
+  // }
+}
+.footer-button {
+  min-width: 24px;
+  padding: 0 8px;
+}
+.footer-button-first-page {
+  min-width: 24px;
+  padding: 0;
+}
+.footer-button-previous-page {
+  min-width: 24px;
+  padding: 0;
+}
+.footer-button-next-page {
+  min-width: 24px;
+  padding: 0;
+}
+.footer-button-last-page {
+  min-width: 24px;
+  padding: 0;
+}
+.footer-page-number {
+  padding-top: 14px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
 /*
 
- Global styles are in the App's theme e.g., black-deep-orange.theme.scss
+.footer-icon {
+  padding-top: 8px;
+}
 
- For example:
-
-.mat-drawer-container {
-  top: $mat-toolbar-height-desktop;
-
-  @media ($mat-xsmall) {
-    top: $mat-toolbar-height-mobile;
-  }
+.app-toolbar-icon {
+  display: inline-block;
+  height: 30px;
+  margin: 0 auto;
+  padding-right: 5px;
+  text-align: center;
+  vertical-align: middle;
+  width: 15%;
 }
 
 */
 
-.table-container {
-  /* margin-top: 64px; */
-  height: 400px;
-  overflow: auto;
+//
+// if no mat-sort-header
+//
+
+/*
+th.mat-header-cell {
+  padding-right: 16px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+*/
+
+th.mat-header-cell {
+  padding-right: 16px;
+  // text-transform: uppercase;
+  white-space: nowrap;
 }
 
-table {
-  width: 100%;
+.header-cell-id {
+  text-align: right;
+}
+
+td.mat-cell {
+  padding-right: 16px;
+}
+
+// Columns
+
+.mat-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mat-column-displayName {
+  width: 280px;
+  max-width: 280px;
+}
+
+.mat-column-email {
+  width: 260px;
+  max-width: 260px;
+}
+
+.mat-column-organisation-name {
+  width: 200px;
+  max-width: 120px;
+}
+
+.mat-column-organisation-phoneNumber {
+  width: 120px;
+  max-width: 120px;
 }

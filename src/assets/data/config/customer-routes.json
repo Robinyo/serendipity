@@ -2,7 +2,7 @@
 
   {
     "icon":  "contacts",
-    "route": "accounts",
+    "route": "sales/accounts",
     "title": "ACCOUNTS"
   },
   {

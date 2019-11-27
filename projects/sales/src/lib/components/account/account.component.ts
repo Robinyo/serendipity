@@ -14,7 +14,6 @@ import { AccountsService } from '../../services/accounts/accounts.service';
 import { Account } from '../../models/account';
 
 import { ACCOUNTS } from '../../models/constants';
-import { CONTACTS } from '../../models/constants';
 import { ACCOUNT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
 
 import { DialogService } from 'serendipity-components';
@@ -208,7 +207,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
     this.markAsPristine();
     this.openSnackBar();
-    this.router.navigate([CONTACTS]);
+    this.router.navigate([ACCOUNTS]);
   }
 
   public onDeactivate() {
@@ -243,7 +242,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
     // this.logger.info('AccountComponent: onClose()');
 
-    this.router.navigate([CONTACTS]);
+    this.router.navigate([ACCOUNTS]);
   }
 
 

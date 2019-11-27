@@ -27,19 +27,51 @@ export class AccountsService extends CollectionService {
     this.url = 'http://localhost:3001/api/organisations/';
   }
 
-  public findOne(id: string): Observable<Account> {
+  // path, operator, value
+  // e.g., name, =, B%
+  // [name]=B%
 
-    return this.httpClient.get(this.url + id).pipe(
+  public find(offset: number = 0, limit: number = 100, value: string = ''): Observable<any> {
 
-      map((item: any) => this.adapter.adapt(item)),
+    this.logger.info('AccountsService: find()');
+
+    let filterParam = '';
+
+    if (value.length) {
+      filterParam = '&filter[name]=' + value + '%';
+    }
+
+    const queryParams = '?offset=' + offset + '&limit=' + limit + filterParam;
+
+    this.logger.info('AccountsService queryParams: ' + queryParams);
+
+    return this.httpClient.get(this.url + queryParams, this.getHttpOptions()).pipe(
 
       tap(() => {
-        this.logger.info('AccountsService: findOne() completed');
+
+        this.logger.info('AccountsService: find() completed');
       }),
-      catchError(this.handleError)
+      catchError(error => {
+
+        this.logger.info('AccountsService: find() -> catchError()');
+
+        if (error === undefined) {
+
+          error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
+          throw error;
+
+        } else {
+
+          return this.handleError('Find', []);
+          // return throwError(error);
+        }
+
+      })
+
     );
 
   }
+
 
   protected handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -54,6 +86,52 @@ export class AccountsService extends CollectionService {
       // Let the app keep running by returning an empty result (i.e., [])
       return of(result as T);
     };
+  }
+
+  public findOne(id: string): Observable<Account> {
+
+    return this.httpClient.get(this.url + id).pipe(
+
+      map((item: any) => this.adapter.adapt(item)),
+
+      tap(() => {
+        this.logger.info('AccountsService: findOne() completed');
+      }),
+      catchError(this.handleError)
+    );
+
+  }
+
+  public create(account: Account): Observable<HttpResponse<Account>> {
+
+    return this.httpClient.post<HttpResponse<Account>>(this.url, account, this.getHttpOptions()).pipe(
+      tap(() => {
+        this.logger.info('AccountsService: create() completed');
+      }),
+      catchError(this.handleError)
+    );
+
+  }
+
+  public update(id: string, account: Account): Observable<HttpResponse<Account>> {
+
+    return this.httpClient.patch<HttpResponse<Account>>(this.url + id, account, this.getHttpOptions()).pipe(
+      tap(() => {
+        this.logger.info('AccountsService: update() completed');
+      }),
+      catchError(this.handleError)
+    );
+
+  }
+
+  public delete(id: string): Observable<Account> {
+
+    return this.httpClient.delete<Account>(this.url + id).pipe(
+      tap(() => {
+        this.logger.info('AccountsService: delete() completed');
+      }),
+      catchError(this.handleError)
+    );
   }
 
 }

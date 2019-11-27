@@ -8,11 +8,15 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { AccountComponent } from './components/account/account.component';
 import { AccountsComponent } from './components/accounts/accounts.component';
+
 import { ActivitiesComponent } from './components/activities/activities.component';
+
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ContactWizardComponent } from './components/contact-wizard/contact-wizard.component';
+
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 
 //

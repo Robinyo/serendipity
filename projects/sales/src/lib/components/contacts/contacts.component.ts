@@ -12,6 +12,7 @@ import { DialogService } from 'serendipity-components';
 
 import { ContactsService } from '../../services/contacts/contacts.service';
 import { ColumnDef } from '../../models/column';
+import { CONTACTS_COLUMN_DEFS } from '../../models/column-defs';
 import { Contact } from '../../models/contact';
 import { ContactAdapter } from '../../adapters/contact.adapter';
 
@@ -19,8 +20,8 @@ import { CollectionComponent } from '../abstract/collection.component';
 
 import {
   ALPHABET,
-  CONTACT_COLUMNS_DESKTOP,
-  CONTACT_COLUMNS_MOBILE,
+  CONTACTS_COLUMNS_DESKTOP,
+  CONTACTS_COLUMNS_MOBILE,
   MAT_XSMALL
 } from '../../models/constants';
 
@@ -78,9 +79,9 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
     // Evaluate against the current viewport
 
     if (this.breakpointObserver.isMatched(MAT_XSMALL)) {
-      this.displayedColumns = CONTACT_COLUMNS_MOBILE;
+      this.displayedColumns = CONTACTS_COLUMNS_MOBILE;
     } else {
-      this.displayedColumns = CONTACT_COLUMNS_DESKTOP;
+      this.displayedColumns = CONTACTS_COLUMNS_DESKTOP;
     }
 
     this.loadColumnDefs();
@@ -98,9 +99,9 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
     this.breakpointObserver.observe([ Breakpoints.HandsetPortrait ]).subscribe(result => {
 
       if (result.matches) {
-        this.displayedColumns = CONTACT_COLUMNS_MOBILE;
+        this.displayedColumns = CONTACTS_COLUMNS_MOBILE;
       } else {
-        this.displayedColumns = CONTACT_COLUMNS_DESKTOP;
+        this.displayedColumns = CONTACTS_COLUMNS_DESKTOP;
       }
 
     });
@@ -108,7 +109,7 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
 
   async loadColumnDefs() {
 
-    this.columnDefs = await this.configService.get('contacts-column-defs');
+    this.columnDefs = await this.configService.get(CONTACTS_COLUMN_DEFS);
 
     this.columnDefs.forEach(column => {
 

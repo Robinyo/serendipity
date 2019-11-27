@@ -1,32 +1,149 @@
-<h2 class="lib-component-title"> {{ 'ACCOUNTS_HEADER' | translate }} </h2>
+<crm-command-bar>
 
-<div class="table-container">
+  <button mat-button class="crm-command-bar-button" (click)="onNew()">
+    <mat-icon>add</mat-icon>
+    {{ 'NEW' | translate }}
+  </button>
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <button mat-button class="crm-command-bar-button" [disabled]="true">
+    <mat-icon>description</mat-icon>
+    {{ 'RUN_REPORT' | translate }}
+  </button>
 
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-    </ng-container>
+</crm-command-bar>
 
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef> Weight </th>
-      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="symbol">
-      <th mat-header-cell *matHeaderCellDef> Symbol </th>
-      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-  </table>
-
+<div class="crm-component-title-container">
+  <h1 class="crm-component-title"> {{ 'ACCOUNTS_HEADER' | translate }} </h1>
 </div>
+
+<div class="crm-content-container">
+
+  <ng-container *ngIf="!items; then skeleton"> </ng-container>
+
+  <div class="crm-table-container">
+
+    <ng-container *ngIf="columnDefs">
+
+      <table mat-table
+             [hidden]="!items"
+             [dataSource]="dataSource"
+             matSort
+             matSortStart="desc"
+             class="mat-elevation-z8 crm-table">
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef class="header-cell-id">
+
+            <button mat-icon-button>
+              <mat-icon matListIcon class="header-icon">autorenew</mat-icon>
+            </button>
+
+          </th>
+          <td mat-cell *matCellDef="let element"> </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container *ngFor="let column of columnDefs" [matColumnDef]="column.name">
+
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ column.displayName }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+
+            <!-- ACCOUNT NAME -->
+
+            <ng-container *ngIf="column.name === 'name'">
+              <a [routerLink]="[row.party.id]">
+                {{ getProperty(row, column.name) }}
+              </a>
+            </ng-container>
+
+            <!-- NON-ANCHOR COLUMNS -->
+
+            <ng-container *ngIf="column.class !== 'anchor'">
+              <a>
+                {{ getProperty(row, column.name) }}
+              </a>
+            </ng-container>
+
+          </td>
+
+        </ng-container>
+
+        <ng-container matColumnDef="footer">
+          <td mat-footer-cell *matFooterCellDef colspan="5">
+
+            <div class="footer-container" fxHide.xs>
+
+              <button id="All" mat-button class="footer-button" (click)="onClickFilterButton('All')"
+                      [class.active]="selectedFooterItemId === 'All'">
+                All
+              </button>
+
+              <button mat-button disabled class="footer-button" fxHide.xs>
+                |
+              </button>
+
+              <div *ngFor="let character of alphabet" fxHide.xs>
+                <button id="{{ character }}" mat-button class="footer-button"
+                        (click)="onClickFilterButton(character)"
+                        [class.active]="selectedFooterItemId === character">
+                  {{ character }}
+                </button>
+              </div>
+
+              <button mat-button disabled class="footer-button" fxHide.xs>
+                |
+              </button>
+
+              <div>
+
+                <button mat-button class="footer-button-first-page" [disabled]="true">
+                  <mat-icon>skip_previous</mat-icon>
+                </button>
+
+                <button mat-button class="footer-button-previous-page"
+                        [disabled]="!canClickPreviousPageButton()"
+                        (click)="onClickPreviousPageButton()">
+                  <mat-icon>keyboard_arrow_left</mat-icon>
+                </button>
+
+                <span class="footer-page-number">
+                Page {{ pageNumber }}
+              </span>
+
+                <button mat-button class="footer-button-next-page"
+                        [disabled]="!canClickNextPageButton()"
+                        (click)="onClickNextPageButton()">
+                  <mat-icon>keyboard_arrow_right</mat-icon>
+                </button>
+
+              </div>
+
+            </div>
+
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr mat-footer-row *matFooterRowDef="['footer']; sticky: true"></tr>
+
+      </table>
+
+    </ng-container>
+
+  </div> <!-- crm-table-container -->
+
+  <!-- Skeleton template -->
+
+  <ng-template #skeleton>
+
+    <div class="crm-spinner-container">
+      <mat-spinner color="accent"></mat-spinner>
+    </div>
+
+  </ng-template>
+
+</div> <!-- crm-content-container -->

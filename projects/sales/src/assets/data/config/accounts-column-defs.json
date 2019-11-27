@@ -1,0 +1,14 @@
+[
+
+  {
+    "name": "name",
+    "displayName": "ACCOUNT_NAME",
+    "class": "anchor"
+  },
+  {
+    "name":  "phoneNumber",
+    "displayName": "MAIN_PHONE",
+    "class": ""
+  }
+
+]
