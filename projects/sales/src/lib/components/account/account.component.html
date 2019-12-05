@@ -18,7 +18,7 @@
 
   </ng-container>
 
-  <button mat-button class="crm-command-bar-button" (click)="onNew()">
+  <button mat-button class="crm-command-bar-button" (click)="onNew()" [disabled]="true">
     <mat-icon>add</mat-icon>
     {{ 'NEW' | translate }}
   </button>
@@ -31,7 +31,7 @@
   -->
 
   <button mat-button class="crm-command-bar-button"
-          (click)="onDeactivate()">
+          (click)="onDeactivate()" [disabled]="true">
     <mat-icon>visibility_off</mat-icon>
     {{ 'DEACTIVATE' | translate }}
   </button>

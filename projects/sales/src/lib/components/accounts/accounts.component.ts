@@ -256,7 +256,7 @@ export class AccountsComponent extends CollectionComponent implements AfterViewI
 
     this.logger.info('AccountsComponent: onNew()');
 
-    this.router.navigate(['sales/contacts/new']);
+    // this.router.navigate(['sales/contacts/new']);
   }
 
   public onToggleSidenav() {
