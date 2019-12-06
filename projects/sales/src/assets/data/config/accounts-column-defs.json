@@ -9,6 +9,16 @@
     "name":  "phoneNumber",
     "displayName": "MAIN_PHONE",
     "class": ""
+  },
+  {
+    "name":  "individual.name",
+    "displayName": "PRIMARY_CONTACT",
+    "class": "anchor"
+  },
+  {
+    "name":  "individual.email",
+    "displayName": "EMAIL_PRIMARY_CONTACT",
+    "class": ""
   }
 
 ]

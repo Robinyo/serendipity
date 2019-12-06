@@ -58,9 +58,25 @@
               </a>
             </ng-container>
 
-            <!-- NON-ANCHOR COLUMNS -->
+            <!-- ACCOUNT PHONE NUMBER -->
 
-            <ng-container *ngIf="column.class !== 'anchor'">
+            <ng-container *ngIf="column.name === 'phoneNumber'">
+              <a>
+                {{ getProperty(row, column.name) }}
+              </a>
+            </ng-container>
+
+            <!-- PRIMARY CONTACT -->
+
+            <ng-container *ngIf="row.individual !== undefined && column.name === 'individual.name'">
+              <a [routerLink]="[row.individual.id]">
+                {{ getProperty(row, column.name) }}
+              </a>
+            </ng-container>
+
+            <!-- EMAIL PRIMARY CONTACT -->
+
+            <ng-container *ngIf="row.individual !== undefined && column.name === 'individual.email'">
               <a>
                 {{ getProperty(row, column.name) }}
               </a>

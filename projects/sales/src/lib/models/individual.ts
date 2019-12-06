@@ -1,4 +1,4 @@
-import { OrganisationRef } from './organisationRef';
+import { OrganisationRef } from './organisation-ref';
 import { Party } from './party';
 
 export class Individual {

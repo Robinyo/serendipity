@@ -1,3 +1,4 @@
+import { IndividualRef } from './individual-ref';
 import { Party } from './party';
 
 export class Organisation {
@@ -10,5 +11,7 @@ export class Organisation {
   }
 
   public party: Party;
+
+  public individual: IndividualRef;
 
 }
