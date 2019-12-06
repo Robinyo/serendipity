@@ -199,6 +199,23 @@ export class AccountsComponent extends CollectionComponent implements AfterViewI
     this.refresh();
   }
 
+  public canClickFirstPageButton() {
+
+    this.logger.info('AccountsComponent: canClickFirstPageButton()');
+
+    return this.pageNumber !== 1;
+  }
+
+  public onClickFirstPageButton() {
+
+    this.logger.info('AccountsComponent: onClickFirstPageButton()');
+
+    this.offset = 0;
+    this.pageNumber = 1;
+
+    this.refresh();
+  }
+
   public canClickPreviousPageButton() {
 
     this.logger.info('AccountsComponent: canClickPreviousPageButton()');

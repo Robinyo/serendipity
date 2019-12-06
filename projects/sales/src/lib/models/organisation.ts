@@ -8,6 +8,7 @@ export class Organisation {
     public phoneNumber: string = ''
   ) {
     this.party = new Party('Organisation');
+    this.individual = new IndividualRef();
   }
 
   public party: Party;

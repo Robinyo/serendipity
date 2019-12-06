@@ -68,7 +68,8 @@
 
             <!-- PRIMARY CONTACT -->
 
-            <ng-container *ngIf="row.individual !== undefined && column.name === 'individual.displayName'">
+            <!-- <ng-container *ngIf="row.individual !== undefined && column.name === 'individual.displayName'"> -->
+            <ng-container *ngIf="column.name === 'individual.displayName'">
               <a [routerLink]="[row.individual.id]">
                 {{ getProperty(row, column.name) }}
               </a>
@@ -76,7 +77,8 @@
 
             <!-- EMAIL PRIMARY CONTACT -->
 
-            <ng-container *ngIf="row.individual !== undefined && column.name === 'individual.email'">
+            <!-- <ng-container *ngIf="row.individual !== undefined && column.name === 'individual.email'"> -->
+            <ng-container *ngIf="column.name === 'individual.email'">
               <a>
                 {{ getProperty(row, column.name) }}
               </a>
@@ -114,7 +116,9 @@
 
               <div>
 
-                <button mat-button class="footer-button-first-page" [disabled]="true">
+                <button mat-button class="footer-button-first-page"
+                        [disabled]="!canClickFirstPageButton()"
+                        (click)="onClickFirstPageButton()">
                   <mat-icon>skip_previous</mat-icon>
                 </button>
 

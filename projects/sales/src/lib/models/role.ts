@@ -5,10 +5,14 @@ export class Role {
   partyId?: string;
   partyType?: string;
   partyName?: string;
+  partyEmail: string;
+  partyPhoneNumber: string;
   relationship?: string;
   reciprocalRole?: string;
   reciprocalPartyId?: string;
   reciprocalPartyType?: string;
   reciprocalPartyName?: string;
+  reciprocalPartyEmail: string;
+  reciprocalPartyPhoneNumber: string;
 
 }

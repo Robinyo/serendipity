@@ -201,6 +201,23 @@ export class ContactsComponent extends CollectionComponent implements AfterViewI
     this.refresh();
   }
 
+  public canClickFirstPageButton() {
+
+    this.logger.info('ContactsComponent: canClickFirstPageButton()');
+
+    return this.pageNumber !== 1;
+  }
+
+  public onClickFirstPageButton() {
+
+    this.logger.info('ContactsComponent: onClickFirstPageButton()');
+
+    this.offset = 0;
+    this.pageNumber = 1;
+
+    this.refresh();
+  }
+
   public canClickPreviousPageButton() {
 
     this.logger.info('ContactsComponent: canClickPreviousPageButton()');

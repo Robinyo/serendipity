@@ -37,8 +37,8 @@ export class AccountAdapter implements Adapter<Account> {
 
       account.individual.id = btoa(account.party.roles[0].reciprocalPartyId);
       account.individual.displayName = account.party.roles[0].reciprocalPartyName;
-      account.individual.email = 'email';
-      account.individual.phoneNumber = 'phoneNumber';
+      account.individual.email = account.party.roles[0].reciprocalPartyEmail;
+      account.individual.phoneNumber = account.party.roles[0].reciprocalPartyPhoneNumber;
     }
 
     // this.logger.info('account: ' + JSON.stringify(account, null, 2));
