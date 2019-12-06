@@ -11,7 +11,7 @@
     "class": ""
   },
   {
-    "name":  "organisation.name",
+    "name":  "organisation.displayName",
     "displayName": "COMPANY_NAME",
     "class": "anchor"
   },

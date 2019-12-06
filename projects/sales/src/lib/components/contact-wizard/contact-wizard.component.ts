@@ -167,7 +167,7 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
 
     this.item.party.displayName = 'Ferguson, Rob';
 
-    this.item.organisation.name = 'Van Orton Trading Pty Ltd';
+    this.item.organisation.displayName = 'Van Orton Trading Pty Ltd';
     this.item.organisation.phoneNumber = '(02) 9999 9999';
 
     const address = new Address(

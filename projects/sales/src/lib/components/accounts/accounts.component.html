@@ -68,7 +68,7 @@
 
             <!-- PRIMARY CONTACT -->
 
-            <ng-container *ngIf="row.individual !== undefined && column.name === 'individual.name'">
+            <ng-container *ngIf="row.individual !== undefined && column.name === 'individual.displayName'">
               <a [routerLink]="[row.individual.id]">
                 {{ getProperty(row, column.name) }}
               </a>

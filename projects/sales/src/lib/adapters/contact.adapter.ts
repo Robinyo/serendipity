@@ -53,9 +53,9 @@ export class ContactAdapter implements Adapter<Contact> {
     if (contact.party.roles.length) {
 
       contact.organisation.id = btoa(contact.party.roles[0].reciprocalPartyId);
-      contact.organisation.name = contact.party.roles[0].reciprocalPartyName;
+      contact.organisation.displayName = contact.party.roles[0].reciprocalPartyName;
       contact.organisation.email = '';
-      contact.organisation.phoneNumber = '';
+      contact.organisation.phoneNumber = '(02) 9999 9999';
     }
 
     // this.logger.info('contact: ' + JSON.stringify(contact, null, 2));

@@ -11,7 +11,7 @@
     "class": ""
   },
   {
-    "name":  "individual.name",
+    "name":  "individual.displayName",
     "displayName": "PRIMARY_CONTACT",
     "class": "anchor"
   },

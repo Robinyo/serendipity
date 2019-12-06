@@ -77,7 +77,7 @@
 
             <!-- COMPANY NAME -->
 
-            <ng-container *ngIf="column.name === 'organisation.name'">
+            <ng-container *ngIf="column.name === 'organisation.displayName'">
               <a [routerLink]="['/sales/accounts', row.organisation.id]">
                 {{ getProperty(row, column.name) }}
               </a>
