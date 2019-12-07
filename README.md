@@ -40,7 +40,7 @@
 
 ## ❯ Screen Shots
 
-### ❯ Navigation
+### Navigation
 
 Navigation Bar:
 
@@ -60,7 +60,7 @@ Side Nav:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/sidenav-mode-over.png">
 </p>
 
-### ❯ Customer Engagement
+### Customer Engagement
 
 Activities:
 
@@ -110,7 +110,7 @@ Dashboard - Fullscreen:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/dashboard-fullscreen.png">
 </p>
 
-### ❯ Authentication (AuthN)
+### Authentication (AuthN)
 
 Local Auth Login ([auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library):
 
@@ -134,7 +134,7 @@ Okta Login ([auth-okta](https://github.com/Robinyo/serendipity/tree/master/proje
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/okta-login.png">
 </p>
 
-### ❯ Internationalisation
+### Internationalisation
 
 In German (Auf Deutsch):
 
