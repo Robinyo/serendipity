@@ -50,33 +50,7 @@ Use TypeScript, Node.js, Express and TypeORM to build a [RESTful API](https://gi
 
 ## ❯ Screen Shots
 
-In German (Auf Deutsch):
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/dashboard-de.png">
-</p>
-
-Local Auth Login ([auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library):
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-login.png">
-</p>
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-register.png">
-</p>
-
-Auth0 Login ([auth-auth0](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0) library)
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/auth0-login.png">
-</p>
-
-Okta Login ([auth-okta](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta) library)
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/okta-login.png">
-</p>
+### ❯ Navigation
 
 Navigation Bar:
 
@@ -95,6 +69,8 @@ Side Nav:
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/sidenav-mode-over.png">
 </p>
+
+### ❯ Customer Engagement
 
 Activities:
 
@@ -142,6 +118,38 @@ Dashboard - Fullscreen:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/dashboard-fullscreen.png">
+</p>
+
+### ❯ Authentication (AuthN)
+
+Local Auth Login ([auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library):
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-login.png">
+</p>
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-register.png">
+</p>
+
+Auth0 Login ([auth-auth0](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0) library)
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/auth0-login.png">
+</p>
+
+Okta Login ([auth-okta](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta) library)
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/okta-login.png">
+</p>
+
+### ❯ Internationalisation
+
+In German (Auf Deutsch):
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/dashboard-de.png">
 </p>
 
 Serendipity is a [progressive web application](https://developers.google.com/web/progressive-web-apps/) (PWA) with a RESTful API that can be hosted on premise or in the cloud.
