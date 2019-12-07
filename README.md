@@ -38,16 +38,6 @@
 
 ![divider](./divider.png)
 
-## ❯ Roadmap
-
-Use TypeScript, Node.js, Express and TypeORM to build a [RESTful API](https://github.com/Robinyo/serendipity-api) for Serendipity:
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/redoc.png">
-</p>
-
-![divider](./divider.png)
-
 ## ❯ Screen Shots
 
 ### ❯ Navigation
@@ -150,6 +140,16 @@ In German (Auf Deutsch):
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/dashboard-de.png">
+</p>
+
+![divider](./divider.png)
+
+## ❯ Roadmap
+
+Use TypeScript, Node.js, Express and TypeORM to build a [RESTful API](https://github.com/Robinyo/serendipity-api) for Serendipity:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/redoc.png">
 </p>
 
 Serendipity is a [progressive web application](https://developers.google.com/web/progressive-web-apps/) (PWA) with a RESTful API that can be hosted on premise or in the cloud.
