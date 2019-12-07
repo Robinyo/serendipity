@@ -50,7 +50,7 @@ Use TypeScript, Node.js, Express and TypeORM to build a [RESTful API](https://gi
 
 ## ❯ Screen Shots
 
-Auf Deutsch:
+In German (Auf Deutsch):
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/dashboard-de.png">
@@ -100,6 +100,12 @@ Activities:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/activities.png">
+</p>
+
+Accounts:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/accounts-web.png">
 </p>
 
 Contacts:
