@@ -1,18 +1,20 @@
 export class Role {
 
-  id?: number;
-  role?: string;
-  partyId?: string;
-  partyType?: string;
-  partyName?: string;
-  partyEmail: string;
-  partyPhoneNumber: string;
-  relationship?: string;
-  reciprocalRole?: string;
-  reciprocalPartyId?: string;
-  reciprocalPartyType?: string;
-  reciprocalPartyName?: string;
-  reciprocalPartyEmail: string;
-  reciprocalPartyPhoneNumber: string;
+  public id?: string;
+  public role?: string;
+  public partyId?: string;
+  public partyType?: string;
+  public partyName?: string;
+  public partyEmail?: string;
+  public partyPhoneNumber?: string;
+  public relationship?: string;
+  public reciprocalRole?: string;
+  public reciprocalPartyId?: string;
+  public reciprocalPartyType?: string;
+  public reciprocalPartyName?: string;
+  public reciprocalPartyEmail?: string;
+  public reciprocalPartyPhoneNumber?: string;
 
 }
+
+// id?: number;
