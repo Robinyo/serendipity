@@ -122,18 +122,6 @@ Local Auth Login ([auth-local](https://github.com/Robinyo/serendipity/tree/maste
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-register.png">
 </p>
 
-Auth0 Login ([auth-auth0](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0) library)
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/auth0-login.png">
-</p>
-
-Okta Login ([auth-okta](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta) library)
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/okta-login.png">
-</p>
-
 ### Internationalisation
 
 In German (Auf Deutsch):
