@@ -115,11 +115,11 @@ Dashboard - Fullscreen:
 Local Auth Login ([auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library):
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-login.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-register.png">
 </p>
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-register.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-login.png">
 </p>
 
 ### Internationalisation
