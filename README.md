@@ -5,7 +5,7 @@
 <h1 align="center">Serendipity CEP</h1>
 
 <p align="center">
-  <b>Serendipity is an open source Customer Engagement platform.</b></br>
+  <b>Serendipity is an open source Customer Engagement Platform.</b></br>
   <b>You can use it to transform your organisation by connecting your customers, products, people and operations.</b></br>
 </p>
 
