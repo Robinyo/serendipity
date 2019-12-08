@@ -5,8 +5,14 @@
 
 // Note: Define all color and typography styles in a "theme file" for the component / plugin
 
+.mat-tab-group {
+  margin-left: $crm-component-default-margin;
+  margin-right: $crm-component-default-margin;
+}
+
 .mat-card {
   padding: 0;
+  margin-top: $crm-component-default-margin;
 }
 
 .mat-card-header {

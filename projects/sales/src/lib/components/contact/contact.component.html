@@ -68,66 +68,82 @@
 
   <ng-container *ngIf="item">
 
-    <div #gridContainer class="crm-grid-container">
+    <mat-tab-group>
 
-      <mat-card>
+      <mat-tab label="{{ 'GENERAL_INFORMATION_TAB' | translate }}">
 
-        <mat-card-header>
-          <mat-card-title>
-            General Information
-          </mat-card-title>
-        </mat-card-header>
+        <div #gridContainer class="crm-grid-container">
 
-        <mat-card-content>
+          <mat-card>
 
-          <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
+            <!--
+            <mat-card-header>
+              <mat-card-title>
+                General Information
+              </mat-card-title>
+            </mat-card-header>
+            -->
 
-          <dynamic-form autocomplete="off"
-                        className="crm-nested-grid-container"
-                        [formGroup]="generalInformationGroup"
-                        [model]="generalInformationModel"
-                        (customEvent)="onCustomEvent($event)">
-          </dynamic-form>
+            <mat-card-content>
 
-          <!--
-          <p>
-            Form Value: {{ generalInformationGroup.value | json }}
-          </p>
-          -->
+              <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
 
-        </mat-card-content>
+              <dynamic-form autocomplete="off"
+                            className="crm-nested-grid-container"
+                            [formGroup]="generalInformationGroup"
+                            [model]="generalInformationModel"
+                            (customEvent)="onCustomEvent($event)">
+              </dynamic-form>
 
-      </mat-card>
+              <!--
+              <p>
+                Form Value: {{ generalInformationGroup.value | json }}
+              </p>
+              -->
 
-      <mat-card>
+            </mat-card-content>
 
-        <mat-card-header>
-          <mat-card-title>
-            Address Information
-          </mat-card-title>
-        </mat-card-header>
+          </mat-card>
 
-        <mat-card-content>
+          <mat-card>
 
-          <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
+            <!--
+            <mat-card-header>
+              <mat-card-title>
+                Address Information
+              </mat-card-title>
+            </mat-card-header>
+            -->
 
-          <dynamic-form autocomplete="off"
-                        className="crm-nested-grid-container"
-                        [formGroup]="addressInformationGroup"
-                        [model]="addressInformationModel">
-          </dynamic-form>
+            <mat-card-content>
 
-          <!--
-          <p>
-            Form Value: {{ addressInformationGroup.value | json }}
-          </p>
-          -->
+              <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
 
-        </mat-card-content>
+              <dynamic-form autocomplete="off"
+                            className="crm-nested-grid-container"
+                            [formGroup]="addressInformationGroup"
+                            [model]="addressInformationModel">
+              </dynamic-form>
 
-      </mat-card>
+              <!--
+              <p>
+                Form Value: {{ addressInformationGroup.value | json }}
+              </p>
+              -->
 
-    </div>
+            </mat-card-content>
+
+          </mat-card>
+
+        </div>
+
+      </mat-tab>
+
+      <mat-tab label="{{ 'ADDITIONAL_INFORMATION_TAB' | translate }}">
+
+      </mat-tab>
+
+    </mat-tab-group>
 
   </ng-container>
 
