@@ -36,7 +36,7 @@
     {{ 'DEACTIVATE' | translate }}
   </button>
 
-  <button mat-button class="crm-command-bar-button" [disabled]="true">
+  <button mat-button class="crm-command-bar-button" (click)="onEmail()">
     <mat-icon>link</mat-icon>
     {{ 'EMAIL_A_LINK' | translate }}
   </button>
