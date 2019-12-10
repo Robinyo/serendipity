@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { TaskListComponent } from 'flowable';
+// import { EmailService } from '../../services/email/email.service';
+// private emailService: EmailService,
 
 import { LoggerService } from 'utils';
 
@@ -12,43 +13,23 @@ import { LoggerService } from 'utils';
 })
 export class ActivitiesComponent implements OnInit {
 
-  @ViewChild(TaskListComponent, {static: false})
-  private taskList: TaskListComponent;
-
-  constructor(private logger: LoggerService) {}
+  constructor(private router: Router,
+              private logger: LoggerService) {}
 
   ngOnInit() {
 
     this.logger.info('ActivitiesComponent: ngOnInit()');
   }
 
-  public canDeactivate(): Observable<boolean> | boolean {
-
-    this.logger.info('ActivitiesComponent: canDeactivate()');
-
-    return true;
-  }
-
   //
   // Command Bar events
   //
 
-  public onRefresh() {
+  public onEmail() {
 
-    this.taskList.refresh();
+    this.logger.info('ActivitiesComponent: onEmail()');
+
+    this.router.navigate(['sales/activities/email']);
   }
 
 }
-
-// https://angular.io/guide/router#candeactivate-handling-unsaved-changes
-
-/*
-
-  public canActivate(): Observable<boolean> | boolean {
-
-    this.logger.info('ActivitiesComponent: canActivate()');
-
-    return true;
-  }
-
-*/

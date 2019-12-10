@@ -13,8 +13,6 @@ import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } f
 import { ContactsService } from '../../services/contacts/contacts.service';
 import { Contact } from '../../models/contact';
 
-import { EmailService } from '../../services/email/email.service';
-
 import { CONTACTS } from '../../models/constants';
 import { CONTACT_ADDRESS_INFORMATION_GROUP, CONTACT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
 
@@ -68,9 +66,8 @@ export class ContactComponent implements OnInit, OnDestroy {
               private contactsService: ContactsService,
               private dynamicFormService: DynamicFormService,
               private dialogService: DialogService,
-              private emailService: EmailService,
               private snackBar: MatSnackBar,
-              private logger: LoggerService) { }
+              private logger: LoggerService) {}
 
   public ngOnInit() {
 
@@ -260,19 +257,12 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   }
 
-  public onEmail() {
-
-    this.logger.info('ContactComponent: onEmail()');
-
-  }
-
   public onClose() {
 
     this.logger.info('ContactComponent: onClose()');
 
     this.router.navigate([CONTACTS]);
   }
-
 
   public onCustomEvent(event: DynamicFormControlCustomEvent) {
 

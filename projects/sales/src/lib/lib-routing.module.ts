@@ -1,3 +1,5 @@
+/*
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -63,3 +65,5 @@ const routes: Routes = [
 export class LibRoutingModule {}
 
 // https://stackoverflow.com/questions/40380726/angular2-router-canactivate-after-logout
+
+*/

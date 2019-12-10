@@ -17,7 +17,11 @@ import { ContactWizardComponent } from './components/contact-wizard/contact-wiza
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
+import { EmailComponent } from './components/email/email.component';
+
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
+
+import { TasksComponent } from './components/tasks/tasks.component';
 
 //
 // Utils lib
@@ -83,8 +87,10 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
     ContactsComponent,
     ContactComponent,
     ContactWizardComponent,
+    EmailComponent,
     DashboardComponent,
-    SnackBarComponent
+    SnackBarComponent,
+    TasksComponent
   ],
   entryComponents: [
     SnackBarComponent

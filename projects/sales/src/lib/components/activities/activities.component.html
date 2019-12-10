@@ -1,25 +1,39 @@
 <crm-command-bar>
 
   <button mat-button class="crm-command-bar-button" [disabled]="true">
-    <mat-icon>add</mat-icon>
-    {{ 'NEW' | translate }}
+    <mat-icon>check_box</mat-icon>
+    {{ 'TASK_COMMAND_BAR_BUTTON' | translate }}
   </button>
 
-  <button mat-button class="crm-command-bar-button" (click)="onRefresh()">
-    <mat-icon>refresh</mat-icon>
-    {{ 'REFRESH' | translate }}
+  <button mat-button class="crm-command-bar-button" (click)="onEmail()">
+    <mat-icon>email</mat-icon>
+    {{ 'EMAIL_COMMAND_BAR_BUTTON' | translate }}
   </button>
+
+  <button mat-button class="crm-command-bar-button" [disabled]="true">
+    <mat-icon>perm_contact_calendar</mat-icon>
+    {{ 'APPOINTMENT_COMMAND_BAR_BUTTON' | translate }}
+  </button>
+
+  <button mat-button class="crm-command-bar-button" [disabled]="true">
+    <mat-icon>phone</mat-icon>
+    {{ 'PHONE_CALL_COMMAND_BAR_BUTTON' | translate }}
+  </button>
+
+  <!--
+  <button mat-button class="crm-command-bar-button" [disabled]="true">
+    <mat-icon>phone</mat-icon>
+    {{ 'LETTER_COMMAND_BAR_BUTTON' | translate }}
+  </button>
+
+  <button mat-button class="crm-command-bar-button" [disabled]="true">
+    <mat-icon>phone</mat-icon>
+    {{ 'FAX_COMMAND_BAR_BUTTON' | translate }}
+  </button>
+  -->
 
 </crm-command-bar>
 
 <div class="crm-component-title-container">
   <h1 class="crm-component-title"> {{ 'ACTIVITIES_HEADER' | translate }} </h1>
 </div>
-
-<flow-task-list> </flow-task-list>
-
-<!--
-
-  <button mat-button class="crm-command-bar-button" [disabled]="true">
-
--->

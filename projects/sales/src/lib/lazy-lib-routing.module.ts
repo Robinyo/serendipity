@@ -12,6 +12,10 @@ import { ContactWizardComponent } from './components/contact-wizard/contact-wiza
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
+import { EmailComponent } from './components/email/email.component';
+
+import { TasksComponent } from './components/tasks/tasks.component';
+
 //
 // Auth libs
 //
@@ -38,14 +42,26 @@ const routes: Routes = [
     canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
   },
-
+  {
+    path: 'activities/email',
+    component: EmailComponent,
+    canActivate: [AuthGuard],
+    canDeactivate: [CanDeactivateGuard],
+    runGuardsAndResolvers: 'always'
+  },
+  {
+    path: 'tasks',
+    component: TasksComponent,
+    canActivate: [AuthGuard],
+    canDeactivate: [CanDeactivateGuard],
+    runGuardsAndResolvers: 'always'
+  },
   {
     path: 'dashboards',
     component: DashboardComponent,
     canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always'
   },
-
   {
     path: 'accounts',
     component: AccountsComponent,

@@ -2,8 +2,6 @@
 
 # compiled output
 /dist
-/tmp
-/temp
 /out-tsc
 
 # dependencies
@@ -39,8 +37,11 @@ testem.log
 .DS_Store
 Thumbs.db
 
+/architecture
 /requirements
 /secrets
+/tmp
+/temp
 
 /.firebase
 

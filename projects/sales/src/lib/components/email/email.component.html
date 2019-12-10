@@ -1,0 +1,21 @@
+<crm-command-bar>
+
+  <button mat-button class="crm-command-bar-button" (click)="onSend()">
+    <mat-icon>send</mat-icon>
+    {{ 'SEND' | translate }}
+  </button>
+
+  <button mat-button class="crm-command-bar-button" [disabled]="true">
+    <mat-icon>save</mat-icon>
+    {{ 'SAVE' | translate }}
+  </button>
+
+  <div fxFlex fxLayout fxLayoutAlign="flex-end">
+
+    <button mat-button class="crm-command-bar-button" (click)="onClose()">
+      <mat-icon>clear</mat-icon>
+    </button>
+
+  </div>
+
+</crm-command-bar>
