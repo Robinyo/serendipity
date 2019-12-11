@@ -73,8 +73,6 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
       this.subscribe();
     });
 
-    // this.loadColumnDefs(this.columnDefsFilename);
-    // this.subscribe();
   }
 
   protected async loadColumnDefs(configFilename: string) {
@@ -251,11 +249,3 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
   )
 
 }
-
-/*
-
-    this.loadColumnDefs(this.columnDefsFilename).then(() => {
-      this.subscribe();
-    });
-
-*/

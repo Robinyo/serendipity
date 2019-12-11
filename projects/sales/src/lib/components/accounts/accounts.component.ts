@@ -2,17 +2,14 @@ import { Component } from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material';
 
-import { AccountsService } from '../../services/accounts/accounts.service';
-import { ACCOUNTS_COLUMN_DEFS } from '../../models/column-defs';
-import { Account } from '../../models/account';
-import { AccountAdapter } from '../../adapters/account.adapter';
-
 import { CollectionComponent } from '../abstract/collection.component';
 
-import {
-  ACCOUNTS_COLUMNS_DESKTOP,
-  ACCOUNTS_COLUMNS_MOBILE
-} from '../../models/constants';
+import { AccountAdapter } from '../../adapters/account.adapter';
+import { AccountsService } from '../../services/accounts/accounts.service';
+
+import { Account } from '../../models/account';
+import { ACCOUNTS_COLUMN_DEFS } from '../../models/column-defs';
+import { ACCOUNTS_COLUMNS_DESKTOP, ACCOUNTS_COLUMNS_MOBILE } from '../../models/constants';
 
 @Component({
   selector: 'sales-accounts',

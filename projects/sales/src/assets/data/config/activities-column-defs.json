@@ -1,0 +1,34 @@
+[
+
+  {
+    "name": "type",
+    "displayName": "ACTIVITY_TYPE",
+    "class": ""
+  },
+  {
+    "name":  "subject",
+    "displayName": "SUBJECT",
+    "class": "anchor"
+  },
+  {
+    "name":  "regarding",
+    "displayName": "REGARDING",
+    "class": "anchor"
+  },
+  {
+    "name": "priority",
+    "displayName": "PRIORITY",
+    "class": ""
+  },
+  {
+    "name": "startDate",
+    "displayName": "START_DATE",
+    "class": ""
+  },
+  {
+    "name": "dueDate",
+    "displayName": "DUE_DATE",
+    "class": ""
+  }
+
+]
