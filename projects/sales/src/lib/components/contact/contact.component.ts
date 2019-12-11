@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Observable, Subscription } from 'rxjs';
