@@ -4,6 +4,10 @@ import { MatTableDataSource } from '@angular/material';
 
 import { CollectionComponent } from '../abstract/collection.component';
 
+// import { ActivitiesAdapter } from '../../adapters/activities.adapter';
+// import { ActivitiesService } from '../../services/activities/activities.service';
+// private entityService: ActivitiesService
+
 import { Activity } from '../../models/activity';
 import { ACTIVITIES_COLUMN_DEFS } from '../../models/column-defs';
 import { ACTIVITIES_COLUMNS_DESKTOP, ACTIVITIES_COLUMNS_MOBILE } from '../../models/constants';
@@ -31,13 +35,26 @@ export class ActivitiesComponent extends CollectionComponent<Activity> {
 
     this.items = [{
       type: 'Email',
-      subject: 'Hey',
-      regarding: 'Follow up re ...',
+      subject: 'Welcome email',
+      regarding: 'Hey',
       priority: 'Normal',
       startDate: '',
       dueDate: ''
-      }
-    ];
+    }, {
+      type: 'Phone Call',
+      subject: 'Follow up re initial conversation',
+      regarding: '',
+      priority: 'High',
+      startDate: '',
+      dueDate: ''
+    }, {
+      type: 'Task',
+      subject: 'Update \'Welcome\' email template',
+      regarding: 'Email templates',
+      priority: 'Normal',
+      startDate: '',
+      dueDate: ''
+    }];
 
     this.dataSource = new MatTableDataSource(this.items);
     this.dataSource.data = this.items;

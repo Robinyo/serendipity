@@ -115,22 +115,22 @@ td.mat-cell {
   white-space: nowrap;
 }
 
-.mat-column-displayName {
+.mat-column-name {
   width: 280px;
   max-width: 280px;
 }
 
-.mat-column-email {
-  width: 260px;
-  max-width: 260px;
+.mat-column-phoneNumber {
+  width: 200px;
+  max-width: 200px;
 }
 
-.mat-column-organisation-name {
+.mat-column-individual-displayName {
   width: 200px;
   max-width: 120px;
 }
 
-.mat-column-organisation-phoneNumber {
+.mat-column-individual-email {
   width: 120px;
   max-width: 120px;
 }

@@ -16,8 +16,6 @@ import { ALPHABET } from '../../models/constants';
 import { ColumnDef } from '../../models/column';
 // import { FAKE_ITEMS_LENGTH } from '../../models/constants';
 
-const ALL = 'All';
-
 export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatSort, {static: false})
@@ -27,9 +25,11 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
   public columnDefs: ColumnDef[];
   public dataSource: MatTableDataSource<T> = null;
   public displayedColumns: string[] = [];
+  public footerAllLabel = 'All';
+  public footerColSpan = 5;
   public items: Array<T>;
   public pageNumber = 1;
-  public selectedFooterItemId = ALL;
+  public selectedFooterItemId = 'All';
 
   protected breakpointObserver: BreakpointObserver;
   protected count = 0;
@@ -117,6 +117,10 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
         this.displayedColumns = this.desktopDeviceColumns;
       }
 
+      this.footerColSpan = this.displayedColumns.length;
+
+      this.logger.info('footerColSpan: ' + this.footerColSpan);
+
     });
 
   }
@@ -149,7 +153,7 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
 
     this.filter = this.selectedFooterItemId;
 
-    if (this.selectedFooterItemId === ALL) {
+    if (this.selectedFooterItemId === this.footerAllLabel) {
       this.filter = '';
     }
 
@@ -180,7 +184,7 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
 
   public canClickPreviousPageButton() {
 
-    this.logger.info('CollectionComponent: canClickPreviousPageButton()');
+    // this.logger.info('CollectionComponent: canClickPreviousPageButton()');
 
     return (this.offset - this.limit) >= 0;
   }
@@ -202,7 +206,7 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
 
   public canClickNextPageButton() {
 
-    this.logger.info('CollectionComponent: canClickNextPageButton()');
+    // this.logger.info('CollectionComponent: canClickNextPageButton()');
 
     if (this.count === 0) {
       return false;
@@ -210,8 +214,8 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
 
     const pages = Math.ceil(this.count / this.limit);
 
-    this.logger.info('pages: ' + pages);
-    this.logger.info('this.pageNumber: ' + this.pageNumber);
+    // this.logger.info('pages: ' + pages);
+    // this.logger.info('this.pageNumber: ' + this.pageNumber);
 
     return (pages - this.pageNumber) > 0;
   }
