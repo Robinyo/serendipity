@@ -1,9 +1,5 @@
-// import { Inject, Injectable } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-// import { UtilsConfig } from '../../models/models';
-// import { UtilsConfigService } from '../config.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +18,11 @@ export class ConfigService {
 }
 
 /*
+
+// import { Inject, Injectable } from '@angular/core';
+
+// import { UtilsConfig } from '../../models/models';
+// import { UtilsConfigService } from '../config.service';
 
   constructor(@Inject(UtilsConfigService) private config: UtilsConfig,
               private httpClient: HttpClient) {

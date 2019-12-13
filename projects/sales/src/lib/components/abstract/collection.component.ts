@@ -20,6 +20,7 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
 
   @ViewChild(MatSort, {static: false})
   public sort: MatSort;
+
   public alphabet = ALPHABET;
   public columnDefs: ColumnDef[];
   public dataSource: MatTableDataSource<T>;
