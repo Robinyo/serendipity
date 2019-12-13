@@ -255,6 +255,6 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
 /*
 
   // public dataSource: MatTableDataSource<T> = null;
-    // public displayedColumns: string[] = [];
+  // public displayedColumns: string[] = [];
 
 */

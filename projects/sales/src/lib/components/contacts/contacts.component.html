@@ -6,6 +6,7 @@
   </button>
 
   <!--
+
   <button mat-button class="crm-command-bar-button" [disabled]="true">
     <mat-icon>visibility</mat-icon>
     ACTIVATE
@@ -20,6 +21,7 @@
     <mat-icon>link</mat-icon>
     EMAIL A LINK
   </button>
+
   -->
 
   <button mat-button class="crm-command-bar-button" [disabled]="true">
@@ -179,26 +181,3 @@
 
 </div> <!-- crm-content-container -->
 
-<!-- <ng-container *ngIf="row.organisation !== undefined && column.name === 'organisation.displayName'"> -->
-
-<!--
-
-<ng-container *ngIf="column.name === 'party.displayName'">
-  <a [routerLink]="[row.party.id]">
-    {{ getProperty(row, column.name) }}
-  </a>
-</ng-container>
-
-<ng-container *ngIf="column.name === 'organisation.displayName'">
-  <a [routerLink]="['/sales/accounts', row.organisation.id]">
-    {{ getProperty(row, column.name) }}
-  </a>
-</ng-container>
-
-<ng-container *ngIf="column.class !== 'anchor'">
-  <a>
-    {{ getProperty(row, column.name) }}
-  </a>
-</ng-container>
-
--->
