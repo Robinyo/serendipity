@@ -46,6 +46,7 @@
              [dataSource]="dataSource"
              matSort
              matSortStart="desc"
+             matSortDisableClear
              class="mat-elevation-z8 crm-table">
 
         <ng-container *ngFor="let column of columnDefs" [matColumnDef]="column.name">

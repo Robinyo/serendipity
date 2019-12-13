@@ -22,4 +22,5 @@ export class MyTableComponent implements OnInit {
   ngOnInit() {
     this.dataSource = new MyTableDataSource(this.paginator, this.sort);
   }
+
 }

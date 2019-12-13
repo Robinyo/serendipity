@@ -20,17 +20,16 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
 
   @ViewChild(MatSort, {static: false})
   public sort: MatSort;
-
   public alphabet = ALPHABET;
   public columnDefs: ColumnDef[];
-  public dataSource: MatTableDataSource<T> = null;
-  public displayedColumns: string[] = [];
+  public dataSource: MatTableDataSource<T>;
+
+  public displayedColumns: string[];
   public footerAllLabel = 'All';
   public footerColSpan = 5;
   public items: Array<T>;
   public pageNumber = 1;
   public selectedFooterItemId = 'All';
-
   protected breakpointObserver: BreakpointObserver;
   protected count = 0;
   protected configService: ConfigService;
@@ -166,7 +165,7 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
 
   public canClickFirstPageButton() {
 
-    this.logger.info('CollectionComponent: canClickFirstPageButton()');
+    // this.logger.info('CollectionComponent: canClickFirstPageButton()');
 
     return this.pageNumber !== 1;
   }
@@ -252,3 +251,10 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
   )
 
 }
+
+/*
+
+  // public dataSource: MatTableDataSource<T> = null;
+    // public displayedColumns: string[] = [];
+
+*/

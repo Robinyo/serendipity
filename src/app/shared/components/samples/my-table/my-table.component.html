@@ -1,6 +1,7 @@
 <div class="mat-elevation-z8">
 
   <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
+
     <!-- Id Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
@@ -15,6 +16,7 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
   </table>
 
   <mat-paginator #paginator
