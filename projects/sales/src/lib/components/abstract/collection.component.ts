@@ -24,7 +24,6 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
   public alphabet = ALPHABET;
   public columnDefs: ColumnDef[];
   public dataSource: MatTableDataSource<T>;
-
   public displayedColumns: string[];
   public footerAllLabel = 'All';
   public footerColSpan = 5;
