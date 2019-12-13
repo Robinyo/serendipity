@@ -46,9 +46,9 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
   protected limit = 10;
   protected offset = 0;
 
-  public columnDefsFilename: string;
-  public mobileDeviceColumns: string[];
-  public desktopDeviceColumns: string[];
+  protected columnDefsFilename: string;
+  protected desktopDeviceColumns: string[];
+  protected mobileDeviceColumns: string[];
 
   constructor() {
 
@@ -119,8 +119,7 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
 
       this.footerColSpan = this.displayedColumns.length;
 
-      this.logger.info('footerColSpan: ' + this.footerColSpan);
-
+      // this.logger.info('footerColSpan: ' + this.footerColSpan);
     });
 
   }

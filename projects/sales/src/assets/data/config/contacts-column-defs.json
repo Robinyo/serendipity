@@ -3,21 +3,25 @@
   {
     "name": "party.displayName",
     "displayName": "FULL_NAME",
+    "routerLink": "party.id",
     "class": "anchor"
   },
   {
     "name": "email",
     "displayName": "EMAIL",
+    "routerLink": "",
     "class": ""
   },
   {
     "name":  "organisation.displayName",
     "displayName": "COMPANY_NAME",
+    "routerLink": "organisation.id",
     "class": "anchor"
   },
   {
     "name":  "organisation.phoneNumber",
     "displayName": "BUSINESS_PHONE",
+    "routerLink": "",
     "class": ""
   }
 

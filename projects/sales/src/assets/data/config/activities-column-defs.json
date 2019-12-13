@@ -3,31 +3,37 @@
   {
     "name": "type",
     "displayName": "ACTIVITY_TYPE",
+    "routerLink": "",
     "class": ""
   },
   {
     "name":  "subject",
     "displayName": "SUBJECT",
+    "routerLink": "id",
     "class": "anchor"
   },
   {
     "name":  "regarding",
     "displayName": "REGARDING",
+    "routerLink": "id",
     "class": "anchor"
   },
   {
     "name": "priority",
     "displayName": "PRIORITY",
+    "routerLink": "",
     "class": ""
   },
   {
     "name": "startDate",
     "displayName": "START_DATE",
+    "routerLink": "",
     "class": ""
   },
   {
     "name": "dueDate",
     "displayName": "DUE_DATE",
+    "routerLink": "",
     "class": ""
   }
 

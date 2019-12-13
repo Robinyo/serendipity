@@ -34,6 +34,7 @@ export class ActivitiesComponent extends CollectionComponent<Activity> {
     this.logger.info('ActivitiesComponent: subscribe()');
 
     this.items = [{
+      id: '1',
       type: 'Email',
       subject: 'Welcome email',
       regarding: 'Hey',
@@ -41,6 +42,7 @@ export class ActivitiesComponent extends CollectionComponent<Activity> {
       startDate: '',
       dueDate: ''
     }, {
+      id: '2',
       type: 'Phone Call',
       subject: 'Follow up re initial conversation',
       regarding: '',
@@ -48,6 +50,7 @@ export class ActivitiesComponent extends CollectionComponent<Activity> {
       startDate: '',
       dueDate: ''
     }, {
+      id: '3',
       type: 'Task',
       subject: 'Update \'Welcome\' email template',
       regarding: 'Email templates',

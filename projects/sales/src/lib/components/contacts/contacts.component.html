@@ -48,6 +48,43 @@
              matSortStart="desc"
              class="mat-elevation-z8 crm-table">
 
+        <ng-container *ngFor="let column of columnDefs" [matColumnDef]="column.name">
+
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ column.displayName }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+
+            <!-- See: .scss for mat-column styles -->
+
+            <ng-container *ngIf="!column.routerLink; else link">
+
+              <a>
+                {{ getProperty(row, column.name) }}
+              </a>
+
+            </ng-container>
+
+            <ng-template #link>
+
+              <a *ngIf="column.name === 'party.displayName'"
+                 [routerLink]="[getProperty(row, column.routerLink)]">
+                {{ getProperty(row, column.name) }}
+              </a>
+
+              <a *ngIf="column.name === 'organisation.displayName'"
+                 [routerLink]="['/sales/accounts', getProperty(row, column.routerLink)]">
+                {{ getProperty(row, column.name) }}
+              </a>
+
+            </ng-template>
+
+          </td>
+
+        </ng-container>
+
+        <!-- ID column (padding column RTL) -->
+
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef class="header-cell-id">
 
@@ -58,44 +95,6 @@
           </th>
           <td mat-cell *matCellDef="let element"> </td>
           <td mat-footer-cell *matFooterCellDef> </td>
-        </ng-container>
-
-        <ng-container *ngFor="let column of columnDefs" [matColumnDef]="column.name">
-
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ column.displayName }}
-          </th>
-          <td mat-cell *matCellDef="let row">
-
-            <!-- See: .scss for mat-column styles -->
-
-            <!-- FULL NAME -->
-
-            <ng-container *ngIf="column.name === 'party.displayName'">
-              <a [routerLink]="[row.party.id]">
-                {{ getProperty(row, column.name) }}
-              </a>
-            </ng-container>
-
-            <!-- COMPANY NAME -->
-
-            <!-- <ng-container *ngIf="row.organisation !== undefined && column.name === 'organisation.displayName'"> -->
-            <ng-container *ngIf="column.name === 'organisation.displayName'">
-              <a [routerLink]="['/sales/accounts', row.organisation.id]">
-                {{ getProperty(row, column.name) }}
-              </a>
-            </ng-container>
-
-            <!-- NON-ANCHOR COLUMNS -->
-
-            <ng-container *ngIf="column.class !== 'anchor'">
-              <a>
-                {{ getProperty(row, column.name) }}
-              </a>
-            </ng-container>
-
-          </td>
-
         </ng-container>
 
         <ng-container matColumnDef="footer">
@@ -178,3 +177,27 @@
   </ng-template>
 
 </div> <!-- crm-content-container -->
+
+<!-- <ng-container *ngIf="row.organisation !== undefined && column.name === 'organisation.displayName'"> -->
+
+<!--
+
+<ng-container *ngIf="column.name === 'party.displayName'">
+  <a [routerLink]="[row.party.id]">
+    {{ getProperty(row, column.name) }}
+  </a>
+</ng-container>
+
+<ng-container *ngIf="column.name === 'organisation.displayName'">
+  <a [routerLink]="['/sales/accounts', row.organisation.id]">
+    {{ getProperty(row, column.name) }}
+  </a>
+</ng-container>
+
+<ng-container *ngIf="column.class !== 'anchor'">
+  <a>
+    {{ getProperty(row, column.name) }}
+  </a>
+</ng-container>
+
+-->

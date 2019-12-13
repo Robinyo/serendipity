@@ -1,8 +1,9 @@
 export class Activity {
 
-  public id?: string;
+  // public id?: string;
 
   constructor(
+    public id: string = '',
     public type: string = 'Activity',
     public subject: string = '',
     public regarding: string = '',

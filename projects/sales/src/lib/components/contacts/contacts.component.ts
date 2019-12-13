@@ -27,9 +27,8 @@ export class ContactsComponent extends CollectionComponent<Contact> {
     super();
 
     this.columnDefsFilename = CONTACTS_COLUMN_DEFS;
-
-    this.mobileDeviceColumns = CONTACTS_COLUMNS_MOBILE;
     this.desktopDeviceColumns = CONTACTS_COLUMNS_DESKTOP;
+    this.mobileDeviceColumns = CONTACTS_COLUMNS_MOBILE;
   }
 
   protected subscribe() {
