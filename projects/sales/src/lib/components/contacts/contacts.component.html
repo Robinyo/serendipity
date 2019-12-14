@@ -56,6 +56,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ column.displayName }}
           </th>
+
           <td mat-cell *matCellDef="let row">
 
             <!-- See: .scss for mat-column styles -->
@@ -103,12 +104,14 @@
         <!-- Footer -->
 
         <ng-container matColumnDef="footer">
+
           <td mat-footer-cell *matFooterCellDef [attr.colspan]="footerColSpan">
 
             <sales-collection-footer [host]="this">
             </sales-collection-footer>
 
           </td>
+          
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
