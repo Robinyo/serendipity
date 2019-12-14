@@ -62,23 +62,18 @@
             <!-- See: .scss for mat-column styles -->
 
             <ng-container *ngIf="!column.routerLink; else link">
-
               {{ getProperty(row, column.name) }}
-
             </ng-container>
 
             <ng-template #link>
-
               <a *ngIf="column.name === 'party.displayName'"
                  [routerLink]="[getProperty(row, column.routerLink)]">
                 {{ getProperty(row, column.name) }}
               </a>
-
               <a *ngIf="column.name === 'organisation.displayName'"
                  [routerLink]="['/sales/accounts', getProperty(row, column.routerLink)]">
                 {{ getProperty(row, column.name) }}
               </a>
-
             </ng-template>
 
           </td>
@@ -89,11 +84,9 @@
 
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef class="header-cell-id">
-
             <button mat-icon-button>
               <mat-icon matListIcon class="header-icon">autorenew</mat-icon>
             </button>
-
           </th>
           <td mat-cell *matCellDef="let element"> </td>
           <td mat-footer-cell *matFooterCellDef> </td>
@@ -102,14 +95,10 @@
         <!-- Footer -->
 
         <ng-container matColumnDef="footer">
-
           <td mat-footer-cell *matFooterCellDef [attr.colspan]="footerColSpan">
-
             <sales-collection-footer [host]="this">
             </sales-collection-footer>
-
           </td>
-
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
