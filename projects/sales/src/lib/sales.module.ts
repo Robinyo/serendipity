@@ -11,6 +11,8 @@ import { AccountsComponent } from './components/accounts/accounts.component';
 
 import { ActivitiesComponent } from './components/activities/activities.component';
 
+import { CollectionFooterComponent } from './components/collection/footer/collection-footer.component';
+
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ContactWizardComponent } from './components/contact-wizard/contact-wizard.component';
@@ -84,6 +86,7 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
     AccountComponent,
     AccountsComponent,
     ActivitiesComponent,
+    CollectionFooterComponent,
     ContactsComponent,
     ContactComponent,
     ContactWizardComponent,

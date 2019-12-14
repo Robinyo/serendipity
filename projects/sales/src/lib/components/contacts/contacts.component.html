@@ -100,6 +100,44 @@
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
+        <!-- Footer -->
+
+        <ng-container matColumnDef="footer">
+          <td mat-footer-cell *matFooterCellDef [attr.colspan]="footerColSpan">
+
+            <sales-collection-footer [host]="this">
+            </sales-collection-footer>
+
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="['footer']; sticky: true"></tr>
+
+      </table>
+
+    </ng-container>
+
+  </div> <!-- crm-table-container -->
+
+  <!-- Skeleton template -->
+
+  <ng-template #skeleton>
+
+    <div class="crm-spinner-container">
+      <mat-spinner color="accent"></mat-spinner>
+    </div>
+
+  </ng-template>
+
+</div> <!-- crm-content-container -->
+
+<!--
+
+        <sales-collection-footer [host]="this">
+        </sales-collection-footer>
+
         <ng-container matColumnDef="footer">
           <td mat-footer-cell *matFooterCellDef [attr.colspan]="footerColSpan">
 
@@ -158,26 +196,4 @@
           </td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-        <tr mat-footer-row *matFooterRowDef="['footer']; sticky: true"></tr>
-
-      </table>
-
-    </ng-container>
-
-  </div> <!-- crm-table-container -->
-
-  <!-- Skeleton template -->
-
-  <ng-template #skeleton>
-
-    <div class="crm-spinner-container">
-      <mat-spinner color="accent"></mat-spinner>
-    </div>
-
-  </ng-template>
-
-</div> <!-- crm-content-container -->
-
+-->

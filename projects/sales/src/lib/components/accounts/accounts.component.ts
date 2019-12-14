@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material';
 
-import { CollectionComponent } from '../abstract/collection.component';
+import { CollectionComponent } from '../collection/collection.component';
 
 import { AccountAdapter } from '../../adapters/account.adapter';
 import { AccountsService } from '../../services/accounts/accounts.service';

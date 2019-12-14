@@ -16,6 +16,9 @@ import { ALPHABET } from '../../models/constants';
 import { ColumnDef } from '../../models/column';
 // import { FAKE_ITEMS_LENGTH } from '../../models/constants';
 
+const ALL = 'All';
+const DEFAULT_FOOTER_COL_SPAN = 5;
+
 export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatSort, {static: false})
@@ -25,11 +28,12 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
   public columnDefs: ColumnDef[];
   public dataSource: MatTableDataSource<T>;
   public displayedColumns: string[];
-  public footerAllLabel = 'All';
-  public footerColSpan = 5;
+  public footerAllLabel = ALL;
+  public footerColSpan = DEFAULT_FOOTER_COL_SPAN;
   public items: Array<T>;
   public pageNumber = 1;
-  public selectedFooterItemId = 'All';
+  public selectedFooterItemId = ALL;
+
   protected breakpointObserver: BreakpointObserver;
   protected count = 0;
   protected configService: ConfigService;
@@ -251,10 +255,3 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
   )
 
 }
-
-/*
-
-  // public dataSource: MatTableDataSource<T> = null;
-  // public displayedColumns: string[] = [];
-
-*/
