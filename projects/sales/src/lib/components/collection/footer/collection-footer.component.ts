@@ -5,7 +5,7 @@ import { LoggerService } from 'utils';
 @Component({
   selector: 'sales-collection-footer',
   template: `
-    <div class="footer-container" fxHide.xs>
+    <div class="footer-container">
 
       <button id="{{ host.footerAllLabel }}" mat-button class="footer-button"
               (click)="host.onClickFilterButton(host.footerAllLabel)"

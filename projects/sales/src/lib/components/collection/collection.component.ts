@@ -78,7 +78,7 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
 
   }
 
-  protected async loadColumnDefs(configFilename: string) {
+  protected async loadColumnDefs(configFilename: string): Promise<any> {
 
     this.logger.info('CollectionComponent: loadColumnDefs()');
 

@@ -8,6 +8,9 @@ import { CollectionComponent } from '../collection/collection.component';
 // import { ActivitiesService } from '../../services/activities/activities.service';
 // private entityService: ActivitiesService
 
+// import { EmailService } from '../../services/email/email.service';
+// private emailService: EmailService
+
 import { Activity } from '../../models/activity';
 import { ACTIVITIES_COLUMN_DEFS } from '../../models/column-defs';
 import { ACTIVITIES_COLUMNS_DESKTOP, ACTIVITIES_COLUMNS_MOBILE } from '../../models/constants';
@@ -87,6 +90,3 @@ function pathDataAccessor(item: any, path: string): any {
     return accumulator ? accumulator[key] : undefined;
   }, item);
 }
-
-// import { EmailService } from '../../services/email/email.service';
-// private emailService: EmailService

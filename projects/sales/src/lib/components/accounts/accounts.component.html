@@ -82,67 +82,17 @@
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
+        <!-- Footer -->
+
         <ng-container matColumnDef="footer">
           <td mat-footer-cell *matFooterCellDef [attr.colspan]="footerColSpan">
-
-            <div class="footer-container" fxHide.xs>
-
-              <button id="{{ footerAllLabel }}" mat-button class="footer-button"
-                      (click)="onClickFilterButton(footerAllLabel)"
-                      [class.active]="selectedFooterItemId === footerAllLabel">
-                {{ footerAllLabel }}
-              </button>
-
-              <button mat-button disabled class="footer-button" fxHide.xs>
-                |
-              </button>
-
-              <div *ngFor="let character of alphabet" fxHide.xs>
-                <button id="{{ character }}" mat-button class="footer-button"
-                        (click)="onClickFilterButton(character)"
-                        [class.active]="selectedFooterItemId === character">
-                  {{ character }}
-                </button>
-              </div>
-
-              <button mat-button disabled class="footer-button" fxHide.xs>
-                |
-              </button>
-
-              <div>
-
-                <button mat-button class="footer-button-first-page"
-                        [disabled]="!canClickFirstPageButton()"
-                        (click)="onClickFirstPageButton()">
-                  <mat-icon>skip_previous</mat-icon>
-                </button>
-
-                <button mat-button class="footer-button-previous-page"
-                        [disabled]="!canClickPreviousPageButton()"
-                        (click)="onClickPreviousPageButton()">
-                  <mat-icon>keyboard_arrow_left</mat-icon>
-                </button>
-
-                <span class="footer-page-number">
-                Page {{ pageNumber }}
-              </span>
-
-                <button mat-button class="footer-button-next-page"
-                        [disabled]="!canClickNextPageButton()"
-                        (click)="onClickNextPageButton()">
-                  <mat-icon>keyboard_arrow_right</mat-icon>
-                </button>
-
-              </div>
-
-            </div>
-
+            <sales-collection-footer [host]="this">
+            </sales-collection-footer>
           </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
         <tr mat-footer-row *matFooterRowDef="['footer']; sticky: true"></tr>
 
       </table>
@@ -201,5 +151,63 @@
     {{ getProperty(row, column.name) }}
   </a>
 </ng-container>
+
+        <ng-container matColumnDef="footer">
+          <td mat-footer-cell *matFooterCellDef [attr.colspan]="footerColSpan">
+
+            <div class="footer-container" fxHide.xs>
+
+              <button id="{{ footerAllLabel }}" mat-button class="footer-button"
+                      (click)="onClickFilterButton(footerAllLabel)"
+                      [class.active]="selectedFooterItemId === footerAllLabel">
+                {{ footerAllLabel }}
+              </button>
+
+              <button mat-button disabled class="footer-button" fxHide.xs>
+                |
+              </button>
+
+              <div *ngFor="let character of alphabet" fxHide.xs>
+                <button id="{{ character }}" mat-button class="footer-button"
+                        (click)="onClickFilterButton(character)"
+                        [class.active]="selectedFooterItemId === character">
+                  {{ character }}
+                </button>
+              </div>
+
+              <button mat-button disabled class="footer-button" fxHide.xs>
+                |
+              </button>
+
+              <div>
+
+                <button mat-button class="footer-button-first-page"
+                        [disabled]="!canClickFirstPageButton()"
+                        (click)="onClickFirstPageButton()">
+                  <mat-icon>skip_previous</mat-icon>
+                </button>
+
+                <button mat-button class="footer-button-previous-page"
+                        [disabled]="!canClickPreviousPageButton()"
+                        (click)="onClickPreviousPageButton()">
+                  <mat-icon>keyboard_arrow_left</mat-icon>
+                </button>
+
+                <span class="footer-page-number">
+                Page {{ pageNumber }}
+              </span>
+
+                <button mat-button class="footer-button-next-page"
+                        [disabled]="!canClickNextPageButton()"
+                        (click)="onClickNextPageButton()">
+                  <mat-icon>keyboard_arrow_right</mat-icon>
+                </button>
+
+              </div>
+
+            </div>
+
+          </td>
+        </ng-container>
 
 -->

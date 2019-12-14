@@ -46,13 +46,13 @@ export const ALPHABET: string[] = [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
   'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' ];
 
 export const ACCOUNTS_COLUMNS_DESKTOP = [ 'name', 'phoneNumber', 'individual.displayName', 'individual.email', 'id' ];
-export const ACCOUNTS_COLUMNS_MOBILE  = [ 'name', 'id' ];
+export const ACCOUNTS_COLUMNS_MOBILE  = [ 'name', 'phoneNumber', 'id' ];
 
 export const ACTIVITIES_COLUMNS_DESKTOP = [ 'type', 'subject', 'regarding', 'priority', 'startDate', 'dueDate', 'id' ];
 export const ACTIVITIES_COLUMNS_MOBILE  = [ 'type', 'subject', 'id' ];
 
 export const CONTACTS_COLUMNS_DESKTOP = [ 'party.displayName', 'email', 'organisation.displayName', 'organisation.phoneNumber', 'id' ];
-export const CONTACTS_COLUMNS_MOBILE  = [ 'party.displayName', 'id' ];
+export const CONTACTS_COLUMNS_MOBILE  = [ 'party.displayName', 'organisation.phoneNumber', 'id' ];
 
 //
 // TODO
