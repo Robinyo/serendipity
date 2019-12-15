@@ -24,12 +24,12 @@ export class ActivitiesComponent extends CollectionComponent<Activity> {
 
   constructor() {
 
-    super();
+    super({
+      columnDefsFilename: ACTIVITIES_COLUMN_DEFS,
+      desktopDeviceColumns: ACTIVITIES_COLUMNS_DESKTOP,
+      mobileDeviceColumns: ACTIVITIES_COLUMNS_MOBILE
+    });
 
-    this.columnDefsFilename = ACTIVITIES_COLUMN_DEFS;
-
-    this.mobileDeviceColumns = ACTIVITIES_COLUMNS_MOBILE;
-    this.desktopDeviceColumns = ACTIVITIES_COLUMNS_DESKTOP;
   }
 
   protected subscribe() {

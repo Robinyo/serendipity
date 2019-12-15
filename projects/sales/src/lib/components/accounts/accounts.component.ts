@@ -21,12 +21,12 @@ export class AccountsComponent extends CollectionComponent<Account> {
   constructor(private entityAdapter: AccountAdapter,
               private entityService: AccountsService) {
 
-    super();
+    super({
+      columnDefsFilename: ACCOUNTS_COLUMN_DEFS,
+      desktopDeviceColumns: ACCOUNTS_COLUMNS_DESKTOP,
+      mobileDeviceColumns: ACCOUNTS_COLUMNS_MOBILE
+    });
 
-    this.columnDefsFilename = ACCOUNTS_COLUMN_DEFS;
-
-    this.mobileDeviceColumns = ACCOUNTS_COLUMNS_MOBILE;
-    this.desktopDeviceColumns = ACCOUNTS_COLUMNS_DESKTOP;
   }
 
   protected subscribe() {

@@ -19,6 +19,22 @@ import { ColumnDef } from '../../models/column';
 const ALL = 'All';
 const DEFAULT_FOOTER_COL_SPAN = 5;
 
+export interface CollectionComponentConfig {
+
+  // Mandatory items
+
+  columnDefsFilename: string;
+  desktopDeviceColumns: string[];
+  mobileDeviceColumns: string[];
+
+  // Optional items
+
+  filter?: string;
+  limit?: number;
+  offset?: number;
+
+}
+
 export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatSort, {static: false})
@@ -53,7 +69,11 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
   protected desktopDeviceColumns: string[];
   protected mobileDeviceColumns: string[];
 
-  constructor() {
+  constructor(config: CollectionComponentConfig) {
+
+    this.columnDefsFilename = config.columnDefsFilename;
+    this.desktopDeviceColumns = config.desktopDeviceColumns;
+    this.mobileDeviceColumns = config.mobileDeviceColumns;
 
     const injector: Injector = StaticInjectorService.getInjector();
 
@@ -64,8 +84,6 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
     this.router = injector.get<Router>(Router as Type<Router>);
     this.sidenavService = injector.get<SidenavService>(SidenavService as Type<SidenavService>);
     this.translate = injector.get<TranslateService>(TranslateService as Type<TranslateService>);
-
-    // this.logger.info('CollectionComponent: constructor()');
   }
 
   public ngOnInit() {

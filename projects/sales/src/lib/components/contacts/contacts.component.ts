@@ -7,7 +7,7 @@ import { CONTACTS_COLUMN_DEFS } from '../../models/column-defs';
 import { Contact } from '../../models/contact';
 import { ContactAdapter } from '../../adapters/contact.adapter';
 
-import { CollectionComponent } from '../collection/collection.component';
+import { CollectionComponent, CollectionComponentConfig } from '../collection/collection.component';
 
 import {
   CONTACTS_COLUMNS_DESKTOP,
@@ -24,11 +24,12 @@ export class ContactsComponent extends CollectionComponent<Contact> {
   constructor(private entityAdapter: ContactAdapter,
               private entityService: ContactsService) {
 
-    super();
+    super({
+      columnDefsFilename: CONTACTS_COLUMN_DEFS,
+      desktopDeviceColumns: CONTACTS_COLUMNS_DESKTOP,
+      mobileDeviceColumns: CONTACTS_COLUMNS_MOBILE
+    });
 
-    this.columnDefsFilename = CONTACTS_COLUMN_DEFS;
-    this.desktopDeviceColumns = CONTACTS_COLUMNS_DESKTOP;
-    this.mobileDeviceColumns = CONTACTS_COLUMNS_MOBILE;
   }
 
   protected subscribe() {
