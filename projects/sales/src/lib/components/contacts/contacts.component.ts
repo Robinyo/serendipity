@@ -27,7 +27,8 @@ export class ContactsComponent extends CollectionComponent<Contact> {
     super({
       columnDefsFilename: CONTACTS_COLUMN_DEFS,
       desktopDeviceColumns: CONTACTS_COLUMNS_DESKTOP,
-      mobileDeviceColumns: CONTACTS_COLUMNS_MOBILE
+      mobileDeviceColumns: CONTACTS_COLUMNS_MOBILE,
+      limit: 10
     });
 
   }

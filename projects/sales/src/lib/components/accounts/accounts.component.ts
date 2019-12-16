@@ -24,7 +24,8 @@ export class AccountsComponent extends CollectionComponent<Account> {
     super({
       columnDefsFilename: ACCOUNTS_COLUMN_DEFS,
       desktopDeviceColumns: ACCOUNTS_COLUMNS_DESKTOP,
-      mobileDeviceColumns: ACCOUNTS_COLUMNS_MOBILE
+      mobileDeviceColumns: ACCOUNTS_COLUMNS_MOBILE,
+      limit: 10
     });
 
   }

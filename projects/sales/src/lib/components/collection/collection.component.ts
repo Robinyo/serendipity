@@ -62,7 +62,7 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
   protected translate: TranslateService;
 
   protected filter = '';
-  protected limit = 10;
+  protected limit = 100;
   protected offset = 0;
 
   protected columnDefsFilename: string;
@@ -74,6 +74,18 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
     this.columnDefsFilename = config.columnDefsFilename;
     this.desktopDeviceColumns = config.desktopDeviceColumns;
     this.mobileDeviceColumns = config.mobileDeviceColumns;
+
+    if (config.filter !== undefined) {
+      this.filter = config.filter;
+    }
+
+    if (config.limit !== undefined) {
+      this.limit = config.limit;
+    }
+
+    if (config.offset !== undefined) {
+      this.offset = config.offset;
+    }
 
     const injector: Injector = StaticInjectorService.getInjector();
 

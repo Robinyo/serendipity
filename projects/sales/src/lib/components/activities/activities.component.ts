@@ -27,7 +27,8 @@ export class ActivitiesComponent extends CollectionComponent<Activity> {
     super({
       columnDefsFilename: ACTIVITIES_COLUMN_DEFS,
       desktopDeviceColumns: ACTIVITIES_COLUMNS_DESKTOP,
-      mobileDeviceColumns: ACTIVITIES_COLUMNS_MOBILE
+      mobileDeviceColumns: ACTIVITIES_COLUMNS_MOBILE,
+      limit: 10
     });
 
   }
