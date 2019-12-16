@@ -146,7 +146,7 @@ Using the --open (or just -o) option will open your browser on `http://localhost
 
 ### Aliases
 
-Steps to add support for aliases update the "paths" array in the `compilerOptions` section of `tsconfig.json`:
+To add support for aliases update the "paths" array in the `compilerOptions` section of `tsconfig.json`:
 
 ```
   "paths": {
