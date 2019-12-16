@@ -487,32 +487,6 @@ To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Lang
 
 ## Resources
 
-### Web Developer Resources
-
-* Google: [Web Fundamentals](https://developers.google.com/web)
-
-### Auth0 Auth Libraries
-
-* GitHub: [Auth0 Authentication for Single Page Applications with PKCE](https://github.com/auth0/auth0-spa-js)
-
-### Okta Auth Libraries
-
-* GitHub: [Okta Auth JavaScript SDK](https://github.com/okta/okta-auth-js)
-
-### Auth Resources
-
-* Internet Engineering Task Force: [OAuth 2.0 for Browser-Based Apps](https://datatracker.ietf.org/doc/draft-ietf-oauth-browser-based-apps/)
-* Internet Engineering Task Force: [OAuth 2.0 Security Best Current Practice](https://datatracker.ietf.org/doc/draft-ietf-oauth-security-topics/)
-
-### Additional Auth Resources
-
-* Auth0's blog: [The Auth0 SPA JS SDK](https://auth0.com/blog/introducing-auth0-single-page-apps-spa-js-sdk/)
-* Okta's blog: [Is the OAuth 2.0 Implicit Flow Dead?](https://developer.okta.com/blog/2019/05/01/is-the-oauth-implicit-flow-dead)
-
-### Authorisation Servers
-
-* GitHub: [Keycloak - Open Source Identity and Access Management](https://www.keycloak.org/)
-
 ### Angular Resources
 
 * Angular.io: [Quick Start Guide](https://angular.io/guide/quickstart)
@@ -554,11 +528,51 @@ To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Lang
 * GitHub: [json-server](https://github.com/typicode/json-server)
 * GitHub: [Hotel - A simple process manager for developers](https://github.com/typicode/hotel)
 
+### Auth Resources
+
+* Internet Engineering Task Force: [OAuth 2.0 for Browser-Based Apps](https://datatracker.ietf.org/doc/draft-ietf-oauth-browser-based-apps/)
+* Internet Engineering Task Force: [OAuth 2.0 Security Best Current Practice](https://datatracker.ietf.org/doc/draft-ietf-oauth-security-topics/)
+
+### Additional Auth Resources
+
+* Auth0's blog: [The Auth0 SPA JS SDK](https://auth0.com/blog/introducing-auth0-single-page-apps-spa-js-sdk/)
+* Okta's blog: [Is the OAuth 2.0 Implicit Flow Dead?](https://developer.okta.com/blog/2019/05/01/is-the-oauth-implicit-flow-dead)
+
+#### Auth0 Auth Libraries
+
+* GitHub: [Auth0 Authentication for Single Page Applications with PKCE](https://github.com/auth0/auth0-spa-js)
+
+#### Okta Auth Libraries
+
+* GitHub: [Okta Auth JavaScript SDK](https://github.com/okta/okta-auth-js)
+
+### Authorisation Servers
+
+* GitHub: [Keycloak - Open Source Identity and Access Management](https://www.keycloak.org/)
+
+### CSS Grid Layout
+
+* CSS Tricks: [A Complete Guide to CSS Grid Layout](https://css-tricks.com/snippets/css/complete-guide-grid/)
+* Grid By Example: [CSS Grid Layout by Example](https://gridbyexample.com/learn/)
+
+### Digital Identity Resources
+
+* dta.gov.au: [Gatekeeper Public Key Infrastructure Framework](https://www.dta.gov.au/our-projects/digital-identity/gatekeeper-public-key-infrastructure-framework)
+* dta.gov.au: [The Trusted Digital Identity Framework (TDIF)](https://www.dta.gov.au/our-projects/digital-identity/trusted-digital-identity-framework)
+
 ### Font Resources
 
 * Chris Aston's blog: [How to preload Google Fonts using resource hints](https://ashton.codes/preload-google-fonts-using-resource-hints/)
 * GitHub: [A Hassle-Free Way to Self-Host Google Fonts](https://google-webfonts-helper.herokuapp.com/fonts)
 * GitHub: [Google Fonts Files](https://github.com/google/fonts)
+
+### Free for Developers
+
+* free-for.dev: [This is a list of software, services and other offerings that have free tiers for developers](https://free-for.dev/#/?id=free-fordev)
+
+### Image Resources
+
+* GitHub: [Essential Image Optimization](https://images.guide)
 
 ### Material Design Resources
 
@@ -567,21 +581,12 @@ To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Lang
 * GitHub: [Covalent - The Teradata UI Platform built on Angular Material](https://teradata.github.io/covalent/#/docs)
 * GitHub: [NiFi Flow Design System](https://github.com/apache/nifi-fds)
 
-### CSS Grid Layout
-
-* CSS Tricks: [A Complete Guide to CSS Grid Layout](https://css-tricks.com/snippets/css/complete-guide-grid/)
-* Grid By Example: [CSS Grid Layout by Example](https://gridbyexample.com/learn/)
-
-### Image Resources
-
-* GitHub: [Essential Image Optimization](https://images.guide)
-
-### Free for Developers
-
-* free-for.dev: [This is a list of software, services and other offerings that have free tiers for developers](https://free-for.dev/#/?id=free-fordev)
-
 ### Sample Data
 
 * Wikipedia: [List of political parties in Australia](https://en.wikipedia.org/wiki/List_of_political_parties_in_Australia)
 * Parliament of Australia: [Mail Labels for Australian Senators](https://www.aph.gov.au/Senators_and_Members/Guidelines_for_Contacting_Senators_and_Members/Address_labels_and_CSV_files)
 * Parliament of Australia: [Photographs of Senators](https://www.aph.gov.au/Senators_and_Members/Senators/Senators_photos)
+
+### Web Developer Resources
+
+* Google: [Web Fundamentals](https://developers.google.com/web)

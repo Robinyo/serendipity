@@ -171,6 +171,7 @@ You can customise and extend Serendipity using Angular, Angular libraries and Se
 
 * Rob Ferguson's blog: [Getting started with Angular Material](https://robferguson.org/blog/2018/11/05/getting-started-with-angular-material/)
 * Rob Ferguson's blog: [Angular Material: toolbar and sidenav](https://robferguson.org/blog/2018/11/10/angular-material-toolbar-and-sidenav/)
+* Rob Ferguson's blog: [Angular Material: table](https://robferguson.org/blog/2019/12/13/angular-material-table/)
 * Rob Ferguson's blog: [Getting started with Flowable](https://robferguson.org/blog/2018/12/10/getting-started-with-flowable/)
 * Rob Ferguson's blog: [How To: Build Flowable](https://robferguson.org/blog/2019/01/05/how-to-build-flowable/)
 * Rob Ferguson's blog: [How To: Flowable and LDAP](https://robferguson.org/blog/2019/01/28/how-to-flowable-and-ldap/)
@@ -180,10 +181,5 @@ You can customise and extend Serendipity using Angular, Angular libraries and Se
 * Rob Ferguson's blog: [Dashboards and Dashboard Widgets - Part 1](https://robferguson.org/blog/2019/06/22/dashboards-and-dashboard-widgets-part-1/)
 * Rob Ferguson's blog: [Lazy Loading Angular Libraries](https://robferguson.org/blog/2019/09/12/lazy-loading-angular-libraries/)
 * Rob Ferguson's blog: [Dynamically Importing Highcharts](https://robferguson.org/blog/2019/09/23/dynamically-importing-highcharts/)
-
-### Digital Identity Resources
-
-* dta.gov.au: [Gatekeeper Public Key Infrastructure Framework](https://www.dta.gov.au/our-projects/digital-identity/gatekeeper-public-key-infrastructure-framework)
-* dta.gov.au: [The Trusted Digital Identity Framework (TDIF)](https://www.dta.gov.au/our-projects/digital-identity/trusted-digital-identity-framework)
 
 ![divider](./divider.png)
