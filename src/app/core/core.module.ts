@@ -1,6 +1,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -8,7 +9,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { QuillModule } from 'ngx-quill';
 
 import { PlaceholderComponent } from './components/placeholder/placeholder.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
@@ -46,6 +47,7 @@ import { AngularMaterialModule } from 'utils';
     CommonModule,
     FlexLayoutModule,
     HttpClientModule,
+    QuillModule.forRoot(),
     SerendipityComponentsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 

@@ -47,7 +47,10 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/themes/light-theme/theme.scss"
+              "src/themes/light-theme/theme.scss",
+              "./node_modules/quill/dist/quill.core.css",
+              "./node_modules/quill/dist/quill.bubble.css",
+              "./node_modules/quill/dist/quill.snow.css"
             ],
             "scripts": []
           },

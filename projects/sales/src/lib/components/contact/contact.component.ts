@@ -132,7 +132,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   //
-  // Misc
+  // Validation
   //
 
   public canDeactivate(): Observable<boolean> | boolean {
@@ -203,28 +203,24 @@ export class ContactComponent implements OnInit, OnDestroy {
   // Command Bar events
   //
 
-  public onNew() {
+  public onClose() {
 
-    this.logger.info('ContactComponent: onNew()');
+    this.logger.info('ContactComponent: onClose()');
 
-    this.router.navigate([CONTACTS + '/new']);
-  }
-
-  public onSave() {
-
-    this.logger.info('ContactComponent: onSave()');
-
-    this.markAsPristine();
-    this.openSnackBar();
-  }
-
-  public onSaveAndClose() {
-
-    this.logger.info('ContactComponent: onSaveAndClose()');
-
-    this.markAsPristine();
-    this.openSnackBar();
     this.router.navigate([CONTACTS]);
+  }
+
+  public onCustomEvent(event: DynamicFormControlCustomEvent) {
+
+    this.logger.info('ContactComponent: onCustomEvent()');
+
+    this.dialogService.openAlert({
+      title: 'Alert',
+      message: JSON.stringify(event),
+      closeButton: 'CLOSE'
+    });
+
+    // this.logger.info('event: ' + JSON.stringify(event));
   }
 
   public onDeactivate() {
@@ -256,31 +252,67 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   }
 
-  public onClose() {
+  public onNew() {
 
-    this.logger.info('ContactComponent: onClose()');
+    this.logger.info('ContactComponent: onNew()');
+
+    this.router.navigate([CONTACTS + '/new']);
+  }
+
+  public onSave() {
+
+    this.logger.info('ContactComponent: onSave()');
+
+    this.dynamicFormService.value(this.generalInformationGroup, this.item);
+    this.dynamicFormService.value(this.addressInformationGroup, this.item.party.addresses[0]);
+
+    this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
+
+    this.update();
+  }
+
+  public onSaveAndClose() {
+
+    this.logger.info('ContactComponent: onSaveAndClose()');
+
+    this.onSave();
 
     this.router.navigate([CONTACTS]);
   }
 
-  public onCustomEvent(event: DynamicFormControlCustomEvent) {
-
-    this.logger.info('ContactComponent: onCustomEvent()');
-
-    this.dialogService.openAlert({
-      title: 'Alert',
-      message: JSON.stringify(event),
-      closeButton: 'CLOSE'
-    });
-
-    // this.logger.info('event: ' + JSON.stringify(event));
-  }
+  //
+  // Misc
+  //
 
   private openSnackBar() {
 
     this.snackBar.openFromComponent(SnackBarComponent, {
       duration: 500,
       panelClass: 'crm-snack-bar'
+    });
+
+  }
+
+  private update() {
+
+    this.logger.info('ContactComponent: update()');
+
+    const subscription: Subscription = this.contactsService.update(this.item.party.id, this.item).subscribe(response => {
+
+      const keys = response.headers.keys();
+      keys.map(key => {
+        this.logger.info('ContactComponent update() key: ' + response.headers.get(key));
+      });
+
+      this.item = { ...response.body };
+
+      this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
+
+      this.markAsPristine();
+      this.openSnackBar();
+
+      subscription.unsubscribe();
+
     });
 
   }

@@ -6,6 +6,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { TranslateModule } from '@ngx-translate/core';
 
+import { QuillModule } from 'ngx-quill';
+
 import { AccountComponent } from './components/account/account.component';
 import { AccountsComponent } from './components/accounts/accounts.component';
 
@@ -72,6 +74,7 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
     // DragDropModule,
     FlexLayoutModule,
     FlowableModule,
+    QuillModule.forRoot(),
     ReactiveFormsModule,
     TranslateModule.forChild(),
     UtilsModule,

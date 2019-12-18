@@ -119,6 +119,8 @@ export class DynamicFormService {
 
       const property = this.getProperty(item, field);
 
+      // formGroup.controls[field] type === ???
+
       if (typeof property !== 'undefined') {
         formGroup.controls[field].setValue(property);
       }

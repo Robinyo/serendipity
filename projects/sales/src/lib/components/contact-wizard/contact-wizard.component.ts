@@ -81,7 +81,57 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
   }
 
   //
-  // Misc
+  // Command Bar events
+  //
+
+  public onClose() {
+
+    this.logger.info('ContactWizardComponent: onClose()');
+
+    this.router.navigate([CONTACTS]);
+  }
+
+  public onCustomEvent(event: DynamicFormControlCustomEvent) {
+
+    this.logger.info('ContactWizardComponent: onCustomEvent()');
+
+    this.dialogService.openAlert({
+      title: 'Alert',
+      message: JSON.stringify(event),
+      closeButton: 'CLOSE'
+    });
+
+    // this.logger.info('event: ' + JSON.stringify(event));
+  }
+
+  public onSave() {
+
+    this.logger.info('ContactWizardComponent: onSave()');
+
+    this.dynamicFormService.value(this.generalInformationGroup, this.item);
+    this.dynamicFormService.value(this.addressInformationGroup, this.item.party.addresses[0]);
+
+    this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
+
+    if (this.isNew) {
+      this.create();
+    } else {
+      this.update();
+    }
+
+  }
+
+  public onSaveAndClose() {
+
+    this.logger.info('ContactWizardComponent: onSaveAndClose()');
+
+    this.onSave();
+
+    this.router.navigate([CONTACTS]);
+  }
+
+  //
+  // Validation
   //
 
   public canDeactivate(): Observable<boolean> | boolean {
@@ -148,61 +198,9 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
 
   }
 
-  private createSampleContact() {
-
-    this.item = new Contact(
-      '',
-      'Robert',
-      '',
-      'Ferguson',
-      '',
-      '',
-      'Rob',
-      'R.',
-      'MALE',
-      'rob.ferguson@robferguson.org',
-      '(02) 9999 9999',
-      'assets/images/photos/male-avatar.svg'
-    );
-
-    this.item.party.displayName = 'Ferguson, Rob';
-
-    this.item.organisation.displayName = 'Van Orton Trading Pty Ltd';
-    this.item.organisation.phoneNumber = '(02) 9999 9999';
-
-    const address = new Address(
-      '93 Janet Street', '',
-      'Merewether', 'NSW', '2291',
-      'Australia',
-      'Principal Place of Residence'
-    );
-
-    this.item.party.addresses.push(address);
-
-  }
-
   //
-  // Command Bar events
+  // Misc
   //
-
-  public onSave() {
-
-    this.logger.info('ContactWizardComponent: onSave()');
-
-    this.dynamicFormService.value(this.generalInformationGroup, this.item);
-    this.dynamicFormService.value(this.addressInformationGroup, this.item.party.addresses[0]);
-
-    this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
-
-    // delete this.item.organisation;
-
-    if (this.isNew) {
-      this.create();
-    } else {
-      this.update();
-    }
-
-  }
 
   private create() {
 
@@ -226,6 +224,15 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
 
       this.isNew = false;
 
+    });
+
+  }
+
+  private openSnackBar() {
+
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 500,
+      panelClass: 'crm-snack-bar'
     });
 
   }
@@ -256,41 +263,36 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
 
   }
 
-  public onClose() {
+  private createSampleContact() {
 
-    this.logger.info('ContactWizardComponent: onClose()');
+    this.item = new Contact(
+      '',
+      'Robert',
+      '',
+      'Ferguson',
+      '',
+      '',
+      'Rob',
+      'R.',
+      'MALE',
+      'rob.ferguson@robferguson.org',
+      '(02) 9999 9999',
+      'assets/images/photos/male-avatar.svg'
+    );
 
-    this.router.navigate([CONTACTS]);
-  }
+    this.item.party.displayName = 'Ferguson, Rob';
 
-  public onSaveAndClose() {
+    this.item.organisation.displayName = 'Van Orton Trading Pty Ltd';
+    this.item.organisation.phoneNumber = '(02) 9999 9999';
 
-    this.logger.info('ContactWizardComponent: onSaveAndClose()');
+    const address = new Address(
+      '93 Janet Street', '',
+      'Merewether', 'NSW', '2291',
+      'Australia',
+      'Principal Place of Residence'
+    );
 
-    this.markAsPristine();
-    this.openSnackBar();
-    this.router.navigate([CONTACTS]);
-  }
-
-  public onCustomEvent(event: DynamicFormControlCustomEvent) {
-
-    this.logger.info('ContactWizardComponent: onCustomEvent()');
-
-    this.dialogService.openAlert({
-      title: 'Alert',
-      message: JSON.stringify(event),
-      closeButton: 'CLOSE'
-    });
-
-    // this.logger.info('event: ' + JSON.stringify(event));
-  }
-
-  private openSnackBar() {
-
-    this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: 500,
-      panelClass: 'crm-snack-bar'
-    });
+    this.item.party.addresses.push(address);
 
   }
 
