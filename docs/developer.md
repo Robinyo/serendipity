@@ -84,6 +84,12 @@ ng serve --proxy-config=proxy.conf.json
 proxy.conf.json:
 
 ```
+{
+  "/engine-rest": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "logLevel": "debug"
+  },
   "/flowable-task": {
     "target": "http://localhost:8080",
     "secure": false,
@@ -94,6 +100,7 @@ proxy.conf.json:
     "secure": false,
     "logLevel": "debug"
   }
+}
 ```
 
 **Note:** You can build and serve Serendipity without launching Flowable:

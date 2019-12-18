@@ -6,6 +6,10 @@ import { LoggerService } from 'utils';
 
 export abstract class CollectionService {
 
+  //
+  // See: proxy.conf.json
+  //
+
   // private processEngineUriPrefix = 'http://localhost:8080/flowable-task/process-api/runtime/';
   protected processEngineUriPrefix = '/flowable-task/process-api/';
 
