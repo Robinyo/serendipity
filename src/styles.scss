@@ -276,6 +276,32 @@ $task-list-width: 320px; // 240px;
   // overflow: hidden;
 }
 
+.crm-email-container {
+  margin-left: $crm-component-default-margin;
+  margin-right: $crm-component-default-margin;
+  margin-bottom: $crm-component-default-margin;
+}
+
+.crm-form-field-label {
+  align-self: center;
+}
+
+.crm-email-editor-container {
+  height: 250px;
+}
+
+.crm-grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 32px;
+  row-gap: 1em;
+
+  margin-top: 0;
+  // margin-left: 32px;
+  margin-bottom: 32px;
+  // margin-right: 32px;
+}
+
 .crm-task-list-container {
   // background: white;
   border: 1px solid lightgray;
@@ -315,18 +341,6 @@ $task-list-width: 320px; // 240px;
   // margin: 0 12px 0 12px;
   margin: 0;
   padding: 0;
-}
-
-.crm-grid-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: 32px;
-  row-gap: 1em;
-
-  margin-top: 0;
-  // margin-left: 32px;
-  margin-bottom: 32px;
-  // margin-right: 32px;
 }
 
 .crm-snack-bar {

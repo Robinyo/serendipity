@@ -19,13 +19,15 @@ import { DynamicFormControl, DynamicFormControlCustomEvent, DynamicFormControlMo
 import { DynamicDatepickerComponent } from '../../components/dynamic-datepicker/dynamic-datepicker.component';
 import { DynamicImageComponent } from '../../components/dynamic-image/dynamic-image.component';
 import { DynamicInputComponent } from '../../components/dynamic-input/dynamic-input.component';
+import { DynamicLabelComponent } from '../../components/dynamic-label/dynamic-label.component';
 
 import { LoggerService } from 'utils';
 
 const components = {
   date: DynamicDatepickerComponent,
   image: DynamicImageComponent,
-  input: DynamicInputComponent
+  input: DynamicInputComponent,
+  label: DynamicLabelComponent
 };
 
 @Directive({

@@ -11,6 +11,7 @@ import { DynamicFormComponent } from './angular-material/containers/dynamic-form
 import { DynamicDatepickerComponent } from './angular-material/components/dynamic-datepicker/dynamic-datepicker.component';
 import { DynamicImageComponent } from './angular-material/components/dynamic-image/dynamic-image.component';
 import { DynamicInputComponent } from './angular-material/components/dynamic-input/dynamic-input.component';
+import { DynamicLabelComponent } from './angular-material/components/dynamic-label/dynamic-label.component';
 
 //
 // Utils lib
@@ -22,7 +23,8 @@ import { AngularMaterialModule } from 'utils';
 const components: any[] = [
   DynamicDatepickerComponent,
   DynamicImageComponent,
-  DynamicInputComponent
+  DynamicInputComponent,
+  DynamicLabelComponent
 ];
 
 @NgModule({
@@ -61,6 +63,3 @@ export class DynamicFormsModule {
   }
 
 }
-
-// import { TranslateModule } from '@ngx-translate/core';
-// TranslateModule.forChild()

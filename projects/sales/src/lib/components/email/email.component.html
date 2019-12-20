@@ -1,6 +1,6 @@
 <crm-command-bar>
 
-  <button mat-button class="crm-command-bar-button" (click)="onSend()">
+  <button mat-button class="crm-command-bar-button" (click)="onSend()" [disabled]="true">
     <mat-icon>send</mat-icon>
     {{ 'SEND' | translate }}
   </button>
@@ -24,8 +24,37 @@
   <h1 class="crm-component-title"> {{ 'EMAIL' | translate }} </h1>
 </div>
 
-<div class="crm-content-container">
+<ng-container class="crm-content-container">
+
+  <ng-container *ngIf="item">
+
+    <div class="crm-email-container">
+
+      <div class="crm-grid-container">
+
+        <dynamic-form autocomplete="off"
+                      className="crm-nested-grid-container"
+                      [formGroup]="emailGroup"
+                      [model]="emailModel"
+                      (customEvent)="onCustomEvent($event)">
+        </dynamic-form>
+
+      </div>
+
+      <div class="crm-email-editor-container">
+
+        <quill-editor></quill-editor>
+
+      </div>
+
+    </div>
+
+  </ng-container>
+
+</ng-container> <!-- contentContainer -->
+
+<!--
 
   <quill-editor></quill-editor>
 
-</div> <!-- contentContainer -->
+-->

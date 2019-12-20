@@ -74,7 +74,9 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
     // DragDropModule,
     FlexLayoutModule,
     FlowableModule,
-    QuillModule.forRoot(),
+    QuillModule.forRoot({
+      placeholder: ''
+    }),
     ReactiveFormsModule,
     TranslateModule.forChild(),
     UtilsModule,

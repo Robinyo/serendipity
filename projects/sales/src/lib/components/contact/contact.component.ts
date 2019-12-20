@@ -91,7 +91,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   }
 
-  async subscribe() {
+  protected async subscribe() {
 
     this.logger.info('ContactComponent: subscribe()');
 
