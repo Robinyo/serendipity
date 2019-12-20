@@ -135,6 +135,7 @@ ng build serendipity-components && \
 ng build auth && \
 ng build auth-auth0 && \
 ng build auth-okta && \
+ng build auth-keycloak && \
 ng build dashboard-widgets && \
 ng build dashboard && \
 ng build dynamic-forms && \
@@ -179,6 +180,7 @@ ng build serendipity-components && \
 ng build auth && \
 ng build auth-auth0 && \
 ng build auth-okta && \
+ng build auth-keycloak && \
 ng build dashboard-widgets && \
 ng build dashboard && \
 ng build dynamic-forms && \
@@ -217,6 +219,7 @@ ng build serendipity-components && \
 ng build auth && \
 ng build auth-auth0 && \
 ng build auth-okta && \
+ng build auth-keycloak && \
 ng build dashboard-widgets && \
 ng build dashboard && \
 ng build dynamic-forms && \

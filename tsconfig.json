@@ -98,6 +98,12 @@
       ],
       "auth-auth0/*": [
         "dist/auth-auth0/*"
+      ],
+      "auth-keycloak": [
+        "dist/auth-keycloak"
+      ],
+      "auth-keycloak/*": [
+        "dist/auth-keycloak/*"
       ]
     }
   }
