@@ -40,6 +40,15 @@ export const environment: Environment = {
     scope: 'openid profile email phone address'
   },
 
+  keycloak: {
+    clientId: 'serendipty-pwa',
+    issuer: 'http://localhost:10001/auth/realms/serendipity',
+    redirectUri: 'http://localhost:4200/authorization-code/callback',
+    responseType: 'code',
+    scope: 'openid profile email phone address',
+    showDebugInformation: true
+  },
+
   storageUriPrefix: 'https://firebasestorage.googleapis.com/v0/b/',
 
   version: '1.0.0-beta.1',
@@ -47,6 +56,8 @@ export const environment: Environment = {
   sentryDsn: ''
 
 };
+
+// window.location.origin + '/authorization-code/callback'
 
 // https://github.com/PatrickJS/angular-starter/blob/master/src/environments/environment.ts
 

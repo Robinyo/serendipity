@@ -77,7 +77,7 @@ export class OktaAuthService extends Auth {
     return this.idToken;
   }
 
-  public async setAccessToken() {
+  private async setAccessToken() {
 
     this.logger.info('OktaAuthService: setAccessToken()');
 
@@ -139,6 +139,15 @@ export class OktaAuthService extends Auth {
      this.router.navigate(['/']);
   }
 
+  public logout(returnUrl: string) {
+
+    this.logger.info('OktaAuthService: logout()');
+
+    this.logger.info('returnUrl: ' + returnUrl);
+
+    this._logout(returnUrl);
+  }
+
   // TODO -> See: collection.service.ts
 
   public getUser() {
@@ -151,14 +160,6 @@ export class OktaAuthService extends Auth {
     return;
   }
 
-  public logout(returnUrl: string) {
-
-    this.logger.info('OktaAuthService: logout()');
-
-    this.logger.info('returnUrl: ' + returnUrl);
-
-    this._logout(returnUrl);
-  }
 
   //
   // Private methods

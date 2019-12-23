@@ -361,6 +361,7 @@ firebase list
 * [auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library
 * [auth-auth0](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0) library
 * [auth-okta](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta) library
+* [auth-keycloak](https://github.com/Robinyo/serendipity/tree/master/projects/auth-keycloak) library
 
 #### Authentication Providers
 
@@ -375,13 +376,15 @@ The project's Auth providers are configured in the App [module](https://github.c
 
 import { LocalAuthModule, authProviders } from 'auth-local';
 // import { Auth0AuthModule, authProviders } from 'auth-auth0';
-// import { OktaAuthModule, authProviders } from 'auth-okta';';
+// import { OktaAuthModule, authProviders } from 'auth-keycloak';
+// import { OktaAuthModule, authProviders } from 'auth-okta';
 
 @NgModule({
   imports: [
     BrowserModule,
     LocalAuthModule,
     // Auth0AuthModule.forRoot(environment),
+    // KeycloakAuthModule.forRoot(environment),
     // OktaAuthModule.forRoot(environment),
     CoreModule,
     AppRoutingModule  // https://angular.io/guide/router#routing-module-order

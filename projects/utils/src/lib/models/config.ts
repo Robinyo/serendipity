@@ -34,6 +34,15 @@ export interface Config {
     scope: string,
   };
 
+  keycloak: {
+    clientId: string,
+    issuer: string,
+    redirectUri: string,
+    responseType: string,
+    scope: string,
+    showDebugInformation: boolean
+  };
+
   storageUriPrefix: string;
 
   version: string;

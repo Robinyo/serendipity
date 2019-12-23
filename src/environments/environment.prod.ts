@@ -29,7 +29,7 @@ export const environment: Environment = {
     responseType: 'code',
     scope: ['openid', 'profile', 'email', 'phone', 'address', 'groups'],
     testing: {
-      disableHttpsCheck: true
+      disableHttpsCheck: false
     }
   },
 
@@ -40,6 +40,14 @@ export const environment: Environment = {
     scope: 'openid profile email phone address'
   },
 
+  keycloak: {
+    clientId: 'serendipty-pwa',
+    issuer: 'http://localhost:10001/auth/realms/serendipity',
+    redirectUri: 'http://localhost:4200/authorization-code/callback',
+    responseType: 'code',
+    scope: 'openid profile email phone address',
+    showDebugInformation: false
+  },
 
   storageUriPrefix: 'https://firebasestorage.googleapis.com/v0/b/',
 
