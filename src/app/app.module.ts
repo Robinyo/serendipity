@@ -15,8 +15,9 @@ import { environment } from '@env/environment';
 
 // import { LocalAuthModule, authProviders } from 'auth-local';
 // import { Auth0AuthModule, authProviders } from 'auth-auth0';
-import { OidcAuthModule, authProviders } from 'auth-oidc';
 // import { OktaAuthModule, authProviders } from 'auth-okta';
+
+import { OidcAuthModule, authProviders } from 'auth-oidc';
 
 //
 // Utils lib
@@ -47,11 +48,10 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     // LocalAuthModule,
     // Auth0AuthModule.forRoot(environment),
-    OidcAuthModule.forRoot(environment),
     // OktaAuthModule.forRoot(environment),
+    OidcAuthModule.forRoot(environment),
     CoreModule,
     DynamicFormsModule.forRoot(environment),
-    // SalesModule,
     AppRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
   declarations: [ AppComponent ],

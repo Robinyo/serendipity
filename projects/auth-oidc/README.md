@@ -1,24 +1,64 @@
-# AuthOidc
+# OIDC Authentication (AuthN) library
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.3.
+## Development
 
-## Code scaffolding
+To build the library:
 
-Run `ng generate component component-name --project auth-oidc` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project auth-oidc`.
-> Note: Don't forget to add `--project auth-oidc` or else it will be added to the default project in your `angular.json` file. 
+```
+ng build utils && \
+ng build auth && \
+ng build auth-oidc
+```
 
-## Build
+## Auth Providers
 
-Run `ng build auth-oidc` to build the project. The build artifacts will be stored in the `dist/` directory.
+The project's Auth providers are configured in the App [module](https://github.com/Robinyo/serendipity/blob/master/src/app/app.module.ts):
 
-## Publishing
+```
+...
 
-After building your library with `ng build auth-oidc`, go to the dist folder `cd dist/auth-oidc` and run `npm publish`.
+//
+// Auth libs
+//
 
-## Running unit tests
+// import { LocalAuthModule, authProviders } from 'auth-local';
+// import { Auth0AuthModule, authProviders } from 'auth-auth0';
+// import { OktaAuthModule, authProviders } from 'auth-okta';
 
-Run `ng test auth-oidc` to execute the unit tests via [Karma](https://karma-runner.github.io).
+import { OidcAuthModule, authProviders } from 'auth-oidc';
 
-## Further help
+@NgModule({
+  imports: [
+    BrowserModule,
+    // LocalAuthModule,
+    // Auth0AuthModule.forRoot(environment),
+    // OktaAuthModule.forRoot(environment),
+    OidcAuthModule.forRoot(environment),
+    CoreModule,
+    AppRoutingModule  // https://angular.io/guide/router#routing-module-order
+  ],
+  declarations: [ AppComponent ],
+  providers: [
+    loggerProviders,
+    authProviders,
+    angularMaterialProviders
+  ],
+  bootstrap: [ AppComponent ]
+})
+export class AppModule {}
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Resources
+
+### Okta Auth Libraries
+* GitHub: [Okta Auth JavaScript SDK](https://github.com/okta/okta-auth-js)
+
+### Auth Resources
+* Internet Engineering Task Force: [OAuth 2.0 for Browser-Based Apps](https://datatracker.ietf.org/doc/draft-ietf-oauth-browser-based-apps/)
+* Internet Engineering Task Force: [OAuth 2.0 Security Best Current Practice](https://datatracker.ietf.org/doc/draft-ietf-oauth-security-topics/)
+
+### Additional Auth Resources
+* Okta's blog: [Is the OAuth 2.0 Implicit Flow Dead?](https://developer.okta.com/blog/2019/05/01/is-the-oauth-implicit-flow-dead)
+
+### Authorisation Servers
+* GitHub: [Keycloak - Open Source Identity and Access Management](https://www.keycloak.org/)
