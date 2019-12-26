@@ -14,7 +14,7 @@
 ## ❯ Features
 
 - **AuthN & AuthZ** thanks to:
-  - The [Local Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library which supports email/password registration and login and [JWT](https://jwt.io/) identity, access and refresh tokens
+  - The [Local Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library which supports email/password registration and login
   - The [OIDC Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc) library which supports Authorization Code flow with PKCE
   - The [Auth0 Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0) library which supports Authorization Code flow with PKCE
   - The [Okta Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta) library which supports Authorization Code flow with PKCE
