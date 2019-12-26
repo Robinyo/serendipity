@@ -34,13 +34,22 @@ export interface Config {
     scope: string,
   };
 
-  keycloak: {
-    clientId: string,
-    issuer: string,
-    redirectUri: string,
-    responseType: string,
-    scope: string,
-    showDebugInformation: boolean
+  // https://github.com/IdentityModel/oidc-client-js
+
+  oidc: {
+    clientId: string,               // client_id
+
+    filterProtocolClaims?: boolean, // filterProtocolClaims
+
+    grantType?: string,
+    issuer: string,                 // authority
+
+    loadUserInfo?: boolean,         // loadUserInfo
+    postLogoutRedirectUri?: string, // post_logout_redirect_uri
+
+    redirectUri: string,            // redirect_uri
+    responseType: string,           // response_type
+    scope: string,                  // scope
   };
 
   storageUriPrefix: string;
@@ -50,19 +59,3 @@ export interface Config {
   sentryDsn: string;
 
 }
-
-/*
-
-  okta: {
-    clientId: string,
-    grantType: string,
-    issuer: string,
-    redirectUri: string,
-    responseType: string,
-    scope: string,
-    testing: {
-      disableHttpsCheck: boolean
-    }
-  };
-
-*/

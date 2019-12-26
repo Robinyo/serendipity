@@ -1,8 +1,8 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { KeycloakConfig } from './models/models';
-import { KeycloakConfigService } from './services/config.service';
+import { OidcConfig } from './models/models';
+import { OidcConfigService } from './services/config.service';
 
 import { AuthorizationCodeCallbackComponent } from './components/authorization-code/authorization-code.component';
 import { LoginRedirectComponent } from './components/login-redirect/login-redirect.component';
@@ -33,19 +33,19 @@ import { LibRoutingModule } from './lib-routing.module';
     ImplicitCallbackComponent
   ]
 })
-export class KeycloakAuthModule {
+export class OidcAuthModule {
 
   constructor(private logger: LoggerService) {
 
-    this.logger.info('Okta Auth Module initialised');
+    this.logger.info('OpenID Connect (OIDC) Auth Module initialised');
   }
 
-  static forRoot(config: KeycloakConfig): ModuleWithProviders {
+  static forRoot(config: OidcConfig): ModuleWithProviders {
 
     return {
-      ngModule: KeycloakAuthModule,
+      ngModule: OidcAuthModule,
       providers: [
-        { provide: KeycloakConfigService, useValue: config }
+        { provide: OidcConfigService, useValue: config }
       ]
     };
 

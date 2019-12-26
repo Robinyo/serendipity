@@ -130,7 +130,7 @@ export class LocalAuthService extends Auth {
 
   }
 
-  public loginWithRedirect() {}
+  public async loginWithRedirect() {}
   public async handleRedirectCallback(): Promise<void> {}
 
   // TODO -> See: collection.service.ts

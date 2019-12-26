@@ -4,13 +4,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "authKeycloak",
+      "authOidc",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "auth-keycloak",
+      "auth-oidc",
       "kebab-case"
     ]
   }

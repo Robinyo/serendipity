@@ -104,6 +104,12 @@
       ],
       "auth-keycloak/*": [
         "dist/auth-keycloak/*"
+      ],
+      "auth-oidc": [
+        "dist/auth-oidc"
+      ],
+      "auth-oidc/*": [
+        "dist/auth-oidc/*"
       ]
     }
   }

@@ -2,18 +2,18 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AuthGuard, AuthService } from 'auth';
 
-import { KeycloakAuthGuard } from './guards/auth/auth.guard';
-import { KeycloakAuthService } from './services/auth/auth.service';
+import { OidcAuthGuard } from './guards/auth/auth.guard';
+import { OidcAuthService } from './services/auth/auth.service';
 import { AuthInterceptor } from './http-interceptors/auth-interceptor';
 
 export const authProviders = [
   {
     provide: AuthGuard,
-    useClass: KeycloakAuthGuard
+    useClass: OidcAuthGuard
   },
   {
     provide: AuthService,
-    useClass: KeycloakAuthService
+    useClass: OidcAuthService
   },
   {
     provide: HTTP_INTERCEPTORS,

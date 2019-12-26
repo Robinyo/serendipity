@@ -7,7 +7,7 @@ export class GlobalErrorHandler implements ErrorHandler {
 
   constructor(private logger: LoggerService) {
 
-    this.logger.info('GlobalErrorHandler initialised');
+    this.logger.info('Global Error Handler registered');
   }
 
   handleError(error) {

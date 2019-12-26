@@ -1,11 +1,14 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 import { AuthService } from 'auth';
 
 import { LoggerService } from 'utils';
 
-@Component({ template: `` })
-export class LoginRedirectComponent implements OnInit, AfterViewInit {
+@Component({
+  template: ``,
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class LoginRedirectComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private logger: LoggerService) {
@@ -14,11 +17,6 @@ export class LoginRedirectComponent implements OnInit, AfterViewInit {
   ngOnInit() {
 
     this.logger.info('LoginRedirectComponent: ngOnInit()');
-  }
-
-  public ngAfterViewInit() {
-
-    this.logger.info('LoginRedirectComponent: ngAfterViewInit()');
 
     this.authService.loginWithRedirect();
   }

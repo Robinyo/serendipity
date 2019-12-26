@@ -40,13 +40,16 @@ export const environment: Environment = {
     scope: 'openid profile email phone address'
   },
 
-  keycloak: {
-    clientId: 'serendipty-pwa',
-    issuer: 'http://localhost:10001/auth/realms/serendipity',
+  oidc: {
+    clientId: 'serendipity-pwa',
+    filterProtocolClaims: true,
+    // grantType: 'authorization_code',
+    issuer: 'http://localhost:10001/auth/realms/development',
+    loadUserInfo: true,
+    postLogoutRedirectUri: 'http://localhost:4200/',
     redirectUri: 'http://localhost:4200/authorization-code/callback',
     responseType: 'code',
-    scope: 'openid profile email phone address',
-    showDebugInformation: true
+    scope: 'openid profile email phone address offline_access individual:get'
   },
 
   storageUriPrefix: 'https://firebasestorage.googleapis.com/v0/b/',

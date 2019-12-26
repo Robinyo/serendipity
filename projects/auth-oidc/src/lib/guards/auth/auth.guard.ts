@@ -8,7 +8,7 @@ import { AuthService } from 'auth';
 @Injectable({
   providedIn: 'root'
 })
-export class KeycloakAuthGuard implements CanActivate {
+export class OidcAuthGuard implements CanActivate {
 
   constructor(private router: Router,
               private authService: AuthService) {}

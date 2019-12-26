@@ -133,9 +133,9 @@ npm install
 ng build utils && \
 ng build serendipity-components && \
 ng build auth && \
+ng build auth-oidc && \
 ng build auth-auth0 && \
 ng build auth-okta && \
-ng build auth-keycloak && \
 ng build dashboard-widgets && \
 ng build dashboard && \
 ng build dynamic-forms && \
@@ -178,9 +178,9 @@ To build the project:
 ng build utils && \
 ng build serendipity-components && \
 ng build auth && \
+ng build auth-oidc && \
 ng build auth-auth0 && \
 ng build auth-okta && \
-ng build auth-keycloak && \
 ng build dashboard-widgets && \
 ng build dashboard && \
 ng build dynamic-forms && \
@@ -217,9 +217,9 @@ To build the project:
 ng build utils && \
 ng build serendipity-components && \
 ng build auth && \
+ng build auth-oidc && \
 ng build auth-auth0 && \
 ng build auth-okta && \
-ng build auth-keycloak && \
 ng build dashboard-widgets && \
 ng build dashboard && \
 ng build dynamic-forms && \
@@ -359,9 +359,9 @@ firebase list
 
 * [auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth) library
 * [auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library
+* [auth-oidc](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc) library
 * [auth-auth0](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0) library
 * [auth-okta](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta) library
-* [auth-keycloak](https://github.com/Robinyo/serendipity/tree/master/projects/auth-keycloak) library
 
 #### Authentication Providers
 
@@ -375,16 +375,16 @@ The project's Auth providers are configured in the App [module](https://github.c
 //
 
 import { LocalAuthModule, authProviders } from 'auth-local';
+// import { OidcAuthModule, authProviders } from 'auth-oidc';
 // import { Auth0AuthModule, authProviders } from 'auth-auth0';
-// import { OktaAuthModule, authProviders } from 'auth-keycloak';
 // import { OktaAuthModule, authProviders } from 'auth-okta';
 
 @NgModule({
   imports: [
     BrowserModule,
     LocalAuthModule,
+    // OidcAuthModule.forRoot(environment),
     // Auth0AuthModule.forRoot(environment),
-    // KeycloakAuthModule.forRoot(environment),
     // OktaAuthModule.forRoot(environment),
     CoreModule,
     AppRoutingModule  // https://angular.io/guide/router#routing-module-order

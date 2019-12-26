@@ -131,7 +131,7 @@ export class Auth0AuthService extends Auth {
     return Promise.reject('Auth0AuthService: loginWithEmailAndPassword()');
   }
 
-  public loginWithRedirect() {
+  public async loginWithRedirect() {
 
     this.logger.info('Auth0AuthService: loginWithRedirect()');
 

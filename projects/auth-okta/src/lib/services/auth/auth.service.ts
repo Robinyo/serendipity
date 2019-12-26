@@ -94,7 +94,7 @@ export class OktaAuthService extends Auth {
     return Promise.reject('AuthService: loginWithEmailAndPassword()');
   }
 
-  public loginWithRedirect() {
+  public async loginWithRedirect() {
 
     this.logger.info('OktaAuthService: loginWithRedirect()');
 

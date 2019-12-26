@@ -13,8 +13,9 @@ import { environment } from '@env/environment';
 // Auth libs
 //
 
-import { LocalAuthModule, authProviders } from 'auth-local';
+// import { LocalAuthModule, authProviders } from 'auth-local';
 // import { Auth0AuthModule, authProviders } from 'auth-auth0';
+import { OidcAuthModule, authProviders } from 'auth-oidc';
 // import { OktaAuthModule, authProviders } from 'auth-okta';
 
 //
@@ -44,8 +45,9 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   imports: [
     BrowserModule,
-    LocalAuthModule,
+    // LocalAuthModule,
     // Auth0AuthModule.forRoot(environment),
+    OidcAuthModule.forRoot(environment),
     // OktaAuthModule.forRoot(environment),
     CoreModule,
     DynamicFormsModule.forRoot(environment),

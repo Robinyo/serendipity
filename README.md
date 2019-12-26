@@ -15,6 +15,7 @@
 
 - **AuthN & AuthZ** thanks to:
   - The [Local Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library which supports email/password registration and login and [JWT](https://jwt.io/) identity, access and refresh tokens
+  - The [OIDC Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc) library which supports Authorization Code flow with PKCE
   - The [Auth0 Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0) library which supports Authorization Code flow with PKCE
   - The [Okta Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta) library which supports Authorization Code flow with PKCE
 - **Beautiful Code** thanks to Angular's [Style Guide](https://angular.io/guide/styleguide)
@@ -182,5 +183,6 @@ You can customise and extend Serendipity using Angular, Angular libraries and Se
 * Rob Ferguson's blog: [Lazy Loading Angular Libraries](https://robferguson.org/blog/2019/09/12/lazy-loading-angular-libraries/)
 * Rob Ferguson's blog: [Dynamically Importing Highcharts](https://robferguson.org/blog/2019/09/23/dynamically-importing-highcharts/)
 * Rob Ferguson's blog: [Getting started with Camunda](https://robferguson.org/blog/2019/12/18/getting-started-with-camunda/)
+* Rob Ferguson's blog: [Getting started with Keycloak](https://robferguson.org/blog/2019/12/24/getting-started-with-keycloak/)
 
 ![divider](./divider.png)

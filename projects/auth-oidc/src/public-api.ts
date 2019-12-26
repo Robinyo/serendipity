@@ -14,4 +14,4 @@ export * from './lib/http-interceptors/auth-interceptor';
 
 export * from './lib/models/models';
 
-export * from './lib/keycloak-auth.module';
+export * from './lib/oidc-auth.module';

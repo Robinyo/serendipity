@@ -1,5 +1,5 @@
 {
-  "name": "auth-keycloak",
+  "name": "auth-oidc",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^8.2.3",

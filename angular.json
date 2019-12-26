@@ -550,33 +550,33 @@
         }
       }
     },
-    "auth-keycloak": {
+    "auth-oidc": {
       "projectType": "library",
-      "root": "projects/auth-keycloak",
-      "sourceRoot": "projects/auth-keycloak/src",
-      "prefix": "auth-keycloak",
+      "root": "projects/auth-oidc",
+      "sourceRoot": "projects/auth-oidc/src",
+      "prefix": "auth-oidc",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/auth-keycloak/tsconfig.lib.json",
-            "project": "projects/auth-keycloak/ng-package.json"
+            "tsConfig": "projects/auth-oidc/tsconfig.lib.json",
+            "project": "projects/auth-oidc/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/auth-keycloak/src/test.ts",
-            "tsConfig": "projects/auth-keycloak/tsconfig.spec.json",
-            "karmaConfig": "projects/auth-keycloak/karma.conf.js"
+            "main": "projects/auth-oidc/src/test.ts",
+            "tsConfig": "projects/auth-oidc/tsconfig.spec.json",
+            "karmaConfig": "projects/auth-oidc/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/auth-keycloak/tsconfig.lib.json",
-              "projects/auth-keycloak/tsconfig.spec.json"
+              "projects/auth-oidc/tsconfig.lib.json",
+              "projects/auth-oidc/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

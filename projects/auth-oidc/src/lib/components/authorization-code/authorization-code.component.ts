@@ -1,11 +1,14 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 import { AuthService } from 'auth';
 
 import { LoggerService } from 'utils';
 
-@Component({ template: `` })
-export class AuthorizationCodeCallbackComponent implements OnInit, AfterViewInit {
+@Component({
+  template: ``,
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class AuthorizationCodeCallbackComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private logger: LoggerService) {
@@ -14,11 +17,6 @@ export class AuthorizationCodeCallbackComponent implements OnInit, AfterViewInit
   ngOnInit() {
 
     this.logger.info('AuthorizationCodeCallbackComponent: ngOnInit()');
-  }
-
-  public ngAfterViewInit() {
-
-    this.logger.info('AuthorizationCodeCallbackComponent: ngAfterViewInit()');
 
     this.authService.handleRedirectCallback();
   }
