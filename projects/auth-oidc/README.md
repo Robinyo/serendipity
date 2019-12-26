@@ -50,15 +50,12 @@ export class AppModule {}
 
 ## Resources
 
-### Okta Auth Libraries
-* GitHub: [Okta Auth JavaScript SDK](https://github.com/okta/okta-auth-js)
+### OIDC Libraries
+* GitHub: [OpenID Connect (OIDC) and OAuth2 protocol support for browser-based JavaScript applications](https://github.com/IdentityModel/oidc-client-js)
 
 ### Auth Resources
 * Internet Engineering Task Force: [OAuth 2.0 for Browser-Based Apps](https://datatracker.ietf.org/doc/draft-ietf-oauth-browser-based-apps/)
 * Internet Engineering Task Force: [OAuth 2.0 Security Best Current Practice](https://datatracker.ietf.org/doc/draft-ietf-oauth-security-topics/)
-
-### Additional Auth Resources
-* Okta's blog: [Is the OAuth 2.0 Implicit Flow Dead?](https://developer.okta.com/blog/2019/05/01/is-the-oauth-implicit-flow-dead)
 
 ### Authorisation Servers
 * GitHub: [Keycloak - Open Source Identity and Access Management](https://www.keycloak.org/)
