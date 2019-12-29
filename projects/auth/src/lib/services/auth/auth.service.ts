@@ -41,7 +41,7 @@ export class AuthService extends Auth {
   }
 
   public loginWithRedirect() {
-    return;
+    return Promise.reject('AuthService: loginWithRedirect()');
   }
 
   public async handleRedirectCallback(): Promise<void> {
