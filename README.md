@@ -15,9 +15,9 @@
 
 - **AuthN & AuthZ** thanks to:
   - The [Local Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library which supports email/password registration and login
-  - The [OIDC Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc) library which supports Authorization Code flow with PKCE
-  - The [Auth0 Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0) library which supports Authorization Code flow with PKCE
-  - The [Okta Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta) library which supports Authorization Code flow with PKCE
+  - The [OIDC Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc) library which supports email/password registration and Authorization Code Flow with PKCE
+  - The [Auth0 Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0) library which supports Implicit Flow and Authorization Code Flow with PKCE
+  - The [Okta Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta) library which supports Implicit Flow and Authorization Code Flow with PKCE
 - **Beautiful Code** thanks to Angular's [Style Guide](https://angular.io/guide/styleguide)
 - **Contemporary UI** thanks to Angular [Material](https://material.angular.io/)
 - **Custom Themes** check out the [Light Theme](https://github.com/Robinyo/serendipity/tree/master/src/themes)
@@ -127,7 +127,13 @@ Local Auth Login ([auth-local](https://github.com/Robinyo/serendipity/tree/maste
 </p>
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-login.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-register.png">
+</p>
+
+OIDC Auth Login ([oidc-local](https://github.com/Robinyo/serendipity/tree/master/projects/oidc-local) library):
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-login.png">
 </p>
 
 Auth0 Login ([auth-auth0](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0) library)
