@@ -14,8 +14,7 @@ export abstract class Auth {
   public abstract createUserWithEmailAndPassword(user: User): Promise<any>;
   public abstract loginWithEmailAndPassword(email: string, password: string): Promise<any>;
 
-  public abstract async loginWithRedirect();
-
+  public abstract async loginWithRedirect(): Promise<void>;
   public abstract async handleRedirectCallback(): Promise<void>;
 
   public abstract logout(returnUrl: string);

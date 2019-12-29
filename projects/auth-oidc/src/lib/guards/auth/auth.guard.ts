@@ -20,8 +20,8 @@ export class OidcAuthGuard implements CanActivate {
     }
 
     this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
-    return false;
 
+    return false;
   }
 
 }

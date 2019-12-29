@@ -18,8 +18,10 @@ import { LoggerService } from 'utils';
 })
 export class OidcAuthService extends Auth {
 
+  private authState$ = new BehaviorSubject(false);
+
   private authService: UserManager;
-  private user: User;
+  private user: User = null;
 
   constructor(@Inject(OidcConfigService) private config: OidcConfig,
               private router: Router,
@@ -45,6 +47,30 @@ export class OidcAuthService extends Auth {
     this.logger.info('oidcConfig: ' + JSON.stringify(oidcConfig, null, 2));
 
     this.authService = new UserManager(oidcConfig);
+
+    this._isAuthenticated().then(state => {
+
+      this.authState$.next(state);
+
+      this.authState$.subscribe((authenticated: boolean) => {
+
+        this.logger.info('OidcAuthService isAuthenticated(): ' + this.authenticated);
+
+        this.authenticated = authenticated;
+
+        this.accessToken = '';
+
+        if (this.authenticated) {
+
+          this.setAccessToken();
+
+          this.logger.info('OidcAuthService accessToken: ' + this.accessToken);
+        }
+
+      });
+
+    });
+
   }
 
   public isAuthenticated(): boolean {
@@ -77,7 +103,7 @@ export class OidcAuthService extends Auth {
     return Promise.reject('OidcAuthService: loginWithEmailAndPassword()');
   }
 
-  public async loginWithRedirect() {
+  public async loginWithRedirect(): Promise<void> {
 
     this.logger.info('OidcAuthService: loginWithRedirect()');
 
@@ -94,15 +120,7 @@ export class OidcAuthService extends Auth {
 
      this.authenticated = await this._isAuthenticated();
 
-     //
-     // TO DO
-     //
-
-     if (this.authenticated) {
-       this.setAccessToken();
-     }
-
-     this.logger.info('accessToken: ' + this.getAccessToken());
+     this.authState$.next(this.authenticated);
 
      this.router.navigate(['/']);
   }
@@ -111,11 +129,9 @@ export class OidcAuthService extends Auth {
 
     this.logger.info('OidcAuthService: logout()');
 
+    this.authState$.next(false);
+
     this.authService.signoutRedirect();
-
-    this.authenticated = false;
-
-    this.router.navigate([returnUrl || '/']);
   }
 
   // TODO -> See: collection.service.ts
