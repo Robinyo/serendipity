@@ -184,5 +184,6 @@ You can customise and extend Serendipity using Angular, Angular libraries and Se
 * Rob Ferguson's blog: [Dynamically Importing Highcharts](https://robferguson.org/blog/2019/09/23/dynamically-importing-highcharts/)
 * Rob Ferguson's blog: [Getting started with Camunda](https://robferguson.org/blog/2019/12/18/getting-started-with-camunda/)
 * Rob Ferguson's blog: [Getting started with Keycloak](https://robferguson.org/blog/2019/12/24/getting-started-with-keycloak/)
+* Rob Ferguson's blog: [Angular, OpenID Connect and Keycloak](https://robferguson.org/blog/2019/12/29/angular-openid-connect-keycloak/)
 
 ![divider](./divider.png)
