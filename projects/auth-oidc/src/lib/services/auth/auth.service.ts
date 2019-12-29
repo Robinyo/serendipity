@@ -106,19 +106,19 @@ export class OidcAuthService extends Auth {
     return this.authService.signinRedirect();
   }
 
-   public async handleRedirectCallback(): Promise<void> {
+  public async handleRedirectCallback(): Promise<void> {
 
-     this.logger.info('OidcAuthService: handleRedirectCallback()');
+    this.logger.info('OidcAuthService: handleRedirectCallback()');
 
-     this.user = await this.authService.signinRedirectCallback();
+    this.user = await this.authService.signinRedirectCallback();
 
-     // this.logger.info('user: ' + JSON.stringify(this.user, null, 2));
+    // this.logger.info('user: ' + JSON.stringify(this.user, null, 2));
 
-     this.authenticated = await this._isAuthenticated();
+    this.authenticated = await this._isAuthenticated();
 
-     this.authState$.next(this.authenticated);
+    this.authState$.next(this.authenticated);
 
-     this.router.navigate(['/']);
+    this.router.navigate(['/']);
   }
 
   public logout(returnUrl: string) {
