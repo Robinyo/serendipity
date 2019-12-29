@@ -57,7 +57,6 @@ export class OidcAuthService extends Auth {
         this.logger.info('OidcAuthService isAuthenticated(): ' + this.authenticated);
 
         this.authenticated = authenticated;
-
         this.accessToken = '';
 
         if (this.authenticated) {
@@ -86,9 +85,6 @@ export class OidcAuthService extends Auth {
   }
 
   private setAccessToken() {
-
-    this.logger.info('OktaAuthService: setAccessToken()');
-
     this.accessToken = this.user.access_token;
   }
 
