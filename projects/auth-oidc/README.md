@@ -17,10 +17,6 @@ The project's Auth providers are configured in the App [module](https://github.c
 ```
 ...
 
-//
-// Auth libs
-//
-
 // import { LocalAuthModule, authProviders } from 'auth-local';
 import { OidcAuthModule, authProviders } from 'auth-oidc';
 
@@ -30,7 +26,7 @@ import { OidcAuthModule, authProviders } from 'auth-oidc';
     // LocalAuthModule,
     OidcAuthModule.forRoot(environment),
     CoreModule,
-    AppRoutingModule  // https://angular.io/guide/router#routing-module-order
+    AppRoutingModule
   ],
   declarations: [ AppComponent ],
   providers: [
