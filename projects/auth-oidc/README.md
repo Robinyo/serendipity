@@ -1,4 +1,4 @@
-# OIDC Authentication (AuthN) library
+# OpenID Connect (OIDC) Authentication (AuthN) library
 
 ## Development
 
@@ -22,17 +22,12 @@ The project's Auth providers are configured in the App [module](https://github.c
 //
 
 // import { LocalAuthModule, authProviders } from 'auth-local';
-// import { Auth0AuthModule, authProviders } from 'auth-auth0';
-// import { OktaAuthModule, authProviders } from 'auth-okta';
-
 import { OidcAuthModule, authProviders } from 'auth-oidc';
 
 @NgModule({
   imports: [
     BrowserModule,
     // LocalAuthModule,
-    // Auth0AuthModule.forRoot(environment),
-    // OktaAuthModule.forRoot(environment),
     OidcAuthModule.forRoot(environment),
     CoreModule,
     AppRoutingModule  // https://angular.io/guide/router#routing-module-order
