@@ -1,4 +1,4 @@
-# Okta Authentication (AuthN) library
+# Okta Authentication library
 
 ## Development
 

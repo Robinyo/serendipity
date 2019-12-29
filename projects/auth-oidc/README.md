@@ -1,4 +1,4 @@
-# OpenID Connect (OIDC) Authentication (AuthN) library
+# OpenID Connect Authentication library
 
 ## Development
 

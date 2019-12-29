@@ -1,4 +1,4 @@
-# Local Authentication (AuthN) library
+# Local Authentication library
 
 ### Development
 
@@ -10,7 +10,6 @@ ng build auth && \
 ng build dynamic-forms
 ng build auth-local
 ```
-
 
 ## Auth Providers
 

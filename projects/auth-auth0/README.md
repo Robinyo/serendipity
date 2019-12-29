@@ -1,4 +1,4 @@
-# Auth0 Authentication (AuthN) library
+# Auth0 Authentication library
 
 ## Development
 
