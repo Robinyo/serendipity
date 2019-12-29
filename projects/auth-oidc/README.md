@@ -41,7 +41,7 @@ export class AppModule {}
 
 ## Resources
 
-### OIDC Libraries
+### OpenID Connect and OAuth 2.0 Libraries
 * GitHub: [OpenID Connect (OIDC) and OAuth2 protocol support for browser-based JavaScript applications](https://github.com/IdentityModel/oidc-client-js)
 
 ### Auth Resources
