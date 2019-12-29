@@ -120,7 +120,7 @@ Tasks:
 
 ### Authentication (AuthN)
 
-Local Auth ([auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library):
+Local Auth library ([auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local)):
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-register.png">
@@ -130,19 +130,19 @@ Local Auth ([auth-local](https://github.com/Robinyo/serendipity/tree/master/proj
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-register.png">
 </p>
 
-OpenID Connect Auth ([auth-oidc](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc) library):
+OpenID Connect Auth library ([auth-oidc](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc)):
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-login.png">
 </p>
 
-Auth0 Auth ([auth-auth0](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0) library)
+Auth0 Auth library ([auth-auth0](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0))
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/auth0-login.png">
 </p>
 
-Okta Auth ([auth-okta](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta) library)
+Okta Auth library ([auth-okta](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta))
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/okta-login.png">
