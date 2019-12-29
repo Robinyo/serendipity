@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthorizationCodeCallbackComponent } from './components/authorization-code/authorization-code.component';
+import { AuthorizationCodeCallbackComponent } from './components/authorization-code-callback/authorization-code-callback.component';
 import { LoginRedirectComponent } from './components/login-redirect/login-redirect.component';
 import { ImplicitCallbackComponent } from './components/implicit-callback/implicit-callback.component';
 

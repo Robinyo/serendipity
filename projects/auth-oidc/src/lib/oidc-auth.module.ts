@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { OidcConfig } from './models/models';
 import { OidcConfigService } from './services/config.service';
 
-import { AuthorizationCodeCallbackComponent } from './components/authorization-code/authorization-code.component';
+import { AuthorizationCodeCallbackComponent } from './components/authorization-code-callback/authorization-code-callback.component';
 import { LoginRedirectComponent } from './components/login-redirect/login-redirect.component';
 import { ImplicitCallbackComponent } from './components/implicit-callback/implicit-callback.component';
 
