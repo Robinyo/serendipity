@@ -118,7 +118,7 @@ Tasks:
 </p>
 
 
-### Authentication (AuthN)
+### Authentication
 
 Local Auth library ([auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local)):
 
