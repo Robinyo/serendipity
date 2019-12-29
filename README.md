@@ -130,7 +130,7 @@ Local Auth Login ([auth-local](https://github.com/Robinyo/serendipity/tree/maste
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-register.png">
 </p>
 
-OIDC Auth Login ([auth-oidc](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc) library):
+OpenID Connect (OIDC) Login ([auth-oidc](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc) library):
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-login.png">
