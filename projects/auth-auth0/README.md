@@ -17,20 +17,14 @@ The project's Auth providers are configured in the App [module](https://github.c
 ```
 ...
 
-//
-// Auth libs
-//
-
 // import { LocalAuthModule, authProviders } from 'auth-local';
 import { Auth0AuthModule, authProviders } from 'auth-auth0';
-// import { OktaAuthModule, authProviders } from 'auth-okta';';
 
 @NgModule({
   imports: [
     BrowserModule,
     // LocalAuthModule,
     Auth0AuthModule.forRoot(environment),
-    // OktaAuthModule.forRoot(environment),
     CoreModule,
     AppRoutingModule  // https://angular.io/guide/router#routing-module-order
   ],
@@ -56,6 +50,12 @@ GET https://<DOMAIN>/user/ssodata
 
 You will receive this error when signing into Auth0 (although this error is unrelated to the [standards-based](https://www.ietf.org/) 
 activity you are trying to perform).
+
+## Screen Shots
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/auth0-login.png">
+</p>
 
 ## Resources
 

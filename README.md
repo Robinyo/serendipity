@@ -140,18 +140,6 @@ OpenID Connect Auth library ([auth-oidc](https://github.com/Robinyo/serendipity/
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-login.png">
 </p>
 
-Auth0 Auth library ([auth-auth0](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0))
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/auth0-login.png">
-</p>
-
-Okta Auth library ([auth-okta](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta))
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/okta-login.png">
-</p>
-
 ### Internationalisation
 
 In German (Auf Deutsch):

@@ -17,19 +17,13 @@ The project's Auth providers are configured in the App [module](https://github.c
 ```
 ...
 
-//
-// Auth libs
-//
-
 // import { LocalAuthModule, authProviders } from 'auth-local';
-// import { Auth0AuthModule, authProviders } from 'auth-auth0';
 import { OktaAuthModule, authProviders } from 'auth-okta';';
 
 @NgModule({
   imports: [
     BrowserModule,
     // LocalAuthModule,
-    // Auth0AuthModule.forRoot(environment),
     OktaAuthModule.forRoot(environment),
     CoreModule,
     AppRoutingModule  // https://angular.io/guide/router#routing-module-order
@@ -44,6 +38,12 @@ import { OktaAuthModule, authProviders } from 'auth-okta';';
 })
 export class AppModule {}
 ```
+
+## Screen Shots
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/okta-login.png">
+</p>
 
 ## Resources
 
