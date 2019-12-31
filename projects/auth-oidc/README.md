@@ -39,6 +39,16 @@ import { OidcAuthModule, authProviders } from 'auth-oidc';
 export class AppModule {}
 ```
 
+## Screen Shots
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-register.png">
+</p>
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-login.png">
+</p>
+
 ## Resources
 
 ### OpenID Connect and OAuth 2.0 Libraries
