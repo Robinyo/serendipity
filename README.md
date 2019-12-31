@@ -133,11 +133,11 @@ Local Auth library ([auth-local](https://github.com/Robinyo/serendipity/tree/mas
 OpenID Connect Auth library ([auth-oidc](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc)):
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-login.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-register.png">
 </p>
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-register.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-login.png">
 </p>
 
 Auth0 Auth library ([auth-auth0](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0))
