@@ -191,5 +191,6 @@ You can customise and extend Serendipity using Angular, Angular libraries and Se
 * Rob Ferguson's blog: [Getting started with Camunda](https://robferguson.org/blog/2019/12/18/getting-started-with-camunda/)
 * Rob Ferguson's blog: [Getting started with Keycloak](https://robferguson.org/blog/2019/12/24/getting-started-with-keycloak/)
 * Rob Ferguson's blog: [Angular, OpenID Connect and Keycloak](https://robferguson.org/blog/2019/12/29/angular-openid-connect-keycloak/)
+* Rob Ferguson's blog: [Angular, OAuth 2.0 and Keycloak](https://robferguson.org/blog/2019/12/31/angular-oauth2-keycloak/)
 
 ![divider](./divider.png)
