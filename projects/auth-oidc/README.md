@@ -60,3 +60,4 @@ export class AppModule {}
 
 ### Authorisation Servers
 * GitHub: [Keycloak - Open Source Identity and Access Management](https://www.keycloak.org/)
+* GitHub: [A curated list of resources for learning about Keycloak](https://github.com/thomasdarimont/awesome-keycloak)
