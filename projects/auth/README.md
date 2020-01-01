@@ -1,5 +1,7 @@
 <h1 align="center">Authentication Library</h1>
 
+![divider](../../divider.png)
+
 ## ❯ Development
 
 To build the library:
