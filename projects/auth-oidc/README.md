@@ -1,6 +1,8 @@
-# ❯ OpenID Connect Authentication library
+<h1 align="center">OpenID Connect Authentication library</h1>
 
-The OpenID Connect Authentication library supports email/password registration and login (using Implicit Flow or Authorization Code Flow with PKCE)
+<p align="center">
+  <b>The OpenID Connect Authentication library supports email/password registration and login (using Implicit Flow or Authorization Code Flow with PKCE)</b></br>
+</p>
 
 ## ❯ Development
 
