@@ -120,21 +120,25 @@ Tasks:
 
 ### Authentication
 
-Local Auth library ([auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local)):
+Local Auth library ([auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local)), Register page:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-register.png">
 </p>
 
+Login page:
+
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-login.png">
 </p>
 
-OpenID Connect Auth library ([auth-oidc](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc)):
+OpenID Connect Auth library ([auth-oidc](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc)), Register page:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-register.png">
 </p>
+
+Login page:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-login.png">
