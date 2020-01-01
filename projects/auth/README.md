@@ -9,10 +9,6 @@ ng build utils && \
 ng build auth
 ```
 
-![divider](../../divider.png)
-
-## ❯ Auth Providers
-
 This library provides an Authentication interface and includes a placeholder `AuthService` and `AuthGuard`.
 The `AuthService` and `AuthGuard` implementation's should be replaced using Angular's DI system, for [example])https://github.com/Robinyo/serendipity/blob/master/projects/auth-oidc/src/lib/providers.ts):
 
@@ -40,6 +36,35 @@ export const authProviders = [
     multi: true
   }
 ];
+```
+
+## ❯ Auth Providers
+
+The project's Auth providers are configured in the App [module](https://github.com/Robinyo/serendipity/blob/master/src/app/app.module.ts):
+
+```
+...
+
+// import { LocalAuthModule, authProviders } from 'auth-local';
+import { OidcAuthModule, authProviders } from 'auth-oidc';
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    // LocalAuthModule,
+    OidcAuthModule.forRoot(environment),
+    CoreModule,
+    AppRoutingModule
+  ],
+  declarations: [ AppComponent ],
+  providers: [
+    loggerProviders,
+    authProviders,
+    angularMaterialProviders
+  ],
+  bootstrap: [ AppComponent ]
+})
+export class AppModule {}
 ```
 
 ![divider](../../divider.png)
