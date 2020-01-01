@@ -46,6 +46,8 @@ import { LocalAuthModule, authProviders } from 'auth-local';
 export class AppModule {}
 ```
 
+![divider](../../divider.png)
+
 ## ❯ Resources
 
 ### Auth Resources
