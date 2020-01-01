@@ -10,7 +10,7 @@ Such a solution can be built as Angular libraries and these libraries can be pub
 
 ## ❯ Resources
 
-### Auth Resources
+### Angular Libraries
 
 * Angular Getting Started Guide: [Angular Libraries](https://angular.io/guide/libraries)
 * Angular Getting Started Guide: [Creating Libraries](https://angular.io/guide/creating-libraries)
