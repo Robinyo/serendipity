@@ -21,8 +21,8 @@
   "actionTokenGeneratedByUserLifespan": 300,
   "enabled": true,
   "sslRequired": "external",
-  "registrationAllowed": false,
-  "registrationEmailAsUsername": false,
+  "registrationAllowed": true,
+  "registrationEmailAsUsername": true,
   "rememberMe": false,
   "verifyEmail": false,
   "loginWithEmailAllowed": true,
@@ -363,7 +363,8 @@
   "groups": [],
   "defaultRoles": [
     "uma_authorization",
-    "offline_access"
+    "offline_access",
+    "Guest"
   ],
   "requiredCredentials": [
     "password"
@@ -399,6 +400,19 @@
     },
     {
       "clientScope": "individual:get",
+      "roles": [
+        "User",
+        "Guest"
+      ]
+    },
+    {
+      "clientScope": "individual:patch",
+      "roles": [
+        "User"
+      ]
+    },
+    {
+      "clientScope": "individual:post",
       "roles": [
         "User"
       ]
@@ -1338,6 +1352,10 @@
     "strictTransportSecurity": "max-age=31536000; includeSubDomains"
   },
   "smtpServer": {},
+  "loginTheme": "keycloak",
+  "accountTheme": "keycloak",
+  "adminTheme": "keycloak",
+  "emailTheme": "keycloak",
   "eventsEnabled": false,
   "eventsListeners": [
     "jboss-logging"
@@ -1493,7 +1511,9 @@
     ]
   },
   "internationalizationEnabled": false,
-  "supportedLocales": [],
+  "supportedLocales": [
+    ""
+  ],
   "authenticationFlows": [
     {
       "id": "43c55f70-6780-42c4-9a33-f482343fe267",
