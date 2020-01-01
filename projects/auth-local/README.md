@@ -1,6 +1,10 @@
-# Local Authentication library
+<h1 align="center">Local Authentication Library</h1>
 
-### Development
+<p align="center">
+  <b>The Local Authentication library supports email/password registration and login.</b></br>
+</p>
+
+## ❯ Development
 
 To build the library:
 
@@ -11,7 +15,9 @@ ng build dynamic-forms
 ng build auth-local
 ```
 
-## Auth Providers
+![divider](../../divider.png)
+
+## ❯ Auth Providers
 
 The project's Auth providers are configured in the App [module](https://github.com/Robinyo/serendipity/blob/master/src/app/app.module.ts):
 
@@ -40,11 +46,11 @@ import { LocalAuthModule, authProviders } from 'auth-local';
 export class AppModule {}
 ```
 
-## Resources
+## ❯ Resources
 
 ### Auth Resources
+
 * Firebase: [Sign in a user with an email address and password](https://firebase.google.com/docs/auth/web/password-auth)
 * Firebase: [User Credential](https://firebase.google.com/docs/reference/js/firebase.auth.html#usercredential)
 
-### Authorisation Servers
-* GitHub: [Keycloak - Open Source Identity and Access Management](https://www.keycloak.org/)
+![divider](../../divider.png)
