@@ -1,8 +1,7 @@
 <h1 align="center">Authentication Library</h1>
 
 <p align="center">
-  <b>This library provides an Authentication interface and includes a placeholder `AuthService` and `AuthGuard`.</b></br>
-  <b>The `AuthService` and `AuthGuard` implementation's should be replaced using Angular's DI system.</b></br>
+  <b>This library provides an Authentication interface and includes a placeholder AuthService and AuthGuard.</b></br>
 </p>
 
 ## ❯ Development
