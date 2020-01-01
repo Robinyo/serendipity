@@ -10,7 +10,7 @@ ng build auth
 ```
 
 This library provides an Authentication interface and includes a placeholder `AuthService` and `AuthGuard`.
-The `AuthService` and `AuthGuard` implementation's should be replaced using Angular's DI system, for [example])https://github.com/Robinyo/serendipity/blob/master/projects/auth-oidc/src/lib/providers.ts):
+The `AuthService` and `AuthGuard` implementation's should be replaced using Angular's DI system, for [example](https://github.com/Robinyo/serendipity/blob/master/projects/auth-oidc/src/lib/providers.ts):
 
 ```
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
