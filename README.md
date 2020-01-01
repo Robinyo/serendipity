@@ -15,7 +15,7 @@
 
 - **Authentication (AuthN) & Authorization (AuthZ)** thanks to:
   - The [Local Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library which supports email/password registration and login
-  - The [OIDC Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc) library which supports email/password registration and login (using Authorization Code Flow with PKCE)
+  - The [OIDC Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc) library which supports email/password registration and login (using Implicit Flow and Authorization Code Flow with PKCE)
   - The [Auth0 Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-auth0) library
   - The [Okta Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-okta) library
 - **Beautiful Code** thanks to Angular's [Style Guide](https://angular.io/guide/styleguide)
