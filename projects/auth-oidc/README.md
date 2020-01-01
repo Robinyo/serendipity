@@ -14,7 +14,7 @@ ng build auth && \
 ng build auth-oidc
 ```
 
-![divider](./divider.png)
+![divider](../../divider.png)
 
 ## ❯ Auth Providers
 
