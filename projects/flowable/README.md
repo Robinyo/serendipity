@@ -1,6 +1,6 @@
-# Flowable Library Documentation
+<h1 align="center">Flowable Library</h1>
 
-## Resources
+## ❯ Resources
 
 ### Blog Posts 
 

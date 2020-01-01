@@ -1,4 +1,4 @@
-<h1 align="center">Dynamic Forms</h1>
+<h1 align="center">Dynamic Forms Library</h1>
 
 ## ❯ Development
 
@@ -8,6 +8,9 @@ To build the library:
 ng build utils && \
 ng build dynamic-forms
 ```
+
+![divider](../../divider.png)
+
 ### Basic Usage
 
 1. Define your form ([username-password-form.json](https://github.com/Robinyo/serendipity/blob/master/projects/sales/src/assets/data/forms/en/username-password-form.json)):

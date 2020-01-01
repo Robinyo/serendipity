@@ -1,1 +1,1 @@
-# Serendipity Components Library Documentation
+<h1 align="center">Serendipity Components Library</h1>
