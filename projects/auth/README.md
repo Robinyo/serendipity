@@ -1,9 +1,5 @@
 <h1 align="center">Authentication Library</h1>
 
-<p align="center">
-  <b>This library provides an Authentication interface and includes a placeholder AuthService and AuthGuard.</b></br>
-</p>
-
 ## ❯ Development
 
 To build the library:
