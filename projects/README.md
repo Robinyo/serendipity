@@ -1,7 +1,5 @@
 <h1 align="center">Angular Libraries</h1>
 
-![divider](../divider.png)
-
 ## ❯ Overview
 
 Many applications need to solve the same general problems, such as presenting a unified user interface, presenting data, and allowing data entry.
