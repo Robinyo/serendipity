@@ -1,7 +1,7 @@
 <h1 align="center">OpenID Connect Authentication library</h1>
 
 <p align="center">
-  <b>The OpenID Connect Authentication library supports email/password registration and login (using Implicit Flow or Authorization Code Flow with PKCE)</b></br>
+  <b>The OpenID Connect Authentication library supports email/password registration and login (using Implicit Flow or Authorization Code Flow with PKCE).</b></br>
 </p>
 
 ## ❯ Development
@@ -45,7 +45,7 @@ import { OidcAuthModule, authProviders } from 'auth-oidc';
 export class AppModule {}
 ```
 
-![divider](./divider.png)
+![divider](../../divider.png)
 
 ## ❯ Screen Shots
 
@@ -57,7 +57,7 @@ export class AppModule {}
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-login.png">
 </p>
 
-![divider](./divider.png)
+![divider](../../divider.png)
 
 ## ❯ Resources
 
@@ -81,4 +81,4 @@ export class AppModule {}
 * Rob Ferguson's blog: [Angular, OpenID Connect and Keycloak](https://robferguson.org/blog/2019/12/29/angular-openid-connect-keycloak/)
 * Rob Ferguson's blog: [Angular, OAuth 2.0 and Keycloak](https://robferguson.org/blog/2019/12/31/angular-oauth2-keycloak/)
 
-![divider](./divider.png)
+![divider](../../divider.png)
