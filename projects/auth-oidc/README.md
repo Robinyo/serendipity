@@ -49,9 +49,13 @@ export class AppModule {}
 
 ## ❯ Screen Shots
 
+Register page:
+
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-register.png">
 </p>
+
+Login page:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-login.png">
