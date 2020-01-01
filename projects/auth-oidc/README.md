@@ -1,6 +1,8 @@
-# OpenID Connect Authentication library
+# ❯ OpenID Connect Authentication library
 
-## Development
+The OpenID Connect Authentication library supports email/password registration and login (using Implicit Flow or Authorization Code Flow with PKCE)
+
+## ❯ Development
 
 To build the library:
 
@@ -10,7 +12,9 @@ ng build auth && \
 ng build auth-oidc
 ```
 
-## Auth Providers
+![divider](./divider.png)
+
+## ❯ Auth Providers
 
 The project's Auth providers are configured in the App [module](https://github.com/Robinyo/serendipity/blob/master/src/app/app.module.ts):
 
@@ -39,7 +43,9 @@ import { OidcAuthModule, authProviders } from 'auth-oidc';
 export class AppModule {}
 ```
 
-## Screen Shots
+![divider](./divider.png)
+
+## ❯ Screen Shots
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-register.png">
@@ -49,15 +55,28 @@ export class AppModule {}
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-login.png">
 </p>
 
-## Resources
+![divider](./divider.png)
+
+## ❯ Resources
 
 ### OpenID Connect and OAuth 2.0 Libraries
+
 * GitHub: [OpenID Connect (OIDC) and OAuth2 protocol support for browser-based JavaScript applications](https://github.com/IdentityModel/oidc-client-js)
 
 ### Auth Resources
+
 * Internet Engineering Task Force: [OAuth 2.0 for Browser-Based Apps](https://datatracker.ietf.org/doc/draft-ietf-oauth-browser-based-apps/)
 * Internet Engineering Task Force: [OAuth 2.0 Security Best Current Practice](https://datatracker.ietf.org/doc/draft-ietf-oauth-security-topics/)
 
 ### Authorisation Servers
+
 * GitHub: [Keycloak - Open Source Identity and Access Management](https://www.keycloak.org/)
 * GitHub: [A curated list of resources for learning about Keycloak](https://github.com/thomasdarimont/awesome-keycloak)
+
+### Blog Posts
+
+* Rob Ferguson's blog: [Getting started with Keycloak](https://robferguson.org/blog/2019/12/24/getting-started-with-keycloak/)
+* Rob Ferguson's blog: [Angular, OpenID Connect and Keycloak](https://robferguson.org/blog/2019/12/29/angular-openid-connect-keycloak/)
+* Rob Ferguson's blog: [Angular, OAuth 2.0 and Keycloak](https://robferguson.org/blog/2019/12/31/angular-oauth2-keycloak/)
+
+![divider](./divider.png)
