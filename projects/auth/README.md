@@ -1,7 +1,7 @@
-<h1 align="center">Auth Authentication library</h1>
+<h1 align="center">Authentication Library</h1>
 
 <p align="center">
-  <b>The Auth library provides an Authentication interface and includes a placeholder `AuthService` and `AuthGuard`.</b></br>
+  <b>This library provides an Authentication interface and includes a placeholder `AuthService` and `AuthGuard`.</b></br>
   <b>The `AuthService` and `AuthGuard` implementation's should be replaced using Angular's DI system.</b></br>
 </p>
 
@@ -18,7 +18,7 @@ ng build auth
 
 ## ❯ Auth Providers
 
-The Auth library provides an Authentication interface and includes a placeholder `AuthService` and `AuthGuard`.
+This library provides an Authentication interface and includes a placeholder `AuthService` and `AuthGuard`.
 The `AuthService` and `AuthGuard` implementation's should be replaced using Angular's DI system, for [example])https://github.com/Robinyo/serendipity/blob/master/projects/auth-oidc/src/lib/providers.ts):
 
 ```
