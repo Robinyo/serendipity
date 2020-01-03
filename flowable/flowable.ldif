@@ -39,4 +39,4 @@ objectclass: inetOrgPerson
 cn: Flowable
 sn: Administrator
 uid: flowable
-userPassword:: test
+userPassword:: dGVzdA==
