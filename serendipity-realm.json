@@ -22,13 +22,13 @@
   "enabled": true,
   "sslRequired": "external",
   "registrationAllowed": true,
-  "registrationEmailAsUsername": true,
+  "registrationEmailAsUsername": false,
   "rememberMe": false,
   "verifyEmail": false,
-  "loginWithEmailAllowed": true,
+  "loginWithEmailAllowed": false,
   "duplicateEmailsAllowed": false,
   "resetPasswordAllowed": false,
-  "editUsernameAllowed": false,
+  "editUsernameAllowed": true,
   "bruteForceProtected": false,
   "permanentLockout": false,
   "maxFailureWaitSeconds": 900,
@@ -1366,6 +1366,25 @@
   "components": {
     "org.keycloak.services.clientregistration.policy.ClientRegistrationPolicy": [
       {
+        "id": "c1e51985-6f50-4ff5-bede-da22ca979777",
+        "name": "Allowed Protocol Mapper Types",
+        "providerId": "allowed-protocol-mappers",
+        "subType": "anonymous",
+        "subComponents": {},
+        "config": {
+          "allowed-protocol-mapper-types": [
+            "saml-role-list-mapper",
+            "oidc-sha256-pairwise-sub-mapper",
+            "oidc-full-name-mapper",
+            "oidc-usermodel-attribute-mapper",
+            "oidc-address-mapper",
+            "oidc-usermodel-property-mapper",
+            "saml-user-property-mapper",
+            "saml-user-attribute-mapper"
+          ]
+        }
+      },
+      {
         "id": "8b66ac68-fa61-4e6e-96c5-cdb3f26a6787",
         "name": "Trusted Hosts",
         "providerId": "trusted-hosts",
@@ -1440,25 +1459,6 @@
         "config": {}
       },
       {
-        "id": "c1e51985-6f50-4ff5-bede-da22ca979777",
-        "name": "Allowed Protocol Mapper Types",
-        "providerId": "allowed-protocol-mappers",
-        "subType": "anonymous",
-        "subComponents": {},
-        "config": {
-          "allowed-protocol-mapper-types": [
-            "saml-role-list-mapper",
-            "oidc-sha256-pairwise-sub-mapper",
-            "oidc-full-name-mapper",
-            "oidc-usermodel-attribute-mapper",
-            "oidc-address-mapper",
-            "oidc-usermodel-property-mapper",
-            "saml-user-property-mapper",
-            "saml-user-attribute-mapper"
-          ]
-        }
-      },
-      {
         "id": "e0d49230-a26a-4b10-84c3-116542747cec",
         "name": "Max Clients Limit",
         "providerId": "max-clients",
@@ -1471,11 +1471,280 @@
         }
       }
     ],
+    "org.keycloak.storage.UserStorageProvider": [
+      {
+        "id": "b02e5323-0ea4-442c-ba59-5e997d0c5f94",
+        "name": "OpenLDAP",
+        "providerId": "ldap",
+        "subComponents": {
+          "org.keycloak.storage.ldap.mappers.LDAPStorageMapper": [
+            {
+              "id": "3a48caab-d5c7-4993-a33a-0f04957ee118",
+              "name": "first name",
+              "providerId": "user-attribute-ldap-mapper",
+              "subComponents": {},
+              "config": {
+                "ldap.attribute": [
+                  "cn"
+                ],
+                "is.mandatory.in.ldap": [
+                  "true"
+                ],
+                "read.only": [
+                  "false"
+                ],
+                "always.read.value.from.ldap": [
+                  "true"
+                ],
+                "user.model.attribute": [
+                  "firstName"
+                ]
+              }
+            },
+            {
+              "id": "3d48857c-6b06-4431-9fea-edd6a29a0306",
+              "name": "email",
+              "providerId": "user-attribute-ldap-mapper",
+              "subComponents": {},
+              "config": {
+                "ldap.attribute": [
+                  "mail"
+                ],
+                "is.mandatory.in.ldap": [
+                  "false"
+                ],
+                "always.read.value.from.ldap": [
+                  "false"
+                ],
+                "read.only": [
+                  "false"
+                ],
+                "user.model.attribute": [
+                  "email"
+                ]
+              }
+            },
+            {
+              "id": "7998f654-420c-4624-ab11-ea9f28b2a7a4",
+              "name": "last name",
+              "providerId": "user-attribute-ldap-mapper",
+              "subComponents": {},
+              "config": {
+                "ldap.attribute": [
+                  "sn"
+                ],
+                "is.mandatory.in.ldap": [
+                  "true"
+                ],
+                "always.read.value.from.ldap": [
+                  "true"
+                ],
+                "read.only": [
+                  "false"
+                ],
+                "user.model.attribute": [
+                  "lastName"
+                ]
+              }
+            },
+            {
+              "id": "ae32c962-a3d1-4e6d-88f6-c283940f3ce8",
+              "name": "modify date",
+              "providerId": "user-attribute-ldap-mapper",
+              "subComponents": {},
+              "config": {
+                "ldap.attribute": [
+                  "modifyTimestamp"
+                ],
+                "is.mandatory.in.ldap": [
+                  "false"
+                ],
+                "always.read.value.from.ldap": [
+                  "true"
+                ],
+                "read.only": [
+                  "true"
+                ],
+                "user.model.attribute": [
+                  "modifyTimestamp"
+                ]
+              }
+            },
+            {
+              "id": "f7b52b20-7624-47d6-aba6-344db9034562",
+              "name": "password",
+              "providerId": "user-attribute-ldap-mapper",
+              "subComponents": {},
+              "config": {
+                "ldap.attribute": [
+                  "userPassword"
+                ],
+                "is.mandatory.in.ldap": [
+                  "true"
+                ],
+                "is.binary.attribute": [
+                  "false"
+                ],
+                "read.only": [
+                  "false"
+                ],
+                "user.model.attribute": [
+                  "password"
+                ]
+              }
+            },
+            {
+              "id": "02d55194-076b-4c21-8135-5cac0c2dc18f",
+              "name": "username",
+              "providerId": "user-attribute-ldap-mapper",
+              "subComponents": {},
+              "config": {
+                "ldap.attribute": [
+                  "uid"
+                ],
+                "is.mandatory.in.ldap": [
+                  "true"
+                ],
+                "read.only": [
+                  "false"
+                ],
+                "always.read.value.from.ldap": [
+                  "false"
+                ],
+                "user.model.attribute": [
+                  "username"
+                ]
+              }
+            },
+            {
+              "id": "e190886c-ad5f-4a05-8740-95fb9bb951ba",
+              "name": "creation date",
+              "providerId": "user-attribute-ldap-mapper",
+              "subComponents": {},
+              "config": {
+                "ldap.attribute": [
+                  "createTimestamp"
+                ],
+                "is.mandatory.in.ldap": [
+                  "false"
+                ],
+                "always.read.value.from.ldap": [
+                  "true"
+                ],
+                "read.only": [
+                  "true"
+                ],
+                "user.model.attribute": [
+                  "createTimestamp"
+                ]
+              }
+            }
+          ]
+        },
+        "config": {
+          "fullSyncPeriod": [
+            "-1"
+          ],
+          "pagination": [
+            "true"
+          ],
+          "usersDn": [
+            "ou=users,dc=flowable,dc=org"
+          ],
+          "connectionPooling": [
+            "true"
+          ],
+          "cachePolicy": [
+            "DEFAULT"
+          ],
+          "useKerberosForPasswordAuthentication": [
+            "false"
+          ],
+          "importEnabled": [
+            "false"
+          ],
+          "enabled": [
+            "true"
+          ],
+          "changedSyncPeriod": [
+            "-1"
+          ],
+          "bindCredential": [
+            "**********"
+          ],
+          "bindDn": [
+            "cn=admin,dc=flowable,dc=org"
+          ],
+          "usernameLDAPAttribute": [
+            "uid"
+          ],
+          "vendor": [
+            "other"
+          ],
+          "uuidLDAPAttribute": [
+            "uid"
+          ],
+          "connectionUrl": [
+            "ldap://host.docker.internal:10389"
+          ],
+          "allowKerberosAuthentication": [
+            "false"
+          ],
+          "syncRegistrations": [
+            "true"
+          ],
+          "authType": [
+            "simple"
+          ],
+          "debug": [
+            "false"
+          ],
+          "searchScope": [
+            "1"
+          ],
+          "useTruststoreSpi": [
+            "ldapsOnly"
+          ],
+          "priority": [
+            "0"
+          ],
+          "trustEmail": [
+            "false"
+          ],
+          "userObjectClasses": [
+            "inetOrgPerson"
+          ],
+          "rdnLDAPAttribute": [
+            "uid"
+          ],
+          "editMode": [
+            "WRITABLE"
+          ],
+          "validatePasswordPolicy": [
+            "false"
+          ],
+          "batchSizeForSync": [
+            "1000"
+          ]
+        }
+      }
+    ],
     "org.keycloak.keys.KeyProvider": [
       {
         "id": "9159634d-3251-4873-8982-e7329dbe365f",
         "name": "rsa-generated",
         "providerId": "rsa-generated",
+        "subComponents": {},
+        "config": {
+          "priority": [
+            "100"
+          ]
+        }
+      },
+      {
+        "id": "b7b71f20-7c76-4ff2-bdb5-4798f81cb98b",
+        "name": "aes-generated",
+        "providerId": "aes-generated",
         "subComponents": {},
         "config": {
           "priority": [
@@ -1494,17 +1763,6 @@
           ],
           "algorithm": [
             "HS256"
-          ]
-        }
-      },
-      {
-        "id": "b7b71f20-7c76-4ff2-bdb5-4798f81cb98b",
-        "name": "aes-generated",
-        "providerId": "aes-generated",
-        "subComponents": {},
-        "config": {
-          "priority": [
-            "100"
           ]
         }
       }
