@@ -41,7 +41,7 @@ sn: Administrator
 uid: flowable
 userPassword:: dGVzdA==
 
-# REST API
+# REST API Basic Auth user
 
 dn: cn=Flowable Rest API, ou=users,dc=flowable,dc=org
 objectclass: inetOrgPerson
