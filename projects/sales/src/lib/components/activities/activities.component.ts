@@ -78,6 +78,13 @@ export class ActivitiesComponent extends CollectionComponent<Activity> {
     this.router.navigate(['sales/activities/email']);
   }
 
+  public onTask() {
+
+    this.logger.info('ActivitiesComponent: onTask()');
+
+    this.router.navigate(['sales/activities/tasks']);
+  }
+
 }
 
 // https://stackoverflow.com/questions/48891174/angular-material-2-datatable-sorting-with-nested-objects

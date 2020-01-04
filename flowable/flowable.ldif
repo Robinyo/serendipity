@@ -40,3 +40,12 @@ cn: Flowable
 sn: Administrator
 uid: flowable
 userPassword:: dGVzdA==
+
+# REST API
+
+dn: cn=Flowable Rest API, ou=users,dc=flowable,dc=org
+objectclass: inetOrgPerson
+cn: Flowable Rest API
+sn: Administrator
+uid: flowable-rest
+userPassword:: dGVzdA==

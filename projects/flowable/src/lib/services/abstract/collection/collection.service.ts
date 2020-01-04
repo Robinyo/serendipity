@@ -26,6 +26,57 @@ export abstract class CollectionService {
 
     if (!this.httpOptions) {
 
+      // See: ldap-env.txt
+
+      const token = 'flowable-rest' + ':' + 'test';
+
+      this.logger.info('CollectionService getHttpOptions() - token: ' + token + ' btoa(token): ' + btoa(token));
+
+      this.httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic ' + btoa(token)
+        }),
+        params: null
+      };
+
+    }
+
+    this.httpOptions.params = params;
+
+    // this.logger.info(JSON.stringify(this.httpOptions));
+
+    return this.httpOptions;
+  }
+
+}
+
+/*
+
+  // https://github.com/angular/angular-cli/issues/14595 -> proxyConfig with Windows authentication stopped working after update to 8
+
+  "/flowable-task": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "logLevel": "debug",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Basic Zmxvd2FibGUtcmVzdDp0ZXN0"
+    }
+  }
+
+*/
+
+// https://medium.com/@krishna.acondy/a-generic-http-service-approach-for-angular-applications-a7bd8ff6a068
+
+/*
+
+  protected getHttpOptions(params: HttpParams = null) {
+
+    this.logger.info('CollectionService: getHttpOptions()');
+
+    if (!this.httpOptions) {
+
       const user: User = this.authService.getUser();
 
       if (typeof user === 'undefined') {
@@ -54,9 +105,7 @@ export abstract class CollectionService {
     return this.httpOptions;
   }
 
-}
-
-// https://medium.com/@krishna.acondy/a-generic-http-service-approach-for-angular-applications-a7bd8ff6a068
+*/
 
 /*
 

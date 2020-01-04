@@ -50,7 +50,7 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always'
   },
   {
-    path: 'tasks',
+    path: 'activities/tasks',
     component: TasksComponent,
     canActivate: [AuthGuard],
     canDeactivate: [CanDeactivateGuard],

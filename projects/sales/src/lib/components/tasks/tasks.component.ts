@@ -1,7 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { Observable } from 'rxjs';
 
 import { TaskListComponent } from 'flowable';
+
+import { ACTIVITIES } from '../../models/constants';
 
 import { LoggerService } from 'utils';
 
@@ -15,7 +19,8 @@ export class TasksComponent implements OnInit {
   @ViewChild(TaskListComponent, {static: false})
   private taskList: TaskListComponent;
 
-  constructor(private logger: LoggerService) {}
+  constructor(private logger: LoggerService,
+              private router: Router) {}
 
   ngOnInit() {
 
@@ -32,6 +37,13 @@ export class TasksComponent implements OnInit {
   //
   // Command Bar events
   //
+
+  public onClose() {
+
+    this.logger.info('TasksComponent: onClose()');
+
+    this.router.navigate([ACTIVITIES]);
+  }
 
   public onRefresh() {
 

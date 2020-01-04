@@ -44,7 +44,7 @@ export class OidcAuthService extends Auth {
       loadUserInfo: this.config.oidc.loadUserInfo
     };
 
-    this.logger.info('oidcConfig: ' + JSON.stringify(oidcConfig, null, 2));
+    // this.logger.info('oidcConfig: ' + JSON.stringify(oidcConfig, null, 2));
 
     this.authService = new UserManager(oidcConfig);
 
@@ -112,7 +112,7 @@ export class OidcAuthService extends Auth {
 
     this.user = await this.authService.signinRedirectCallback();
 
-    // this.logger.info('user: ' + JSON.stringify(this.user, null, 2));
+    this.logger.info('user: ' + JSON.stringify(this.user, null, 2));
 
     this.authenticated = await this._isAuthenticated();
 
@@ -133,6 +133,8 @@ export class OidcAuthService extends Auth {
   // TODO -> See: collection.service.ts
 
   public getUser() {
+
+    // this.user.profile.preferred_username;
 
     return undefined;
   }

@@ -10,6 +10,14 @@
     {{ 'REFRESH' | translate }}
   </button>
 
+  <div fxFlex fxLayout fxLayoutAlign="flex-end">
+
+    <button mat-button class="crm-command-bar-button" (click)="onClose()">
+      <mat-icon>clear</mat-icon>
+    </button>
+
+  </div>
+
 </crm-command-bar>
 
 <div class="crm-component-title-container">

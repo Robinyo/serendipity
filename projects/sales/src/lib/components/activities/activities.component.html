@@ -1,6 +1,6 @@
 <crm-command-bar>
 
-  <button mat-button class="crm-command-bar-button" [disabled]="true">
+  <button mat-button class="crm-command-bar-button" (click)="onTask()">
     <mat-icon>check_box</mat-icon>
     {{ 'TASK_COMMAND_BAR_BUTTON' | translate }}
   </button>
