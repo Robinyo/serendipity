@@ -185,6 +185,26 @@ I created four scopes:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/scopes.png">
 </p>
 
+I [linked](https://www.keycloak.org/docs/latest/server_admin/index.html#_client_scopes_linking) the scopes with the client:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/optional-client-scopes.png">
+</p>
+
+I [linked](https://www.keycloak.org/docs/latest/server_admin/index.html#_client_scopes_linking) the `individual:get` scope with the `Guest` role and the `User` role:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/individual-get-assigned-roles.png">
+</p>
+
+I also linked the `individual:post` and the `individual:patch` scopes with the `User` role.
+
+I [linked](https://www.keycloak.org/docs/latest/server_admin/index.html#_client_scopes_linking) the `individual:delete` scope with the `Manager` role:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/individual-delete-assigned-roles.png">
+</p>
+
 #### Export
 
 To [export]((https://www.keycloak.org/docs/latest/server_admin/index.html#_export_import)) into single JSON file:
