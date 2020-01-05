@@ -136,7 +136,7 @@ Click 'Import' in the sidemenu and then select the file to import ([keycloak-exp
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/partial-import.png">
 </p>
 
-Select 'Import from realm' (development), 'If a resource exists: Skip' and then Click the 'Import' button.
+Select 'Import from realm: development', 'If a resource exists: Skip' and then Click the 'Import' button.
 
 It's only a partial import :( so we will need to use the Administration Console to:
 
@@ -228,7 +228,7 @@ I [linked](https://www.keycloak.org/docs/latest/server_admin/index.html#_client_
 
 #### Export
 
-To [export]((https://www.keycloak.org/docs/latest/server_admin/index.html#_export_import)) into a single JSON file:
+To [export]((https://www.keycloak.org/docs/latest/server_admin/index.html#_export_import)) your database into a single JSON file:
 
 ```
 docker exec -it keycloak /bin/bash
