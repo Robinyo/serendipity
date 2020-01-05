@@ -132,7 +132,7 @@ The image includes Flowable's web applications:
 - Flowable Task: http://localhost:8080/flowable-task
 - Flowable Admin: http://localhost:8080/flowable-admin
 
-Let's check, navigate to `http://localhost:8080/flowable-task` and sign in using the default user id: **flowable** and password: **test**
+Let's check, launch the [Flowable Task](http://localhost:8080/flowable-task) web application and sign in using the default username: **flowable** and password: **test**
 
 #### Flowable-related Blog Posts 
 
