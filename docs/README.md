@@ -1,12 +1,12 @@
 <h1 align="center">Documentation</h1>
 
-![divider](../divider.png)
-
 ## ❯ Quick Links
 
 * Administrator Documentation
 * [Developer Documentation](developer.md)
 * User Documentation
+
+![divider](../divider.png)
 
 ## ❯ Resources
 
