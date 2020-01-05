@@ -6,7 +6,7 @@ The [Angular CLI](https://cli.angular.io/) is a command line tool that you can u
 
 ## Quick Start
 
-The goal of this guide is to help you build and run Serendipity using the Angular CLI.
+The goal of this guide is to help you build and run Serendipity.
 
 ### Step 1. Set up the Development Environment 
 
