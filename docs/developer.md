@@ -62,6 +62,8 @@ Let's check and see:
 docker exec openldap ldapsearch -x -H ldap://localhost -b dc=flowable,dc=org -D "cn=admin,dc=flowable,dc=org" -w secret
 ```
 
+You can also use an [LDAP Browser](https://directory.apache.org/apacheds/) to manage your directory.
+
 #### Update OpenLDAP 
 
 LDIF, or the LDAP Data Interchange Format, is a text format for representing LDAP data and commands.
