@@ -34,80 +34,103 @@ Clone the project by running the following command:
 
 ```
 git clone https://github.com/Robinyo/serendipity
+cd serendipity
 ```
 
-### Step 3: Launch Flowable 
+### Step 3: Launch OpenLDAP
 
-The easiest way to get started with [Flowable](https://www.flowable.org/index.html) is to use a Docker image, for example:
-
-```
-docker run --name flowable -p 8080:8080 flowable/all-in-one
-```
-
-or
+To launch OpenLDAP:
 
 ```
-docker start --interactive flowable
+# docker pull osixia/openldap
+
+docker run --detach --name openldap \
+  --publish 10389:389 \
+  --publish 10636:636 \
+  --volume ~/workspace/Robinyo/serendipity:/serendipity \
+  --env LDAP_ORGANISATION="flowable" \
+  --env LDAP_DOMAIN="flowable.org" \
+  --env LDAP_ADMIN_PASSWORD="secret" \
+  osixia/openldap:1.2.3
 ```
 
-To list all running containers:
+When you run the image it will create the organisation (flowable), create the domain (flowable.org) and set the LDAP administrator's password (secret).
+
+Let's check and see:
 
 ```
-docker container ls
+docker exec openldap ldapsearch -x -H ldap://localhost -b dc=flowable,dc=org -D "cn=admin,dc=flowable,dc=org" -w secret
 ```
 
-You can stop a container using the following command:
+#### Update OpenLDAP 
+
+LDIF, or the LDAP Data Interchange Format, is a text format for representing LDAP data and commands.
+
+To update OpenLDAP:
 
 ```
-docker container stop [name]
+# In the project directory: /serendipity
+
+docker exec openldap ldapadd \
+  -x -H ldap://localhost \
+  -D "cn=admin,dc=flowable,dc=org" \
+  -w secret \
+  -f ./serendipity/flowable/flowable.ldif
 ```
 
-For example:
+[flowable.ldif](https://github.com/Robinyo/serendipity/blob/master/flowable/flowable.ldif) describes Flowable's users and groups.
+
+### Step 4: Launch Keycloak 
+
+To launch Keycloak:
 
 ```
-docker container stop flowable
-docker container stop flowable-rest
+# docker pull jboss/keycloak
+
+docker run -d --name keycloak \
+  -p 10001:8080 \
+  -e KEYCLOAK_USER=admin \
+  -e KEYCLOAK_PASSWORD=secret \
+  jboss/keycloak  
 ```
 
-Where is your image? It’s in your machine’s local Docker image registry:
+When you run the image it will create the Master realm's admin (admin) user and password (secret).
+
+#### Update Keycloak
+
+* [Export and Import](https://www.keycloak.org/docs/latest/server_admin/index.html#_export_import)
+* [User Federation](https://www.keycloak.org/docs/latest/server_admin/index.html#_user-storage-federation)
+
+#### Keycloak-related Blog Posts 
+
+* Rob Ferguson's blog: [Getting started with Keycloak](https://robferguson.org/blog/2019/12/24/getting-started-with-keycloak/)
+* Rob Ferguson's blog: [Angular, OpenID Connect and Keycloak](https://robferguson.org/blog/2019/12/29/angular-openid-connect-keycloak/)
+* Rob Ferguson's blog: [Angular, OAuth 2.0 and Keycloak](https://robferguson.org/blog/2019/12/31/angular-oauth2-keycloak/)
+* Rob Ferguson's blog: [Keycloak, Flowable and OpenLDAP](https://robferguson.org/blog/2020/01/03/keycloak-flowable-and-openldap/)
+
+### Step 5: Launch Flowable 
+
+To launch the flowable/all-in-one (SNAPSHOT) image:
 
 ```
-docker image ls
+docker run -d --name flowable \
+  -p 8080:8080 \
+  --env-file ldap-env.txt \
+  flowable/all-in-one:6.5.0-SNAPSHOT
 ```
 
-During **development** we can use the [proxying](https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md) support in webpack's dev server to highjack certain URIs and send them to a backend server:
+**Note:** The flowable/all-in-one image may take a minute or two to startup.
 
-```
-ng serve --proxy-config=proxy.conf.json
-```
+[ldap-env.txt](https://github.com/Robinyo/serendipity/blob/master/flowable/flowable.ldif) describes Flowable's runtime configuration.
 
-proxy.conf.json:
+The image includes Flowable's web applications:
 
-```
-{
-  "/engine-rest": {
-    "target": "http://localhost:8080",
-    "secure": false,
-    "logLevel": "debug"
-  },
-  "/flowable-task": {
-    "target": "http://localhost:8080",
-    "secure": false,
-    "logLevel": "debug"
-  },
-  "/api": {
-    "target": "http://localhost:3001",
-    "secure": false,
-    "logLevel": "debug"
-  }
-}
-```
+- Flowable Identity Management: http://localhost:8080/flowable-idm
+- Flowable Modeler: http://localhost:8080/flowable-modeler
+- Flowable Task: http://localhost:8080/flowable-task
+- Flowable Admin: http://localhost:8080/flowable-admin
 
-**Note:** You can build and serve Serendipity without launching Flowable:
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/activities-without-flowable.png">
-</p>
+Let's check, navigate to `http://localhost:8080/flowable-task` and sign in using the default user id: **flowable** and password: **test**
 
 #### Flowable-related Blog Posts 
 
@@ -117,17 +140,19 @@ proxy.conf.json:
 * Rob Ferguson's blog: [Flowable's REST API - Part 1](https://robferguson.org/blog/2018/12/24/flowable-rest-api-part-1/)
 * Rob Ferguson's blog: [Flowable's REST API - Part 2](https://robferguson.org/blog/2019/01/02/flowable-rest-api-part-2/)
 * Rob Ferguson's blog: [Flowable's REST API - Part 3](https://robferguson.org/blog/2019/01/03/flowable-rest-api-part-3/)
+* Rob Ferguson's blog: [Keycloak, Flowable and OpenLDAP](https://robferguson.org/blog/2020/01/03/keycloak-flowable-and-openldap/)
 
-### Step 4: Serve the application's API 
+### Step 6: Serve the application's API 
 
 Follow the steps in the Serendipity API's [Quick Start](https://github.com/Robinyo/serendipity-api/blob/master/projects/express-typeorm/docs/developer.md) Guide.
 
-### Step 5: Serve the application 
+### Step 7: Serve the application 
 
 Go to the project directory, install the project's dependencies and launch the server:
 
 ```
-cd serendipity
+# In the project directory: /serendipity
+
 npm install
 
 ng build utils && \
@@ -149,6 +174,46 @@ ng serve --proxy-config=proxy.conf.json --open
 The ng serve command launches the server, watches your files, and rebuilds the app as you make changes to those files.
 
 Using the --open (or just -o) option will open your browser on `http://localhost:4200/`
+
+#### Common Docker Commands
+
+To list all running containers:
+
+```
+docker container ls
+```
+
+You can stop a container using the following command:
+
+```
+docker container stop [name]
+```
+
+For example:
+
+```
+docker container stop flowable
+docker container stop keycloak
+docker container stop openldap
+```
+
+You can remove a container using the following command:
+
+```
+docker container rm [name]
+```
+
+For example:
+
+```
+docker container rm ff56365c6586c42b87195db6c38e75d7460a59a665608c7c55d614c51fd211a9
+```
+
+Where is your image? It’s in your machine’s local Docker image registry:
+
+```
+docker image ls
+```
 
 ## Build Management
 
@@ -202,6 +267,38 @@ http://localhost:4200/
 ```
 
 The app will automatically reload if you change any of the source files.
+
+During **development** we can use the [proxying](https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md) support in webpack's dev server to highjack certain URIs and send them to a backend server:
+
+```
+ng serve --proxy-config=proxy.conf.json
+```
+
+proxy.conf.json:
+
+```
+{
+  "/engine-rest": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/flowable-task": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "logLevel": "debug",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Basic Zmxvd2FibGUtcmVzdDp0ZXN0"
+    }
+  },
+  "/api": {
+    "target": "http://localhost:3001",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}
+```
 
 ### Production
 
