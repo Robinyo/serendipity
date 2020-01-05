@@ -131,7 +131,7 @@ To create a new realm, click 'Add realm' from the Master drop-down menu:
 
 Enter a Name (development) and then click the 'Create' button.
 
-Click 'Import' in the sidemenu and then select the file to import ([keycloak-export.json](https://github.com/Robinyo/serendipity/blob/master/keycloak/keycloak-export.json)):
+Click 'Import' in the sidemenu and then select a (previously exported) file to import ([keycloak-export.json](https://github.com/Robinyo/serendipity/blob/master/keycloak/keycloak-export.json)):
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/partial-import.png">
