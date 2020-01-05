@@ -49,7 +49,7 @@ export const environment: Environment = {
     postLogoutRedirectUri: 'http://localhost:4200/',
     redirectUri: 'http://localhost:4200/authorization-code/callback',
     responseType: 'code',
-    scope: 'openid profile email phone address offline_access individual:post individual:get individual:patch individual:delete'
+    scope: 'openid profile email phone address offline_access'
   },
 
   storageUriPrefix: 'https://firebasestorage.googleapis.com/v0/b/',

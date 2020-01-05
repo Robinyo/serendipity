@@ -121,9 +121,11 @@ Click 'Import' in the sidemenu and then select the file to import ([keycloak-exp
 
 Select 'Import from realm' (development), 'If a resource exists: Overwrite' and then Click the 'Import' button.
 
-**Note:** It's only a partial import :( so we will need to use the Administration Console to 
-[create a User Federation to OpenLDAP](https://robferguson.org/blog/2020/01/03/keycloak-flowable-and-openldap/) and to
-[create Serendipity's Client (OAuth 2.0) scopes](https://robferguson.org/blog/2019/12/31/angular-oauth2-keycloak/).
+It's only a partial import :( so we will need to use the Administration Console to:
+
+* [Configure the realm's Login settings](https://robferguson.org/blog/2020/01/03/keycloak-flowable-and-openldap/)
+* [Create a User Federation to OpenLDAP](https://robferguson.org/blog/2020/01/03/keycloak-flowable-and-openldap/)
+* [Create Serendipity's Client (OAuth 2.0) scopes](https://robferguson.org/blog/2019/12/31/angular-oauth2-keycloak/).
 
 #### Export
 
