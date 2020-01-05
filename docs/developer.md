@@ -125,7 +125,7 @@ It's only a partial import :( so we will need to use the Administration Console 
 
 * [Configure the realm's Login settings](https://robferguson.org/blog/2020/01/03/keycloak-flowable-and-openldap/)
 * [Create a User Federation to OpenLDAP](https://robferguson.org/blog/2020/01/03/keycloak-flowable-and-openldap/)
-* [Create Serendipity's Client (OAuth 2.0) scopes](https://robferguson.org/blog/2019/12/31/angular-oauth2-keycloak/).
+* [Create Serendipity's Client (OAuth 2.0) scopes](https://robferguson.org/blog/2019/12/31/angular-oauth2-keycloak/)
 
 #### Export
 
@@ -142,7 +142,7 @@ bin/standalone.sh -Dkeycloak.migration.action=export \
   -Djboss.socket.binding.port-offset=100
 ```
 
-Then in another terminal session: 
+In another terminal session: 
 
 ```
 docker cp keycloak:/opt/jboss/keycloak-export.json .
