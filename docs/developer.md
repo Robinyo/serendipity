@@ -177,6 +177,18 @@ The ng serve command launches the server, watches your files, and rebuilds the a
 
 Using the --open (or just -o) option will open your browser on `http://localhost:4200/`
 
+Register page:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-register.png">
+</p>
+
+Login page:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-login.png">
+</p>
+
 #### Common Docker Commands
 
 To list all running containers:
