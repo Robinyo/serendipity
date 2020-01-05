@@ -127,7 +127,7 @@ It's only a partial import :( so we will need to use the Administration Console 
 * [Create a User Federation to OpenLDAP](https://robferguson.org/blog/2020/01/03/keycloak-flowable-and-openldap/)
 * [Create Serendipity's Client (OAuth 2.0) scopes](https://robferguson.org/blog/2019/12/31/angular-oauth2-keycloak/)
 
-##### Configure the Realm's Login settings
+#### Configure the Realm's Login settings
 
 Click 'Realm Settings' in the sidemenu and then click on the 'Login' tab:
 
@@ -137,7 +137,7 @@ Click 'Realm Settings' in the sidemenu and then click on the 'Login' tab:
 
 Check 'User registration' and 'Edit username'. Uncheck everything else and then click the 'Save' button.
 
-##### Create a User Federation to OpenLDAP
+#### Create a User Federation to OpenLDAP
 
 To create a new User Federation click 'User Federation' in the sidemenu and then choose 'ldap' as the provider:
 
@@ -151,9 +151,39 @@ Uncheck 'Import Users' (because we don't want to import users from OpenLDAP). Se
 **Note:** I'm using [Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/) hence the need to use the special 
 DNS name: `host.docker.internal`
 
-##### Create Serendipity's Client (OAuth 2.0) scopes
+#### Create Serendipity's Client (OAuth 2.0) scopes
 
-???
+Serendipity has four roles:
+
+* Guest
+* User
+* Manager
+* Administrator
+
+Serendipity's REST API uses scopes to protect resources, for example:
+
+* individual:post
+* individual:get
+* individual:patch
+* individual:delete
+
+To create a new [scope](https://www.keycloak.org/docs/latest/server_admin/index.html#_client_scopes) click 'Client Scopes' in the sidemenu and then click the 'Create' button:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/client-scope.png">
+</p>
+
+Enter a Name and then click the 'Save' button:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/individual-get-scope.png">
+</p>
+
+I created four scopes:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/scopes.png">
+</p>
 
 #### Export
 
