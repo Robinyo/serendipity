@@ -1,8 +1,10 @@
-# Serendipity Developer Documentation
+<h1 align="center">Developer Documentation</h1>
 
-The goal of this guide is to help you build and run Serendipity.
+<p align="center">
+  <bThe goal of this guide is to help you build and run Serendipity.</b></br>
+</p>
 
-## Quick Start
+## ❯ Quick Start
 
 Good tools make application development better and easier.
 
@@ -229,7 +231,9 @@ Where is your image? It’s in your machine’s local Docker image registry:
 docker image ls
 ```
 
-## Build Management
+![divider](../divider.png)
+
+## ❯ Build Management
 
 ### Aliases
 
@@ -609,7 +613,9 @@ git push origin <tag>
 
 To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Languages & Frameworks -> TypeScript and clear the 'Angular Language Service' checkbox.
 
-## Resources
+![divider](../divider.png)
+
+## ❯ Resources
 
 ### Angular Resources
 
@@ -714,3 +720,5 @@ To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Lang
 ### Web Developer Resources
 
 * Google: [Web Fundamentals](https://developers.google.com/web)
+
+![divider](../divider.png)
