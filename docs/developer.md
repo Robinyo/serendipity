@@ -96,7 +96,7 @@ docker run -d --name keycloak \
   jboss/keycloak  
 ```
 
-When you run the image it will create the Master realm's admin (admin) user and password (secret).
+When you run the image it will create the Master realm's Admin (admin) user and password (secret).
 
 #### Update Keycloak
 
