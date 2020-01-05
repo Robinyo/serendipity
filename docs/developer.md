@@ -165,6 +165,10 @@ To create a new User Federation click 'User Federation' in the sidemenu and then
 Uncheck 'Import Users' (because we don't want to import users from OpenLDAP). Select 'Edit Mode: WRITABLE' and check 
 'Sync Registrations' so that [user registrations](https://www.keycloak.org/docs/latest/server_admin/index.html#_user-registration) will be created in OpenLDAP.
 
+Select 'Vendor: Other' and enter 'uid' for the 'Username LDAP attribute', the 'RDN LDAP attribute' and the 'UID LDAP attribute'.
+
+You can use an [LDAP Browser](https://directory.apache.org/apacheds/) to check your [settings](https://github.com/Robinyo/serendipity/blob/master/keycloak/open-ldap-user-federation.txt).
+
 **Note:** I'm using [Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/) hence the need to use the special 
 DNS name: `host.docker.internal`
 
