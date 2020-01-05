@@ -95,15 +95,50 @@ docker run -d --name keycloak \
   -p 10001:8080 \
   -e KEYCLOAK_USER=admin \
   -e KEYCLOAK_PASSWORD=secret \
-  jboss/keycloak  
+  jboss/keycloak
 ```
 
 When you run the image it will create the Master realm's Admin (admin) user and password (secret).
+The Master realm should only be used to create and manage other realms.
 
-#### Update Keycloak
+#### Import
 
-* [Export and Import](https://www.keycloak.org/docs/latest/server_admin/index.html#_export_import)
-* [User Federation](https://www.keycloak.org/docs/latest/server_admin/index.html#_user-storage-federation)
+Navigate to the Welcome page: http://localhost:10001 and then login to the Administration Console using the KEYCLOAK_USER (admin) and KEYCLOAK_PASSWORD (secret) credentials.
+
+To create a new realm, click 'Add realm' from the Master drop-down menu:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/add-realm.png">
+</p>
+
+Enter a Name (development) and then click the 'Create' button.
+
+Click 'Import' in the sidemenu and and then select the file to import (keycloak-export.json):
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/partial-import.png">
+</p>
+
+#### Export
+
+To [export]((https://www.keycloak.org/docs/latest/server_admin/index.html#_export_import)) into single JSON file:
+
+```
+docker exec -it keycloak /bin/bash
+
+cd /opt/jboss
+
+bin/standalone.sh -Dkeycloak.migration.action=export \
+  -Dkeycloak.migration.provider=singleFile \
+  -Dkeycloak.migration.file=keycloak-export.json \
+  -Djboss.socket.binding.port-offset=100
+```
+
+Then:
+
+```
+docker cp keycloak:/opt/jboss/keycloak-export.json .
+```
 
 #### Keycloak-related Blog Posts 
 
