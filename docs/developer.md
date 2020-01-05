@@ -64,7 +64,6 @@ Let's check and see:
 docker exec openldap ldapsearch -x -H ldap://localhost -b dc=flowable,dc=org -D "cn=admin,dc=flowable,dc=org" -w secret
 ```
 
-You can also use an [LDAP Browser](https://directory.apache.org/apacheds/) to manage your directory.
 
 #### Update OpenLDAP 
 
@@ -83,6 +82,24 @@ docker exec openldap ldapadd \
 ```
 
 [flowable.ldif](https://github.com/Robinyo/serendipity/blob/master/flowable/flowable.ldif) describes Flowable's users and groups.
+
+You can also use an [LDAP Browser](https://directory.apache.org/apacheds/) to manage your directory:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/ldap-browser.png">
+</p>
+
+Network settings:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/ldap-network-parameters.png">
+</p>
+
+Authentication settings:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/ldap-authentication.png">
+</p>
 
 ### Step 4: Launch Keycloak 
 
