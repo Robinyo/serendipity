@@ -113,11 +113,17 @@ To create a new realm, click 'Add realm' from the Master drop-down menu:
 
 Enter a Name (development) and then click the 'Create' button.
 
-Click 'Import' in the sidemenu and and then select the file to import (keycloak-export.json):
+Click 'Import' in the sidemenu and then select the file to import ([keycloak-export.json](https://github.com/Robinyo/serendipity/blob/master/keycloak/keycloak-export.json)):
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/partial-import.png">
 </p>
+
+Select the 'Import from realm' (development) and 'If a resource exists: Overwrite' and then Click the 'Import' button.
+
+**Note:** It's only a partial import :( so we will need to use the Administration Console to create a User Federation to OpenLDAP and Serendipity's Client (OAuth 2.0) scopes.
+
+#### Import
 
 #### Export
 
@@ -134,7 +140,7 @@ bin/standalone.sh -Dkeycloak.migration.action=export \
   -Djboss.socket.binding.port-offset=100
 ```
 
-Then:
+Then in another terminal session: 
 
 ```
 docker cp keycloak:/opt/jboss/keycloak-export.json .
