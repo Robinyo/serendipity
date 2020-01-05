@@ -127,6 +127,24 @@ It's only a partial import :( so we will need to use the Administration Console 
 * [Create a User Federation to OpenLDAP](https://robferguson.org/blog/2020/01/03/keycloak-flowable-and-openldap/)
 * [Create Serendipity's Client (OAuth 2.0) scopes](https://robferguson.org/blog/2019/12/31/angular-oauth2-keycloak/)
 
+##### Configure the Realm's Login settings
+
+Click 'Realm Settings' in the sidemenu and then click on the 'Login' tab:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/realm-login-settings.png">
+</p>
+
+Check 'User registration' and 'Edit username'. Uncheck everything else and then click the 'Save' button.
+
+##### Create a User Federation to OpenLDAP
+
+???
+
+##### Create Serendipity's Client (OAuth 2.0) scopes
+
+???
+
 #### Export
 
 To [export]((https://www.keycloak.org/docs/latest/server_admin/index.html#_export_import)) into single JSON file:
