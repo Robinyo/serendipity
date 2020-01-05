@@ -265,7 +265,9 @@ docker container rm [name]
 For example:
 
 ```
-docker container rm ff56365c6586c42b87195db6c38e75d7460a59a665608c7c55d614c51fd211a9
+docker container rm flowable
+docker container rm keycloak
+docker container rm openldap
 ```
 
 Where is your image? It’s in your machine’s local Docker image registry:
