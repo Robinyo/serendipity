@@ -24,6 +24,7 @@
 - **Dashboards and Dashboard Widgets** thanks to Angular [Gridster 2](https://github.com/tiberiuzuld/angular-gridster2) and [Highcharts](https://www.highcharts.com/)
 - **Dynamic Forms** check out the Dynamic Forms [documentation](https://github.com/Robinyo/serendipity/tree/master/projects/dynamic-forms)
 - **Dynamically Importing Static Libraries** see this [post](https://robferguson.org/blog/2019/09/23/dynamically-importing-highcharts/)
+- **Identity and Access Management** thanks to [Keycloak](https://www.keycloak.org/) and [OpenLDAP](https://www.openldap.org/)
 - **Internationalisation** thanks to [@ngx-translate](https://github.com/ngx-translate/core)
 - **Lazy Loading Angular Libraries** see this blog [post](https://robferguson.org/blog/2019/09/12/lazy-loading-angular-libraries/)
 - **Locally Hosted Fonts and Icons** see [fonts](https://github.com/Robinyo/serendipity/blob/master/src/themes/fonts.scss) and [icons](https://github.com/Robinyo/serendipity/blob/master/src/themes/icons.scss)
