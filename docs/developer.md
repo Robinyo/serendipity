@@ -1,12 +1,10 @@
 # Serendipity Developer Documentation
 
-Good tools make application development better and easier.
-
-The [Angular CLI](https://cli.angular.io/) is a command line tool that you can use to create the scaffolding for a new project, add files to a project and perform a variety of common development tasks.
+The goal of this guide is to help you build and run Serendipity.
 
 ## Quick Start
 
-The goal of this guide is to help you build and run Serendipity.
+Good tools make application development better and easier.
 
 ### Step 1. Set up the Development Environment 
 
@@ -21,6 +19,8 @@ Then install the Angular CLI globally:
 ```
 npm install -g @angular/cli
 ```
+
+The [Angular CLI](https://cli.angular.io/) is a command line tool that you can use to create the scaffolding for a new project, add files to a project and perform a variety of common development tasks.
 
 ### Step 2. Clone the project 
 
