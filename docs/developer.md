@@ -1,7 +1,7 @@
 <h1 align="center">Developer Documentation</h1>
 
 <p align="center">
-  <bThe goal of this guide is to help you build and run Serendipity.</b></br>
+  <b>The goal of this guide is to help you build and run Serendipity.</b></br>
 </p>
 
 ## ❯ Quick Start
