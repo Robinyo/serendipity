@@ -119,7 +119,7 @@ Click 'Import' in the sidemenu and then select the file to import ([keycloak-exp
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/partial-import.png">
 </p>
 
-Select 'Import from realm' (development), 'If a resource exists: Overwrite' and then Click the 'Import' button.
+Select 'Import from realm' (development), 'If a resource exists: Skip' and then Click the 'Import' button.
 
 It's only a partial import :( so we will need to use the Administration Console to:
 
