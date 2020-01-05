@@ -110,6 +110,7 @@ To launch Keycloak:
 
 docker run -d --name keycloak \
   -p 10001:8080 \
+  -v ~/workspace/Robinyo/serendipity:/serendipity \
   -e KEYCLOAK_USER=admin \
   -e KEYCLOAK_PASSWORD=secret \
   jboss/keycloak
@@ -231,20 +232,11 @@ I [linked](https://www.keycloak.org/docs/latest/server_admin/index.html#_client_
 To [export]((https://www.keycloak.org/docs/latest/server_admin/index.html#_export_import)) your database into a single JSON file:
 
 ```
-docker exec -it keycloak /bin/bash
-
-cd /opt/jboss
-
-bin/standalone.sh -Dkeycloak.migration.action=export \
+docker exec -it keycloak /opt/jboss/keycloak/bin/standalone.sh \
+  -Djboss.socket.binding.port-offset=100 \
+  -Dkeycloak.migration.action=export \
   -Dkeycloak.migration.provider=singleFile \
-  -Dkeycloak.migration.file=keycloak-export.json \
-  -Djboss.socket.binding.port-offset=100
-```
-
-In another terminal session: 
-
-```
-docker cp keycloak:/opt/jboss/keycloak-export.json .
+  -Dkeycloak.migration.file=/serendipity/keycloak-export.json
 ```
 
 #### Keycloak-related Blog Posts 
