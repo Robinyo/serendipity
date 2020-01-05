@@ -125,8 +125,6 @@ Select 'Import from realm' (development), 'If a resource exists: Overwrite' and 
 [create a User Federation to OpenLDAP](https://robferguson.org/blog/2020/01/03/keycloak-flowable-and-openldap/)) and to
 [create Serendipity's Client (OAuth 2.0) scopes](https://robferguson.org/blog/2019/12/31/angular-oauth2-keycloak/).
 
-#### Import
-
 #### Export
 
 To [export]((https://www.keycloak.org/docs/latest/server_admin/index.html#_export_import)) into single JSON file:
