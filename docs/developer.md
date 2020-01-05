@@ -207,7 +207,7 @@ I [linked](https://www.keycloak.org/docs/latest/server_admin/index.html#_client_
 
 #### Export
 
-To [export]((https://www.keycloak.org/docs/latest/server_admin/index.html#_export_import)) into single JSON file:
+To [export]((https://www.keycloak.org/docs/latest/server_admin/index.html#_export_import)) into a single JSON file:
 
 ```
 docker exec -it keycloak /bin/bash
