@@ -139,7 +139,17 @@ Check 'User registration' and 'Edit username'. Uncheck everything else and then 
 
 ##### Create a User Federation to OpenLDAP
 
-???
+To create a new User Federation click 'User Federation' in the sidemenu and then choose 'ldap' as the provider:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/user-federation.png">
+</p>
+
+Uncheck 'Import Users' (because we don't want to import users from OpenLDAP). Select 'Edit Mode: WRITABLE' and check 
+'Sync Registrations' so that [user registrations](https://www.keycloak.org/docs/latest/server_admin/index.html#_user-registration)) will be created in OpenLDAP.
+
+**Note:** I'm using [Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/) hence the need to use the special 
+DNS name: host.docker.internal
 
 ##### Create Serendipity's Client (OAuth 2.0) scopes
 
