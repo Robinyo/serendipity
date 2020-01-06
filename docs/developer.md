@@ -242,7 +242,7 @@ I [linked](https://www.keycloak.org/docs/latest/server_admin/index.html#_client_
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/individual-delete-assigned-roles.png">
 </p>
 
-#### Export from the Command Line
+#### Export from the Command Line (optional)
 
 To [export]((https://www.keycloak.org/docs/latest/server_admin/index.html#_export_import)) your database into a single JSON file:
 
