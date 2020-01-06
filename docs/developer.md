@@ -64,7 +64,6 @@ Let's check and see:
 docker exec openldap ldapsearch -x -H ldap://localhost -b dc=flowable,dc=org -D "cn=admin,dc=flowable,dc=org" -w secret
 ```
 
-
 #### Update OpenLDAP 
 
 LDIF, or the LDAP Data Interchange Format, is a text format for representing LDAP data and commands.
@@ -130,6 +129,8 @@ docker exec -it keycloak /opt/jboss/keycloak/bin/standalone.sh \
   -Dkeycloak.migration.provider=singleFile \
   -Dkeycloak.migration.file=/serendipity/keycloak-export.json
 ```
+
+When the import is complete use `Ctrl-C` to stop JBossAS and exit the session.
 
 #### Import from the Administration Console (optional)
 

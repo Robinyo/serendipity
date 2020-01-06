@@ -1,4 +1,7 @@
+#
 # https://docs.spring.io/spring-boot/docs/2.0.7.RELEASE/reference/html/boot-features-external-config.html#boot-features-external-config-relaxed-binding
+# Note: Upper case format is recommended when using system environment variables
+#
 
 #
 # LDAP
@@ -44,7 +47,7 @@ FLOWABLE_COMMON_APP_IDM_ADMIN_PASSWORD=test
 # DEFAULT REST API ACCOUNTS
 #
 
-flowable.rest.app.admin.user-id=flowable-rest
-flowable.rest.app.admin.password=test
-flowable.rest.app.admin.first-name=Flowable Rest API
-flowable.rest.app.admin.last-name=Administrator
+FLOWABLE_REST_APP_ADMIN_USERID=flowable-rest
+FLOWABLE_REST_APP_ADMIN_PASSWORD=test
+FLOWABLE_REST_APP_ADMIN_FIRSTNAME=Flowable Rest API
+FLOWABLE_REST_APP_ADMIN_LASTNAME=Administrator
