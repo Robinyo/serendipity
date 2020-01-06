@@ -402,7 +402,7 @@ docker exec -it [name] /bin/bash
 ```
 
 `-i` is short for `--interactive`. Keep STDIN open even if unattached.
-`-t` is short for `--tty`. Allocates a [pseudo terminal](http://en.wikipedia.org/wiki/Pseudo_terminal)) that connects your terminal with the container’s STDIN and STDOUT.
+`-t` is short for `--tty`. Allocates a [pseudo terminal](http://en.wikipedia.org/wiki/Pseudo_terminal) that connects your terminal with the container’s STDIN and STDOUT.
 
 To print logs:
 
