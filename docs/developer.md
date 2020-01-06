@@ -119,7 +119,19 @@ docker run -d --name keycloak \
 When you run the image it will create the Master realm's Admin (admin) user and password (secret).
 The Master realm should only be used to create and manage other realms.
 
-#### Import
+#### Import from the Command Line
+
+To [import]((https://www.keycloak.org/docs/latest/server_admin/index.html#_export_import)) from a (previously exported) file into your database:
+
+```
+docker exec -it keycloak /opt/jboss/keycloak/bin/standalone.sh \
+  -Djboss.socket.binding.port-offset=100 \
+  -Dkeycloak.migration.action=import \
+  -Dkeycloak.migration.provider=singleFile \
+  -Dkeycloak.migration.file=/serendipity/keycloak-export.json
+```
+
+#### Import from the Administration Console
 
 Navigate to the Welcome page: http://localhost:10001 and then login to the Administration Console using the KEYCLOAK_USER (admin) and KEYCLOAK_PASSWORD (secret) credentials.
 
@@ -227,7 +239,7 @@ I [linked](https://www.keycloak.org/docs/latest/server_admin/index.html#_client_
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/individual-delete-assigned-roles.png">
 </p>
 
-#### Export
+#### Export from the Command Line
 
 To [export]((https://www.keycloak.org/docs/latest/server_admin/index.html#_export_import)) your database into a single JSON file:
 
