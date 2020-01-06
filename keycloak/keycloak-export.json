@@ -1437,7 +1437,7 @@
         "cachePolicy" : [ "DEFAULT" ],
         "useKerberosForPasswordAuthentication" : [ "false" ],
         "importEnabled" : [ "false" ],
-        "enabled" : [ "false" ],
+        "enabled" : [ "true" ],
         "changedSyncPeriod" : [ "-1" ],
         "bindCredential" : [ "secret" ],
         "usernameLDAPAttribute" : [ "uid" ],

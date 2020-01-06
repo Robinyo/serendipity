@@ -121,7 +121,7 @@ The Master realm should only be used to create and manage other realms.
 
 #### Import from the Command Line
 
-To [import]((https://www.keycloak.org/docs/latest/server_admin/index.html#_export_import)) from a (previously exported) file into your database:
+To [import](https://www.keycloak.org/docs/latest/server_admin/index.html#_export_import) from a (previously exported) file into your database:
 
 ```
 docker exec -it keycloak /opt/jboss/keycloak/bin/standalone.sh \
