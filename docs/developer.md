@@ -375,6 +375,9 @@ To list all running containers:
 
 ```
 docker container ls
+
+# or
+
 docker container ps
 ```
 
