@@ -274,7 +274,7 @@ docker run -d --name flowable \
   flowable/all-in-one
 ```
 
-We can use an environment file ([ldap-env.txt](https://github.com/Robinyo/serendipity/blob/master/flowable/flowable.ldif)) to pass properties to the Docker container.
+We can use an environment file ([ldap-env.txt](https://github.com/Robinyo/serendipity/blob/master/ldap-env.txt)) to pass properties to the Docker container.
 
 **Note:** The flowable/all-in-one [image](https://hub.docker.com/r/flowable/all-in-one) may take a minute or two to startup.
 
