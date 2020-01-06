@@ -130,7 +130,7 @@ docker exec -it keycloak /opt/jboss/keycloak/bin/standalone.sh \
   -Dkeycloak.migration.file=/serendipity/keycloak-export.json
 ```
 
-When the import is complete use `Ctrl-C` to stop JBossAS and exit the session.
+When the import is complete use `Ctrl-C` to exit the session.
 
 #### Import from the Administration Console (optional)
 
