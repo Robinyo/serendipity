@@ -385,12 +385,16 @@ To check an environment variable inside your container:
 
 ```
 docker exec [name] bash -c 'echo "$[VARIABLE_NAME]"'
+
+# or
+
+docker exec [name] sh -c 'echo "$[VARIABLE_NAME]"'
 ```
 
 For example:
 
 ```
-docker exec flowable bash -c 'echo "$FLOWABLE_IDM_LDAP_ENABLED"'
+docker exec flowable sh -c 'echo "$FLOWABLE_IDM_LDAP_ENABLED"'
 docker exec keycloak bash -c 'echo "$PATH"'
 docker exec openldap bash -c 'echo "$PATH"'
 ```
