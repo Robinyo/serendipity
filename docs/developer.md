@@ -282,7 +282,11 @@ The image includes Flowable's web applications:
 - Flowable Task: http://localhost:8080/flowable-task
 - Flowable Admin: http://localhost:8080/flowable-admin
 
-Let's check, launch the [Flowable Task](http://localhost:8080/flowable-task) web application and sign in using the default username: **flowable** and password: **test**
+Let's check, launch the [Flowable Identity Management](http://localhost:8080/flowable-task) web application and sign in using the default username: **flowable** and password: **test**
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/flowable-idm-privileges.png">
+</p>
 
 #### Flowable-related Blog Posts 
 
