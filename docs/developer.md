@@ -349,12 +349,54 @@ Login page:
 
 ![divider](../divider.png)
 
-## ❯ Common Docker Commands
+## ❯ Docker Commands
+
+Docker CLI management commands start with `docker`, then a space, then the management category, then a space, and then 
+the command. A flag with two dashes in front is the full name of the flag. A flag with one dash is a shortcut for the 
+full flag name. For example, -p is short for the --port flag.
 
 To list all running containers:
 
 ```
 docker container ls
+docker container ps
+```
+
+To check an environment variable inside your container:
+
+```
+docker exec [name] bash -c 'echo "$[VARIABLE_NAME]"'
+```
+
+For example:
+
+```
+docker exec flowable bash -c 'echo "$FLOWABLE_IDM_LDAP_ENABLED"'
+docker exec keycloak bash -c 'echo "$PATH"'
+docker exec openldap bash -c 'echo "$PATH"'
+```
+
+To start a shell session inside your container that you can interact with through your terminal:
+
+```
+docker exec -it [name] /bin/bash
+```
+
+`-i` is short for `--interactive`. Keep STDIN open even if unattached.
+`-t` is short for `--tty`. Allocates a [pseudo terminal](http://en.wikipedia.org/wiki/Pseudo_terminal)) that connects your terminal with the container’s STDIN and STDOUT.
+
+To print logs:
+
+```
+docker logs [name]
+```
+
+For example:
+
+```
+docker logs flowable
+docker logs keycloak
+docker logs openldap
 ```
 
 You can stop a container using the following command:
