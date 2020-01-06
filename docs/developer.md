@@ -349,7 +349,7 @@ Login page:
 
 ![divider](../divider.png)
 
-#### Common Docker Commands
+## ❯ Common Docker Commands
 
 To list all running containers:
 
