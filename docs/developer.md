@@ -263,18 +263,20 @@ docker exec -it keycloak /opt/jboss/keycloak/bin/standalone.sh \
 
 ### Step 5: Launch Flowable 
 
-To launch the flowable/all-in-one (SNAPSHOT) image:
+To launch the flowable/all-in-one image:
 
 ```
+# docker pull flowable/all-in-one
+
 docker run -d --name flowable \
   -p 8080:8080 \
   --env-file ldap-env.txt \
-  flowable/all-in-one:6.5.0-SNAPSHOT
+  flowable/all-in-one
 ```
 
-**Note:** The flowable/all-in-one image may take a minute or two to startup.
+We can use an environment file ([ldap-env.txt](https://github.com/Robinyo/serendipity/blob/master/flowable/flowable.ldif)) to pass properties to the Docker container.
 
-[ldap-env.txt](https://github.com/Robinyo/serendipity/blob/master/flowable/flowable.ldif) describes Flowable's runtime configuration.
+**Note:** The flowable/all-in-one [image](https://hub.docker.com/r/flowable/all-in-one) may take a minute or two to startup.
 
 The image includes Flowable's web applications:
 
@@ -292,6 +294,19 @@ Click on the 'Privileges' tab and then click 'Access the REST API' in the sideme
 </p>
 
 You should see two users with access to the REST API: `flowable` and `flowable-rest`
+
+#### Launch Flowable SNAPSHOT Image (optional)
+
+Follow the steps in this [post](https://robferguson.org/blog/2019/01/05/how-to-build-flowable/) to build a flowable/all-in-one SNAPSHOT image.
+
+To launch the flowable/all-in-one SNAPSHOT image:
+
+```
+docker run -d --name flowable \
+  -p 8080:8080 \
+  --env-file ldap-env.txt \
+  flowable/all-in-one:6.5.0-SNAPSHOT
+```
 
 #### Flowable-related Blog Posts 
 
