@@ -368,7 +368,9 @@ Login page:
 ## ❯ Docker Commands
 
 Docker CLI management commands start with `docker`, then a space, then the management category, then a space, and then 
-the command. A flag with two dashes in front is the full name of the flag. A flag with one dash is a shortcut for the 
+the command.
+ 
+A flag with two dashes in front is the full name of the flag. A flag with one dash is a shortcut for the 
 full flag name.
 
 To list all running containers:
