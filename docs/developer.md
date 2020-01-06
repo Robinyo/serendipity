@@ -347,6 +347,8 @@ Login page:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-login.png">
 </p>
 
+![divider](../divider.png)
+
 #### Common Docker Commands
 
 To list all running containers:
