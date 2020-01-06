@@ -131,7 +131,7 @@ docker exec -it keycloak /opt/jboss/keycloak/bin/standalone.sh \
   -Dkeycloak.migration.file=/serendipity/keycloak-export.json
 ```
 
-#### Import from the Administration Console
+#### Import from the Administration Console (optional)
 
 Navigate to the Welcome page: http://localhost:10001 and then login to the Administration Console using the KEYCLOAK_USER (admin) and KEYCLOAK_PASSWORD (secret) credentials.
 
