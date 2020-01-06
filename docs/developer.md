@@ -133,7 +133,7 @@ docker exec -it keycloak /opt/jboss/keycloak/bin/standalone.sh \
 
 #### Import from the Administration Console (optional)
 
-**Note:** If you imported imported a file from the command line you do not have to complete this step.
+**Note:** If you imported a file from the command line you do not have to complete this step.
 
 Navigate to the Welcome page: http://localhost:10001 and then login to the Administration Console using the KEYCLOAK_USER (admin) and KEYCLOAK_PASSWORD (secret) credentials.
 
