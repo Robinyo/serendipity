@@ -284,9 +284,13 @@ The image includes Flowable's web applications:
 
 Let's check, launch the [Flowable Identity Management](http://localhost:8080/flowable-task) web application and sign in using the default username: **flowable** and password: **test**
 
+Click on the 'Privileges' tab and then click 'Access the REST API' in the sidemenu:
+
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/flowable-idm-privileges.png">
 </p>
+
+You should see two users with access to the REST API: `flowable` and `flowable-rest`
 
 #### Flowable-related Blog Posts 
 
