@@ -310,8 +310,6 @@ docker run -d --name flowable \
   flowable/all-in-one:6.5.0.event-SNAPSHOT
 ```
 
--e "spring.datasource.url=jdbc:h2:~/flowable-db/db;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9091;DB_CLOSE_DELAY=-1" \
-
 #### Flowable-related Blog Posts 
 
 * Rob Ferguson's blog: [Getting started with Flowable](https://robferguson.org/blog/2018/12/10/getting-started-with-flowable/)
