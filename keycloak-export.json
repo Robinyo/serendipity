@@ -322,31 +322,6 @@
   "webAuthnPolicyAvoidSameAuthenticatorRegister" : false,
   "webAuthnPolicyAcceptableAaguids" : [ ],
   "users" : [ {
-    "id" : "11002688-7294-4c6a-bc77-00aee83e8651",
-    "createdTimestamp" : 1578020397775,
-    "username" : "rob.ferguson",
-    "enabled" : true,
-    "totp" : false,
-    "emailVerified" : true,
-    "firstName" : "Rob",
-    "lastName" : "Ferguson",
-    "email" : "rob.ferguson@robferguson.org",
-    "credentials" : [ {
-      "id" : "b6936324-ab1b-4d13-b5d3-0c81fc2182c4",
-      "type" : "password",
-      "createdDate" : 1578080520095,
-      "secretData" : "{\"value\":\"37g5ffQrCsf/stiCdAJrOklg7zBU9qrX0voUCoFjDyIi4rFPoF3tcQu3OIkc6h8ajueBWWLErdWORAMnUfv39A==\",\"salt\":\"bYywygK7h7pkanhVcnn34w==\"}",
-      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
-    } ],
-    "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ ],
-    "realmRoles" : [ "uma_authorization", "offline_access", "User", "Manager" ],
-    "clientRoles" : {
-      "account" : [ "view-profile", "manage-account" ]
-    },
-    "notBefore" : 0,
-    "groups" : [ ]
-  }, {
     "id" : "6a019d87-4e59-4a5d-9cf7-64ee8911a52b",
     "createdTimestamp" : 1578076809777,
     "username" : "service-account-admin-cli",
@@ -381,51 +356,7 @@
     "notBefore" : 0,
     "groups" : [ ]
   } ],
-  "federatedUsers" : [ {
-    "id" : "f:b02e5323-0ea4-442c-ba59-5e997d0c5f94:sean.doyle@craftbeer.org.au",
-    "credentials" : [ {
-      "id" : "068e249f-987b-4f5e-a083-ae5ed51e16ba",
-      "type" : "password",
-      "createdDate" : 1578005334284,
-      "secretData" : "{\"value\":\"MD3lt1sYC0qLpweG6NrtxU0iZSvFpzeRQ5/ywsYFaevEPX7VhFjor4OPW16thaU4DWpV84IGIxjkurCpmTp1/w==\",\"salt\":\"Txc6bkNZi0OQPckwbQSMCw==\"}",
-      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
-    } ],
-    "notBefore" : 0,
-    "groups" : [ ]
-  }, {
-    "id" : "f:b02e5323-0ea4-442c-ba59-5e997d0c5f94:mick.kay@craftbeer.org.au",
-    "credentials" : [ {
-      "id" : "d4125afc-acba-4679-a533-584f2df51d9f",
-      "type" : "password",
-      "createdDate" : 1578011550475,
-      "secretData" : "{\"value\":\"JMK7rt6g2421esAk/pY67SKcCFvuAHo5IwoEay0FbDlkB9JROrC9tDrxiiqYDqBdke7roi86RjMOxWPts4mQbQ==\",\"salt\":\"ZSwm9zZ0PO9fthSwXgu7vw==\"}",
-      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
-    } ],
-    "notBefore" : 0,
-    "groups" : [ ]
-  }, {
-    "id" : "f:b02e5323-0ea4-442c-ba59-5e997d0c5f94:steve.kay@craftbeer.org.au",
-    "credentials" : [ {
-      "id" : "6d3718ea-68b4-41a5-a9ad-451be4a555b4",
-      "type" : "password",
-      "createdDate" : 1578012563113,
-      "secretData" : "{\"value\":\"saJ/X9PmpCt5rwTxe2Uur9AnUJzPY9+vqdQ1gScBQcf3r8eoOedLO53vNhO8c+lf2CXfgKbk6Ozd2PX5yEtdWQ==\",\"salt\":\"YA1zJmF8CkdvTOIM6HTihg==\"}",
-      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
-    } ],
-    "notBefore" : 0,
-    "groups" : [ ]
-  }, {
-    "id" : "f:b02e5323-0ea4-442c-ba59-5e997d0c5f94:abby.lee",
-    "credentials" : [ {
-      "id" : "4b062245-dceb-4d30-831a-a2a68fa89c76",
-      "type" : "password",
-      "createdDate" : 1578080902541,
-      "secretData" : "{\"value\":\"mJuCEt32szAtcIqr5ZPSr+UZJoJg/WRVkbg40T6BDbfD+oWOgnPYM8xavflcj/7yG0qMJkzlKEevfGQYUhu72A==\",\"salt\":\"3t7+ibiTSEJlJKLQEjdYsg==\"}",
-      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
-    } ],
-    "notBefore" : 0,
-    "groups" : [ ]
-  } ],
+  "federatedUsers" : [ ],
   "scopeMappings" : [ {
     "clientScope" : "individual:delete",
     "roles" : [ "Manager" ]
