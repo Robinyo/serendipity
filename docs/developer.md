@@ -305,7 +305,7 @@ To launch the flowable/all-in-one SNAPSHOT image:
 docker run -d --name flowable \
   -p 8080:8080 \
   --env-file ldap-env.txt \
-  flowable/all-in-one:6.5.0-SNAPSHOT
+  flowable/all-in-one:6.5.0.event-SNAPSHOT
 ```
 
 #### Flowable-related Blog Posts 
