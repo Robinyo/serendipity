@@ -295,6 +295,8 @@ Click on the 'Privileges' tab and then click 'Access the REST API' in the sideme
 
 You should see two users with access to the REST API: `flowable` and `flowable-rest`
 
+Serendipity uses the `flowable-rest` user for HTTP Basic access authentication to Flowable's [REST API](https://flowable.com/open-source/docs/bpmn/ch15-REST/).
+
 #### Launch Flowable SNAPSHOT Image (optional)
 
 Follow the steps in this [post](https://robferguson.org/blog/2019/01/05/how-to-build-flowable/) to build a flowable/all-in-one SNAPSHOT image.
@@ -307,6 +309,8 @@ docker run -d --name flowable \
   --env-file ldap-env.txt \
   flowable/all-in-one:6.5.0.event-SNAPSHOT
 ```
+
+-e "spring.datasource.url=jdbc:h2:~/flowable-db/db;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9091;DB_CLOSE_DELAY=-1" \
 
 #### Flowable-related Blog Posts 
 
