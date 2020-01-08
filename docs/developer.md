@@ -407,15 +407,6 @@ docker inspect -f \
   flowable | grep FLOW
 ```
 
-To start a shell session inside your container that you can interact with through your terminal:
-
-```
-docker exec -it [name] /bin/bash
-```
-
-`-i` is short for `--interactive`. Keep STDIN open even if unattached.
-`-t` is short for `--tty`. Allocates a [pseudo terminal](http://en.wikipedia.org/wiki/Pseudo_terminal) that connects your terminal with the container’s STDIN and STDOUT.
-
 To print logs:
 
 ```
@@ -428,6 +419,21 @@ For example:
 docker logs flowable
 docker logs keycloak
 docker logs openldap
+```
+
+To start a shell session inside your container that you can interact with through your terminal:
+
+```
+docker exec -it [name] /bin/bash
+```
+
+`-i` is short for `--interactive`. Keep STDIN open even if unattached.
+`-t` is short for `--tty`. Allocates a [pseudo terminal](http://en.wikipedia.org/wiki/Pseudo_terminal) that connects your terminal with the container’s STDIN and STDOUT.
+
+For example:
+
+```
+docker exec -it flowable sh
 ```
 
 You can stop a container using the following command:
