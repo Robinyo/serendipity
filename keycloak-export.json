@@ -1332,7 +1332,7 @@
             "is.mandatory.in.ldap" : [ "true" ],
             "is.binary.attribute" : [ "false" ],
             "read.only" : [ "false" ],
-            "user.model.attribute" : [ "lastName" ]
+            "user.model.attribute" : [ "password" ]
           }
         }, {
           "id" : "02d55194-076b-4c21-8135-5cac0c2dc18f",
@@ -1367,7 +1367,7 @@
         "connectionPooling" : [ "true" ],
         "cachePolicy" : [ "DEFAULT" ],
         "useKerberosForPasswordAuthentication" : [ "false" ],
-        "importEnabled" : [ "false" ],
+        "importEnabled" : [ "true" ],
         "enabled" : [ "true" ],
         "changedSyncPeriod" : [ "-1" ],
         "bindCredential" : [ "secret" ],
