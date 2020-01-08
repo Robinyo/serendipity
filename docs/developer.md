@@ -377,28 +377,34 @@ To list all running containers:
 
 ```
 docker container ls
-
-# or
-
-docker container ps
 ```
 
 To check an environment variable inside your container:
 
 ```
-docker exec [name] bash -c 'echo "$[VARIABLE_NAME]"'
-
-# or
-
-docker exec [name] sh -c 'echo "$[VARIABLE_NAME]"'
+docker exec [name] printenv [variable]
 ```
 
 For example:
 
 ```
-docker exec flowable sh -c 'echo "$FLOWABLE_IDM_LDAP_ENABLED"'
-docker exec keycloak bash -c 'echo "$PATH"'
-docker exec openldap bash -c 'echo "$PATH"'
+docker exec flowable printenv FLOWABLE_IDM_LDAP_ENABLED
+```
+
+To check the environment variables inside your container:
+
+```
+docker inspect -f \
+  '{{range $index, $value := .Config.Env}}{{println $value}}{{end}}' \
+  [name] | grep [value]
+```
+
+For example:
+
+```
+docker inspect -f \
+  '{{range $index, $value := .Config.Env}}{{println $value}}{{end}}' \
+  flowable | grep FLOW
 ```
 
 To start a shell session inside your container that you can interact with through your terminal:

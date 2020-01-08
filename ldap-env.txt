@@ -84,10 +84,10 @@ FLOWABLE_COMMON_APP_IDM_ADMIN_PASSWORD=test
 # FLOWABLE_REST_APP_ADMIN_FIRSTNAME=Flowable Rest API
 # FLOWABLE_REST_APP_ADMIN_LASTNAME=Administrator
 
-FLOWABLE_REST_APP_ADMIN_USER_ID=flowable-rest
-FLOWABLE_REST_APP_ADMIN_PASSWORD=test
-FLOWABLE_REST_APP_ADMIN_FIRST_NAME=Flowable Rest API
-FLOWABLE_REST_APP_ADMIN_LAST_NAME=Administrator
+# FLOWABLE_REST_APP_ADMIN_USER_ID=flowable-rest
+# FLOWABLE_REST_APP_ADMIN_PASSWORD=test
+# FLOWABLE_REST_APP_ADMIN_FIRST_NAME=Flowable Rest API
+# FLOWABLE_REST_APP_ADMIN_LAST_NAME=Administrator
 
 # https://unix.stackexchange.com/questions/23659/can-shell-variable-name-include-a-hyphen-or-dash
 # https://github.com/gliderlabs/docker-alpine/issues/290
