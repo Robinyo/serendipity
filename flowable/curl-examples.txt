@@ -72,5 +72,15 @@ curl -i 'http://admin:test@localhost:8080/flowable-task/process-api/identity/use
 
 curl -H "Content-Type: application/json" -X POST http://admin:test@localhost:8080/flowable-task/process-api/query/tasks -d "@data-6.json"
 
+--
 
+curl -H "Content-Type: application/json" \
+     -X GET http://flowable-rest:test@localhost:8080/flowable-task/process-api/runtime/tasks
+
+curl -H "Content-Type: application/json" \
+     -X GET http://flowable-rest:test@localhost:8080/flowable-task/process-api/runtime/tasks/40ac7f4b-32b4-11ea-85ef-0242ac110004/form
+
+curl -H "Content-Type: application/json" \
+     -X POST http://flowable-rest:test@localhost:8080/flowable-task/process-api/runtime/tasks/40ac7f4b-32b4-11ea-85ef-0242ac110004 \
+     -d "@data-7.json"
 
