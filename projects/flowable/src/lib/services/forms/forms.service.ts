@@ -29,8 +29,6 @@ export class FormsService extends CollectionService {
 
     const endpoint = `${this.processEngineUriPrefix}form/form-data`;
 
-    this.httpOptions.params = null;
-
     this.logger.info('FormsService submitFormData() - endpoint: ' + endpoint);
 
     return this.httpClient.post(endpoint, body, this.getHttpOptions()).pipe(

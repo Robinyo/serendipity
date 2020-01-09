@@ -4,7 +4,7 @@ import { Subject, Subscription, timer } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
 
 import { TasksService } from '../../services/tasks/tasks.service';
-import { TaskCompleteEvent, TaskListModel, TaskModel } from '../../models/task-list.model';
+import { TaskCompleteEvent, TaskListModel, TaskModel } from '../../models/task-list';
 
 import { DialogService } from 'serendipity-components';
 

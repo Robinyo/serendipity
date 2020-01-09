@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-// import { Observable, of, throwError } from 'rxjs';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
@@ -9,16 +8,12 @@ import { AuthService } from 'auth';
 
 import { CollectionService } from '../abstract/collection/collection.service';
 
-import { TaskListModel } from '../../models/task-list.model';
+import { TaskListModel } from '../../models/task-list';
+import { TaskAction } from '../../models/task-action';
 
 import { LoggerService } from 'utils';
 
 const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
-
-const completeTaskBody = {
-  'action' : 'complete',
-  'variables' : []
-};
 
 @Injectable({
   providedIn: 'root'
@@ -89,7 +84,7 @@ export class TasksService extends CollectionService {
     };
   }
 
-  public completeTask(taskId: string): Promise<any> {
+  public completeTask(taskId: string, taskAction: TaskAction): Promise<any> {
 
     this.logger.info('TasksService: completeTask()');
 
@@ -97,7 +92,7 @@ export class TasksService extends CollectionService {
 
     this.logger.info('TasksService completeTask() - endpoint: ' + endpoint);
 
-    return this.httpClient.post<any>(endpoint, completeTaskBody, this.getHttpOptions()).pipe(
+    return this.httpClient.post<any>(endpoint, taskAction, this.getHttpOptions()).pipe(
 
       tap(() => {
 

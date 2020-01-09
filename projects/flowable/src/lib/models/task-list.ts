@@ -1,7 +1,6 @@
 export interface TaskCompleteEvent {
 
   id: string;
-
 }
 
 // export class TaskModel {
@@ -35,7 +34,6 @@ export interface TaskModel {
 
   // variables: any[] = [];
   variables: any[];
-
 }
 
 // export class TaskListModel {
@@ -51,7 +49,6 @@ export interface TaskListModel {
   data: TaskModel[];
 
   // constructor() {}
-
 }
 
 // export type TaskListModel = TaskModel[];

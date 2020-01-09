@@ -1,1 +1,2 @@
-export * from './task-list.model';
+export * from './task-list';
+export * from './task-action';

@@ -2,6 +2,7 @@
 
   {
     "type": "input",
+    "inputType": "number",
     "id": "employeeNumber",
     "label": "Employee Number",
     "appearance": "outline",

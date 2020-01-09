@@ -1,10 +1,11 @@
 import { Component, EventEmitter, OnChanges, OnDestroy, OnInit, Input, SimpleChanges, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { TasksService } from '../../services/tasks/tasks.service';
-import { TaskCompleteEvent, TaskModel } from '../../models/task-list.model';
+import { TaskCompleteEvent, TaskModel } from '../../models/task-list';
+import { TaskAction } from '../../models/task-action';
 
-import { FormsService } from '../../services/forms/forms.service';
+// import { FormsService } from '../../services/forms/forms.service';
+import { TasksService } from '../../services/tasks/tasks.service';
 
 import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
@@ -12,7 +13,7 @@ import { DialogService } from 'serendipity-components';
 
 import { LoggerService } from 'utils';
 
-import { format } from 'date-fns';
+// import { formatISO } from 'date-fns/formatISO';
 
 @Component({
   selector: 'flow-task',
@@ -32,7 +33,7 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor(private dialogService: DialogService,
               private dynamicFormService: DynamicFormService,
-              private formsService: FormsService,
+              // private formsService: FormsService,
               private tasksService: TasksService,
               private logger: LoggerService) {}
 
@@ -95,6 +96,127 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
     if (this.taskFormGroup) {
 
+      let flowableType = '';
+      let value = '';
+
+      const properties: any[] = [];
+
+      this.taskModel.forEach(controlModel => {
+
+        flowableType = 'string';
+
+        value = this.taskFormGroup.value[controlModel.id.valueOf()];
+
+        // https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
+        // TODO: handle locales, etc.
+
+        if (controlModel.type === 'date') {
+          flowableType = 'date';
+          // const date: Date = new Date(value);
+          // value = format(date, 'dd-MM-yyyy');
+          // value = formatISO(new Date(value));
+          value = new Date(value).toISOString();
+        }
+
+        if (controlModel.inputType === 'number') {
+
+          flowableType = 'integer';
+
+          properties.push({
+            'id': controlModel.id,
+            'name': controlModel.label, // 'name': controlModel.name,
+            'type': flowableType,
+            'value': Number(value)
+          });
+
+        } else {
+
+          properties.push({
+            'id': controlModel.id,
+            'name': controlModel.label, // 'name': controlModel.name,
+            'type': flowableType,
+            'value': value
+          });
+
+        }
+
+      });
+
+      // const body = { 'taskId' : this.task.id, 'properties' : properties };
+
+      // this.logger.info('body: ' + JSON.stringify(body));
+
+      const taskAction: TaskAction = {
+        'action' : 'complete',
+        'assignee' : 'rob.ferguson',
+        'formDefinitionId' : this.task.formKey,
+        'variables' : properties,
+        'outcome' : 'completed'
+      };
+
+      this.logger.info('taskAction: ' + JSON.stringify(taskAction));
+
+      this.tasksService.completeTask(this.task.id, taskAction).then(() => {
+
+        this.completeEvent.emit({ id: this.task.id });
+
+      }).catch(error => {
+
+        let message = error.message;
+
+        if (error.details) {
+          message = error.details.message;
+        }
+
+        this.dialogService.openAlert({
+          title: 'Alert',
+          message: message,
+          closeButton: 'CLOSE'
+        });
+
+      });
+
+    } else {
+
+      const taskAction: TaskAction = {
+        'action' : 'complete',
+        'variables' : []
+      };
+
+      this.tasksService.completeTask(this.task.id, taskAction).then(() => {
+
+        this.completeEvent.emit({ id: this.task.id });
+
+      }).catch(error => {
+
+        let message = error.message;
+
+        if (error.details) {
+          message = error.details.message;
+        }
+
+        this.dialogService.openAlert({
+          title: 'Alert',
+          message: message,
+          closeButton: 'CLOSE'
+        });
+
+      });
+
+    }
+
+  }
+
+}
+
+/*
+
+  public onComplete() {
+
+    this.logger.info('TaskComponent: onComplete()');
+
+    if (this.taskFormGroup) {
+
       const properties: any[] = [];
 
       let type = 'string';
@@ -107,10 +229,12 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
         value = this.taskFormGroup.value[controlModel.id.valueOf()];
 
+        // https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
         // TODO: handle locales, etc.
-        if (type === 'date') {
+
+       if (type === 'date') {
           const date: Date = new Date(value);
-          value = format(date, 'DD-MM-YYYY');
+          value = format(date, 'dd-MM-yyyy');
         }
 
         properties.push({
@@ -148,7 +272,12 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
     } else {
 
-      this.tasksService.completeTask(this.task.id).then(() => {
+      const taskAction: TaskAction = {
+        'action' : 'complete',
+        'variables' : []
+      };
+
+      this.tasksService.completeTask(this.task.id, taskAction).then(() => {
 
         this.completeEvent.emit({ id: this.task.id });
 
@@ -172,9 +301,7 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
   }
 
-}
-
-
+*/
 
 /*
 
