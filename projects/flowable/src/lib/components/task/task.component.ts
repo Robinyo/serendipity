@@ -149,9 +149,7 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
       const taskAction: TaskAction = {
         'action' : 'complete',
         'assignee' : 'rob.ferguson',
-        'formDefinitionId' : this.task.formKey,
-        'variables' : properties,
-        'outcome' : 'completed'
+        'variables' : properties
       };
 
       this.logger.info('taskAction: ' + JSON.stringify(taskAction));
@@ -208,6 +206,18 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
   }
 
 }
+
+/*
+
+      const taskAction: TaskAction = {
+        'action' : 'complete',
+        'assignee' : 'rob.ferguson',
+        'formDefinitionId' : this.task.formKey,
+        'variables' : properties,
+        'outcome' : 'completed'
+      };
+
+*/
 
 /*
 

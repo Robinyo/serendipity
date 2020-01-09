@@ -2,13 +2,22 @@ export interface TaskAction {
 
   action: string;
   assignee?: string;
+  transientVariables?: any[];
+  variables: any[];
+
+}
+
+/*
+
+export interface TaskAction {
+
+  action: string;
+  assignee?: string;
   formDefinitionId?: string;
   variables: any[];
   outcome?: string;
 
 }
-
-/*
 
 // https://github.com/flowable/flowable-engine/issues/1471
 
