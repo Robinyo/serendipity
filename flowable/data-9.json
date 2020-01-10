@@ -1,0 +1,38 @@
+{
+  "action": "complete",
+  "assignee": "rob.ferguson",
+  "formDefinitionId": "c064ca14-3298-11ea-85ef-0242ac110004",
+  "variables": [
+    {
+      "id": "employeeNumber",
+      "name": "employeeNumber",
+      "type": "integer",
+      "value": 123456
+    },
+    {
+      "id": "givenName",
+      "name": "givenName",
+      "type": "string",
+      "value": "Rob"
+    },
+    {
+      "id": "familyName",
+      "name": "familyName",
+      "type": "string",
+      "value": "Ferguson"
+    },
+    {
+      "id": "fromDate",
+      "name": "fromDate",
+      "type": "date",
+      "value": "2019-12-23"
+    },
+    {
+      "id": "toDate",
+      "name": "toDate",
+      "type": "date",
+      "value": "2020-01-13"
+    }
+  ],
+  "outcome": "completed"
+}

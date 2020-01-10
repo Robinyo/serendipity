@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnChanges, OnDestroy, OnInit, Input, SimpleCha
 import { FormGroup } from '@angular/forms';
 
 import { TaskCompleteEvent, TaskModel } from '../../models/task-list';
-import { TaskAction } from '../../models/task-action';
+import { Action, TaskActionRequest } from '../../models/task-action';
 
 // import { FormsService } from '../../services/forms/forms.service';
 import { TasksService } from '../../services/tasks/tasks.service';
@@ -146,8 +146,8 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
       // this.logger.info('body: ' + JSON.stringify(body));
 
-      const taskAction: TaskAction = {
-        'action' : 'complete',
+      const taskAction: TaskActionRequest = {
+        'action' : Action.complete,
         'assignee' : 'rob.ferguson',
         'variables' : properties
       };
@@ -176,8 +176,8 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
     } else {
 
-      const taskAction: TaskAction = {
-        'action' : 'complete',
+      const taskAction: TaskActionRequest = {
+        'action' : Action.complete,
         'variables' : []
       };
 
