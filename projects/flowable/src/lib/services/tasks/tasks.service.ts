@@ -9,7 +9,7 @@ import { AuthService } from 'auth';
 import { CollectionService } from '../abstract/collection/collection.service';
 
 import { TaskListModel } from '../../models/task-list';
-import { TaskAction } from '../../models/task-action';
+import { TaskActionRequest } from '../../models/task-action';
 
 import { LoggerService } from 'utils';
 
@@ -84,19 +84,50 @@ export class TasksService extends CollectionService {
     };
   }
 
-  public completeTask(taskId: string, taskAction: TaskAction): Promise<any> {
+  public async completeTask(taskId: string, request: TaskActionRequest): Promise<any> {
 
     this.logger.info('TasksService: completeTask()');
 
     const endpoint = `${this.processEngineUriPrefix}runtime/tasks/${taskId}`;
 
-    this.logger.info('TasksService completeTask() - endpoint: ' + endpoint);
+    // this.logger.info('TasksService completeTask() - endpoint: ' + endpoint);
 
-    return this.httpClient.post<any>(endpoint, taskAction, this.getHttpOptions()).pipe(
+    const form = await this.getForm(taskId);
+
+    request.formDefinitionId = form.id;
+
+    this.logger.info('TasksService taskId: ' + taskId + ' formDefinitionId: ' + request.formDefinitionId);
+
+    return this.httpClient.post<any>(endpoint, request, this.getHttpOptions()).pipe(
 
       tap(() => {
 
         this.logger.info('TasksService: completeTask() completed');
+
+      })).toPromise().catch(error => {
+
+      if (error === undefined) {
+        error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
+      }
+
+      throw error;
+
+    });
+  }
+
+  public getForm(taskId: string): Promise<any> {
+
+    this.logger.info('TasksService: getForm()');
+
+    const endpoint = `${this.processEngineUriPrefix}runtime/tasks/${taskId}/form`;
+
+    this.logger.info('TasksService getForm() - endpoint: ' + endpoint);
+
+    return this.httpClient.get<any>(endpoint, this.getHttpOptions()).pipe(
+
+      tap(() => {
+
+        this.logger.info('TasksService: getForm() completed');
 
       })).toPromise().catch(error => {
 

@@ -124,7 +124,8 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
           properties.push({
             'id': controlModel.id,
-            'name': controlModel.label, // 'name': controlModel.name,
+            // 'name': controlModel.label, // 'name': controlModel.name,
+            'name': controlModel.id,       // See: https://github.com/flowable/flowable-engine/issues/1471
             'type': flowableType,
             'value': Number(value)
           });
@@ -133,7 +134,8 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
           properties.push({
             'id': controlModel.id,
-            'name': controlModel.label, // 'name': controlModel.name,
+            // 'name': controlModel.label, // 'name': controlModel.name,
+            'name': controlModel.id,       // See: https://github.com/flowable/flowable-engine/issues/1471
             'type': flowableType,
             'value': value
           });
@@ -149,7 +151,9 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
       const taskAction: TaskActionRequest = {
         'action' : Action.complete,
         'assignee' : 'rob.ferguson',
-        'variables' : properties
+        'formDefinitionId' : this.task.formKey,
+        'variables' : properties,
+        'outcome': 'completed'
       };
 
       this.logger.info('taskAction: ' + JSON.stringify(taskAction));
@@ -206,18 +210,6 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
   }
 
 }
-
-/*
-
-      const taskAction: TaskAction = {
-        'action' : 'complete',
-        'assignee' : 'rob.ferguson',
-        'formDefinitionId' : this.task.formKey,
-        'variables' : properties,
-        'outcome' : 'completed'
-      };
-
-*/
 
 /*
 
