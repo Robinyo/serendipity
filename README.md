@@ -17,9 +17,9 @@
   - The [Local Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library which supports email/password registration and login
   - The [OIDC Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc) library which supports username/password registration and login (using Implicit Flow or Authorization Code Flow with PKCE)
 - **Beautiful Code** thanks to Angular's [Style Guide](https://angular.io/guide/styleguide)
-- **Contemporary UI** thanks to Angular [Material](https://material.angular.io/)
+- **Contemporary UI** thanks to [Angular Material](https://material.angular.io/)
 - **Custom Themes** check out the [Light Theme](https://github.com/Robinyo/serendipity/tree/master/src/themes)
-- **Dashboards and Dashboard Widgets** thanks to Angular [Gridster 2](https://github.com/tiberiuzuld/angular-gridster2) and [Highcharts](https://www.highcharts.com/)
+- **Dashboards and Dashboard Widgets** thanks to [Angular Gridster 2](https://github.com/tiberiuzuld/angular-gridster2) and [Highcharts](https://www.highcharts.com/)
 - **Dynamic Forms** check out the Dynamic Forms [documentation](https://github.com/Robinyo/serendipity/tree/master/projects/dynamic-forms)
 - **Dynamically Importing Static Libraries** see this [post](https://robferguson.org/blog/2019/09/23/dynamically-importing-highcharts/)
 - **Identity and Access Management** thanks to [Keycloak](https://www.keycloak.org/) and [OpenLDAP](https://www.openldap.org/)
