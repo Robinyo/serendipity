@@ -28,7 +28,7 @@
 - **Locally Hosted Fonts and Icons** see [fonts](https://github.com/Robinyo/serendipity/blob/master/src/themes/fonts.scss) and [icons](https://github.com/Robinyo/serendipity/blob/master/src/themes/icons.scss)
 - **Progressive Web App (PWA)** thanks to [@angular/pwa ](https://angular.io/guide/service-worker-getting-started)
 - **Serendipity Components Library** see this blog [post](https://robferguson.org/blog/2019/06/22/dashboards-and-dashboard-widgets-part-1/)
-- **Workflow** see this blog [post](https://robferguson.org/blog/2018/12/10/getting-started-with-flowable/)
+- **Workflow and Business Process Management (BPM) platform** thanks to [Flowable](https://flowable.org/index.html)
 
 ![divider](./divider.png)
 
