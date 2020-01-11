@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 
 import { Auth } from './auth';
 
-import { User } from '../../models/user';
-
 import { LoggerService } from 'utils';
 
 @Injectable({
@@ -30,7 +28,11 @@ export class AuthService extends Auth {
     return this.idToken;
   }
 
-  public createUserWithEmailAndPassword(user: User): Promise<any> {
+  public getCurrentUser(): any {
+    return this.currentUser;
+  }
+
+  public createUserWithEmailAndPassword(user): Promise<any> {
 
     return Promise.reject('AuthService: createUserWithEmailAndPassword()');
   }
@@ -50,15 +52,6 @@ export class AuthService extends Auth {
 
   // TODO -> See: collection.service.ts
 
-  public getUser() {
-
-    return undefined;
-  }
-
-  public login() {
-
-    return;
-  }
 
   public logout(returnUrl: string) {
 

@@ -19,7 +19,6 @@ import { LoggerService } from 'utils';
 export class Auth0AuthService extends Auth {
 
   authState$ = new BehaviorSubject(false);
-  user: User;
 
   private auth: Auth0Client;
 
@@ -30,6 +29,8 @@ export class Auth0AuthService extends Auth {
     super();
 
     this.logger.info('Auth0AuthService: constructor()');
+
+    this.currentUser = null;
 
     this.logger.info('OktaAuthService this.config.auth0: ' + JSON.stringify(this.config.auth0));
 
@@ -49,6 +50,7 @@ export class Auth0AuthService extends Auth {
 
           this.authenticated = authenticated;
           this.accessToken = '';
+          this.currentUser = null;
 
           if (this.authenticated) {
 
@@ -66,7 +68,7 @@ export class Auth0AuthService extends Auth {
 
                 // Create normalised User (i.e., givenName NOT given_name)
 
-                this.user = {
+                this.currentUser = {
 
                   username: userProfile.sub,
                   // username: userProfile.email,
@@ -95,7 +97,7 @@ export class Auth0AuthService extends Auth {
                   // phoneNumberVerified: userProfile.phone_verified
                 };
 
-                this.logger.info('OktaAuthService this.user: ' + JSON.stringify(this.user));
+                this.logger.info('OktaAuthService this.user: ' + JSON.stringify(this.currentUser));
 
               });
 
@@ -119,6 +121,10 @@ export class Auth0AuthService extends Auth {
 
   public getIdToken(): string {
     return this.idToken;
+  }
+
+  public getCurrentUser(): any {
+    return this.currentUser;
   }
 
   public createUserWithEmailAndPassword(user: User): Promise<any> {
@@ -157,13 +163,6 @@ export class Auth0AuthService extends Auth {
      this.router.navigate(['/']);
   }
 
-  public geUserProfile(): User {
-
-    this.logger.info('Auth0AuthService: getAccessToken()');
-
-    return this.user;
-  }
-
   public async setAccessToken() {
 
     this.logger.info('Auth0AuthService: setAccessToken()');
@@ -189,18 +188,17 @@ export class Auth0AuthService extends Auth {
 
   }
 
-  // TODO -> See: collection.service.ts
-
-  public getUser() {
-
-    return undefined;
-  }
-
-  public login() {
-
-    return;
-  }
-
 }
 
 // https://stackoverflow.com/questions/39494058/behaviorsubject-vs-observable
+
+/*
+
+  public geUserProfile(): User {
+
+    this.logger.info('Auth0AuthService: geUserProfile()');
+
+    return this.user;
+  }
+
+*/

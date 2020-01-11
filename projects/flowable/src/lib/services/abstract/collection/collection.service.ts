@@ -26,11 +26,13 @@ export abstract class CollectionService {
 
     if (!this.httpOptions) {
 
-      // See: ldap-env.txt
+      const user = this.authService.getCurrentUser();
+
+      this.logger.info('user: ' + JSON.stringify(user, null, 2));
 
       const token = 'flowable-rest' + ':' + 'test';
 
-      this.logger.info('CollectionService getHttpOptions() - token: ' + token + ' btoa(token): ' + btoa(token));
+      this.logger.info('token: ' + token + ' btoa(token): ' + btoa(token));
 
       this.httpOptions = {
         headers: new HttpHeaders({

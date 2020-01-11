@@ -31,7 +31,7 @@ export abstract class CollectionService {
 
     this.httpOptions.params = params;
 
-    // this.logger.info(JSON.stringify(this.httpOptions));
+    // this.logger.info(JSON.stringify(this.httpOptions, null, 2));
 
     return this.httpOptions;
   }

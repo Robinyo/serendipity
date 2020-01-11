@@ -58,6 +58,11 @@ export class LocalAuthService extends Auth {
     return this.idToken;
   }
 
+  public getCurrentUser(): any {
+    // return this.currentUser;
+    return null;
+  }
+
   public async setAccessToken() {
 
     this.logger.info('LocalAuthService: setAccessToken()');

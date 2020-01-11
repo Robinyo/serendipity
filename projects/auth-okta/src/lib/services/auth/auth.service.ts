@@ -31,7 +31,9 @@ export class OktaAuthService extends Auth {
 
     this.logger.info('OktaAuthService: constructor()');
 
-    this.logger.info('OktaAuthService this.config.okta: ' + JSON.stringify(this.config.okta));
+    this.currentUser = null;
+
+    // this.logger.info('OktaAuthService this.config.okta: ' + JSON.stringify(this.config.okta));
 
     // this.auth = new OktaAuth(this.config.okta);
     this.auth = new OktaAuth({
@@ -50,13 +52,17 @@ export class OktaAuthService extends Auth {
         this.logger.info('OktaAuthService isAuthenticated(): ' + this.authenticated);
 
         this.authenticated = authenticated;
-
         this.accessToken = '';
+        this.currentUser = null;
 
         if (this.authenticated) {
+
+          // this.currentUser = ???
+
           this.setAccessToken().then(() => {
             this.logger.info('OktaAuthService accessToken: ' + this.accessToken);
           });
+
         }
 
       });
@@ -75,6 +81,10 @@ export class OktaAuthService extends Auth {
 
   public getIdToken(): string {
     return this.idToken;
+  }
+
+  public getCurrentUser(): any {
+    return this.currentUser;
   }
 
   private async setAccessToken() {

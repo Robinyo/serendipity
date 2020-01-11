@@ -3,11 +3,15 @@ import { Router } from '@angular/router';
 
 import { BehaviorSubject } from 'rxjs';
 
-import { UserManager, UserManagerSettings, User } from 'oidc-client';
-
 import { OidcConfig } from '../../models/models';
 import { OidcConfigService } from '../config.service';
 
+// http://www.typescriptlang.org/docs/handbook/namespaces-and-modules.html#introduction
+// import { UserManager, UserManagerSettings, User } from 'oidc-client';
+import * as oidcClient from 'oidc-client';
+
+// http://www.typescriptlang.org/docs/handbook/namespaces-and-modules.html#introduction
+// import * as auth from 'auth';
 // import { Auth, User } from 'auth';
 import { Auth } from 'auth';
 
@@ -20,8 +24,7 @@ export class OidcAuthService extends Auth {
 
   private authState$ = new BehaviorSubject(false);
 
-  private authService: UserManager;
-  private user: User = null;
+  private authService: oidcClient.UserManager;
 
   constructor(@Inject(OidcConfigService) private config: OidcConfig,
               private router: Router,
@@ -31,9 +34,11 @@ export class OidcAuthService extends Auth {
 
     this.logger.info('OidcAuthService: constructor()');
 
+    this.currentUser = null;
+
     // this.logger.info('OidcAuthService this.config.oidc: ' + JSON.stringify(this.config.oidc, null, 2));
 
-    const oidcConfig: UserManagerSettings = {
+    const oidcConfig: oidcClient.UserManagerSettings = {
       authority: this.config.oidc.issuer,
       client_id: this.config.oidc.clientId,
       redirect_uri: this.config.oidc.redirectUri,
@@ -46,7 +51,7 @@ export class OidcAuthService extends Auth {
 
     // this.logger.info('oidcConfig: ' + JSON.stringify(oidcConfig, null, 2));
 
-    this.authService = new UserManager(oidcConfig);
+    this.authService = new oidcClient.UserManager(oidcConfig);
 
     this._isAuthenticated().then(state => {
 
@@ -84,11 +89,14 @@ export class OidcAuthService extends Auth {
     return this.idToken;
   }
 
-  private setAccessToken() {
-    this.accessToken = this.user.access_token;
+  public getCurrentUser(): any {
+    return this.currentUser;
   }
 
-  // public createUserWithEmailAndPassword(user: User): Promise<any> {
+  private setAccessToken() {
+    this.accessToken = this.currentUser.access_token;
+  }
+
   public createUserWithEmailAndPassword(user): Promise<any> {
 
     return Promise.reject('OidcAuthService: createUserWithEmailAndPassword()');
@@ -110,9 +118,9 @@ export class OidcAuthService extends Auth {
 
     this.logger.info('OidcAuthService: handleRedirectCallback()');
 
-    this.user = await this.authService.signinRedirectCallback();
+    this.currentUser = await this.authService.signinRedirectCallback();
 
-    this.logger.info('user: ' + JSON.stringify(this.user, null, 2));
+    this.logger.info('currentUser: ' + JSON.stringify(this.currentUser, null, 2));
 
     this.authenticated = await this._isAuthenticated();
 
@@ -130,27 +138,13 @@ export class OidcAuthService extends Auth {
     this.authService.signoutRedirect();
   }
 
-  // TODO -> See: collection.service.ts
-
-  public getUser() {
-
-    // this.user.profile.preferred_username;
-
-    return undefined;
-  }
-
-  public login() {
-
-    return;
-  }
-
   //
   // Private methods
   //
 
   private async _isAuthenticated(): Promise<boolean> {
 
-    return this.user !== null && !this.user.expired;
+    return this.currentUser !== null && !this.currentUser.expired;
   }
 
 }
