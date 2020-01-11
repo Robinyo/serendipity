@@ -2,9 +2,11 @@ export abstract class Auth {
 
   protected currentUser: any;
 
-  protected accessToken = '';
-  protected authenticated = false;
   protected idToken = '';
+  protected accessToken = '';
+  // protected refreshToken = '';
+
+  protected authenticated = false;
 
   public abstract isAuthenticated(): boolean;
 

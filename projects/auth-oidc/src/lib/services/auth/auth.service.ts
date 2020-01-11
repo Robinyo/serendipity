@@ -63,11 +63,13 @@ export class OidcAuthService extends Auth {
 
         this.authenticated = authenticated;
         this.accessToken = '';
+        this.idToken = '';
 
         if (this.authenticated) {
 
           this.setAccessToken();
 
+          this.logger.info('OidcAuthService idToken: ' + this.idToken);
           this.logger.info('OidcAuthService accessToken: ' + this.accessToken);
         }
 
@@ -91,9 +93,11 @@ export class OidcAuthService extends Auth {
 
   public getCurrentUser(): any {
     return this.currentUser;
+    // return this.currentUser.profile;
   }
 
   private setAccessToken() {
+    this.idToken = this.currentUser.id_token;
     this.accessToken = this.currentUser.access_token;
   }
 
