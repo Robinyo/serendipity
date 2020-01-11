@@ -276,8 +276,7 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.logger.info('ContactComponent: onSaveAndClose()');
 
     this.onSave();
-
-    this.router.navigate([CONTACTS]);
+    this.onClose();
   }
 
   //

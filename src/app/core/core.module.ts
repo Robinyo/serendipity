@@ -12,6 +12,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { QuillModule } from 'ngx-quill';
 
 import { PlaceholderComponent } from './components/placeholder/placeholder.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { NavComponent } from './components/nav/nav.component';
 
@@ -26,17 +27,24 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 import { SerendipityComponentsModule } from 'serendipity-components';
 
 //
-//
-// Lazy Loaded Libs -> app.module.ts
-//
-//
-
-//
 // Utils lib
 //
 
 import { UtilsModule, LoggerService } from 'utils';
 import { AngularMaterialModule } from 'utils';
+
+//
+//
+// Lazy Loaded Libs - See: app.module.ts
+//
+//
+
+const components: any[] = [
+  PlaceholderComponent,
+  ProfileComponent,
+  NavigationBarComponent,
+  NavComponent
+];
 
 @NgModule({
   imports: [
@@ -63,8 +71,8 @@ import { AngularMaterialModule } from 'utils';
 
     RouterModule  // There is no directive with "exportAs" set to "routerLinkActive ...
   ],
-  declarations: [ PlaceholderComponent, NavigationBarComponent, NavComponent ],
-  exports: [ PlaceholderComponent, NavigationBarComponent, NavComponent ]
+  declarations: [ ...components ],
+  exports: [ ...components ]
 })
 export class CoreModule {
 

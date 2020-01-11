@@ -6,7 +6,7 @@ import { AuthService } from 'auth';
 import { LoggerService } from 'utils';
 
 @Component({
-  selector: 'app-navigation-bar',
+  selector: 'crm-navigation-bar',
   templateUrl: './navigation-bar.component.html',
   styleUrls: ['./navigation-bar.component.scss']
 })
@@ -31,6 +31,11 @@ export class NavigationBarComponent {
 
     });
 
+  }
+
+  public onProfile() {
+
+    this.router.navigate(['users/profile']);
   }
 
   public logout() {

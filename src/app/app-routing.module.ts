@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { PlaceholderComponent } from '@app/core/components/placeholder/placeholder.component';
+import { ProfileComponent } from '@app/core/components/profile/profile.component';
+
 //
 // Auth libs
 //
 
 import { AuthGuard } from 'auth';
-
-import { PlaceholderComponent } from '@app/core/components/placeholder/placeholder.component';
 
 const routes: Routes = [
 
@@ -38,6 +39,13 @@ const routes: Routes = [
         loadChildren: './lazy-loading/sales-lib-wrapper.module#SalesLibWrapperModule'
       }
     ]
+  },
+
+  {
+    path: 'users/profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
   },
 
   {

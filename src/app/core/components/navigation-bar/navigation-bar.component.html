@@ -29,10 +29,19 @@
             <mat-icon>person_outline</mat-icon>
           </button>
           <mat-menu #auth="matMenu">
+
+            <button mat-menu-item (click)="onProfile()">
+              <mat-icon>person_outline</mat-icon>
+              <span>Profile</span>
+            </button>
+
+            <mat-divider></mat-divider>
+
             <button mat-menu-item (click)="logout()">
               <mat-icon>exit_to_app</mat-icon>
               <span>Sign out</span>
             </button>
+
           </mat-menu>
         </li>
 

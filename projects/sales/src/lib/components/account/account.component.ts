@@ -186,28 +186,24 @@ export class AccountComponent implements OnInit, OnDestroy {
   // Command Bar events
   //
 
-  public onNew() {
+  public onClose() {
 
-    this.logger.info('AccountComponent: onNew()');
+    // this.logger.info('AccountComponent: onClose()');
 
-    this.router.navigate([ACCOUNTS + '/new']);
-  }
-
-  public onSave() {
-
-    this.logger.info('AccountComponent: onSave()');
-
-    this.markAsPristine();
-    this.openSnackBar();
-  }
-
-  public onSaveAndClose() {
-
-    this.logger.info('AccountComponent: onSaveAndClose()');
-
-    this.markAsPristine();
-    this.openSnackBar();
     this.router.navigate([ACCOUNTS]);
+  }
+
+  public onCustomEvent(event: DynamicFormControlCustomEvent) {
+
+    this.logger.info('AccountComponent: onCustomEvent()');
+
+    this.dialogService.openAlert({
+      title: 'Alert',
+      message: JSON.stringify(event),
+      closeButton: 'CLOSE'
+    });
+
+    // this.logger.info('event: ' + JSON.stringify(event));
   }
 
   public onDeactivate() {
@@ -238,26 +234,31 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   }
 
-  public onClose() {
+  public onNew() {
 
-    // this.logger.info('AccountComponent: onClose()');
+    this.logger.info('AccountComponent: onNew()');
 
-    this.router.navigate([ACCOUNTS]);
+    this.router.navigate([ACCOUNTS + '/new']);
   }
 
+  public onSave() {
 
-  public onCustomEvent(event: DynamicFormControlCustomEvent) {
+    this.logger.info('AccountComponent: onSave()');
 
-    this.logger.info('AccountComponent: onCustomEvent()');
-
-    this.dialogService.openAlert({
-      title: 'Alert',
-      message: JSON.stringify(event),
-      closeButton: 'CLOSE'
-    });
-
-    // this.logger.info('event: ' + JSON.stringify(event));
+    this.update();
   }
+
+  public onSaveAndClose() {
+
+    this.logger.info('AccountComponent: onSaveAndClose()');
+
+    this.onSave();
+    this.onClose();
+  }
+
+  //
+  // Misc
+  //
 
   private openSnackBar() {
 
@@ -266,6 +267,14 @@ export class AccountComponent implements OnInit, OnDestroy {
       panelClass: 'crm-snack-bar'
     });
 
+  }
+
+  private update() {
+
+    this.logger.info('AccountComponent: update()');
+
+    this.markAsPristine();
+    // this.openSnackBar();
   }
 
 }
