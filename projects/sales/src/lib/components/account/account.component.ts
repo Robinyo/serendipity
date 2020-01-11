@@ -47,7 +47,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   protected subscriptions: Subscription[] = [];
 
   @ViewChild('contentContainer', {static: true})
-  private tableContainer: ElementRef;
+  private itemContainer: ElementRef;
 
   public generalInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];
   public generalInformationGroup: FormGroup;
@@ -72,7 +72,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
     this.logger.info('AccountComponent: ngOnInit()');
 
-    this.containerHeight = this.tableContainer.nativeElement.offsetHeight -
+    this.containerHeight = this.itemContainer.nativeElement.offsetHeight -
       (this.navBarHeight + this.cmdBarHeight + this.viewBarHeight + this.margin);
 
     let paramSubscription: Subscription = new Subscription();
