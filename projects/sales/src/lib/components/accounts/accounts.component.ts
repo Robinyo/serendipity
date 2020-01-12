@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material';
 
-import { CollectionComponent } from '../collection/collection.component';
+import { CollectionComponent } from 'serendipity-components';
 
 import { AccountAdapter } from '../../adapters/account.adapter';
 import { AccountsService } from '../../services/accounts/accounts.service';
@@ -101,44 +101,3 @@ function pathDataAccessor(item: any, path: string): any {
     return accumulator ? accumulator[key] : undefined;
   }, item);
 }
-
-/*
-
-public ngOnInit() {
-
-  super.ngOnInit();
-
-  this.logger.info('AccountsComponent: ngOnInit()');
-
-  // Evaluate against the current viewport
-
-  if (this.breakpointObserver.isMatched(MAT_XSMALL)) {
-    this.displayedColumns = ACCOUNTS_COLUMNS_MOBILE;
-  } else {
-    this.displayedColumns = ACCOUNTS_COLUMNS_DESKTOP;
-  }
-
-  this.loadColumnDefs(ACCOUNTS_COLUMN_DEFS);
-
-}
-
-// https://blog.angular-university.io/angular-debugging/
-
-public ngAfterViewInit() {
-
-  this.logger.info('AccountsComponent: ngAfterViewInit()');
-
-  // React to changes to the viewport
-
-  this.breakpointObserver.observe([ Breakpoints.HandsetPortrait ]).subscribe(result => {
-
-    if (result.matches) {
-      this.displayedColumns = ACCOUNTS_COLUMNS_MOBILE;
-    } else {
-      this.displayedColumns = ACCOUNTS_COLUMNS_DESKTOP;
-    }
-
-  });
-}
-
-*/

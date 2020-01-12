@@ -27,3 +27,6 @@ export const VIEW_BAR_HEIGHT_MOBILE  = 84;
 
 export const MARGIN_DESKTOP = 32;
 export const MARGIN_MOBILE  = 0;
+
+export const ALPHABET: string[] = [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+  'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' ];

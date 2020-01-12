@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material';
 
-import { CollectionComponent } from '../collection/collection.component';
+import { CollectionComponent } from 'serendipity-components';
 
 // import { ActivitiesAdapter } from '../../adapters/activities.adapter';
 // import { ActivitiesService } from '../../services/activities/activities.service';

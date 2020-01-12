@@ -10,21 +10,13 @@ import { QuillModule } from 'ngx-quill';
 
 import { AccountComponent } from './components/account/account.component';
 import { AccountsComponent } from './components/accounts/accounts.component';
-
 import { ActivitiesComponent } from './components/activities/activities.component';
-
-import { CollectionFooterComponent } from './components/collection/footer/collection-footer.component';
-
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ContactWizardComponent } from './components/contact-wizard/contact-wizard.component';
-
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
 import { EmailComponent } from './components/email/email.component';
-
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
-
 import { TasksComponent } from './components/tasks/tasks.component';
 
 //
@@ -91,7 +83,6 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
     AccountComponent,
     AccountsComponent,
     ActivitiesComponent,
-    CollectionFooterComponent,
     ContactsComponent,
     ContactComponent,
     ContactWizardComponent,

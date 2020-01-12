@@ -22,11 +22,55 @@
   margin: 0 12px 0 12px;
 }
 
+th.mat-header-cell {
+  padding-right: 16px;
+  // text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.header-cell-id {
+  text-align: right;
+}
+
+td.mat-cell {
+  padding-right: 16px;
+}
+
+// Columns
+
+.mat-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mat-column-party-displayName {
+  width: 280px;
+  max-width: 280px;
+}
+
+.mat-column-email {
+  width: 260px;
+  max-width: 240px;
+}
+
+.mat-column-organisation-displayName {
+  width: 200px;
+  max-width: 120px;
+}
+
+.mat-column-organisation-phoneNumber {
+  width: 140px;
+  max-width: 120px;
+}
+
+
+
+/*
+
 //
 // Footer
 //
-
-/*
 
 .footer-container {
   display: flex;
@@ -97,48 +141,6 @@ th.mat-header-cell {
   white-space: nowrap;
 }
 */
-
-th.mat-header-cell {
-  padding-right: 16px;
-  // text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.header-cell-id {
-  text-align: right;
-}
-
-td.mat-cell {
-  padding-right: 16px;
-}
-
-// Columns
-
-.mat-cell {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.mat-column-party-displayName {
-  width: 280px;
-  max-width: 280px;
-}
-
-.mat-column-email {
-  width: 260px;
-  max-width: 240px;
-}
-
-.mat-column-organisation-displayName {
-  width: 200px;
-  max-width: 120px;
-}
-
-.mat-column-organisation-phoneNumber {
-  width: 140px;
-  max-width: 120px;
-}
 
 /*
 

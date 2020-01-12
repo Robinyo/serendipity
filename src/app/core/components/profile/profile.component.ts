@@ -44,8 +44,8 @@ export class ProfileComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.logger.info('ProfileComponent: ngOnInit()');
 
-    this.containerHeight = this.itemContainer.nativeElement.offsetHeight -
-      (NAVIGATION_BAR_HEIGHT_DESKTOP + COMMAND_BAR_HEIGHT_DESKTOP + VIEW_BAR_HEIGHT_DESKTOP + MARGIN_DESKTOP);
+    // this.containerHeight = this.itemContainer.nativeElement.offsetHeight -
+    //  (NAVIGATION_BAR_HEIGHT_DESKTOP + COMMAND_BAR_HEIGHT_DESKTOP + VIEW_BAR_HEIGHT_DESKTOP + MARGIN_DESKTOP);
   }
 
   public ngAfterViewInit() {

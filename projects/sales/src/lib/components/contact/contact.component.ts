@@ -62,7 +62,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private contactsService: ContactsService,
+              private entityService: ContactsService,
               private dynamicFormService: DynamicFormService,
               private dialogService: DialogService,
               private snackBar: MatSnackBar,
@@ -104,7 +104,7 @@ export class ContactComponent implements OnInit, OnDestroy {
     let modelSubscription: Subscription = new Subscription();
     this.subscriptions.push(modelSubscription);
 
-    modelSubscription = this.contactsService.findOne(this.partyId).subscribe(data => {
+    modelSubscription = this.entityService.findOne(this.partyId).subscribe(data => {
 
       this.logger.info('ContactComponent subscribe() data: ' + JSON.stringify(data));
 
@@ -240,7 +240,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
         this.logger.info('ContactComponent onDeactivate() response: true');
 
-        const subscription: Subscription = this.contactsService.delete(this.partyId).subscribe(() => {
+        const subscription: Subscription = this.entityService.delete(this.partyId).subscribe(() => {
 
           subscription.unsubscribe();
           this.router.navigate([CONTACTS]);
@@ -296,7 +296,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     this.logger.info('ContactComponent: update()');
 
-    const subscription: Subscription = this.contactsService.update(this.item.party.id, this.item).subscribe(response => {
+    const subscription: Subscription = this.entityService.update(this.item.party.id, this.item).subscribe(response => {
 
       const keys = response.headers.keys();
       keys.map(key => {

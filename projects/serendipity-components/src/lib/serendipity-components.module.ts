@@ -23,10 +23,20 @@ import { CommandBarComponent } from './components/command-bar/command-bar.compon
 import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-dialog.component';
 import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/confirm-dialog.component';
 
+
+//
+// Misc components
+//
+
+import { CollectionFooterComponent } from './components/abstract/collection/footer/collection-footer.component';
+
 const serendipityComponents = [
   ActivityBarComponent,
   CommandBarComponent,
   AlertDialogComponent,
+
+  CollectionFooterComponent,
+
   ConfirmDialogComponent
 ] ;
 

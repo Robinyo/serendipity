@@ -9,11 +9,11 @@ import { Subscription} from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ConfigService, LoggerService, StaticInjectorService } from 'utils';
-import { DialogService } from 'serendipity-components';
-import { SidenavService } from 'serendipity-components';
+import { DialogService } from '../../../services/dialogs/dialog.service';
+import { SidenavService } from '../../../services/sidenav/sidenav.service';
 
-import { ALPHABET } from '../../models/constants';
-import { ColumnDef } from '../../models/column';
+import { ALPHABET } from '../../../models/constants';
+import { ColumnDef } from '../../../models/column';
 // import { FAKE_ITEMS_LENGTH } from '../../models/constants';
 
 const ALL = 'All';

@@ -62,7 +62,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private accountsService: AccountsService,
+              private entityService: AccountsService,
               private dynamicFormService: DynamicFormService,
               private dialogService: DialogService,
               private snackBar: MatSnackBar,
@@ -99,7 +99,7 @@ export class AccountComponent implements OnInit, OnDestroy {
     let modelSubscription: Subscription = new Subscription();
     this.subscriptions.push(modelSubscription);
 
-    modelSubscription = this.accountsService.findOne(this.partyId).subscribe(data => {
+    modelSubscription = this.entityService.findOne(this.partyId).subscribe(data => {
 
       this.logger.info('AccountComponent subscribe() data: ' + JSON.stringify(data));
 

@@ -7,7 +7,7 @@ import { CONTACTS_COLUMN_DEFS } from '../../models/column-defs';
 import { Contact } from '../../models/contact';
 import { ContactAdapter } from '../../adapters/contact.adapter';
 
-import { CollectionComponent, CollectionComponentConfig } from '../collection/collection.component';
+import { CollectionComponent } from 'serendipity-components';
 
 import {
   CONTACTS_COLUMNS_DESKTOP,
