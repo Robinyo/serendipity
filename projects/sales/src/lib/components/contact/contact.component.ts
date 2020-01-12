@@ -1,8 +1,8 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 import { MatSnackBar } from '@angular/material';
 import { SnackBarComponent } from '../snack-bar/snack-bar.component';
@@ -15,75 +15,39 @@ import { Contact } from '../../models/contact';
 import { CONTACTS } from '../../models/constants';
 import { CONTACT_ADDRESS_INFORMATION_GROUP, CONTACT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
 
-import { DialogService } from 'serendipity-components';
-
-import { LoggerService } from 'utils';
-
-import {
-  NAVIGATION_BAR_HEIGHT_DESKTOP,
-  // NAVIGATION_BAR_HEIGHT_MOBILE,
-  COMMAND_BAR_HEIGHT_DESKTOP,
-  // COMMAND_BAR_HEIGHT_MOBILE,
-  VIEW_BAR_HEIGHT_DESKTOP,
-  // VIEW_BAR_HEIGHT_MOBILE,
-  MARGIN_DESKTOP,
-  // MARGIN_MOBILE,
-  // MAT_XSMALL
-} from '../../models/constants';
+import { ItemComponent } from 'serendipity-components';
 
 @Component({
   selector: 'sales-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent implements OnInit, OnDestroy {
+export class ContactComponent extends ItemComponent<Contact> implements OnInit {
 
-  public containerHeight: number;
-
-  // public id = 'MA==';
-  public partyId: string;
-  public item: Contact;
-
-  protected subscriptions: Subscription[] = [];
-
-  @ViewChild('contentContainer', {static: true})
-  private itemContainer: ElementRef;
-
-  public generalInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];
+  public generalInformationModel: DynamicFormModel;
   public generalInformationGroup: FormGroup;
 
-  public addressInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];
+  public addressInformationModel: DynamicFormModel;
   public addressInformationGroup: FormGroup;
 
-  private navBarHeight = NAVIGATION_BAR_HEIGHT_DESKTOP;
-  private cmdBarHeight = COMMAND_BAR_HEIGHT_DESKTOP;
-  private viewBarHeight = VIEW_BAR_HEIGHT_DESKTOP;
-  private margin = MARGIN_DESKTOP;
-
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private entityService: ContactsService,
+  constructor(private entityService: ContactsService,
               private dynamicFormService: DynamicFormService,
-              private dialogService: DialogService,
-              private snackBar: MatSnackBar,
-              private logger: LoggerService) {}
+              private route: ActivatedRoute,
+              private snackBar: MatSnackBar) {
+    super();
+  }
 
   public ngOnInit() {
-
-    this.logger.info('ContactComponent: ngOnInit()');
-
-    this.containerHeight = this.itemContainer.nativeElement.offsetHeight -
-      (this.navBarHeight + this.cmdBarHeight + this.viewBarHeight + this.margin);
-
-    // this.partyId = this.route.snapshot.paramMap.get('id');
 
     let paramSubscription: Subscription = new Subscription();
     this.subscriptions.push(paramSubscription);
 
     paramSubscription = this.route.paramMap.subscribe(params =>  {
 
-      this.partyId = params.get('id');
-      this.partyId = atob(this.partyId);
+      this.id = params.get('id');
+      this.id = atob(this.id);
+
+      // this.logger.info('id: ' + this.id);
 
       this.subscribe();
 
@@ -101,10 +65,10 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.addressInformationModel = await this.dynamicFormService.getFormMetadata(CONTACT_ADDRESS_INFORMATION_GROUP);
     this.addressInformationGroup = this.dynamicFormService.createGroup(this.addressInformationModel);
 
-    let modelSubscription: Subscription = new Subscription();
-    this.subscriptions.push(modelSubscription);
+    let entitySubscription: Subscription = new Subscription();
+    this.subscriptions.push(entitySubscription);
 
-    modelSubscription = this.entityService.findOne(this.partyId).subscribe(data => {
+    entitySubscription = this.entityService.findOne(this.id).subscribe(data => {
 
       this.logger.info('ContactComponent subscribe() data: ' + JSON.stringify(data));
 
@@ -115,42 +79,13 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   }
 
-  protected unsubscribe(): void {
-
-    this.logger.info('ContactComponent: unsubscribe()');
-
-    this.subscriptions.forEach(subscription => {
-      subscription.unsubscribe();
-    });
-
-  }
-
-  public ngOnDestroy() {
-
-    this.logger.info('ContactComponent: ngOnDestroy()');
-    this.unsubscribe();
-  }
-
   //
   // Validation
   //
 
-  public canDeactivate(): Observable<boolean> | boolean {
-
-    // this.logger.info('ContactComponent: canDeactivate()');
-
-    if (!this.isDirty() && this.isValid()) {
-      return true;
-    }
-
-    return this.dialogService.openConfirm({
-      title: 'Contact',
-      message: 'Are you sure you want to leave this page?',
-      acceptButton: 'OK',
-      cancelButton: 'CANCEL'
-    }).afterClosed();
-
-  }
+  // public canDeactivate(): Observable<boolean> | boolean {
+  //   return super.canDeactivate();
+  // }
 
   public isDirty() {
 
@@ -240,7 +175,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
         this.logger.info('ContactComponent onDeactivate() response: true');
 
-        const subscription: Subscription = this.entityService.delete(this.partyId).subscribe(() => {
+        const subscription: Subscription = this.entityService.delete(this.id).subscribe(() => {
 
           subscription.unsubscribe();
           this.router.navigate([CONTACTS]);

@@ -96,10 +96,10 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.generalInformationModel = await this.dynamicFormService.getFormMetadata(ACCOUNT_GENERAL_INFORMATION_GROUP);
     this.generalInformationGroup = this.dynamicFormService.createGroup(this.generalInformationModel);
 
-    let modelSubscription: Subscription = new Subscription();
-    this.subscriptions.push(modelSubscription);
+    let entitySubscription: Subscription = new Subscription();
+    this.subscriptions.push(entitySubscription);
 
-    modelSubscription = this.entityService.findOne(this.partyId).subscribe(data => {
+    entitySubscription = this.entityService.findOne(this.partyId).subscribe(data => {
 
       this.logger.info('AccountComponent subscribe() data: ' + JSON.stringify(data));
 
