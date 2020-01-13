@@ -1,0 +1,42 @@
+[
+
+  {
+    "type": "input",
+    "id": "username",
+    "label": "Username",
+    "appearance": "outline",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a username"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1",
+    "required": true
+  },
+
+  {
+    "type": "input",
+    "id": "email",
+    "label": "Email",
+    "appearance": "outline",
+    "autocomplete": "email",
+
+    "validators": [
+      {
+        "name": "email",
+        "args": null,
+        "propertyName": "email",
+        "message": "Please enter a valid email address"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1-span-2",
+    "required": true
+  }
+
+]

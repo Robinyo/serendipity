@@ -4,15 +4,14 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Observable, Subscription } from 'rxjs';
 
+import { ItemComponent, SnackBarComponent } from 'serendipity-components';
 import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
-import { AccountsService } from '../../services/accounts/accounts.service';
 import { Account } from '../../models/account';
+import { AccountsService } from '../../services/accounts/accounts.service';
 
 import { ACCOUNTS } from '../../models/constants';
 import { ACCOUNT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
-
-import { ItemComponent, SnackBarComponent } from 'serendipity-components';
 
 @Component({
   selector: 'sales-account',

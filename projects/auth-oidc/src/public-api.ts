@@ -12,6 +12,7 @@ export * from './lib/providers';
 
 export * from './lib/http-interceptors/auth-interceptor';
 
-export * from './lib/models/models';
+export * from './lib/models/config';
+export * from './lib/models/user';
 
 export * from './lib/oidc-auth.module';

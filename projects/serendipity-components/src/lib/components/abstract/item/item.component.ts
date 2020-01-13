@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 
 import { LoggerService, StaticInjectorService } from 'utils';
+
 import { DialogService } from '../../../services/dialogs/dialog.service';
 
 export abstract class ItemComponent<T> implements OnInit, AfterViewInit, OnDestroy {

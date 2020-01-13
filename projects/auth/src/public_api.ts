@@ -8,6 +8,6 @@ export * from './lib/services/auth/auth.service';
 
 // export * from './lib/http-interceptors/noop-interceptor';
 
-export * from './lib/models/models';
+export * from './lib/models/user';
 
 export * from './lib/auth.module';

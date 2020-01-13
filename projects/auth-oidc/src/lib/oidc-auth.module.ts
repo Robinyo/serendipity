@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { OidcConfig } from './models/models';
+import { OidcConfig } from './models/config';
 import { OidcConfigService } from './services/config.service';
 
 import { AuthorizationCodeCallbackComponent } from './components/authorization-code-callback/authorization-code-callback.component';

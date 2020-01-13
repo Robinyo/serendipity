@@ -27,6 +27,12 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 import { SerendipityComponentsModule } from 'serendipity-components';
 
 //
+// Dynamic Forms lib
+//
+
+import { DynamicFormsModule } from 'dynamic-forms';
+
+//
 // Utils lib
 //
 
@@ -53,6 +59,7 @@ const components: any[] = [
     AngularMaterialModule,
     BrowserAnimationsModule,
     CommonModule,
+    DynamicFormsModule,
     FlexLayoutModule,
     HttpClientModule,
     QuillModule.forRoot(),

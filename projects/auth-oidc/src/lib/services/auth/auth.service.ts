@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { BehaviorSubject } from 'rxjs';
 
-import { OidcConfig } from '../../models/models';
+import { OidcConfig } from '../../models/config';
 import { OidcConfigService } from '../config.service';
 
 // http://www.typescriptlang.org/docs/handbook/namespaces-and-modules.html#introduction

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Observable, Subscription } from 'rxjs';
 
+import { ItemComponent, SnackBarComponent } from 'serendipity-components';
 import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
 import { Contact } from '../../models/contact';
@@ -11,8 +12,6 @@ import { ContactsService } from '../../services/contacts/contacts.service';
 
 import { CONTACTS } from '../../models/constants';
 import { CONTACT_ADDRESS_INFORMATION_GROUP, CONTACT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
-
-import { ItemComponent, SnackBarComponent } from 'serendipity-components';
 
 @Component({
   selector: 'sales-contact',
@@ -32,7 +31,6 @@ export class ContactComponent extends ItemComponent<Contact> {
               private dynamicFormService: DynamicFormService) {
 
     super(route);
-
   }
 
   protected async subscribe() {
