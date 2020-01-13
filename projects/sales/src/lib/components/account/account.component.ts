@@ -1,12 +1,8 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { Observable, Subscription } from 'rxjs';
-
-import { MatSnackBar } from '@angular/material';
-import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 
 import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
@@ -16,77 +12,23 @@ import { Account } from '../../models/account';
 import { ACCOUNTS } from '../../models/constants';
 import { ACCOUNT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
 
-import { DialogService } from 'serendipity-components';
-
-import { LoggerService } from 'utils';
-
-import {
-  NAVIGATION_BAR_HEIGHT_DESKTOP,
-  // NAVIGATION_BAR_HEIGHT_MOBILE,
-  COMMAND_BAR_HEIGHT_DESKTOP,
-  // COMMAND_BAR_HEIGHT_MOBILE,
-  VIEW_BAR_HEIGHT_DESKTOP,
-  // VIEW_BAR_HEIGHT_MOBILE,
-  MARGIN_DESKTOP,
-  // MARGIN_MOBILE,
-  // MAT_XSMALL
-} from '../../models/constants';
+import { ItemComponent, SnackBarComponent } from 'serendipity-components';
 
 @Component({
   selector: 'sales-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss']
 })
-export class AccountComponent implements OnInit, OnDestroy {
-
-  public containerHeight: number;
-
-  public partyId: string;
-  public item: Account;
-
-  protected subscriptions: Subscription[] = [];
-
-  @ViewChild('contentContainer', {static: true})
-  private itemContainer: ElementRef;
+export class AccountComponent extends ItemComponent<Account> {
 
   public generalInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];
   public generalInformationGroup: FormGroup;
 
-  // public addressInformationModel: DynamicFormModel; // DynamicFormControlModel[] = [];
-  // public addressInformationGroup: FormGroup;
-
-  private navBarHeight = NAVIGATION_BAR_HEIGHT_DESKTOP;
-  private cmdBarHeight = COMMAND_BAR_HEIGHT_DESKTOP;
-  private viewBarHeight = VIEW_BAR_HEIGHT_DESKTOP;
-  private margin = MARGIN_DESKTOP;
-
-  constructor(private route: ActivatedRoute,
-              private router: Router,
+  constructor(route: ActivatedRoute,
               private entityService: AccountsService,
-              private dynamicFormService: DynamicFormService,
-              private dialogService: DialogService,
-              private snackBar: MatSnackBar,
-              private logger: LoggerService) { }
+              private dynamicFormService: DynamicFormService) {
 
-  public ngOnInit() {
-
-    this.logger.info('AccountComponent: ngOnInit()');
-
-    this.containerHeight = this.itemContainer.nativeElement.offsetHeight -
-      (this.navBarHeight + this.cmdBarHeight + this.viewBarHeight + this.margin);
-
-    let paramSubscription: Subscription = new Subscription();
-    this.subscriptions.push(paramSubscription);
-
-    paramSubscription = this.route.paramMap.subscribe(params =>  {
-
-      this.partyId = params.get('id');
-      this.partyId = atob(this.partyId);
-
-      this.subscribe();
-
-    });
-
+    super(route);
   }
 
   async subscribe() {
@@ -99,7 +41,7 @@ export class AccountComponent implements OnInit, OnDestroy {
     let entitySubscription: Subscription = new Subscription();
     this.subscriptions.push(entitySubscription);
 
-    entitySubscription = this.entityService.findOne(this.partyId).subscribe(data => {
+    entitySubscription = this.entityService.findOne(this.id).subscribe(data => {
 
       this.logger.info('AccountComponent subscribe() data: ' + JSON.stringify(data));
 
@@ -109,24 +51,8 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   }
 
-  protected unsubscribe(): void {
-
-    this.logger.info('AccountComponent: unsubscribe()');
-
-    this.subscriptions.forEach(subscription => {
-      subscription.unsubscribe();
-    });
-
-  }
-
-  public ngOnDestroy() {
-
-    this.logger.info('AccountComponent: ngOnDestroy()');
-    this.unsubscribe();
-  }
-
   //
-  // Misc
+  // Validation
   //
 
   public canDeactivate(): Observable<boolean> | boolean {
@@ -263,6 +189,9 @@ export class AccountComponent implements OnInit, OnDestroy {
   private openSnackBar() {
 
     this.snackBar.openFromComponent(SnackBarComponent, {
+      data: {
+        message: 'Account saved'
+      },
       duration: 500,
       panelClass: 'crm-snack-bar'
     });

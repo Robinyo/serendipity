@@ -1,14 +1,16 @@
-import { AfterViewInit, Injector, OnDestroy, Type } from '@angular/core';
-import { Router } from '@angular/router';
+import { AfterViewInit, Injector, OnDestroy, OnInit, Type } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Observable, Subscription } from 'rxjs';
+
+import { MatSnackBar } from '@angular/material';
 
 import { TranslateService } from '@ngx-translate/core';
 
 import { LoggerService, StaticInjectorService } from 'utils';
 import { DialogService } from '../../../services/dialogs/dialog.service';
 
-export abstract class ItemComponent<T> implements AfterViewInit, OnDestroy {
+export abstract class ItemComponent<T> implements OnInit, AfterViewInit, OnDestroy {
 
   public id: string;
   public item: T;
@@ -16,20 +18,44 @@ export abstract class ItemComponent<T> implements AfterViewInit, OnDestroy {
   protected dialogService: DialogService;
   protected logger: LoggerService;
 
+  protected route: ActivatedRoute;
   protected router: Router;
+  protected snackBar: MatSnackBar;
   protected subscriptions: Subscription[] = [];
   protected translate: TranslateService;
 
-  constructor() {
+  constructor(route: ActivatedRoute) {
+
+    this.route = route;
 
     const injector: Injector = StaticInjectorService.getInjector();
 
     this.dialogService = injector.get<DialogService>(DialogService as Type<DialogService>);
     this.logger = injector.get<LoggerService>(LoggerService as Type<LoggerService>);
     this.router = injector.get<Router>(Router as Type<Router>);
+    this.snackBar = injector.get<MatSnackBar>(MatSnackBar as Type<MatSnackBar>);
     this.translate = injector.get<TranslateService>(TranslateService as Type<TranslateService>);
   }
 
+  public ngOnInit() {
+
+    this.logger.info('ItemComponent: ngOnInit()');
+
+    let paramSubscription: Subscription = new Subscription();
+    this.subscriptions.push(paramSubscription);
+
+    paramSubscription = this.route.paramMap.subscribe(params =>  {
+
+      this.id = params.get('id');
+      this.id = atob(this.id);
+
+      this.logger.info('id: ' + this.id);
+
+      this.subscribe();
+
+    });
+
+  }
 
   protected async abstract subscribe();
 
@@ -65,53 +91,9 @@ export abstract class ItemComponent<T> implements AfterViewInit, OnDestroy {
   // Validation
   //
 
-  public canDeactivate(): Observable<boolean> | boolean {
-
-    // this.logger.info('ItemComponent: canDeactivate()');
-
-    if (!this.isDirty() && this.isValid()) {
-      return true;
-    }
-
-    return this.dialogService.openConfirm({
-      title: 'Item',
-      message: 'Are you sure you want to leave this page?',
-      acceptButton: 'OK',
-      cancelButton: 'CANCEL'
-    }).afterClosed();
-
-  }
-
+  public abstract canDeactivate(): Observable<boolean> | boolean ;
   public abstract isDirty();
   public abstract isValid();
   public abstract markAsPristine();
 
 }
-
-/*
-
-  // protected route: ActivatedRoute;
-
-  // this.route = injector.get<ActivatedRoute>(ActivatedRoute as Type<ActivatedRoute>);
-
-public ngOnInit() {
-
-  this.logger.info('ItemComponent: ngOnInit()');
-
-  let paramSubscription: Subscription = new Subscription();
-  this.subscriptions.push(paramSubscription);
-
-  paramSubscription = this.route.paramMap.subscribe(params =>  {
-
-    this.id = params.get('id');
-    this.id = atob(this.id);
-
-    this.logger.info('id: ' + this.id);
-
-    this.subscribe();
-
-  });
-
-}
-
-*/

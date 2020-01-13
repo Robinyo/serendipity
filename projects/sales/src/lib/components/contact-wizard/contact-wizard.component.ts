@@ -11,7 +11,7 @@ import { Observable, Subscription } from 'rxjs';
 
 import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService} from 'dynamic-forms';
 
-import { DialogService } from 'serendipity-components';
+import { DialogService, SnackBarComponent } from 'serendipity-components';
 
 import { LoggerService } from 'utils';
 
@@ -21,7 +21,6 @@ import { Address } from '../../models/address';
 import { Contact } from '../../models/contact';
 
 import { ContactsService } from '../../services/contacts/contacts.service';
-import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 
 @Component({
   selector: 'sales-contact-wizard',
@@ -231,6 +230,9 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
   private openSnackBar() {
 
     this.snackBar.openFromComponent(SnackBarComponent, {
+      data: {
+        message: 'Contact saved'
+      },
       duration: 500,
       panelClass: 'crm-snack-bar'
     });

@@ -16,7 +16,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { ContactWizardComponent } from './components/contact-wizard/contact-wizard.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EmailComponent } from './components/email/email.component';
-import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
+// import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 
 //
@@ -88,11 +88,11 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
     ContactWizardComponent,
     EmailComponent,
     DashboardComponent,
-    SnackBarComponent,
+    // SnackBarComponent,
     TasksComponent
   ],
   entryComponents: [
-    SnackBarComponent
+    // SnackBarComponent
   ]
 })
 export class SalesModule {

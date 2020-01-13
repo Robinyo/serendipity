@@ -1,28 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { Subscription } from 'rxjs';
-
-import { MatSnackBar } from '@angular/material';
-import { SnackBarComponent } from '../snack-bar/snack-bar.component';
+import { Observable, Subscription } from 'rxjs';
 
 import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 
-import { ContactsService } from '../../services/contacts/contacts.service';
 import { Contact } from '../../models/contact';
+import { ContactsService } from '../../services/contacts/contacts.service';
 
 import { CONTACTS } from '../../models/constants';
 import { CONTACT_ADDRESS_INFORMATION_GROUP, CONTACT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
 
-import { ItemComponent } from 'serendipity-components';
+import { ItemComponent, SnackBarComponent } from 'serendipity-components';
 
 @Component({
   selector: 'sales-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent extends ItemComponent<Contact> implements OnInit {
+export class ContactComponent extends ItemComponent<Contact> {
 
   public generalInformationModel: DynamicFormModel;
   public generalInformationGroup: FormGroup;
@@ -30,28 +27,11 @@ export class ContactComponent extends ItemComponent<Contact> implements OnInit {
   public addressInformationModel: DynamicFormModel;
   public addressInformationGroup: FormGroup;
 
-  constructor(private entityService: ContactsService,
-              private dynamicFormService: DynamicFormService,
-              private route: ActivatedRoute,
-              private snackBar: MatSnackBar) {
-    super();
-  }
+  constructor(route: ActivatedRoute,
+              private entityService: ContactsService,
+              private dynamicFormService: DynamicFormService) {
 
-  public ngOnInit() {
-
-    let paramSubscription: Subscription = new Subscription();
-    this.subscriptions.push(paramSubscription);
-
-    paramSubscription = this.route.paramMap.subscribe(params =>  {
-
-      this.id = params.get('id');
-      this.id = atob(this.id);
-
-      // this.logger.info('id: ' + this.id);
-
-      this.subscribe();
-
-    });
+    super(route);
 
   }
 
@@ -83,9 +63,22 @@ export class ContactComponent extends ItemComponent<Contact> implements OnInit {
   // Validation
   //
 
-  // public canDeactivate(): Observable<boolean> | boolean {
-  //   return super.canDeactivate();
-  // }
+  public canDeactivate(): Observable<boolean> | boolean {
+
+    // this.logger.info('ContactComponent: canDeactivate()');
+
+    if (!this.isDirty() && this.isValid()) {
+      return true;
+    }
+
+    return this.dialogService.openConfirm({
+      title: 'Contact',
+      message: 'Are you sure you want to leave this page?',
+      acceptButton: 'OK',
+      cancelButton: 'CANCEL'
+    }).afterClosed();
+
+  }
 
   public isDirty() {
 
@@ -221,6 +214,9 @@ export class ContactComponent extends ItemComponent<Contact> implements OnInit {
   private openSnackBar() {
 
     this.snackBar.openFromComponent(SnackBarComponent, {
+      data: {
+        message: 'Contact saved'
+      },
       duration: 500,
       panelClass: 'crm-snack-bar'
     });

@@ -10,6 +10,7 @@ export * from './lib/components/dialogs/confirm-dialog/confirm-dialog.component'
 
 export * from './lib/components/abstract/collection/collection.component';
 export * from './lib/components/abstract/item/item.component';
+export * from './lib/components/snack-bar/snack-bar.component';
 
 export * from './lib/services/sidenav/sidenav.service';
 export * from './lib/services/dialogs/dialog.service';
