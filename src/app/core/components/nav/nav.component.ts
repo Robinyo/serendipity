@@ -36,12 +36,12 @@ export class NavComponent implements OnInit, OnDestroy {
 
   protected subscription: Subscription;
 
-  constructor(private commandBarSidenavService: SidenavService,
-              private dashboardService: MockDashboardService,
-              private authService: AuthService,
+  constructor(private authService: AuthService,
+              private commandBarSidenavService: SidenavService,
               private configService: ConfigService,
-              private translate: TranslateService,
-              private logger: LoggerService) {}
+              private dashboardService: MockDashboardService,
+              private logger: LoggerService,
+              private translate: TranslateService) {}
 
   public ngOnInit(): void {
 

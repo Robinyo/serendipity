@@ -24,6 +24,7 @@ import { LoggerService } from 'utils';
              [autocomplete]="model.autocomplete"
              [formControlName]="model.id"
              [placeholder]="model.placeholder"
+             [readonly]="model.readonly"
              [required]="model.required"
              [type]="model.inputType"/>
 

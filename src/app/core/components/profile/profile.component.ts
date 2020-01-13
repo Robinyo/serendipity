@@ -5,22 +5,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Observable, Subscription } from 'rxjs';
 
-import {
-  NAVIGATION_BAR_HEIGHT_DESKTOP,
-  NAVIGATION_BAR_HEIGHT_MOBILE,
-  COMMAND_BAR_HEIGHT_DESKTOP,
-  COMMAND_BAR_HEIGHT_MOBILE,
-  VIEW_BAR_HEIGHT_DESKTOP,
-  VIEW_BAR_HEIGHT_MOBILE,
-  MARGIN_DESKTOP,
-  MARGIN_MOBILE,
-  DialogService
-} from 'serendipity-components';
-import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'dynamic-forms';
+import { MatSnackBar } from '@angular/material';
 
-import { PROFILE_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
+import { AuthService } from 'auth';
+
+import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'dynamic-forms';
+import { DialogService, SnackBarComponent } from 'serendipity-components';
 
 import { LoggerService } from 'utils';
+
+import { PROFILE_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
 
 @Component({
   selector: 'crm-profile',
@@ -41,13 +35,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
   @ViewChild('contentContainer', {static: true})
   private itemContainer: ElementRef;
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
+  constructor(private authService: AuthService,
               private breakpointObserver: BreakpointObserver,
               private dialogService: DialogService,
-              // private entityService: UsersService,
               private dynamicFormService: DynamicFormService,
-              private logger: LoggerService) {}
+              // private entityService: UsersService,
+              private logger: LoggerService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private snackBar: MatSnackBar) {}
 
   public ngOnInit() {
 
@@ -64,10 +60,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.generalInformationModel = await this.dynamicFormService.getFormMetadata(PROFILE_GENERAL_INFORMATION_GROUP);
     this.generalInformationGroup = this.dynamicFormService.createGroup(this.generalInformationModel);
 
+    /*
+
+    const profile = this.authService.getCurrentUser();
+
     this.item = {
       username: 'rob.ferguson',
       email: 'rob.ferguson@robferguson.org'
     };
+
+    */
+
+    this.item = this.authService.getCurrentUser();
 
     this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
   }
@@ -122,14 +126,38 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     // this.logger.info('ProfileComponent - isDirty()');
 
-    return false;
+    let dirty = false;
+
+    if (this.generalInformationGroup && this.generalInformationGroup.dirty) {
+      dirty = true;
+    }
+
+    return dirty;
   }
 
   public isValid() {
 
     // this.logger.info('ProfileComponent - isValid()');
 
-    return true;
+    let valid = false;
+
+    if (this.generalInformationGroup && this.generalInformationGroup.valid) {
+
+      valid = true;
+
+    }
+
+    return valid;
+  }
+
+  public markAsPristine() {
+
+    // this.logger.info('ProfileComponent - markAsPristine()');
+
+    if (this.generalInformationGroup) {
+      this.generalInformationGroup.markAsPristine();
+    }
+
   }
 
   //
@@ -175,11 +203,40 @@ export class ProfileComponent implements OnInit, OnDestroy {
   // Misc
   //
 
+  private openSnackBar() {
+
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      data: {
+        message: 'Profile updated'
+      },
+      duration: 500,
+      panelClass: 'crm-snack-bar'
+    });
+
+  }
+
   private update() {
 
-    this.logger.info('ProfileComponent: onSaveAndClose()');
+    this.logger.info('ProfileComponent: update()');
 
-    // this.markAsPristine();
+    this.markAsPristine();
   }
 
 }
+
+/*
+
+import {
+  NAVIGATION_BAR_HEIGHT_DESKTOP,
+  NAVIGATION_BAR_HEIGHT_MOBILE,
+  COMMAND_BAR_HEIGHT_DESKTOP,
+  COMMAND_BAR_HEIGHT_MOBILE,
+  VIEW_BAR_HEIGHT_DESKTOP,
+  VIEW_BAR_HEIGHT_MOBILE,
+  MARGIN_DESKTOP,
+  MARGIN_MOBILE,
+  DialogService,
+  SnackBarComponent
+} from 'serendipity-components';
+
+*/

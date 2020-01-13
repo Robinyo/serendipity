@@ -92,7 +92,18 @@ export class OidcAuthService extends Auth {
   }
 
   public getCurrentUser(): any {
-    return this.currentUser;
+
+    return {
+      sub: this.currentUser.profile.sub,
+      username: this.currentUser.profile.preferred_username,
+      name: this.currentUser.profile.name,
+      givenName: this.currentUser.profile.given_name,
+      middleName: '',
+      familyName: this.currentUser.profile.family_name,
+      email: this.currentUser.profile.email,
+      emailVerified: this.currentUser.profile.email_verified
+    };
+    // return this.currentUser;
     // return this.currentUser.profile;
   }
 
@@ -131,6 +142,7 @@ export class OidcAuthService extends Auth {
     this.authState$.next(this.authenticated);
 
     this.router.navigate(['/']);
+    // this.router.navigate(['/users/profile']);
   }
 
   public logout(returnUrl: string) {

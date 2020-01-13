@@ -39,6 +39,7 @@ export interface DynamicFormControlModelConfig {
   name?: string;                   // "givenName"
   placeholder?: string;            // "Given Name"
   prefixIconName?: string;
+  readonly?: boolean;              // false
   required?: boolean;              // false
   suffixIconName?: string;
 
@@ -65,6 +66,7 @@ export class DynamicFormControlModel {
   name?: string;                   // "givenName"
   placeholder?: string;            // "Given Name"
   prefixIconName?: string;
+  readonly?: boolean;              // false
   required?: boolean;              // false
   suffixIconName?: string;
 
@@ -85,6 +87,7 @@ export class DynamicFormControlModel {
     this.name = config.name || config.id;
     this.placeholder = config.placeholder || config.label;
     this.prefixIconName = config.prefixIconName || null;
+    this.readonly = config.readonly || false;
     this.required = config.required || false;
     this.suffixIconName = config.suffixIconName || null;
 

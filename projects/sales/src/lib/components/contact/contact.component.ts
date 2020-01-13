@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Observable, Subscription } from 'rxjs';
 
-import { ItemComponent, SnackBarComponent } from 'serendipity-components';
 import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'dynamic-forms';
+import { ItemComponent, SnackBarComponent } from 'serendipity-components';
 
 import { Contact } from '../../models/contact';
 import { ContactsService } from '../../services/contacts/contacts.service';
