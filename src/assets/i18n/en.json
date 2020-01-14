@@ -73,6 +73,8 @@
   "SUMMARY_TAB": "Summary",
   "DETAILS_TAB": "Details",
   "RELATED_TAB": "Related",
-  "YOUR_INFORMATION_TAB": "Your Information"
+  "YOUR_INFORMATION_TAB": "Your Information",
+
+  "CHANGE_PASSWORD": "CHANGE PASSWORD"
 
 }

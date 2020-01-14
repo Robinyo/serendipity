@@ -173,6 +173,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
     // this.logger.info('event: ' + JSON.stringify(event));
   }
 
+  public onChangePassword() {
+
+    this.logger.info('ProfileComponent: onResetPassword()');
+
+    window.open('http://localhost:10001/auth/realms/development/account/password/', '_blank');
+  }
+
   public onSave() {
 
     this.logger.info('ProfileComponent: onSave()');

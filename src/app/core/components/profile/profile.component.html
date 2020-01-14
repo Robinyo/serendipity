@@ -1,9 +1,14 @@
 <crm-command-bar>
 
-  <!--
-
   <ng-container>
 
+
+    <button mat-button class="crm-command-bar-button"
+            (click)="onChangePassword()">
+      <mat-icon>vpn_key</mat-icon>
+      {{ 'CHANGE_PASSWORD' | translate }}
+    </button>
+    <!--
     <button mat-button class="crm-command-bar-button"
             [disabled]="!isDirty() || !isValid()"
             (click)="onSave()">
@@ -17,10 +22,11 @@
       <mat-icon>arrow_back</mat-icon>
       {{ 'SAVE_AND_CLOSE' | translate }}
     </button>
+    -->
 
   </ng-container>
 
-  -->
+
 
   <div fxFlex fxLayout fxLayoutAlign="flex-end">
 
@@ -74,38 +80,6 @@
               <!--
               <p>
                 Form Value: {{ generalInformationGroup.value | json }}
-              </p>
-              -->
-
-            </mat-card-content>
-
-          </mat-card>
-
-          <mat-card>
-
-            <!--
-            <mat-card-header>
-              <mat-card-title>
-                Address Information
-              </mat-card-title>
-            </mat-card-header>
-            -->
-
-            <mat-card-content>
-
-              <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
-
-              <!--
-              <dynamic-form autocomplete="off"
-                            className="crm-nested-grid-container"
-                            [formGroup]="addressInformationGroup"
-                            [model]="addressInformationModel">
-              </dynamic-form>
-              -->
-
-              <!--
-              <p>
-                Form Value: {{ addressInformationGroup.value | json }}
               </p>
               -->
 
