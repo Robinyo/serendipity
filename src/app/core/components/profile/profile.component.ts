@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 import { MatSnackBar } from '@angular/material';
 
@@ -39,8 +39,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
               private breakpointObserver: BreakpointObserver,
               private dialogService: DialogService,
               private dynamicFormService: DynamicFormService,
-              // private entityService: UsersService,
               private logger: LoggerService,
+
               private route: ActivatedRoute,
               private router: Router,
               private snackBar: MatSnackBar) {}
@@ -59,17 +59,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     this.generalInformationModel = await this.dynamicFormService.getFormMetadata(PROFILE_GENERAL_INFORMATION_GROUP);
     this.generalInformationGroup = this.dynamicFormService.createGroup(this.generalInformationModel);
-
-    /*
-
-    const profile = this.authService.getCurrentUser();
-
-    this.item = {
-      username: 'rob.ferguson',
-      email: 'rob.ferguson@robferguson.org'
-    };
-
-    */
 
     this.item = this.authService.getCurrentUser();
 
@@ -225,6 +214,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
 }
 
 /*
+
+import { ProfileService } from '../../services/profile/profile.service';
+
+private profileService: ProfileService,
+
+this.profileService.resetPassword(this.item.id, 'NoMoreSecrets');
 
 import {
   NAVIGATION_BAR_HEIGHT_DESKTOP,

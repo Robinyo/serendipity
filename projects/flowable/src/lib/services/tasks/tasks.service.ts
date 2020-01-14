@@ -113,6 +113,7 @@ export class TasksService extends CollectionService {
       throw error;
 
     });
+
   }
 
   public getForm(taskId: string): Promise<any> {

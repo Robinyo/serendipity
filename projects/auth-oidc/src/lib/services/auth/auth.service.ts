@@ -94,6 +94,7 @@ export class OidcAuthService extends Auth {
   public getCurrentUser(): any {
 
     return {
+      id: this.currentUser.profile.sub,
       sub: this.currentUser.profile.sub,
       username: this.currentUser.profile.preferred_username,
       name: this.currentUser.profile.name,

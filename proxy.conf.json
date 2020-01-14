@@ -13,6 +13,11 @@
       "Authorization": "Basic Zmxvd2FibGUtcmVzdDp0ZXN0"
     }
   },
+  "/auth/admin": {
+    "target": "http://localhost:10001",
+    "secure": false,
+    "logLevel": "debug"
+  },
   "/api": {
     "target": "http://localhost:3001",
     "secure": false,
