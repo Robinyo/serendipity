@@ -319,6 +319,7 @@ docker run -d --name flowable \
 * Rob Ferguson's blog: [How To: Build Flowable](https://robferguson.org/blog/2019/01/05/how-to-build-flowable/)
 * Rob Ferguson's blog: [How To: Flowable and LDAP](https://robferguson.org/blog/2019/01/28/how-to-flowable-and-ldap/)
 * Rob Ferguson's blog: [Keycloak, Flowable and OpenLDAP](https://robferguson.org/blog/2020/01/03/keycloak-flowable-and-openldap/)
+* Rob Ferguson's blog: [Flowable OAuth2 Resource Server](https://robferguson.org/blog/2020/02/05/flowable-oauth2-resource-server/)
 
 ### Step 6: Serve the application's API 
 

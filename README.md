@@ -120,7 +120,7 @@ Tasks:
 
 #### OpenID Connect (OIDC)
 
-OpenID Connect Auth library ([auth-oidc](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc))
+OpenID Connect (OIDC) Auth library ([auth-oidc](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc))
 
 Register page:
 
@@ -168,15 +168,14 @@ In German (Auf Deutsch):
 
 ## ❯ Roadmap
 
-Use TypeScript, Node.js, Express and TypeORM to build a [RESTful API](https://github.com/Robinyo/serendipity-api) for Serendipity:
+* [Express & TypeORM](https://github.com/Robinyo/serendipity-api/tree/master/projects/express-typeorm): 
+  Use TypeScript, Express and TypeORM to build a RESTful API for Serendipity CEP
+* [Spring Boot & Hibernate](https://github.com/Robinyo/serendipity-api/tree/master/projects/spring-boot): 
+  Use Java, Spring Boot and Hibernate to build a RESTful API for Serendipity CEP
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/redoc.png">
 </p>
-
-Serendipity is a [progressive web application](https://developers.google.com/web/progressive-web-apps/) (PWA) with a [RESTful API](https://github.com/Robinyo/serendipity-api) that can be hosted on premise or in the cloud.
-
-You can customise and extend Serendipity using Angular, Angular libraries and Serendipity's [plugin](docs/developer.md) framework.
 
 ![divider](./divider.png)
 
@@ -201,5 +200,6 @@ You can customise and extend Serendipity using Angular, Angular libraries and Se
 * Rob Ferguson's blog: [Angular, OpenID Connect and Keycloak](https://robferguson.org/blog/2019/12/29/angular-openid-connect-keycloak/)
 * Rob Ferguson's blog: [Angular, OAuth 2.0 and Keycloak](https://robferguson.org/blog/2019/12/31/angular-oauth2-keycloak/)
 * Rob Ferguson's blog: [Keycloak, Flowable and OpenLDAP](https://robferguson.org/blog/2020/01/03/keycloak-flowable-and-openldap/)
+* Rob Ferguson's blog: [Flowable OAuth2 Resource Server](https://robferguson.org/blog/2020/02/05/flowable-oauth2-resource-server/)
 
 ![divider](./divider.png)
