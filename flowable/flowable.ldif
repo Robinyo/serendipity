@@ -34,18 +34,13 @@ objectClass: top
 
 # Actual users
 
-dn: cn=Flowable, ou=users,dc=flowable,dc=org
+# dn: cn=Flowable, ou=users,dc=flowable,dc=org
+dn: cn=Administrator, ou=users,dc=flowable,dc=org
 objectclass: inetOrgPerson
-cn: Flowable
-sn: Administrator
+# cn: Flowable
+cn: Administrator
+# sn: Administrator
+sn:
+mail: admin@serendipity.org.au
 uid: flowable
-userPassword:: dGVzdA==
-
-# REST API Basic Auth user
-
-dn: cn=Flowable Rest API, ou=users,dc=flowable,dc=org
-objectclass: inetOrgPerson
-cn: Flowable Rest API
-sn: Administrator
-uid: flowable-rest
-userPassword:: dGVzdA==
+userPassword: c2VjcmV0

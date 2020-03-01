@@ -53,7 +53,7 @@ docker run --detach --name openldap \
   --env LDAP_ORGANISATION="flowable" \
   --env LDAP_DOMAIN="flowable.org" \
   --env LDAP_ADMIN_PASSWORD="secret" \
-  osixia/openldap:1.2.3
+  osixia/openldap:1.3.0
 ```
 
 When you run the image it will create the organisation (flowable), create the domain (flowable.org) and set the LDAP administrator's password (secret).
@@ -112,7 +112,7 @@ docker run -d --name keycloak \
   -v ~/workspace/Robinyo/serendipity:/serendipity \
   -e KEYCLOAK_USER=admin \
   -e KEYCLOAK_PASSWORD=secret \
-  jboss/keycloak
+  jboss/keycloak:9.0.0
 ```
 
 When you run the image it will create the Master realm's Admin (admin) user and password (secret).
