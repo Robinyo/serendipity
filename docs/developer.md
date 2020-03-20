@@ -44,7 +44,7 @@ cd serendipity
 To launch OpenLDAP:
 
 ```
-# docker pull osixia/openldap
+# docker pull osixia/openldap:1.3.0
 
 docker run --detach --name openldap \
   --publish 10389:389 \
@@ -105,7 +105,7 @@ Authentication settings:
 To launch Keycloak:
 
 ```
-# docker pull jboss/keycloak
+# docker pull jboss/keycloak:9.0.0
 
 docker run -d --name keycloak \
   -p 10001:8080 \
@@ -266,12 +266,12 @@ docker exec -it keycloak /opt/jboss/keycloak/bin/standalone.sh \
 To launch the flowable/all-in-one image:
 
 ```
-# docker pull flowable/all-in-one
+# docker pull flowable/all-in-one:6.5.0
 
 docker run -d --name flowable \
   -p 8080:8080 \
   --env-file ./ldap-env.txt \
-  flowable/all-in-one
+  flowable/all-in-one:6.5.0
 ```
 
 We can use an environment file ([ldap-env.txt](https://github.com/Robinyo/serendipity/blob/master/ldap-env.txt)) to pass properties to the Docker container.

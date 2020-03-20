@@ -24,4 +24,7 @@ cn: Administrator
 sn:
 mail: admin@serendipity.org.au
 uid: flowable
-userPassword: c2VjcmV0
+userPassword: dGVzdA==
+
+--
+

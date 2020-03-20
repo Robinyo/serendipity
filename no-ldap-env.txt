@@ -1,22 +1,4 @@
 #
-# Relaxed Binding (Externalised Configuration)
-#
-# Property	                          Note
-# acme.my-project.person.first-name   Kebab case, which is recommended for use in .properties and .yml files.
-# acme.myProject.person.firstName     Standard camel case syntax.
-# acme.my_project.person.first_name   Underscore notation, which is an alternative format for use in .properties and .yml files.
-# ACME_MYPROJECT_PERSON_FIRSTNAME     Upper case format, which is recommended when using system environment variables.
-#
-# See: https://docs.spring.io/spring-boot/docs/2.0.7.RELEASE/reference/html/boot-features-external-config.html#boot-features-external-config-relaxed-binding
-
-# Ref: https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html
-# Ref: https://github.com/flowable/flowable-engine/blob/master/modules/flowable-app-rest/src/main/resources/flowable-default.properties
-# Ref: https://github.com/flowable/flowable-engine/blob/master/modules/flowable-ui-idm/flowable-ui-idm-app/src/main/resources/flowable-default.properties
-# Ref: https://flowable.com/open-source/docs/bpmn/ch15-REST/
-
-# Note: UPPER_CASE_FORMAT is recommended when using system environment variables.
-
-#
 # DEFAULT ADMINISTRATOR ACCOUNTS
 #
 
@@ -28,59 +10,3 @@ FLOWABLE_IDM_APP_ADMIN_EMAIL=admin@flowable.org
 
 FLOWABLE_COMMON_APP_IDM_ADMIN_USER=flowable
 FLOWABLE_COMMON_APP_IDM_ADMIN_PASSWORD=test
-
-#
-# DEFAULT REST API ACCOUNTS - See: https://flowable.com/open-source/docs/bpmn/ch15-REST/
-#
-
-# flowable.rest.app.admin.user-id=rest-admin
-# flowable.rest.app.admin.password=test
-# flowable.rest.app.admin.first-name=Rest
-# flowable.rest.app.admin.last-name=Admin
-
-#
-# DEFAULT REST API ACCOUNTS - See: https://github.com/flowable/flowable-engine/blob/master/modules/flowable-app-rest/src/main/resources/flowable-default.properties
-#
-
-# flowable.rest.app.admin.user-id=rest-admin
-# flowable.rest.app.admin.password=test
-# flowable.rest.app.admin.firstname=Rest
-# flowable.rest.app.admin.lastname=Admin
-
-#
-# DEFAULT REST API ACCOUNTS
-#
-
-# FLOWABLE_REST_APP_ADMIN_USERID=flowable-rest
-# FLOWABLE_REST_APP_ADMIN_PASSWORD=test
-# FLOWABLE_REST_APP_ADMIN_FIRSTNAME=Flowable Rest API
-# FLOWABLE_REST_APP_ADMIN_LASTNAME=Administrator
-
-# FLOWABLE_REST_APP_ADMIN_USER_ID=flowable-rest
-# FLOWABLE_REST_APP_ADMIN_PASSWORD=test
-# FLOWABLE_REST_APP_ADMIN_FIRST_NAME=Flowable Rest API
-# FLOWABLE_REST_APP_ADMIN_LAST_NAME=Administrator
-
-# https://unix.stackexchange.com/questions/23659/can-shell-variable-name-include-a-hyphen-or-dash
-# https://github.com/gliderlabs/docker-alpine/issues/290
-
-#
-# MISC
-#
-
-# https://github.com/flowable/flowable-engine/issues/1958#issuecomment-571569786
-# -e "spring.datasource.url=jdbc:h2:~/flowable-db/db;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9091;DB_CLOSE_DELAY=-1"
-
-# SPRING_DATASOURCE_URL=jdbc:h2:~/flowable-db/db
-# AUTO_SERVER=TRUE
-# AUTO_SERVER_PORT=9091
-# DB_CLOSE_DELAY=-1
-
-# HTTP Status 404 – Not Found
-# Type Status Report
-#
-# Message /flowable-idm
-#
-# Description The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.
-#
-# Apache Tomcat/9.0.14
