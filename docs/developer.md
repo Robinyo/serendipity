@@ -105,14 +105,14 @@ Authentication settings:
 To launch Keycloak:
 
 ```
-# docker pull jboss/keycloak:9.0.0
+# docker pull jboss/keycloak:9.0.2
 
 docker run -d --name keycloak \
   -p 10001:8080 \
   -v ~/workspace/Robinyo/serendipity:/serendipity \
   -e KEYCLOAK_USER=admin \
   -e KEYCLOAK_PASSWORD=secret \
-  jboss/keycloak:9.0.0
+  jboss/keycloak:9.0.2
 ```
 
 When you run the image it will create the Master realm's Admin (admin) user and password (secret).

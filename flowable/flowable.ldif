@@ -20,8 +20,8 @@ objectClass: top
 
 dn: cn=Administrator, ou=users,dc=flowable,dc=org
 objectclass: inetOrgPerson
-cn: Administrator
-sn:
+cn: Flowable
+sn: Administrator
 mail: admin@serendipity.org.au
 uid: flowable
 userPassword: dGVzdA==
