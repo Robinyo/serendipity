@@ -107,7 +107,7 @@ To launch Keycloak:
 ```
 # docker pull jboss/keycloak:9.0.2
 
-docker run -d --name keycloak \
+docker container run -d --name keycloak \
   -p 10001:8080 \
   -v ~/workspace/Robinyo/serendipity:/serendipity \
   -e KEYCLOAK_USER=admin \
@@ -260,6 +260,7 @@ docker exec -it keycloak /opt/jboss/keycloak/bin/standalone.sh \
 * Rob Ferguson's blog: [Angular, OpenID Connect and Keycloak](https://robferguson.org/blog/2019/12/29/angular-openid-connect-keycloak/)
 * Rob Ferguson's blog: [Angular, OAuth 2.0 and Keycloak](https://robferguson.org/blog/2019/12/31/angular-oauth2-keycloak/)
 * Rob Ferguson's blog: [Keycloak, Flowable and OpenLDAP](https://robferguson.org/blog/2020/01/03/keycloak-flowable-and-openldap/)
+* Rob Ferguson's blog: [Keycloak Themes - Part 1](https://robferguson.org/blog/2020/04/12/keycloak-themes-part-1/)
 
 ### Step 5: Launch Flowable 
 
@@ -268,7 +269,7 @@ To launch the flowable/all-in-one image:
 ```
 # docker pull flowable/all-in-one:6.5.0
 
-docker run -d --name flowable \
+docker container run -d --name flowable \
   -p 8080:8080 \
   --env-file ./ldap-env.txt \
   flowable/all-in-one:6.5.0
@@ -304,7 +305,7 @@ Follow the steps in this [post](https://robferguson.org/blog/2019/01/05/how-to-b
 To launch the flowable/all-in-one SNAPSHOT image:
 
 ```
-docker run -d --name flowable \
+docker container run -d --name flowable \
   -p 8080:8080 \
   --env-file ./ldap-env.txt \
   flowable/all-in-one:6.5.0.event-SNAPSHOT
