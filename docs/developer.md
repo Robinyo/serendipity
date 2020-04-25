@@ -29,7 +29,7 @@ The [Angular CLI](https://cli.angular.io/) is a command line tool that you can u
 Change the current working directory to the location where you want the cloned directory to be:
 
 ```
-cd ~/workspaces
+cd ~/workspace
 ```
 
 Clone the project by running the following command:
