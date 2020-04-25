@@ -33,7 +33,7 @@ cd serendipity
 
 ### Step 3: Serve the application's API 
 
-Follow the steps in the Serendipity API's [Quick Start](https://github.com/Robinyo/serendipity-api/blob/master/projects/spring-boot/docs/developer.md) Guide.
+Follow the steps in the Serendipity API's [Quick Start](https://github.com/Robinyo/serendipity-api/blob/master/projects/spring-boot/docs/developer/quick-start-guide.md) Guide.
 
 ### Step 4: Serve the application 
 
