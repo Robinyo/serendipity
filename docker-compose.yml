@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  openldap:
+    container_name: openldap
+    build:
+      context: ./services/openldap
+      dockerfile: Dockerfile
+    env_file: ./services/openldap/openldap.env
+    ports:
+      - "389:389"

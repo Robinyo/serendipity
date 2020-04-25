@@ -1,8 +1,0 @@
-# Actual users
-
-dn: cn=Flowable, ou=users,dc=flowable,dc=org
-objectclass: inetOrgPerson
-cn: Flowable
-sn: Administrator
-uid: flowable
-userPassword:: test
