@@ -76,7 +76,7 @@ Login page:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-login.png">
 </p>
 
-![divider](../divider.png)
+![divider](../../divider.png)
 
 ## ❯ Docker Commands
 
@@ -181,4 +181,4 @@ Where is your image? It’s in your machine’s local Docker image registry:
 docker image ls
 ```
 
-![divider](../divider.png)
+![divider](../../divider.png)
