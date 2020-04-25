@@ -1,6 +1,6 @@
 <h1 align="center">Quick Start</h1>
 
-## ❯ Step 1: Set up the Development Environment
+### Step 1: Set up the Development Environment
 
 You need to set up your development environment before you can do anything.
 
@@ -16,7 +16,7 @@ npm install -g @angular/cli
 
 The [Angular CLI](https://cli.angular.io/) is a command line tool that you can use to create the scaffolding for a new project, add files to a project and perform a variety of common development tasks.
 
-## ❯ Step 2: Clone the project 
+### Step 2: Clone the project 
 
 Change the current working directory to the location where you want the cloned directory to be:
 
@@ -31,11 +31,11 @@ git clone https://github.com/Robinyo/serendipity
 cd serendipity
 ```
 
-## ❯ Step 3: Serve the application's API 
+### Step 3: Serve the application's API 
 
 Follow the steps in the Serendipity API's [Quick Start](https://github.com/Robinyo/serendipity-api/blob/master/projects/spring-boot/docs/developer.md) Guide.
 
-## ❯ Step 4: Serve the application 
+### Step 4: Serve the application 
 
 Install the project's dependencies and launch the application:
 
