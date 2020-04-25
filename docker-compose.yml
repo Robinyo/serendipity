@@ -9,3 +9,12 @@ services:
     env_file: ./services/openldap/openldap.env
     ports:
       - "389:389"
+
+  keycloak:
+    container_name: keycloak
+    build:
+      context: ./services/keycloak
+      dockerfile: Dockerfile
+    env_file: ./services/keycloak/keycloak.env
+    ports:
+      - "10001:8080"

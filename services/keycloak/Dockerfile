@@ -1,4 +1,12 @@
-# I prefer to name a specific version, rather than use one of the ‘floating’ tags
-FROM jboss/keycloak:9.0.2
+FROM jboss/keycloak:9.0.3
 
-ADD ./standalone-ha.xml /opt/jboss/keycloak/standalone/configuration/standalone-ha.xml
+ENV THEME_VERSION 1.0
+
+USER root
+
+RUN microdnf install -y unzip
+
+COPY ./serendipity-keycloak-theme-$THEME_VERSION.zip /opt/jboss/keycloak/themes/
+RUN cd /opt/jboss/keycloak/themes/ && \
+    unzip serendipity-keycloak-theme-$THEME_VERSION.zip && \
+    rm serendipity-keycloak-theme-$THEME_VERSION.zip
