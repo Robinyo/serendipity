@@ -25,3 +25,11 @@ sn: Administrator
 mail: admin@serendipity.org.au
 uid: flowable
 userPassword: dGVzdA==
+
+# dn: cn=Basic Auth, ou=users,dc=flowable,dc=org
+# objectclass: inetOrgPerson
+# cn: Basic
+# sn: Auth
+# mail: basic.auth@serendipity.org.au
+# uid: flowable-rest
+# userPassword: dGVzdA==
