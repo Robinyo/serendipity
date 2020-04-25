@@ -1,4 +1,4 @@
-<h1 align="center">Quick Start</h1>
+<h1 align="center">Quick Start Guide</h1>
 
 ### Step 1: Set up the Development Environment
 
@@ -78,7 +78,7 @@ Login page:
 
 ![divider](../../divider.png)
 
-## ❯ Docker Commands
+### Docker Commands
 
 Docker CLI management commands start with `docker`, then a space, then the management category, then a space, and then 
 the command. A flag with two dashes in front is the full name of the flag. A flag with one dash is a shortcut for the 
@@ -180,5 +180,3 @@ Where is your image? It’s in your machine’s local Docker image registry:
 ```
 docker image ls
 ```
-
-![divider](../../divider.png)
