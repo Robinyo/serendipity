@@ -1,7 +1,5 @@
 <h1 align="center">Developer Documentation</h1>
 
-## ❯ Documentation
-
 * [Quick Start Guide](quick-start-guide.md)
 * [Build Management](build-management.md)
 
