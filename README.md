@@ -168,8 +168,7 @@ In German (Auf Deutsch):
 
 ## ❯ Roadmap
 
-* [Express & TypeORM](https://github.com/Robinyo/serendipity-api/tree/master/projects/express-typeorm): 
-  Use TypeScript, Express and TypeORM to build a RESTful API for Serendipity CEP
+* Express & TypeORM: Use TypeScript, Express and TypeORM to build a RESTful API for Serendipity CEP
 * [Spring Boot & Hibernate](https://github.com/Robinyo/serendipity-api/tree/master/projects/spring-boot): 
   Use Java, Spring Boot and Hibernate to build a RESTful API for Serendipity CEP
 
