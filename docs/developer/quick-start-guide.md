@@ -33,7 +33,7 @@ cd serendipity
 
 ### Step 3: Serve the application's API 
 
-Follow the steps in the Serendipity API's [Quick Start](https://github.com/Robinyo/serendipity-api/blob/master/projects/spring-boot/docs/developer/quick-start-guide.md) Guide.
+Follow the steps in the Serendipity API's [Quick Start Guide](https://github.com/Robinyo/serendipity-api/blob/master/projects/spring-boot/docs/developer/quick-start-guide.md).
 
 ### Step 4: Serve the application 
 
@@ -48,19 +48,16 @@ ng build utils && \
 ng build serendipity-components && \
 ng build auth && \
 ng build auth-oidc && \
-ng build auth-auth0 && \
-ng build auth-okta && \
 ng build dashboard-widgets && \
 ng build dashboard && \
 ng build dynamic-forms && \
-ng build auth-local && \
 ng build flowable && \
 ng build sales
 
 ng serve --proxy-config=proxy.conf.json --open
 ```
 
-The ng serve command launches the server, watches your files, and rebuilds the app as you make changes to those files.
+The `ng serve` command launches the server, watches your files, and rebuilds the app as you make changes to those files.
 
 Using the --open (or just -o) option will open your browser on `http://localhost:4200/`
 
