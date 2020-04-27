@@ -140,22 +140,6 @@ Profile page:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/profile.png">
 </p>
 
-#### Local Auth
-
-Local Auth library ([auth-local](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local))
-
-Register page:
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-register.png">
-</p>
-
-Login page:
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/local-auth-login.png">
-</p>
-
 ### Internationalisation
 
 In German (Auf Deutsch):
