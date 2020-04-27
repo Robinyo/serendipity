@@ -1,4 +1,4 @@
-<h1 align="center">Working with Docker and Docker Compose</h1>
+<h1 align="center">Working with Docker</h1>
 
 Docker CLI management commands start with `docker`, then a space, then the management category, then a space, and then 
 the command. A flag with two dashes in front is the full name of the flag. A flag with one dash is a shortcut for the 
