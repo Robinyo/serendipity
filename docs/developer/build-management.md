@@ -1,4 +1,4 @@
-## ❯ Build Management
+<h1 align="center">Build Management</h1>
 
 ### Aliases
 
@@ -377,5 +377,3 @@ git push origin <tag>
 ### WebStorm
 
 To disable the 'Angular Language Service', go to WebStorm -> Preferences -> Languages & Frameworks -> TypeScript and clear the 'Angular Language Service' checkbox.
-
-![divider](../divider.png)
