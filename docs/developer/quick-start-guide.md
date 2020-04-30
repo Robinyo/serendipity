@@ -54,7 +54,7 @@ ng build dynamic-forms && \
 ng build flowable && \
 ng build sales
 
-ng serve --proxy-config=proxy.conf.json --open
+ng serve --open
 ```
 
 The `ng serve` command launches the server, watches your files, and rebuilds the app as you make changes to those files.

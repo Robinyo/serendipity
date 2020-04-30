@@ -43,16 +43,20 @@ export class ContactsComponent extends CollectionComponent<Contact> {
 
         this.logger.info('ContactsComponent: subscribe() success handler');
 
-        this.count = response.body.meta.count;
-        this.items = response.body.data.map((item => this.entityAdapter.adapt(item)));
+        // this.count = response.body.meta.count;
+        // this.items = response.body.data.map((item => this.entityAdapter.adapt(item)));
 
         // this.logger.info('count: ' + response.body.meta.count);
         // this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
 
-        this.dataSource = new MatTableDataSource(this.items);
-        this.dataSource.data = this.items;
-        this.dataSource.sortingDataAccessor = pathDataAccessor;
-        this.dataSource.sort = this.sort;
+        this.items = response.body;
+        this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
+
+
+        // this.dataSource = new MatTableDataSource(this.items);
+        // this.dataSource.data = this.items;
+        // this.dataSource.sortingDataAccessor = pathDataAccessor;
+        // this.dataSource.sort = this.sort;
 
       },
       (error) => {
@@ -104,3 +108,57 @@ function pathDataAccessor(item: any, path: string): any {
     return accumulator ? accumulator[key] : undefined;
   }, item);
 }
+
+/*
+
+  protected subscribe() {
+
+    this.logger.info('ContactsComponent: subscribe()');
+
+    this.subscription = this.entityService.find(this.offset, this.limit, this.filter).subscribe(
+
+      (response: any) => {
+
+        this.logger.info('ContactsComponent: subscribe() success handler');
+
+        this.count = response.body.meta.count;
+        this.items = response.body.data.map((item => this.entityAdapter.adapt(item)));
+
+        // this.logger.info('count: ' + response.body.meta.count);
+        // this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
+
+        this.dataSource = new MatTableDataSource(this.items);
+        this.dataSource.data = this.items;
+        this.dataSource.sortingDataAccessor = pathDataAccessor;
+        this.dataSource.sort = this.sort;
+
+      },
+      (error) => {
+
+        this.logger.error('ContactsComponent: subscribe() error handler');
+
+        this.items = [];
+
+        let message = error.message;
+
+        if (error.details) {
+          message = error.details.message;
+        }
+
+        this.dialogService.openAlert({
+          title: 'Alert',
+          message: message,
+          closeButton: 'CLOSE'
+        });
+
+      },
+      () =>  {
+
+        this.logger.info('ContactsComponent: subscribe() completion handler');
+      }
+
+    );
+
+  }
+
+*/

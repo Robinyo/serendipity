@@ -40,7 +40,7 @@ ng build sales
 To launch the project:
 
 ```
-ng serve --proxy-config=proxy.conf.json
+ng serve
 ```
 
 Navigate to:
