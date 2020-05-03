@@ -12,6 +12,8 @@ export class Individual {
     public salutation: string = '',
     public preferredName: string = '',
     public initials: string = '',
+    public dateOfBirth: string = '',
+    public placeOfBirth: string = '',
     public gender: string = '',
     public email: string = '',
     public phoneNumber: string = '',

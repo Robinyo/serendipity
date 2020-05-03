@@ -43,11 +43,14 @@ export class ContactsService extends CollectionService {
       filterParam = '&filter[familyName]=' + value + '%';
     }
 
-    const queryParams = '?offset=' + offset + '&limit=' + limit + filterParam;
+    // const queryParams = '?offset=' + offset + '&limit=' + limit + filterParam;
+    // page=0&size=2&sort=name,asc
+    // &sort=familyName&familyName.dir=asc
+    // const queryParams = '?page=' + 0 + '&size=' + 10 + '&sort=familyName&familyName.dir=asc';
+    const queryParams = '?page=' + 0 + '&size=' + 10 + '&sort=familyName,asc';
 
     this.logger.info('ContactsService queryParams: ' + queryParams);
 
-    // return this.httpClient.get(this.contactsUrl + queryParams).pipe(
     return this.httpClient.get(this.url + queryParams, this.getHttpOptions()).pipe(
 
       // map((data: any[]) => data.map(item => this.adapter.adapt(item))),
@@ -173,51 +176,3 @@ export class ContactsService extends CollectionService {
 // https://angular.io/guide/http#reading-the-full-response
 
 // https://angular.io/guide/http#getting-error-details
-
-/*
-
-public find(): Observable<Contact[]> {
-
-  return this.httpClient.get(this.contactsUrl).pipe(
-
-    map((data: any[]) => data.map(item => this.adapter.adapt(item))),
-
-    tap(() => {
-
-      this.logger.info('ContactsService: find() completed');
-
-    }),
-
-    catchError(this.handleError)
-
-  );
-
-}
-
-public find(): Observable<Contact[]> {
-
-  return this.httpClient.get<Contact[]>(this.contactsUrl).pipe(
-    tap(() => {
-      this.logger.info('ContactsService: find() completed');
-    }),
-    catchError(this.handleError)
-  );
-
-}
-
-*/
-
-/*
-
-public findOne(id: string): Observable<Contact> {
-
-  return this.httpClient.get<Contact>(this.contactsUrl + id).pipe(
-    tap(() => {
-      this.logger.info('ContactsService: findOne() completed');
-    }),
-    catchError(this.handleError)
-  );
-
-}
-
-*/

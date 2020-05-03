@@ -43,20 +43,17 @@ export class ContactsComponent extends CollectionComponent<Contact> {
 
         this.logger.info('ContactsComponent: subscribe() success handler');
 
-        // this.count = response.body.meta.count;
-        // this.items = response.body.data.map((item => this.entityAdapter.adapt(item)));
+        this.count = response.body.page.totalElements;
+        // this.items = response.body._embedded.individualModels;
+        this.items = response.body._embedded.individualModels.map((item => this.entityAdapter.adapt(item)));
 
-        // this.logger.info('count: ' + response.body.meta.count);
-        // this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
-
-        this.items = response.body;
+        this.logger.info('count: ' + this.count);
         this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
 
-
-        // this.dataSource = new MatTableDataSource(this.items);
-        // this.dataSource.data = this.items;
-        // this.dataSource.sortingDataAccessor = pathDataAccessor;
-        // this.dataSource.sort = this.sort;
+        this.dataSource = new MatTableDataSource(this.items);
+        this.dataSource.data = this.items;
+        this.dataSource.sortingDataAccessor = pathDataAccessor;
+        this.dataSource.sort = this.sort;
 
       },
       (error) => {
