@@ -48,9 +48,10 @@ export class ContactComponent extends ItemComponent<Contact> {
 
     entitySubscription = this.entityService.findOne(this.id).subscribe(data => {
 
-      this.logger.info('ContactComponent subscribe() data: ' + JSON.stringify(data));
-
       this.item = data;
+
+      this.logger.info('item: ' + JSON.stringify(this.item, null, 2));
+
       this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
       this.dynamicFormService.initGroup(this.addressInformationGroup, this.item.party.addresses[0]);
     });

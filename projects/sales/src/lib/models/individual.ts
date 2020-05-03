@@ -3,6 +3,8 @@ import { Party } from './party';
 
 export class Individual {
 
+  public id?: string;
+
   constructor(
     public title: string = '',
     public givenName: string = '',

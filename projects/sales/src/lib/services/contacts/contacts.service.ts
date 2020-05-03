@@ -53,13 +53,10 @@ export class ContactsService extends CollectionService {
 
     return this.httpClient.get(this.url + queryParams, this.getHttpOptions()).pipe(
 
-      // map((data: any[]) => data.map(item => this.adapter.adapt(item))),
-      // map((response: any) => response.body.data.map(item => this.adapter.adapt(item))),
-
       // tap((response: any) => {
       tap(() => {
 
-        // this.logger.info('response: ' + JSON.stringify(response.body.data, null, 2) + '\n');
+        // this.logger.info('response: ' + JSON.stringify(response.body, null, 2) + '\n');
 
         this.logger.info('ContactsService: find() completed');
 
@@ -176,3 +173,11 @@ export class ContactsService extends CollectionService {
 // https://angular.io/guide/http#reading-the-full-response
 
 // https://angular.io/guide/http#getting-error-details
+
+/*
+
+
+      // map((data: any[]) => data.map(item => this.adapter.adapt(item))),
+      // map((response: any) => response.body.data.map(item => this.adapter.adapt(item))),
+
+*/

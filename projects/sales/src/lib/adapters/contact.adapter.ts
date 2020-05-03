@@ -39,8 +39,12 @@ export class ContactAdapter implements Adapter<Contact> {
 
     // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
 
-    contact.party.id = btoa(item.party.id);
+    // contact.party.id = btoa(item.party.id);
+    // contact.party.displayName = item.party.displayName;
 
+    contact.id = btoa(item.id);
+
+    contact.party.id = contact.id;
     contact.party.displayName = item.party.displayName;
 
     if (contact.gender === 'Male') {
