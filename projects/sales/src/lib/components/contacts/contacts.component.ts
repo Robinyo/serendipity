@@ -47,8 +47,8 @@ export class ContactsComponent extends CollectionComponent<Contact> {
         // this.items = response.body._embedded.individualModels;
         this.items = response.body._embedded.individualModels.map((item => this.entityAdapter.adapt(item)));
 
-        this.logger.info('count: ' + this.count);
-        this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
+        // this.logger.info('count: ' + this.count);
+        // this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
 
         this.dataSource = new MatTableDataSource(this.items);
         this.dataSource.data = this.items;

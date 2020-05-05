@@ -3,6 +3,7 @@ import { Location } from './location';
 export class Address {
 
   constructor(
+    public name: string = '',
     public line1: string = '',
     public line2: string = '',
     public city: string = '',

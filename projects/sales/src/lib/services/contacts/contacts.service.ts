@@ -33,21 +33,18 @@ export class ContactsService extends CollectionService {
   // e.g., familyName, =, B%
   // [familyName]=B%
 
-  public find(offset: number = 0, limit: number = 100, value: string = ''): Observable<any> {
+  public find(offset: number = 0, limit: number = 100, filter: string = ''): Observable<any> {
 
     this.logger.info('ContactsService: find()');
 
     let filterParam = '';
 
-    if (value.length) {
-      filterParam = '&filter[familyName]=' + value + '%';
+    if (filter.length) {
+      filterParam = '&name=' + filter;
     }
 
-    // const queryParams = '?offset=' + offset + '&limit=' + limit + filterParam;
-    // page=0&size=2&sort=name,asc
-    // &sort=familyName&familyName.dir=asc
-    // const queryParams = '?page=' + 0 + '&size=' + 10 + '&sort=familyName&familyName.dir=asc';
-    const queryParams = '?page=' + 0 + '&size=' + 10 + '&sort=familyName,asc';
+    // ?page=0&size=10&name=F&sort=familyName&familyName.dir=asc
+    const queryParams = '?page=' + offset + '&size=' + limit + filterParam + '&sort=familyName&familyName.dir=asc';
 
     this.logger.info('ContactsService queryParams: ' + queryParams);
 
@@ -170,9 +167,74 @@ export class ContactsService extends CollectionService {
 
 }
 
+
+// https://docs.spring.io/spring-data/rest/docs/current/reference/html/#paging-and-sorting
+
 // https://angular.io/guide/http#reading-the-full-response
 
 // https://angular.io/guide/http#getting-error-details
+
+/*
+
+  // public find(): Observable<Contact[]> {
+
+  // path, operator, value
+  // e.g., familyName, =, B%
+  // [familyName]=B%
+
+  public find(offset: number = 0, limit: number = 100, value: string = ''): Observable<any> {
+
+    this.logger.info('ContactsService: find()');
+
+    let filterParam = '';
+
+    if (value.length) {
+      filterParam = '&filter[familyName]=' + value + '%';
+    }
+
+    // const queryParams = '?offset=' + offset + '&limit=' + limit + filterParam;
+    // page=0&size=2&sort=name,asc
+    // &sort=familyName&familyName.dir=asc
+    // const queryParams = '?page=' + 0 + '&size=' + 10 + '&sort=familyName&familyName.dir=asc';
+    // const queryParams = '?page=' + 0 + '&size=' + 10 + '&sort=familyName,asc';
+
+    // nameStartsWith?name=K&sort=name&name.dir=desc
+    const queryParams = '?page=' + 0 + '&size=' + 10 + '&sort=familyName&familyName.dir=asc';
+
+    this.logger.info('ContactsService queryParams: ' + queryParams);
+
+    return this.httpClient.get(this.url + queryParams, this.getHttpOptions()).pipe(
+
+      // tap((response: any) => {
+      tap(() => {
+
+        // this.logger.info('response: ' + JSON.stringify(response.body, null, 2) + '\n');
+
+        this.logger.info('ContactsService: find() completed');
+
+      }),
+      catchError(error => {
+
+        this.logger.info('ContactsService: find() -> catchError()');
+
+        if (error === undefined) {
+
+          error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
+          throw error;
+
+        } else {
+
+          return this.handleError('Find', []);
+          // return throwError(error);
+        }
+
+      })
+
+    );
+
+  }
+
+*/
 
 /*
 

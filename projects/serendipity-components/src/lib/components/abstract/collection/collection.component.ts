@@ -218,14 +218,16 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
 
     // this.logger.info('CollectionComponent: canClickPreviousPageButton()');
 
-    return (this.offset - this.limit) >= 0;
+    // return (this.offset - this.limit) >= 0;
+    return (this.offset - 1) >= 0;
   }
 
   public onClickPreviousPageButton() {
 
     this.logger.info('CollectionComponent: onClickPreviousPageButton()');
 
-    this.offset = this.offset - this.limit;
+    // this.offset = this.offset - this.limit;
+    this.offset--;
 
     if (this.offset < 0) {
       this.offset = 0;
@@ -256,7 +258,8 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
 
     this.logger.info('CollectionComponent: onClickNextPageButton()');
 
-    this.offset = this.offset + this.limit;
+    // this.offset = this.offset + this.limit;
+    this.offset++;
 
     this.pageNumber++;
 
