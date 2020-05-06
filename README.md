@@ -13,8 +13,7 @@
 
 ## ❯ Features
 
-- **Authentication (AuthN) & Authorization (AuthZ)** thanks to:
-  - The [OIDC Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc) library which supports username/password registration and login (using Authorization Code Flow with PKCE)
+- **Authentication (AuthN) & Authorization (AuthZ)** thanks to the [OIDC Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc) library
 - **Beautiful Code** thanks to Angular's [Style Guide](https://angular.io/guide/styleguide)
 - **Contemporary UI** thanks to [Angular Material](https://material.angular.io/)
 - **Custom Themes** check out the [Light Theme](https://github.com/Robinyo/serendipity/tree/master/src/themes)
