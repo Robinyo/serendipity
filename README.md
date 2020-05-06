@@ -14,8 +14,7 @@
 ## ❯ Features
 
 - **Authentication (AuthN) & Authorization (AuthZ)** thanks to:
-  - The [Local Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-local) library which supports email/password registration and login
-  - The [OIDC Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc) library which supports username/password registration and login (using Implicit Flow or Authorization Code Flow with PKCE)
+  - The [OIDC Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc) library which supports username/password registration and login (using Authorization Code Flow with PKCE)
 - **Beautiful Code** thanks to Angular's [Style Guide](https://angular.io/guide/styleguide)
 - **Contemporary UI** thanks to [Angular Material](https://material.angular.io/)
 - **Custom Themes** check out the [Light Theme](https://github.com/Robinyo/serendipity/tree/master/src/themes)
@@ -35,6 +34,17 @@
 ## ❯ Quick Links
 
 [Documentation, demos, and guides](docs/README.md)
+
+![divider](./divider.png)
+
+## ❯ Roadmap
+
+* [Spring Boot & Hibernate](https://github.com/Robinyo/serendipity-api/tree/master/projects/spring-boot): 
+  Use Java, Spring Boot and Hibernate to build a RESTful API for Serendipity CEP
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/redoc.png">
+</p>
 
 ![divider](./divider.png)
 
@@ -146,18 +156,6 @@ In German (Auf Deutsch):
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/dashboard-de.png">
-</p>
-
-![divider](./divider.png)
-
-## ❯ Roadmap
-
-* Express & TypeORM: Use TypeScript, Express and TypeORM to build a RESTful API for Serendipity CEP
-* [Spring Boot & Hibernate](https://github.com/Robinyo/serendipity-api/tree/master/projects/spring-boot): 
-  Use Java, Spring Boot and Hibernate to build a RESTful API for Serendipity CEP
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/redoc.png">
 </p>
 
 ![divider](./divider.png)
