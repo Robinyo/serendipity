@@ -49,13 +49,13 @@ export class AppModule {}
 
 ## ❯ Screen Shots
 
-Register page:
+Keycloak Register page:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-register.png">
 </p>
 
-Login page:
+Keycloak Login page:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/oidc-login.png">
@@ -84,5 +84,9 @@ Login page:
 * Rob Ferguson's blog: [Getting started with Keycloak](https://robferguson.org/blog/2019/12/24/getting-started-with-keycloak/)
 * Rob Ferguson's blog: [Angular, OpenID Connect and Keycloak](https://robferguson.org/blog/2019/12/29/angular-openid-connect-keycloak/)
 * Rob Ferguson's blog: [Angular, OAuth 2.0 and Keycloak](https://robferguson.org/blog/2019/12/31/angular-oauth2-keycloak/)
+* Rob Ferguson's blog: [Keycloak, Flowable and OpenLDAP](https://robferguson.org/blog/2020/01/03/keycloak-flowable-and-openldap/)
+* Rob Ferguson's blog: [Flowable OAuth2 Resource Server](https://robferguson.org/blog/2020/02/05/flowable-oauth2-resource-server/)
+* Rob Ferguson's blog: [Keycloak Themes - Part 1](https://robferguson.org/blog/2020/04/12/keycloak-themes-part-1/)
+* Rob Ferguson's blog: [Keycloak Themes - Part 2](https://robferguson.org/blog/2020/04/17/keycloak-themes-part-2/)
 
 ![divider](../../divider.png)
