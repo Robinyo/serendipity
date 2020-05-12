@@ -38,8 +38,8 @@
 
 ## ❯ Roadmap
 
-* [Spring Boot & Hibernate](https://github.com/Robinyo/serendipity-api/blob/master/projects/spring-boot/docs/developer/quick-start-guide.md): 
-  Use Java, Spring Boot and Hibernate to build a RESTful API for Serendipity CEP
+* [Spring, Spring Boot, Spring Data REST, Spring Data JPA, Spring HAETOAS & Spring Security OAuth2](https://github.com/Robinyo/serendipity-api/blob/master/projects/spring-boot/docs/developer/quick-start-guide.md): 
+  Use Java and Spring Boot to build a RESTful API for Serendipity CEP
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/redoc.png">

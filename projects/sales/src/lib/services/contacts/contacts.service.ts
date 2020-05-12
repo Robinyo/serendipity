@@ -238,7 +238,6 @@ export class ContactsService extends CollectionService {
 
 /*
 
-
       // map((data: any[]) => data.map(item => this.adapter.adapt(item))),
       // map((response: any) => response.body.data.map(item => this.adapter.adapt(item))),
 
