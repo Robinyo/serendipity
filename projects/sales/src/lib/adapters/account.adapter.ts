@@ -21,19 +21,24 @@ export class AccountAdapter implements Adapter<Account> {
 
     const account = new Account(
       item.name,
+      item.email,
       item.phoneNumber
     );
 
     // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
 
-    account.party.id = btoa(item.party.id);
+    account.id = btoa(item.id);
 
+    account.party.id = account.id;
     account.party.displayName = item.party.displayName;
 
-    account.party.addresses = account.party.addresses.concat(item.party.addresses);
-    account.party.roles = account.party.roles.concat(item.party.roles);
+    if (item.party.addresses && item.party.addresses.length) {
+      account.party.addresses = account.party.addresses.concat(item.party.addresses);
+    }
 
-    if (account.party.roles.length) {
+    if (item.party.roles && item.party.roles.length) {
+
+      account.party.roles = account.party.roles.concat(item.party.roles);
 
       account.individual.id = btoa(account.party.roles[0].reciprocalPartyId);
       account.individual.displayName = account.party.roles[0].reciprocalPartyName;

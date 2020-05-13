@@ -3,8 +3,11 @@ import { Party } from './party';
 
 export class Organisation {
 
+  public id?: string;
+
   constructor(
     public name: string = '',
+    public email: string = '',
     public phoneNumber: string = ''
   ) {
     this.party = new Party('Organisation');

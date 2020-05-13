@@ -27,12 +27,6 @@ export class ContactsService extends CollectionService {
     this.url = 'http://localhost:3001/api/individuals/';
   }
 
-  // public find(): Observable<Contact[]> {
-
-  // path, operator, value
-  // e.g., familyName, =, B%
-  // [familyName]=B%
-
   public find(offset: number = 0, limit: number = 100, filter: string = ''): Observable<any> {
 
     this.logger.info('ContactsService: find()');

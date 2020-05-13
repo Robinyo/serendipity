@@ -39,13 +39,12 @@ export class ContactsComponent extends CollectionComponent<Contact> {
 
     this.subscription = this.entityService.find(this.offset, this.limit, this.filter).subscribe(
 
-      (data: any) => {
+      (response: any) => {
 
         this.logger.info('ContactsComponent: subscribe() success handler');
 
-        this.count = data.body.page.totalElements;
-        // this.items = response.body._embedded.individualModels;
-        this.items = data.body._embedded.individualModels.map((item => this.entityAdapter.adapt(item)));
+        this.count = response.body.page.totalElements;
+        this.items = response.body._embedded.individualModels.map((item => this.entityAdapter.adapt(item)));
 
         // this.logger.info('count: ' + this.count);
         // this.logger.info('items: ' + JSON.stringify(this.items, null, 2));

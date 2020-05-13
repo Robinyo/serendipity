@@ -27,27 +27,27 @@ export class AccountsService extends CollectionService {
     this.url = 'http://localhost:3001/api/organisations/';
   }
 
-  // path, operator, value
-  // e.g., name, =, B%
-  // [name]=B%
-
-  public find(offset: number = 0, limit: number = 100, value: string = ''): Observable<any> {
+  public find(offset: number = 0, limit: number = 100, filter: string = ''): Observable<any> {
 
     this.logger.info('AccountsService: find()');
 
     let filterParam = '';
 
-    if (value.length) {
-      filterParam = '&filter[name]=' + value + '%';
+    if (filter.length) {
+      filterParam = '&name=' + filter;
     }
 
-    const queryParams = '?offset=' + offset + '&limit=' + limit + filterParam;
+    // ?page=0&size=10&name=F&sort=name&name.dir=asc
+    const queryParams = '?page=' + offset + '&size=' + limit + filterParam + '&sort=name&name.dir=asc';
 
     this.logger.info('AccountsService queryParams: ' + queryParams);
 
     return this.httpClient.get(this.url + queryParams, this.getHttpOptions()).pipe(
 
+      // tap((response: any) => {
       tap(() => {
+
+        // this.logger.info('response: ' + JSON.stringify(response.body, null, 2) + '\n');
 
         this.logger.info('AccountsService: find() completed');
       }),
@@ -135,3 +135,54 @@ export class AccountsService extends CollectionService {
   }
 
 }
+
+/*
+
+
+  // path, operator, value
+  // e.g., name, =, B%
+  // [name]=B%
+
+  public find(offset: number = 0, limit: number = 100, value: string = ''): Observable<any> {
+
+    this.logger.info('AccountsService: find()');
+
+    let filterParam = '';
+
+    if (value.length) {
+      filterParam = '&filter[name]=' + value + '%';
+    }
+
+    const queryParams = '?offset=' + offset + '&limit=' + limit + filterParam;
+
+    this.logger.info('AccountsService queryParams: ' + queryParams);
+
+    return this.httpClient.get(this.url + queryParams, this.getHttpOptions()).pipe(
+
+      tap(() => {
+
+        this.logger.info('AccountsService: find() completed');
+      }),
+      catchError(error => {
+
+        this.logger.info('AccountsService: find() -> catchError()');
+
+        if (error === undefined) {
+
+          error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
+          throw error;
+
+        } else {
+
+          return this.handleError('Find', []);
+          // return throwError(error);
+        }
+
+      })
+
+    );
+
+  }
+
+
+*/

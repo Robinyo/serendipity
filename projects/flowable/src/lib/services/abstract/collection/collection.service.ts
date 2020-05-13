@@ -11,7 +11,8 @@ export abstract class CollectionService {
   //
 
   // private processEngineUriPrefix = 'http://localhost:8080/flowable-task/process-api/runtime/';
-  protected processEngineUriPrefix = '/flowable-task/process-api/';
+  // protected processEngineUriPrefix = '/flowable-task/process-api/';
+  protected processEngineUriPrefix = 'http://localhost:3001/process-api/';
 
   protected httpOptions = null;
 

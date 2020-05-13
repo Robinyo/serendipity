@@ -55,6 +55,7 @@ export class ContactAdapter implements Adapter<Contact> {
     }
 
     if (item.party.roles && item.party.roles.length) {
+
       contact.party.roles = contact.party.roles.concat(item.party.roles);
 
       contact.organisation.id = btoa(contact.party.roles[0].reciprocalPartyId);
