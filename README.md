@@ -148,7 +148,7 @@ Profile page:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/profile.png">
 </p>
 
-### Internationalisation
+### Internationalisation (i18N)
 
 In German (Auf Deutsch):
 
