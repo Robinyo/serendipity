@@ -1,7 +1,7 @@
 <h1 align="center">OpenID Connect Authentication Library</h1>
 
 <p align="center">
-  <b>The OpenID Connect Authentication library supports email/password registration and login (using Implicit Flow or Authorization Code Flow with PKCE).</b></br>
+  <b>The OpenID Connect Authentication library supports username/password registration and login (using Implicit Flow or Authorization Code Flow with PKCE).</b></br>
 </p>
 
 ## ❯ Development
