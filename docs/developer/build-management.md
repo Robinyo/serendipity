@@ -34,6 +34,7 @@ ng build dashboard && \
 ng build dynamic-forms && \
 ng build auth-local && \
 ng build flowable && \
+ng build maps && \
 ng build sales
 ```
        
@@ -106,6 +107,7 @@ ng build dashboard && \
 ng build dynamic-forms && \
 ng build auth-local && \
 ng build flowable && \
+ng build maps && \
 ng build sales
 ng build --prod --source-map 
 ```
@@ -330,12 +332,17 @@ You can workaround this issue by updating the assets array inside the build targ
       },
       {
         "glob": "**/*",
-        "input": "projects/sales/src/assets",
+        "input": "projects/dashboard/src/assets",
         "output": "/assets"
       },
       {
         "glob": "**/*",
-        "input": "projects/dashboard/src/assets",
+        "input": "./node_modules/leaflet/dist/images",
+        "output": "leaflet/"
+      },
+      {
+        "glob": "**/*",
+        "input": "projects/sales/src/assets",
         "output": "/assets"
       }
   ]

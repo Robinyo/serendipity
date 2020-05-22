@@ -110,6 +110,14 @@
       ],
       "auth-oidc/*": [
         "dist/auth-oidc/*"
+      ],
+      "leaflet": [
+        "dist/leaflet/leaflet",
+        "dist/leaflet"
+      ],
+      "maps": [
+        "dist/maps/maps",
+        "dist/maps"
       ]
     }
   }

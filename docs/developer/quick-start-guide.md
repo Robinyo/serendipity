@@ -52,6 +52,7 @@ ng build dashboard-widgets && \
 ng build dashboard && \
 ng build dynamic-forms && \
 ng build flowable && \
+ng build maps && \
 ng build sales
 
 ng serve --open

@@ -37,18 +37,24 @@
               },
               {
                 "glob": "**/*",
-                "input": "projects/sales/src/assets",
+                "input": "projects/dashboard/src/assets",
                 "output": "/assets"
               },
               {
                 "glob": "**/*",
-                "input": "projects/dashboard/src/assets",
+                "input": "./node_modules/leaflet/dist/images",
+                "output": "leaflet/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/sales/src/assets",
                 "output": "/assets"
               }
             ],
             "styles": [
               "src/styles.scss",
               "src/themes/light-theme/theme.scss",
+              "./node_modules/leaflet/dist/leaflet.scss",
               "./node_modules/quill/dist/quill.core.css",
               "./node_modules/quill/dist/quill.bubble.css",
               "./node_modules/quill/dist/quill.snow.css"
@@ -113,13 +119,36 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/themes/light-theme/theme.scss",
+              "./node_modules/leaflet/dist/leaflet.scss",
+              "./node_modules/quill/dist/quill.core.css",
+              "./node_modules/quill/dist/quill.bubble.css",
+              "./node_modules/quill/dist/quill.snow.css"
             ],
             "scripts": [],
             "assets": [
-              "src/assets",
+              "src/apple-touch-icon-iphone-retina.png",
+              "src/apple-touch-icon-iphone-retina-precomposed.png",
+              "src/browserconfig.xml",
               "src/favicon.ico",
               "src/manifest.json",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "projects/auth-local/src/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/dashboard/src/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/leaflet/dist/images",
+                "output": "leaflet/"
+              },
               {
                 "glob": "**/*",
                 "input": "projects/sales/src/assets",
@@ -181,13 +210,13 @@
           "options": {
             "tsConfig": "projects/sales/tsconfig.lib.json",
             "project": "projects/sales/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/sales/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -221,13 +250,13 @@
           "options": {
             "tsConfig": "projects/dynamic-forms/tsconfig.lib.json",
             "project": "projects/dynamic-forms/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/dynamic-forms/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -261,13 +290,13 @@
           "options": {
             "tsConfig": "projects/utils/tsconfig.lib.json",
             "project": "projects/utils/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/utils/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -301,13 +330,13 @@
           "options": {
             "tsConfig": "projects/serendipity-components/tsconfig.lib.json",
             "project": "projects/serendipity-components/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/serendipity-components/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -341,13 +370,13 @@
           "options": {
             "tsConfig": "projects/flowable/tsconfig.lib.json",
             "project": "projects/flowable/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/flowable/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -381,13 +410,13 @@
           "options": {
             "tsConfig": "projects/dashboard/tsconfig.lib.json",
             "project": "projects/dashboard/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/dashboard/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -421,13 +450,13 @@
           "options": {
             "tsConfig": "projects/dashboard-widgets/tsconfig.lib.json",
             "project": "projects/dashboard-widgets/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/dashboard-widgets/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -461,13 +490,13 @@
           "options": {
             "tsConfig": "projects/auth/tsconfig.lib.json",
             "project": "projects/auth/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/auth/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -501,13 +530,13 @@
           "options": {
             "tsConfig": "projects/auth-local/tsconfig.lib.json",
             "project": "projects/auth-local/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/auth-local/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -541,13 +570,13 @@
           "options": {
             "tsConfig": "projects/auth-auth0/tsconfig.lib.json",
             "project": "projects/auth-auth0/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/auth-auth0/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -581,13 +610,13 @@
           "options": {
             "tsConfig": "projects/auth-okta/tsconfig.lib.json",
             "project": "projects/auth-okta/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/auth-okta/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -621,13 +650,13 @@
           "options": {
             "tsConfig": "projects/auth-oidc/tsconfig.lib.json",
             "project": "projects/auth-oidc/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/auth-oidc/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -642,6 +671,46 @@
             "tsConfig": [
               "projects/auth-oidc/tsconfig.lib.json",
               "projects/auth-oidc/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "maps": {
+      "projectType": "library",
+      "root": "projects/maps",
+      "sourceRoot": "projects/maps/src",
+      "prefix": "maps",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/maps/tsconfig.lib.json",
+            "project": "projects/maps/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/maps/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/maps/src/test.ts",
+            "tsConfig": "projects/maps/tsconfig.spec.json",
+            "karmaConfig": "projects/maps/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/maps/tsconfig.lib.json",
+              "projects/maps/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

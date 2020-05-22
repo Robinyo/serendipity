@@ -61,7 +61,6 @@ const dashboardWidgets = [
 export class DashboardModule {
 
   constructor(private logger: LoggerService) {
-
     this.logger.info('Dashboard Module initialised');
   }
 
