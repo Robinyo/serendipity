@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     this.logger.info('Sales DashboardComponent: ngOnInit()');
 
-    if (this.screenFull.enabled) {
+    if (this.screenFull.isEnabled) {
 
       this.logger.info('Sales DashboardComponent: Screenfull change handler registered');
 
@@ -137,7 +137,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     this.logger.info('Sales DashboardComponent: onFullscreen()');
 
-    if (this.screenFull.enabled) {
+    if (this.screenFull.isEnabled) {
       this.screenFull.toggle();
     }
 

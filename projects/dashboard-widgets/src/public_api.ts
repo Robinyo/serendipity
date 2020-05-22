@@ -6,6 +6,8 @@
 // highcharts-angular
 //
 
+export * from './lib/highcharts-angular/components/chart/highcharts-chart.component';
+
 export * from './lib/highcharts-angular/components/funnel-chart/funnel-chart.component';
 export * from './lib/highcharts-angular/components/pie-chart/pie-chart.component';
 export * from './lib/highcharts-angular/components/parliament-chart/parliament-chart.component';

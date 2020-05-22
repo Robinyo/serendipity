@@ -36,7 +36,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './lazy-loading/sales-lib-wrapper.module#SalesLibWrapperModule'
+        loadChildren: () => import('./lazy-loading/sales-lib-wrapper.module').then(m => m.SalesLibWrapperModule)
       }
     ]
   },

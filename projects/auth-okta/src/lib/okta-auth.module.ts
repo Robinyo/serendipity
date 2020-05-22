@@ -40,7 +40,7 @@ export class OktaAuthModule {
     this.logger.info('Okta Auth Module initialised');
   }
 
-  static forRoot(config: OktaConfig): ModuleWithProviders {
+  static forRoot(config: OktaConfig): ModuleWithProviders<OktaAuthModule> {
 
     return {
       ngModule: OktaAuthModule,

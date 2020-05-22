@@ -1,4 +1,4 @@
-import { AfterViewInit, Injector, OnInit, OnDestroy, Type, ViewChild } from '@angular/core';
+import {AfterViewInit, Directive, Injector, OnInit, OnDestroy, Type, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MatSort, MatTableDataSource } from '@angular/material';
@@ -35,6 +35,8 @@ export interface CollectionComponentConfig {
 
 }
 
+@Directive()
+// tslint:disable-next-line:directive-class-suffix
 export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatSort, {static: false})

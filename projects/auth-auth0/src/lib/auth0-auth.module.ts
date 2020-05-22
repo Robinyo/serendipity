@@ -40,7 +40,7 @@ export class Auth0AuthModule {
     this.logger.info('Auth0 Auth Module initialised');
   }
 
-  static forRoot(config: Auth0Config): ModuleWithProviders {
+  static forRoot(config: Auth0Config): ModuleWithProviders<Auth0AuthModule> {
 
     return {
       ngModule: Auth0AuthModule,

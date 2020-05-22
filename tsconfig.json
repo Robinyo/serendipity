@@ -1,116 +1,88 @@
+// This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’slanguage server to improve development experience.
+// It is not intended to be used to perform a compilation.
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
-    "paths": {
-      "@app/*": [
-        "src/app/*"
-      ],
-      "@env/*": [
-        "src/environments/*"
-      ],
-      "sales": [
-        "dist/sales"
-      ],
-      "sales/*": [
-        "dist/sales/*"
-      ],
-      "dynamic-forms": [
-        "dist/dynamic-forms"
-      ],
-      "dynamic-forms/*": [
-        "dist/dynamic-forms/*"
-      ],
-      "utils": [
-        "dist/utils"
-      ],
-      "utils/*": [
-        "dist/utils/*"
-      ],
-      "serendipity-components": [
-        "dist/serendipity-components"
-      ],
-      "serendipity-components/*": [
-        "dist/serendipity-components/*"
-      ],
-      "flowable": [
-        "dist/flowable"
-      ],
-      "flowable/*": [
-        "dist/flowable/*"
-      ],
-      "auth": [
-        "dist/auth",
-        "dist/auth"
-      ],
-      "auth/*": [
-        "dist/auth/*",
-        "dist/auth/*"
-      ],
-      "dashboard": [
-        "dist/dashboard"
-      ],
-      "dashboard/*": [
-        "dist/dashboard/*"
-      ],
-      "dashboard-widgets": [
-        "dist/dashboard-widgets"
-      ],
-      "dashboard-widgets/*": [
-        "dist/dashboard-widgets/*"
-      ],
-      "auth-okta": [
-        "dist/auth-okta"
-      ],
-      "auth-okta/*": [
-        "dist/auth-okta/*"
-      ],
-      "auth-local": [
-        "dist/auth-local"
-      ],
-      "auth-local/*": [
-        "dist/auth-local/*"
-      ],
-      "okta-angular": [
-        "dist/okta-angular"
-      ],
-      "okta-angular/*": [
-        "dist/okta-angular/*"
-      ],
-      "auth-auth0": [
-        "dist/auth-auth0"
-      ],
-      "auth-auth0/*": [
-        "dist/auth-auth0/*"
-      ],
-      "auth-keycloak": [
-        "dist/auth-keycloak"
-      ],
-      "auth-keycloak/*": [
-        "dist/auth-keycloak/*"
-      ],
-      "auth-oidc": [
-        "dist/auth-oidc"
-      ],
-      "auth-oidc/*": [
-        "dist/auth-oidc/*"
-      ]
+  "files": [],
+  "references": [
+    {
+      "path": "./src/tsconfig.app.json"
+    },
+    {
+      "path": "./src/tsconfig.spec.json"
+    },
+    {
+      "path": "./e2e/tsconfig.e2e.json"
+    },
+    {
+      "path": "./projects/sales/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/sales/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/dynamic-forms/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/dynamic-forms/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/utils/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/utils/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/serendipity-components/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/serendipity-components/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/flowable/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/flowable/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/dashboard/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/dashboard/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/dashboard-widgets/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/dashboard-widgets/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/auth/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/auth/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/auth-local/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/auth-local/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/auth-auth0/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/auth-auth0/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/auth-okta/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/auth-okta/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/auth-oidc/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/auth-oidc/tsconfig.spec.json"
     }
-  }
+  ]
 }

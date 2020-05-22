@@ -1,4 +1,4 @@
-import { AfterViewInit, Injector, OnDestroy, OnInit, Type } from '@angular/core';
+import {AfterViewInit, Directive, Injector, OnDestroy, OnInit, Type } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Observable, Subscription } from 'rxjs';
@@ -11,6 +11,8 @@ import { LoggerService, StaticInjectorService } from 'utils';
 
 import { DialogService } from '../../../services/dialogs/dialog.service';
 
+@Directive()
+// tslint:disable-next-line:directive-class-suffix
 export abstract class ItemComponent<T> implements OnInit, AfterViewInit, OnDestroy {
 
   public id: string;

@@ -40,7 +40,7 @@ export class OidcAuthModule {
     this.logger.info('OpenID Connect (OIDC) Auth Module initialised');
   }
 
-  static forRoot(config: OidcConfig): ModuleWithProviders {
+  static forRoot(config: OidcConfig): ModuleWithProviders<OidcAuthModule> {
 
     return {
       ngModule: OidcAuthModule,

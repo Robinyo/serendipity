@@ -13,7 +13,7 @@ export class UtilsModule {
     // I'm injecting the StaticInjectorService so that its constructor() will be called and the UtilsConfigService injected.
   }
 
-  static forRoot(config: UtilsConfig): ModuleWithProviders {
+  static forRoot(config: UtilsConfig): ModuleWithProviders<UtilsModule> {
 
     // ng build --prod
     // ERROR in Error during template compile of 'CoreModule'
