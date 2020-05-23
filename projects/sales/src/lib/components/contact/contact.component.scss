@@ -28,6 +28,15 @@
   padding: 16px;
 }
 
+.map-container {
+
+  margin-top: 32px;
+
+  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
+  // 64 + 56 + 96 + ???
+  height: calc(100vh - 340px);
+}
+
 /*
 
 .mat-tab-list {

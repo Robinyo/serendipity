@@ -52,6 +52,13 @@ import { DynamicFormsModule } from 'dynamic-forms';
 import { FlowableModule } from 'flowable';
 
 //
+// Maps lib
+//
+
+// import { MapsModule } from 'maps';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
+//
 // LibRoutingModule: https://angular.io/guide/router#routing-module-order
 //
 
@@ -69,6 +76,7 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
     QuillModule.forRoot({
       placeholder: ''
     }),
+    LeafletModule,
     ReactiveFormsModule,
     TranslateModule.forChild(),
     UtilsModule,

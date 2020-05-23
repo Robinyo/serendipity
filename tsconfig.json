@@ -83,12 +83,6 @@
     },
     {
       "path": "./projects/auth-oidc/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/maps/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/maps/tsconfig.spec.json"
     }
   ]
 }

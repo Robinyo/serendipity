@@ -7,6 +7,16 @@ import { Observable, Subscription } from 'rxjs';
 import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 import { ItemComponent, SnackBarComponent } from 'serendipity-components';
 
+import { latLng, LatLng, LatLngBounds, Layer, LeafletEvent, LeafletMouseEvent, Map, MapOptions, tileLayer } from 'leaflet';
+
+class LeafletControlLayersConfig {
+  baseLayers: { [name: string]: Layer } = {};
+  overlays: { [name: string]: Layer } = {};
+}
+
+// tslint:disable-next-line:no-empty-interface
+class MapLayersControl extends LeafletControlLayersConfig {}
+
 import { Contact } from '../../models/contact';
 import { ContactsService } from '../../services/contacts/contacts.service';
 
@@ -26,11 +36,27 @@ export class ContactComponent extends ItemComponent<Contact> {
   public addressInformationModel: DynamicFormModel;
   public addressInformationGroup: FormGroup;
 
+  public mapOptions: MapOptions;
+  public mapLayersControl: MapLayersControl;
+
+  private map: Map;
+
   constructor(route: ActivatedRoute,
               private entityService: ContactsService,
               private dynamicFormService: DynamicFormService) {
 
     super(route);
+
+    this.mapOptions = {
+      layers: [
+        tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
+        })
+      ],
+      zoom: 4,
+      center: latLng([ -33.865143, 151.209900 ])
+    };
+
   }
 
   protected async subscribe() {
@@ -179,6 +205,18 @@ export class ContactComponent extends ItemComponent<Contact> {
 
   }
 
+  public onMapReady(map: Map): void {
+
+    this.logger.info('ContactComponent: onMapReady()');
+
+    this.map = map;
+
+    // setTimeout(() => {
+    //   this.map.invalidateSize();
+    // });
+
+  }
+
   public onNew() {
 
     this.logger.info('ContactComponent: onNew()');
@@ -204,6 +242,13 @@ export class ContactComponent extends ItemComponent<Contact> {
 
     this.onSave();
     this.onClose();
+  }
+
+  onTabChanged($event) {
+
+    this.logger.info('ContactComponent: onTabChanged()');
+
+    this.map.invalidateSize();
   }
 
   //

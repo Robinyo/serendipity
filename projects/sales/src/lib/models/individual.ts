@@ -19,7 +19,8 @@ export class Individual {
     public gender: string = '',
     public email: string = '',
     public phoneNumber: string = '',
-    public photoUrl: string = ''
+    public photoUrl: string = '',
+    public electorate: string = ''
   ) {
     this.party = new Party('Individual');
     this.organisation = new OrganisationRef();

@@ -68,7 +68,7 @@
 
   <ng-container *ngIf="item">
 
-    <mat-tab-group>
+    <mat-tab-group (selectedTabChange)="onTabChanged($event)">
 
       <mat-tab label="{{ 'SUMMARY_TAB' | translate }}">
 
@@ -143,6 +143,17 @@
       </mat-tab>
 
       <mat-tab label="{{ 'RELATED_TAB' | translate }}">
+      </mat-tab>
+
+      <mat-tab *ngIf="item.electorate" label="{{ 'ELECTORAL_DIVISION_TAB' | translate }}">
+
+        <div class="map-container"
+             leaflet
+             [leafletOptions]="mapOptions"
+             [leafletLayersControl]="mapLayersControl"
+             (leafletMapReady)="onMapReady($event)">
+        </div>
+
       </mat-tab>
 
     </mat-tab-group>

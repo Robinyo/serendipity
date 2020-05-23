@@ -1,4 +1,4 @@
-import {AfterViewInit, Directive, Injector, OnDestroy, OnInit, Type } from '@angular/core';
+import { AfterViewInit, Directive, Injector, OnDestroy, OnInit, Type } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Observable, Subscription } from 'rxjs';

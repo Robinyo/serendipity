@@ -100,6 +100,12 @@ Contact:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/contact.png">
 </p>
 
+Contact - Electoral Division:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/electoral-divison.png">
+</p>
+
 Dashboard:
 
 <p align="center">

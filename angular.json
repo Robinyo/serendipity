@@ -54,7 +54,7 @@
             "styles": [
               "src/styles.scss",
               "src/themes/light-theme/theme.scss",
-              "./node_modules/leaflet/dist/leaflet.scss",
+              "./node_modules/leaflet/dist/leaflet.css",
               "./node_modules/quill/dist/quill.core.css",
               "./node_modules/quill/dist/quill.bubble.css",
               "./node_modules/quill/dist/quill.snow.css"
@@ -121,7 +121,7 @@
             "styles": [
               "src/styles.scss",
               "src/themes/light-theme/theme.scss",
-              "./node_modules/leaflet/dist/leaflet.scss",
+              "./node_modules/leaflet/dist/leaflet.css",
               "./node_modules/quill/dist/quill.core.css",
               "./node_modules/quill/dist/quill.bubble.css",
               "./node_modules/quill/dist/quill.snow.css"
@@ -671,46 +671,6 @@
             "tsConfig": [
               "projects/auth-oidc/tsconfig.lib.json",
               "projects/auth-oidc/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "maps": {
-      "projectType": "library",
-      "root": "projects/maps",
-      "sourceRoot": "projects/maps/src",
-      "prefix": "maps",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/maps/tsconfig.lib.json",
-            "project": "projects/maps/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/maps/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/maps/src/test.ts",
-            "tsConfig": "projects/maps/tsconfig.spec.json",
-            "karmaConfig": "projects/maps/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/maps/tsconfig.lib.json",
-              "projects/maps/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
