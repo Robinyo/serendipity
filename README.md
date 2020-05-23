@@ -103,7 +103,7 @@ Contact:
 Contact - Electoral Division:
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/electoral-divison.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/electoral-division.png">
 </p>
 
 Dashboard:
