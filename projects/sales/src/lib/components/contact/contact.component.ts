@@ -243,7 +243,10 @@ export class ContactComponent extends ItemComponent<Contact> {
 
     this.logger.info('ContactComponent: onTabChanged()');
 
-    this.map.invalidateSize();
+    if (this.map !== undefined) {
+      this.map.invalidateSize();
+    }
+
   }
 
   //
