@@ -195,6 +195,7 @@ $table-margin-desktop: 32px;
 $table-margin-mobile: 0;
 
 .crm-table-container {
+
   // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
   // 64 + 56 + 96 + 32
   height: calc(100vh - 248px);

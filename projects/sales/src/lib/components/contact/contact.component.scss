@@ -33,8 +33,18 @@
   margin-top: 32px;
 
   // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
-  // 64 + 56 + 96 + ???
-  height: calc(100vh - 340px);
+  // 64 + 56 + 96 + 32 + 16
+  // height: calc(100vh - 248px);
+  height: calc(100vh - 328px);  // 340
+  // width: 100%;
+
+  @media ($mat-xsmall) {
+    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
+    // 56 + 0 + 84 + 0 + 56
+    // height: calc(100vh - 140px);
+    height: calc(100vh - 216px);
+  }
+
 }
 
 /*
