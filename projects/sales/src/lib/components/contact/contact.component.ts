@@ -54,7 +54,8 @@ export class ContactComponent extends ItemComponent<Contact> {
         })
       ],
       zoom: 4,
-      center: latLng([ -33.865143, 151.209900 ])
+      center: latLng([ -28.15, 133.28])
+      // center: latLng([ -33.865143, 151.209900 ])
     };
 
   }
