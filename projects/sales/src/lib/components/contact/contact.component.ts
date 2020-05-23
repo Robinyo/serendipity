@@ -210,11 +210,6 @@ export class ContactComponent extends ItemComponent<Contact> {
     this.logger.info('ContactComponent: onMapReady()');
 
     this.map = map;
-
-    // setTimeout(() => {
-    //   this.map.invalidateSize();
-    // });
-
   }
 
   public onNew() {
