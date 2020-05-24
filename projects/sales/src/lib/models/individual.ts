@@ -16,7 +16,7 @@ export class Individual {
     public initials: string = '',
     public dateOfBirth: string = '',
     public placeOfBirth: string = '',
-    public gender: string = '',
+    public sex: string = '',
     public email: string = '',
     public phoneNumber: string = '',
     public photoUrl: string = '',

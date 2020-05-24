@@ -31,7 +31,7 @@ export class ContactAdapter implements Adapter<Contact> {
       item.names[0].initials,
       item.dateOfBirth,
       item.placeOfBirth,
-      item.gender,
+      item.sex,
       item.email,
       item.phoneNumber,
       item.photoUrl,
@@ -45,7 +45,7 @@ export class ContactAdapter implements Adapter<Contact> {
     contact.party.id = contact.id;
     contact.party.displayName = item.party.displayName;
 
-    if (contact.gender === 'Male') {
+    if (contact.sex === 'Male') {
       contact.photoUrl = 'assets/images/photos/male-avatar.svg';
     } else {
       contact.photoUrl = 'assets/images/photos/female-avatar.svg';
