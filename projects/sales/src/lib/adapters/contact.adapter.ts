@@ -45,11 +45,7 @@ export class ContactAdapter implements Adapter<Contact> {
     contact.party.id = contact.id;
     contact.party.displayName = item.party.displayName;
 
-    if (contact.sex === 'Male') {
-      contact.photoUrl = 'assets/images/photos/male-avatar.svg';
-    } else {
-      contact.photoUrl = 'assets/images/photos/female-avatar.svg';
-    }
+    contact.photoUrl = 'http://localhost:3001/' + item.photoUrl;
 
     if (item.party.addresses && item.party.addresses.length) {
       contact.party.addresses = contact.party.addresses.concat(item.party.addresses);
@@ -70,6 +66,16 @@ export class ContactAdapter implements Adapter<Contact> {
     return contact;
   }
 }
+
+/*
+
+    if (contact.sex === 'Male') {
+      contact.photoUrl = 'assets/images/photos/male-avatar.svg';
+    } else {
+      contact.photoUrl = 'assets/images/photos/female-avatar.svg';
+    }
+
+*/
 
 /*
 
