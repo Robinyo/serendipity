@@ -41,10 +41,6 @@ export class DynamicFormService {
     this.logger.info('DynamicFormService: uriPrefrix: ' + this.uriPrefix);
   }
 
-  // public getFormMetadata(formId: string): Observable<DynamicFormControlModel[]> {
-  //   return this.httpClient.get<DynamicFormControlModel[]>(this.uriPrefix + formId + this.uriSuffix);
-  // }
-
   public getFormMetadata(formId: string): Promise<DynamicFormControlModel[]> {
     return this.httpClient.get<DynamicFormControlModel[]>(this.uriPrefix + formId + this.uriSuffix).toPromise();
   }
@@ -177,6 +173,10 @@ export class DynamicFormService {
   )
 
 }
+
+// public getFormMetadata(formId: string): Observable<DynamicFormControlModel[]> {
+//   return this.httpClient.get<DynamicFormControlModel[]>(this.uriPrefix + formId + this.uriSuffix);
+// }
 
 // https://github.com/toddmotto/angular-dynamic-forms/blob/master/app/dynamic-form/containers/dynamic-form/dynamic-form.component.ts
 

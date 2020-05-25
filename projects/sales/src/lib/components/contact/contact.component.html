@@ -150,7 +150,6 @@
         <div class="map-container"
              leaflet
              [leafletOptions]="mapOptions"
-             [leafletLayersControl]="mapLayersControl"
              (leafletMapReady)="onMapReady($event)">
         </div>
 
@@ -173,6 +172,8 @@
 </div> <!-- contentContainer -->
 
 <!--
+
+ [leafletLayersControl]="mapLayersControl"
 
  (dynamicEvent)="onEvent($event)">
 

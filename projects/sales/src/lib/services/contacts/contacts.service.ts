@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
+import {catchError, map, tap} from 'rxjs/operators';
 
-import { CollectionService } from '../abstract/collection/collection.service';
+import {LoggerService} from 'utils';
+import {ContactAdapter} from '../../adapters/contact.adapter';
 
-import { Contact } from '../../models/contact';
-import { ContactAdapter } from '../../adapters/contact.adapter';
+import {Contact} from '../../models/contact';
 
-import { LoggerService } from 'utils';
+import {CollectionService} from '../abstract/collection/collection.service';
 
 const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
 
@@ -115,6 +115,8 @@ export class ContactsService extends CollectionService {
 
   */
 
+
+
   public findOne(id: string): Observable<Contact> {
 
     return this.httpClient.get(this.url + id).pipe(
@@ -163,6 +165,37 @@ export class ContactsService extends CollectionService {
 
 }
 
+/*
+
+  public checkPhotoUrl(url: string): Promise<string> {
+
+    return new Promise<string>((resolve, reject) => {
+
+      this.httpClient.get('http://localhost:3001/' + url).toPromise().then(success => {
+        resolve(url);
+      }, error => {
+        reject('assets/images/photos/male-avatar.svg');
+      });
+
+    });
+
+  }
+
+  public findOne(id: string): Observable<Contact> {
+
+    return this.httpClient.get(this.url + id).pipe(
+
+      map((item: any) => this.adapter.adapt(item)),
+
+      tap(() => {
+        this.logger.info('ContactsService: findOne() completed');
+      }),
+      catchError(this.handleError)
+    );
+
+  }
+
+*/
 
 // https://docs.spring.io/spring-data/rest/docs/current/reference/html/#paging-and-sorting
 

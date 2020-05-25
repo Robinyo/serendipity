@@ -60,6 +60,10 @@ export class ContactComponent extends ItemComponent<Contact> {
 
   }
 
+  private getPhoto() {
+
+  }
+
   protected async subscribe() {
 
     this.logger.info('ContactComponent: subscribe()');
@@ -76,6 +80,8 @@ export class ContactComponent extends ItemComponent<Contact> {
     entitySubscription = this.entityService.findOne(this.id).subscribe(data => {
 
       this.item = data;
+
+
 
       this.logger.info('item: ' + JSON.stringify(this.item, null, 2));
 
