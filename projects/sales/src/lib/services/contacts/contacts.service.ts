@@ -1,15 +1,15 @@
-import {HttpClient, HttpResponse} from '@angular/common/http';
-import {Injectable} from '@angular/core';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
-import {Observable, of} from 'rxjs';
-import {catchError, map, tap} from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
-import {LoggerService} from 'utils';
-import {ContactAdapter} from '../../adapters/contact.adapter';
+import { LoggerService } from 'utils';
+import { ContactAdapter } from '../../adapters/contact.adapter';
 
-import {Contact} from '../../models/contact';
+import { Contact } from '../../models/contact';
 
-import {CollectionService} from '../abstract/collection/collection.service';
+import { CollectionService } from '../abstract/collection/collection.service';
 
 const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
 
@@ -114,8 +114,6 @@ export class ContactsService extends CollectionService {
   }
 
   */
-
-
 
   public findOne(id: string): Observable<Contact> {
 

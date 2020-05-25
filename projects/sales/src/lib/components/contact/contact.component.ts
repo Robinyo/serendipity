@@ -19,9 +19,15 @@ class MapLayersControl extends LeafletControlLayersConfig {}
 
 import { Contact } from '../../models/contact';
 import { ContactsService } from '../../services/contacts/contacts.service';
+import { ElectoralDivision } from '../../models/electoral-division';
+import { ElectoralDivisionsService } from '../../services/electoral-divisions/electoral-divisions.service';
 
 import { CONTACTS } from '../../models/constants';
 import { CONTACT_ADDRESS_INFORMATION_GROUP, CONTACT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
+
+const DEFAULT_ZOOM = 13;
+const DEFAULT_LATITUDE = -28.15;
+const DEFAULT_LONGITUDE = 133.28;
 
 @Component({
   selector: 'sales-contact',
@@ -36,6 +42,8 @@ export class ContactComponent extends ItemComponent<Contact> {
   public addressInformationModel: DynamicFormModel;
   public addressInformationGroup: FormGroup;
 
+  private electoralDivision: ElectoralDivision;
+
   public mapOptions: MapOptions;
   public mapLayersControl: MapLayersControl;
 
@@ -43,7 +51,8 @@ export class ContactComponent extends ItemComponent<Contact> {
 
   constructor(route: ActivatedRoute,
               private entityService: ContactsService,
-              private dynamicFormService: DynamicFormService) {
+              private dynamicFormService: DynamicFormService,
+              private electoralDivisionsService: ElectoralDivisionsService) {
 
     super(route);
 
@@ -54,8 +63,7 @@ export class ContactComponent extends ItemComponent<Contact> {
         })
       ],
       zoom: 4,
-      center: latLng([ -28.15, 133.28])
-      // center: latLng([ -33.865143, 151.209900 ])
+      center: latLng([-28.15, 133.28])
     };
 
   }
@@ -80,8 +88,6 @@ export class ContactComponent extends ItemComponent<Contact> {
     entitySubscription = this.entityService.findOne(this.id).subscribe(data => {
 
       this.item = data;
-
-
 
       this.logger.info('item: ' + JSON.stringify(this.item, null, 2));
 
@@ -246,12 +252,32 @@ export class ContactComponent extends ItemComponent<Contact> {
     this.onClose();
   }
 
-  onTabChanged($event) {
+  public async onTabChanged($event) {
 
     this.logger.info('ContactComponent: onTabChanged()');
 
-    if (this.map !== undefined) {
-      this.map.invalidateSize();
+    if (this.item !== undefined && this.item.electorate) {
+
+      this.electoralDivision = await this.electoralDivisionsService.findByName(this.item.electorate);
+
+      this.logger.info('Electoral Division: ' + JSON.stringify(this.electoralDivision, null, 2) + '\n');
+
+      let latitude = DEFAULT_LATITUDE;
+      let longitude = DEFAULT_LONGITUDE;
+
+      if (!isNaN(Number(this.electoralDivision.latitude))) {
+        latitude = Number(this.electoralDivision.latitude);
+      }
+
+      if (!isNaN(Number(this.electoralDivision.longitude))) {
+        longitude = Number(this.electoralDivision.longitude);
+      }
+
+      if (this.map !== undefined) {
+        this.map.setView(latLng(latitude, longitude), DEFAULT_ZOOM);
+        this.map.invalidateSize();
+      }
+
     }
 
   }
