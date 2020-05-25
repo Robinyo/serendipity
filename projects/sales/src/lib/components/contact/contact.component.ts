@@ -28,6 +28,7 @@ import { CONTACT_ADDRESS_INFORMATION_GROUP, CONTACT_GENERAL_INFORMATION_GROUP } 
 const DEFAULT_ZOOM = 13;
 const DEFAULT_LATITUDE = -28.15;
 const DEFAULT_LONGITUDE = 133.28;
+const ELECTORAL_DIVISION_TAB_INDEX = 3;
 
 @Component({
   selector: 'sales-contact',
@@ -256,26 +257,34 @@ export class ContactComponent extends ItemComponent<Contact> {
 
     this.logger.info('ContactComponent: onTabChanged()');
 
-    if (this.item !== undefined && this.item.electorate) {
+    const clickedIndex = $event.index;
 
-      this.electoralDivision = await this.electoralDivisionsService.findByName(this.item.electorate);
+    this.logger.info('clickedIndex: ' + clickedIndex);
 
-      this.logger.info('Electoral Division: ' + JSON.stringify(this.electoralDivision, null, 2) + '\n');
+    if (clickedIndex === ELECTORAL_DIVISION_TAB_INDEX && this.item !== undefined && this.item.electorate) {
 
-      let latitude = DEFAULT_LATITUDE;
-      let longitude = DEFAULT_LONGITUDE;
+      if (this.electoralDivision === undefined) {
 
-      if (!isNaN(Number(this.electoralDivision.latitude))) {
-        latitude = Number(this.electoralDivision.latitude);
-      }
+        this.electoralDivision = await this.electoralDivisionsService.findByName(this.item.electorate);
 
-      if (!isNaN(Number(this.electoralDivision.longitude))) {
-        longitude = Number(this.electoralDivision.longitude);
-      }
+        this.logger.info('Electoral Division: ' + JSON.stringify(this.electoralDivision, null, 2) + '\n');
 
-      if (this.map !== undefined) {
-        this.map.setView(latLng(latitude, longitude), DEFAULT_ZOOM);
-        this.map.invalidateSize();
+        let latitude = DEFAULT_LATITUDE;
+        let longitude = DEFAULT_LONGITUDE;
+
+        if (!isNaN(Number(this.electoralDivision.latitude))) {
+          latitude = Number(this.electoralDivision.latitude);
+        }
+
+        if (!isNaN(Number(this.electoralDivision.longitude))) {
+          longitude = Number(this.electoralDivision.longitude);
+        }
+
+        if (this.map !== undefined) {
+          this.map.setView(latLng(latitude, longitude), DEFAULT_ZOOM);
+          this.map.invalidateSize();
+        }
+
       }
 
     }
