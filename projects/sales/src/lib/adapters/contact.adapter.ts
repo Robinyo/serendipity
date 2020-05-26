@@ -21,14 +21,14 @@ export class ContactAdapter implements Adapter<Contact> {
     // this.logger.info('item: ' + JSON.stringify(item, null, 2));
 
     const contact = new Contact(
-      item.names[0].title,
-      item.names[0].givenName,
-      item.names[0].middleName,
-      item.names[0].familyName,
-      item.names[0].honorific,
-      item.names[0].salutation,
-      item.names[0].preferredName,
-      item.names[0].initials,
+      item.title,
+      item.givenName,
+      item.middleName,
+      item.familyName,
+      item.honorific,
+      item.salutation,
+      item.preferredName,
+      item.initials,
       item.dateOfBirth,
       item.placeOfBirth,
       item.sex,
@@ -68,6 +68,24 @@ export class ContactAdapter implements Adapter<Contact> {
 }
 
 /*
+
+    const contact = new Contact(
+      item.names[0].title,
+      item.names[0].givenName,
+      item.names[0].middleName,
+      item.names[0].familyName,
+      item.names[0].honorific,
+      item.names[0].salutation,
+      item.names[0].preferredName,
+      item.names[0].initials,
+      item.dateOfBirth,
+      item.placeOfBirth,
+      item.sex,
+      item.email,
+      item.phoneNumber,
+      item.photoUrl,
+      item.electorate
+    );
 
     if (contact.sex === 'Male') {
       contact.photoUrl = 'assets/images/photos/male-avatar.svg';

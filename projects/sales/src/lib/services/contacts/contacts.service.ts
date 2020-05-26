@@ -40,7 +40,8 @@ export class ContactsService extends CollectionService {
     // ?page=0&size=10&name=F&sort=familyName&familyName.dir=asc
     // const queryParams = '?page=' + offset + '&size=' + limit + filterParam + '&sort=familyName&familyName.dir=asc';
     // const queryParams = '?page=' + offset + '&size=' + limit;
-    const queryParams = '?page=' + offset + '&size=' + limit + '&sort=sort&sort.dir=asc';
+    // const queryParams = '?page=' + offset + '&size=' + limit + '&sort=sort&sort.dir=asc';
+    const queryParams = '?page=' + offset + '&size=' + limit + '&sort=name.familyName&name.familyName.dir=asc';
 
     this.logger.info('ContactsService queryParams: ' + queryParams);
 
