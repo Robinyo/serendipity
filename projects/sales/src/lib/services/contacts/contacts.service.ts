@@ -27,22 +27,24 @@ export class ContactsService extends CollectionService {
     this.url = 'http://localhost:3001/api/individuals/';
   }
 
-  public find(offset: number = 0, limit: number = 100, filter: string = ''): Observable<any> {
+  public find(filter: string, offset: number = 0, limit: number = 100): Observable<any> {
 
     this.logger.info('ContactsService: find()');
 
-    let filterParam = '';
+    let queryParams;
 
     if (filter.length) {
-      filterParam = '&name=' + filter;
+
+      this.url = 'http://localhost:3001/api/individuals/search/findByFamilyNameStartsWith';
+      queryParams = '?name=' + filter + '&page=' + offset + '&size=' + limit + '&sort=name.familyName&name.familyName.dir=asc';
+
+    } else {
+
+      this.url = 'http://localhost:3001/api/individuals/';
+      queryParams = '?page=' + offset + '&size=' + limit + '&sort=name.familyName&name.familyName.dir=asc';
     }
 
-    // ?page=0&size=10&name=F&sort=familyName&familyName.dir=asc
-    // const queryParams = '?page=' + offset + '&size=' + limit + filterParam + '&sort=familyName&familyName.dir=asc';
-    // const queryParams = '?page=' + offset + '&size=' + limit;
-    // const queryParams = '?page=' + offset + '&size=' + limit + '&sort=sort&sort.dir=asc';
-    const queryParams = '?page=' + offset + '&size=' + limit + '&sort=name.familyName&name.familyName.dir=asc';
-
+    this.logger.info('ContactsService url: ' + this.url);
     this.logger.info('ContactsService queryParams: ' + queryParams);
 
     return this.httpClient.get(this.url + queryParams, this.getHttpOptions()).pipe(
@@ -58,6 +60,45 @@ export class ContactsService extends CollectionService {
       catchError(error => {
 
         this.logger.info('ContactsService: find() -> catchError()');
+
+        if (error === undefined) {
+
+          error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
+          throw error;
+
+        } else {
+
+          return this.handleError('Find', []);
+          // return throwError(error);
+        }
+
+      })
+
+    );
+
+  }
+
+  public findByFamilyNameStartsWith(name: string, offset: number = 0, limit: number = 100): Observable<any> {
+
+    this.logger.info('ContactsService: findByFamilyNameStartsWith()');
+
+    const queryParams = '?name=' + name + '&page=' + offset + '&size=' + limit + '&sort=name.familyName&name.familyName.dir=asc';
+
+    this.logger.info('ContactsService queryParams: ' + queryParams);
+
+    return this.httpClient.get(this.url + 'search/findByFamilyNameStartsWith' + queryParams, this.getHttpOptions()).pipe(
+
+      // tap((response: any) => {
+      tap(() => {
+
+        // this.logger.info('response: ' + JSON.stringify(response.body, null, 2) + '\n');
+
+        this.logger.info('ContactsService: findByFamilyNameStartsWith() completed');
+
+      }),
+      catchError(error => {
+
+        this.logger.info('ContactsService: findByFamilyNameStartsWith() -> catchError()');
 
         if (error === undefined) {
 
@@ -163,6 +204,61 @@ export class ContactsService extends CollectionService {
   }
 
 }
+
+
+
+/*
+
+  public find(offset: number = 0, limit: number = 100, filter: string = ''): Observable<any> {
+
+    this.logger.info('ContactsService: find()');
+
+    let filterParam = '';
+
+    if (filter.length) {
+      filterParam = '&name=' + filter;
+    }
+
+    // ?page=0&size=10&name=F&sort=familyName&familyName.dir=asc
+    // const queryParams = '?page=' + offset + '&size=' + limit + filterParam + '&sort=familyName&familyName.dir=asc';
+    // const queryParams = '?page=' + offset + '&size=' + limit;
+    // const queryParams = '?page=' + offset + '&size=' + limit + '&sort=sort&sort.dir=asc';
+    const queryParams = '?page=' + offset + '&size=' + limit + '&sort=name.familyName&name.familyName.dir=asc';
+
+    this.logger.info('ContactsService queryParams: ' + queryParams);
+
+    return this.httpClient.get(this.url + queryParams, this.getHttpOptions()).pipe(
+
+      // tap((response: any) => {
+      tap(() => {
+
+        // this.logger.info('response: ' + JSON.stringify(response.body, null, 2) + '\n');
+
+        this.logger.info('ContactsService: find() completed');
+
+      }),
+      catchError(error => {
+
+        this.logger.info('ContactsService: find() -> catchError()');
+
+        if (error === undefined) {
+
+          error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
+          throw error;
+
+        } else {
+
+          return this.handleError('Find', []);
+          // return throwError(error);
+        }
+
+      })
+
+    );
+
+  }
+
+*/
 
 /*
 

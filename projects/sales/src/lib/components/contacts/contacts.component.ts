@@ -37,7 +37,7 @@ export class ContactsComponent extends CollectionComponent<Contact> {
 
     this.logger.info('ContactsComponent: subscribe()');
 
-    this.subscription = this.entityService.find(this.offset, this.limit, this.filter).subscribe(
+    this.subscription = this.entityService.find(this.filter, this.offset, this.limit).subscribe(
 
       (response: any) => {
 
@@ -106,6 +106,55 @@ function pathDataAccessor(item: any, path: string): any {
 }
 
 /*
+
+
+  private findByFamilyNameStartsWith() {
+
+    this.subscription = this.entityService.findByFamilyNameStartsWith(this.filter, this.offset, this.limit).subscribe(
+
+      (response: any) => {
+
+        this.logger.info('ContactsComponent: find() success handler');
+
+        this.count = response.body.page.totalElements;
+        this.items = response.body._embedded.individualModels.map((item => this.entityAdapter.adapt(item)));
+
+        // this.logger.info('count: ' + this.count);
+        // this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
+
+        this.dataSource = new MatTableDataSource(this.items);
+        this.dataSource.data = this.items;
+        this.dataSource.sortingDataAccessor = pathDataAccessor;
+        this.dataSource.sort = this.sort;
+
+      },
+      (error) => {
+
+        this.logger.error('ContactsComponent: findAll() error handler');
+
+        this.items = [];
+
+        let message = error.message;
+
+        if (error.details) {
+          message = error.details.message;
+        }
+
+        this.dialogService.openAlert({
+          title: 'Alert',
+          message: message,
+          closeButton: 'CLOSE'
+        });
+
+      },
+      () =>  {
+
+        this.logger.info('ContactsComponent: find() completion handler');
+      }
+
+    );
+
+  }
 
   protected subscribe() {
 
