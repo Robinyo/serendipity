@@ -3,7 +3,7 @@
   {
     "name": "name",
     "displayName": "ACCOUNT_NAME",
-    "routerLink": "party.id",
+    "routerLink": "id",
     "class": "anchor"
   },
   {

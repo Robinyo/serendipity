@@ -3,7 +3,7 @@
   {
     "name": "party.displayName",
     "displayName": "FULL_NAME",
-    "routerLink": "party.id",
+    "routerLink": "id",
     "class": "anchor"
   },
   {

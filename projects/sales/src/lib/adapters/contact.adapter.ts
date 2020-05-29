@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Adapter } from './adapter';
 
 import { Contact } from '../models/contact';
+import { Name } from '../models/name';
 import { OrganisationRef } from '../models/organisation-ref';
+import { Party } from '../models/party';
 
 import { LoggerService } from 'utils';
 
@@ -21,29 +23,20 @@ export class ContactAdapter implements Adapter<Contact> {
     // this.logger.info('item: ' + JSON.stringify(item, null, 2));
 
     const contact = new Contact(
-      item.title,
-      item.givenName,
-      item.middleName,
-      item.familyName,
-      item.honorific,
-      item.salutation,
-      item.preferredName,
-      item.initials,
-      item.dateOfBirth,
-      item.placeOfBirth,
+      item.party,
+      item.name,
       item.sex,
       item.email,
       item.phoneNumber,
       item.photoUrl,
-      item.electorate
+      item.electorate,
+      item.dateOfBirth,
+      item.placeOfBirth,
     );
 
     // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
 
     contact.id = btoa(item.id);
-
-    contact.party.id = contact.id;
-    contact.party.displayName = item.party.displayName;
 
     contact.photoUrl = 'http://localhost:3001/' + item.photoUrl;
 
@@ -66,6 +59,31 @@ export class ContactAdapter implements Adapter<Contact> {
     return contact;
   }
 }
+
+/*
+
+    const contact = new Contact(
+      item.title,
+      item.givenName,
+      item.middleName,
+      item.familyName,
+      item.honorific,
+      item.salutation,
+      item.preferredName,
+      item.initials,
+      item.dateOfBirth,
+      item.placeOfBirth,
+      item.sex,
+      item.email,
+      item.phoneNumber,
+      item.photoUrl,
+      item.electorate
+    );
+
+    // contact.party.id = item.id;
+    // contact.party.displayName = item.party.displayName;
+
+*/
 
 /*
 

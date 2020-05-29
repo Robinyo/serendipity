@@ -10,7 +10,7 @@ export class Organisation {
     public email: string = '',
     public phoneNumber: string = ''
   ) {
-    this.party = new Party('Organisation');
+    this.party = new Party('ORGANISATION');
     this.individual = new IndividualRef();
   }
 

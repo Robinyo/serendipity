@@ -157,7 +157,7 @@ export class ContactsService extends CollectionService {
 
   */
 
-  public findOne(id: string): Observable<Contact> {
+  public findById(id: string): Observable<Contact> {
 
     return this.httpClient.get(this.url + id).pipe(
 

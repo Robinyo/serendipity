@@ -19,6 +19,9 @@ import { CONTACTS } from '../../models/constants';
 import { CONTACT_ADDRESS_INFORMATION_GROUP, CONTACT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
 import { Address } from '../../models/address';
 import { Contact } from '../../models/contact';
+import { Location } from '../../models/location';
+import { Name } from '../../models/name';
+import { Party } from '../../models/party';
 
 import { ContactsService } from '../../services/contacts/contacts.service';
 
@@ -207,6 +210,7 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
 
     const subscription: Subscription = this.contactsService.create(this.item).subscribe(response => {
 
+      /*
       const keys = response.headers.keys();
       keys.map(key => {
         this.logger.info('ContactWizardComponent create() key: ' + response.headers.get(key));
@@ -215,6 +219,7 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
       this.item = { ...response.body };
 
       this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
+      */
 
       this.markAsPristine();
       this.openSnackBar();
@@ -245,6 +250,9 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
 
     const subscription: Subscription = this.contactsService.update(this.item.party.id, this.item).subscribe(response => {
 
+      this.logger.info('contact: ' + JSON.stringify(response, null, 2) + '\n');
+
+      /*
       const keys = response.headers.keys();
       keys.map(key => {
         this.logger.info('ContactWizardComponent update() key: ' + response.headers.get(key));
@@ -253,6 +261,7 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
       this.item = { ...response.body };
 
       this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
+      */
 
       this.markAsPristine();
       this.openSnackBar();
@@ -267,16 +276,21 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
 
   private createSampleContact() {
 
-    this.item = new Contact(
-      '',
+    const name: Name = new Name(
+      'Mr',
       'Robert',
       '',
       'Ferguson',
-      '',
-      '',
       'Rob',
       'R.',
-      'MALE',
+      '',
+      'Mr Ferguson'
+    );
+
+    this.item = new Contact(
+      new Party('INDIVIDUAL'),
+      name,
+      'Male',
       'rob.ferguson@robferguson.org',
       '(02) 9999 9999',
       'assets/images/photos/male-avatar.svg'
@@ -285,10 +299,14 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
     this.item.party.displayName = 'Ferguson, Rob';
 
     this.item.organisation.displayName = 'Van Orton Trading Pty Ltd';
+    this.item.organisation.email = 'rob.ferguson@robferguson.org';
     this.item.organisation.phoneNumber = '(02) 9999 9999';
 
     const address = new Address(
-      '93 Janet Street', '',
+      new Location('ADDRESS'),
+      '',
+      '93 Janet Street',
+      '',
       'Merewether', 'NSW', '2291',
       'Australia',
       'Principal Place of Residence'

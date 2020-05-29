@@ -1,0 +1,57 @@
+{
+  "id" : 200,
+  "party" : {
+    "id" : 200,
+    "type" : "INDIVIDUAL",
+    "displayName" : "Aly, Dr Anne",
+    "addresses" : [ {
+      "id" : 152,
+      "location" : {
+        "id" : 152,
+        "type" : "ADDRESS",
+        "displayName" : "PO Box 6100 Parliament House Canberra ACT 2600"
+      },
+      "name" : "The Senate",
+      "line1" : "PO Box 6100",
+      "line2" : "Parliament House",
+      "city" : "Canberra",
+      "state" : "ACT",
+      "postalCode" : "2600",
+      "country" : "Australia",
+      "addressType" : "Mailing",
+      "links" : [ ]
+    } ],
+    "roles" : [ {
+      "id" : 201,
+      "role" : "Member",
+      "partyId" : 200,
+      "partyType" : "INDIVIDUAL",
+      "partyName" : "Aly, Dr Anne",
+      "partyEmail" : "anne.aly@aph.gov.au",
+      "relationship" : "Membership",
+      "reciprocalRole" : "Organisation",
+      "reciprocalPartyId" : 160,
+      "reciprocalPartyType" : "ORGANISATION",
+      "reciprocalPartyName" : "Australian Labor Party",
+      "reciprocalPartyEmail" : "hey@alp.org.au",
+      "reciprocalPartyPhoneNumber" : "(02) 6120 0800",
+      "links" : [ ]
+    } ],
+    "links" : [ ]
+  },
+  "title" : "Dr",
+  "givenName" : "Anne",
+  "initials" : "A.",
+  "familyName" : "Aly",
+  "preferredName" : "Anne",
+  "honorific" : "MP",
+  "salutation" : "Dr",
+  "sex" : "Female",
+  "email" : "anne.aly@aph.gov.au",
+  "photoUrl" : "photos/aly-anne.jpg",
+  "electorate" : "Cowan",
+  "links" : [ ]
+}
+2020-05-28 04:14:28.291  WARN 1 --- [nio-3001-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `org.serendipity.restapi.type.PartyType` from String "Individual": not one of the values accepted for Enum class: [INDIVIDUAL, ORGANISATION, ORGANISATIONAL_UNIT]; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `org.serendipity.restapi.type.PartyType` from String "Individual": not one of the values accepted for Enum class: [INDIVIDUAL, ORGANISATION, ORGANISATIONAL_UNIT]
+ at [Source: (PushbackInputStream); line: 1, column: 343] (through reference chain: org.serendipity.restapi.entity.Individual["party"]->org.serendipity.restapi.entity.Party["type"])]
+~ $

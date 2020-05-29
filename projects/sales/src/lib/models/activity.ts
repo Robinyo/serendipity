@@ -9,7 +9,7 @@ export class Activity {
     public regarding: string = '',
     public priority: string = 'Normal',
     public startDate: string = '',
-    public dueDate: string = 'Normal',
+    public dueDate: string = '',
   ) {}
 
 }

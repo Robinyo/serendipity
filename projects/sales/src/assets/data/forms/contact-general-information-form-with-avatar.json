@@ -2,7 +2,7 @@
 
   {
     "type": "input",
-    "id": "givenName",
+    "id": "name.givenName",
     "label": "Given Name",
     "appearance": "outline",
     "autocomplete": "given-name",
@@ -22,7 +22,7 @@
 
   {
     "type": "input",
-    "id": "middleName",
+    "id": "name.middleName",
     "label": "Middle Name",
     "appearance": "outline",
     "autocomplete": "additional-name",
@@ -40,7 +40,7 @@
 
   {
     "type": "input",
-    "id": "familyName",
+    "id": "name.familyName",
     "label": "Family Name",
     "appearance": "outline",
     "autocomplete": "family-name",
@@ -70,7 +70,7 @@
 
   {
     "type": "input",
-    "id": "title",
+    "id": "name.title",
     "label": "Job Title",
     "appearance": "outline",
     "autocomplete": "organization-title",

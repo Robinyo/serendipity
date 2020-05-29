@@ -86,7 +86,7 @@ export class ContactComponent extends ItemComponent<Contact> {
     let entitySubscription: Subscription = new Subscription();
     this.subscriptions.push(entitySubscription);
 
-    entitySubscription = this.entityService.findOne(this.id).subscribe(data => {
+    entitySubscription = this.entityService.findById(this.id).subscribe(data => {
 
       this.item = data;
 
@@ -104,7 +104,7 @@ export class ContactComponent extends ItemComponent<Contact> {
 
   public canDeactivate(): Observable<boolean> | boolean {
 
-    // this.logger.info('ContactComponent: canDeactivate()');
+    this.logger.info('ContactComponent: canDeactivate()');
 
     if (!this.isDirty() && this.isValid()) {
       return true;
@@ -121,8 +121,6 @@ export class ContactComponent extends ItemComponent<Contact> {
 
   public isDirty() {
 
-    // this.logger.info('ContactComponent - isDirty()');
-
     let dirty = false;
 
     if ((this.generalInformationGroup && this.generalInformationGroup.dirty) ||
@@ -130,24 +128,61 @@ export class ContactComponent extends ItemComponent<Contact> {
       dirty = true;
     }
 
+    // this.logger.info('ContactComponent - isDirty(): ' + dirty);
+
     return dirty;
   }
 
   public isValid() {
 
-    // this.logger.info('ContactComponent - isValid()');
-
     let valid = false;
 
-    if (this.generalInformationGroup && this.generalInformationGroup.valid) {
+    if (this.generalInformationGroup) {
 
-      if (this.addressInformationGroup && this.addressInformationGroup.valid) {
+      valid = true;
 
-        valid = true;
-        // this.logger.info('valid: ' + valid);
+      const controls = this.generalInformationGroup.controls;
+      for (const name in controls) {
+        if (controls[name].invalid) {
+          this.logger.info('generalInformationGroup ' + name + ' is invalid');
+          valid = false;
+        }
       }
 
     }
+
+    if (valid && this.addressInformationGroup) {
+
+      valid = true;
+
+      const controls = this.addressInformationGroup.controls;
+      for (const name in controls) {
+        if (controls[name].invalid) {
+          this.logger.info('addressInformationGroup ' + name + ' is invalid');
+          valid = false;
+        }
+      }
+
+    }
+
+    /*
+
+    if (this.generalInformationGroup && this.generalInformationGroup.valid) {
+
+      this.logger.info('ContactComponent - generalInformationGroup.valid');
+
+      if (this.addressInformationGroup && this.addressInformationGroup.valid) {
+
+        this.logger.info('ContactComponent - addressInformationGroup.valid');
+
+        valid = true;
+      }
+
+    }
+
+    */
+
+    // this.logger.info('ContactComponent - isValid(): ' + valid);
 
     return valid;
   }
@@ -240,7 +275,7 @@ export class ContactComponent extends ItemComponent<Contact> {
     this.dynamicFormService.value(this.generalInformationGroup, this.item);
     this.dynamicFormService.value(this.addressInformationGroup, this.item.party.addresses[0]);
 
-    this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
+    // this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
 
     this.update();
   }
@@ -311,8 +346,15 @@ export class ContactComponent extends ItemComponent<Contact> {
 
     this.logger.info('ContactComponent: update()');
 
-    const subscription: Subscription = this.entityService.update(this.item.party.id, this.item).subscribe(response => {
+    // contact.id = btoa(item.id);
+    // this.id = atob(this.id);
+    this.item.id = this.id;
 
+    this.logger.info('item: ' + JSON.stringify(this.item, null, 2) + '\n');
+
+    const subscription: Subscription = this.entityService.update(this.id, this.item).subscribe(response => {
+
+      /*
       const keys = response.headers.keys();
       keys.map(key => {
         this.logger.info('ContactComponent update() key: ' + response.headers.get(key));
@@ -321,6 +363,7 @@ export class ContactComponent extends ItemComponent<Contact> {
       this.item = { ...response.body };
 
       this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
+      */
 
       this.markAsPristine();
       this.openSnackBar();

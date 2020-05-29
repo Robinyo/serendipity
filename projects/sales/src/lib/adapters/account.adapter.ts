@@ -29,7 +29,8 @@ export class AccountAdapter implements Adapter<Account> {
 
     account.id = btoa(item.id);
 
-    account.party.id = account.id;
+    // account.party.id = account.id;
+    account.party.id = item.id;
     account.party.displayName = item.party.displayName;
 
     if (item.party.addresses && item.party.addresses.length) {
