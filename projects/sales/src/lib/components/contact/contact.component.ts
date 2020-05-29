@@ -352,18 +352,7 @@ export class ContactComponent extends ItemComponent<Contact> {
 
     this.logger.info('item: ' + JSON.stringify(this.item, null, 2) + '\n');
 
-    const subscription: Subscription = this.entityService.update(this.id, this.item).subscribe(response => {
-
-      /*
-      const keys = response.headers.keys();
-      keys.map(key => {
-        this.logger.info('ContactComponent update() key: ' + response.headers.get(key));
-      });
-
-      this.item = { ...response.body };
-
-      this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
-      */
+    const subscription: Subscription = this.entityService.update(this.id, this.item).subscribe(() => {
 
       this.markAsPristine();
       this.openSnackBar();
@@ -375,3 +364,16 @@ export class ContactComponent extends ItemComponent<Contact> {
   }
 
 }
+
+/*
+
+const keys = response.headers.keys();
+keys.map(key => {
+  this.logger.info('ContactComponent update() key: ' + response.headers.get(key));
+});
+
+this.item = { ...response.body };
+
+this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
+
+*/
