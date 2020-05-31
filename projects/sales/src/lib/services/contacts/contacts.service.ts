@@ -1,32 +1,140 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-
-import { EnvironmentService, LoggerService } from 'utils';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 import { CollectionService } from '../abstract/collection/collection.service';
 
 import { ContactAdapter } from '../../adapters/contact.adapter';
 import { Contact } from '../../models/contact';
 
-const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
-
 @Injectable({
   providedIn: 'root'
 })
 export class ContactsService extends CollectionService {
 
-  constructor(private httpClient: HttpClient,
-              private adapter: ContactAdapter,
-              protected environmentService: EnvironmentService,
-              protected logger: LoggerService) {
+  constructor(private adapter: ContactAdapter) {
 
-    super(environmentService, logger);
+    super();
 
     this.url = 'http://localhost:' + this.config.serverPort + '/api/individuals/';
   }
+
+  public find(filter: string, offset: number = 0, limit: number = 100): Observable<any> {
+
+    this.logger.info('ContactsService: find()');
+
+    let queryParams;
+
+    if (filter.length) {
+
+      this.url = 'http://localhost:' + this.config.serverPort + '/api/individuals/search/findByFamilyNameStartsWith';
+      queryParams = '?name=' + filter + '&page=' + offset + '&size=' + limit + '&sort=name.familyName&name.familyName.dir=asc';
+
+    } else {
+
+      this.url = 'http://localhost:' + this.config.serverPort + '/api/individuals/';
+      queryParams = '?page=' + offset + '&size=' + limit + '&sort=name.familyName&name.familyName.dir=asc';
+    }
+
+    this.logger.info('ContactsService url: ' + this.url);
+    this.logger.info('ContactsService queryParams: ' + queryParams);
+
+    return this.httpClient.get(this.url + queryParams, this.getHttpOptions()).pipe(
+
+      // tap((response: any) => {
+      tap(() => {
+
+        // this.logger.info('response: ' + JSON.stringify(response.body, null, 2) + '\n');
+
+        this.logger.info('ContactsService: find() completed');
+
+      })
+
+    );
+
+  }
+
+  public findById(id: string): Observable<Contact> {
+
+    return this.httpClient.get(this.url + id).pipe(
+
+      map((item: any) => this.adapter.adapt(item)),
+
+      tap(() => {
+        this.logger.info('ContactsService: findOne() completed');
+      })
+    );
+
+  }
+
+  public create(contact: Contact): Observable<HttpResponse<Contact>> {
+
+    return this.httpClient.post<HttpResponse<Contact>>(this.url, contact, this.getHttpOptions()).pipe(
+      tap(() => {
+        this.logger.info('ContactsService: create() completed');
+      })
+    );
+
+  }
+
+  public update(id: string, contact: Contact): Observable<HttpResponse<Contact>> {
+
+    return this.httpClient.patch<HttpResponse<Contact>>(this.url + id, contact, this.getHttpOptions()).pipe(
+      tap(() => {
+        this.logger.info('ContactsService: update() completed');
+      })
+    );
+
+  }
+
+  public delete(id: string): Observable<Contact> {
+
+    return this.httpClient.delete<Contact>(this.url + id).pipe(
+      tap(() => {
+        this.logger.info('ContactsService: delete() completed');
+      })
+    );
+
+  }
+
+}
+
+
+
+
+
+/*
+
+  public findByFamilyNameStartsWith(name: string, offset: number = 0, limit: number = 100): Observable<any> {
+
+    this.logger.info('ContactsService: findByFamilyNameStartsWith()');
+
+    const queryParams = '?name=' + name + '&page=' + offset + '&size=' + limit + '&sort=name.familyName&name.familyName.dir=asc';
+
+    this.logger.info('ContactsService queryParams: ' + queryParams);
+
+    return this.httpClient.get(this.url + 'search/findByFamilyNameStartsWith' + queryParams, this.getHttpOptions()).pipe(
+
+      // tap((response: any) => {
+      tap(() => {
+
+        // this.logger.info('response: ' + JSON.stringify(response.body, null, 2) + '\n');
+
+        this.logger.info('ContactsService: findByFamilyNameStartsWith() completed');
+
+      })
+
+    );
+
+  }
+
+*/
+
+/*
+
+  const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
 
   public find(filter: string, offset: number = 0, limit: number = 100): Observable<any> {
 
@@ -108,7 +216,7 @@ export class ContactsService extends CollectionService {
 
         } else {
 
-          return this.handleError('Find', []);
+          return this.handleError('findByFamilyNameStartsWith', []);
           // return throwError(error);
         }
 
@@ -117,46 +225,6 @@ export class ContactsService extends CollectionService {
     );
 
   }
-
-  protected handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      this.logger.info('ContactsService: handleError()');
-
-      // TODO: send the error to your remote logging infrastructure e.g., Sentry
-
-      // TODO: better job of transforming error for user consumption
-      this.logger.error(operation + ' failed: ' + error.message);
-
-      // Let the app keep running by returning an empty result (i.e., [])
-      return of(result as T);
-    };
-  }
-
-  /*
-
-  protected handleError(error: HttpErrorResponse) {
-
-    if (error.error instanceof ErrorEvent) {
-
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
-
-    } else {
-
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
-    }
-
-    // return an observable with a user-facing error message
-    return throwError('Something bad happened; please try again later.');
-
-  }
-
-  */
 
   public findById(id: string): Observable<Contact> {
 
@@ -204,9 +272,7 @@ export class ContactsService extends CollectionService {
     );
   }
 
-}
-
-
+*/
 
 /*
 

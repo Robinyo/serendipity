@@ -54,10 +54,8 @@ const components: any[] = [
 
 @NgModule({
   imports: [
-    // AngularFireModule.initializeApp(environment.firebase),
-    // The Angular Material module must be imported after Angular's BrowserModule, as the import order matters for NgModules.
-    AngularMaterialModule,
-    BrowserAnimationsModule,
+    AngularMaterialModule,    // The Angular Material module must be imported after Angular's BrowserModule, as the import order matters
+    BrowserAnimationsModule,  // for NgModules.
     CommonModule,
     DynamicFormsModule,
     FlexLayoutModule,
@@ -111,11 +109,3 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 // https://stackoverflow.com/questions/50860898/angular-6-services-providedin-root-vs-coremodule
 
 // https://github.com/angular/angular/issues/29848 -> Keep CoreModule as preferred location for app-wide single-use components
-
-//
-// Firebase Hosting
-//
-
-// https://github.com/angular/angularfire2/blob/master/docs/install-and-setup.md
-
-// import { AngularFireModule } from '@angular/fire';

@@ -1,4 +1,4 @@
-import {AfterViewInit, Directive, Injector, OnInit, OnDestroy, Type, ViewChild } from '@angular/core';
+import { AfterViewInit, Directive, Injector, OnInit, OnDestroy, Type, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MatSort, MatTableDataSource } from '@angular/material';

@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 
-import { angularMaterialProviders } from './providers';
+import { angularMaterialProviders, errorProviders } from './providers';
 
 import { environment } from '@env/environment';
 
@@ -25,17 +25,13 @@ import { OidcAuthModule, authProviders } from 'auth-oidc';
 
 import { LoggerService, loggerProviders } from 'utils';
 
-import { GlobalErrorHandler } from './error-handler';
-import { HttpErrorInterceptor } from './core/http-interceptors/error-interceptor';
-
 //
 //
-// Lazy Loaded Libs -> forRoot()
+// Dynamic Forms lib
 //
 //
 
 import { DynamicFormsModule } from 'dynamic-forms';
-// import { SalesModule } from 'sales';
 
 //
 // AppRoutingModule: https://angular.io/guide/router#routing-module-order
@@ -56,18 +52,10 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   declarations: [ AppComponent ],
   providers: [
-    loggerProviders,
     authProviders,
     angularMaterialProviders,
-    {
-      provide: ErrorHandler,
-      useClass: GlobalErrorHandler
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpErrorInterceptor,
-      multi: true
-    }
+    errorProviders,
+    loggerProviders
   ],
   bootstrap: [ AppComponent ]
 })

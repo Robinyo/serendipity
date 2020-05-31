@@ -18,12 +18,9 @@ const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
 })
 export class AccountsService extends CollectionService {
 
-  constructor(private httpClient: HttpClient,
-              private adapter: AccountAdapter,
-              protected environmentService: EnvironmentService,
-              protected logger: LoggerService) {
+  constructor(private adapter: AccountAdapter) {
 
-    super(environmentService, logger);
+    super();
 
     this.url = 'http://localhost:' + this.config.serverPort + '/api/organisations/';
   }
@@ -32,15 +29,20 @@ export class AccountsService extends CollectionService {
 
     this.logger.info('AccountsService: find()');
 
-    let filterParam = '';
+    let queryParams;
 
     if (filter.length) {
-      filterParam = '&name=' + filter;
+
+      this.url = 'http://localhost:' + this.config.serverPort + '/api/organisations/search/findByNameStartsWith';
+      queryParams = '?name=' + filter + '&page=' + offset + '&size=' + limit + '&sort=name&name.dir=asc';
+
+    } else {
+
+      this.url = 'http://localhost:' + this.config.serverPort + '/api/organisations/';
+      queryParams = '?page=' + offset + '&size=' + limit + '&sort=name&name.dir=asc';
     }
 
-    // ?page=0&size=10&name=F&sort=name&name.dir=asc
-    const queryParams = '?page=' + offset + '&size=' + limit + filterParam + '&sort=name&name.dir=asc';
-
+    this.logger.info('AccountsService url: ' + this.url);
     this.logger.info('AccountsService queryParams: ' + queryParams);
 
     return this.httpClient.get(this.url + queryParams, this.getHttpOptions()).pipe(
@@ -51,42 +53,10 @@ export class AccountsService extends CollectionService {
         // this.logger.info('response: ' + JSON.stringify(response.body, null, 2) + '\n');
 
         this.logger.info('AccountsService: find() completed');
-      }),
-      catchError(error => {
-
-        this.logger.info('AccountsService: find() -> catchError()');
-
-        if (error === undefined) {
-
-          error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
-          throw error;
-
-        } else {
-
-          return this.handleError('Find', []);
-          // return throwError(error);
-        }
-
       })
 
     );
 
-  }
-
-
-  protected handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      this.logger.info('AccountsService: handleError()');
-
-      // TODO: send the error to your remote logging infrastructure e.g., Sentry
-
-      // TODO: better job of transforming error for user consumption
-      this.logger.error(operation + ' failed: ' + error.message);
-
-      // Let the app keep running by returning an empty result (i.e., [])
-      return of(result as T);
-    };
   }
 
   public findOne(id: string): Observable<Account> {
@@ -97,8 +67,7 @@ export class AccountsService extends CollectionService {
 
       tap(() => {
         this.logger.info('AccountsService: findOne() completed');
-      }),
-      catchError(this.handleError)
+      })
     );
 
   }
@@ -108,8 +77,7 @@ export class AccountsService extends CollectionService {
     return this.httpClient.post<HttpResponse<Account>>(this.url, account, this.getHttpOptions()).pipe(
       tap(() => {
         this.logger.info('AccountsService: create() completed');
-      }),
-      catchError(this.handleError)
+      })
     );
 
   }
@@ -119,8 +87,7 @@ export class AccountsService extends CollectionService {
     return this.httpClient.patch<HttpResponse<Account>>(this.url + id, account, this.getHttpOptions()).pipe(
       tap(() => {
         this.logger.info('AccountsService: update() completed');
-      }),
-      catchError(this.handleError)
+      })
     );
 
   }
@@ -130,9 +97,9 @@ export class AccountsService extends CollectionService {
     return this.httpClient.delete<Account>(this.url + id).pipe(
       tap(() => {
         this.logger.info('AccountsService: delete() completed');
-      }),
-      catchError(this.handleError)
+      })
     );
+
   }
 
 }

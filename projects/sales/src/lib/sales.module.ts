@@ -1,4 +1,4 @@
-import { Injector, ModuleWithProviders, NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -102,12 +102,8 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
 })
 export class SalesModule {
 
-  constructor(private injector: Injector,
-              private logger: LoggerService) {
-
+  constructor(private logger: LoggerService) {
     this.logger.info('Sales Module initialised');
-
-    StaticInjectorService.setInjector(injector);
   }
 
   static forRoot(config: SalesConfig): ModuleWithProviders<SalesModule> {
@@ -122,6 +118,18 @@ export class SalesModule {
   }
 
 }
+
+/*
+
+  constructor(private injector: Injector,
+              private logger: LoggerService) {
+
+    this.logger.info('Sales Module initialised');
+
+    StaticInjectorService.setInjector(injector);
+  }
+
+*/
 
 /*
 

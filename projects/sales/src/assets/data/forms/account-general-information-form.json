@@ -35,7 +35,7 @@
       }
     ],
 
-    "gridItemClass": "grid-column-2",
+    "gridItemClass": "grid-column-1",
     "required": false
   },
 
