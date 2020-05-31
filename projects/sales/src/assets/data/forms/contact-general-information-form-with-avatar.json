@@ -71,7 +71,7 @@
   {
     "type": "input",
     "id": "name.title",
-    "label": "Job Title",
+    "label": "Title",
     "appearance": "outline",
     "autocomplete": "organization-title",
 

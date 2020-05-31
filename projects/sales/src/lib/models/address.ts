@@ -1,9 +1,11 @@
 import { Location } from './location';
 
+import { LocationType } from '../types/location-type';
+
 export class Address {
 
   constructor(
-    public location: Location,
+    public location: Location = new Location(LocationType.ADDRESS),
     public name: string = '',
     public line1: string = '',
     public line2: string = '',

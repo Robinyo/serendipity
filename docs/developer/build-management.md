@@ -34,7 +34,6 @@ ng build dashboard && \
 ng build dynamic-forms && \
 ng build auth-local && \
 ng build flowable && \
-ng build maps && \
 ng build sales
 ```
        
@@ -107,7 +106,6 @@ ng build dashboard && \
 ng build dynamic-forms && \
 ng build auth-local && \
 ng build flowable && \
-ng build maps && \
 ng build sales
 ng build --prod --source-map 
 ```

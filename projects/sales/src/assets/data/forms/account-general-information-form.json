@@ -21,6 +21,26 @@
 
   {
     "type": "input",
+    "id": "email",
+    "label": "Email",
+    "appearance": "outline",
+    "autocomplete": "email",
+
+    "validators": [
+      {
+        "name": "email",
+        "args": null,
+        "propertyName": "email",
+        "message": "Please enter a valid email address"
+      }
+    ],
+
+    "gridItemClass": "grid-column-2",
+    "required": false
+  },
+
+  {
+    "type": "input",
     "id": "phoneNumber",
     "label": "Main Phone",
     "appearance": "outline",

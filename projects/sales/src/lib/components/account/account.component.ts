@@ -42,9 +42,10 @@ export class AccountComponent extends ItemComponent<Account> {
 
     entitySubscription = this.entityService.findOne(this.id).subscribe(data => {
 
-      this.logger.info('AccountComponent subscribe() data: ' + JSON.stringify(data));
-
       this.item = data;
+
+      this.logger.info('item: ' + JSON.stringify(this.item, null, 2));
+
       this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
     });
 

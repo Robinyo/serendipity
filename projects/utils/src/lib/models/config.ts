@@ -2,6 +2,8 @@ export interface Config {
 
   production: boolean;
 
+  serverPort: string;
+
   defaultLanguage: string;
 
   isDebugMode: boolean;

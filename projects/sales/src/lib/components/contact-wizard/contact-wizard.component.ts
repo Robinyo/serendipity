@@ -27,7 +27,6 @@ import { PartyType } from '../../types/party-type';
 
 import { ContactsService } from '../../services/contacts/contacts.service';
 
-
 @Component({
   selector: 'sales-contact-wizard',
   templateUrl: './contact-wizard.component.html',

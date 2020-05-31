@@ -20,6 +20,7 @@ export class AccountAdapter implements Adapter<Account> {
     // this.logger.info('item: ' + JSON.stringify(item, null, 2));
 
     const account = new Account(
+      item.party,
       item.name,
       item.email,
       item.phoneNumber
@@ -28,10 +29,6 @@ export class AccountAdapter implements Adapter<Account> {
     // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
 
     account.id = btoa(item.id);
-
-    // account.party.id = account.id;
-    account.party.id = item.id;
-    account.party.displayName = item.party.displayName;
 
     if (item.party.addresses && item.party.addresses.length) {
       account.party.addresses = account.party.addresses.concat(item.party.addresses);
