@@ -8,7 +8,7 @@ export const environment: Environment = {
 
   production: true,
 
-  serverPort: 3001,
+  serverPort: '3001',
 
   defaultLanguage: 'en-gb', // 'en-gb', 'de-ch'
 

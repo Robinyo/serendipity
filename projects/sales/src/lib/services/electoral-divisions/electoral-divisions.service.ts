@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-import { LoggerService } from 'utils';
+import { EnvironmentService, LoggerService } from 'utils';
 import { ElectoralDivision } from '../../models/electoral-division';
 import { CollectionService } from '../abstract/collection/collection.service';
 
@@ -12,11 +11,12 @@ import { CollectionService } from '../abstract/collection/collection.service';
 export class ElectoralDivisionsService extends CollectionService {
 
   constructor(private httpClient: HttpClient,
+              protected environmentService: EnvironmentService,
               protected logger: LoggerService) {
 
-    super(logger);
+    super(environmentService, logger);
 
-    this.url = 'http://localhost:3001/api/electoral-divisions/';
+    this.url = 'http://localhost:' + this.config.serverPort + '/api/electoral-divisions/';
   }
 
   public findByName(name: string): Promise<ElectoralDivision> {
@@ -25,28 +25,6 @@ export class ElectoralDivisionsService extends CollectionService {
 
     return this.httpClient.get<ElectoralDivision>(this.url + 'search/findByName' + queryParams).toPromise();
   }
-
-/*
-
-  public getFormMetadata(formId: string): Promise<DynamicFormControlModel[]> {
-    return this.httpClient.get<DynamicFormControlModel[]>(this.uriPrefix + formId + this.uriSuffix).toPromise();
-  }
-
-  public findByName(name: string): Observable<ElectoralDivision> {
-
-    const queryParams = '?name=' + name;
-
-    return this.httpClient.get<ElectoralDivision>(this.url + 'search/findByName' + queryParams).pipe(
-
-      tap(() => {
-        this.logger.info('ElectoralDivisionsService: findByName() completed');
-      }),
-      catchError(this.handleError)
-    );
-
-  }
-
-*/
 
   protected handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

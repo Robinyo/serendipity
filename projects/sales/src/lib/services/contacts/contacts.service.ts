@@ -4,12 +4,12 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { LoggerService } from 'utils';
-import { ContactAdapter } from '../../adapters/contact.adapter';
-
-import { Contact } from '../../models/contact';
+import { EnvironmentService, LoggerService } from 'utils';
 
 import { CollectionService } from '../abstract/collection/collection.service';
+
+import { ContactAdapter } from '../../adapters/contact.adapter';
+import { Contact } from '../../models/contact';
 
 const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
 
@@ -20,11 +20,12 @@ export class ContactsService extends CollectionService {
 
   constructor(private httpClient: HttpClient,
               private adapter: ContactAdapter,
+              protected environmentService: EnvironmentService,
               protected logger: LoggerService) {
 
-    super(logger);
+    super(environmentService, logger);
 
-    this.url = 'http://localhost:3001/api/individuals/';
+    this.url = 'http://localhost:' + this.config.serverPort + '/api/individuals/';
   }
 
   public find(filter: string, offset: number = 0, limit: number = 100): Observable<any> {
@@ -35,12 +36,12 @@ export class ContactsService extends CollectionService {
 
     if (filter.length) {
 
-      this.url = 'http://localhost:3001/api/individuals/search/findByFamilyNameStartsWith';
+      this.url = 'http://localhost:' + this.config.serverPort + '/api/individuals/search/findByFamilyNameStartsWith';
       queryParams = '?name=' + filter + '&page=' + offset + '&size=' + limit + '&sort=name.familyName&name.familyName.dir=asc';
 
     } else {
 
-      this.url = 'http://localhost:3001/api/individuals/';
+      this.url = 'http://localhost:' + this.config.serverPort + '/api/individuals/';
       queryParams = '?page=' + offset + '&size=' + limit + '&sort=name.familyName&name.familyName.dir=asc';
     }
 

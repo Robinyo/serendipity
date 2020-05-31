@@ -1,8 +1,10 @@
-import { Injector, NgModule } from '@angular/core';
+import { Injector, ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { SalesConfig } from './models/config';
+import { SalesConfigService } from './services/config.service';
 
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -16,7 +18,6 @@ import { ContactComponent } from './components/contact/contact.component';
 import { ContactWizardComponent } from './components/contact-wizard/contact-wizard.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EmailComponent } from './components/email/email.component';
-// import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 
 //
@@ -52,10 +53,9 @@ import { DynamicFormsModule } from 'dynamic-forms';
 import { FlowableModule } from 'flowable';
 
 //
-// Maps lib
+// Leaflet
 //
 
-// import { MapsModule } from 'maps';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 //
@@ -70,7 +70,6 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
     AngularMaterialModule,
     CommonModule,
     DashboardModule,
-    // DragDropModule,
     FlexLayoutModule,
     FlowableModule,
     QuillModule.forRoot({
@@ -96,11 +95,9 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
     ContactWizardComponent,
     EmailComponent,
     DashboardComponent,
-    // SnackBarComponent,
     TasksComponent
   ],
   entryComponents: [
-    // SnackBarComponent
   ]
 })
 export class SalesModule {
@@ -111,6 +108,17 @@ export class SalesModule {
     this.logger.info('Sales Module initialised');
 
     StaticInjectorService.setInjector(injector);
+  }
+
+  static forRoot(config: SalesConfig): ModuleWithProviders<SalesModule> {
+
+    return {
+      ngModule: SalesModule,
+      providers: [
+        { provide: SalesConfigService, useValue: config }
+      ]
+    };
+
   }
 
 }

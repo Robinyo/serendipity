@@ -1,17 +1,23 @@
 import { HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 
+import { SalesConfig } from '../../../models/config';
 import { HttpOptions } from '../../../models/http';
 
 import { Observable, of, throwError } from 'rxjs';
 
-import { LoggerService } from 'utils';
+import { EnvironmentService, LoggerService } from 'utils';
 
 export abstract class CollectionService {
 
+  protected config: SalesConfig;
   protected httpOptions: HttpOptions;
   protected url: string;
 
-  constructor(protected logger: LoggerService) {}
+  constructor(protected environmentService: EnvironmentService,
+    protected logger: LoggerService) {
+
+    this.config = environmentService.getConfig();
+  }
 
   protected getHttpOptions(params: HttpParams = null): HttpOptions {
 

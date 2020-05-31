@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+
+import { EnvironmentService, LoggerService } from 'utils';
 
 import { CollectionService } from '../abstract/collection/collection.service';
 
 import { Account } from '../../models/account';
 import { AccountAdapter } from '../../adapters/account.adapter';
-
-import { LoggerService } from 'utils';
 
 const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
 
@@ -20,11 +20,12 @@ export class AccountsService extends CollectionService {
 
   constructor(private httpClient: HttpClient,
               private adapter: AccountAdapter,
+              protected environmentService: EnvironmentService,
               protected logger: LoggerService) {
 
-    super(logger);
+    super(environmentService, logger);
 
-    this.url = 'http://localhost:3001/api/organisations/';
+    this.url = 'http://localhost:' + this.config.serverPort + '/api/organisations/';
   }
 
   public find(offset: number = 0, limit: number = 100, filter: string = ''): Observable<any> {

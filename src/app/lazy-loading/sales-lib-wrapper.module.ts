@@ -6,3 +6,6 @@ import { SalesModule } from 'sales';
   imports: [ SalesModule ]
 })
 export class SalesLibWrapperModule {}
+
+// import { environment } from '@env/environment';
+// imports: [ SalesModule.forRoot(environment) ]
