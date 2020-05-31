@@ -1,0 +1,4 @@
+export enum LocationType {
+  ADDRESS = 'ADDRESS',
+  ELECTRONIC_ADDRESS = 'ELECTRONIC_ADDRESS'
+}

@@ -8,7 +8,7 @@ export class Party {
   public legalType: string;
 
   constructor(
-    public type: string = 'Party',
+    public type: string = 'PARTY',
     public displayName: string = '',
     public addresses: Address[] = [],
     public roles: Role[] = []

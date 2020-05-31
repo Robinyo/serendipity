@@ -1,14 +1,29 @@
+import { Name } from './name';
 import { OrganisationRef } from './organisation-ref';
 import { Party } from './party';
-import { Name } from './name';
+
+import { PartyType } from '../types/party-type';
+
+const defaultParty: Party = new Party(PartyType.INDIVIDUAL);
+
+const defaultName: Name = new Name(
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  ''
+);
 
 export class Individual {
 
   public id?: string;
 
   constructor(
-    public party: Party,
-    public name: Name,
+    public party: Party = defaultParty,
+    public name: Name = defaultName,
     public sex: string = '',
     public email: string = '',
     public phoneNumber: string = '',

@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 import { FormGroup } from '@angular/forms';
 
@@ -23,7 +22,11 @@ import { Location } from '../../models/location';
 import { Name } from '../../models/name';
 import { Party } from '../../models/party';
 
+import { LocationType } from '../../types/location-type';
+import { PartyType } from '../../types/party-type';
+
 import { ContactsService } from '../../services/contacts/contacts.service';
+
 
 @Component({
   selector: 'sales-contact-wizard',
@@ -59,7 +62,6 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
   async createWizardSteps() {
 
     this.logger.info('ContactWizardComponent: createWizardSteps()');
-
 
     //
     // To save me some typing ...
@@ -210,17 +212,6 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
 
     const subscription: Subscription = this.contactsService.create(this.item).subscribe(response => {
 
-      /*
-      const keys = response.headers.keys();
-      keys.map(key => {
-        this.logger.info('ContactWizardComponent create() key: ' + response.headers.get(key));
-      });
-
-      this.item = { ...response.body };
-
-      this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
-      */
-
       this.markAsPristine();
       this.openSnackBar();
 
@@ -252,17 +243,6 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
 
       this.logger.info('contact: ' + JSON.stringify(response, null, 2) + '\n');
 
-      /*
-      const keys = response.headers.keys();
-      keys.map(key => {
-        this.logger.info('ContactWizardComponent update() key: ' + response.headers.get(key));
-      });
-
-      this.item = { ...response.body };
-
-      this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
-      */
-
       this.markAsPristine();
       this.openSnackBar();
 
@@ -288,7 +268,7 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
     );
 
     this.item = new Contact(
-      new Party('INDIVIDUAL'),
+      new Party(PartyType.INDIVIDUAL),
       name,
       'Male',
       'rob.ferguson@robferguson.org',
@@ -303,7 +283,7 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
     this.item.organisation.phoneNumber = '(02) 9999 9999';
 
     const address = new Address(
-      new Location('ADDRESS'),
+      new Location(LocationType.ADDRESS),
       '',
       '93 Janet Street',
       '',
@@ -321,6 +301,17 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
 // https://angular.io/guide/http#reading-the-full-response
 
 // https://material.angular.io/components/stepper/overview
+
+/*
+const keys = response.headers.keys();
+keys.map(key => {
+  this.logger.info('ContactWizardComponent update() key: ' + response.headers.get(key));
+});
+
+this.item = { ...response.body };
+
+this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
+*/
 
 // const individual = new Contact();
 // Object.assign(individual, this.req.body);
