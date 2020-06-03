@@ -1,17 +1,13 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-
-import { EnvironmentService, LoggerService } from 'utils';
+import { Observable} from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 import { CollectionService } from '../abstract/collection/collection.service';
 
 import { Account } from '../../models/account';
 import { AccountAdapter } from '../../adapters/account.adapter';
-
-const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
 
 @Injectable({
   providedIn: 'root'

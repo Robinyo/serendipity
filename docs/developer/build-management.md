@@ -62,19 +62,10 @@ proxy.conf.json:
 
 ```
 {
-  "/engine-rest": {
-    "target": "http://localhost:8080",
+  "/auth/admin": {
+    "target": "http://localhost:10001",
     "secure": false,
     "logLevel": "debug"
-  },
-  "/flowable-task": {
-    "target": "http://localhost:8080",
-    "secure": false,
-    "logLevel": "debug",
-    "headers": {
-      "Content-Type": "application/json",
-      "Authorization": "Basic Zmxvd2FibGUtcmVzdDp0ZXN0"
-    }
   },
   "/api": {
     "target": "http://localhost:3001",

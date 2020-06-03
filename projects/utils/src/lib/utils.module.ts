@@ -11,6 +11,8 @@ export class UtilsModule {
   constructor(private staticInjector: StaticInjectorService,
               private injector: Injector) {
 
+    console.log('Utils Module initialised');
+
     // I'm injecting the StaticInjectorService so that its constructor() will be called and the UtilsConfigService injected.
 
     StaticInjectorService.setInjector(injector);
@@ -38,3 +40,21 @@ export class UtilsModule {
 // Function calls are not supported in decorators but 'UtilsModule' was called.
 // console.log('UtilsModule: forRoot()');
 // console.log(JSON.stringify(config));
+
+/*
+
+  constructor() {
+    console.log('Utils Module initialised');
+  }
+
+  constructor(private staticInjector: StaticInjectorService,
+              private injector: Injector) {
+
+    console.log('Utils Module initialised');
+
+    // I'm injecting the StaticInjectorService so that its constructor() will be called and the UtilsConfigService injected.
+
+    StaticInjectorService.setInjector(injector);
+  }
+
+*/

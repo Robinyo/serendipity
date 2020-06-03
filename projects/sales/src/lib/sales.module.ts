@@ -26,7 +26,6 @@ import { TasksComponent } from './components/tasks/tasks.component';
 
 import { UtilsModule, LoggerService } from 'utils';
 import { AngularMaterialModule } from 'utils';
-import { StaticInjectorService } from 'utils';
 
 //
 // Serendipity Components lib
@@ -103,6 +102,7 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
 export class SalesModule {
 
   constructor(private logger: LoggerService) {
+
     this.logger.info('Sales Module initialised');
   }
 
@@ -127,6 +127,10 @@ export class SalesModule {
     this.logger.info('Sales Module initialised');
 
     StaticInjectorService.setInjector(injector);
+  }
+
+  constructor(private logger: LoggerService) {
+    this.logger.info('Sales Module initialised');
   }
 
 */

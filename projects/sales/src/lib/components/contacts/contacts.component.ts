@@ -68,6 +68,71 @@ export class ContactsComponent extends CollectionComponent<Contact> {
         this.dataSource.sortingDataAccessor = pathDataAccessor;
         this.dataSource.sort = this.sort;
 
+      }
+
+    );
+
+  }
+
+  //
+  // Command Bar events
+  //
+
+  public onNew() {
+
+    this.logger.info('ContactsComponent: onNew()');
+
+    this.router.navigate(['sales/contacts/new']);
+  }
+
+}
+
+// https://stackoverflow.com/questions/48891174/angular-material-2-datatable-sorting-with-nested-objects
+
+function pathDataAccessor(item: any, path: string): any {
+  return path.split('.')
+  .reduce((accumulator: any, key: string) => {
+    return accumulator ? accumulator[key] : undefined;
+  }, item);
+}
+
+/*
+
+  protected subscribe() {
+
+    this.logger.info('ContactsComponent: subscribe()');
+
+    this.subscription = this.entityService.find(this.filter, this.offset, this.limit).subscribe(
+
+      (response: any) => {
+
+        this.logger.info('ContactsComponent: subscribe() success handler');
+
+        this.count = response.body.page.totalElements;
+
+        this.logger.info('count: ' + this.count);
+
+        if (this.count > 0) {
+
+          this.items = response.body._embedded.individualModels.map(
+            (item => this.entityAdapter.adapt(item)));
+
+        } else {
+
+          const items = [];
+
+          items.push(new Contact());
+
+          this.items = items;
+        }
+
+        // this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
+
+        this.dataSource = new MatTableDataSource(this.items);
+        this.dataSource.data = this.items;
+        this.dataSource.sortingDataAccessor = pathDataAccessor;
+        this.dataSource.sort = this.sort;
+
       },
       (error) => {
 
@@ -97,27 +162,7 @@ export class ContactsComponent extends CollectionComponent<Contact> {
 
   }
 
-  //
-  // Command Bar events
-  //
-
-  public onNew() {
-
-    this.logger.info('ContactsComponent: onNew()');
-
-    this.router.navigate(['sales/contacts/new']);
-  }
-
-}
-
-// https://stackoverflow.com/questions/48891174/angular-material-2-datatable-sorting-with-nested-objects
-
-function pathDataAccessor(item: any, path: string): any {
-  return path.split('.')
-  .reduce((accumulator: any, key: string) => {
-    return accumulator ? accumulator[key] : undefined;
-  }, item);
-}
+*/
 
 /*
 

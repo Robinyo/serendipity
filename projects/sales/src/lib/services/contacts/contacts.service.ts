@@ -1,4 +1,4 @@
-import { HttpResponse } from '@angular/common/http';
+import { HttpResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -6,8 +6,8 @@ import { map, tap } from 'rxjs/operators';
 
 import { CollectionService } from '../abstract/collection/collection.service';
 
-import { ContactAdapter } from '../../adapters/contact.adapter';
 import { Contact } from '../../models/contact';
+import { ContactAdapter } from '../../adapters/contact.adapter';
 
 @Injectable({
   providedIn: 'root'
@@ -42,16 +42,9 @@ export class ContactsService extends CollectionService {
     this.logger.info('ContactsService queryParams: ' + queryParams);
 
     return this.httpClient.get(this.url + queryParams, this.getHttpOptions()).pipe(
-
-      // tap((response: any) => {
       tap(() => {
-
-        // this.logger.info('response: ' + JSON.stringify(response.body, null, 2) + '\n');
-
         this.logger.info('ContactsService: find() completed');
-
       })
-
     );
 
   }

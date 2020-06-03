@@ -16,7 +16,6 @@ import { environment } from '@env/environment';
 // import { LocalAuthModule, authProviders } from 'auth-local';
 // import { Auth0AuthModule, authProviders } from 'auth-auth0';
 // import { OktaAuthModule, authProviders } from 'auth-okta';
-
 import { OidcAuthModule, authProviders } from 'auth-oidc';
 
 //
