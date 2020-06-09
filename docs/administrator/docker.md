@@ -51,9 +51,9 @@ docker container logs openldap
 docker container logs keycloak
 docker container logs postgres
 docker container logs pgadmin
-docker container logs serendipity-api
 docker container logs jasperreports-server
 docker container logs jasperreports-server-cmdline
+docker container logs serendipity-server
 ```
 
 To start a shell session inside your container that you can interact with through your terminal:
@@ -84,9 +84,9 @@ docker container stop openldap
 docker container stop keycloak
 docker container stop postgres
 docker container stop pgadmin
-docker container stop serendipity-api
 docker container stop jasperreports-server
 docker container stop jasperreports-server-cmdline
+docker container stop serendipity-server
 ```
 
 You can remove a container using the following command:
@@ -102,9 +102,9 @@ docker container rm openldap
 docker container rm keycloak
 docker container rm postgres
 docker container rm pgadmin
-docker container rm serendipity-api
 docker container rm jasperreports-server
 docker container rm jasperreports-server-cmdline
+docker container rm serendipity-server
 ```
 
 Where is your image? It’s in your machine’s local Docker image registry:
