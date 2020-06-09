@@ -38,16 +38,6 @@
 
 ![divider](./divider.png)
 
-## ❯ Roadmap
-
-Use Java, Spring Boot (Web, REST, JPA, HAETOAS) and Spring Security (Config, OAuth2, JOSE) to build a [RESTful API](https://github.com/Robinyo/serendipity-api/blob/master/projects/spring-boot/docs/developer/quick-start-guide.md) for Serendipity CEP:
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/redoc.png">
-</p>
-
-![divider](./divider.png)
-
 ## ❯ Screen Shots
 
 ### Navigation
