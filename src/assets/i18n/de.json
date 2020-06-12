@@ -10,9 +10,28 @@
   "REGISTER_BUTTON": "REGISTRIEREN",
   "REGISTER_LABEL": "Konto erstellen",
 
-  "MY_WORK": "Meine Arbeit",
-  "CUSTOMERS": "Kunden",
-  "SALES": "Sales",
+  "MY_WORK_SUB_HEADER": "Meine Arbeit",
+
+  "ACTIVITIES_LIST_ITEM": "Aktivitäten",
+  "DASHBOARDS_LIST_ITEM": "Instrumententafel",
+
+  "CUSTOMERS_SUB_HEADER": "Kunden",
+
+  "ACCOUNTS_LIST_ITEM": "Konten",
+  "CONTACTS_LIST_ITEM": "Kontakte",
+
+  "SALES_SUB_HEADER": "Sales",
+
+  "LEADS_LIST_ITEM": "Führt",
+  "OPPORTUNITIES_LIST_ITEM": "Chancen",
+
+  "COLLATERAL_SUB_HEADER": "Collateral",
+  "MARKETING_SUB_HEADER": "Marketing",
+  "GOALS_SUB_HEADER": "Goals",
+
+  "TOOLS_SUB_HEADER": "Tools",
+  "REPORTS_LIST_ITEM": "Reports",
+
 
   "ACCOUNTS_HEADER": "Konten",
   "ACTIVITIES_HEADER": "Aktivitäten",
