@@ -2,7 +2,7 @@
   <img src="./serendipity-logo.svg" alt="Serendipity" width="400"/>
 </p>
 
-<h1 align="center">Serendipity CEP</h1>
+<h1 align="center">Serendipity</h1>
 
 <p align="center">
   <b>Serendipity is an open source Customer Engagement Platform.</b></br>

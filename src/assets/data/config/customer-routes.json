@@ -3,22 +3,12 @@
   {
     "icon":  "contacts",
     "route": "sales/accounts",
-    "title": "ACCOUNTS"
+    "title": "ACCOUNTS_LIST_ITEM"
   },
   {
     "icon":  "people",
     "route": "sales/contacts",
-    "title": "CONTACTS"
-  },
-  {
-    "icon":  "settings_phone",
-    "route": "leads",
-    "title": "LEADS"
-  },
-  {
-    "icon":  "account_box",
-    "route": "opportunities",
-    "title": "OPPORTUNITIES"
+    "title": "CONTACTS_LIST_ITEM"
   }
 
 ]

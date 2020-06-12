@@ -11,11 +11,12 @@
       </mat-toolbar-row>
     </mat-toolbar>
 
+    <!-- <mat-nav-list dense> -->
     <mat-nav-list>
 
       <ng-container *ngIf="myWorkRoutes">
 
-        <h2 matSubheader> {{ 'MY_WORK' | translate }} </h2>
+        <h2 matSubheader> {{ 'MY_WORK_SUB_HEADER' | translate }} </h2>
 
         <a mat-list-item routerLink="/" style="height: 0;"></a>
 
@@ -28,15 +29,36 @@
           {{item.title}}
         </a>
 
-        <mat-divider></mat-divider>
+        <!-- <mat-divider></mat-divider> -->
 
       </ng-container>
 
       <ng-container *ngIf="customerRoutes">
 
-        <h2 matSubheader> {{ 'CUSTOMERS' | translate }} </h2>
+        <h2 matSubheader> {{ 'CUSTOMERS_SUB_HEADER' | translate }} </h2>
 
         <a *ngFor="let item of customerRoutes"
+           mat-list-item
+           (click)="navigationSidenav.close()"
+           [routerLink]="[item.route]"
+           routerLinkActive="list-item-active">
+          <mat-icon matListIcon class="nav-list-icon"> {{ item.icon }} </mat-icon>
+          {{item.title}}
+        </a>
+
+        <!-- <mat-divider></mat-divider> -->
+
+      </ng-container>
+
+      <h2 matSubheader> {{ 'SALES_SUB_HEADER' | translate }} </h2>
+      <h2 matSubheader> {{ 'COLLATERAL_SUB_HEADER' | translate }} </h2>
+      <h2 matSubheader> {{ 'MARKETING_SUB_HEADER' | translate }} </h2>
+
+      <ng-container *ngIf="toolsRoutes">
+
+        <h2 matSubheader> {{ 'TOOLS_SUB_HEADER' | translate }} </h2>
+
+        <a *ngFor="let item of toolsRoutes"
            mat-list-item
            (click)="navigationSidenav.close()"
            [routerLink]="[item.route]"

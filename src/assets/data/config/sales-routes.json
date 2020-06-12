@@ -1,0 +1,14 @@
+[
+
+  {
+    "icon":  "settings_phone",
+    "route": "leads",
+    "title": "LEADS_LIST_ITEM"
+  },
+  {
+    "icon":  "account_box",
+    "route": "opportunities",
+    "title": "OPPORTUNITIES_LIST_ITEM"
+  }
+
+]

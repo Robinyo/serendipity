@@ -64,13 +64,20 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always'
   },
 
+  {
+    path: 'reports',
+    component: PlaceholderComponent,
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
+  },
+
   //
   // The Wildcard route
   //
 
   {
     path: '**',
-    redirectTo: 'leads'
+    redirectTo: 'reports'
   }
 
 ];

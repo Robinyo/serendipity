@@ -19,8 +19,13 @@ interface SideNavRoute {
   title?: string;
 }
 
+const MY_WORK_ROUTES = 'my-work-routes';
+const CUSTOMER_ROUTES = 'customer-routes';
+const SALES_ROUTES = 'sales-routes';
+const TOOLS_ROUTES = 'tools-routes';
+
 @Component({
-  selector: 'app-nav',
+  selector: 'crm-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
@@ -31,6 +36,8 @@ export class NavComponent implements OnInit, OnDestroy {
 
   public myWorkRoutes: SideNavRoute[];
   public customerRoutes: SideNavRoute[];
+  public salesRoutes: SideNavRoute[];
+  public toolsRoutes: SideNavRoute[];
 
   public toolPaletteItems: ToolPaletteItem[];
 
@@ -56,7 +63,7 @@ export class NavComponent implements OnInit, OnDestroy {
 
   async loadNavListItems() {
 
-    this.myWorkRoutes = await this.configService.get('my-work-routes');
+    this.myWorkRoutes = await this.configService.get(MY_WORK_ROUTES);
 
     this.myWorkRoutes.forEach(route => {
 
@@ -66,9 +73,29 @@ export class NavComponent implements OnInit, OnDestroy {
 
     });
 
-    this.customerRoutes = await this.configService.get('customer-routes');
+    this.customerRoutes = await this.configService.get(CUSTOMER_ROUTES);
 
     this.customerRoutes.forEach(route => {
+
+      this.translate.get(route.title).subscribe(value => {
+        route.title = value;
+      });
+
+    });
+
+    this.salesRoutes = await this.configService.get(SALES_ROUTES);
+
+    this.salesRoutes.forEach(route => {
+
+      this.translate.get(route.title).subscribe(value => {
+        route.title = value;
+      });
+
+    });
+
+    this.toolsRoutes = await this.configService.get(TOOLS_ROUTES);
+
+    this.toolsRoutes.forEach(route => {
 
       this.translate.get(route.title).subscribe(value => {
         route.title = value;

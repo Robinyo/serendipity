@@ -3,12 +3,12 @@
   {
     "icon":  "assignment",
     "route": "sales/activities",
-    "title": "ACTIVITIES"
+    "title": "ACTIVITIES_LIST_ITEM"
   },
   {
     "icon":  "dashboard",
     "route": "sales/dashboards",
-    "title": "DASHBOARDS"
+    "title": "DASHBOARDS_LIST_ITEM"
   }
 
 ]
