@@ -25,23 +25,24 @@ export class ContactsService extends CollectionService {
 
     this.logger.info('ContactsService: find()');
 
+    let url = this.url;
     let queryParams;
 
     if (filter.length) {
 
-      this.url = 'http://localhost:' + this.config.serverPort + '/api/individuals/search/findByFamilyNameStartsWith';
+      url = 'http://localhost:' + this.config.serverPort + '/api/individuals/search/findByFamilyNameStartsWith';
       queryParams = '?name=' + filter + '&page=' + offset + '&size=' + limit + '&sort=name.familyName&name.familyName.dir=asc';
 
     } else {
 
-      this.url = 'http://localhost:' + this.config.serverPort + '/api/individuals/';
       queryParams = '?page=' + offset + '&size=' + limit + '&sort=name.familyName&name.familyName.dir=asc';
+
     }
 
-    this.logger.info('ContactsService url: ' + this.url);
+    this.logger.info('ContactsService url: ' + url);
     this.logger.info('ContactsService queryParams: ' + queryParams);
 
-    return this.httpClient.get(this.url + queryParams, this.getHttpOptions()).pipe(
+    return this.httpClient.get(url + queryParams, this.getHttpOptions()).pipe(
       tap(() => {
         this.logger.info('ContactsService: find() completed');
       })
@@ -50,8 +51,6 @@ export class ContactsService extends CollectionService {
   }
 
   public findById(id: string): Observable<Contact> {
-
-    this.url = 'http://localhost:' + this.config.serverPort + '/api/individuals/';
 
     return this.httpClient.get(this.url + id).pipe(
 
@@ -66,8 +65,6 @@ export class ContactsService extends CollectionService {
 
   public create(contact: Contact): Observable<HttpResponse<Contact>> {
 
-    this.url = 'http://localhost:' + this.config.serverPort + '/api/individuals/';
-
     return this.httpClient.post<HttpResponse<Contact>>(this.url, contact, this.getHttpOptions()).pipe(
       tap(() => {
         this.logger.info('ContactsService: create() completed');
@@ -78,8 +75,6 @@ export class ContactsService extends CollectionService {
 
   public update(id: string, contact: Contact): Observable<HttpResponse<Contact>> {
 
-    this.url = 'http://localhost:' + this.config.serverPort + '/api/individuals/';
-
     return this.httpClient.patch<HttpResponse<Contact>>(this.url + id, contact, this.getHttpOptions()).pipe(
       tap(() => {
         this.logger.info('ContactsService: update() completed');
@@ -89,8 +84,6 @@ export class ContactsService extends CollectionService {
   }
 
   public delete(id: string): Observable<Contact> {
-
-    this.url = 'http://localhost:' + this.config.serverPort + '/api/individuals/';
 
     return this.httpClient.delete<Contact>(this.url + id).pipe(
       tap(() => {
