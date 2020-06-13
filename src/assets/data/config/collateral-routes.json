@@ -1,0 +1,29 @@
+[
+
+  {
+    "icon":  "description",
+    "route": "quotes",
+    "title": "QUOTES_LIST_ITEM"
+  },
+  {
+    "icon":  "done",
+    "route": "orders",
+    "title": "ORDERS_LIST_ITEM"
+  },
+  {
+    "icon":  "list",
+    "route": "invoices",
+    "title": "INVOICES_LIST_ITEM"
+  },
+  {
+    "icon":  "local_offer",
+    "route": "products",
+    "title": "PRODUCTS_LIST_ITEM"
+  },
+  {
+    "icon":  "book",
+    "route": "sales-literature",
+    "title": "SALES_LITERATURE_LIST_ITEM"
+  }
+
+]

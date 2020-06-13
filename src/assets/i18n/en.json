@@ -11,26 +11,30 @@
   "REGISTER_LABEL": "Create account",
 
   "MY_WORK_SUB_HEADER": "My Work",
-
   "ACTIVITIES_LIST_ITEM": "Activities",
   "DASHBOARDS_LIST_ITEM": "Dashboard",
 
   "CUSTOMERS_SUB_HEADER": "Customers",
-
   "ACCOUNTS_LIST_ITEM": "Accounts",
   "CONTACTS_LIST_ITEM": "Contacts",
 
   "SALES_SUB_HEADER": "Sales",
-
   "LEADS_LIST_ITEM": "Leads",
   "OPPORTUNITIES_LIST_ITEM": "Opportunities",
 
   "COLLATERAL_SUB_HEADER": "Collateral",
+  "QUOTES_LIST_ITEM": "Quotes",
+  "ORDERS_LIST_ITEM": "Orders",
+  "INVOICES_LIST_ITEM": "Invoices",
+  "PRODUCTS_LIST_ITEM": "Products",
+  "SALES_LITERATURE_LIST_ITEM": "Sales Literature",
+
   "MARKETING_SUB_HEADER": "Marketing",
   "GOALS_SUB_HEADER": "Goals",
 
   "TOOLS_SUB_HEADER": "Tools",
   "REPORTS_LIST_ITEM": "Reports",
+
 
 
   "ACCOUNTS_HEADER": "Accounts",

@@ -22,6 +22,7 @@ interface SideNavRoute {
 const MY_WORK_ROUTES = 'my-work-routes';
 const CUSTOMER_ROUTES = 'customer-routes';
 const SALES_ROUTES = 'sales-routes';
+const COLLATERAL_ROUTES = 'collateral-routes';
 const TOOLS_ROUTES = 'tools-routes';
 
 @Component({
@@ -37,6 +38,7 @@ export class NavComponent implements OnInit, OnDestroy {
   public myWorkRoutes: SideNavRoute[];
   public customerRoutes: SideNavRoute[];
   public salesRoutes: SideNavRoute[];
+  public collateralRoutes: SideNavRoute[];
   public toolsRoutes: SideNavRoute[];
 
   public toolPaletteItems: ToolPaletteItem[];
@@ -86,6 +88,16 @@ export class NavComponent implements OnInit, OnDestroy {
     this.salesRoutes = await this.configService.get(SALES_ROUTES);
 
     this.salesRoutes.forEach(route => {
+
+      this.translate.get(route.title).subscribe(value => {
+        route.title = value;
+      });
+
+    });
+
+    this.collateralRoutes = await this.configService.get(COLLATERAL_ROUTES);
+
+    this.collateralRoutes.forEach(route => {
 
       this.translate.get(route.title).subscribe(value => {
         route.title = value;

@@ -46,9 +46,39 @@
           {{item.title}}
         </a>
 
-        <!-- <mat-divider></mat-divider> -->
+      </ng-container>
+
+      <!--
+      <ng-container *ngIf="salesRoutes">
+
+        <h2 matSubheader> {{ 'SALES_SUB_HEADER' | translate }} </h2>
+
+        <a *ngFor="let item of salesRoutes"
+           mat-list-item
+           (click)="navigationSidenav.close()"
+           [routerLink]="[item.route]"
+           routerLinkActive="list-item-active">
+          <mat-icon matListIcon class="nav-list-icon"> {{ item.icon }} </mat-icon>
+          {{item.title}}
+        </a>
 
       </ng-container>
+
+      <ng-container *ngIf="collateralRoutes">
+
+        <h2 matSubheader> {{ 'COLLATERAL_SUB_HEADER' | translate }} </h2>
+
+        <a *ngFor="let item of collateralRoutes"
+           mat-list-item
+           (click)="navigationSidenav.close()"
+           [routerLink]="[item.route]"
+           routerLinkActive="list-item-active">
+          <mat-icon matListIcon class="nav-list-icon"> {{ item.icon }} </mat-icon>
+          {{item.title}}
+        </a>
+
+      </ng-container>
+      -->
 
       <h2 matSubheader> {{ 'SALES_SUB_HEADER' | translate }} </h2>
       <h2 matSubheader> {{ 'COLLATERAL_SUB_HEADER' | translate }} </h2>
