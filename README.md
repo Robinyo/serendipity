@@ -26,7 +26,7 @@
 - **Locally Hosted Fonts and Icons** see [fonts](https://github.com/Robinyo/serendipity/blob/master/src/themes/fonts.scss) and [icons](https://github.com/Robinyo/serendipity/blob/master/src/themes/icons.scss)
 - **Maps** thanks to [@ngx-leaflet](https://github.com/Asymmetrik/ngx-leaflet) and [OpenStreetMap](https://www.openstreetmap.org/)
 - **Progressive Web App (PWA)** thanks to [@angular/pwa ](https://angular.io/guide/service-worker-getting-started)
-- **Reporting and Analytics** thanks to [JasperReports](https://community.jaspersoft.com/)
+- **Reporting and Analytics** thanks to [Jaspersoft Studio](https://github.com/Robinyo/serendipity-api/blob/master/projects/spring-boot/docs/administrator/jaspersoft-studio.md) and [JasperReports Server](https://github.com/Robinyo/serendipity-api/blob/master/projects/spring-boot/docs/administrator/jasperreports-server.md)
 - **Serendipity Components Library** see this blog [post](https://robferguson.org/blog/2019/06/22/dashboards-and-dashboard-widgets-part-1/)
 - **Workflow, Business Process Management and Case Management** thanks to [Flowable](https://flowable.org/index.html)
 
