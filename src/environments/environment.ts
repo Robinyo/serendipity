@@ -8,20 +8,13 @@ export const environment: Environment = {
 
   production: false,
 
+  serverScheme: 'http',
+  serverHost: 'localhost',
   serverPort: '3001',
 
   defaultLanguage: 'en-gb', // 'en-gb', 'de-ch'
 
   isDebugMode: true,
-
-  firebase: {
-    apiKey: '',
-    authDomain: '',
-    databaseURL: '',
-    projectId: '',
-    storageBucket: '',
-    messagingSenderId: ''
-  },
 
   okta: {
     clientId: '',
@@ -54,8 +47,6 @@ export const environment: Environment = {
     scope: 'openid profile email phone address offline_access individual:post individual:get individual:patch individual:delete'
   },
 
-  storageUriPrefix: 'https://firebasestorage.googleapis.com/v0/b/',
-
   version: '1.0.0-beta.1',
 
   sentryDsn: ''
@@ -73,5 +64,20 @@ export const environment: Environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
+
+/*
+
+  firebase: {
+    apiKey: '',
+    authDomain: '',
+    databaseURL: '',
+    projectId: '',
+    storageBucket: '',
+    messagingSenderId: ''
+  },
+
+  storageUriPrefix: 'https://firebasestorage.googleapis.com/v0/b/',
+
+*/
 
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.

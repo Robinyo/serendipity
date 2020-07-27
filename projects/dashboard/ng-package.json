@@ -2,6 +2,14 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/dashboard",
   "lib": {
-    "entryFile": "src/public_api.ts"
+    "entryFile": "src/public_api.ts",
+    "umdModuleIds": {
+      "dashboard-widgets": "dashboard-widgets",
+      "screenfull": "screenfull",
+      "serendipity-components": "serendipity-components",
+      "utils": "utils",
+      "angular-gridster2": "angular-gridster2",
+      "ng-dynamic-component": "ng-dynamic-component"
+    }
   }
 }

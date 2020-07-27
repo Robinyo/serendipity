@@ -2,20 +2,13 @@ export interface Config {
 
   production: boolean;
 
+  serverScheme: string;
+  serverHost: string;
   serverPort: string;
 
   defaultLanguage: string;
 
   isDebugMode: boolean;
-
-  firebase: {
-    apiKey: string,
-    authDomain: string,
-    databaseURL: string,
-    projectId: string,
-    storageBucket: string,
-    messagingSenderId: string
-  };
 
   okta: {
     clientId: string,
@@ -54,10 +47,23 @@ export interface Config {
     scope: string,                  // scope
   };
 
-  storageUriPrefix: string;
-
   version: string;
 
   sentryDsn: string;
 
 }
+
+/*
+
+  firebase: {
+    apiKey: string,
+    authDomain: string,
+    databaseURL: string,
+    projectId: string,
+    storageBucket: string,
+    messagingSenderId: string
+  };
+
+  storageUriPrefix: string;
+
+*/

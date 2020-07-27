@@ -2,6 +2,20 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/sales",
   "lib": {
-    "entryFile": "src/public_api.ts"
+    "entryFile": "src/public_api.ts",
+    "umdModuleIds": {
+      "serendipity-components": "serendipity-components",
+      "utils": "utils",
+      "@ngx-translate/core": "@ngx-translate/core",
+      "leaflet": "leaflet",
+      "dynamic-forms": "dynamic-forms",
+      "@asymmetrik/ngx-leaflet": "@asymmetrik/ngx-leaflet",
+      "screenfull": "screenfull",
+      "dashboard": "dashboard",
+      "dashboard-widgets": "dashboard-widgets",
+      "ngx-quill": "ngx-quill",
+      "flowable": "flowable",
+      "auth": "auth"
+    }
   }
 }

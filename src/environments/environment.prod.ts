@@ -8,20 +8,13 @@ export const environment: Environment = {
 
   production: true,
 
+  serverScheme: 'http',
+  serverHost: 'localhost',
   serverPort: '3001',
 
   defaultLanguage: 'en-gb', // 'en-gb', 'de-ch'
 
   isDebugMode: false,
-
-  firebase: {
-    apiKey: '',
-    authDomain: '',
-    databaseURL: '',
-    projectId: '',
-    storageBucket: '',
-    messagingSenderId: ''
-  },
 
   okta: {
     clientId: '',
@@ -54,12 +47,8 @@ export const environment: Environment = {
     scope: 'openid profile email phone address offline_access individual:get'
   },
 
-  storageUriPrefix: 'https://firebasestorage.googleapis.com/v0/b/',
-
   version: '1.0.0-beta.1',
 
   sentryDsn: ''
 
 };
-
-// https://github.com/PatrickJS/angular-starter/blob/master/src/environments/environment.prod.ts
