@@ -18,7 +18,7 @@ export class AccountsService extends CollectionService {
 
     super();
 
-    this.url = 'http://localhost:' + this.config.serverPort + '/api/organisations/';
+    this.url = this.getUrlPrefix() + '/api/organisations/';
   }
 
   public find(offset: number = 0, limit: number = 100, filter: string = ''): Observable<any> {
@@ -29,7 +29,7 @@ export class AccountsService extends CollectionService {
 
     if (filter.length) {
 
-      this.url = 'http://localhost:' + this.config.serverPort + '/api/organisations/search/findByNameStartsWith';
+      this.url = this.getUrlPrefix() + '/api/organisations/search/findByNameStartsWith';
       queryParams = '?name=' + filter + '&page=' + offset + '&size=' + limit + '&sort=name&name.dir=asc';
 
     } else {

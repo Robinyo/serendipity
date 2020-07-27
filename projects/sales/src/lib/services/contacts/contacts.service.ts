@@ -18,7 +18,7 @@ export class ContactsService extends CollectionService {
 
     super();
 
-    this.url = 'http://localhost:' + this.config.serverPort + '/api/individuals/';
+    this.url = this.getUrlPrefix() + '/api/individuals/';
   }
 
   public find(filter: string, offset: number = 0, limit: number = 100): Observable<any> {
@@ -30,7 +30,7 @@ export class ContactsService extends CollectionService {
 
     if (filter.length) {
 
-      url = 'http://localhost:' + this.config.serverPort + '/api/individuals/search/findByFamilyNameStartsWith';
+      url = this.getUrlPrefix() + '/api/individuals/search/findByFamilyNameStartsWith';
       queryParams = '?name=' + filter + '&page=' + offset + '&size=' + limit + '&sort=name.familyName&name.familyName.dir=asc';
 
     } else {

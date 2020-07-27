@@ -1,10 +1,10 @@
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injector, Type } from '@angular/core';
 
 import { SalesConfig } from '../../../models/config';
 import { HttpOptions } from '../../../models/http';
 
-import { Observable, of, throwError } from 'rxjs';
+// import { Observable, of, throwError } from 'rxjs';
 
 import { EnvironmentService, LoggerService, StaticInjectorService } from 'utils';
 
@@ -27,6 +27,10 @@ export abstract class CollectionService {
     this.logger = injector.get<LoggerService>(LoggerService as Type<LoggerService>);
 
     this.config = this.environmentService.getConfig();
+  }
+
+  protected getUrlPrefix(): string {
+    return this.config.serverScheme + '://' + this.config.serverHost + ':' + this.config.serverPort;
   }
 
   protected getHttpOptions(params: HttpParams = null): HttpOptions {
