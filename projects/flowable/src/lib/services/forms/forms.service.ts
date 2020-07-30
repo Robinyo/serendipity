@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import { tap } from 'rxjs/operators';
 
-import { AuthService } from 'auth';
-
 import { CollectionService } from '../abstract/collection/collection.service';
-
-import { LoggerService } from 'utils';
 
 const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
 
@@ -16,22 +11,20 @@ const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
 })
 export class FormsService extends CollectionService {
 
-  constructor(protected authService: AuthService,
-              protected httpClient: HttpClient,
-              protected logger: LoggerService) {
+  constructor() {
 
-    super(authService, logger);
+    super();
+
+    this.url = this.getUrlPrefix() + '/form/form-data';
   }
 
   public submitFormData(body: any): Promise<any> {
 
     this.logger.info('FormsService: submitFormData()');
 
-    const endpoint = `${this.processEngineUriPrefix}form/form-data`;
+    this.logger.info('FormsService submitFormData() - url: ' + this.url);
 
-    this.logger.info('FormsService submitFormData() - endpoint: ' + endpoint);
-
-    return this.httpClient.post(endpoint, body, this.getHttpOptions()).pipe(
+    return this.httpClient.post(this.url, body, this.getHttpOptions()).pipe(
 
       tap(() => {
 

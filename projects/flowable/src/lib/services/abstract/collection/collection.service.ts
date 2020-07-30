@@ -1,8 +1,62 @@
-import { HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Injector, Type } from '@angular/core';
 
-import { AuthService, User } from 'auth';
+import { FlowableConfig } from '../../../models/config';
+import { HttpOptions } from '../../../models/http-options';
 
-import { LoggerService } from 'utils';
+import { EnvironmentService, LoggerService, StaticInjectorService } from 'utils';
+
+export abstract class CollectionService {
+
+  protected config: FlowableConfig;
+  protected httpOptions: HttpOptions;
+  protected url: string;
+
+  protected environmentService: EnvironmentService;
+  protected httpClient: HttpClient;
+  protected logger: LoggerService;
+
+  constructor() {
+
+    const injector: Injector = StaticInjectorService.getInjector();
+
+    this.environmentService = injector.get<EnvironmentService>(EnvironmentService as Type<EnvironmentService>);
+    this.httpClient = injector.get<HttpClient>(HttpClient as Type<HttpClient>);
+    this.logger = injector.get<LoggerService>(LoggerService as Type<LoggerService>);
+
+    this.config = this.environmentService.getConfig();
+  }
+
+  protected getUrlPrefix(): string {
+    return this.config.serverScheme + '://' + this.config.serverHost + ':' + this.config.serverPort + '/process-api';
+  }
+
+  protected getHttpOptions(params: HttpParams = null): HttpOptions {
+
+    // his.logger.info('CollectionService: getHttpOptions()');
+
+    if (!this.httpOptions) {
+
+      this.httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        }),
+        observe: 'response',
+        params: null
+      };
+
+    }
+
+    this.httpOptions.params = params;
+
+    // this.logger.info('httpOptions: ' + JSON.stringify(this.httpOptions, null, 2));
+
+    return this.httpOptions;
+  }
+
+}
+
+/*
 
 export abstract class CollectionService {
 
@@ -53,6 +107,8 @@ export abstract class CollectionService {
   }
 
 }
+
+*/
 
 /*
 

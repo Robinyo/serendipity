@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injector, Type } from '@angular/core';
 
 import { SalesConfig } from '../../../models/config';
-import { HttpOptions } from '../../../models/http';
+import { HttpOptions } from '../../../models/http-options';
 
 // import { Observable, of, throwError } from 'rxjs';
 

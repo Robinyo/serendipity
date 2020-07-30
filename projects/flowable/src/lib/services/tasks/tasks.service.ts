@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-
-import { AuthService } from 'auth';
 
 import { CollectionService } from '../abstract/collection/collection.service';
 
 import { TaskListModel } from '../../models/task-list';
 import { TaskActionRequest } from '../../models/task-action';
-
-import { LoggerService } from 'utils';
 
 const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
 
@@ -20,18 +16,16 @@ const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
 })
 export class TasksService extends CollectionService {
 
-  constructor(protected authService: AuthService,
-              protected httpClient: HttpClient,
-              protected logger: LoggerService) {
+  constructor() {
 
-    super(authService, logger);
+    super();
+
+    this.url = this.getUrlPrefix() + '/runtime/tasks';
   }
 
   public getTasks(): Observable<any> {
 
     this.logger.info('TasksService: getTasks()');
-
-    const endpoint = `${this.processEngineUriPrefix}runtime/tasks`;
 
     // https://www.flowable.org/docs/userguide/index.html#_request_parameters
     const sort = 'createTime';
@@ -41,7 +35,7 @@ export class TasksService extends CollectionService {
 
     const params = new HttpParams().set('sort', sort).set('order', order);
 
-    return this.httpClient.get<TaskListModel>(endpoint, this.getHttpOptions(params)).pipe(
+    return this.httpClient.get<TaskListModel>(this.url, this.getHttpOptions(params)).pipe(
 
       tap(() => {
 
@@ -88,9 +82,9 @@ export class TasksService extends CollectionService {
 
     this.logger.info('TasksService: completeTask()');
 
-    const endpoint = `${this.processEngineUriPrefix}runtime/tasks/${taskId}`;
+    const url = this.url + '/' + taskId;
 
-    // this.logger.info('TasksService completeTask() - endpoint: ' + endpoint);
+    this.logger.info('TasksService completeTask() - url: ' + url);
 
     const form = await this.getForm(taskId);
 
@@ -98,7 +92,7 @@ export class TasksService extends CollectionService {
 
     this.logger.info('TasksService taskId: ' + taskId + ' formDefinitionId: ' + request.formDefinitionId);
 
-    return this.httpClient.post<any>(endpoint, request, this.getHttpOptions()).pipe(
+    return this.httpClient.post<any>(url, request, this.getHttpOptions()).pipe(
 
       tap(() => {
 
@@ -120,11 +114,11 @@ export class TasksService extends CollectionService {
 
     this.logger.info('TasksService: getForm()');
 
-    const endpoint = `${this.processEngineUriPrefix}runtime/tasks/${taskId}/form`;
+    const url = this.url + '/' + taskId + '/form';
 
-    this.logger.info('TasksService getForm() - endpoint: ' + endpoint);
+    this.logger.info('TasksService getForm() - url: ' + url);
 
-    return this.httpClient.get<any>(endpoint, this.getHttpOptions()).pipe(
+    return this.httpClient.get<any>(url, this.getHttpOptions()).pipe(
 
       tap(() => {
 
