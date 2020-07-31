@@ -33,7 +33,7 @@ export abstract class CollectionService {
 
   protected getHttpOptions(params: HttpParams = null): HttpOptions {
 
-    // his.logger.info('CollectionService: getHttpOptions()');
+    // this.logger.info('CollectionService: getHttpOptions()');
 
     if (!this.httpOptions) {
 
@@ -41,7 +41,6 @@ export abstract class CollectionService {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
         }),
-        observe: 'response',
         params: null
       };
 
