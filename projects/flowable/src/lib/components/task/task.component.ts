@@ -185,7 +185,7 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
         'variables' : []
       };
 
-      this.tasksService.completeTask(this.task.id, taskAction).then(() => {
+      this.tasksService.completeSimpleTask(this.task.id, taskAction).then(() => {
 
         this.completeEvent.emit({ id: this.task.id });
 

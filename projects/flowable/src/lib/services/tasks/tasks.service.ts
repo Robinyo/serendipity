@@ -35,6 +35,9 @@ export class TasksService extends CollectionService {
 
     const params = new HttpParams().set('sort', sort).set('order', order);
 
+    this.logger.info('TasksService url: ' + this.url);
+    this.logger.info('TasksService params: ' + params);
+
     return this.httpClient.get<TaskListModel>(this.url, this.getHttpOptions(params)).pipe(
 
       tap(() => {
@@ -78,13 +81,39 @@ export class TasksService extends CollectionService {
     };
   }
 
+  public async completeSimpleTask(taskId: string, request: TaskActionRequest): Promise<any> {
+
+    this.logger.info('TasksService: completeSimpleTask()');
+
+    const url = this.url + '/' + taskId;
+
+    this.logger.info('TasksService url: ' + url);
+
+    return this.httpClient.post<any>(url, request, this.getHttpOptions()).pipe(
+
+      tap(() => {
+
+        this.logger.info('TasksService: completeSimpleTask() completed');
+
+      })).toPromise().catch(error => {
+
+      if (error === undefined) {
+        error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
+      }
+
+      throw error;
+
+    });
+
+  }
+
   public async completeTask(taskId: string, request: TaskActionRequest): Promise<any> {
 
     this.logger.info('TasksService: completeTask()');
 
     const url = this.url + '/' + taskId;
 
-    this.logger.info('TasksService completeTask() - url: ' + url);
+    this.logger.info('TasksService url: ' + url);
 
     const form = await this.getForm(taskId);
 

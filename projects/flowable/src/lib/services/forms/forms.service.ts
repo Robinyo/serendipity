@@ -22,7 +22,7 @@ export class FormsService extends CollectionService {
 
     this.logger.info('FormsService: submitFormData()');
 
-    this.logger.info('FormsService submitFormData() - url: ' + this.url);
+    this.logger.info('FormsService url: ' + this.url);
 
     return this.httpClient.post(this.url, body, this.getHttpOptions()).pipe(
 
