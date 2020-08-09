@@ -104,16 +104,12 @@ Dashboard:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/dashboard.png">
 </p>
 
-Dashboard Widgets:
+### Workflow, Business Process Management and Case Management
+
+Modelling (BPMN, DMN and CMMN):
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/dashboard-widgets.png">
-</p>
-
-Dashboard - Fullscreen:
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/dashboard-fullscreen.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/flowable-modeller.png">
 </p>
 
 Tasks:
@@ -122,7 +118,7 @@ Tasks:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/tasks.png">
 </p>
 
-Reporting and Analytics:
+### Reporting and Analytics:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/jasperserver-dashboard.png">

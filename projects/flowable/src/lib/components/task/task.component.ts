@@ -1,17 +1,16 @@
 import { Component, EventEmitter, OnChanges, OnDestroy, OnInit, Input, SimpleChanges, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { AuthService } from 'auth';
+import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
+import { DialogService } from 'serendipity-components';
+import { LoggerService } from 'utils';
+
 import { TaskCompleteEvent, TaskModel } from '../../models/task-list';
 import { Action, TaskActionRequest } from '../../models/task-action';
 
 // import { FormsService } from '../../services/forms/forms.service';
 import { TasksService } from '../../services/tasks/tasks.service';
-
-import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
-
-import { DialogService } from 'serendipity-components';
-
-import { LoggerService } from 'utils';
 
 // import { formatISO } from 'date-fns/formatISO';
 
@@ -31,7 +30,10 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
   public taskFormGroup: FormGroup;
   public taskModel: DynamicFormModel;
 
-  constructor(private dialogService: DialogService,
+  public currentUser: any;
+
+  constructor(private authService: AuthService,
+              private dialogService: DialogService,
               private dynamicFormService: DynamicFormService,
               // private formsService: FormsService,
               private tasksService: TasksService,
@@ -40,6 +42,10 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
   ngOnInit() {
 
     this.logger.info('TaskComponent: ngOnInit()');
+
+    this.currentUser = this.authService.getCurrentUser();
+
+    this.logger.info('currentUser: ' + JSON.stringify(this.currentUser, null, 2));
   }
 
   public ngOnChanges(changes: SimpleChanges)  {
@@ -89,6 +95,10 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
   //
   // Command events
   //
+
+  public onClaim() {
+
+  }
 
   public onComplete() {
 
@@ -146,17 +156,17 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
       // const body = { 'taskId' : this.task.id, 'properties' : properties };
 
-      // this.logger.info('body: ' + JSON.stringify(body));
+      // this.logger.info('body: ' + JSON.stringify(body, null, 2));
 
       const taskAction: TaskActionRequest = {
         'action' : Action.complete,
-        'assignee' : 'rob.ferguson',
+        'assignee' : this.currentUser.username,
         'formDefinitionId' : this.task.formKey,
         'variables' : properties,
         'outcome': 'completed'
       };
 
-      this.logger.info('taskAction: ' + JSON.stringify(taskAction));
+      this.logger.info('taskAction: ' + JSON.stringify(taskAction, null, 2));
 
       this.tasksService.completeTask(this.task.id, taskAction).then(() => {
 
@@ -164,7 +174,8 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
       }).catch(error => {
 
-        let message = error.message;
+        // let message = error.message;
+        let message = error;
 
         if (error.details) {
           message = error.details.message;
@@ -182,6 +193,7 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
       const taskAction: TaskActionRequest = {
         'action' : Action.complete,
+        'assignee' : this.currentUser.username,
         'variables' : []
       };
 
@@ -250,7 +262,7 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
       const body = { 'taskId' : this.task.id, 'properties' : properties };
 
-      this.logger.info('body: ' + JSON.stringify(body));
+      this.logger.info('body: ' + JSON.stringify(body, null, 2));
 
       this.formsService.submitFormData(body).then(() => {
 
@@ -346,7 +358,7 @@ import { Subscription} from 'rxjs';
 
       const body = { 'taskId' : this.task.id, 'properties' : properties };
 
-      this.logger.info('body: ' + JSON.stringify(body));
+      this.logger.info('body: ' + JSON.stringify(body, null, 2));
 
       subscription = this.formsService.submitFormData(body).subscribe(() => {
         this.completeEvent.emit({ id: this.task.id });
@@ -404,7 +416,7 @@ protected subscribe() {
 
       const body = { "taskId" : this.task.id, "properties" : properties };
 
-      this.logger.info('body: ' + JSON.stringify(body));
+      this.logger.info('body: ' + JSON.stringify(body, null, 2));
 
 */
 

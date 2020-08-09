@@ -1,17 +1,15 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { MatSnackBar } from '@angular/material';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+
 import { Subscription } from 'rxjs';
 
-import { MatSnackBar } from '@angular/material';
-
 import { AuthService } from 'auth';
-
 import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 import { DialogService, SnackBarComponent } from 'serendipity-components';
-
 import { LoggerService } from 'utils';
 
 import { PROFILE_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
@@ -170,7 +168,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       closeButton: 'CLOSE'
     });
 
-    // this.logger.info('event: ' + JSON.stringify(event));
+    // this.logger.info('event: ' + JSON.stringify(event, null, 2));
   }
 
   public onChangePassword() {

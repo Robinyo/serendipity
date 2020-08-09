@@ -129,6 +129,8 @@ export class TasksService extends CollectionService {
 
       })).toPromise().catch(error => {
 
+      this.logger.info('TasksService: completeTask() error');
+
       if (error === undefined) {
         error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
       }
@@ -154,6 +156,8 @@ export class TasksService extends CollectionService {
         this.logger.info('TasksService: getForm() completed');
 
       })).toPromise().catch(error => {
+
+      this.logger.info('TasksService: getForm() error');
 
       if (error === undefined) {
         error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);

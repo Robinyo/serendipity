@@ -12,6 +12,7 @@ export abstract class Auth {
 
   public abstract getAccessToken(): string;
   public abstract getIdToken(): string;
+  // public abstract getRefreshToken(): string;
 
   public abstract getCurrentUser(): any;
 
