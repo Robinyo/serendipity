@@ -28,7 +28,7 @@
 - **Progressive Web App (PWA)** thanks to [@angular/pwa ](https://angular.io/guide/service-worker-getting-started)
 - **Reporting and Analytics** thanks to [Jaspersoft Studio](https://github.com/Robinyo/serendipity-api/blob/master/projects/spring-boot/docs/administrator/jaspersoft-studio.md) and [JasperReports Server](https://github.com/Robinyo/serendipity-api/blob/master/projects/spring-boot/docs/administrator/jasperreports-server.md)
 - **Serendipity Components Library** see this blog [post](https://robferguson.org/blog/2019/06/22/dashboards-and-dashboard-widgets-part-1/)
-- **Workflow, Business Process Management and Case Management** thanks to [Flowable](https://flowable.org/index.html)
+- **Business Process Management, Decision Management and Case Management** thanks to [Flowable](https://flowable.org/index.html)
 
 ![divider](./divider.png)
 
@@ -62,28 +62,10 @@ Side Nav:
 
 ### Customer Engagement
 
-Activities:
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/activities.png">
-</p>
-
-Accounts:
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/accounts-web.png">
-</p>
-
 Contacts:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/contacts-web.png">
-</p>
-
-Contact Wizard:
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/contact-wizard.png">
 </p>
 
 Contact:
@@ -92,24 +74,36 @@ Contact:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/contact.png">
 </p>
 
-Contact - Electoral Division:
+Accounts:
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/electoral-division.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/accounts-web.png">
 </p>
 
-Dashboard:
+### Dashboards
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/dashboard.png">
 </p>
 
-### Workflow, Business Process Management and Case Management
+### Interactive Maps
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/electoral-division.png">
+</p>
+
+### Business Process Management, Decision Management and Case Management
 
 Modelling (BPMN, DMN and CMMN):
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/flowable-modeller.png">
+</p>
+
+Activities:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/activities.png">
 </p>
 
 Tasks:
