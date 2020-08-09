@@ -118,6 +118,15 @@ Tasks:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/jasperserver-dashboard.png">
 </p>
 
+
+### Internationalisation (i18N)
+
+In German (Auf Deutsch):
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/dashboard-de.png">
+</p>
+
 ### Identity and Access Management
 
 #### OpenID Connect (OIDC)
@@ -140,14 +149,6 @@ Profile page:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/profile.png">
-</p>
-
-### Internationalisation (i18N)
-
-In German (Auf Deutsch):
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/dashboard-de.png">
 </p>
 
 ![divider](./divider.png)
