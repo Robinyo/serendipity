@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatSidenav } from '@angular/material';
+import { MatSidenav } from '@angular/material/sidenav';
 
 import { LoggerService } from 'utils';
 

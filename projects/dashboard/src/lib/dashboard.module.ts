@@ -40,9 +40,7 @@ const dashboardWidgets = [
     AngularMaterialModule,
     CommonModule,
     DashboardWidgetsModule,
-    DynamicModule.withComponents(
-      dashboardWidgets
-    ),
+    DynamicModule,
     FlexLayoutModule,
     GridsterModule,
     SerendipityComponentsModule,
@@ -65,3 +63,11 @@ export class DashboardModule {
   }
 
 }
+
+/*
+
+    DynamicModule.withComponents(
+      dashboardWidgets
+    ),
+
+*/

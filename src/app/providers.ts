@@ -1,6 +1,6 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { ErrorHandler} from '@angular/core';
-import { MAT_DATE_LOCALE } from '@angular/material';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 import { HttpErrorInterceptor } from '@app/core/http-interceptors/error-interceptor';
 // import { GlobalErrorHandler } from '@app/error-handler';

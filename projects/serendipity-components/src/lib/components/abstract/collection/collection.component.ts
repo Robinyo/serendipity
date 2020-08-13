@@ -1,7 +1,8 @@
 import { AfterViewInit, Directive, Injector, OnInit, OnDestroy, Type, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { MatSort, MatTableDataSource } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { Subscription} from 'rxjs';

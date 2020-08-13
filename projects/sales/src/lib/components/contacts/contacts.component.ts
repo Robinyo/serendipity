@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 
 import { ContactsService } from '../../services/contacts/contacts.service';
 import { CONTACTS_COLUMN_DEFS } from '../../models/column-defs';
