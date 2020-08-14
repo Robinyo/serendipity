@@ -95,8 +95,6 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
     EmailComponent,
     DashboardComponent,
     TasksComponent
-  ],
-  entryComponents: [
   ]
 })
 export class SalesModule {

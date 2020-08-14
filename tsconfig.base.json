@@ -118,6 +118,10 @@
       "maps": [
         "dist/maps/maps",
         "dist/maps"
+      ],
+      "work": [
+        "dist/work/work",
+        "dist/work"
       ]
     }
   }

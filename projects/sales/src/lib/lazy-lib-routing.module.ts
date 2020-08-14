@@ -3,17 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AccountComponent } from './components/account/account.component';
 import { AccountsComponent } from './components/accounts/accounts.component';
-
 import { ActivitiesComponent } from './components/activities/activities.component';
-
 import { ContactComponent } from './components/contact/contact.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { ContactWizardComponent } from './components/contact-wizard/contact-wizard.component';
-
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
 import { EmailComponent } from './components/email/email.component';
-
 import { TasksComponent } from './components/tasks/tasks.component';
 
 //

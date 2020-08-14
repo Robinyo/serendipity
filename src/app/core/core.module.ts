@@ -40,6 +40,12 @@ import { UtilsModule, LoggerService } from 'utils';
 import { AngularMaterialModule } from 'utils';
 
 //
+// Work lib
+//
+
+import { WorkModule } from 'work';
+
+//
 //
 // Lazy Loaded Libs - See: app.module.ts
 //
@@ -73,6 +79,7 @@ const components: any[] = [
     }),
 
     UtilsModule.forRoot(environment),
+    WorkModule.forRoot(environment),
 
     RouterModule  // There is no directive with "exportAs" set to "routerLinkActive ...
   ],

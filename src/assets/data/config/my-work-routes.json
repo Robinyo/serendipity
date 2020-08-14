@@ -2,7 +2,7 @@
 
   {
     "icon":  "assignment",
-    "route": "sales/activities",
+    "route": "work/activities",
     "title": "ACTIVITIES_LIST_ITEM"
   },
   {

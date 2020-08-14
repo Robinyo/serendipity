@@ -9,6 +9,7 @@
 To build the library:
 
 ```
+# npm install -P @auth0/auth0-spa-js
 ng build utils && \
 ng build auth && \
 ng build auth-auth0

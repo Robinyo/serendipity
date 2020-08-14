@@ -49,6 +49,11 @@
                 "glob": "**/*",
                 "input": "projects/sales/src/assets",
                 "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/work/src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [
@@ -671,6 +676,46 @@
             "tsConfig": [
               "projects/auth-oidc/tsconfig.lib.json",
               "projects/auth-oidc/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "work": {
+      "projectType": "library",
+      "root": "projects/work",
+      "sourceRoot": "projects/work/src",
+      "prefix": "work",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/work/tsconfig.lib.json",
+            "project": "projects/work/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/work/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/work/src/test.ts",
+            "tsConfig": "projects/work/tsconfig.spec.json",
+            "karmaConfig": "projects/work/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/work/tsconfig.lib.json",
+              "projects/work/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

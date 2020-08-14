@@ -9,6 +9,7 @@
 To build the library:
 
 ```
+# npm install -P @okta/okta-auth-js
 ng build utils && \
 ng build auth && \
 ng build auth-okta

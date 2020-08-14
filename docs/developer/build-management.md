@@ -27,14 +27,12 @@ ng build utils && \
 ng build serendipity-components && \
 ng build auth && \
 ng build auth-oidc && \
-ng build auth-auth0 && \
-ng build auth-okta && \
 ng build dashboard-widgets && \
 ng build dashboard && \
 ng build dynamic-forms && \
-ng build auth-local && \
 ng build flowable && \
-ng build sales
+ng build sales && \
+ng build work 
 ```
        
 To launch the project:
@@ -90,14 +88,12 @@ ng build utils && \
 ng build serendipity-components && \
 ng build auth && \
 ng build auth-oidc && \
-ng build auth-auth0 && \
-ng build auth-okta && \
 ng build dashboard-widgets && \
 ng build dashboard && \
 ng build dynamic-forms && \
-ng build auth-local && \
 ng build flowable && \
-ng build sales
+ng build sales && \
+ng build work
 ng build --prod --source-map 
 ```
 
@@ -332,6 +328,11 @@ You can workaround this issue by updating the assets array inside the build targ
       {
         "glob": "**/*",
         "input": "projects/sales/src/assets",
+        "output": "/assets"
+      },
+      {
+        "glob": "**/*",
+        "input": "projects/work/src/assets",
         "output": "/assets"
       }
   ]
