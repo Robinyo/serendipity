@@ -1,12 +1,21 @@
-import { NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { TranslateModule } from '@ngx-translate/core';
 
-import { TaskComponent } from './components/task/task.component';
-import { TaskListComponent } from './components/task-list/task-list.component';
+//
+// Dynamic Forms lib
+//
+
+import { DynamicFormsModule } from 'dynamic-forms';
+
+//
+// Serendipity Components lib
+//
+
+import { SerendipityComponentsModule } from 'serendipity-components';
 
 //
 // Utils lib
@@ -16,16 +25,21 @@ import { UtilsModule, LoggerService } from 'utils';
 import { AngularMaterialModule } from 'utils';
 
 //
-// Serendipity Components lib
+// Components
 //
 
-import { SerendipityComponentsModule } from 'serendipity-components';
+import { ProcessListComponent } from './components/process-list/process-list.component';
+import { TaskComponent } from './components/task/task.component';
+import { TaskListComponent } from './components/task-list/task-list.component';
 
-//
-// Dynamic Forms lib
-//
+import { StartProcessDialogComponent } from './components/dialogs/start-process-dialog/start-process-dialog.component';
 
-import { DynamicFormsModule } from 'dynamic-forms';
+const components: any[] = [
+  ProcessListComponent,
+  StartProcessDialogComponent,
+  TaskComponent,
+  TaskListComponent
+];
 
 @NgModule({
   imports: [
@@ -38,8 +52,12 @@ import { DynamicFormsModule } from 'dynamic-forms';
     TranslateModule.forChild(),
     UtilsModule
   ],
-  declarations: [ TaskComponent, TaskListComponent ],
-  exports: [ TaskComponent, TaskListComponent ]
+  declarations: [
+    ...components
+  ],
+  exports: [
+    ...components
+  ]
 })
 export class FlowableModule {
 

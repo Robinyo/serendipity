@@ -6,7 +6,7 @@ import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 import { DialogService } from 'serendipity-components';
 import { LoggerService } from 'utils';
 
-import { TaskCompleteEvent, TaskModel } from '../../models/task-list';
+import { TaskCompleteEvent, TaskModel } from '../../models/task-list.model';
 import { Action, TaskActionRequest } from '../../models/task-action';
 
 // import { FormsService } from '../../services/forms/forms.service';

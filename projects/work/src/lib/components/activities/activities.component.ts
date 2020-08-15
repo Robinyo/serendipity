@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material/table';
 
+import { StartProcessDialogComponent } from 'flowable';
 import { CollectionComponent } from 'serendipity-components';
 
 // import { ActivitiesAdapter } from '../../adapters/activities.adapter';
@@ -73,16 +74,17 @@ export class ActivitiesComponent extends CollectionComponent<Activity> {
 
   public onEmail() {
 
-    this.logger.info('ActivitiesComponent: onEmail()');
+    // this.logger.info('ActivitiesComponent: onEmail()');
 
     // this.router.navigate(['sales/activities/email']);
+    this.router.navigate(['sales/activities/tasks']);
   }
 
   public onTask() {
 
-    this.logger.info('ActivitiesComponent: onTask()');
+    // this.logger.info('ActivitiesComponent: onTask()');
 
-    // this.router.navigate(['sales/activities/tasks']);
+    this.dialogService.open(StartProcessDialogComponent);
   }
 
 }

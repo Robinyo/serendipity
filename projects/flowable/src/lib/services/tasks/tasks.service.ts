@@ -6,7 +6,7 @@ import { catchError, tap } from 'rxjs/operators';
 
 import { CollectionService } from '../abstract/collection/collection.service';
 
-import { TaskListModel } from '../../models/task-list';
+import { TaskListModel } from '../../models/task-list.model';
 import { TaskActionRequest } from '../../models/task-action';
 
 const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';

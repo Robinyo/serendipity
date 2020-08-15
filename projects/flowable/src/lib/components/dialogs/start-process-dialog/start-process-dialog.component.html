@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Start a process</h2>
+<mat-dialog-content class="mat-typography">
+
+  <flow-process-list (selectEvent)="onSelectEvent($event)"> </flow-process-list>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+
+  <button mat-button
+          #cancelBtn
+          (keydown.arrowright)="startBtn.focus()"
+          (click)="onCancel()">
+    {{ cancelButton }}
+  </button>
+  <button mat-button
+          cdkFocusInitial
+          #startBtn
+          (keydown.arrowleft)="cancelBtn.focus()"
+          color="accent"
+          (click)="onStart()">
+    {{ startButton }}
+  </button>
+
+</mat-dialog-actions>
+
+
+

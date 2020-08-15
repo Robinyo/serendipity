@@ -1,0 +1,28 @@
+<div class="process-list-container">
+
+  <div>
+
+    <mat-nav-list style="padding-top: 0">
+
+      <a *ngFor="let item of items"
+         mat-list-item
+         [class.list-item-active]="item === selectedItem"
+         (click)="onSelect(item)">
+
+        <mat-icon matListIcon class="crm-task-list-icon"> assignment </mat-icon>
+
+        <p mat-line>
+          {{item.name}}
+        </p>
+
+        <p mat-line>
+          {{item.description}}
+        </p>
+
+      </a>
+
+    </mat-nav-list>
+
+  </div>
+
+</div>

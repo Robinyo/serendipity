@@ -1,6 +1,7 @@
 export interface TaskCompleteEvent {
 
   id: string;
+
 }
 
 // export class TaskModel {
@@ -34,6 +35,7 @@ export interface TaskModel {
 
   // variables: any[] = [];
   variables: any[];
+
 }
 
 // export class TaskListModel {
@@ -49,9 +51,13 @@ export interface TaskListModel {
   data: TaskModel[];
 
   // constructor() {}
+
 }
 
 // export type TaskListModel = TaskModel[];
+
+// https://github.com/Alfresco/alfresco-ng2-components/tree/develop/lib/process-services
+// https://github.com/Alfresco/alfresco-ng2-components/tree/develop/lib/process-services/src/lib/task-list/models
 
 // https://github.com/Alfresco/alfresco-ng2-components/blob/development/lib/process-services/task-list/models/task-list.model.ts
 // https://github.com/Alfresco/alfresco-ng2-components/blob/development/lib/process-services/task-list/models/task-details.model.ts

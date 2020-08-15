@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
-import { Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -171,6 +171,7 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
   public ngOnDestroy() {
 
     this.logger.info('CollectionComponent: ngOnDestroy()');
+
     this.unsubscribe();
   }
 

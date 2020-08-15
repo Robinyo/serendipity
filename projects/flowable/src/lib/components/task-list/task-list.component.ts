@@ -1,23 +1,94 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { Subject, Subscription, timer } from 'rxjs';
-import { switchMap, takeUntil } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
+import { DialogService} from 'serendipity-components';
+
+import { CollectionComponent } from '../abstract/collection/collection.component';
+import { TaskCompleteEvent, TaskListModel, TaskModel } from '../../models/task-list.model';
 import { TasksService } from '../../services/tasks/tasks.service';
-import { TaskCompleteEvent, TaskListModel, TaskModel } from '../../models/task-list';
-
-import { DialogService } from 'serendipity-components';
-
-import { LoggerService } from 'utils';
-
-// const INTERVAL = 5000;
 
 @Component({
   selector: 'flow-task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss']
 })
-export class TaskListComponent implements OnInit, OnDestroy {
+export class TaskListComponent extends CollectionComponent<TaskModel> {
+
+  constructor(private dialogService: DialogService,
+              private tasksService: TasksService) {
+    super();
+  }
+
+  public onCompleteEvent(event: TaskCompleteEvent) {
+
+    this.logger.info('TaskListComponent: onCompleteEvent()');
+
+    this.logger.info('TaskListComponent - taskId: ' +  event.id);
+
+    this.selectedItem = null;
+    this.refresh();
+  }
+
+  protected subscribe() {
+
+    this.logger.info('TaskListComponent: subscribe()');
+
+    let modelSubscription: Subscription = new Subscription();
+    this.subscriptions.push(modelSubscription);
+
+    modelSubscription = this.tasksService.getTasks().subscribe(
+
+      (model: TaskListModel) => {
+
+        this.logger.info('TaskListComponent: subscribe() success handler');
+
+        this.items = model.data;
+
+        if (this.items && this.items.length) {
+          this.selectedItem = this.items[0];
+        }
+
+      },
+      (error) => {
+
+        this.logger.error('TaskListComponent: subscribe() error handler');
+
+        this.items = [];
+        this.selectedItem = null;
+
+        let message = error.message;
+
+        if (error.details) {
+          message = error.details.message;
+        }
+
+        this.dialogService.openAlert({
+          title: 'Alert',
+          message: message,
+          closeButton: 'CLOSE'
+        });
+
+     },
+      () =>  {
+
+        this.logger.info('TaskListComponent: subscribe() completion handler');
+      }
+
+    );
+
+  }
+
+}
+
+/*
+
+@Component({
+  selector: 'flow-task-list',
+  templateUrl: './task-list.component.html',
+  styleUrls: ['./task-list.component.scss']
+})
+export class TaskListComponent extends CollectionComponent<TaskModel> {
 
   public items: TaskModel[];
   public selectedItem: TaskModel = null;
@@ -165,7 +236,10 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
     this.unsubscribe();
   }
+
 }
+
+*/
 
 /*
 

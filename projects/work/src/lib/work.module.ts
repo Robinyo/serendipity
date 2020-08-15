@@ -3,28 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { WorkConfig } from './models/config';
-import { WorkConfigService } from './services/config.service';
-
 import { TranslateModule } from '@ngx-translate/core';
 
 import { QuillModule } from 'ngx-quill';
 
-import { ActivitiesComponent } from './components/activities/activities.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-
-//
-// Utils lib
-//
-
-import { UtilsModule, LoggerService } from 'utils';
-import { AngularMaterialModule } from 'utils';
-
-//
-// Serendipity Components lib
-//
-
-import { SerendipityComponentsModule } from 'serendipity-components';
+import { WorkConfig } from './models/config';
+import { WorkConfigService } from './services/config.service';
 
 //
 // Dashboard lib
@@ -49,6 +33,26 @@ import { FlowableModule } from 'flowable';
 //
 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
+//
+// Serendipity Components lib
+//
+
+import { SerendipityComponentsModule } from 'serendipity-components';
+
+//
+// Utils lib
+//
+
+import { UtilsModule, LoggerService } from 'utils';
+import { AngularMaterialModule } from 'utils';
+
+//
+// Components
+//
+
+import { ActivitiesComponent } from './components/activities/activities.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 //
 // LibRoutingModule: https://angular.io/guide/router#routing-module-order
