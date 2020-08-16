@@ -16,21 +16,21 @@ export class ProcessesService extends CollectionService {
   constructor() {
 
     super();
-
-    this.url = this.getUrlPrefix() + '/repository/process-definitions';
   }
 
   public getProcesses(): Observable<any> {
 
     this.logger.info('ProcessesService: getProcesses()');
 
+    this.url = this.getUrlPrefix() + '/repository/process-definitions';
+
     // https://flowable.com/open-source/docs/bpmn/ch15-REST/#list-of-process-definitions
     const latest = 'true';
 
     const params = new HttpParams().set('latest', latest);
 
-    this.logger.info('ProcessesService url: ' + this.url);
-    this.logger.info('ProcessesService params: ' + params);
+    this.logger.info('url: ' + this.url);
+    this.logger.info('params: ' + params);
 
     return this.httpClient.get(this.url, this.getHttpOptions(params)).pipe(
 
@@ -44,15 +44,10 @@ export class ProcessesService extends CollectionService {
         this.logger.info('ProcessesService: getProcesses() -> catchError()');
 
         if (error === undefined) {
-
           error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
-          throw error;
-
-        } else {
-
-          return this.handleError('Get tasks', []);
-          // return throwError(error);
         }
+
+        throw error;
 
       })
 
@@ -60,19 +55,33 @@ export class ProcessesService extends CollectionService {
 
   }
 
-  protected handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
+  public startProcess(body: any): Promise<any> {
 
-      this.logger.info('TasksService: handleError()');
+    this.logger.info('ProcessesService: startProcess()');
 
-      // TODO: send the error to your remote logging infrastructure e.g., Sentry
+    this.url = this.getUrlPrefix() + '/runtime/process-instances';
 
-      // TODO: better job of transforming error for user consumption
-      this.logger.error(operation + ' failed: ' + error.message);
+    this.logger.info('url: ' + this.url);
 
-      // Let the app keep running by returning an empty result (i.e., [])
-      return of(result as T);
-    };
+    return this.httpClient.post(this.url, body, this.getHttpOptions()).pipe(
+
+      tap((response: any) => {
+      // tap(() => {
+
+        this.logger.info('Process Instance: ' + JSON.stringify(response, null, 2) + '\n');
+
+        this.logger.info('ProcessesService: startProcess() completed');
+
+      })).toPromise().catch(error => {
+
+      if (error === undefined) {
+        error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
+      }
+
+      throw error;
+
+    });
+
   }
 
 }

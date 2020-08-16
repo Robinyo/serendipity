@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { DialogService, SnackBarComponent } from 'serendipity-components';
 import { LoggerService } from 'utils';
 
-import { ProcessListModel, ProcessModel } from '../../../models/process-list.model';
+import { ProcessModel } from '../../../models/process-list.model';
 import { ProcessesService } from '../../../services/processes/processes.service';
 
 @Component({
@@ -21,13 +24,77 @@ export class StartProcessDialogComponent {
   private selectedItem: ProcessModel = null;
 
   constructor(private dialogRef: MatDialogRef<StartProcessDialogComponent>,
+              private dialogService: DialogService,
+              private processesService: ProcessesService,
+              private snackBar: MatSnackBar,
               private logger: LoggerService) {}
 
   public onStart(): void {
 
-    this.logger.info('ProcessModel: ' + JSON.stringify(this.selectedItem, null, 2));
+    this.logger.info('StartProcessDialogComponent: onStart()');
 
-    this.dialogRef.close(true);
+    const processModel = {
+      'name' : this.selectedItem.name,
+      'processDefinitionId' : this.selectedItem.id,
+      'startedBy' : {
+        'email' : 'admin@serendipity.org.au',
+        'firstName' : 'Flowable',
+        'fullName' : 'Flowable Admin',
+        'groups': [],
+        'id' : 'flowable',
+        'lastName' : 'Admin',
+        'privileges': [],
+        'tenantId' : null
+      },
+      'variables': [
+        {
+          'name': 'initiator',
+          'type' : 'string',
+          'value': 'flowable',
+          'scope' : 'local'
+        }
+      ]
+    };
+
+    this.logger.info('processModel: ' + JSON.stringify(processModel, null, 2));
+
+    this.processesService.startProcess(processModel).then(() => {
+
+      this.dialogRef.close(true);
+
+      this.openSnackBar();
+
+    }).catch(error => {
+
+      // let message = error.message;
+      let message = error;
+
+      if (error.details) {
+        message = error.details.message;
+      }
+
+      this.dialogService.openAlert({
+        title: 'Alert',
+        message: message,
+        closeButton: 'CLOSE'
+      });
+
+      this.dialogRef.close(true);
+
+    });
+
+  }
+
+  private openSnackBar() {
+
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      data: {
+        message: 'Process started'
+      },
+      duration: 500,
+      panelClass: 'crm-snack-bar'
+    });
+
   }
 
   public onCancel(): void {
@@ -39,6 +106,9 @@ export class StartProcessDialogComponent {
     this.logger.info('StartProcessDialogComponent: onSelectEvent()');
 
     this.selectedItem = event;
+
+    this.logger.info('selectedItem: ' + JSON.stringify(this.selectedItem, null, 2));
+
   }
 
 }

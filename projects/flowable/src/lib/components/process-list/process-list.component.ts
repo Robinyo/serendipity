@@ -76,11 +76,11 @@ export class ProcessListComponent extends CollectionComponent<ProcessModel> {
   // Command events
   //
 
-  public onSelect(item: ProcessModel) {
+  public onSelect(item) {
+
+    super.onSelect(item);
 
     this.logger.info('ProcessListComponent: onSelect()');
-
-    this.selectedItem = item;
 
     this.selectEvent.emit(this.selectedItem);
   }

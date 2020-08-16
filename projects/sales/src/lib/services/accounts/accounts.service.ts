@@ -46,9 +46,9 @@ export class AccountsService extends CollectionService {
       // tap((response: any) => {
       tap(() => {
 
-        // this.logger.info('response: ' + JSON.stringify(response.body, null, 2) + '\n');
-
         this.logger.info('AccountsService: find() completed');
+
+        // this.logger.info('response: ' + JSON.stringify(response.body, null, 2) + '\n');
       })
 
     );
