@@ -16,6 +16,7 @@
   <button mat-button
           cdkFocusInitial
           #startBtn
+          [disabled]="isDisabled()"
           (keydown.arrowleft)="cancelBtn.focus()"
           color="accent"
           (click)="onStart()">

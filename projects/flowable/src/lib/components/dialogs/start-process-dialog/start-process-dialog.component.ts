@@ -22,6 +22,7 @@ export class StartProcessDialogComponent {
   public startButton = 'START';
 
   private selectedItem: ProcessModel = null;
+  private disabled = false;
 
   constructor(private dialogRef: MatDialogRef<StartProcessDialogComponent>,
               private dialogService: DialogService,
@@ -29,9 +30,31 @@ export class StartProcessDialogComponent {
               private snackBar: MatSnackBar,
               private logger: LoggerService) {}
 
+  public onSelectEvent(event: ProcessModel) {
+
+    this.logger.info('StartProcessDialogComponent: onSelectEvent()');
+
+    this.selectedItem = event;
+
+    this.logger.info('selectedItem: ' + JSON.stringify(this.selectedItem, null, 2));
+
+  }
+
+  //
+  // Action bar events
+  //
+
+  public onCancel(): void {
+    this.dialogRef.close(false);
+  }
+
   public onStart(): void {
 
     this.logger.info('StartProcessDialogComponent: onStart()');
+
+    // This may take a while ...
+
+    this.disabled = true;
 
     const processModel = {
       'name' : this.selectedItem.name,
@@ -60,9 +83,11 @@ export class StartProcessDialogComponent {
 
     this.processesService.startProcess(processModel).then(() => {
 
-      this.dialogRef.close(true);
-
       this.openSnackBar();
+
+      // this.disabled = false;
+
+      this.dialogRef.close(true);
 
     }).catch(error => {
 
@@ -79,11 +104,23 @@ export class StartProcessDialogComponent {
         closeButton: 'CLOSE'
       });
 
-      this.dialogRef.close(true);
+      this.disabled = false;
 
     });
 
   }
+
+  //
+  // Validation
+  //
+
+  public isDisabled(): boolean {
+    return this.disabled;
+  }
+
+  //
+  // Misc
+  //
 
   private openSnackBar() {
 
@@ -94,20 +131,6 @@ export class StartProcessDialogComponent {
       duration: 500,
       panelClass: 'crm-snack-bar'
     });
-
-  }
-
-  public onCancel(): void {
-    this.dialogRef.close(false);
-  }
-
-  public onSelectEvent(event: ProcessModel) {
-
-    this.logger.info('StartProcessDialogComponent: onSelectEvent()');
-
-    this.selectedItem = event;
-
-    this.logger.info('selectedItem: ' + JSON.stringify(this.selectedItem, null, 2));
 
   }
 

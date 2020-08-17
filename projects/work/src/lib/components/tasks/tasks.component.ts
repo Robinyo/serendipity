@@ -4,13 +4,12 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { TaskListComponent } from 'flowable';
+import { LoggerService } from 'utils';
 
 import { ACTIVITIES } from '../../models/constants';
 
-import { LoggerService } from 'utils';
-
 @Component({
-  selector: 'sales-tasks',
+  selector: 'work-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss']
 })

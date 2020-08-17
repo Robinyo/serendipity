@@ -4,7 +4,7 @@ import { HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-import { CollectionService } from '../abstract/collection/collection.service';
+import { CollectionService } from 'utils';
 
 const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
 
@@ -14,7 +14,6 @@ const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
 export class ProcessesService extends CollectionService {
 
   constructor() {
-
     super();
   }
 
@@ -22,7 +21,7 @@ export class ProcessesService extends CollectionService {
 
     this.logger.info('ProcessesService: getProcesses()');
 
-    this.url = this.getUrlPrefix() + '/repository/process-definitions';
+    this.url = this.getUrlPrefix() + '/process-api/repository/process-definitions';
 
     // https://flowable.com/open-source/docs/bpmn/ch15-REST/#list-of-process-definitions
     const latest = 'true';
@@ -59,7 +58,7 @@ export class ProcessesService extends CollectionService {
 
     this.logger.info('ProcessesService: startProcess()');
 
-    this.url = this.getUrlPrefix() + '/runtime/process-instances';
+    this.url = this.getUrlPrefix() + '/process-api/runtime/process-instances';
 
     this.logger.info('url: ' + this.url);
 

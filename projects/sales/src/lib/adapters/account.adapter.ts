@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Adapter } from './adapter';
+
+import { Adapter, LoggerService } from 'utils';
 
 import { Account } from '../models/account';
-
-import { LoggerService } from 'utils';
 
 @Injectable({
   providedIn: 'root'
@@ -48,4 +47,5 @@ export class AccountAdapter implements Adapter<Account> {
 
     return account;
   }
+
 }

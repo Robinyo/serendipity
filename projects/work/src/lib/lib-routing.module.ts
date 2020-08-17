@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ActivitiesComponent } from './components/activities/activities.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { TasksComponent } from './components/tasks/tasks.component';
 
 //
 // Auth libs
@@ -18,6 +19,7 @@ const routes: Routes = [
     path: 'work/activities',
     component: ActivitiesComponent,
     canActivate: [AuthGuard],
+    // canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
   },
 
@@ -29,15 +31,15 @@ const routes: Routes = [
     canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
   },
-  {
-    path: 'activities/tasks',
-    component: TasksComponent,
-    canActivate: [AuthGuard],
-    canDeactivate: [CanDeactivateGuard],
-    runGuardsAndResolvers: 'always'
-  },
   */
 
+  {
+    path: 'work/activities/:id',
+    component: TasksComponent,
+    canActivate: [AuthGuard],
+    // canDeactivate: [CanDeactivateGuard],
+    runGuardsAndResolvers: 'always'
+  },
   {
     path: 'work/dashboards',
     component: DashboardComponent,

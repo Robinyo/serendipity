@@ -53,6 +53,7 @@ import { AngularMaterialModule } from 'utils';
 
 import { ActivitiesComponent } from './components/activities/activities.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { TasksComponent } from './components/tasks/tasks.component';
 
 //
 // LibRoutingModule: https://angular.io/guide/router#routing-module-order
@@ -82,7 +83,8 @@ import { LibRoutingModule } from './lib-routing.module';
   ],
   declarations: [
     ActivitiesComponent,
-    DashboardComponent
+    DashboardComponent,
+    TasksComponent
   ]
 })
 export class WorkModule {

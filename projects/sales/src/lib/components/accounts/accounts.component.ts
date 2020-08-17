@@ -51,11 +51,9 @@ export class AccountsComponent extends CollectionComponent<Account> {
 
         } else {
 
-          const items = [];
+          this.items = [];
+          this.items.push(new Account());
 
-          items.push(new Account());
-
-          this.items = items;
         }
 
         // this.logger.info('items: ' + JSON.stringify(this.items, null, 2));

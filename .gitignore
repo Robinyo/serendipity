@@ -43,6 +43,7 @@ Thumbs.db
 /secrets
 /tmp
 /temp
+/deprecated
 
 /.firebase
 

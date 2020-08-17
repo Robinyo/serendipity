@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { tap } from 'rxjs/operators';
 
-import { CollectionService } from '../abstract/collection/collection.service';
+import { CollectionService } from 'utils';
 
 const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
 
@@ -12,17 +12,16 @@ const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
 export class FormsService extends CollectionService {
 
   constructor() {
-
     super();
-
-    this.url = this.getUrlPrefix() + '/form/form-data';
   }
 
   public submitFormData(body: any): Promise<any> {
 
     this.logger.info('FormsService: submitFormData()');
 
-    this.logger.info('FormsService url: ' + this.url);
+    this.url = this.getUrlPrefix() + '/process-api/form/form-data';
+
+    this.logger.info('url: ' + this.url);
 
     return this.httpClient.post(this.url, body, this.getHttpOptions()).pipe(
 
@@ -43,3 +42,11 @@ export class FormsService extends CollectionService {
   }
 
 }
+
+/*
+
+  protected getUrlPrefix(): string {
+    return super.getUrlPrefix() + '/process-api';
+  }
+
+*/

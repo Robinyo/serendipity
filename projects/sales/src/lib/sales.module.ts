@@ -12,13 +12,11 @@ import { QuillModule } from 'ngx-quill';
 
 import { AccountComponent } from './components/account/account.component';
 import { AccountsComponent } from './components/accounts/accounts.component';
-import { ActivitiesComponent } from './components/activities/activities.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ContactWizardComponent } from './components/contact-wizard/contact-wizard.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EmailComponent } from './components/email/email.component';
-import { TasksComponent } from './components/tasks/tasks.component';
 
 //
 // Utils lib
@@ -88,13 +86,11 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
   declarations: [
     AccountComponent,
     AccountsComponent,
-    ActivitiesComponent,
     ContactsComponent,
     ContactComponent,
     ContactWizardComponent,
     EmailComponent,
-    DashboardComponent,
-    TasksComponent
+    DashboardComponent
   ]
 })
 export class SalesModule {

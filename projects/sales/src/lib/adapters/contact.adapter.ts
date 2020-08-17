@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Adapter } from './adapter';
+
+import { Adapter, LoggerService } from 'utils';
 
 import { Contact } from '../models/contact';
-import { Name } from '../models/name';
-import { OrganisationRef } from '../models/organisation-ref';
-import { Party } from '../models/party';
-
-import { LoggerService } from 'utils';
+// import { Name } from '../models/name';
+// import { OrganisationRef } from '../models/organisation-ref';
+// import { Party } from '../models/party';
 
 @Injectable({
   providedIn: 'root'
@@ -58,6 +57,7 @@ export class ContactAdapter implements Adapter<Contact> {
 
     return contact;
   }
+
 }
 
 /*

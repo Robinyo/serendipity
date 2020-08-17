@@ -4,7 +4,7 @@ import { HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-import { CollectionService } from '../abstract/collection/collection.service';
+import { CollectionService } from 'utils';
 
 import { TaskListModel } from '../../models/task-list.model';
 import { TaskActionRequest } from '../../models/task-action';
@@ -17,15 +17,14 @@ const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
 export class TasksService extends CollectionService {
 
   constructor() {
-
     super();
-
-    this.url = this.getUrlPrefix() + '/runtime/tasks';
   }
 
   public getTasks(): Observable<any> {
 
     this.logger.info('TasksService: getTasks()');
+
+    this.url = this.getUrlPrefix() + '/process-api/runtime/tasks';
 
     // https://www.flowable.org/docs/userguide/index.html#_request_parameters
     const sort = 'createTime';
@@ -35,8 +34,8 @@ export class TasksService extends CollectionService {
 
     const params = new HttpParams().set('sort', sort).set('order', order);
 
-    this.logger.info('TasksService url: ' + this.url);
-    this.logger.info('TasksService params: ' + params);
+    this.logger.info('url: ' + this.url);
+    this.logger.info('params: ' + params);
 
     return this.httpClient.get<TaskListModel>(this.url, this.getHttpOptions(params)).pipe(
 
@@ -85,11 +84,11 @@ export class TasksService extends CollectionService {
 
     this.logger.info('TasksService: completeSimpleTask()');
 
-    const url = this.url + '/' + taskId;
+    this.url = this.getUrlPrefix() + '/process-api/runtime/tasks/' + taskId;
 
-    this.logger.info('TasksService url: ' + url);
+    this.logger.info('url: ' + this.url);
 
-    return this.httpClient.post<any>(url, request, this.getHttpOptions()).pipe(
+    return this.httpClient.post<any>(this.url, request, this.getHttpOptions()).pipe(
 
       tap(() => {
 
@@ -111,9 +110,9 @@ export class TasksService extends CollectionService {
 
     this.logger.info('TasksService: completeTask()');
 
-    const url = this.url + '/' + taskId;
+    this.url = this.getUrlPrefix() + '/process-api/runtime/tasks/' + taskId;
 
-    this.logger.info('TasksService url: ' + url);
+    this.logger.info('url: ' + this.url);
 
     const form = await this.getForm(taskId);
 
@@ -121,7 +120,7 @@ export class TasksService extends CollectionService {
 
     this.logger.info('TasksService taskId: ' + taskId + ' formDefinitionId: ' + request.formDefinitionId);
 
-    return this.httpClient.post<any>(url, request, this.getHttpOptions()).pipe(
+    return this.httpClient.post<any>(this.url, request, this.getHttpOptions()).pipe(
 
       tap(() => {
 
@@ -145,11 +144,11 @@ export class TasksService extends CollectionService {
 
     this.logger.info('TasksService: getForm()');
 
-    const url = this.url + '/' + taskId + '/form';
+    this.url = this.getUrlPrefix() + '/process-api/runtime/tasks/' + taskId + '/form';
 
-    this.logger.info('TasksService getForm() - url: ' + url);
+    this.logger.info('url: ' + this.url);
 
-    return this.httpClient.get<any>(url, this.getHttpOptions()).pipe(
+    return this.httpClient.get<any>(this.url, this.getHttpOptions()).pipe(
 
       tap(() => {
 

@@ -1,4 +1,4 @@
-import {  Inject, Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 
 import { UtilsConfig } from '../../models/models';
 import { UtilsConfigService } from '../config.service';

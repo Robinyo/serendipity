@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material/table';
 
-import { ContactsService } from '../../services/contacts/contacts.service';
-import { CONTACTS_COLUMN_DEFS } from '../../models/column-defs';
-import { Contact } from '../../models/contact';
-import { ContactAdapter } from '../../adapters/contact.adapter';
-
 import { CollectionComponent } from 'serendipity-components';
+
+import { ContactAdapter } from '../../adapters/contact.adapter';
+import { ContactsService } from '../../services/contacts/contacts.service';
+
+import { Contact } from '../../models/contact';
+import { CONTACTS_COLUMN_DEFS } from '../../models/column-defs';
 
 import {
   CONTACTS_COLUMNS_DESKTOP,
@@ -54,11 +55,9 @@ export class ContactsComponent extends CollectionComponent<Contact> {
 
         } else {
 
-          const items = [];
+          this.items = [];
+          this.items.push(new Contact());
 
-          items.push(new Contact());
-
-          this.items = items;
         }
 
         // this.logger.info('items: ' + JSON.stringify(this.items, null, 2));

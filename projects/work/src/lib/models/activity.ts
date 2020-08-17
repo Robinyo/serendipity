@@ -4,10 +4,10 @@ export class Activity {
 
   constructor(
     public id: string = '',
-    public type: string = 'Activity',
+    public type: string = '',
     public subject: string = '',
     public regarding: string = '',
-    public priority: string = 'Normal',
+    public priority: string = '',
     public startDate: string = '',
     public dueDate: string = '',
   ) {}

@@ -39,8 +39,8 @@ export class ContactsService extends CollectionService {
 
     }
 
-    this.logger.info('ContactsService url: ' + url);
-    this.logger.info('ContactsService queryParams: ' + queryParams);
+    this.logger.info('url: ' + url);
+    this.logger.info('queryParams: ' + queryParams);
 
     return this.httpClient.get(url + queryParams, this.getHttpOptions()).pipe(
       tap(() => {
