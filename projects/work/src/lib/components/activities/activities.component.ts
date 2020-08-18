@@ -78,9 +78,9 @@ export class ActivitiesComponent extends CollectionComponent<Activity> {
 
   public onEmail() {
 
-    this.logger.info('ActivitiesComponent: onEmail()');
+    // this.logger.info('ActivitiesComponent: onEmail()');
 
-    // this.router.navigate(['sales/activities/email']);
+    this.router.navigate(['work/email']);
   }
 
   public onTask() {

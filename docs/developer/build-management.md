@@ -31,6 +31,7 @@ ng build dashboard-widgets && \
 ng build dashboard && \
 ng build dynamic-forms && \
 ng build flowable && \
+ng build party && \
 ng build sales && \
 ng build work 
 ```
@@ -92,6 +93,7 @@ ng build dashboard-widgets && \
 ng build dashboard && \
 ng build dynamic-forms && \
 ng build flowable && \
+ng build party && \
 ng build sales && \
 ng build work
 ng build --prod --source-map 

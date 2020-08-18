@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ActivitiesComponent } from './components/activities/activities.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { EmailComponent } from './components/email/email.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 
 //
@@ -22,17 +23,13 @@ const routes: Routes = [
     // canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
   },
-
-  /*
   {
-    path: 'activities/email',
+    path: 'work/email',
     component: EmailComponent,
     canActivate: [AuthGuard],
-    canDeactivate: [CanDeactivateGuard],
+    // canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
   },
-  */
-
   {
     path: 'work/activities/:id',
     component: TasksComponent,

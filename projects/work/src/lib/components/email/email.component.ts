@@ -5,21 +5,15 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'dynamic-forms';
-
-import { Email } from '../../models/email';
-
-// import { EmailService } from '../../services/email/email.service';
-// private emailService: EmailService
-
-import { ACTIVITIES } from '../../models/constants';
-import { EMAIL_GROUP } from '../../models/form-ids';
-
 import { DialogService } from 'serendipity-components';
-
 import { LoggerService } from 'utils';
 
+import { ACTIVITIES } from '../../models/constants';
+import { Email } from '../../models/email';
+import { EMAIL_GROUP } from '../../models/form-ids';
+
 @Component({
-  selector: 'sales-email',
+  selector: 'work-email',
   templateUrl: './email.component.html',
   styleUrls: ['./email.component.scss']
 })

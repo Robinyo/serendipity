@@ -89,6 +89,12 @@
     },
     {
       "path": "./projects/work/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/party/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/party/tsconfig.spec.json"
     }
   ]
 }

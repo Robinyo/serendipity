@@ -3,9 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { SalesConfig } from './models/config';
-import { SalesConfigService } from './services/config.service';
-
 import { TranslateModule } from '@ngx-translate/core';
 
 import { QuillModule } from 'ngx-quill';
@@ -16,7 +13,9 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ContactWizardComponent } from './components/contact-wizard/contact-wizard.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { EmailComponent } from './components/email/email.component';
+
+import { SalesConfig } from './models/config';
+import { SalesConfigService } from './services/config.service';
 
 //
 // Utils lib
@@ -89,7 +88,6 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
     ContactsComponent,
     ContactComponent,
     ContactWizardComponent,
-    EmailComponent,
     DashboardComponent
   ]
 })

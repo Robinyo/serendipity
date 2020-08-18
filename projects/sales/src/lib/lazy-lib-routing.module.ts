@@ -7,7 +7,6 @@ import { ContactComponent } from './components/contact/contact.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { ContactWizardComponent } from './components/contact-wizard/contact-wizard.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { EmailComponent } from './components/email/email.component';
 
 //
 // Auth libs
@@ -28,13 +27,6 @@ import { CanDeactivateGuard } from './guards/can-deactivate/can-deactivate.guard
 
 const routes: Routes = [
 
-  {
-    path: 'activities/email',
-    component: EmailComponent,
-    canActivate: [AuthGuard],
-    canDeactivate: [CanDeactivateGuard],
-    runGuardsAndResolvers: 'always'
-  },
   {
     path: 'dashboards',
     component: DashboardComponent,

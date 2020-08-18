@@ -122,6 +122,10 @@
       "work": [
         "dist/work/work",
         "dist/work"
+      ],
+      "party": [
+        "dist/party/party",
+        "dist/party"
       ]
     }
   }
