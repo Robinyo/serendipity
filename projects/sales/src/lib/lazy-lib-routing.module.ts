@@ -1,12 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AccountComponent } from './components/account/account.component';
-import { AccountsComponent } from './components/accounts/accounts.component';
-import { ContactComponent } from './components/contact/contact.component';
-import { ContactsComponent } from './components/contacts/contacts.component';
-import { ContactWizardComponent } from './components/contact-wizard/contact-wizard.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { LeadsComponent } from './components/leads/leads.component';
+import { OpportunitiesComponent } from './components/opportunities/opportunities.component';
 
 //
 // Auth libs
@@ -14,7 +10,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { AuthGuard } from 'auth';
 
-import { CanDeactivateGuard } from './guards/can-deactivate/can-deactivate.guard';
+// import { CanDeactivateGuard } from './guards/can-deactivate/can-deactivate.guard';
 
 //
 // As we are lazy loading the Sales module in the App routing module, every route (in this module) is a child route.
@@ -28,42 +24,17 @@ import { CanDeactivateGuard } from './guards/can-deactivate/can-deactivate.guard
 const routes: Routes = [
 
   {
-    path: 'dashboards',
-    component: DashboardComponent,
+    path: 'leads',
+    component: LeadsComponent,
     canActivate: [AuthGuard],
+    // canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
   },
   {
-    path: 'accounts',
-    component: AccountsComponent,
+    path: 'opportunities',
+    component: OpportunitiesComponent,
     canActivate: [AuthGuard],
-    runGuardsAndResolvers: 'always'
-  },
-  {
-    path: 'accounts/:id',
-    component: AccountComponent,
-    canActivate: [AuthGuard],
-    canDeactivate: [CanDeactivateGuard],
-    runGuardsAndResolvers: 'always'
-  },
-
-  {
-    path: 'contacts',
-    component: ContactsComponent,
-    canActivate: [AuthGuard],
-    runGuardsAndResolvers: 'always'
-  },
-  {
-    path: 'contacts/new',
-    component: ContactWizardComponent,
-    canActivate: [AuthGuard],
-    runGuardsAndResolvers: 'always'
-  },
-  {
-    path: 'contacts/:id',
-    component: ContactComponent,
-    canActivate: [AuthGuard],
-    canDeactivate: [CanDeactivateGuard],
+    // canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
   }
 

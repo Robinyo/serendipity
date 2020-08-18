@@ -1,14 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { UtilsModule, LoggerService } from 'utils';
+
 // import { HighchartsChartModule } from 'highcharts-angular';
 import { HighchartsAngularModule } from './highcharts-angular/highcharts-angular.module';
-
-//
-// Utils lib
-//
-
-import { UtilsModule, LoggerService } from 'utils';
 
 @NgModule({
   imports: [

@@ -3,30 +3,16 @@ import { CommonModule } from '@angular/common';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { DynamicModule } from 'ng-dynamic-component';
+
 import { GridsterModule } from 'angular-gridster2';
 
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-
-//
-// Serendipity Components lib
-//
-
-import { SerendipityComponentsModule } from 'serendipity-components';
-
-//
-// Dashboard Widgets lib
-//
-
-import { DynamicModule } from 'ng-dynamic-component';
 import { DashboardWidgetsModule } from 'dashboard-widgets';
 import { FunnelChartComponent, ParliamentChartComponent, PieChartComponent, TimelineComponent } from 'dashboard-widgets';
+import { SerendipityComponentsModule } from 'serendipity-components';
+import { AngularMaterialModule, UtilsModule, LoggerService } from 'utils';
 
-//
-// Utils lib
-//
-
-import { UtilsModule, LoggerService } from 'utils';
-import { AngularMaterialModule } from 'utils';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const dashboardWidgets = [
   FunnelChartComponent,

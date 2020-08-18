@@ -42,24 +42,18 @@ const routes: Routes = [
   },
 
   {
+    path: 'sales',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./lazy-loading/sales-lib-wrapper.module').then(m => m.SalesLibWrapperModule)
+      }
+    ]
+  },
+
+  {
     path: 'users/profile',
     component: ProfileComponent,
-    canActivate: [AuthGuard],
-    runGuardsAndResolvers: 'always'
-  },
-
-  {
-    // path: 'sales/leads',
-    path: 'leads',
-    component: PlaceholderComponent,
-    canActivate: [AuthGuard],
-    runGuardsAndResolvers: 'always'
-  },
-
-  {
-    // path: 'sales/opportunities',
-    path: 'opportunities',
-    component: PlaceholderComponent,
     canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always'
   },

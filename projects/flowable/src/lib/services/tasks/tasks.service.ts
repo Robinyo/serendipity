@@ -55,7 +55,7 @@ export class TasksService extends CollectionService {
 
     // https://www.flowable.org/docs/userguide/index.html#_request_parameters
     const sort = 'createTime';
-    const order = 'asc'; // 'desc'
+    const order = 'desc'; // 'asc | desc'
     // const start = 0;
     // const size = 16;
 

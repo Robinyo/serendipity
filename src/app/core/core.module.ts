@@ -11,6 +11,11 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { QuillModule } from 'ngx-quill';
 
+import { DynamicFormsModule } from 'dynamic-forms';
+import { SerendipityComponentsModule } from 'serendipity-components';
+import { AngularMaterialModule, UtilsModule, LoggerService } from 'utils';
+import { WorkModule } from 'work';
+
 import { PlaceholderComponent } from './components/placeholder/placeholder.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
@@ -19,37 +24,6 @@ import { NavComponent } from './components/nav/nav.component';
 import { environment } from '@env/environment';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
-
-//
-// Serendipity Components lib
-//
-
-import { SerendipityComponentsModule } from 'serendipity-components';
-
-//
-// Dynamic Forms lib
-//
-
-import { DynamicFormsModule } from 'dynamic-forms';
-
-//
-// Utils lib
-//
-
-import { UtilsModule, LoggerService } from 'utils';
-import { AngularMaterialModule } from 'utils';
-
-//
-// Work lib
-//
-
-import { WorkModule } from 'work';
-
-//
-//
-// Lazy Loaded Libs - See: app.module.ts
-//
-//
 
 const components: any[] = [
   PlaceholderComponent,
@@ -66,7 +40,9 @@ const components: any[] = [
     DynamicFormsModule,
     FlexLayoutModule,
     HttpClientModule,
-    QuillModule.forRoot(),
+    QuillModule.forRoot({
+      placeholder: ''
+    }),
     SerendipityComponentsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 

@@ -5,28 +5,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { TranslateModule } from '@ngx-translate/core';
 
-//
-// Dynamic Forms lib
-//
-
 import { DynamicFormsModule } from 'dynamic-forms';
-
-//
-// Serendipity Components lib
-//
-
 import { SerendipityComponentsModule } from 'serendipity-components';
-
-//
-// Utils lib
-//
-
-import { UtilsModule, LoggerService } from 'utils';
-import { AngularMaterialModule } from 'utils';
-
-//
-// Components
-//
+import { AngularMaterialModule, UtilsModule, LoggerService } from 'utils';
 
 import { ProcessListComponent } from './components/process-list/process-list.component';
 import { TaskComponent } from './components/task/task.component';

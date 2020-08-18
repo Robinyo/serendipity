@@ -81,7 +81,7 @@ export class ContactsComponent extends CollectionComponent<Contact> {
 
     this.logger.info('ContactsComponent: onNew()');
 
-    this.router.navigate(['sales/contacts/new']);
+    this.router.navigate(['customers/contacts/new']);
   }
 
 }

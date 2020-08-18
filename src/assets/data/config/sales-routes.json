@@ -2,12 +2,12 @@
 
   {
     "icon":  "settings_phone",
-    "route": "leads",
+    "route": "sales/leads",
     "title": "LEADS_LIST_ITEM"
   },
   {
     "icon":  "account_box",
-    "route": "opportunities",
+    "route": "sales/opportunities",
     "title": "OPPORTUNITIES_LIST_ITEM"
   }
 

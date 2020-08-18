@@ -2,8 +2,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { DynamicFormsConfig } from './models/models';
-import { DynamicFormsConfigService } from './services/config.service';
+import { AngularMaterialModule, UtilsModule, LoggerService } from 'utils';
 
 import { DynamicControlDirective } from './angular-material/directives/dynamic-control/dynamic-control.directive';
 import { DynamicFormComponent } from './angular-material/containers/dynamic-form/dynamic-form.component';
@@ -13,12 +12,8 @@ import { DynamicImageComponent } from './angular-material/components/dynamic-ima
 import { DynamicInputComponent } from './angular-material/components/dynamic-input/dynamic-input.component';
 import { DynamicLabelComponent } from './angular-material/components/dynamic-label/dynamic-label.component';
 
-//
-// Utils lib
-//
-
-import { UtilsModule, LoggerService } from 'utils';
-import { AngularMaterialModule } from 'utils';
+import { DynamicFormsConfig } from './models/models';
+import { DynamicFormsConfigService } from './services/config.service';
 
 const components: any[] = [
   DynamicDatepickerComponent,

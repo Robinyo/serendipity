@@ -5,54 +5,20 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { TranslateModule } from '@ngx-translate/core';
 
-import { QuillModule } from 'ngx-quill';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
-import { AccountComponent } from './components/account/account.component';
-import { AccountsComponent } from './components/accounts/accounts.component';
-import { ContactsComponent } from './components/contacts/contacts.component';
-import { ContactComponent } from './components/contact/contact.component';
-import { ContactWizardComponent } from './components/contact-wizard/contact-wizard.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-
-import { SalesConfig } from './models/config';
-import { SalesConfigService } from './services/config.service';
-
-//
-// Utils lib
-//
-
+import { DashboardModule } from 'dashboard';
+import { DynamicFormsModule } from 'dynamic-forms';
+import { FlowableModule } from 'flowable';
+import { SerendipityComponentsModule } from 'serendipity-components';
 import { UtilsModule, LoggerService } from 'utils';
 import { AngularMaterialModule } from 'utils';
 
-//
-// Serendipity Components lib
-//
+import { LeadsComponent } from './components/leads/leads.component';
+import { OpportunitiesComponent } from './components/opportunities/opportunities.component';
 
-import { SerendipityComponentsModule } from 'serendipity-components';
-
-//
-// Dashboard lib
-//
-
-import { DashboardModule } from 'dashboard';
-
-//
-// Dynamic Forms lib
-//
-
-import { DynamicFormsModule } from 'dynamic-forms';
-
-//
-// Flowable lib
-//
-
-import { FlowableModule } from 'flowable';
-
-//
-// Leaflet
-//
-
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { SalesConfig } from './models/config';
+import { SalesConfigService } from './services/config.service';
 
 //
 // LibRoutingModule: https://angular.io/guide/router#routing-module-order
@@ -68,9 +34,6 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
     DashboardModule,
     FlexLayoutModule,
     FlowableModule,
-    QuillModule.forRoot({
-      placeholder: ''
-    }),
     LeafletModule,
     ReactiveFormsModule,
     TranslateModule.forChild(),
@@ -83,12 +46,8 @@ import { LazyLibRoutingModule } from './lazy-lib-routing.module';
     LazyLibRoutingModule
   ],
   declarations: [
-    AccountComponent,
-    AccountsComponent,
-    ContactsComponent,
-    ContactComponent,
-    ContactWizardComponent,
-    DashboardComponent
+    LeadsComponent,
+    OpportunitiesComponent
   ]
 })
 export class SalesModule {

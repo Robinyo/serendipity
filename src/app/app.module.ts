@@ -1,35 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { CoreModule } from './core/core.module';
-import { AppComponent } from './app.component';
-
-import { angularMaterialProviders, errorProviders } from './providers';
-
-import { environment } from '@env/environment';
-
-//
-// Auth libs
-//
-
 // import { LocalAuthModule, authProviders } from 'auth-local';
 // import { Auth0AuthModule, authProviders } from 'auth-auth0';
 // import { OktaAuthModule, authProviders } from 'auth-okta';
 import { OidcAuthModule, authProviders } from 'auth-oidc';
-
-//
-// Utils lib
-//
-
+import { DynamicFormsModule } from 'dynamic-forms';
 import { LoggerService, loggerProviders } from 'utils';
 
-//
-//
-// Dynamic Forms lib
-//
-//
+import { environment } from '@env/environment';
 
-import { DynamicFormsModule } from 'dynamic-forms';
+import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
+import { angularMaterialProviders, errorProviders } from './providers';
 
 //
 // AppRoutingModule: https://angular.io/guide/router#routing-module-order
@@ -40,13 +23,15 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   imports: [
     BrowserModule,
+    CoreModule,
+    DynamicFormsModule.forRoot(environment),
     // LocalAuthModule,
     // Auth0AuthModule.forRoot(environment),
     // OktaAuthModule.forRoot(environment),
     OidcAuthModule.forRoot(environment),
-    CoreModule,
-    DynamicFormsModule.forRoot(environment),
-    AppRoutingModule  // https://angular.io/guide/router#routing-module-order
+
+    // https://angular.io/guide/router#routing-module-order
+    AppRoutingModule
   ],
   declarations: [ AppComponent ],
   providers: [
