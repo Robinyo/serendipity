@@ -1,0 +1,39 @@
+/*
+
+@import "../../themes/mat-variables";
+@import "../../themes/variables";
+
+.crm-wizard-footer {
+
+  height: $crm-command-bar-height-desktop !important;
+  min-height: $crm-command-bar-height-desktop !important;
+
+  @media ($mat-xsmall) {
+    height: $crm-command-bar-height-mobile !important;
+    min-height: $crm-command-bar-height-mobile !important;
+  }
+
+  // background-color: #f5f5f5;
+  background-color: white;
+
+}
+
+.crm-wizard-footer-row {
+  height: $crm-command-bar-height-desktop !important;
+  min-height: $crm-command-bar-height-desktop !important;
+
+  padding-left: 8px;
+  padding-right: 8px;
+
+  @media ($mat-xsmall) {
+    height: $crm-command-bar-height-mobile !important;
+    min-height: $crm-command-bar-height-mobile !important;
+  }
+}
+
+.crm-wizard-footer-button {
+  min-width: 48px;
+  padding: 0 16px;
+}
+
+*/

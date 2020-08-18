@@ -1,0 +1,91 @@
+<crm-command-bar>
+
+  <ng-container>
+
+    <button mat-button class="crm-command-bar-button"
+            [disabled]="!isDirty() || !isValid()"
+            (click)="onSave()">
+      <mat-icon>save</mat-icon>
+      {{ 'SAVE' | translate }}
+    </button>
+
+    <button mat-button class="crm-command-bar-button"
+            [disabled]="!isDirty() || !isValid()"
+            (click)="onSaveAndClose()">
+      <mat-icon>arrow_back</mat-icon>
+      {{ 'SAVE_AND_CLOSE' | translate }}
+    </button>
+  </ng-container>
+
+  <div fxFlex fxLayout fxLayoutAlign="flex-end">
+
+    <button mat-button class="crm-command-bar-button"
+            (click)="onClose()">
+      <mat-icon>clear</mat-icon>
+    </button>
+
+  </div>
+
+</crm-command-bar>
+
+<div class="crm-component-title-container">
+  <h1 class="crm-component-title"> {{ 'CONTACT_HEADER' | translate }} </h1>
+</div>
+
+<div class="crm-content-container">
+
+  <!-- <ng-container *ngIf="!item; then skeleton"> </ng-container> -->
+
+  <ng-container *ngIf="generalInformationGroup && addressInformationGroup">
+
+    <div class="crm-table-container">
+
+      <mat-vertical-stepper linear="false">
+
+        <mat-step [stepControl]="generalInformationGroup">
+          <ng-template matStepLabel>General Information</ng-template>
+          <dynamic-form autocomplete="off"
+                        className="crm-nested-grid-container"
+                        [formGroup]="generalInformationGroup"
+                        [model]="generalInformationModel"
+                        (customEvent)="onCustomEvent($event)">
+          </dynamic-form>
+        </mat-step>
+
+        <mat-step [stepControl]="generalInformationGroup">
+          <ng-template matStepLabel>Address Information</ng-template>
+          <dynamic-form autocomplete="off"
+                        className="crm-nested-grid-container"
+                        [formGroup]="addressInformationGroup"
+                        [model]="addressInformationModel"
+                        (customEvent)="onCustomEvent($event)">
+          </dynamic-form>
+        </mat-step>
+
+      </mat-vertical-stepper>
+
+    </div> <!-- crm-table-container -->
+
+  </ng-container>
+
+  <!-- Skeleton template -->
+
+  <!--
+  <ng-template #skeleton>
+    <div class="crm-spinner-container" [style.height.px]="containerHeight">
+      <mat-spinner color="accent"></mat-spinner>
+    </div>
+  </ng-template>
+  -->
+
+</div> <!-- crm-content-container -->
+
+<!--
+
+<mat-step [stepControl]="generalInformationGroup">
+<mat-step [stepControl]="generalInformationGroup">
+
+ERROR: projects/sales/src/lib/components/contact-wizard/contact-wizard.component.html(55,19): Type 'FormGroup' is
+missing the following properties from type 'FormControlLike': registerOnChange, registerOnDisabledChange
+
+-->

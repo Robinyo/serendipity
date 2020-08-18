@@ -47,6 +47,11 @@
               },
               {
                 "glob": "**/*",
+                "input": "projects/party/src/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
                 "input": "projects/sales/src/assets",
                 "output": "/assets"
               },

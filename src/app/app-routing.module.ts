@@ -32,11 +32,11 @@ const routes: Routes = [
   //
 
   {
-    path: 'sales',
+    path: 'customers',
     children: [
       {
         path: '',
-        loadChildren: () => import('./lazy-loading/sales-lib-wrapper.module').then(m => m.SalesLibWrapperModule)
+        loadChildren: () => import('./lazy-loading/party-lib-wrapper.module').then(m => m.PartyLibWrapperModule)
       }
     ]
   },

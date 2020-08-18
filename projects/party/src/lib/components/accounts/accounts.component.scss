@@ -1,0 +1,65 @@
+// @import "../../themes/mat-variables";
+// @import "../../themes/variables";
+@import "../../../../../../projects/utils/src/lib/angular-material/mat-variables";
+@import "../../../../../../projects/utils/src/lib/angular-material/variables";
+
+// Note: Define all color and typography styles in a "theme file" for the component / plugin
+
+// top, right, bottom, and left
+
+//
+// Header
+//
+
+.header-toolbar {
+  background: #fafafa;
+}
+.header-title {
+  font-weight: bold;
+  padding: 0 16px 0 40px;
+}
+.header-icon {
+  margin: 0 12px 0 12px;
+}
+
+th.mat-header-cell {
+  padding-right: 16px;
+  // text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.header-cell-id {
+  text-align: right;
+}
+
+td.mat-cell {
+  padding-right: 16px;
+}
+
+// Columns
+
+.mat-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mat-column-name {
+  width: 280px;
+  max-width: 280px;
+}
+
+.mat-column-phoneNumber {
+  width: 140px;
+  max-width: 120px;
+}
+
+.mat-column-individual-displayName {
+  width: 280px;
+  max-width: 220px;
+}
+
+.mat-column-individual-email {
+  width: 260px;
+  max-width: 240px;
+}

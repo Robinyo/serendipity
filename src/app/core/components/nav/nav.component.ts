@@ -20,7 +20,7 @@ interface SideNavRoute {
 }
 
 const MY_WORK_ROUTES = 'my-work-routes';
-const CUSTOMER_ROUTES = 'customer-routes';
+const CUSTOMER_ROUTES = 'customers-routes';
 const SALES_ROUTES = 'sales-routes';
 const COLLATERAL_ROUTES = 'collateral-routes';
 const TOOLS_ROUTES = 'tools-routes';

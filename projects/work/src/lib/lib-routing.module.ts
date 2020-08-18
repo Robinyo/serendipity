@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ActivitiesComponent } from './components/activities/activities.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+// import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EmailComponent } from './components/email/email.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 
@@ -36,13 +36,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     // canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
-  },
+  }
+  /*
   {
     path: 'work/dashboards',
     component: DashboardComponent,
     canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always'
   }
+  */
 
 ];
 

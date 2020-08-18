@@ -1,0 +1,97 @@
+[
+
+  {
+    "type": "input",
+    "inputType": "number",
+    "id": "employeeNumber",
+    "label": "Employee Number",
+    "appearance": "outline",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter your employee number"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1",
+    "required": true
+  },
+  {
+    "type": "input",
+    "id": "givenName",
+    "label": "Given Name",
+    "appearance": "outline",
+    "autocomplete": "given-name",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a given name"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1",
+    "required": true
+  },
+  {
+    "type": "input",
+    "id": "familyName",
+    "label": "Family Name",
+    "appearance": "outline",
+    "autocomplete": "family-name",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a family name"
+      }
+    ],
+
+    "gridItemClass": "grid-column-2",
+    "required": true
+  },
+  {
+    "type": "date",
+    "id": "fromDate",
+    "label": "From Date",
+    "appearance": "outline",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a From date"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1",
+    "required": true
+  },
+  {
+    "type": "date",
+    "id": "toDate",
+    "label": "To Date",
+    "appearance": "outline",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a To date"
+      }
+    ],
+
+    "gridItemClass": "grid-column-2",
+    "required": true
+  }
+
+]

@@ -1,0 +1,14 @@
+[
+
+  {
+    "icon":  "contacts",
+    "route": "customers/accounts",
+    "title": "ACCOUNTS_LIST_ITEM"
+  },
+  {
+    "icon":  "people",
+    "route": "customers/contacts",
+    "title": "CONTACTS_LIST_ITEM"
+  }
+
+]

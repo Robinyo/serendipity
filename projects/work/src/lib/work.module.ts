@@ -52,7 +52,7 @@ import { AngularMaterialModule } from 'utils';
 //
 
 import { ActivitiesComponent } from './components/activities/activities.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+// import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EmailComponent } from './components/email/email.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 
@@ -84,7 +84,7 @@ import { LibRoutingModule } from './lib-routing.module';
   ],
   declarations: [
     ActivitiesComponent,
-    DashboardComponent,
+    // DashboardComponent,
     EmailComponent,
     TasksComponent
   ]

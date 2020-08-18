@@ -1,0 +1,72 @@
+<crm-command-bar>
+
+  <button mat-button class="crm-command-bar-button" [disabled]="true">
+    <mat-icon>save</mat-icon>
+    {{ 'SAVE_AS' | translate }}
+  </button>
+
+  <button mat-button class="crm-command-bar-button" [disabled]="true">
+    <mat-icon>dashboard</mat-icon>
+    {{ 'NEW' | translate }}
+  </button>
+
+  <button mat-button class="crm-command-bar-button" [disabled]="true">
+    <mat-icon>lock</mat-icon>
+    {{ 'SET_AS_DEFAULT' | translate }}
+  </button>
+
+  <button mat-button class="crm-command-bar-button" [disabled]="true">
+    <mat-icon>refresh</mat-icon>
+    {{ 'REFRESH' | translate }}
+  </button>
+
+  <div fxFlex fxLayout fxLayoutAlign="flex-end">
+
+    <button mat-button class="crm-command-bar-button" (click)="onToggleSidenav()">
+      <mat-icon>widgets</mat-icon>
+      {{ 'WIDGETS' | translate }}
+    </button>
+
+    <button mat-button class="crm-command-bar-button" (click)="onFullscreen()">
+      <mat-icon>fullscreen</mat-icon>
+      {{ 'FULL_SCREEN' | translate }}
+    </button>
+
+  </div>
+
+</crm-command-bar>
+
+<crm-activity-bar>
+
+  {{ dashboardName }}
+
+  <button mat-button [matMenuTriggerFor]="dashboardMenu" class="crm-activity-bar-menu-button">
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+
+  <mat-menu #dashboardMenu="matMenu">
+
+    <button *ngFor="let item of items" mat-menu-item (click)="onMenuClick(item)">
+      <mat-icon>dashboard</mat-icon>
+      <span>{{item.name}}</span>
+    </button>
+
+  </mat-menu>
+
+</crm-activity-bar>
+
+<div class="crm-dashboard-container">
+
+  <dashboard [dashboardId]="dashboardId"></dashboard>
+
+</div>
+
+<!--
+
+<div class="crm-component-title-container">
+
+  <h1 class="crm-component-title"> {{ 'SALES_ACTIVITY_DASHBOARD_HEADER' | translate }} </h1>
+
+</div>
+
+-->

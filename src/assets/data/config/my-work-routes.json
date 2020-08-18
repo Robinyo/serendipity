@@ -7,7 +7,7 @@
   },
   {
     "icon":  "dashboard",
-    "route": "sales/dashboards",
+    "route": "customers/dashboards",
     "title": "DASHBOARDS_LIST_ITEM"
   }
 

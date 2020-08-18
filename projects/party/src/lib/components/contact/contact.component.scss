@@ -1,0 +1,227 @@
+// @import "../../themes/mat-variables";
+// @import "../../themes/variables";
+@import "../../../../../../projects/utils/src/lib/angular-material/mat-variables";
+@import "../../../../../../projects/utils/src/lib/angular-material/variables";
+
+// Note: Define all color and typography styles in a "theme file" for the component / plugin
+
+.mat-tab-group {
+  margin-left: $crm-component-default-margin;
+  margin-right: $crm-component-default-margin;
+}
+
+.mat-card {
+  padding: 0;
+  margin-top: $crm-component-default-margin;
+}
+
+.mat-card-header {
+  background: rgba(0, 0, 0, 0.04);
+  padding-top: 8px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mat-card-content {
+  padding: 16px;
+}
+
+.map-container {
+
+  margin-top: 32px;
+
+  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
+  // 64 + 56 + 96 + 32 + 16
+  // height: calc(100vh - 248px);
+  height: calc(100vh - 328px);  // 340
+  // width: 100%;
+
+  @media ($mat-xsmall) {
+    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
+    // 56 + 0 + 84 + 0 + 56
+    // height: calc(100vh - 140px);
+    height: calc(100vh - 216px);
+  }
+
+}
+
+/*
+
+.mat-tab-list {
+  margin-left: $crm-component-default-margin;
+  margin-right: $crm-component-default-margin;
+}
+
+::ng-deep .mat-tab-list-container {
+  margin-left: $crm-component-default-margin;
+  margin-right: $crm-component-default-margin;
+}
+
+*/
+
+/*
+
+.general-information-card-content {
+  background: url('../../../../assets/images/photos/male.svg') top right no-repeat;
+  background-size: 242px;
+  background-origin: content-box;
+}
+
+*/
+
+
+
+
+/*
+
+.content-container {
+  height: 100%;
+}
+
+.component-title-container {
+  height: $mat-toolbar-height-desktop;
+  min-height: $mat-toolbar-height-desktop;
+
+  margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
+
+  @media ($mat-xsmall) {
+    height: $mat-toolbar-height-mobile;
+    min-height: $mat-toolbar-height-mobile;
+
+    margin-top: $mat-toolbar-height-mobile + $crm-command-bar-height-mobile;
+  }
+}
+
+.component-title {
+  // margin-top: $crm-component-title-margin;
+  // margin-bottom: $crm-component-title-margin;
+  // vertical-align: middle;
+  padding-top: 12px;
+  text-align: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 32px;
+  row-gap: 1em;
+
+  margin-top: 0;
+  margin-left: 32px;
+  margin-bottom: 32px;
+  margin-right: 32px;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+*/
+
+/*
+
+.nested-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 16px;
+  row-gap: 1em;
+}
+
+*/
+
+
+/*
+
+.mat-card {
+  // position: absolute;
+  padding: 0;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+*/
+
+/*
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.grid-container {
+  margin: 32px;
+  // overflow: auto;
+
+  @media ($mat-xsmall) {
+    margin: 0;
+  }
+}
+
+*/
+
+/*
+
+.mat-card-header-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+*/
+
+
+/*
+
+.mat-grid-tile {
+  padding: 15px;
+}
+
+.mat-card {
+  position: absolute;
+  // margin: 15px;
+  // padding: 15px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.mat-card {
+  position: absolute;
+  padding: 0;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.mat-card {
+  position: absolute;
+  padding: 0;
+
+  left: 0px;
+  width: calc(((50% - 0.5px) * 1) + 0px);
+  top: 0px;
+  height: calc(350px);
+}
+
+*/
+
+
+/*
+
+.dashboard-card {
+  position: absolute;
+  padding: 0;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+*/
