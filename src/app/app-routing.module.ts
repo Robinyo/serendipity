@@ -77,7 +77,7 @@ const routes: Routes = [
 
   {
     path: '**',
-    redirectTo: 'reports'
+    redirectTo: 'work/activities'
   }
 
 ];
