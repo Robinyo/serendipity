@@ -97,7 +97,7 @@ Accounts:
 New Work Item:
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/activities.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/new-work-item.png">
 </p>
 
 Activities:
