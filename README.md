@@ -94,10 +94,10 @@ Accounts:
 
 ### Workflow (BPMN), Decision Management (DMN) and Case Management (CMMN)
 
-Modelling:
+New Work Item:
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/flowable-modeller.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/activities.png">
 </p>
 
 Activities:

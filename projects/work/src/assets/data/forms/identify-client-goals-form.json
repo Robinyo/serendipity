@@ -1,0 +1,40 @@
+[
+
+  {
+    "type": "input",
+    "id": "goalName",
+    "label": "Goal Name",
+    "appearance": "outline",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a goal name"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1",
+    "required": true
+  },
+  {
+    "type": "input",
+    "id": "goalDescription",
+    "label": "Goal Description",
+    "appearance": "outline",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a goal description"
+      }
+    ],
+
+    "gridItemClass": "grid-column-2",
+    "required": true
+  }
+
+]

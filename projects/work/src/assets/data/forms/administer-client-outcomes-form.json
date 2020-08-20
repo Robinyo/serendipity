@@ -1,0 +1,40 @@
+[
+
+  {
+    "type": "input",
+    "id": "outcomeName",
+    "label": "Outcome Name",
+    "appearance": "outline",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter an outcome goal name"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1",
+    "required": true
+  },
+  {
+    "type": "input",
+    "id": "outcomeDescription",
+    "label": "Outcome Description",
+    "appearance": "outline",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter an outcome description"
+      }
+    ],
+
+    "gridItemClass": "grid-column-2",
+    "required": true
+  }
+
+]
