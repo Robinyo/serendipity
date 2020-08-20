@@ -96,6 +96,7 @@ export class ActivitiesComponent extends CollectionComponent<Activity> {
       }
 
     });
+
   }
 
 }
