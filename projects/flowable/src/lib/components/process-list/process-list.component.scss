@@ -1,40 +1,10 @@
-$process-list-width: 400px;
+$process-list-height: calc(56px * 4);
+$process-list-width: 400;
 
 .process-list-container {
   display: grid;
   grid-template-columns: $process-list-width auto;
   column-gap: 0;
+  height: $process-list-height;
   margin: 0;
 }
-
-/*
-
-<div class="crm-activities-container">
-<div class="crm-task-list-container">
-
-$task-list-width: 320px; // 240px;
-
-.crm-activities-container {
-  display: grid;
-  grid-template-columns: $task-list-width auto;
-  // grid-template-rows: 100%; deprecated
-  // grid-template-rows: auto;
-  // grid-template-rows: minmax(250px, auto);
-  column-gap: 32px;
-  // row-gap: 1em;
-
-  margin-top: 0;
-  margin-left: 32px;
-  margin-bottom: 32px;
-  margin-right: 32px;
-
-  // overflow: auto;
-  // overflow: hidden;
-}
-
-.crm-task-list-container {
-  // background: white;
-  border: 1px solid lightgray;
-}
-
-*/
