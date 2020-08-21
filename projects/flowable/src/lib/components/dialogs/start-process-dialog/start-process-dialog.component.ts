@@ -56,36 +56,46 @@ export class StartProcessDialogComponent {
 
     this.disabled = true;
 
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const today = new Date().toLocaleString('en-GB', options);
+
+    this.logger.info('today: ' + today);
+
     const processModel = {
-      'name' : this.selectedItem.name,
-      'processDefinitionId' : this.selectedItem.id,
-      'startedBy' : {
-        'email' : 'admin@serendipity.org.au',
-        'firstName' : 'Flowable',
-        'fullName' : 'Flowable Admin',
-        'groups': [],
-        'id' : 'flowable',
-        'lastName' : 'Admin',
-        'privileges': [],
-        'tenantId' : null
-      },
-      'variables': [
+      name : this.selectedItem.name + ' - ' + today,
+      processDefinitionId : this.selectedItem.id,
+      variables : [
         {
-          'name': 'initiator',
-          'type' : 'string',
-          'value': 'flowable',
-          'scope' : 'local'
+          name: 'initiator',
+          type : 'string',
+          value: 'flowable',
+          scope : 'local'
         }
       ]
     };
 
     this.logger.info('processModel: ' + JSON.stringify(processModel, null, 2));
 
-    this.processesService.startProcess(processModel).then(() => {
+    this.processesService.startProcess(processModel).then((responce) => {
 
-      this.openSnackBar();
+      this.openSnackBar('Process started');
 
       // this.disabled = false;
+
+      /*
+
+      const processAction = {
+        // assignee: 'flowable',
+        // assignment: 'involved'
+        userId : 'flowable',
+        type : 'participant'
+      };
+
+      this.logger.info('processAction: ' + JSON.stringify(processAction, null, 2));
+
+      this.processesService.updateProcess(responce.id, processAction);
+
+      */
 
       this.dialogRef.close(true);
 
@@ -122,11 +132,11 @@ export class StartProcessDialogComponent {
   // Misc
   //
 
-  private openSnackBar() {
+  private openSnackBar(message: string) {
 
     this.snackBar.openFromComponent(SnackBarComponent, {
       data: {
-        message: 'Process started'
+        message: message
       },
       duration: 500,
       panelClass: 'crm-snack-bar'
@@ -135,3 +145,27 @@ export class StartProcessDialogComponent {
   }
 
 }
+
+/*
+
+      startUserId : 'flowable',
+
+        {
+          'name': 'startUserId',
+          'type' : 'string',
+          'value': 'flowable',
+          'scope' : 'local'
+        }
+
+      'startedBy' : {
+        'email' : 'admin@serendipity.org.au',
+        'firstName' : 'Flowable',
+        'fullName' : 'Flowable Admin',
+        'groups': [],
+        'id' : 'flowable',
+        'lastName' : 'Admin',
+        'privileges': [],
+        'tenantId' : null
+      },
+
+*/

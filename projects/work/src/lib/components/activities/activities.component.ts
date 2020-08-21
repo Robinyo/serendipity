@@ -118,6 +118,15 @@ export class ActivitiesComponent extends CollectionComponent<Activity> implement
     this.startSimpleTask('Phone Call');
   }
 
+  public onRefresh() {
+
+    // this.logger.info('ActivitiesComponent: onRefresh()');
+
+    this.openSnackBar('Refresh...');
+
+    super.refresh();
+  }
+
   public onTask() {
 
     // this.logger.info('ActivitiesComponent: onTask()');
@@ -138,11 +147,11 @@ export class ActivitiesComponent extends CollectionComponent<Activity> implement
   // Misc
   //
 
-  private openSnackBar() {
+  private openSnackBar(message: string) {
 
     this.snackBar.openFromComponent(SnackBarComponent, {
       data: {
-        message: 'Task started'
+        message: message
       },
       duration: 500,
       panelClass: 'crm-snack-bar'
@@ -155,12 +164,12 @@ export class ActivitiesComponent extends CollectionComponent<Activity> implement
 
     this.logger.info('ActivitiesComponent: startSimpleTask()');
 
-    const event = addDays(new Date(), 2);
+    const dueDate = addDays(new Date(), 2);
 
     const taskModel = {
       'name': name,
       'description': description,
-      'dueDate': event.toISOString(),
+      'dueDate': dueDate.toISOString(),
       'variables': [
         {
           'name': 'initiator',
@@ -175,7 +184,7 @@ export class ActivitiesComponent extends CollectionComponent<Activity> implement
 
     this.entityService.startTask(taskModel).then((responce) => {
 
-      this.openSnackBar();
+      this.openSnackBar('Task started');
 
       const taskAction = {
         assignee: 'flowable',

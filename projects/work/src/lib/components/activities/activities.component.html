@@ -86,7 +86,7 @@
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef class="header-cell-id">
 
-            <button mat-icon-button>
+            <button mat-icon-button (click)="onRefresh()">
               <mat-icon matListIcon class="header-icon">autorenew</mat-icon>
             </button>
 

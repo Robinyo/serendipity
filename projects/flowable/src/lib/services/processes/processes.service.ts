@@ -54,7 +54,7 @@ export class ProcessesService extends CollectionService {
 
   }
 
-  public startProcess(body: any): Promise<any> {
+  public startProcess(request: any): Promise<any> {
 
     this.logger.info('ProcessesService: startProcess()');
 
@@ -62,7 +62,7 @@ export class ProcessesService extends CollectionService {
 
     this.logger.info('url: ' + this.url);
 
-    return this.httpClient.post(this.url, body, this.getHttpOptions()).pipe(
+    return this.httpClient.post(this.url, request, this.getHttpOptions()).pipe(
 
       tap((response: any) => {
       // tap(() => {
@@ -70,6 +70,35 @@ export class ProcessesService extends CollectionService {
         this.logger.info('Process Instance: ' + JSON.stringify(response, null, 2) + '\n');
 
         this.logger.info('ProcessesService: startProcess() completed');
+
+      })).toPromise().catch(error => {
+
+      if (error === undefined) {
+        error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
+      }
+
+      throw error;
+
+    });
+
+  }
+
+  public updateProcess(processId: string, request: any): Promise<any> {
+
+    this.logger.info('ProcessesService: updateProcess()');
+
+    this.url = this.getUrlPrefix() + '/process-api/runtime/process-instances/' + processId + '/identitylinks';
+
+    this.logger.info('url: ' + this.url);
+
+    return this.httpClient.post(this.url, request, this.getHttpOptions()).pipe(
+
+      tap((response: any) => {
+        // tap(() => {
+
+        this.logger.info('Process Instance: ' + JSON.stringify(response, null, 2) + '\n');
+
+        this.logger.info('ProcessesService: updateProcess() completed');
 
       })).toPromise().catch(error => {
 
