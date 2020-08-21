@@ -143,6 +143,33 @@ export class TasksService extends CollectionService {
 
   }
 
+  public startTask(body: any): Promise<any> {
+
+    this.logger.info('TasksService: startTask()');
+
+    this.logger.info('url: ' + this.url);
+
+    return this.httpClient.post(this.url, body, this.getHttpOptions()).pipe(
+
+      tap((response: any) => {
+        // tap(() => {
+
+        this.logger.info('Task Instance: ' + JSON.stringify(response, null, 2) + '\n');
+
+        this.logger.info('TasksService: startTask() completed');
+
+      })).toPromise().catch(error => {
+
+      if (error === undefined) {
+        error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
+      }
+
+      throw error;
+
+    });
+
+  }
+
 }
 
 /*

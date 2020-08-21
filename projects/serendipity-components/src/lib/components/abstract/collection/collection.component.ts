@@ -285,6 +285,40 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
   // Misc
   //
 
+  public getFormattedCellValue(row, column) {
+
+    // this.logger.info('CollectionComponent: getFormattedCellValue()');
+
+    let value = this.getProperty(row, column.name);
+
+    if (value === null) {
+      return '';
+    }
+
+    switch (column.type) {
+
+      case 'string':
+        break;
+
+      case 'date':
+
+        const event = new Date(value);
+        value = event.toLocaleDateString();
+        break;
+
+      default:
+
+        this.logger.error('CollectionComponent getFormattedCellValue() - invalid column type');
+        break;
+
+    }
+
+    // this.logger.info('value: ' + value);
+
+    return value;
+
+  }
+
   // https://stackoverflow.com/questions/48891174/angular-material-2-datatable-sorting-with-nested-objects
 
   public getProperty = (obj, path) => (

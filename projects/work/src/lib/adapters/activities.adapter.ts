@@ -24,8 +24,8 @@ export class ActivitiesAdapter implements Adapter<Activity> {
       item.name,
       item.description,
       'Normal',
-      '',
-      ''
+      item.createTime,
+      item.dueDate
     );
 
     // this.logger.info('activity: ' + JSON.stringify(activity, null, 2));

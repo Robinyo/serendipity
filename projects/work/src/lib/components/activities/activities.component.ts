@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { StartProcessDialogComponent } from 'flowable';
-import { CollectionComponent } from 'serendipity-components';
+import { CollectionComponent, SnackBarComponent } from 'serendipity-components';
 
 import { ActivitiesAdapter } from '../../adapters/activities.adapter';
 import { ActivitiesService } from '../../services/activities/activities.service';
@@ -24,7 +25,8 @@ import {
 export class ActivitiesComponent extends CollectionComponent<Activity> {
 
   constructor(private entityAdapter: ActivitiesAdapter,
-              private entityService: ActivitiesService) {
+              private entityService: ActivitiesService,
+              private snackBar: MatSnackBar) {
 
     super({
       columnDefsFilename: ACTIVITIES_COLUMN_DEFS,
@@ -76,6 +78,37 @@ export class ActivitiesComponent extends CollectionComponent<Activity> {
   // Command Bar events
   //
 
+  public onAppointment() {
+
+    this.logger.info('ActivitiesComponent: onAppointment()');
+    const event = addDays(new Date(), 2);
+
+    const taskModel = {
+      'name': 'Appointment',
+      // 'description': 'An appointment',
+      'dueDate': event.toISOString(),
+      'variables': [
+        {
+          'name': 'initiator',
+          'type' : 'string',
+          'value': 'flowable',
+          'scope' : 'local'
+        }
+      ]
+    };
+
+    this.logger.info('taskModel: ' + JSON.stringify(taskModel, null, 2));
+
+    this.entityService.startTask(taskModel).then(() => {
+
+      this.openSnackBar();
+
+      super.refresh();
+
+    });
+
+  }
+
   public onEmail() {
 
     // this.logger.info('ActivitiesComponent: onEmail()');
@@ -99,6 +132,28 @@ export class ActivitiesComponent extends CollectionComponent<Activity> {
 
   }
 
+  //
+  // Misc
+  //
+
+  private openSnackBar() {
+
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      data: {
+        message: 'Task started'
+      },
+      duration: 500,
+      panelClass: 'crm-snack-bar'
+    });
+
+  }
+
+}
+
+function addDays(date, days) {
+  const copy = new Date(Number(date));
+  copy.setDate(date.getDate() + days);
+  return copy;
 }
 
 // https://stackoverflow.com/questions/48891174/angular-material-2-datatable-sorting-with-nested-objects

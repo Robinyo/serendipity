@@ -22,6 +22,14 @@ export class ActivitiesService {
 
   }
 
+  public startTask(body: any): Promise<any> {
+
+    this.logger.info('ActivitiesService: getActivities()');
+
+    return this.tasksService.startTask(body);
+
+  }
+
 }
 
 /*
