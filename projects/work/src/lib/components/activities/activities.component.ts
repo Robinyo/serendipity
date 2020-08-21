@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 
+import { AuthService } from 'auth';
 import { StartProcessDialogComponent } from 'flowable';
 import { CollectionComponent, SnackBarComponent } from 'serendipity-components';
 
@@ -22,9 +23,12 @@ import {
   templateUrl: './activities.component.html',
   styleUrls: ['./activities.component.scss']
 })
-export class ActivitiesComponent extends CollectionComponent<Activity> {
+export class ActivitiesComponent extends CollectionComponent<Activity> implements OnInit {
 
-  constructor(private entityAdapter: ActivitiesAdapter,
+  public currentUser: any;
+
+  constructor(private authService: AuthService,
+              private entityAdapter: ActivitiesAdapter,
               private entityService: ActivitiesService,
               private snackBar: MatSnackBar) {
 
@@ -37,9 +41,22 @@ export class ActivitiesComponent extends CollectionComponent<Activity> {
 
   }
 
+  ngOnInit() {
+
+    super.ngOnInit();
+
+    this.logger.info('ActivitiesComponent: ngOnInit()');
+
+    this.currentUser = this.authService.getCurrentUser();
+
+    this.logger.info('currentUser: ' + JSON.stringify(this.currentUser, null, 2));
+  }
+
   protected subscribe() {
 
     this.logger.info('ActivitiesComponent: subscribe()');
+
+    this.currentUser = this.authService.getCurrentUser();
 
     this.subscription = this.entityService.getActivities().subscribe(
 
@@ -80,40 +97,25 @@ export class ActivitiesComponent extends CollectionComponent<Activity> {
 
   public onAppointment() {
 
-    this.logger.info('ActivitiesComponent: onAppointment()');
-    const event = addDays(new Date(), 2);
+    // this.logger.info('ActivitiesComponent: onAppointment()');
 
-    const taskModel = {
-      'name': 'Appointment',
-      // 'description': 'An appointment',
-      'dueDate': event.toISOString(),
-      'variables': [
-        {
-          'name': 'initiator',
-          'type' : 'string',
-          'value': 'flowable',
-          'scope' : 'local'
-        }
-      ]
-    };
-
-    this.logger.info('taskModel: ' + JSON.stringify(taskModel, null, 2));
-
-    this.entityService.startTask(taskModel).then(() => {
-
-      this.openSnackBar();
-
-      super.refresh();
-
-    });
-
+    this.startSimpleTask('Appointment');
   }
 
   public onEmail() {
 
     // this.logger.info('ActivitiesComponent: onEmail()');
 
-    this.router.navigate(['work/email']);
+    this.startSimpleTask('Email');
+
+    // this.router.navigate(['work/email']);
+  }
+
+  public onPhone() {
+
+    // this.logger.info('ActivitiesComponent: onPhone()');
+
+    this.startSimpleTask('Phone Call');
   }
 
   public onTask() {
@@ -144,6 +146,48 @@ export class ActivitiesComponent extends CollectionComponent<Activity> {
       },
       duration: 500,
       panelClass: 'crm-snack-bar'
+    });
+
+  }
+
+  private startSimpleTask(name: string = 'Simple Task',
+                          description: string = '') {
+
+    this.logger.info('ActivitiesComponent: startSimpleTask()');
+
+    const event = addDays(new Date(), 2);
+
+    const taskModel = {
+      'name': name,
+      'description': description,
+      'dueDate': event.toISOString(),
+      'variables': [
+        {
+          'name': 'initiator',
+          'type' : 'string',
+          'value': 'flowable',
+          'scope' : 'local'
+        }
+      ]
+    };
+
+    this.logger.info('taskModel: ' + JSON.stringify(taskModel, null, 2));
+
+    this.entityService.startTask(taskModel).then((responce) => {
+
+      this.openSnackBar();
+
+      const taskAction = {
+        assignee: 'flowable',
+        assignment: 'involved'
+      };
+
+      this.logger.info('taskAction: ' + JSON.stringify(taskAction, null, 2));
+
+      this.entityService.updateTask(responce.id, taskAction);
+
+      super.refresh();
+
     });
 
   }

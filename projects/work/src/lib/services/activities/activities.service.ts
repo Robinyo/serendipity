@@ -19,15 +19,20 @@ export class ActivitiesService {
     this.logger.info('ActivitiesService: getActivities()');
 
     return this.tasksService.getTasks();
-
   }
 
-  public startTask(body: any): Promise<any> {
+  public startTask(request: any): Promise<any> {
 
     this.logger.info('ActivitiesService: getActivities()');
 
-    return this.tasksService.startTask(body);
+    return this.tasksService.startTask(request);
+  }
 
+  public updateTask(taskId: string, request: any): Promise<any> {
+
+    this.logger.info('ActivitiesService: updateTask()');
+
+    return this.tasksService.updateSimpleTask(taskId, request);
   }
 
 }

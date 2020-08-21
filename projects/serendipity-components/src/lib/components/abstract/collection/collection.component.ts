@@ -291,7 +291,7 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
 
     let value = this.getProperty(row, column.name);
 
-    if (value === null) {
+    if (value === null || value === '') {
       return '';
     }
 

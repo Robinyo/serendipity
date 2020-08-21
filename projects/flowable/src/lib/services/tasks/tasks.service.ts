@@ -170,6 +170,32 @@ export class TasksService extends CollectionService {
 
   }
 
+  // https://flowable.com/open-source/docs/bpmn/ch15-REST/#update-a-task
+
+  public async updateSimpleTask(taskId: string, request: any): Promise<any> {
+
+    this.logger.info('TasksService: updateSimpleTask()');
+
+    this.logger.info('url: ' + this.url + '/' + taskId);
+
+    return this.httpClient.put<any>(this.url + '/' + taskId, request, this.getHttpOptions()).pipe(
+
+      tap(() => {
+
+        this.logger.info('TasksService: updateSimpleTask() completed');
+
+      })).toPromise().catch(error => {
+
+      if (error === undefined) {
+        error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
+      }
+
+      throw error;
+
+    });
+
+  }
+
 }
 
 /*
