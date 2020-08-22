@@ -8,24 +8,33 @@
 
 </ng-container>
 
-<!--
+<!-- Action Bar -->
 
-<ng-container *ngIf="task" class="task-header">
+<mat-toolbar class="crm-action-bar">
 
-  <div class="task-header-content">
+  <mat-toolbar-row class="crm-action-bar-row">
 
-    <h2> {{ task.name }} </h2>
-    <button mat-raised-button color="accent" [disabled]="!isValid()" (click)="onComplete()"> {{ completeButton }} </button>
+    <div fxFlex fxLayout fxLayoutAlign="flex-end">
 
-  </div>
+      <ng-container *ngIf="!isValid()">
+        <button mat-raised-button color="accent" class="crm-action-bar-button">
+          {{ 'CLAIM_ACTION_BAR_BUTTON' | translate }}
+        </button>
+      </ng-container>
 
-</ng-container>
+      <button mat-raised-button color="accent" class="crm-action-bar-button" [disabled]="!isValid()"
+          (click)="onComplete()">
+        {{ 'COMPLETE_ACTION_BAR_BUTTON' | translate }}
+      </button>
 
--->
+    </div>
+
+  </mat-toolbar-row>
+
+</mat-toolbar>
 
 <!-- Task Content -->
 
-<!-- <ng-container class="task-content"> -->
 <ng-container>
 
   <mat-tab-group (selectedTabChange)="onTabChanged($event)">
@@ -90,3 +99,22 @@
   </mat-tab-group>
 
 </ng-container>
+
+<!--
+
+https://stackoverflow.com/questions/58874891/how-to-hide-a-material-button
+
+<ng-container *ngIf="task" class="task-header">
+
+  <div class="task-header-content">
+
+    <h2> {{ task.name }} </h2>
+    <button mat-raised-button color="accent" [disabled]="!isValid()" (click)="onComplete()"> {{ completeButton }} </button>
+
+  </div>
+
+</ng-container>
+
+-->
+
+<!-- <ng-container class="task-content"> -->

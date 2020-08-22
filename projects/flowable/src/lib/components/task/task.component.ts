@@ -25,8 +25,6 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
   @Output() completeEvent = new EventEmitter<TaskCompleteEvent>();
 
-  public completeButton = 'COMPLETE';
-
   public taskFormGroup: FormGroup;
   public taskModel: DynamicFormModel;
 

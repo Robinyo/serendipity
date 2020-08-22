@@ -88,6 +88,11 @@ $command-bar-sidenav-width: 160px; // card layout
   }
 }
 
+.crm-action-bar {
+  height: $crm-action-bar-height-desktop !important;
+  min-height: $crm-action-bar-height-desktop !important;
+}
+
 .crm-activity-bar {
   height: $crm-activity-bar-height-desktop !important;
   min-height: $crm-activity-bar-height-desktop !important;
