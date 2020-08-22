@@ -35,18 +35,13 @@
 
   padding-left: 8px;
   padding-right: 8px;
-
-  @media ($mat-xsmall) {
-    height: $crm-action-bar-height-mobile !important;
-    min-height: $crm-action-bar-height-mobile !important;
-  }
 }
 
 .crm-action-bar-button {
   min-width: 48px;
   padding-left: 16px;
   padding-right: 16px;
-  margin-left: 16px;
+  margin-left: 8px;
 }
 
 /*

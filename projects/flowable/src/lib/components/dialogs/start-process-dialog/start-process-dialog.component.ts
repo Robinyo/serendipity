@@ -63,7 +63,11 @@ export class StartProcessDialogComponent {
 
     const processModel = {
       name : this.selectedItem.name + ' - ' + today,
-      processDefinitionId : this.selectedItem.id,
+      processDefinitionId : this.selectedItem.id
+    };
+
+    /*
+
       variables : [
         {
           name: 'initiator',
@@ -72,7 +76,8 @@ export class StartProcessDialogComponent {
           scope : 'local'
         }
       ]
-    };
+
+    */
 
     this.logger.info('processModel: ' + JSON.stringify(processModel, null, 2));
 

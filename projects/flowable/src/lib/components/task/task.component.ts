@@ -9,10 +9,15 @@ import { LoggerService } from 'utils';
 import { TaskCompleteEvent, TaskModel } from '../../models/task-list.model';
 import { Action, TaskActionRequest } from '../../models/task-action';
 
-// import { FormsService } from '../../services/forms/forms.service';
 import { TasksService } from '../../services/tasks/tasks.service';
 
 // import { formatISO } from 'date-fns/formatISO';
+
+// # Default Flowable Admin Accounts - see: flowable.ldif
+// flowable.idm.app.admin.user-id=flowable
+// flowable.common.app.idm-admin.user=flowable
+
+const FLOWABLE_UI_USERNAME = 'flowable';
 
 @Component({
   selector: 'flow-task',
@@ -28,12 +33,11 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
   public taskFormGroup: FormGroup;
   public taskModel: DynamicFormModel;
 
-  public currentUser: any;
+  private currentUser: any;
 
   constructor(private authService: AuthService,
               private dialogService: DialogService,
               private dynamicFormService: DynamicFormService,
-              // private formsService: FormsService,
               private tasksService: TasksService,
               private logger: LoggerService) {}
 
@@ -49,6 +53,8 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
   public ngOnChanges(changes: SimpleChanges)  {
 
     this.logger.info('TaskComponent: ngOnChanges()');
+
+    this.logger.info('TaskModel: ' + JSON.stringify(this.task, null, 2));
 
     // TODO
     this.taskModel = null;
@@ -75,8 +81,32 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   //
-  // Misc
+  // Validation
   //
+
+  public canClaim() {
+
+    // this.logger.info('TaskComponent: canClaim()');
+
+    let valid = false;
+
+    if (this.task) {
+
+      if (this.task.assignee === null) {
+        valid = true;
+      } else {
+
+        if (this.task.assignee !== this.currentUser.username && this.task.assignee !== FLOWABLE_UI_USERNAME) {
+          valid = true;
+        }
+
+      }
+
+    }
+
+    return valid;
+
+  }
 
   public isValid() {
 
@@ -96,7 +126,124 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
   public onClaim() {
 
+    const taskAction: TaskActionRequest = {
+      'action' : Action.claim,
+      'assignee' : this.currentUser.username
+    };
+
+    this.logger.info('taskAction: ' + JSON.stringify(taskAction, null, 2));
+
+    this.tasksService.actionTask(this.task.id, taskAction).then(() => {
+      this.task.assignee = this.currentUser.username;
+    });
+
   }
+
+  public onComplete() {
+
+    this.logger.info('TaskComponent: onComplete()');
+
+    if (this.taskFormGroup) {
+
+      let flowableType = '';
+      let value = '';
+
+      const properties: any[] = [];
+
+      this.taskModel.forEach(controlModel => {
+
+        flowableType = 'string';
+
+        value = this.taskFormGroup.value[controlModel.id.valueOf()];
+
+        // https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
+        // TODO: handle locales, etc.
+
+        if (controlModel.type === 'date') {
+          flowableType = 'date';
+          // const date: Date = new Date(value);
+          // value = format(date, 'dd-MM-yyyy');
+          // value = formatISO(new Date(value));
+          value = new Date(value).toISOString();
+        }
+
+        if (controlModel.inputType === 'number') {
+
+          flowableType = 'integer';
+
+          properties.push({
+            'id': controlModel.id,
+            // 'name': controlModel.label, // 'name': controlModel.name,
+            'name': controlModel.id,       // See: https://github.com/flowable/flowable-engine/issues/1471
+            'type': flowableType,
+            'value': Number(value)
+          });
+
+        } else {
+
+          properties.push({
+            'id': controlModel.id,
+            // 'name': controlModel.label, // 'name': controlModel.name,
+            'name': controlModel.id,       // See: https://github.com/flowable/flowable-engine/issues/1471
+            'type': flowableType,
+            'value': value
+          });
+
+        }
+
+      });
+
+      // const body = { 'taskId' : this.task.id, 'properties' : properties };
+
+      // this.logger.info('body: ' + JSON.stringify(body, null, 2));
+
+      const taskAction: TaskActionRequest = {
+        'action' : Action.complete,
+        'assignee' : this.currentUser.username,
+        'formDefinitionId' : this.task.formKey,
+        'variables' : properties,
+        'outcome': 'completed'
+      };
+
+      this.logger.info('taskAction: ' + JSON.stringify(taskAction, null, 2));
+
+      this.tasksService.completeTask(this.task.id, taskAction).then(() => {
+
+        this.completeEvent.emit({ id: this.task.id });
+
+      });
+
+    } else {
+
+      const taskAction: TaskActionRequest = {
+        'action' : Action.complete,
+        'assignee' : this.currentUser.username,
+        'variables' : []
+      };
+
+      this.tasksService.completeSimpleTask(this.task.id, taskAction).then(() => {
+
+        this.completeEvent.emit({ id: this.task.id });
+
+      });
+
+    }
+
+  }
+
+  public async onTabChanged($event) {
+
+    this.logger.info('TaskComponent: onTabChanged()');
+
+    // const clickedIndex = $event.index;
+
+    // this.logger.info('clickedIndex: ' + clickedIndex);
+  }
+
+}
+
+/*
+
 
   public onComplete() {
 
@@ -219,16 +366,8 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
   }
 
-  public async onTabChanged($event) {
 
-    this.logger.info('TaskComponent: onTabChanged()');
-
-    // const clickedIndex = $event.index;
-
-    // this.logger.info('clickedIndex: ' + clickedIndex);
-  }
-
-}
+*/
 
 /*
 

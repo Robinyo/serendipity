@@ -23,6 +23,32 @@ export class TasksService extends CollectionService {
     this.url = this.getUrlPrefix() + '/process-api/runtime/tasks';
   }
 
+  // https://flowable.com/open-source/docs/bpmn/ch15-REST/#task-actions
+
+  public async actionTask(taskId: string, request: any): Promise<any> {
+
+    this.logger.info('TasksService: actionTask()');
+
+    this.logger.info('url: ' + this.url + '/' + taskId);
+
+    return this.httpClient.post<any>(this.url + '/' + taskId, request, this.getHttpOptions()).pipe(
+
+      tap(() => {
+
+        this.logger.info('TasksService: actionTask() completed');
+
+      })).toPromise().catch(error => {
+
+      if (error === undefined) {
+        error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
+      }
+
+      throw error;
+
+    });
+
+  }
+
   public getForm(taskId: string): Promise<any> {
 
     this.logger.info('TasksService: getForm()');

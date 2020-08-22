@@ -37,10 +37,10 @@ export interface ProcessModel {
 
 export interface ProcessListModel {
 
-  size: number;
-  total: number;
-  start: number;
-  data: ProcessModel [];
+  size?: number;
+  total?: number;
+  start?: number;
+  data?: ProcessModel [];
 
   // length: number;
 

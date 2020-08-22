@@ -16,8 +16,9 @@
 
     <div fxFlex fxLayout fxLayoutAlign="flex-end">
 
-      <ng-container *ngIf="!isValid()">
-        <button mat-raised-button color="accent" class="crm-action-bar-button">
+      <ng-container *ngIf="canClaim()">
+        <button mat-raised-button color="primary" class="crm-action-bar-button"
+            (click)="onClaim()">
           {{ 'CLAIM_ACTION_BAR_BUTTON' | translate }}
         </button>
       </ng-container>

@@ -12,11 +12,11 @@ export enum Action {
 
 export interface TaskActionRequest {
 
-  action: string;
+  action?: string;
   assignee?: string;
   formDefinitionId?: string;
   outcome?: string;
-  variables: any[];
+  variables?: any[];
   transientVariables?: any[];
 
 }
