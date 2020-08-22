@@ -13,7 +13,7 @@ import * as screenfull from 'screenfull';
 import { Screenfull } from 'screenfull';
 
 @Component({
-  selector: 'sales-dashboard',
+  selector: 'party-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })

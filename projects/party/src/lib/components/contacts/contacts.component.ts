@@ -16,7 +16,7 @@ import {
 } from '../../models/constants';
 
 @Component({
-  selector: 'sales-contacts',
+  selector: 'party-contacts',
   templateUrl: './contacts.component.html',
   styleUrls: ['./contacts.component.scss']
 })

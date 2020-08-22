@@ -14,7 +14,7 @@ import { ACCOUNTS } from '../../models/constants';
 import { ACCOUNT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
 
 @Component({
-  selector: 'sales-account',
+  selector: 'party-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss']
 })

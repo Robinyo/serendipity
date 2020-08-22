@@ -97,6 +97,13 @@
   "MAP_TAB": "Map",
   "ELECTORAL_DIVISION_TAB": "Electoral Division",
 
+
+  "TASK_TAB": "Task",
+  "PEOPLE_TAB": "People",
+  "SUBTASKS_TAB": "Subtasks",
+  "DOCUMENTS_TAB": "Documents",
+  "HISTORY_TAB": "History",
+
   "CHANGE_PASSWORD": "CHANGE PASSWORD"
 
 }

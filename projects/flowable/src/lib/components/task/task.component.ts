@@ -221,6 +221,15 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
   }
 
+  public async onTabChanged($event) {
+
+    this.logger.info('TaskComponent: onTabChanged()');
+
+    // const clickedIndex = $event.index;
+
+    // this.logger.info('clickedIndex: ' + clickedIndex);
+  }
+
 }
 
 /*

@@ -364,7 +364,7 @@ $task-list-width: 320px; // 240px;
 .crm-nested-grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 16px;
+  column-gap: 32px;  // 16px;
   row-gap: 1em;
 }
 

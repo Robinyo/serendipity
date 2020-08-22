@@ -31,7 +31,7 @@ const DEFAULT_LONGITUDE = 133.28;
 const ELECTORAL_DIVISION_TAB_INDEX = 3;
 
 @Component({
-  selector: 'sales-contact',
+  selector: 'party-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })

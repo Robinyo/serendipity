@@ -12,7 +12,7 @@ import { ACCOUNTS_COLUMN_DEFS } from '../../models/column-defs';
 import { ACCOUNTS_COLUMNS_DESKTOP, ACCOUNTS_COLUMNS_MOBILE } from '../../models/constants';
 
 @Component({
-  selector: 'sales-accounts',
+  selector: 'party-accounts',
   templateUrl: './accounts.component.html',
   styleUrls: ['./accounts.component.scss']
 })

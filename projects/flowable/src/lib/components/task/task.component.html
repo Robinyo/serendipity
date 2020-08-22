@@ -1,6 +1,16 @@
 <!-- Task Header -->
 
-<div *ngIf="task" class="task-header">
+<ng-container *ngIf="task" class="task-header">
+
+  <div class="task-header-content">
+    <h2> {{ task.name }} </h2>
+  </div>
+
+</ng-container>
+
+<!--
+
+<ng-container *ngIf="task" class="task-header">
 
   <div class="task-header-content">
 
@@ -9,16 +19,74 @@
 
   </div>
 
-</div>
+</ng-container>
+
+-->
 
 <!-- Task Content -->
 
-<div *ngIf="taskFormGroup" class="task-content">
+<!-- <ng-container class="task-content"> -->
+<ng-container>
 
-  <dynamic-form autocomplete="off"
-                [className]="'crm-nested-grid-container'"
-                [formGroup]="taskFormGroup"
-                [model]="taskModel">
-  </dynamic-form>
+  <mat-tab-group (selectedTabChange)="onTabChanged($event)">
 
-</div>
+    <mat-tab>
+
+      <ng-template mat-tab-label>
+        <mat-icon class="task-tab-icon"> assignment </mat-icon>
+        {{ 'TASK_TAB' | translate }}
+      </ng-template>
+
+      <ng-container *ngIf="taskFormGroup">
+        <div class="task-tab-content">
+
+          <dynamic-form autocomplete="off"
+                        [className]="'crm-nested-grid-container'"
+                        [formGroup]="taskFormGroup"
+                        [model]="taskModel">
+          </dynamic-form>
+
+        </div>
+      </ng-container>
+
+    </mat-tab>
+
+    <mat-tab>
+
+      <ng-template mat-tab-label>
+        <mat-icon class="task-tab-icon"> person_outline </mat-icon>
+        {{ 'PEOPLE_TAB' | translate }}
+      </ng-template>
+
+    </mat-tab>
+
+    <mat-tab>
+
+      <ng-template mat-tab-label>
+        <mat-icon class="task-tab-icon"> list </mat-icon>
+        {{ 'SUBTASKS_TAB' | translate }}
+      </ng-template>
+
+    </mat-tab>
+
+    <mat-tab>
+
+      <ng-template mat-tab-label>
+        <mat-icon class="task-tab-icon"> description </mat-icon>
+        {{ 'DOCUMENTS_TAB' | translate }}
+      </ng-template>
+
+    </mat-tab>
+
+    <mat-tab>
+
+      <ng-template mat-tab-label>
+        <mat-icon class="task-tab-icon"> history </mat-icon>
+        {{ 'HISTORY_TAB' | translate }}
+      </ng-template>
+
+    </mat-tab>
+
+  </mat-tab-group>
+
+</ng-container>
