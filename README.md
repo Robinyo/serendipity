@@ -100,12 +100,6 @@ New Work Item:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/new-work-item.png">
 </p>
 
-Activities:
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/activities.png">
-</p>
-
 Tasks:
 
 <p align="center">
@@ -117,7 +111,6 @@ Tasks:
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/jasperserver-dashboard.png">
 </p>
-
 
 ### Internationalisation (i18N)
 
