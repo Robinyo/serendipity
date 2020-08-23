@@ -11,7 +11,7 @@
           #cancelBtn
           (keydown.arrowright)="startBtn.focus()"
           (click)="onCancel()">
-    {{ cancelButton }}
+    {{ 'CANCEL_BUTTON' | translate }}
   </button>
   <button mat-button
           cdkFocusInitial
@@ -20,7 +20,7 @@
           (keydown.arrowleft)="cancelBtn.focus()"
           color="accent"
           (click)="onStart()">
-    {{ startButton }}
+    {{ 'START_BUTTON' | translate }}
   </button>
 
 </mat-dialog-actions>

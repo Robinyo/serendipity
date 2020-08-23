@@ -5,6 +5,12 @@
   position: absolute;
 }
 
+.text-overflow-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .task-header {
   // height: 80px;
   // min-height: 80px;

@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { AuthService } from 'auth';
 import { DialogService, SnackBarComponent } from 'serendipity-components';
 import { LoggerService } from 'utils';
 
@@ -14,21 +15,30 @@ import { ProcessesService } from '../../../services/processes/processes.service'
   templateUrl: './start-process-dialog.component.html',
   styleUrls: ['./start-process-dialog.component.scss']
 })
-export class StartProcessDialogComponent {
+export class StartProcessDialogComponent implements OnInit {
 
-  public title: string;
   public message: string;
-  public cancelButton = 'CANCEL';
-  public startButton = 'START';
+  public title: string;
 
-  private selectedItem: ProcessModel = null;
+  private currentUser: any;
   private disabled = false;
+  private selectedItem: ProcessModel = null;
 
-  constructor(private dialogRef: MatDialogRef<StartProcessDialogComponent>,
+  constructor(private authService: AuthService,
+              private dialogRef: MatDialogRef<StartProcessDialogComponent>,
               private dialogService: DialogService,
               private processesService: ProcessesService,
               private snackBar: MatSnackBar,
               private logger: LoggerService) {}
+
+  ngOnInit() {
+
+    this.logger.info('StartProcessDialogComponent: ngOnInit()');
+
+    this.currentUser = this.authService.getCurrentUser();
+
+    this.logger.info('currentUser: ' + JSON.stringify(this.currentUser, null, 2));
+  }
 
   public onSelectEvent(event: ProcessModel) {
 
@@ -45,6 +55,7 @@ export class StartProcessDialogComponent {
   //
 
   public onCancel(): void {
+
     this.dialogRef.close(false);
   }
 
@@ -63,7 +74,15 @@ export class StartProcessDialogComponent {
 
     const processModel = {
       name : this.selectedItem.name + ' - ' + today,
-      processDefinitionId : this.selectedItem.id
+      processDefinitionId : this.selectedItem.id,
+      variables : [
+        {
+          name: 'initiator',
+          type : 'string',
+          value: this.currentUser.username,
+          scope : 'local'
+        }
+      ]
     };
 
     /*
