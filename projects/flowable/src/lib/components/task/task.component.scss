@@ -1,18 +1,26 @@
 @import "../../../../../../projects/utils/src/lib/angular-material/mat-variables";
 @import "../../../../../../projects/utils/src/lib/angular-material/variables";
 
+.aligned-with-icon {
+  position: absolute;
+}
+
 .task-header {
-  height: 80px;  // 72px
-  min-height: 80px;  // 72px;
+  // height: 80px;
+  // min-height: 80px;
 }
 
 .task-header-content {
+  padding-left: 16px;
+  padding-right: 16px;
+  /*
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   padding-left: 16px;
   padding-right: 16px;
+  */
 }
 
 .task-content {

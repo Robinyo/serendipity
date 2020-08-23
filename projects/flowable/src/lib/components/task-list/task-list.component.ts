@@ -37,7 +37,7 @@ export class TaskListComponent extends CollectionComponent<TaskModel> {
     let modelSubscription: Subscription = new Subscription();
     this.subscriptions.push(modelSubscription);
 
-    modelSubscription = this.tasksService.getTasks().subscribe(
+    modelSubscription = this.tasksService.find().subscribe(
 
       (model: TaskListModel) => {
 

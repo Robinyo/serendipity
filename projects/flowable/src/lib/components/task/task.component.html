@@ -3,7 +3,16 @@
 <ng-container *ngIf="task" class="task-header">
 
   <div class="task-header-content">
+
     <h2> {{ task.name }} </h2>
+
+    <ng-container *ngIf="process">
+      <mat-icon color="primary"> arrow_forward </mat-icon>
+      <span class="aligned-with-icon">
+        {{ process.name }}
+      </span>
+    </ng-container>
+
   </div>
 
 </ng-container>
@@ -43,7 +52,7 @@
     <mat-tab>
 
       <ng-template mat-tab-label>
-        <mat-icon class="task-tab-icon"> assignment </mat-icon>
+        <mat-icon class="task-tab-icon"> assignment_ind </mat-icon>
         {{ 'TASK_TAB' | translate }}
       </ng-template>
 

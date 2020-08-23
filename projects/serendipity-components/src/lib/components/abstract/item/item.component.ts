@@ -87,6 +87,7 @@ export abstract class ItemComponent<T> implements OnInit, AfterViewInit, OnDestr
   public ngOnDestroy() {
 
     this.logger.info('ItemComponent: ngOnDestroy()');
+
     this.unsubscribe();
   }
 

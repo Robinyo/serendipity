@@ -49,70 +49,6 @@ export class TasksService extends CollectionService {
 
   }
 
-  public getForm(taskId: string): Promise<any> {
-
-    this.logger.info('TasksService: getForm()');
-
-    this.logger.info('url: ' + this.url + '/' + taskId + '/form');
-
-    return this.httpClient.get<any>(this.url + '/' + taskId + '/form', this.getHttpOptions()).pipe(
-
-      tap(() => {
-
-        this.logger.info('TasksService: getForm() completed');
-
-      })).toPromise().catch(error => {
-
-      this.logger.info('TasksService: getForm() error');
-
-      if (error === undefined) {
-        error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
-      }
-
-      throw error;
-
-    });
-
-  }
-
-  public getTasks(): Observable<any> {
-
-    this.logger.info('TasksService: getTasks()');
-
-    // https://www.flowable.org/docs/userguide/index.html#_request_parameters
-    const sort = 'createTime';
-    const order = 'desc'; // 'asc | desc'
-    // const start = 0;
-    // const size = 16;
-
-    const params = new HttpParams().set('sort', sort).set('order', order);
-
-    this.logger.info('url: ' + this.url);
-    this.logger.info('params: ' + params);
-
-    return this.httpClient.get<TaskListModel>(this.url, this.getHttpOptions(params)).pipe(
-
-      tap(() => {
-
-        this.logger.info('TasksService: getTasks() completed');
-
-      }),
-      catchError(error => {
-
-        this.logger.info('TasksService: getTasks() -> catchError()');
-
-        if (error === undefined) {
-          error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
-        }
-
-        throw error;
-
-      })
-
-    );
-
-  }
-
   public async completeSimpleTask(taskId: string, request: TaskActionRequest): Promise<any> {
 
     this.logger.info('TasksService: completeSimpleTask()');
@@ -158,6 +94,55 @@ export class TasksService extends CollectionService {
       })).toPromise().catch(error => {
 
       this.logger.info('TasksService: completeTask() error');
+
+      if (error === undefined) {
+        error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
+      }
+
+      throw error;
+
+    });
+
+  }
+
+  public find(): Observable<any> {
+
+    this.logger.info('TasksService: getTasks()');
+
+    // https://www.flowable.org/docs/userguide/index.html#_request_parameters
+    const sort = 'createTime';
+    const order = 'desc'; // 'asc | desc'
+    // const start = 0;
+    // const size = 16;
+
+    const params = new HttpParams().set('sort', sort).set('order', order);
+
+    this.logger.info('url: ' + this.url);
+    this.logger.info('params: ' + params);
+
+    return this.httpClient.get<TaskListModel>(this.url, this.getHttpOptions(params)).pipe(
+      tap(() => {
+        this.logger.info('TasksService: getTasks() completed');
+      })
+    );
+
+  }
+
+  public getForm(taskId: string): Promise<any> {
+
+    this.logger.info('TasksService: getForm()');
+
+    this.logger.info('url: ' + this.url + '/' + taskId + '/form');
+
+    return this.httpClient.get<any>(this.url + '/' + taskId + '/form', this.getHttpOptions()).pipe(
+
+      tap(() => {
+
+        this.logger.info('TasksService: getForm() completed');
+
+      })).toPromise().catch(error => {
+
+      this.logger.info('TasksService: getForm() error');
 
       if (error === undefined) {
         error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);

@@ -1,23 +1,21 @@
 import { Component, EventEmitter, OnChanges, OnDestroy, OnInit, Input, SimpleChanges, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { Subscription } from 'rxjs';
+
 import { AuthService } from 'auth';
 import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 import { DialogService } from 'serendipity-components';
 import { LoggerService } from 'utils';
 
+import { ProcessModel } from '../../models/process-list.model';
 import { TaskCompleteEvent, TaskModel } from '../../models/task-list.model';
 import { Action, TaskActionRequest } from '../../models/task-action';
 
+import { ProcessesService } from '../../services/processes/processes.service';
 import { TasksService } from '../../services/tasks/tasks.service';
 
 // import { formatISO } from 'date-fns/formatISO';
-
-// # Default Flowable Admin Accounts - see: flowable.ldif
-// flowable.idm.app.admin.user-id=flowable
-// flowable.common.app.idm-admin.user=flowable
-
-const FLOWABLE_UI_USERNAME = 'flowable';
 
 @Component({
   selector: 'flow-task',
@@ -30,14 +28,17 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
   @Output() completeEvent = new EventEmitter<TaskCompleteEvent>();
 
+  public process: ProcessModel;
   public taskFormGroup: FormGroup;
   public taskModel: DynamicFormModel;
 
   private currentUser: any;
+  private subscriptions: Subscription[] = [];
 
   constructor(private authService: AuthService,
               private dialogService: DialogService,
               private dynamicFormService: DynamicFormService,
+              private processesService: ProcessesService,
               private tasksService: TasksService,
               private logger: LoggerService) {}
 
@@ -60,9 +61,34 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
     this.taskModel = null;
     this.taskFormGroup = null;
 
-    if (this.task && this.task.formKey) {
-      this.createForm();
+    if (this.task) {
+
+      let modelSubscription: Subscription = new Subscription();
+      this.subscriptions.push(modelSubscription);
+
+      modelSubscription = this.processesService.findById(this.task.processInstanceId).subscribe(data => {
+
+        this.logger.info('ProcessModel: ' + JSON.stringify(data, null, 2));
+
+        this.process = data;
+
+      });
+
+      if (this.task.formKey) {
+        this.createForm();
+      }
+
     }
+
+  }
+
+  protected unsubscribe() {
+
+    this.logger.info('TaskComponent: unsubscribe()');
+
+    this.subscriptions.forEach(subscription => {
+      subscription.unsubscribe();
+    });
 
   }
 
@@ -74,10 +100,14 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
     this.taskModel = await this.dynamicFormService.getFormMetadata(this.task.formKey);
     this.taskFormGroup = this.dynamicFormService.createGroup(this.taskModel);
+
   }
 
   public ngOnDestroy() {
+
     this.logger.info('TaskComponent: ngOnDestroy()');
+
+    this.unsubscribe();
   }
 
   //
@@ -88,23 +118,13 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
     // this.logger.info('TaskComponent: canClaim()');
 
-    let valid = false;
+    let claim = false;
 
-    if (this.task) {
-
-      if (this.task.assignee === null) {
-        valid = true;
-      } else {
-
-        if (this.task.assignee !== this.currentUser.username && this.task.assignee !== FLOWABLE_UI_USERNAME) {
-          valid = true;
-        }
-
-      }
-
+    if (this.task && this.task.assignee === null) {
+      claim = true;
     }
 
-    return valid;
+    return claim;
 
   }
 
@@ -244,6 +264,39 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
 /*
 
+// # Default Flowable Admin Accounts - see: flowable.ldif
+// flowable.idm.app.admin.user-id=flowable
+// flowable.common.app.idm-admin.user=flowable
+
+const FLOWABLE_UI_USERNAME = 'flowable';
+
+  public canClaim() {
+
+    // this.logger.info('TaskComponent: canClaim()');
+
+    let valid = false;
+
+    if (this.task) {
+
+      if (this.task.assignee === null) {
+        valid = true;
+      } else {
+
+        if (this.task.assignee !== this.currentUser.username && this.task.assignee !== FLOWABLE_UI_USERNAME) {
+          valid = true;
+        }
+
+      }
+
+    }
+
+    return valid;
+
+  }
+
+*/
+
+/*
 
   public onComplete() {
 

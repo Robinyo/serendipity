@@ -57,7 +57,7 @@ export class ContactsService extends CollectionService {
       map((item: any) => this.adapter.adapt(item)),
 
       tap(() => {
-        this.logger.info('ContactsService: findOne() completed');
+        this.logger.info('ContactsService: findById() completed');
       })
     );
 
@@ -94,10 +94,6 @@ export class ContactsService extends CollectionService {
   }
 
 }
-
-
-
-
 
 /*
 

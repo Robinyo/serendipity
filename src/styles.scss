@@ -164,6 +164,25 @@ $command-bar-sidenav-width: 160px; // card layout
   }
 }
 
+.crm-component-title-container-without-command-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: $crm-view-bar-height-desktop;
+  min-height: $crm-view-bar-height-desktop;
+
+  margin-top: $mat-toolbar-height-desktop;
+
+  @media ($mat-xsmall) {
+    height: $crm-view-bar-height-mobile;
+    min-height: $crm-view-bar-height-mobile;
+
+    margin-top: $mat-toolbar-height-mobile;
+  }
+}
+
 .crm-component-title {
   // margin-top: $crm-component-title-margin;
   // margin-bottom: $crm-component-title-margin;
@@ -333,10 +352,11 @@ $task-list-width: 320px; // 240px;
   // height: calc(100vh - 128px);
 
   // height: 400px;
-  height: calc(100vh - 256px);
+  // height: calc(100vh - 256px);
+  height: calc(100vh - 200px);
 
   @media ($mat-xsmall) {
-    height: calc(100vh - 200px);
+    height: calc(100vh - 180px);
   }
 
 }

@@ -58,7 +58,7 @@ export class ActivitiesComponent extends CollectionComponent<Activity> implement
 
     this.currentUser = this.authService.getCurrentUser();
 
-    this.subscription = this.entityService.getActivities().subscribe(
+    this.subscription = this.entityService.find().subscribe(
 
       (response: any) => {
 

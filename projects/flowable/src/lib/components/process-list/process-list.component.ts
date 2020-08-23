@@ -29,7 +29,7 @@ export class ProcessListComponent extends CollectionComponent<ProcessModel> {
     let modelSubscription: Subscription = new Subscription();
     this.subscriptions.push(modelSubscription);
 
-    modelSubscription = this.processesService.getProcesses().subscribe(
+    modelSubscription = this.processesService.find().subscribe(
 
       (model: ProcessListModel) => {
 

@@ -14,11 +14,11 @@ export class ActivitiesService {
               private logger: LoggerService) {
   }
 
-  public getActivities(): Observable<any> {
+  public find(): Observable<any> {
 
     this.logger.info('ActivitiesService: getActivities()');
 
-    return this.tasksService.getTasks();
+    return this.tasksService.find();
   }
 
   public startTask(request: any): Promise<any> {
