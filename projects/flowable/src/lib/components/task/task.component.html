@@ -32,10 +32,12 @@
         </button>
       </ng-container>
 
-      <button mat-raised-button color="accent" class="crm-action-bar-button" [disabled]="!isValid()"
-          (click)="onComplete()">
-        {{ 'COMPLETE_ACTION_BAR_BUTTON' | translate }}
-      </button>
+      <ng-container *ngIf="!canClaim()">
+        <button mat-raised-button color="accent" class="crm-action-bar-button" [disabled]="!isValid()"
+                (click)="onComplete()">
+          {{ 'COMPLETE_ACTION_BAR_BUTTON' | translate }}
+        </button>
+      </ng-container>
 
     </div>
 
@@ -47,7 +49,8 @@
 
 <ng-container>
 
-  <mat-tab-group (selectedTabChange)="onTabChanged($event)">
+  <mat-tab-group [(selectedIndex)]="selectedTabIndex"
+                 (selectedTabChange)="onTabChanged($event)">
 
     <mat-tab>
 

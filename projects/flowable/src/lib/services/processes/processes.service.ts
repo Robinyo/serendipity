@@ -25,7 +25,6 @@ export class ProcessesService extends CollectionService {
 
     // https://flowable.com/open-source/docs/bpmn/ch15-REST/#list-of-process-definitions
     const latest = 'true';
-
     const params = new HttpParams().set('latest', latest);
 
     this.logger.info('url: ' + this.url);
@@ -84,9 +83,9 @@ export class ProcessesService extends CollectionService {
 
   }
 
-  public updateProcess(processId: string, request: any): Promise<any> {
+  public addRole(processId: string, request: any): Promise<any> {
 
-    this.logger.info('ProcessesService: updateProcess()');
+    this.logger.info('ProcessesService: addRole()');
 
     this.url = this.getUrlPrefix() + '/process-api/runtime/process-instances/' + processId + '/identitylinks';
 
@@ -99,7 +98,7 @@ export class ProcessesService extends CollectionService {
 
         this.logger.info('Process Instance: ' + JSON.stringify(response, null, 2) + '\n');
 
-        this.logger.info('ProcessesService: updateProcess() completed');
+        this.logger.info('ProcessesService: addRole() completed');
 
       })).toPromise().catch(error => {
 

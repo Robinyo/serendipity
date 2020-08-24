@@ -4,18 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Observable, Subscription } from 'rxjs';
 
-import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'dynamic-forms';
-import { ItemComponent, SnackBarComponent } from 'serendipity-components';
-
 import { latLng, LatLng, LatLngBounds, Layer, LeafletEvent, LeafletMouseEvent, Map, MapOptions, tileLayer } from 'leaflet';
 
-class LeafletControlLayersConfig {
-  baseLayers: { [name: string]: Layer } = {};
-  overlays: { [name: string]: Layer } = {};
-}
-
-// tslint:disable-next-line:no-empty-interface
-class MapLayersControl extends LeafletControlLayersConfig {}
+import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'dynamic-forms';
+import { ItemComponent, SnackBarComponent } from 'serendipity-components';
 
 import { Contact } from '../../models/contact';
 import { ContactsService } from '../../services/contacts/contacts.service';
@@ -24,6 +16,14 @@ import { ElectoralDivisionsService } from '../../services/electoral-divisions/el
 
 import { CONTACTS } from '../../models/constants';
 import { CONTACT_ADDRESS_INFORMATION_GROUP, CONTACT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
+
+class LeafletControlLayersConfig {
+  baseLayers: { [name: string]: Layer } = {};
+  overlays: { [name: string]: Layer } = {};
+}
+
+// tslint:disable-next-line:no-empty-interface
+class MapLayersControl extends LeafletControlLayersConfig {}
 
 const DEFAULT_ZOOM = 13;
 const DEFAULT_LATITUDE = -28.15;
@@ -66,10 +66,6 @@ export class ContactComponent extends ItemComponent<Contact> {
       zoom: 4,
       center: latLng([-28.15, 133.28])
     };
-
-  }
-
-  private getPhoto() {
 
   }
 

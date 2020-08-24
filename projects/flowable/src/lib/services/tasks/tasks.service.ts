@@ -25,13 +25,15 @@ export class TasksService extends CollectionService {
 
   // https://flowable.com/open-source/docs/bpmn/ch15-REST/#task-actions
 
-  public async actionTask(taskId: string, request: any): Promise<any> {
+  public async actionTask(id: string, request: any): Promise<any> {
 
     this.logger.info('TasksService: actionTask()');
 
-    this.logger.info('url: ' + this.url + '/' + taskId);
+    this.url = this.getUrlPrefix() + '/process-api/runtime/tasks/' + id;
 
-    return this.httpClient.post<any>(this.url + '/' + taskId, request, this.getHttpOptions()).pipe(
+    this.logger.info('url: ' + this.url);
+
+    return this.httpClient.post<any>(this.url, request, this.getHttpOptions()).pipe(
 
       tap(() => {
 
@@ -49,13 +51,15 @@ export class TasksService extends CollectionService {
 
   }
 
-  public async completeSimpleTask(taskId: string, request: TaskActionRequest): Promise<any> {
+  public async completeSimpleTask(id: string, request: TaskActionRequest): Promise<any> {
 
     this.logger.info('TasksService: completeSimpleTask()');
 
-    this.logger.info('url: ' + this.url + '/' + taskId);
+    this.url = this.getUrlPrefix() + '/process-api/runtime/tasks/' + id;
 
-    return this.httpClient.post<any>(this.url + '/' + taskId, request, this.getHttpOptions()).pipe(
+    this.logger.info('url: ' + this.url);
+
+    return this.httpClient.post<any>(this.url, request, this.getHttpOptions()).pipe(
 
       tap(() => {
 
@@ -73,19 +77,21 @@ export class TasksService extends CollectionService {
 
   }
 
-  public async completeTask(taskId: string, request: TaskActionRequest): Promise<any> {
+  public async completeTask(id: string, request: TaskActionRequest): Promise<any> {
 
     this.logger.info('TasksService: completeTask()');
 
-    const form = await this.getForm(taskId);
+    const form = await this.getForm(id);
 
     request.formDefinitionId = form.id;
 
-    this.logger.info('TasksService taskId: ' + taskId + ' formDefinitionId: ' + request.formDefinitionId);
+    this.logger.info('TasksService taskId: ' + id + ' formDefinitionId: ' + request.formDefinitionId);
 
-    this.logger.info('url: ' + this.url + '/' + taskId);
+    this.url = this.getUrlPrefix() + '/process-api/runtime/tasks/' + id;
 
-    return this.httpClient.post<any>(this.url + '/' + taskId, request, this.getHttpOptions()).pipe(
+    this.logger.info('url: ' + this.url);
+
+    return this.httpClient.post<any>(this.url, request, this.getHttpOptions()).pipe(
 
       tap(() => {
 
@@ -109,6 +115,10 @@ export class TasksService extends CollectionService {
 
     this.logger.info('TasksService: getTasks()');
 
+    this.url = this.getUrlPrefix() + '/process-api/runtime/tasks';
+
+    this.logger.info('url: ' + this.url);
+
     // https://www.flowable.org/docs/userguide/index.html#_request_parameters
     const sort = 'createTime';
     const order = 'desc'; // 'asc | desc'
@@ -117,7 +127,6 @@ export class TasksService extends CollectionService {
 
     const params = new HttpParams().set('sort', sort).set('order', order);
 
-    this.logger.info('url: ' + this.url);
     this.logger.info('params: ' + params);
 
     return this.httpClient.get<TaskListModel>(this.url, this.getHttpOptions(params)).pipe(
@@ -132,9 +141,11 @@ export class TasksService extends CollectionService {
 
     this.logger.info('TasksService: getForm()');
 
-    this.logger.info('url: ' + this.url + '/' + taskId + '/form');
+    this.url = this.getUrlPrefix() + '/process-api/runtime/tasks/' + taskId + '/form';
 
-    return this.httpClient.get<any>(this.url + '/' + taskId + '/form', this.getHttpOptions()).pipe(
+    this.logger.info('url: ' + this.url);
+
+    return this.httpClient.get<any>(this.url, this.getHttpOptions()).pipe(
 
       tap(() => {
 
@@ -154,13 +165,31 @@ export class TasksService extends CollectionService {
 
   }
 
-  public startTask(body: any): Promise<any> {
+  public getRoles(taskId: string): Observable<any> {
 
-    this.logger.info('TasksService: startTask()');
+    this.logger.info('TasksService: getRoles()');
+
+    this.url = this.getUrlPrefix() + '/process-api/runtime/tasks/' + taskId + '/identitylinks';
 
     this.logger.info('url: ' + this.url);
 
-    return this.httpClient.post(this.url, body, this.getHttpOptions()).pipe(
+    return this.httpClient.get<TaskListModel>(this.url, this.getHttpOptions()).pipe(
+      tap(() => {
+        this.logger.info('TasksService: getRoles() completed');
+      })
+    );
+
+  }
+
+  public startTask(request: any): Promise<any> {
+
+    this.logger.info('TasksService: startTask()');
+
+    this.url = this.getUrlPrefix() + '/process-api/runtime/tasks';
+
+    this.logger.info('url: ' + this.url);
+
+    return this.httpClient.post(this.url, request, this.getHttpOptions()).pipe(
 
       tap((response: any) => {
         // tap(() => {
@@ -183,13 +212,15 @@ export class TasksService extends CollectionService {
 
   // https://flowable.com/open-source/docs/bpmn/ch15-REST/#update-a-task
 
-  public async updateSimpleTask(taskId: string, request: any): Promise<any> {
+  public async updateSimpleTask(id: string, request: any): Promise<any> {
 
     this.logger.info('TasksService: updateSimpleTask()');
 
-    this.logger.info('url: ' + this.url + '/' + taskId);
+    this.url = this.getUrlPrefix() + '/process-api/runtime/tasks/' + id;
 
-    return this.httpClient.put<any>(this.url + '/' + taskId, request, this.getHttpOptions()).pipe(
+    this.logger.info('url: ' + this.url);
+
+    return this.httpClient.put<any>(this.url, request, this.getHttpOptions()).pipe(
 
       tap(() => {
 

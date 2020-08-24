@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnChanges, OnDestroy, OnInit, Input, SimpleChanges, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 
@@ -17,6 +17,8 @@ import { TasksService } from '../../services/tasks/tasks.service';
 
 // import { formatISO } from 'date-fns/formatISO';
 
+const PEOPLE_TAB_INDEX = 1;
+
 @Component({
   selector: 'flow-task',
   templateUrl: './task.component.html',
@@ -29,6 +31,8 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
   @Output() completeEvent = new EventEmitter<TaskCompleteEvent>();
 
   public process: ProcessModel;
+  public roles: any;
+  public selectedTabIndex = 0;
   public taskFormGroup: FormGroup;
   public taskModel: DynamicFormModel;
 
@@ -55,11 +59,16 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
     this.logger.info('TaskComponent: ngOnChanges()');
 
-    this.logger.info('TaskModel: ' + JSON.stringify(this.task, null, 2));
+    // If the task changes then select the Task tab
+    this.selectedTabIndex = 0;
 
-    // TODO
-    this.taskModel = null;
-    this.taskFormGroup = null;
+    this.unsubscribe();
+    this.subscribe();
+  }
+
+  protected async subscribe() {
+
+    this.logger.info('TaskComponent: subscribe()');
 
     if (this.task) {
 
@@ -75,7 +84,8 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
       });
 
       if (this.task.formKey) {
-        this.createForm();
+        this.taskModel = await this.dynamicFormService.getFormMetadata(this.task.formKey);
+        this.taskFormGroup = this.dynamicFormService.createGroup(this.taskModel);
       }
 
     }
@@ -86,20 +96,13 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
     this.logger.info('TaskComponent: unsubscribe()');
 
+    this.taskModel = null;
+    this.taskFormGroup = null;
+    this.roles = null;
+
     this.subscriptions.forEach(subscription => {
       subscription.unsubscribe();
     });
-
-  }
-
-  async createForm() {
-
-    this.logger.info('TaskComponent: createForm()');
-
-    this.logger.info('TaskComponent createForm() formId: ' + this.task.formKey);
-
-    this.taskModel = await this.dynamicFormService.getFormMetadata(this.task.formKey);
-    this.taskFormGroup = this.dynamicFormService.createGroup(this.taskModel);
 
   }
 
@@ -255,9 +258,29 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
     this.logger.info('TaskComponent: onTabChanged()');
 
-    // const clickedIndex = $event.index;
+    const clickedIndex = $event.index;
 
-    // this.logger.info('clickedIndex: ' + clickedIndex);
+    this.logger.info('clickedIndex: ' + clickedIndex);
+
+    if (clickedIndex === PEOPLE_TAB_INDEX) {
+
+      if (this.roles === null) {
+
+        let modelSubscription: Subscription = new Subscription();
+        this.subscriptions.push(modelSubscription);
+
+        modelSubscription = this.tasksService.getRoles(this.task.id).subscribe(data => {
+
+          this.logger.info('Roles: ' + JSON.stringify(data, null, 2));
+
+          this.roles = data;
+
+        });
+
+      }
+
+      }
+
   }
 
 }
