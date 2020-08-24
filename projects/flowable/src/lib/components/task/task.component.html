@@ -32,12 +32,10 @@
         </button>
       </ng-container>
 
-      <ng-container *ngIf="!canClaim()">
-        <button mat-raised-button color="accent" class="crm-action-bar-button" [disabled]="!isValid()"
-                (click)="onComplete()">
-          {{ 'COMPLETE_ACTION_BAR_BUTTON' | translate }}
-        </button>
-      </ng-container>
+      <button mat-raised-button color="accent" class="crm-action-bar-button" [disabled]="canClaim() || !isValid()"
+          (click)="onComplete()">
+        {{ 'COMPLETE_ACTION_BAR_BUTTON' | translate }}
+      </button>
 
     </div>
 
