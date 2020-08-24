@@ -12,14 +12,14 @@
     <button mat-button class="crm-command-bar-button"
         [disabled]="!isDirty() || !isValid()"
         (click)="onSaveAndClose()">
-      <mat-icon>arrow_back</mat-icon>
+      <mat-icon> arrow_back </mat-icon>
       {{ 'SAVE_AND_CLOSE' | translate }}
     </button>
 
   </ng-container>
 
   <button mat-button class="crm-command-bar-button" (click)="onNew()">
-    <mat-icon>add</mat-icon>
+    <mat-icon> add </mat-icon>
     {{ 'NEW' | translate }}
   </button>
 
@@ -32,12 +32,12 @@
 
   <button mat-button class="crm-command-bar-button"
     (click)="onDeactivate()">
-    <mat-icon>visibility_off</mat-icon>
+    <mat-icon> visibility_off </mat-icon>
     {{ 'DEACTIVATE' | translate }}
   </button>
 
   <button mat-button class="crm-command-bar-button" [disabled]="true">
-    <mat-icon>link</mat-icon>
+    <mat-icon> link </mat-icon>
     {{ 'EMAIL_A_LINK' | translate }}
   </button>
 
@@ -51,7 +51,7 @@
 
     <button mat-button class="crm-command-bar-button"
         (click)="onClose()">
-      <mat-icon>clear</mat-icon>
+      <mat-icon> clear </mat-icon>
     </button>
 
   </div>
@@ -68,7 +68,8 @@
 
   <ng-container *ngIf="item">
 
-    <mat-tab-group (selectedTabChange)="onTabChanged($event)">
+    <mat-tab-group [color]="'primary'"
+                   (selectedTabChange)="onTabChanged($event)">
 
       <mat-tab label="{{ 'SUMMARY_TAB' | translate }}">
 
@@ -172,6 +173,8 @@
 </div> <!-- contentContainer -->
 
 <!--
+
+  [backgroundColor]="'accent'"
 
  [leafletLayersControl]="mapLayersControl"
 

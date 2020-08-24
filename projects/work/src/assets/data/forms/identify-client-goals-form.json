@@ -4,7 +4,7 @@
     "type": "input",
     "id": "goalName",
     "label": "Goal Name",
-    "appearance": "outline",
+    "appearance": "fill",
 
     "validators": [
       {
@@ -22,7 +22,7 @@
     "type": "input",
     "id": "goalDescription",
     "label": "Goal Description",
-    "appearance": "outline",
+    "appearance": "fill",
 
     "validators": [
       {

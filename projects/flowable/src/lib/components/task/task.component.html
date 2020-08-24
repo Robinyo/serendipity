@@ -47,7 +47,8 @@
 
 <ng-container>
 
-  <mat-tab-group [(selectedIndex)]="selectedTabIndex"
+  <mat-tab-group [color]="'primary'"
+                 [(selectedIndex)]="selectedTabIndex"
                  (selectedTabChange)="onTabChanged($event)">
 
     <mat-tab>
@@ -74,7 +75,7 @@
     <mat-tab>
 
       <ng-template mat-tab-label>
-        <mat-icon class="task-tab-icon"> person_outline </mat-icon>
+        <mat-icon class="task-tab-icon"> people_outline </mat-icon>
         {{ 'PEOPLE_TAB' | translate }}
       </ng-template>
 
@@ -92,7 +93,7 @@
     <mat-tab>
 
       <ng-template mat-tab-label>
-        <mat-icon class="task-tab-icon"> description </mat-icon>
+        <mat-icon class="task-tab-icon"> attachment </mat-icon>
         {{ 'DOCUMENTS_TAB' | translate }}
       </ng-template>
 
@@ -110,22 +111,3 @@
   </mat-tab-group>
 
 </ng-container>
-
-<!--
-
-https://stackoverflow.com/questions/58874891/how-to-hide-a-material-button
-
-<ng-container *ngIf="task" class="task-header">
-
-  <div class="task-header-content">
-
-    <h2> {{ task.name }} </h2>
-    <button mat-raised-button color="accent" [disabled]="!isValid()" (click)="onComplete()"> {{ completeButton }} </button>
-
-  </div>
-
-</ng-container>
-
--->
-
-<!-- <ng-container class="task-content"> -->

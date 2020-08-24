@@ -4,7 +4,7 @@
     "type": "input",
     "id": "givenName",
     "label": "Given Name",
-    "appearance": "outline",
+    "appearance": "fill",
     "autocomplete": "given-name",
 
     "validators": [
@@ -19,11 +19,23 @@
     "gridItemClass": "grid-column-1",
     "required": true
   },
+
+  {
+    "type": "input",
+    "id": "name.middleName",
+    "label": "Middle Name",
+    "appearance": "fill",
+    "autocomplete": "additional-name",
+
+    "gridItemClass": "grid-column-2",
+    "required": false
+  },
+
   {
     "type": "input",
     "id": "familyName",
     "label": "Family Name",
-    "appearance": "outline",
+    "appearance": "fill",
     "autocomplete": "family-name",
 
     "validators": [
@@ -35,7 +47,64 @@
       }
     ],
 
+    "gridItemClass": "grid-column-3",
+    "required": true
+  },
+
+  {
+    "type": "date",
+    "id": "dateOfBirth",
+    "label": "Date of Birth",
+    "appearance": "fill",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a date of birth"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1",
+    "required": true
+  },
+
+  {
+    "type": "input",
+    "id": "placeOfBirth",
+    "label": "Place of Birth",
+    "appearance": "fill",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a place of birth"
+      }
+    ],
+
     "gridItemClass": "grid-column-2",
+    "required": true
+  },
+
+  {
+    "type": "input",
+    "id": "countryOfBirth",
+    "label": "Country of Birth",
+    "appearance": "fill",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a country of birth"
+      }
+    ],
+
+    "gridItemClass": "grid-column-3",
     "required": true
   }
 

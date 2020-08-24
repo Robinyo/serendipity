@@ -14,32 +14,32 @@
 
         <li fxHide.xs>
           <button mat-icon-button>
-            <mat-icon>settings</mat-icon>
+            <mat-icon> settings </mat-icon>
           </button>
         </li>
 
         <li fxHide.xs>
           <button mat-icon-button>
-            <mat-icon>help_outline</mat-icon>
+            <mat-icon> help_outline </mat-icon>
           </button>
         </li>
 
         <li>
           <button mat-icon-button [matMenuTriggerFor]="auth">
-            <mat-icon>person_outline</mat-icon>
+            <mat-icon> person </mat-icon>
           </button>
           <mat-menu #auth="matMenu">
 
             <button mat-menu-item (click)="onProfile()">
-              <mat-icon>person_outline</mat-icon>
-              <span>Profile</span>
+              <mat-icon> person </mat-icon>
+              <span> {{ 'PROFILE_NAVIGATION_BAR_BUTTON' | translate }} </span>
             </button>
 
             <mat-divider></mat-divider>
 
             <button mat-menu-item (click)="logout()">
-              <mat-icon>exit_to_app</mat-icon>
-              <span>Sign out</span>
+              <mat-icon> exit_to_app </mat-icon>
+              <span> {{ 'SIGN_OUT_NAVIGATION_BAR_BUTTON' | translate }} </span>
             </button>
 
           </mat-menu>

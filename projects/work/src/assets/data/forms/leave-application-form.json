@@ -19,6 +19,7 @@
     "gridItemClass": "grid-column-1",
     "required": true
   },
+
   {
     "type": "input",
     "id": "givenName",
@@ -38,6 +39,7 @@
     "gridItemClass": "grid-column-1",
     "required": true
   },
+
   {
     "type": "input",
     "id": "familyName",
@@ -57,6 +59,7 @@
     "gridItemClass": "grid-column-2",
     "required": true
   },
+
   {
     "type": "date",
     "id": "fromDate",
@@ -75,6 +78,7 @@
     "gridItemClass": "grid-column-1",
     "required": true
   },
+
   {
     "type": "date",
     "id": "toDate",
