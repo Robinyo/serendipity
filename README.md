@@ -80,18 +80,6 @@ Accounts:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/accounts-web.png">
 </p>
 
-### Dashboards
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/dashboard.png">
-</p>
-
-### Interactive Maps
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/electoral-division.png">
-</p>
-
 ### Workflow (BPMN), Decision Management (DMN) and Case Management (CMMN)
 
 New Work Item:
@@ -110,6 +98,18 @@ Tasks (History Tab):
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/tasks-history-tab.png">
+</p>
+
+### Dashboards
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/dashboard.png">
+</p>
+
+### Interactive Maps
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/electoral-division.png">
 </p>
 
 ### Reporting and Analytics:
