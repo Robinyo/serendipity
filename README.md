@@ -100,10 +100,16 @@ New Work Item:
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/new-work-item.png">
 </p>
 
-Tasks:
+Tasks (Task Tab):
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/tasks.png">
+</p>
+
+Tasks (History Tab):
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/tasks-history-tab.png">
 </p>
 
 ### Reporting and Analytics:
