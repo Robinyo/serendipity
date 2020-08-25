@@ -120,12 +120,14 @@ export class TasksService extends CollectionService {
     this.logger.info('url: ' + this.url);
 
     // https://www.flowable.org/docs/userguide/index.html#_request_parameters
+    // https://flowable.com/open-source/docs/bpmn/ch15-REST/#list-of-tasks
+    const excludeSubTasks = 'true';
     const sort = 'createTime';
     const order = 'desc'; // 'asc | desc'
     // const start = 0;
     // const size = 16;
 
-    const params = new HttpParams().set('sort', sort).set('order', order);
+    const params = new HttpParams().set('excludeSubTasks', excludeSubTasks).set('sort', sort).set('order', order);
 
     this.logger.info('params: ' + params);
 

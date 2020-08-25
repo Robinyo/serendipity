@@ -54,6 +54,33 @@ export class ProcessesService extends CollectionService {
 
   }
 
+  public getDiagram(id: string): Promise<Blob> {
+
+    this.logger.info('ProcessesService: getDiagram()');
+
+    this.url = this.getUrlPrefix() + '/process-api/runtime/process-instances/' + id + '/diagram';
+
+    this.logger.info('url: ' + this.url);
+
+    return this.httpClient.get(this.url, { responseType: 'blob' }).pipe(
+
+      tap((response: any) => {
+        // tap(() => {
+
+        this.logger.info('ProcessesService: getDiagram() completed');
+
+      })).toPromise().catch(error => {
+
+      if (error === undefined) {
+        error = new Error(HTTP_SERVER_ERROR_CONNECTION_REFUSED);
+      }
+
+      throw error;
+
+    });
+
+  }
+
   public startProcess(request: any): Promise<any> {
 
     this.logger.info('ProcessesService: startProcess()');
@@ -83,11 +110,11 @@ export class ProcessesService extends CollectionService {
 
   }
 
-  public addRole(processId: string, request: any): Promise<any> {
+  public addRole(id: string, request: any): Promise<any> {
 
     this.logger.info('ProcessesService: addRole()');
 
-    this.url = this.getUrlPrefix() + '/process-api/runtime/process-instances/' + processId + '/identitylinks';
+    this.url = this.getUrlPrefix() + '/process-api/runtime/process-instances/' + id + '/identitylinks';
 
     this.logger.info('url: ' + this.url);
 

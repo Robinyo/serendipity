@@ -79,6 +79,30 @@
         {{ 'PEOPLE_TAB' | translate }}
       </ng-template>
 
+      <ng-container *ngIf="roles">
+        <div>
+
+          <mat-list style="padding-top: 0">
+
+            <mat-list-item *ngFor="let role of roles">
+
+              <mat-icon matListIcon [color]="'accent'"> person </mat-icon>
+
+              <p mat-line>
+                {{role.user}}
+              </p>
+
+              <p mat-line>
+                {{role.type}}
+              </p>
+
+            </mat-list-item>
+
+          </mat-list>
+
+        </div>
+      </ng-container>
+
     </mat-tab>
 
     <mat-tab>
@@ -87,6 +111,24 @@
         <mat-icon class="task-tab-icon"> list </mat-icon>
         {{ 'SUBTASKS_TAB' | translate }}
       </ng-template>
+
+      <ng-container>
+        <div>
+
+          <mat-list style="padding-top: 0">
+
+            <mat-list-item>
+
+              <p mat-line>
+                No subtasks found
+              </p>
+
+            </mat-list-item>
+
+          </mat-list>
+
+        </div>
+      </ng-container>
 
     </mat-tab>
 
@@ -97,6 +139,24 @@
         {{ 'DOCUMENTS_TAB' | translate }}
       </ng-template>
 
+      <ng-container>
+        <div>
+
+          <mat-list style="padding-top: 0">
+
+            <mat-list-item>
+
+              <p mat-line>
+                No attachments found
+              </p>
+
+            </mat-list-item>
+
+          </mat-list>
+
+        </div>
+      </ng-container>
+
     </mat-tab>
 
     <mat-tab>
@@ -105,6 +165,12 @@
         <mat-icon class="task-tab-icon"> history </mat-icon>
         {{ 'HISTORY_TAB' | translate }}
       </ng-template>
+
+      <mat-card fxLayout="column" fxLayoutAlign="center">
+
+        <img #processDiagram mat-card-image src="" class="process-diagram" alt="Process Diagram">
+
+      </mat-card>
 
     </mat-tab>
 

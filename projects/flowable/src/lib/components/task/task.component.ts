@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnChanges, OnDestroy, OnInit, Input, SimpleChanges, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
@@ -8,6 +8,7 @@ import { DynamicFormModel, DynamicFormService } from 'dynamic-forms';
 import { DialogService } from 'serendipity-components';
 import { LoggerService } from 'utils';
 
+import { IdentityLink } from '../../models/identity-link';
 import { ProcessModel } from '../../models/process-list.model';
 import { TaskCompleteEvent, TaskModel } from '../../models/task-list.model';
 import { Action, TaskActionRequest } from '../../models/task-action';
@@ -17,7 +18,13 @@ import { TasksService } from '../../services/tasks/tasks.service';
 
 // import { formatISO } from 'date-fns/formatISO';
 
-const PEOPLE_TAB_INDEX = 1;
+enum tab {
+  TASK ,
+  PEOPLE,
+  SUBTASKS,
+  DOCUMENTS,
+  HISTORY
+}
 
 @Component({
   selector: 'flow-task',
@@ -30,8 +37,12 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
   @Output() completeEvent = new EventEmitter<TaskCompleteEvent>();
 
+  @ViewChild('processDiagram', {static: false})
+  image: ElementRef;
+
+  public diagram = false;
   public process: ProcessModel;
-  public roles: any;
+  public roles: IdentityLink[];
   public selectedTabIndex = 0;
   public taskFormGroup: FormGroup;
   public taskModel: DynamicFormModel;
@@ -96,6 +107,7 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
     this.logger.info('TaskComponent: unsubscribe()');
 
+    this.diagram = false;
     this.taskModel = null;
     this.taskFormGroup = null;
     this.roles = null;
@@ -262,24 +274,52 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
     this.logger.info('clickedIndex: ' + clickedIndex);
 
-    if (clickedIndex === PEOPLE_TAB_INDEX) {
+    switch (clickedIndex) {
 
-      if (this.roles === null) {
+      case tab.PEOPLE:
 
-        let modelSubscription: Subscription = new Subscription();
-        this.subscriptions.push(modelSubscription);
+        if (this.roles === null) {
 
-        modelSubscription = this.tasksService.getRoles(this.task.id).subscribe(data => {
+          let modelSubscription: Subscription = new Subscription();
+          this.subscriptions.push(modelSubscription);
 
-          this.logger.info('Roles: ' + JSON.stringify(data, null, 2));
+          modelSubscription = this.tasksService.getRoles(this.task.id).subscribe(data => {
 
-          this.roles = data;
+            this.logger.info('roles: ' + JSON.stringify(data, null, 2));
 
-        });
+            this.roles = data;
 
-      }
+          });
 
-      }
+        }
+
+        break;
+
+      case tab.HISTORY:
+
+        if (!this.diagram) {
+
+          await this.processesService.getDiagram(this.task.processInstanceId).then((response) => {
+
+            this.image.nativeElement.src = URL.createObjectURL(response);
+
+            this.diagram = true;
+
+          }).catch(error => {
+
+            // this.logger.info('error: ' + JSON.stringify(error, null, 2));
+
+            this.logger.error(error);
+          });
+
+        }
+
+        break;
+
+      default:
+        break;
+
+    }
 
   }
 
