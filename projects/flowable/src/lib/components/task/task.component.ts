@@ -40,7 +40,7 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild('processDiagram', {static: false})
   image: ElementRef;
 
-  public diagram = false;
+  public isDiagram = false;
   public process: ProcessModel;
   public roles: IdentityLink[];
   public selectedTabIndex = 0;
@@ -107,7 +107,7 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
     this.logger.info('TaskComponent: unsubscribe()');
 
-    this.diagram = false;
+    this.isDiagram = false;
     this.taskModel = null;
     this.taskFormGroup = null;
     this.roles = null;
@@ -297,13 +297,13 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
       case tab.HISTORY:
 
-        if (!this.diagram) {
+        if (!this.isDiagram) {
 
           await this.processesService.getDiagram(this.task.processInstanceId).then((response) => {
 
             this.image.nativeElement.src = URL.createObjectURL(response);
 
-            this.diagram = true;
+            this.isDiagram = true;
 
           }).catch(error => {
 
