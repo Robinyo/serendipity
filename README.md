@@ -13,12 +13,12 @@
 
 ## ❯ Features
 
-- **Authentication (AuthN) & Authorization (AuthZ)** thanks to the [OIDC Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth-oidc) library and [oidc-client](https://github.com/IdentityModel/oidc-client-js)
+- **Authentication (AuthN) & Authorization (AuthZ)** thanks to Serendipity's [Auth](https://github.com/Robinyo/serendipity/tree/master/projects/auth) library
 - **Beautiful Code** thanks to Angular's [Style Guide](https://angular.io/guide/styleguide)
 - **Contemporary UI** thanks to [Angular Material](https://material.angular.io/)
-- **Custom Themes** check out the [Light Theme](https://github.com/Robinyo/serendipity/tree/master/src/themes)
+- **Custom Themes** check out Serendipity's [Light Theme](https://github.com/Robinyo/serendipity/tree/master/src/themes)
 - **Dashboards and Dashboard Widgets** thanks to [Angular Gridster 2](https://github.com/tiberiuzuld/angular-gridster2) and [Highcharts](https://www.highcharts.com/)
-- **Dynamic Forms** check out the Dynamic Forms [documentation](https://github.com/Robinyo/serendipity/tree/master/projects/dynamic-forms)
+- **Dynamic Forms** check out Serendipity's Dynamic Forms [documentation](https://github.com/Robinyo/serendipity/tree/master/projects/dynamic-forms)
 - **Dynamically Importing Static Libraries** see this [post](https://robferguson.org/blog/2019/09/23/dynamically-importing-highcharts/)
 - **Identity and Access Management** thanks to [Keycloak](https://www.keycloak.org/) and [OpenLDAP](https://www.openldap.org/)
 - **Internationalisation** thanks to [@ngx-translate](https://github.com/ngx-translate/core)
