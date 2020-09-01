@@ -94,6 +94,12 @@ Tasks (Task Tab):
   <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/tasks.png">
 </p>
 
+Tasks (People Tab):
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/master/screen-shots/tasks-people-tab.png">
+</p>
+
 Tasks (History Tab):
 
 <p align="center">
