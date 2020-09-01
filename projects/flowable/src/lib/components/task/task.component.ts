@@ -63,7 +63,7 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
 
     this.currentUser = this.authService.getCurrentUser();
 
-    this.logger.info('currentUser: ' + JSON.stringify(this.currentUser, null, 2));
+    // this.logger.info('currentUser: ' + JSON.stringify(this.currentUser, null, 2));
   }
 
   public ngOnChanges(changes: SimpleChanges)  {
@@ -288,6 +288,12 @@ export class TaskComponent implements OnInit, OnChanges, OnDestroy {
             this.logger.info('roles: ' + JSON.stringify(data, null, 2));
 
             this.roles = data;
+
+            for (const role of this.roles) {
+              if (role.user === null) {
+                role.user = this.currentUser.username;
+              }
+            }
 
           });
 

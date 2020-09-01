@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { TaskListComponent } from 'flowable';
 import { LoggerService } from 'utils';
 
-import { ACTIVITIES } from '../../models/constants';
+// import { ACTIVITIES } from '../../models/constants';
 
 @Component({
   selector: 'work-tasks',
@@ -33,6 +33,12 @@ export class TasksComponent implements OnInit {
     return true;
   }
 
+}
+
+// https://angular.io/guide/router#candeactivate-handling-unsaved-changes
+
+/*
+
   //
   // Command Bar events
   //
@@ -48,12 +54,6 @@ export class TasksComponent implements OnInit {
 
     this.taskList.refresh();
   }
-
-}
-
-// https://angular.io/guide/router#candeactivate-handling-unsaved-changes
-
-/*
 
   public canActivate(): Observable<boolean> | boolean {
 

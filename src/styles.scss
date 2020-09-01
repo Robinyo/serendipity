@@ -110,6 +110,22 @@ $command-bar-sidenav-width: 160px; // card layout
   background-color: transparent !important;
 }
 
+.crm-activity-bar-without-a-command-bar {
+  height: $crm-activity-bar-height-desktop !important;
+  min-height: $crm-activity-bar-height-desktop !important;
+
+  margin-top: $mat-toolbar-height-desktop !important;
+
+  @media ($mat-xsmall) {
+    height: $crm-activity-bar-height-mobile !important;
+    min-height: $crm-activity-bar-height-mobile !important;
+
+    margin-top: $mat-toolbar-height-mobile !important;
+  }
+
+  background-color: transparent !important;
+}
+
 //
 // https://material.angular.io/guide/customizing-component-styles
 //

@@ -85,9 +85,7 @@ export class ActivitiesComponent extends CollectionComponent<Activity> implement
         this.dataSource.sortingDataAccessor = pathDataAccessor;
         this.dataSource.sort = this.sort;
 
-      }
-
-    );
+      });
 
   }
 

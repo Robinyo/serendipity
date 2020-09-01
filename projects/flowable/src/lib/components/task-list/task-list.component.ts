@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
+import { HttpParams } from '@angular/common/http';
 
 import { Subscription } from 'rxjs';
 
+import { AuthService } from 'auth';
 import { DialogService} from 'serendipity-components';
 
 import { CollectionComponent } from '../abstract/collection/collection.component';
+import { FilterRepresentationModel } from '../../models/filter.model';
 import { TaskCompleteEvent, TaskListModel, TaskModel } from '../../models/task-list.model';
 import { TasksService } from '../../services/tasks/tasks.service';
 
@@ -15,18 +18,45 @@ import { TasksService } from '../../services/tasks/tasks.service';
 })
 export class TaskListComponent extends CollectionComponent<TaskModel> {
 
-  constructor(private dialogService: DialogService,
+  private currentUser;
+  private tasksFilter: FilterRepresentationModel;
+
+  constructor(private authService: AuthService,
+              private dialogService: DialogService,
               private tasksService: TasksService) {
     super();
+
+    this.currentUser = this.authService.getCurrentUser();
+
+    this.tasksFilter = {
+      name : 'Where I am involved',
+      filter : {
+        name: 'involvedUser',
+        assignment: this.currentUser.username
+      },
+      icon : 'assignment_ind'
+    };
+
+    this.logger.info('filter: ' +  JSON.stringify(event, null, 2));
   }
 
   public onCompleteEvent(event: TaskCompleteEvent) {
 
     this.logger.info('TaskListComponent: onCompleteEvent()');
 
-    this.logger.info('TaskListComponent - taskId: ' +  event.id);
+    this.logger.info('taskId: ' +  event.id);
 
     this.selectedItem = null;
+    this.refresh();
+  }
+
+  public onFilterClickEvent(event: FilterRepresentationModel) {
+
+    this.logger.info('TaskListComponent: onFilterClickEvent()');
+
+    this.logger.info('filter: ' +  JSON.stringify(event, null, 2));
+
+    this.tasksFilter = event;
     this.refresh();
   }
 
@@ -37,7 +67,7 @@ export class TaskListComponent extends CollectionComponent<TaskModel> {
     let modelSubscription: Subscription = new Subscription();
     this.subscriptions.push(modelSubscription);
 
-    modelSubscription = this.tasksService.find().subscribe(
+    modelSubscription = this.tasksService.find(this.getParams()).subscribe(
 
       (model: TaskListModel) => {
 
@@ -49,34 +79,31 @@ export class TaskListComponent extends CollectionComponent<TaskModel> {
           this.selectedItem = this.items[0];
         }
 
-      },
-      (error) => {
+      });
 
-        this.logger.error('TaskListComponent: subscribe() error handler');
+  }
 
-        this.items = [];
-        this.selectedItem = null;
+  private getParams() {
 
-        let message = error.message;
+    this.logger.info('TaskListComponent: getParams()');
 
-        if (error.details) {
-          message = error.details.message;
-        }
+    // this.logger.info('filter: ' +  JSON.stringify(this.filter, null, 2));
 
-        this.dialogService.openAlert({
-          title: 'Alert',
-          message: message,
-          closeButton: 'CLOSE'
-        });
+    const excludeSubTasks = 'true';
+    const order = 'desc';            // 'asc | desc
+    // const size = 16;
+    // const start = 0;              // page
+    const sort = 'createTime';
 
-     },
-      () =>  {
+    const params = new HttpParams()
+      .set(this.tasksFilter.filter.name, this.tasksFilter.filter.assignment)
+      .set('excludeSubTasks', excludeSubTasks)
+      .set('order', order)
+      .set('sort', sort);
 
-        this.logger.info('TaskListComponent: subscribe() completion handler');
-      }
+    // this.logger.info('params: ' +  JSON.stringify(params, null, 2));
 
-    );
-
+    return params;
   }
 
 }

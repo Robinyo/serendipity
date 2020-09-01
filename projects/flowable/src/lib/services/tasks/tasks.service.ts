@@ -111,29 +111,18 @@ export class TasksService extends CollectionService {
 
   }
 
-  public find(): Observable<any> {
+  public find(params: HttpParams): Observable<any> {
 
-    this.logger.info('TasksService: getTasks()');
+    this.logger.info('TasksService: find()');
 
     this.url = this.getUrlPrefix() + '/process-api/runtime/tasks';
 
     this.logger.info('url: ' + this.url);
-
-    // https://www.flowable.org/docs/userguide/index.html#_request_parameters
-    // https://flowable.com/open-source/docs/bpmn/ch15-REST/#list-of-tasks
-    const excludeSubTasks = 'true';
-    const sort = 'createTime';
-    const order = 'desc'; // 'asc | desc'
-    // const start = 0;
-    // const size = 16;
-
-    const params = new HttpParams().set('excludeSubTasks', excludeSubTasks).set('sort', sort).set('order', order);
-
-    this.logger.info('params: ' + params);
+    this.logger.info('params: ' +  JSON.stringify(params, null, 2));
 
     return this.httpClient.get<TaskListModel>(this.url, this.getHttpOptions(params)).pipe(
       tap(() => {
-        this.logger.info('TasksService: getTasks() completed');
+        this.logger.info('TasksService: find() completed');
       })
     );
 
@@ -241,6 +230,38 @@ export class TasksService extends CollectionService {
   }
 
 }
+
+/*
+
+  public find(): Observable<any> {
+
+    this.logger.info('TasksService: getTasks()');
+
+    this.url = this.getUrlPrefix() + '/process-api/runtime/tasks';
+
+    this.logger.info('url: ' + this.url);
+
+    // https://www.flowable.org/docs/userguide/index.html#_request_parameters
+    // https://flowable.com/open-source/docs/bpmn/ch15-REST/#list-of-tasks
+    const excludeSubTasks = 'true';
+    const sort = 'createTime';
+    const order = 'desc'; // 'asc | desc'
+    // const start = 0;
+    // const size = 16;
+
+    const params = new HttpParams().set('excludeSubTasks', excludeSubTasks).set('sort', sort).set('order', order);
+
+    this.logger.info('params: ' + params);
+
+    return this.httpClient.get<TaskListModel>(this.url, this.getHttpOptions(params)).pipe(
+      tap(() => {
+        this.logger.info('TasksService: getTasks() completed');
+      })
+    );
+
+  }
+
+*/
 
 /*
 

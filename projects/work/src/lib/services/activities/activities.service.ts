@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
@@ -18,7 +19,16 @@ export class ActivitiesService {
 
     this.logger.info('ActivitiesService: getActivities()');
 
-    return this.tasksService.find();
+    // https://www.flowable.org/docs/userguide/index.html#_request_parameters
+    // https://flowable.com/open-source/docs/bpmn/ch15-REST/#list-of-tasks
+    const sort = 'createTime';
+    const order = 'desc'; // 'asc | desc'
+    // const start = 0;
+    // const size = 16;
+
+    const params = new HttpParams().set('excludeSubTasks', 'true').set('sort', sort).set('order', order);
+
+    return this.tasksService.find(params);
   }
 
   public startTask(request: any): Promise<any> {
@@ -28,11 +38,11 @@ export class ActivitiesService {
     return this.tasksService.startTask(request);
   }
 
-  public updateTask(taskId: string, request: any): Promise<any> {
+  public updateTask(id: string, request: any): Promise<any> {
 
     this.logger.info('ActivitiesService: updateTask()');
 
-    return this.tasksService.updateSimpleTask(taskId, request);
+    return this.tasksService.updateSimpleTask(id, request);
   }
 
 }

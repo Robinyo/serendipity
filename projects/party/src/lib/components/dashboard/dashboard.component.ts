@@ -67,10 +67,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     this.subscription = this.dashboardService.getDashboards().subscribe(data => {
 
-      this.items = data;
-      // this.logger.info('Sales Dashboards: ' + JSON.stringify(this.items));
+      // this.logger.info('Sales Dashboards: ' + JSON.stringify(data));
 
+      this.items = data;
     });
+
   }
 
   protected unsubscribe() {

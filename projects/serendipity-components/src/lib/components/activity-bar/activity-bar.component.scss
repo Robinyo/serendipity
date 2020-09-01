@@ -7,8 +7,9 @@
   height: $crm-activity-bar-height-desktop !important;
   min-height: $crm-activity-bar-height-desktop !important;
 
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: 32px;
+  padding-right: 32px;
+  justify-content: center;
 
   @media ($mat-xsmall) {
     height: $crm-activity-bar-height-mobile !important;

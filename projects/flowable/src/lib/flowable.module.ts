@@ -12,6 +12,7 @@ import { AngularMaterialModule, UtilsModule, LoggerService } from 'utils';
 import { ProcessListComponent } from './components/process-list/process-list.component';
 import { TaskComponent } from './components/task/task.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
+import { TaskListFilterComponent } from './components/task-list-filter/task-list-filter.component';
 
 import { StartProcessDialogComponent } from './components/dialogs/start-process-dialog/start-process-dialog.component';
 
@@ -19,7 +20,8 @@ const components: any[] = [
   ProcessListComponent,
   StartProcessDialogComponent,
   TaskComponent,
-  TaskListComponent
+  TaskListComponent,
+  TaskListFilterComponent
 ];
 
 @NgModule({

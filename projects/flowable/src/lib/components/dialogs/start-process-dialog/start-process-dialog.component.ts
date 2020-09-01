@@ -20,7 +20,7 @@ export class StartProcessDialogComponent implements OnInit {
   public message: string;
   public title: string;
 
-  private currentUser: any;
+  private currentUser;
   private disabled = false;
   private selectedItem: ProcessModel = null;
 
@@ -31,7 +31,7 @@ export class StartProcessDialogComponent implements OnInit {
               private snackBar: MatSnackBar,
               private logger: LoggerService) {}
 
-  ngOnInit() {
+  public ngOnInit() {
 
     this.logger.info('StartProcessDialogComponent: ngOnInit()');
 

@@ -29,6 +29,8 @@ export abstract class CollectionComponent<T> implements OnInit, OnDestroy {
 
   protected unsubscribe() {
 
+    this.logger.info('CollectionComponent: unsubscribe()');
+
     this.subscriptions.forEach(subscription => {
       subscription.unsubscribe();
     });

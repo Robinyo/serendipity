@@ -1,0 +1,39 @@
+.task-list-filter-title {
+  font-size: 1.6em;
+}
+
+//
+// https://material.angular.io/guide/customizing-component-styles
+//
+
+::ng-deep .mat-menu-item .mat-icon {
+  margin-right: 4px;  //16px
+  vertical-align: middle;
+}
+
+::ng-deep .task-list-filter-menu-button {
+  min-width: 32px !important;
+  padding: 0 !important;
+  vertical-align: bottom;
+}
+
+/*
+
+::ng-deep .crm-activity-bar-menu-button {
+  min-width: 32px !important;
+  padding: 0 !important;
+  vertical-align: bottom;
+}
+
+::ng-deep .mat-menu-content {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+::ng-deep .mat-menu-item {
+  line-height: 40px !important;
+  height: 40px !important;
+}
+
+*/
+

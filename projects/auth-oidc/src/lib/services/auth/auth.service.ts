@@ -69,8 +69,8 @@ export class OidcAuthService extends Auth {
 
           this.setAccessToken();
 
-          this.logger.info('OidcAuthService idToken: ' + this.idToken);
-          this.logger.info('OidcAuthService accessToken: ' + this.accessToken);
+          // this.logger.info('OidcAuthService idToken: ' + this.idToken);
+          // this.logger.info('OidcAuthService accessToken: ' + this.accessToken);
         }
 
       });
@@ -102,7 +102,8 @@ export class OidcAuthService extends Auth {
       middleName: '',
       familyName: this.currentUser.profile.family_name,
       email: this.currentUser.profile.email,
-      emailVerified: this.currentUser.profile.email_verified
+      emailVerified: this.currentUser.profile.email_verified,
+      groups: this.currentUser.profile.groups
     };
     // return this.currentUser;
     // return this.currentUser.profile;

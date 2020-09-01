@@ -1,0 +1,26 @@
+<ng-container>
+
+  <span class="task-list-filter-title"> {{title}} </span>
+
+  <button mat-button [matMenuTriggerFor]="menu" class="task-list-filter-menu-button">
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+
+    <button *ngFor="let item of items" mat-menu-item (click)="onMenuClick(item)">
+      <mat-icon color="primary"> {{item.icon}} </mat-icon>
+      <span> {{item.name}} </span>
+    </button>
+
+  </mat-menu>
+
+</ng-container>
+
+<!--
+
+<div class="crm-component-title-container-without-command-bar">
+  <h1 class="crm-component-title"> {{ 'TASKS_HEADER' | translate }} </h1>
+</div>
+
+-->

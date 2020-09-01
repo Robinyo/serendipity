@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 
 import { AuthService } from 'auth';
-
 import { LoggerService } from 'utils';
 
 @Injectable()

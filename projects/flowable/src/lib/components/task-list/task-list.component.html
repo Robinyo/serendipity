@@ -1,3 +1,9 @@
+<crm-activity-bar>
+
+  <flow-task-list-filter (filterClick)="onFilterClickEvent($event)"> </flow-task-list-filter>
+
+</crm-activity-bar>
+
 <div class="crm-activities-container">
 
   <div class="crm-task-list-container">
@@ -15,11 +21,58 @@
           {{item.name}}
         </p>
 
-        <!--
+      </a>
+
+    </mat-nav-list>
+
+  </div>
+
+  <div class="crm-task-container">
+    <flow-task (completeEvent)="onCompleteEvent($event)" [task]="selectedItem"> </flow-task>
+  </div>
+
+</div>
+
+<!--
+
+<mat-toolbar class="crm-activity-bar-without-a-command-bar">
+
+  <mat-toolbar-row class="crm-activity-bar-row">
+    <flow-task-list-filter (filterClick)="onFilterClickEvent($event)"> </flow-task-list-filter>
+  </mat-toolbar-row>
+
+</mat-toolbar>
+
+<crm-activity-bar>
+
+  <flow-task-list-filter (filterClick)="onFilterClickEvent($event)"> </flow-task-list-filter>
+
+</crm-activity-bar>
+
+<p mat-line>
+  {{item.description}}
+</p>
+
+-->
+
+<!--
+
+<div class="crm-activities-container">
+
+  <div class="crm-task-list-container">
+
+    <mat-nav-list style="padding-top: 0">
+
+      <a *ngFor="let item of items"
+         mat-list-item
+         [class.list-item-active]="item === selectedItem"
+         (click)="onSelect(item)">
+
+        <mat-icon matListIcon class="crm-task-list-icon"> assignment_ind </mat-icon>
+
         <p mat-line>
-          {{item.description}}
+          {{item.name}}
         </p>
-        -->
 
       </a>
 
@@ -32,6 +85,8 @@
   </div>
 
 </div>
+
+-->
 
 <!--
 
