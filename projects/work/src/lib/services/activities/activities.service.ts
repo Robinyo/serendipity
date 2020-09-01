@@ -15,18 +15,9 @@ export class ActivitiesService {
               private logger: LoggerService) {
   }
 
-  public find(): Observable<any> {
+  public find(params: HttpParams): Observable<any> {
 
     this.logger.info('ActivitiesService: getActivities()');
-
-    // https://www.flowable.org/docs/userguide/index.html#_request_parameters
-    // https://flowable.com/open-source/docs/bpmn/ch15-REST/#list-of-tasks
-    const sort = 'createTime';
-    const order = 'desc'; // 'asc | desc'
-    // const start = 0;
-    // const size = 16;
-
-    const params = new HttpParams().set('excludeSubTasks', 'true').set('sort', sort).set('order', order);
 
     return this.tasksService.find(params);
   }

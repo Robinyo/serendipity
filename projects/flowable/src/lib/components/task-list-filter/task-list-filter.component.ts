@@ -31,7 +31,7 @@ export class TaskListFilterComponent implements OnInit {
 
     this.items = [
       {
-        name : 'Where I am involved',
+        name : 'I am involved',
         filter : {
           name: 'involvedUser',
           assignment: this.currentUser.username
@@ -39,7 +39,7 @@ export class TaskListFilterComponent implements OnInit {
         icon : 'assignment_ind'
       },
       {
-        name : 'Where I am the assignee',
+        name : 'I am the assignee',
         filter : {
           name: 'assignee',
           assignment: this.currentUser.username
@@ -47,7 +47,7 @@ export class TaskListFilterComponent implements OnInit {
         icon : 'assignment_ind'
       },
       {
-        name : 'Where I am one of the candidates',
+        name : 'I am one of the candidates',
         filter : {
           // name: 'candidateUser',
           name: 'candidate',

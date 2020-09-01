@@ -1,10 +1,11 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { AuthService } from 'auth';
-import { StartProcessDialogComponent } from 'flowable';
+import { FilterRepresentationModel, StartProcessDialogComponent } from 'flowable';
 import { CollectionComponent, SnackBarComponent } from 'serendipity-components';
 
 import { ActivitiesAdapter } from '../../adapters/activities.adapter';
@@ -26,6 +27,7 @@ import {
 export class ActivitiesComponent extends CollectionComponent<Activity> implements OnInit {
 
   public currentUser: any;
+  private tasksFilter: FilterRepresentationModel;
 
   constructor(private authService: AuthService,
               private entityAdapter: ActivitiesAdapter,
@@ -39,26 +41,25 @@ export class ActivitiesComponent extends CollectionComponent<Activity> implement
       limit: 10
     });
 
-  }
-
-  ngOnInit() {
-
-    super.ngOnInit();
-
-    this.logger.info('ActivitiesComponent: ngOnInit()');
-
     this.currentUser = this.authService.getCurrentUser();
 
-    this.logger.info('currentUser: ' + JSON.stringify(this.currentUser, null, 2));
+    this.tasksFilter = {
+      name : 'I am one of the candidates',
+      filter : {
+        // name: 'candidateUser',
+        name: 'candidate',
+        assignment: this.currentUser.username
+      },
+      icon : 'assignment_ind'
+    };
+
   }
 
   protected subscribe() {
 
     this.logger.info('ActivitiesComponent: subscribe()');
 
-    this.currentUser = this.authService.getCurrentUser();
-
-    this.subscription = this.entityService.find().subscribe(
+    this.subscription = this.entityService.find(this.getParams()).subscribe(
 
       (response: any) => {
 
@@ -87,6 +88,29 @@ export class ActivitiesComponent extends CollectionComponent<Activity> implement
 
       });
 
+  }
+
+  private getParams() {
+
+    this.logger.info('ActivitiesComponent: getParams()');
+
+    // this.logger.info('filter: ' +  JSON.stringify(this.filter, null, 2));
+
+    const excludeSubTasks = 'true';
+    const order = 'desc';            // 'asc | desc
+    // const size = 16;
+    // const start = 0;              // page
+    const sort = 'createTime';
+
+    const params = new HttpParams()
+      .set(this.tasksFilter.filter.name, this.tasksFilter.filter.assignment)
+      .set('excludeSubTasks', excludeSubTasks)
+      .set('order', order)
+      .set('sort', sort);
+
+    // this.logger.info('params: ' +  JSON.stringify(params, null, 2));
+
+    return params;
   }
 
   //

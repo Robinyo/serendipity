@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
+import { Component } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
@@ -29,7 +29,7 @@ export class TaskListComponent extends CollectionComponent<TaskModel> {
     this.currentUser = this.authService.getCurrentUser();
 
     this.tasksFilter = {
-      name : 'Where I am involved',
+      name : 'I am involved',
       filter : {
         name: 'involvedUser',
         assignment: this.currentUser.username
@@ -37,7 +37,6 @@ export class TaskListComponent extends CollectionComponent<TaskModel> {
       icon : 'assignment_ind'
     };
 
-    this.logger.info('filter: ' +  JSON.stringify(event, null, 2));
   }
 
   public onCompleteEvent(event: TaskCompleteEvent) {
