@@ -1,6 +1,6 @@
 <h1 align="center">Quick Start Guide</h1>
 
-### Step 1: Set up the Development Environment
+### Step 1: Set up your local Development Environment
 
 You need to set up your development environment before you can do anything.
 
