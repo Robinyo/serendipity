@@ -23,7 +23,7 @@
 - **Identity and Access Management** thanks to [Keycloak](https://www.keycloak.org/) and [OpenLDAP](https://www.openldap.org/)
 - **Internationalisation** thanks to [@ngx-translate](https://github.com/ngx-translate/core)
 - **Lazy Loading Angular Libraries** see this blog [post](https://robferguson.org/blog/2019/09/12/lazy-loading-angular-libraries/)
-- **Locally Hosted Fonts and Icons** see [fonts](https://github.com/Robinyo/serendipity/blob/master/src/themes/fonts.scss) and [icons](https://github.com/Robinyo/serendipity/blob/master/src/themes/icons.scss)
+- **Locally Hosted Fonts and Icons** see [fonts](https://github.com/Robinyo/serendipity/blob/master/src/themes/_fonts.scss) and [icons](https://github.com/Robinyo/serendipity/blob/master/src/themes/_icons.scss)
 - **Maps** thanks to [@ngx-leaflet](https://github.com/Asymmetrik/ngx-leaflet) and [OpenStreetMap](https://www.openstreetmap.org/)
 - **Progressive Web App (PWA)** thanks to [@angular/pwa ](https://angular.io/guide/service-worker-getting-started)
 - **Reporting and Analytics** thanks to [Jaspersoft Studio](https://github.com/Robinyo/serendipity-api/blob/master/projects/spring-boot/docs/administrator/jaspersoft-studio.md) and [JasperReports Server](https://github.com/Robinyo/serendipity-api/blob/master/projects/spring-boot/docs/administrator/jasperreports-server.md)
