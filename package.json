@@ -55,7 +55,7 @@
     "class-transformer": "^0.3.1",
     "core-js": "^3.6.5",
     "date-fns": "^2.14.0",
-    "highcharts": "^8.1.2",
+    "highcharts": "^9.0.0",
     "leaflet": "^1.6.0",
     "ng-dynamic-component": "^7.0.1",
     "ngx-quill": "^12.0.1",
