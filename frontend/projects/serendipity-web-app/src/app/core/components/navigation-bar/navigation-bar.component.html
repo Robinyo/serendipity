@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+
+  <mat-toolbar-row>
+
+    <button mat-icon-button (click)="toggleSidenav.emit()">
+      <mat-icon> menu </mat-icon>
+    </button>
+
+    <span class="navigation-bar-title"
+          i18n="Navigation Bar Application Name|Application Name@@NAVIGATION_BAR_TITLE">
+      Serendipity
+    </span>
+
+    <span class="navigation-bar-spacer"></span>
+
+    <button mat-icon-button>
+      <mat-icon> settings </mat-icon>
+    </button>
+
+    <button mat-icon-button>
+      <mat-icon> help_outline </mat-icon>
+    </button>
+
+    <button mat-icon-button>
+      <mat-icon> person </mat-icon>
+    </button>
+
+  </mat-toolbar-row>
+
+</mat-toolbar>

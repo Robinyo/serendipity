@@ -1,0 +1,27 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+
+@use '~@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// If you are using the Angular CLI, support for compiling Sass to css is built-in; you only have to add a new entry to
+// the "styles" list in angular.json pointing to the theme file, for example:
+//
+//   "styles": [
+//     "src/styles.scss",
+//     "src/themes/light-theme/theme.scss"
+//   ]
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  // height: 100vh;
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  margin: 0;
+  // font-family: 'Open Sans', sans-serif;
+}
+
+

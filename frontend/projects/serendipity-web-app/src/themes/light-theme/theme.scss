@@ -1,0 +1,80 @@
+@use '~@angular/material' as mat;
+@use './projects/serendipity-web-app/src/app/core/components/sidenav/sidenav.component-theme' as sidenav;
+
+@import "./projects/utils-lib/src/lib/angular-material/mat-variables";
+// @import "./projects/utils-lib/src/lib/angular-material/variables";
+
+@import "../fonts";
+@import "../icons";
+@import "../black-grey.palette";
+@import "./typography";
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core($font-family-config);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$light-theme-primary: mat.define-palette($black-grey-palette, 900);
+$light-theme-accent: mat.define-palette(mat.$deep-orange-palette, 500, A100, A400);
+$light-theme-warn: mat.define-palette(mat.$red-palette, 600);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$light-theme: mat.define-light-theme((
+  color: (
+    primary: $light-theme-primary,
+    accent: $light-theme-accent,
+    warn: $light-theme-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($light-theme);
+
+@include sidenav.theme($light-theme);
+
+// ------------------------------------------------------------------------------------------------------------------ //
+
+.mat-sidenav-container {
+  // height: 100vh;
+  height: 100%;
+}
+
+$sidenav-width: 320px; // 240px;
+
+.mat-sidenav {
+  width: $sidenav-width;
+}
+
+.mat-subheader {
+  font-size: 18px !important;
+  font-weight: 900 !important;
+}
+
+.mat-vertical-content {
+  padding: 24px 24px 24px 24px !important;
+}
+
+.mat-drawer-container {
+
+  @media ($mat-xsmall) {
+    background-color: white;
+  }
+
+}
+
+.mat-header-row {
+  // background-color: mat-color($light-theme-accent, 300);
+  background-color: #f5f5f5;
+}
+
+.mat-footer-row {
+  // background-color: mat-color($light-theme-accent, 300);
+  background-color: #f5f5f5;
+}
+

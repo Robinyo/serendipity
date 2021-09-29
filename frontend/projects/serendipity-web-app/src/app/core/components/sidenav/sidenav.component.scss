@@ -1,0 +1,15 @@
+// Theming Angular Material components
+// For more information: https://material.angular.io/guide/theming-your-components
+// To change this file to participate in Angular Material's theming system, we split the styles into two files, with
+// the color and typography styles moved into mixins. By convention, the new file name ends with -theme.
+
+$nav-list-icon-padding: 12px !default;
+$toolbar-title-padding: 16px !default;
+
+.nav-list-icon {
+  margin: 0 $nav-list-icon-padding 0 $nav-list-icon-padding;
+}
+
+.nav-list-item-active {
+  font-weight: bold;
+}

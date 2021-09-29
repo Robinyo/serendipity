@@ -1,0 +1,16 @@
+[
+
+  {
+    "id":    "ACCOUNTS_LIST_ITEM",
+    "label": "Accounts",
+    "icon":  "contacts",
+    "route": "customers/accounts"
+  },
+  {
+    "id":    "CONTACTS_LIST_ITEM",
+    "label": "Contacts",
+    "icon":  "people",
+    "route": "customers/contacts"
+  }
+
+]
