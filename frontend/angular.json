@@ -137,6 +137,109 @@
           }
         }
       }
+    },
+    "party": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/party",
+      "sourceRoot": "projects/party/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/party",
+            "index": "projects/party/src/index.html",
+            "main": "projects/party/src/main.ts",
+            "polyfills": "projects/party/src/polyfills.ts",
+            "tsConfig": "projects/party/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/party/src/favicon.ico",
+              "projects/party/src/assets"
+            ],
+            "styles": [
+              "projects/party/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/party/src/environments/environment.ts",
+                  "with": "projects/party/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "party:build:production"
+            },
+            "development": {
+              "browserTarget": "party:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "party:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/party/src/test.ts",
+            "polyfills": "projects/party/src/polyfills.ts",
+            "tsConfig": "projects/party/tsconfig.spec.json",
+            "karmaConfig": "projects/party/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/party/src/favicon.ico",
+              "projects/party/src/assets"
+            ],
+            "styles": [
+              "projects/party/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   },
   "defaultProject": "serendipity-web-app"

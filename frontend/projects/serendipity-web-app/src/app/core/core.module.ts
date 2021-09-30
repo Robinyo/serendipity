@@ -7,12 +7,15 @@ import { RouterModule } from '@angular/router';
 import { AngularMaterialModule, UtilsLibModule, LoggerService } from 'utils-lib';
 
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import { PlaceholderComponent } from './components/placeholder/placeholder.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 import { environment } from '@env/environment';
 
+
 const components: any[] = [
   NavigationBarComponent,
+  PlaceholderComponent,
   SidenavComponent
 ];
 

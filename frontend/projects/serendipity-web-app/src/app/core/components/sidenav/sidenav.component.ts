@@ -35,7 +35,7 @@ export class SidenavComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.logger.info('SidenavComponent: ngOnInit()');
+    // this.logger.info('SidenavComponent: ngOnInit()');
 
     this.loadNavListItems();
   }

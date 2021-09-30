@@ -14,9 +14,8 @@
           My Work
         </h2>
 
-        <!--
+        <!-- Hides the auto highlighting of the first item in the nav list -->
         <a mat-list-item routerLink="/" style="height: 0;"></a>
-        -->
 
         <a *ngFor="let item of myWorkRoutes"
            mat-list-item
@@ -24,7 +23,7 @@
            [routerLink]="[item.route]"
            routerLinkActive="nav-list-item-active">
           <mat-icon matListIcon class="nav-list-icon"> {{ item.icon }} </mat-icon>
-          {{item.label}}
+          {{ item.label }}
         </a>
 
       </ng-container>
@@ -42,7 +41,7 @@
            [routerLink]="[item.route]"
            routerLinkActive="nav-list-item-active">
           <mat-icon matListIcon class="nav-list-icon"> {{ item.icon }} </mat-icon>
-          {{item.label}}
+          {{ item.label }}
         </a>
 
       </ng-container>
@@ -73,7 +72,7 @@
            [routerLink]="[item.route]"
            routerLinkActive="nav-list-item-active">
           <mat-icon matListIcon class="nav-list-icon"> {{ item.icon }} </mat-icon>
-          {{item.label}}
+          {{ item.label }}
         </a>
 
       </ng-container>
