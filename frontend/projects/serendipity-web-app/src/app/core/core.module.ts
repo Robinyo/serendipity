@@ -12,7 +12,6 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 import { environment } from '@env/environment';
 
-
 const components: any[] = [
   NavigationBarComponent,
   PlaceholderComponent,

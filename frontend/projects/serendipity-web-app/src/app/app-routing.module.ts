@@ -14,13 +14,6 @@ const routes: Routes = [
   },
 
   {
-    path: 'work/activities',
-    component: PlaceholderComponent,
-    // canActivate: [AuthGuard],
-    runGuardsAndResolvers: 'always'
-  },
-
-  {
     path: 'reports',
     component: PlaceholderComponent,
     // canActivate: [AuthGuard],

@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { LoggerService, loggerProviders } from 'utils-lib';
+import { loggerProviders, LoggerService  } from 'utils-lib';
 
 // import { environment } from '@env/environment';
 
 import { CoreModule } from './core/core.module';
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 
 //
 // AppRoutingModule: https://angular.io/guide/router#routing-module-order
@@ -16,7 +17,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
-  declarations: [ AppComponent ],
+  declarations: [
+    AppComponent,
+    HomeComponent
+  ],
   imports: [
     BrowserModule,
     CoreModule,
