@@ -27,7 +27,6 @@ module.exports = {
         name: "party",
         filename: "remoteEntry.js",
         exposes: {
-
           './Module': './projects/party/src/app/features/features.module.ts'
         },
         shared: share({

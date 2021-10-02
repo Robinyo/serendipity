@@ -24,9 +24,8 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
 
-        // For hosts (please adjust)
         remotes: {
-          "party": "party@http://localhost:4201/remoteEntry.js",
+          // "party": "party@http://localhost:4201/remoteEntry.js"
         },
 
         shared: share({

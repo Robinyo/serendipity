@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { loadRemoteModule } from '@angular-architects/module-federation';
+
 import { HomeComponent } from '@app/home/home.component';
 
 import { PlaceholderComponent } from '@app/core/components/placeholder/placeholder.component';
@@ -11,6 +13,16 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     pathMatch: 'full'
+  },
+
+  {
+    path: 'customers',
+    loadChildren: () =>
+      loadRemoteModule({
+        // remoteEntry: 'http://localhost:4201/remoteEntry.js',
+        remoteName: 'party',
+        exposedModule: './Module'
+      }).then(m => m.FeaturesModule)
   },
 
   {
@@ -49,3 +61,20 @@ const routes: Routes = [
   ]
 })
 export class AppRoutingModule { }
+
+// https://angular.io/guide/lazy-loading-ngmodules
+
+/*
+
+{
+  path: 'customers',
+  children: [
+    {
+      path: '',
+      // loadChildren: () => import('../../../party/src/app/features/features.module').then(m => m.FeaturesModule)
+      loadChildren: () => import('party/Module').then(m => m.FeaturesModule)
+    }
+  ]
+},
+
+*/
