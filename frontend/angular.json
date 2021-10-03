@@ -260,6 +260,37 @@
           }
         }
       }
+    },
+    "serendipity-components-lib": {
+      "projectType": "library",
+      "root": "projects/serendipity-components-lib",
+      "sourceRoot": "projects/serendipity-components-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/serendipity-components-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/serendipity-components-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/serendipity-components-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/serendipity-components-lib/src/test.ts",
+            "tsConfig": "projects/serendipity-components-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/serendipity-components-lib/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "serendipity-web-app"

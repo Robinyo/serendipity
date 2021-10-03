@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 
 // import { LayoutModule } from '@angular/cdk/layout';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
+// import { FlexLayoutModule } from '@angular/flex-layout';
 
 // https://material.angular.io/components/categories
 
@@ -78,7 +78,7 @@ import { MatTableModule } from '@angular/material/table';
 
 const modules: any[] = [
 
-  FlexLayoutModule,
+  // FlexLayoutModule,
   // LayoutModule,
 
   MatAutocompleteModule,

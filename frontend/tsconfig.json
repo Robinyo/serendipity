@@ -27,10 +27,17 @@
       "@env/*": [
         "projects/serendipity-web-app/src/environments/*"
       ],
+      "serendipity-components-lib": [
+        "dist/serendipity-components-lib"
+      ],
+      "serendipity-components-lib/*": [
+        "dist/serendipity-components-lib/*"
+      ],
       "utils-lib": [
-        // "dist/utils-lib/utils-lib",
-        // "dist/utils-lib",
-        "projects/utils-lib/src/public-api.ts"
+        "dist/utils-lib"
+      ],
+      "utils-lib/*": [
+        "dist/utils-lib/*"
       ]
     }
   },

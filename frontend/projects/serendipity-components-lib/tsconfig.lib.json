@@ -13,7 +13,6 @@
       "es2018"
     ]
   },
-
   "exclude": [
     "src/test.ts",
     "**/*.spec.ts"
@@ -24,6 +23,12 @@
 
 // https://stackoverflow.com/questions/47729344/how-to-share-code-between-typescript-projects/54772741#54772741
 
-  "references": [],
+  "references": [
+    {
+      "path": "../utils-lib"
+      // add 'prepend' if you want to include the referenced project in your output file
+      // "prepend": true
+    }
+  ],
 
 */
