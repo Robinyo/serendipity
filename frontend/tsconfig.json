@@ -28,8 +28,9 @@
         "projects/serendipity-web-app/src/environments/*"
       ],
       "utils-lib": [
-        "dist/utils-lib/utils-lib",
-        "dist/utils-lib"
+        // "dist/utils-lib/utils-lib",
+        // "dist/utils-lib",
+        "projects/utils-lib/src/public-api.ts"
       ]
     }
   },

@@ -14,3 +14,10 @@ Promise.all([
   .catch(err => console.error(err));
 
 // https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf/tutorial/tutorial.md
+
+
+/*
+
+import('./bootstrap').catch((err) => console.error(err));
+
+*/

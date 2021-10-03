@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
+import { loggerProviders, LoggerService  } from 'utils-lib';
+
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { ContactComponent } from './components/contact/contact.component';
 
@@ -25,6 +27,15 @@ const components: any[] = [
 
     // https://angular.io/guide/router#routing-module-order
     FeaturesRoutingModule
+  ],
+  providers: [
+    loggerProviders
   ]
 })
-export class FeaturesModule {}
+export class FeaturesModule {
+
+  constructor(private logger: LoggerService) {
+    this.logger.info('Features Module initialised');
+  }
+
+}
