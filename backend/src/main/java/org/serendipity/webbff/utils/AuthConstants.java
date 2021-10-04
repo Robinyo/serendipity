@@ -1,11 +1,20 @@
-package au.gov.dta.rp.util;
+package org.serendipity.webbff.utils;
 
 public class AuthConstants {
 
   public static final int TIMEOUT = 10000; // 10 seconds
   public static final int ONE_HOUR = 60 * 60 * 1000;
 
-  public static final String BASE_URL = "https://onb.auth.identity.gov.au";
+  // public static final String BASE_URL = "https://onb.auth.identity.gov.au";
+
+  private AuthConstants(){
+    throw new AssertionError();
+  }
+
+}
+
+/*
+
   public static final String SIGN_IN_PATH = "/authorise";
   // public static final String SCOPE = "openid+profile";
   public static final String SCOPE = "openid+profile+tdif_business_authorisations";
@@ -18,11 +27,7 @@ public class AuthConstants {
   public static final String CLIENT_ASSERTION_TYPE = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
   public static final String BUSINESS_AUTHORISATIONS_REQUEST_PATH = "/sso/sps/oauth/oauth20/userinfo";
 
-  private AuthConstants(){
-    throw new AssertionError();
-  }
-
-}
+*/
 
 // public static final String SCOPE = "openid+profile+email+tdif_doc+tdif_business_authorisations";
 

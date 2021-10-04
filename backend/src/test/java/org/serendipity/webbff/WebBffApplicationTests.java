@@ -1,10 +1,10 @@
-package org.serendipity.serendipitywebbff;
+package org.serendipity.webbff;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SerendipityWebBffApplicationTests {
+class WebBffApplicationTests {
 
 	@Test
 	void contextLoads() {
