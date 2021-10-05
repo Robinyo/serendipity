@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 //
 // Utils lib
 //
 
-import { AngularMaterialModule, LoggerService, UtilsLibModule  } from 'utils-lib';
+import { AngularMaterialModule} from 'utils-lib';
+import { LoggerService } from 'utils-lib';
 
 //
 // Toolbar components
@@ -20,13 +22,16 @@ const components = [
 @NgModule({
   imports: [
     AngularMaterialModule,
-    FlexLayoutModule,
-    UtilsLibModule
+    CommonModule,
+    FlexLayoutModule
   ],
   declarations: [
     ...components
   ],
   exports: [
+    ...components
+  ],
+  entryComponents: [
     ...components
   ]
 })

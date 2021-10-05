@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { loadRemoteModule } from '@angular-architects/module-federation';
+//
+// Components - local
+//
 
 import { HomeComponent } from '@app/home/home.component';
-
 import { PlaceholderComponent } from '@app/core/components/placeholder/placeholder.component';
 
 const routes: Routes = [
@@ -17,12 +18,12 @@ const routes: Routes = [
 
   {
     path: 'customers',
-    loadChildren: () =>
-      loadRemoteModule({
-        // remoteEntry: 'http://localhost:4201/remoteEntry.js',
-        remoteName: 'party',
-        exposedModule: './Module'
-      }).then(m => m.FeaturesModule)
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('../../../party-lib/src/lib/party-lib.module').then(m => m.PartyLibModule)
+      }
+    ]
   },
 
   {
@@ -62,19 +63,32 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-// https://angular.io/guide/lazy-loading-ngmodules
-
 /*
 
-{
-  path: 'customers',
-  children: [
-    {
-      path: '',
-      // loadChildren: () => import('../../../party/src/app/features/features.module').then(m => m.FeaturesModule)
-      loadChildren: () => import('party/Module').then(m => m.FeaturesModule)
-    }
-  ]
-},
+  {
+    path: 'customers',
+    children: [
+      {
+        path: '',
+        // loadChildren: () => import('../../../party/src/app/features/features.module').then(m => m.FeaturesModule)
+        loadChildren: () => import('../../../party-lib/src/lib/party-lib.module').then(m => m.PartyLibModule)
+        // loadChildren: () => import('./lazy-loading/party-lib-wrapper.module').then(m => m.PartyLibWrapperModule)
+      }
+    ]
+  },
+
+// import { loadRemoteModule } from '@angular-architects/module-federation';
+
+  {
+    path: 'customers',
+    loadChildren: () =>
+      loadRemoteModule({
+        // remoteEntry: 'http://localhost:4201/remoteEntry.js',
+        remoteName: 'party',
+        exposedModule: './Module'
+      }).then(m => m.FeaturesModule)
+  },
+
+// https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf/tutorial/tutorial.md
 
 */

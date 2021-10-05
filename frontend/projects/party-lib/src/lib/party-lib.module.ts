@@ -2,21 +2,29 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
+//
+// Utils lib
+//
+
+import { AngularMaterialModule } from 'utils-lib';
+import { LoggerService } from 'utils-lib';
 import { SerendipityComponentsLibModule } from 'serendipity-components-lib';
-import { AngularMaterialModule, LoggerService, UtilsLibModule  } from 'utils-lib';
+// import { UtilsLibModule } from 'utils-lib';
+
+//
+// Components - local
+//
 
 import { ContactsComponent } from './components/contacts/contacts.component';
-import { ContactComponent } from './components/contact/contact.component';
 
 //
-// FeaturesRoutingModule: https://angular.io/guide/router#routing-module-order
+// PartyLibRoutingModule: https://angular.io/guide/router#routing-module-order
 //
 
-import { FeaturesRoutingModule } from './features-routing.module';
+import { PartyLibRoutingModule } from './party-lib-routing.module';
 
 const components: any[] = [
-  ContactsComponent,
-  ContactComponent
+  ContactsComponent
 ];
 
 @NgModule({
@@ -28,16 +36,18 @@ const components: any[] = [
     CommonModule,
     HttpClientModule,
     SerendipityComponentsLibModule,
-    UtilsLibModule,
+
+    // See core.module.ts
+    // UtilsLibModule,
 
     // https://angular.io/guide/router#routing-module-order
-    FeaturesRoutingModule
+    PartyLibRoutingModule
   ]
 })
-export class FeaturesModule {
+export class PartyLibModule {
 
   constructor(private logger: LoggerService) {
-    this.logger.info('Party Features Module initialised');
+    this.logger.info('Party Lib Module initialised');
   }
 
 }

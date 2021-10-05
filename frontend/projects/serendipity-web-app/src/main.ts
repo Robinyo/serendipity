@@ -1,3 +1,7 @@
+import('./bootstrap').catch((err) => console.error(err));
+
+/*
+
 import { loadRemoteEntry } from '@angular-architects/module-federation';
 
 Promise.all([
@@ -15,9 +19,5 @@ Promise.all([
 
 // https://github.com/angular-architects/module-federation-plugin/blob/main/libs/mf/tutorial/tutorial.md
 
-
-/*
-
-import('./bootstrap').catch((err) => console.error(err));
-
 */
+

@@ -27,6 +27,12 @@
       "@env/*": [
         "projects/serendipity-web-app/src/environments/*"
       ],
+      "party-lib": [
+        "dist/party-lib"
+      ],
+      "party-lib/*": [
+        "dist/party-lib/*"
+      ],
       "serendipity-components-lib": [
         "dist/serendipity-components-lib"
       ],
