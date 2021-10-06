@@ -1,5 +1,7 @@
 @use '~@angular/material' as mat;
+
 @use './projects/serendipity-web-app/src/app/core/components/sidenav/sidenav.component-theme' as sidenav;
+@use './projects/party-lib/src/lib/components/contacts/contacts.component-theme' as contactsComponent;
 
 @import "./projects/utils-lib/src/lib/angular-material/mat-variables";
 // @import "./projects/utils-lib/src/lib/angular-material/variables";
@@ -37,8 +39,23 @@ $light-theme: mat.define-light-theme((
 @include mat.all-component-themes($light-theme);
 
 @include sidenav.theme($light-theme);
+@include contactsComponent.theme($light-theme);
 
 // ------------------------------------------------------------------------------------------------------------------ //
+
+//
+// Angular Material Styles
+//
+
+.mat-drawer-container {
+
+  background-color: white !important;
+
+  // @media ($mat-xsmall) {
+  //   background-color: white !important;
+  // }
+
+}
 
 .mat-sidenav-container {
   // height: 100vh;
@@ -58,14 +75,6 @@ $sidenav-width: 320px; // 240px;
 
 .mat-vertical-content {
   padding: 24px 24px 24px 24px !important;
-}
-
-.mat-drawer-container {
-
-  @media ($mat-xsmall) {
-    background-color: white;
-  }
-
 }
 
 .mat-header-row {

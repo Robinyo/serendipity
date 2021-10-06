@@ -7,3 +7,10 @@ $toolbar-title-padding: 16px !default;
 .navigation-bar-spacer {
   flex: 1 1 auto;
 }
+
+.navigation-items {
+  cursor: pointer;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

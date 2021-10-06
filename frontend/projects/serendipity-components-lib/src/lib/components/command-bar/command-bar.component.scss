@@ -1,15 +1,30 @@
 @import "../../../../../../projects/utils-lib/src/lib/angular-material/mat-variables";
 @import "../../../../../../projects/utils-lib/src/lib/angular-material/variables";
 
-/*
+$command-bar-row-padding: 8px !default;
+
+$command-bar-button-padding: 16px !default;
+$command-bar-button-min-width: 48px !default;
+
+.command-bar {
+
+  height: $command-bar-height-desktop !important;
+  min-height: $command-bar-height-desktop !important;
+
+  @media ($mat-xsmall) {
+    height: $command-bar-height-mobile !important;
+    min-height: $command-bar-height-mobile !important;
+  }
+
+}
 
 .command-bar-row {
 
   height: $command-bar-height-desktop !important;
   min-height: $command-bar-height-desktop !important;
 
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: $command-bar-row-padding;
+  padding-right: $command-bar-row-padding;
 
   @media ($mat-xsmall) {
     height: $command-bar-height-mobile !important;
@@ -19,9 +34,6 @@
 }
 
 .command-bar-button {
-  min-width: 48px;
-  padding: 0 16px;
+  min-width: $command-bar-button-min-width;
+  padding: 0 $command-bar-button-padding;
 }
-
-*/
-

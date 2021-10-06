@@ -21,9 +21,44 @@
       <mat-icon> help_outline </mat-icon>
     </button>
 
-    <button mat-icon-button>
-      <mat-icon> person </mat-icon>
-    </button>
+    <ul class="navigation-items">
+
+      <li>
+
+        <button mat-icon-button [matMenuTriggerFor]="auth">
+          <mat-icon> person </mat-icon>
+        </button>
+
+        <mat-menu #auth="matMenu">
+
+          <button mat-menu-item [disabled]="true">
+            <mat-icon> person </mat-icon>
+            <span i18n="Navigation Bar Profile|Application Name@@NAVIGATION_BAR_PROFILE">
+            Profile
+          </span>
+          </button>
+
+          <mat-divider></mat-divider>
+
+          <button mat-menu-item (click)="login()">
+            <mat-icon svgIcon="login"> </mat-icon>
+            <span i18n="Navigation Bar Application Name|Application Name@@NAVIGATION_BAR_LOGOUT">
+            Login
+          </span>
+          </button>
+
+          <button mat-menu-item (click)="logout()">
+            <mat-icon svgIcon="logout"> </mat-icon>
+            <span i18n="Navigation Bar Application Name|Application Name@@NAVIGATION_BAR_LOGOUT">
+            Logout
+          </span>
+          </button>
+
+        </mat-menu>
+
+      </li>
+
+    </ul>
 
   </mat-toolbar-row>
 

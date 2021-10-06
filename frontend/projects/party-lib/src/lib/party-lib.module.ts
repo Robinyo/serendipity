@@ -42,12 +42,15 @@ const components: any[] = [
 
     // https://angular.io/guide/router#routing-module-order
     PartyLibRoutingModule
+  ],
+  exports: [
+    ...components
   ]
 })
 export class PartyLibModule {
 
   constructor(private logger: LoggerService) {
-    this.logger.info('Party Lib Module initialised');
+    this.logger.info('Party Library initialised');
   }
 
 }

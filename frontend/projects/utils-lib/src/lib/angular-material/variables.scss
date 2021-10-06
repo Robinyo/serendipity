@@ -1,14 +1,17 @@
-// See: constants.ts
+// See: constants.ts in Serendipity Components lib
 
-$command-bar-height-desktop: 56px !default;
-// $crm-command-bar-height-mobile: 48px !default;
+$bar-height-desktop: 56px !default;
+$bar-height-mobile: 48px !default;
+
+$command-bar-height-desktop: 48px !default;
 $command-bar-height-mobile: 0 !default;
 
-$action-bar-height-desktop: 56px !default;
-$action-bar-height-mobile: 48px !default;
+$action-bar-height-desktop: $bar-height-desktop;
+$action-bar-height-mobile: $bar-height-mobile;
 
-$activity-bar-height-desktop: 56px !default;
-$activity-bar-height-mobile: 48px !default;
+$activity-bar-height-desktop: $bar-height-desktop;
+$activity-bar-height-mobile: $bar-height-mobile;
+
 
 $view-bar-height-desktop: 96px !default;
 $view-bar-height-mobile: 84px !default;

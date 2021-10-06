@@ -6,7 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./command-bar.component.scss']
 })
 export class CommandBarComponent {
-
   constructor() {}
-
 }
