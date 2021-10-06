@@ -2,57 +2,78 @@
 
   <mat-toolbar-row>
 
-    <button mat-icon-button (click)="toggleSidenav.emit()">
-      <mat-icon> menu </mat-icon>
-    </button>
+    <ng-container *ngIf="!isAuthenticated()">
+      <button mat-icon-button>
+        <mat-icon svgIcon="menu-white"> </mat-icon>
+      </button>
+    </ng-container>
+
+    <ng-container *ngIf="isAuthenticated()">
+      <button mat-icon-button (click)="toggleSidenav.emit()">
+        <mat-icon svgIcon="menu-white"> </mat-icon>
+      </button>
+    </ng-container>
 
     <span class="navigation-bar-title"
-          i18n="Navigation Bar Application Name|Application Name@@NAVIGATION_BAR_TITLE">
+          i18n="Navigation Bar|Application Name@@NAVIGATION_BAR_TITLE">
       Serendipity
     </span>
 
     <span class="navigation-bar-spacer"></span>
 
-    <button mat-icon-button>
-      <mat-icon> settings </mat-icon>
-    </button>
+    <ng-container *ngIf="isAuthenticated()">
+      <button mat-icon-button>
+        <mat-icon svgIcon="settings-white"> </mat-icon>
+      </button>
 
-    <button mat-icon-button>
-      <mat-icon> help_outline </mat-icon>
-    </button>
+      <button mat-icon-button>
+        <mat-icon svgIcon="help-white"> </mat-icon>
+      </button>
+    </ng-container>
 
     <ul class="navigation-items">
 
       <li>
 
         <button mat-icon-button [matMenuTriggerFor]="auth">
-          <mat-icon> person </mat-icon>
+          <mat-icon svgIcon="person-white"> </mat-icon>
         </button>
 
         <mat-menu #auth="matMenu">
 
-          <button mat-menu-item [disabled]="true">
-            <mat-icon> person </mat-icon>
-            <span i18n="Navigation Bar Profile|Application Name@@NAVIGATION_BAR_PROFILE">
+          <!-- <button mat-menu-item [disabled]="true"> -->
+          <!--
+          <button mat-menu-item>
+          <mat-icon svgIcon="person"> </mat-icon>
+            <span i18n="Navigation Bar|Profile@@NAVIGATION_BAR_PROFILE">
             Profile
           </span>
           </button>
 
           <mat-divider></mat-divider>
+          -->
 
-          <button mat-menu-item (click)="login()">
-            <mat-icon svgIcon="login"> </mat-icon>
-            <span i18n="Navigation Bar Application Name|Application Name@@NAVIGATION_BAR_LOGOUT">
-            Login
-          </span>
-          </button>
+          <ng-container *ngIf="!isAuthenticated()">
 
-          <button mat-menu-item (click)="logout()">
-            <mat-icon svgIcon="logout"> </mat-icon>
-            <span i18n="Navigation Bar Application Name|Application Name@@NAVIGATION_BAR_LOGOUT">
-            Logout
-          </span>
-          </button>
+            <button mat-menu-item (click)="login()">
+              <mat-icon svgIcon="login"> </mat-icon>
+              <span i18n="Navigation Bar|Login@@NAVIGATION_BAR_LOGIN">
+                Login
+              </span>
+            </button>
+
+          </ng-container>
+
+          <ng-container *ngIf="isAuthenticated()">
+
+            <button mat-menu-item (click)="logout()">
+              <mat-icon svgIcon="logout"> </mat-icon>
+              <span i18n="Navigation Bar|Logout@@NAVIGATION_BAR_LOGOUT">
+                Logout
+              </span>
+            </button>
+
+          </ng-container>
 
         </mat-menu>
 

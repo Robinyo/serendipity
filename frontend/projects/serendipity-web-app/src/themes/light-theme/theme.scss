@@ -48,13 +48,11 @@ $light-theme: mat.define-light-theme((
 //
 
 .mat-drawer-container {
-
   background-color: white !important;
 
   // @media ($mat-xsmall) {
   //   background-color: white !important;
   // }
-
 }
 
 .mat-sidenav-container {
@@ -78,12 +76,10 @@ $sidenav-width: 320px; // 240px;
 }
 
 .mat-header-row {
-  // background-color: mat-color($light-theme-accent, 300);
   background-color: #f5f5f5;
 }
 
 .mat-footer-row {
-  // background-color: mat-color($light-theme-accent, 300);
   background-color: #f5f5f5;
 }
 
