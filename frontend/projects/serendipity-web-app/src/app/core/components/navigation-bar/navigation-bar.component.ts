@@ -1,8 +1,14 @@
 import { Component,  EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { DomSanitizer } from "@angular/platform-browser";
+
 import { MatIconRegistry } from "@angular/material/icon";
 
+import { Subscription } from 'rxjs';
+
 import { LoggerService } from 'utils-lib';
+
+import { AuthService } from '../../services/auth.service';
 
 import { SVG_ICONS } from './svg-icons';
 
@@ -17,8 +23,10 @@ export class NavigationBarComponent {
 
   private authenticated = false;
 
-  constructor(private matIconRegistry: MatIconRegistry,
+  constructor(private router: Router,
+    private matIconRegistry: MatIconRegistry,
               private domSanitizer: DomSanitizer,
+              private authService: AuthService,
               private logger: LoggerService) {
 
     const svgIconPath = '../assets/images/icons/navigation-bar/';
@@ -45,7 +53,20 @@ export class NavigationBarComponent {
 
     this.logger.info('NavigationBarComponent: login()');
 
-    this.authenticated = !this.authenticated
+    // /*
+
+    const subscription: Subscription = this.authService.login().subscribe(response => {
+
+      subscription.unsubscribe();
+
+      this.authenticated = !this.authenticated
+
+    });
+
+    // */
+
+    // this.authenticated = !this.authenticated
+
   }
 
   public logout() {
@@ -53,6 +74,8 @@ export class NavigationBarComponent {
     this.logger.info('NavigationBarComponent: logout()');
 
     this.authenticated = !this.authenticated
+
+    this.router.navigate(['/']);
   }
 
 }
