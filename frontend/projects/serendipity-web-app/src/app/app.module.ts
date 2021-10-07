@@ -7,6 +7,8 @@ import { loggerProviders, LoggerService  } from 'utils-lib';
 
 import { CoreModule } from './core/core.module';
 
+import { SerendipityComponentsLibModule } from 'serendipity-components-lib';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
@@ -24,6 +26,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     CoreModule,
+    SerendipityComponentsLibModule,
 
     // https://angular.io/guide/router#routing-module-order
     AppRoutingModule

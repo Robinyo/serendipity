@@ -10,3 +10,9 @@
 </p>
 
 ![divider](./divider.png)
+
+## ❯ Quick Links
+
+[Documentation, demos, and guides](backend/docs/README.md)
+
+![divider](./divider.png)
