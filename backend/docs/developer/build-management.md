@@ -2,7 +2,7 @@
 
 ### Getting Started
 
-Follow the steps in the [Quick Start Guide](https://github.com/Robinyo/serendipity-api/blob/master/projects/spring-boot/docs/developer/quick-start-guide.md).
+Follow the steps in the [Quick Start Guide](https://github.com/Robinyo/serendipity-2.0/blob/main/backend/docs/developer/quick-start-guide.md).
 
 ### Development
 
@@ -76,3 +76,5 @@ docker-compose down -v
 * Github: [Adding a new SSH key to your GitHub account](https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account)
 * Github: [Testing your SSH connection](https://docs.github.com/en/github/authenticating-to-github/testing-your-ssh-connection)
 * Github: [Switching remote URLs from HTTPS to SSH](https://docs.github.com/en/github/using-git/changing-a-remotes-url#switching-remote-urls-from-https-to-ssh)
+
+
