@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from "@angular/platform-browser";
+import { MatIconRegistry } from "@angular/material/icon";
 
 import { ConfigService, LoggerService } from 'utils-lib';
 
-interface SidenavRoute {
-  id?: string;
-  label?: string;
-  icon?: string;
-  route?: string;
-}
+import { SidenavRoute } from "@app/core/models/models";
+
+import { SVG_ICONS } from './svg-icons';
 
 const MY_WORK_ROUTES = 'my-work-routes';
 const CUSTOMER_ROUTES = 'customers-routes';
@@ -30,8 +29,26 @@ export class SidenavComponent implements OnInit {
   // public marketingRoutes: SidenavRoute[] | undefined;
   public toolsRoutes: SidenavRoute[] | undefined;
 
-  constructor(private configService: ConfigService,
-              private logger: LoggerService) {}
+  constructor(private matIconRegistry: MatIconRegistry,
+              private domSanitizer: DomSanitizer,
+              private configService: ConfigService,
+              private logger: LoggerService) {
+
+    const svgIconPath = '../assets/images/icons/sidenav/';
+
+    SVG_ICONS.forEach(svgIcon => {
+
+      if (svgIcon.name != undefined && svgIcon.filename != undefined) {
+
+        this.matIconRegistry.addSvgIcon(
+          svgIcon.name,
+          this.domSanitizer.bypassSecurityTrustResourceUrl(svgIconPath + svgIcon.filename)
+        );
+
+      }
+    });
+
+  }
 
   ngOnInit(): void {
 

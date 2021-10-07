@@ -1,50 +1,10 @@
 import { Component,  EventEmitter, Output } from '@angular/core';
 import { DomSanitizer } from "@angular/platform-browser";
-
 import { MatIconRegistry } from "@angular/material/icon";
 
 import { LoggerService } from 'utils-lib';
 
-
-interface SvgIconRegistry {
-  name?: string;
-  filename?: string;
-}
-
-const svgIcons: SvgIconRegistry[] = [
-
-  {
-    "name":  "help-white",
-    "filename": "help_outline_white_24dp.svg"
-  },
-  {
-    "name":  "login",
-    "filename": "login_black_24dp.svg"
-  },
-  {
-    "name":  "logout",
-    "filename": "logout_black_24dp.svg"
-  },
-  {
-    "name":  "menu-white",
-    "filename": "menu_white_24dp.svg"
-  },
-  {
-    "name":  "person",
-    "filename": "person_black_24dp.svg"
-  },
-  {
-    "name":  "person-white",
-    "filename": "person_white_24dp.svg"
-  },
-  {
-    "name":  "settings-white",
-    "filename": "settings_white_24dp.svg"
-  }
-
-];
-
-const svgIconPath = '../assets/images/svg/';
+import { SVG_ICONS } from './svg-icons';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -61,13 +21,15 @@ export class NavigationBarComponent {
               private domSanitizer: DomSanitizer,
               private logger: LoggerService) {
 
-    svgIcons.forEach(svgIcon => {
+    const svgIconPath = '../assets/images/icons/navigation-bar/';
+
+    SVG_ICONS.forEach(svgIcon => {
 
       if (svgIcon.name != undefined && svgIcon.filename != undefined) {
 
         this.matIconRegistry.addSvgIcon(
           svgIcon.name,
-          this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/images/svg/' + svgIcon.filename)
+          this.domSanitizer.bypassSecurityTrustResourceUrl(svgIconPath + svgIcon.filename)
         );
 
       }

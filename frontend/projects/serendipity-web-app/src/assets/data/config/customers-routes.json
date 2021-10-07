@@ -3,13 +3,13 @@
   {
     "id":    "ACCOUNTS_LIST_ITEM",
     "label": "Accounts",
-    "icon":  "contacts",
+    "icon":  "manage-accounts",
     "route": "customers/accounts"
   },
   {
     "id":    "CONTACTS_LIST_ITEM",
     "label": "Contacts",
-    "icon":  "people",
+    "icon":  "contacts",
     "route": "customers/contacts"
   }
 

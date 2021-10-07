@@ -3,7 +3,7 @@
   {
     "id":    "REPORTS_LIST_ITEM",
     "label": "Reports",
-    "icon":  "assessment",
+    "icon":  "analytics",
     "route": "reports"
   }
 
