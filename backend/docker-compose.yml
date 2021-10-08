@@ -2,6 +2,18 @@ version: '3.8'
 
 services:
 
+  serendipity-identity-server:
+    container_name: serendipity-identity-server
+    build:
+      context: ./services/serendipity-identity-server
+      dockerfile: Dockerfile
+    ports:
+      - "10001:8080"
+      - "10443:8443"
+    volumes:
+      - .:/export
+    env_file: ./services/serendipity-identity-server/serendipity-identity-server.env
+
   serendipity-web-bff:
     container_name: serendipity-web-bff
     build:
@@ -9,3 +21,5 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+    depends_on:
+      - serendipity-identity-server
