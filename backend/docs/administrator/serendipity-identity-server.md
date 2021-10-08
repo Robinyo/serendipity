@@ -1,4 +1,4 @@
-<h1 align="center">Working with the Serendipity Identity Server</h1>
+<h1 align="center">Working with Serendipity Identity Server</h1>
 
 ### Export and Import
 
