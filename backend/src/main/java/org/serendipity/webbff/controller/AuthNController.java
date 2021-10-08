@@ -42,6 +42,10 @@ public class AuthNController {
 
     String state = UUID.randomUUID().toString();
 
+    Cookie authN = new Cookie("authN", "false");
+    authN.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
+    response.addCookie(authN);
+
     Cookie authState = new Cookie("state", state);
     authState.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
     response.addCookie(authState);
@@ -100,6 +104,17 @@ public class AuthNController {
     try {
 
       TokenResponse tokenResponse = authNService.tokenRequest(code);
+
+      for (Cookie cookie : cookies) {
+
+        if (cookie.getName().equalsIgnoreCase("authN")) {
+
+          log.info("authN = true");
+
+          cookie.setValue("true");
+        }
+
+      }
 
       this.logInfo(tokenResponse);
 

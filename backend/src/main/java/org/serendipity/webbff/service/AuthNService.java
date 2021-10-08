@@ -76,8 +76,8 @@ public class AuthNService {
       .body(
         fromFormData("grant_type", AuthConstants.GRANT_TYPE)
           .with("client_id", this.clientId)
-          .with("redirect_uri", this.redirectUri)
           .with("client_secret", clientSecret)
+          .with("redirect_uri", this.redirectUri)
           .with("code", code))
       .retrieve()
       .bodyToMono(TokenResponse.class)
