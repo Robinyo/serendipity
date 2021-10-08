@@ -21,5 +21,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+    env_file: ./serendipity-web-bff.env
     depends_on:
       - serendipity-identity-server

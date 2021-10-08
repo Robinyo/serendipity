@@ -37,7 +37,7 @@ docker-compose up -d
 
 The containers may take a minute or two to startup.
 
-Navigate to `http://localhost:8080/`
+Navigate to `http://localhost:8080`
 
 You can check the status of the containers using the following command:
 
@@ -57,7 +57,7 @@ To check the logs inside your container:
 
 ```
 docker container logs openldap
-docker container logs keycloak
+docker container logs serendipity-identity-server
 docker container logs postgres
 docker container logs pgadmin
 docker container logs serendipity-web-bff

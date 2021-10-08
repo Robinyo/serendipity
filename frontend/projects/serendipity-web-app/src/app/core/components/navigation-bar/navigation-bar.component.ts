@@ -53,19 +53,17 @@ export class NavigationBarComponent {
 
     this.logger.info('NavigationBarComponent: login()');
 
-    // /*
-
     const subscription: Subscription = this.authService.login().subscribe(response => {
+
+      this.logger.info('response: ' + JSON.stringify(response, null, 2));
 
       subscription.unsubscribe();
 
       this.authenticated = !this.authenticated
 
+      window.location = response.authorizationRequestUrl;
+
     });
-
-    // */
-
-    // this.authenticated = !this.authenticated
 
   }
 
