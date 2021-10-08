@@ -99,7 +99,7 @@ To create a new client in the `development` realm click 'Clients' in the sidemen
 Enter a Client ID and then click the 'Save' button:
 
 <p align="center">
-  <img src=https://github.com/Robinyo/serendipity-2.0/blob/main/backend/docs/screen-shots/clients-settings.png">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/backend/docs/screen-shots/clients-settings.png">
 </p>
 
 Serendipity's Web BFF uses OpenID Connect to interact with Keycloak.
