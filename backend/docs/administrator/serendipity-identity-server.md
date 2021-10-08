@@ -93,13 +93,13 @@ Every application that interacts with Keycloak is considered to be a client.
 To create a new client in the `development` realm click 'Clients' in the sidemenu and then click the 'Create' button:
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity-api/blob/master/projects/spring-boot/docs/screen-shots/add-client.png">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/backend/docs/screen-shots/add-client.png">
 </p>
 
 Enter a Client ID and then click the 'Save' button:
 
 <p align="center">
-  <img src=https://github.com/Robinyo/serendipity-api/blob/master/projects/spring-boot/docs/screen-shots/clients-settings.png">
+  <img src=https://github.com/Robinyo/serendipity-2.0/blob/main/backend/docs/screen-shots/clients-settings.png">
 </p>
 
 Serendipity's Web BFF uses OpenID Connect to interact with Keycloak.
