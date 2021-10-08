@@ -1,4 +1,4 @@
-<h1 align="center">Working with Keycloak</h1>
+<h1 align="center">Working with the Serendipity Identity Server</h1>
 
 ### Export and Import
 
@@ -105,6 +105,6 @@ Enter a Client ID and then click the 'Save' button:
 Serendipity's Web BFF uses OpenID Connect to interact with Keycloak.
  
 The 'Access Type' should be confidential. Check 'Standard Flow Enabled' and 'Direct Access Grants Enabled', enter a 
-Valid Redirect URI (e.g., `http://localhost:8080/*`), enter a valid Web Origins (e.g., `*`) and then click the 'Save' button.
+Valid Redirect URI (e.g., `https://localhost:8080/*`), enter a valid Web Origins (e.g., `*`) and then click the 'Save' button.
 
 **Note:** Standard Flow is Keycloak's name for the OpenID Connect Authorization Code Flow.
