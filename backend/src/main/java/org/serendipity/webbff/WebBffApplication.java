@@ -65,7 +65,10 @@ public class WebBffApplication implements ErrorController {
 	@RequestMapping("/error")
 	@ResponseStatus(HttpStatus.OK)
 	public String error() {
-		return "redirect:/index.html";
+
+		// return "redirect:/index.html";
+		return "redirect:/";
+
 	}
 
 }

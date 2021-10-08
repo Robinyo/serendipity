@@ -31,7 +31,8 @@ import java.util.UUID;
 public class AuthNController {
 
   private static final String ERROR_PATH = "/error";
-  private static final String REDIRECT_PATH = "redirect:/";
+  // private static final String REDIRECT_PATH = "redirect:/";
+  private static final String REDIRECT_PATH = "redirect:/welcome-page";
 
   private final AuthNService authNService;
 
