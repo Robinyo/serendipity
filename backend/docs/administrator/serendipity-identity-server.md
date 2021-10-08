@@ -26,12 +26,12 @@ To import a realm file place the (previously exported) file in the following loc
 ├── /spring-boot
     └── /server
         └── /services
-            └── /keycloak
+            └── /serendipity-identity-server
                 └── /json
                     ├── development-realm.json
                     ├── production-realm.json
                 ├── Dockerfile
-                ├── keycloak.env
+                ├── serendipity-identity-server.env
 ```
 
 All the files in the `/json` directory will be copied to the Keycloak container: 
