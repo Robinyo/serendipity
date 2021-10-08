@@ -56,7 +56,6 @@ docker inspect -f \
 To check the logs inside your container:
 
 ```
-docker container logs openldap
 docker container logs serendipity-identity-server
 docker container logs postgres
 docker container logs pgadmin
