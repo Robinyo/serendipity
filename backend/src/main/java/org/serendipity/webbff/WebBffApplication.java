@@ -8,10 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -35,14 +36,19 @@ public class WebBffApplication implements ErrorController {
 
 		log.info("Web BFF Application -> getWebClient()");
 
-		String baseUrl = env.getProperty("BASE_URL");
+		String baseUrl = env.getProperty("IDENTITY_SERVER_BASE_URL");
 
-		// Assert.notNull(baseUrl, "BASE_URL environment variable not found");
+		if (baseUrl == null) {
+			baseUrl = "http://serendipity-identity-server:10001";
+		}
+
+		log.info("baseUrl: {}", baseUrl);
 
 		HttpClient httpClient = HttpClient.create().responseTimeout(Duration.ofMillis(AuthConstants.TIMEOUT));
 
 		return WebClient.builder()
 			.baseUrl(baseUrl)
+			.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
 			.filter(WebClientFilter.logRequest())
 			.filter(WebClientFilter.logResponse())
 			.clientConnector(new ReactorClientHttpConnector(httpClient))

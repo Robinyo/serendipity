@@ -1,5 +1,9 @@
 package org.serendipity.webbff.controller;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.serendipity.webbff.model.LoginResponse;
@@ -27,7 +31,7 @@ import java.util.UUID;
 public class AuthNController {
 
   private static final String ERROR_PATH = "/error";
-  private static final String REDIRECT_PATH = "redirect:/welcome-page";
+  private static final String REDIRECT_PATH = "redirect:/";
 
   private final AuthNService authNService;
 
@@ -64,7 +68,7 @@ public class AuthNController {
                                                 @RequestParam(required = false) String state,
                                                 HttpServletResponse response) {
 
-    log.info("AuthNController GET /success");
+    log.info("AuthNController GET /authorization-code/callback");
 
     log.info("code={}", code);
     log.info("state={}", state);
@@ -97,6 +101,8 @@ public class AuthNController {
 
       TokenResponse tokenResponse = authNService.tokenRequest(code);
 
+      this.logInfo(tokenResponse);
+
       // private Integer expires_in;
       // private String scope;
       // private String token_type;
@@ -120,6 +126,28 @@ public class AuthNController {
     }
 
     return ERROR_PATH;
+
+  }
+
+  protected void logInfo(Object model) {
+
+    try {
+
+      ObjectMapper mapper = new ObjectMapper();
+
+      mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+      mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+
+      mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+      if (model != null) {
+        log.info("model: {}", "\n" + mapper.writeValueAsString(model));
+      }
+
+    } catch (JsonProcessingException jpe) {
+
+      log.error("Json Processing Exception: {}", jpe.getLocalizedMessage());
+    }
 
   }
 

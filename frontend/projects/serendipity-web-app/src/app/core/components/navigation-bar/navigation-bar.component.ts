@@ -55,7 +55,7 @@ export class NavigationBarComponent {
 
     const subscription: Subscription = this.authService.login().subscribe(response => {
 
-      this.logger.info('response: ' + JSON.stringify(response, null, 2));
+      // this.logger.info('response: ' + JSON.stringify(response, null, 2));
 
       subscription.unsubscribe();
 

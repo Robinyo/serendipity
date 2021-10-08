@@ -29,20 +29,20 @@ public class AuthNService {
 
   public String getUrl(String state) {
 
-    log.info("AuthService -> getUrl()");
+    log.info("AuthNService -> getUrl()");
 
-    String baseUrl = env.getProperty("BASE_URL");
+    String redirectUrl = env.getProperty("IDENTITY_SERVER_REDIRECT_URL");
     String authorizationEndpoint = env.getProperty("AUTHORIZATION_ENDPOINT");
     this.clientId = env.getProperty("CLIENT_ID");
     this.redirectUri = env.getProperty("REDIRECT_URI");
 
-    Assert.notNull(baseUrl, "BASE_URL environment variable not found");
+    Assert.notNull(redirectUrl, "IDENTITY_SERVER_REDIRECT_URL environment variable not found");
     Assert.notNull(authorizationEndpoint, "AUTHORIZATION_ENDPOINT environment variable not found");
     Assert.notNull(this.clientId, "CLIENT_ID environment variable not found");
     Assert.notNull(this.redirectUri, "REDIRECT_URI environment variable not found");
 
     UriComponents builder = UriComponentsBuilder
-      .fromHttpUrl(baseUrl)
+      .fromHttpUrl(redirectUrl)
       .path(authorizationEndpoint)
       .queryParam("response_type", AuthConstants.RESPONSE_TYPE)
       .queryParam("client_id", this.clientId)
@@ -52,7 +52,7 @@ public class AuthNService {
       .build()
       .encode();
 
-    log.info("url = {}", builder.toString());
+    log.info("url: {}", builder.toString());
 
     return builder.toString();
 
@@ -60,7 +60,7 @@ public class AuthNService {
 
   public TokenResponse tokenRequest(String code) {
 
-    log.info("AuthService -> tokenRequest()");
+    log.info("AuthNService -> tokenRequest()");
 
     String tokenEndpoint = env.getProperty("TOKEN_ENDPOINT");
     String clientSecret = env.getProperty("CLIENT_SECRET");
