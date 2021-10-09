@@ -2,7 +2,6 @@
 
   <mat-toolbar-row>
 
-    <!--
     <ng-container *ngIf="!isAuthenticated()">
       <button mat-icon-button>
         <mat-icon svgIcon="menu-white"> </mat-icon>
@@ -14,11 +13,6 @@
         <mat-icon svgIcon="menu-white"> </mat-icon>
       </button>
     </ng-container>
-    -->
-
-    <button mat-icon-button (click)="toggleSidenav.emit()">
-      <mat-icon svgIcon="menu-white"> </mat-icon>
-    </button>
 
     <span class="navigation-bar-title"
           i18n="Navigation Bar|Application Name@@NAVIGATION_BAR_TITLE">
@@ -90,3 +84,9 @@
   </mat-toolbar-row>
 
 </mat-toolbar>
+
+<!--
+<button mat-icon-button (click)="toggleSidenav.emit()">
+  <mat-icon svgIcon="menu-white"> </mat-icon>
+</button>
+-->

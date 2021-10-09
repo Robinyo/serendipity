@@ -4,17 +4,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
+import { SerendipityComponentsLibModule } from 'serendipity-components-lib';
 import { AngularMaterialModule, UtilsLibModule, LoggerService } from 'utils-lib';
 
+import { AuthorizationCodeCallbackComponent } from './components/authorization-code-callback/authorization-code-callback.component';
+import { HomeComponent } from './components/home/home.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { PlaceholderComponent } from './components/placeholder/placeholder.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 import { environment } from '@env/environment';
-import { AuthorizationCodeCallbackComponent } from './components/authorization-code-callback/authorization-code-callback.component';
 
 const components: any[] = [
   AuthorizationCodeCallbackComponent,
+  HomeComponent,
   NavigationBarComponent,
   PlaceholderComponent,
   SidenavComponent
@@ -29,6 +32,7 @@ const components: any[] = [
     BrowserAnimationsModule,  // for NgModules.
     CommonModule,
     HttpClientModule,
+    SerendipityComponentsLibModule,
 
     UtilsLibModule.forRoot(environment),
 

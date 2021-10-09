@@ -6,14 +6,13 @@ import { RouterModule, Routes } from '@angular/router';
 //
 
 import { AuthorizationCodeCallbackComponent } from "@app/core/components/authorization-code-callback/authorization-code-callback.component";
-import { HomeComponent } from '@app/home/home.component';
+import { HomeComponent } from '@app/core/components/home/home.component';
 import { PlaceholderComponent } from '@app/core/components/placeholder/placeholder.component';
 
 const routes: Routes = [
 
   {
     // path: 'authorization-code/callback',
-    // path: 'welcome-page',
     path: 'login-callback',
     component: AuthorizationCodeCallbackComponent,
     // canActivate: [AuthGuard],
