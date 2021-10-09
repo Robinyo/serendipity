@@ -5,10 +5,20 @@ import { RouterModule, Routes } from '@angular/router';
 // Components - local
 //
 
+import { AuthorizationCodeCallbackComponent } from "@app/core/components/authorization-code-callback/authorization-code-callback.component";
 import { HomeComponent } from '@app/home/home.component';
 import { PlaceholderComponent } from '@app/core/components/placeholder/placeholder.component';
 
 const routes: Routes = [
+
+  {
+    // path: 'authorization-code/callback',
+    // path: 'welcome-page',
+    path: 'welcome-page',
+    component: AuthorizationCodeCallbackComponent,
+    // canActivate: [AuthGuard],
+    // runGuardsAndResolvers: 'always'
+  },
 
   {
     path: '',

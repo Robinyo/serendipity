@@ -62,6 +62,10 @@ public class WebBffApplication implements ErrorController {
 		SpringApplication.run(WebBffApplication.class, args);
 	}
 
+}
+
+/*
+
 	@RequestMapping("/error")
 	@ResponseStatus(HttpStatus.OK)
 	public String error() {
@@ -71,4 +75,4 @@ public class WebBffApplication implements ErrorController {
 
 	}
 
-}
+*/

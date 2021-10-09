@@ -27,7 +27,7 @@ export class AuthService {
 
     this.logger.info('AuthService: login()');
 
-    this.url = this.urlPrefix + '/login';
+    this.url = this.urlPrefix + '/bff/login';
 
     return this.httpClient.post(this.url, {}, this.httpOptions).pipe(
       tap(() => {

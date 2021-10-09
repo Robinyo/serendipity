@@ -31,15 +31,16 @@ import java.util.UUID;
 public class AuthNController {
 
   private static final String ERROR_PATH = "/error";
-  // private static final String REDIRECT_PATH = "redirect:/";
+  // private static final String REDIRECT_PATH = "redirect:/"; -> worked
+  // private static final String REDIRECT_PATH = "redirect:/welcome-page"; -> worked
   private static final String REDIRECT_PATH = "redirect:/welcome-page";
 
   private final AuthNService authNService;
 
-  @PostMapping("/login")
+  @PostMapping("/bff/login")
   public ResponseEntity<LoginResponse> signIn(HttpServletResponse response) {
 
-    log.info("AuthNController POST /login");
+    log.info("AuthNController POST /bff/login");
 
     String state = UUID.randomUUID().toString();
 
@@ -67,13 +68,13 @@ public class AuthNController {
 
   }
 
-  @GetMapping("/authorization-code/callback")
+  @GetMapping("/bff/authorization-code/callback")
   public String authorizationCodeCallback(HttpServletRequest request,
                                                 @RequestParam(required = false) String code,
                                                 @RequestParam(required = false) String state,
                                                 HttpServletResponse response) {
 
-    log.info("AuthNController GET /authorization-code/callback");
+    log.info("AuthNController GET /bff/authorization-code/callback");
 
     log.info("code={}", code);
     log.info("state={}", state);

@@ -11,8 +11,10 @@ import { PlaceholderComponent } from './components/placeholder/placeholder.compo
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 import { environment } from '@env/environment';
+import { AuthorizationCodeCallbackComponent } from './components/authorization-code-callback/authorization-code-callback.component';
 
 const components: any[] = [
+  AuthorizationCodeCallbackComponent,
   NavigationBarComponent,
   PlaceholderComponent,
   SidenavComponent
@@ -20,7 +22,7 @@ const components: any[] = [
 
 @NgModule({
   declarations: [
-    ...components
+    ...components,
   ],
   imports: [
     AngularMaterialModule,    // The Angular Material module must be imported after Angular's BrowserModule, as the import order matters
