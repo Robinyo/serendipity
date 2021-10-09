@@ -34,6 +34,8 @@ export class SidenavComponent implements OnInit {
               private configService: ConfigService,
               private logger: LoggerService) {
 
+    // this.logger.info('SidenavComponent: constructor()');
+
     const svgIconPath = '../assets/images/icons/sidenav/';
 
     SVG_ICONS.forEach(svgIcon => {

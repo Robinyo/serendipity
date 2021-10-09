@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { SerendipityComponentsLibModule } from 'serendipity-components-lib';
 import { AngularMaterialModule, UtilsLibModule, LoggerService } from 'utils-lib';
 
@@ -31,6 +33,7 @@ const components: any[] = [
     AngularMaterialModule,    // The Angular Material module must be imported after Angular's BrowserModule, as the import order matters
     BrowserAnimationsModule,  // for NgModules.
     CommonModule,
+    FlexLayoutModule,
     HttpClientModule,
     SerendipityComponentsLibModule,
 

@@ -1,11 +1,38 @@
-.activity-bar-title {
-  font-size: 1.6em;
+.mat-card {
+  box-shadow: none;
+  border-radius: unset;
+  // background-color: transparent;
+}
+
+.mat-card-content {
+  background-color: #f5f5f5;
+  // background-color: transparent;
+}
+
+.mat-icon {
+  height: 256px;
+  width: 256px;
+}
+
+.welcome-title {
+  font-size: 3.4em;
+  font-weight: bold;
+}
+
+.welcome-text {
+  font-size: 1.4em;
+  padding-right: 32px;
 }
 
 /*
 
-.component-title {
-  text-align: center;
+.home-container {
+  // height: 100%;
+  padding: 15px;
+}
+
+.home-container-content {
+  background-color: #f5f5f5;
 }
 
 */

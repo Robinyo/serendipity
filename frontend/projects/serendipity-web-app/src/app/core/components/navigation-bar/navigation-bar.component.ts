@@ -1,5 +1,4 @@
-import { Component,  EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { DomSanitizer } from "@angular/platform-browser";
 
 import { MatIconRegistry } from "@angular/material/icon";
@@ -22,6 +21,8 @@ export class NavigationBarComponent {
               private domSanitizer: DomSanitizer,
               private authService: AuthService,
               private logger: LoggerService) {
+
+    // this.logger.info('NavigationBarComponent: constructor()');
 
     const svgIconPath = '../assets/images/icons/navigation-bar/';
 
