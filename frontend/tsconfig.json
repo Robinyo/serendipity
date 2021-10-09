@@ -27,6 +27,10 @@
       "@env/*": [
         "projects/serendipity-web-app/src/environments/*"
       ],
+      "auth-bff-lib": [
+        "dist/auth-bff-lib/auth-bff-lib",
+        "dist/auth-bff-lib"
+      ],
       "party-lib": [
         "dist/party-lib"
       ],

@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     // path: 'authorization-code/callback',
     // path: 'welcome-page',
-    path: 'welcome-page',
+    path: 'login-callback',
     component: AuthorizationCodeCallbackComponent,
     // canActivate: [AuthGuard],
     // runGuardsAndResolvers: 'always'

@@ -4,11 +4,8 @@ import { DomSanitizer } from "@angular/platform-browser";
 
 import { MatIconRegistry } from "@angular/material/icon";
 
-import { Subscription } from 'rxjs';
-
+import { AuthService } from 'auth-bff-lib';
 import { LoggerService } from 'utils-lib';
-
-import { AuthService } from '../../services/auth.service';
 
 import { SVG_ICONS } from './svg-icons';
 
@@ -21,10 +18,7 @@ export class NavigationBarComponent {
 
   @Output() toggleSidenav = new EventEmitter<void>();
 
-  private authenticated = false;
-
-  constructor(private router: Router,
-    private matIconRegistry: MatIconRegistry,
+  constructor(private matIconRegistry: MatIconRegistry,
               private domSanitizer: DomSanitizer,
               private authService: AuthService,
               private logger: LoggerService) {
@@ -46,8 +40,20 @@ export class NavigationBarComponent {
   }
 
   public isAuthenticated(): boolean {
-    return this.authenticated;
+    return this.authService.isAuthenticated();
   }
+
+  public login() {
+    this.authService.loginWithRedirect();
+  }
+
+  public logout() {
+    this.authService.logout("/");
+  }
+
+}
+
+/*
 
   public login() {
 
@@ -59,7 +65,7 @@ export class NavigationBarComponent {
 
       subscription.unsubscribe();
 
-      this.authenticated = !this.authenticated
+      // this.authenticated = !this.authenticated
 
       window.location = response.authorizationRequestUrl;
 
@@ -71,9 +77,9 @@ export class NavigationBarComponent {
 
     this.logger.info('NavigationBarComponent: logout()');
 
-    this.authenticated = !this.authenticated
+    // this.authenticated = !this.authenticated
 
     this.router.navigate(['/']);
   }
 
-}
+*/

@@ -33,7 +33,7 @@ public class AuthNController {
   private static final String ERROR_PATH = "/error";
   // private static final String REDIRECT_PATH = "redirect:/"; -> worked
   // private static final String REDIRECT_PATH = "redirect:/welcome-page"; -> worked
-  private static final String REDIRECT_PATH = "redirect:/welcome-page";
+  private static final String REDIRECT_PATH = "redirect:/login-callback";
 
   private final AuthNService authNService;
 
