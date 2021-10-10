@@ -1,10 +1,10 @@
 <h1 align="center">Documentation</h1>
 
 * Administrator Documentation
-  * [Serendipity Identity Server](../backend/administrator/serendipity-identity-server.md)
+  * [Serendipity Identity Server](../backend/docs/administrator/serendipity-identity-server.md)
 * Developer Documentation
-    * [Quick Start Guide](./quick-start-guide.md)
+  * [Quick Start Guide](./quick-start-guide.md)
   * Frontend
-    * [Build Management](../frontend/developer/build-management.md)
-  * Frontend
-    * [Build Management](../frontend/developer/build-management.md)
+    * [Build Management](../frontend/docs/developer/build-management.md)
+  * Backend
+    * [Build Management](../backend/docs/developer/build-management.md)
