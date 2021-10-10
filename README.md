@@ -11,6 +11,16 @@
 
 ![divider](./divider.png)
 
+## ❯ Components
+
+- **Serendipity Web App** a Progressive Web Application (PWA)
+- **Serendipity Web BFF** a Backend for Frontend (BFF)
+- **Serendipity Identity Server**
+- **~~PostgreSQL~~**
+- **~~JasperReports Server~~**
+
+![divider](./divider.png)
+
 ## ❯ Quick Links
 
 [Documentation, demos, and guides](./docs/README.md)
