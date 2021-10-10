@@ -13,11 +13,10 @@
 
 ## ❯ Components
 
-- **Serendipity Web App** a Progressive Web Application (PWA)
-- **Serendipity Web BFF** a Backend for Frontend (BFF)
+- **Serendipity Web App**
+- **Serendipity Web BFF**
 - **Serendipity Identity Server**
-- **~~PostgreSQL~~**
-- **~~JasperReports Server~~**
+
 
 ![divider](./divider.png)
 
