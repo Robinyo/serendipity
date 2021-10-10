@@ -1,5 +1,7 @@
+$activity-bar-title-font-size: 1.6em !default;
+
 .activity-bar-title {
-  font-size: 1.6em;
+  font-size: $activity-bar-title-font-size;
 }
 
 /*

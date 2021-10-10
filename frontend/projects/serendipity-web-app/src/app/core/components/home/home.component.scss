@@ -1,8 +1,29 @@
+// Theming Angular Material components
+// For more information: https://material.angular.io/guide/theming-your-components
+// To change this file to participate in Angular Material's theming system, we split the styles into two files, with
+// the color and typography styles moved into mixins. By convention, the new file name ends with -theme.
+
+$font-family: "Open Sans", sans-serif;
+
+$container-height-offset: 160px;
+$container-width-offset: 96px;
+$container-margin: 32px !default;
+$container-padding: 20px !default;
+
+$mat-icon-padding: 64px !default;
+$mat-icon-size: 320px !default;
+
+$welcome-title-font-size: 3.4em !important;
+$welcome-title-font-weight: bold !important;
+
+$welcome-text-font-size: 1.4em !important;
+$welcome-text-padding: 32px !default;
+
 .container {
-  height: calc(100vh - 160px);
-  width: calc(100% - 96px);
-  margin: 32px;
-  padding: 20px;
+  height: calc(100vh - #{$container-height-offset});
+  width: calc(100% - #{$container-width-offset});
+  margin: $container-margin;
+  padding: $container-padding;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,76 +35,22 @@
 }
 
 .mat-icon {
-  padding: 64px;
-  height: 320px;
-  width: 320px;
+  padding: $mat-icon-padding;
+  height: $mat-icon-size;
+  width: $mat-icon-size;
 }
 
 .welcome-title {
-  font-family: "Open Sans", sans-serif;
-  font-size: 3.4em !important;
-  font-weight: bold !important;
+  font-family: $font-family;
+  font-size: $welcome-title-font-size;
+  font-weight: $welcome-title-font-weight;
 }
 
 .welcome-text {
-  padding-right: 32px;
+  padding-right: $welcome-text-padding;
 }
 
 .welcome-text {
-  font-family: "Open Sans", sans-serif;
-  font-size: 1.4em !important;
+  font-family: $font-family;
+  font-size: $welcome-text-font-size;
 }
-
-
-
-/*
-
-.item {
-  // background: black;
-  color: black;
-  width: 50%;
-  padding: 20px;
-  resize: both;
-  overflow: auto;
-}
-
-.mat-card {
-  box-shadow: none;
-  border-radius: unset;
-  // background-color: transparent;
-}
-
-.mat-card-content {
-  background-color: #f5f5f5;
-  // background-color: transparent;
-}
-
-.mat-icon {
-  height: 256px;
-  width: 256px;
-}
-
-.welcome-title {
-  font-size: 3.4em;
-  font-weight: bold;
-}
-
-.welcome-text {
-  font-size: 1.4em;
-  padding-right: 32px;
-}
-
-*/
-
-/*
-
-.home-container {
-  // height: 100%;
-  padding: 15px;
-}
-
-.home-container-content {
-  background-color: #f5f5f5;
-}
-
-*/

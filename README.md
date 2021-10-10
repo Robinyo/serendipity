@@ -13,6 +13,6 @@
 
 ## ❯ Quick Links
 
-[Documentation, demos, and guides](backend/docs/README.md)
+[Documentation, demos, and guides](./docs/README.md)
 
 ![divider](./divider.png)
