@@ -30,6 +30,8 @@ cd serendipity-2.0/frontend
 To build the project:
 
 ```
+# In the project's /frontend directory
+
 ng build --configuration="development" utils-lib && \
 ng build --configuration="development" auth-bff-lib && \
 ng build --configuration="development" serendipity-components-lib && \

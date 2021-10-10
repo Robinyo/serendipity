@@ -29,7 +29,7 @@ cd serendipity-2.0/backend
 
 The build supports the following Maven project profiles: dev and test.
 
-To build the API:
+To build the application:
 
 ```
 # In the project's /backend directory
