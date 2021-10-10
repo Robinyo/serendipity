@@ -12,7 +12,6 @@ import org.serendipity.webbff.model.UserInfoResponse;
 import org.serendipity.webbff.service.AuthNService;
 import org.serendipity.webbff.utils.AuthConstants;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +36,7 @@ public class AuthNController {
 
   private static final Boolean HTTP_ONLY_ATTRIBUTE = true;
   private static final Boolean SECURE_ATTRIBUTE = true;
+  private static final String  PATH_ATTRIBUTE = "/bff/login";
 
   private final AuthNService authNService;
 
@@ -51,6 +51,7 @@ public class AuthNController {
     authState.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
     authState.setHttpOnly(HTTP_ONLY_ATTRIBUTE);
     authState.setSecure(SECURE_ATTRIBUTE);
+    authState.setPath(PATH_ATTRIBUTE);
     response.addCookie(authState);
 
     try {
@@ -175,24 +176,28 @@ public class AuthNController {
 
     Cookie authN = new Cookie("authN", "true");
     authN.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
+    authN.setPath(PATH_ATTRIBUTE);
     response.addCookie(authN);
 
     Cookie idToken = new Cookie("id_token", tokenResponse.getId_token());
     idToken.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
     idToken.setHttpOnly(HTTP_ONLY_ATTRIBUTE);
     idToken.setSecure(SECURE_ATTRIBUTE);
+    idToken.setPath(PATH_ATTRIBUTE);
     response.addCookie(idToken);
 
     Cookie accessToken = new Cookie("access_token", tokenResponse.getAccess_token());
     accessToken.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
     accessToken.setHttpOnly(HTTP_ONLY_ATTRIBUTE);
     accessToken.setSecure(SECURE_ATTRIBUTE);
+    accessToken.setPath(PATH_ATTRIBUTE);
     response.addCookie(accessToken);
 
     Cookie refreshToken = new Cookie("refresh_token", tokenResponse.getRefresh_token());
     refreshToken.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
     refreshToken.setHttpOnly(HTTP_ONLY_ATTRIBUTE);
     refreshToken.setSecure(SECURE_ATTRIBUTE);
+    refreshToken.setPath(PATH_ATTRIBUTE);
     response.addCookie(refreshToken);
 
   }
