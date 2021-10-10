@@ -35,6 +35,9 @@ public class AuthNController {
   private static final String ERROR_PATH = "/error";
   private static final String REDIRECT_PATH = "redirect:/login-callback";
 
+  private static final Boolean HTTP_ONLY_ATTRIBUTE = true;
+  private static final Boolean SECURE_ATTRIBUTE = true;
+
   private final AuthNService authNService;
 
   @PostMapping("/bff/login")
@@ -46,6 +49,8 @@ public class AuthNController {
 
     Cookie authState = new Cookie("state", state);
     authState.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
+    authState.setHttpOnly(HTTP_ONLY_ATTRIBUTE);
+    authState.setSecure(SECURE_ATTRIBUTE);
     response.addCookie(authState);
 
     try {
@@ -174,14 +179,20 @@ public class AuthNController {
 
     Cookie idToken = new Cookie("id_token", tokenResponse.getId_token());
     idToken.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
+    idToken.setHttpOnly(HTTP_ONLY_ATTRIBUTE);
+    idToken.setSecure(SECURE_ATTRIBUTE);
     response.addCookie(idToken);
 
     Cookie accessToken = new Cookie("access_token", tokenResponse.getAccess_token());
     accessToken.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
+    accessToken.setHttpOnly(HTTP_ONLY_ATTRIBUTE);
+    accessToken.setSecure(SECURE_ATTRIBUTE);
     response.addCookie(accessToken);
 
     Cookie refreshToken = new Cookie("refresh_token", tokenResponse.getRefresh_token());
     refreshToken.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
+    refreshToken.setHttpOnly(HTTP_ONLY_ATTRIBUTE);
+    refreshToken.setSecure(SECURE_ATTRIBUTE);
     response.addCookie(refreshToken);
 
   }
@@ -191,6 +202,10 @@ public class AuthNController {
     Cookie authState = new Cookie("state", "");
     authState.setMaxAge(0);
     response.addCookie(authState);
+
+    Cookie authN = new Cookie("authN", "");
+    authN.setMaxAge(0);
+    response.addCookie(authN);
 
     Cookie idToken = new Cookie("id_token", "");
     idToken.setMaxAge(0);
