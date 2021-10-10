@@ -1,8 +1,29 @@
 <h1 align="center">Build Management</h1>
 
-### Getting Started
+### Set up the Development Environment
 
-Follow the steps in the [Quick Start Guide](https://github.com/Robinyo/serendipity-2.0/blob/main/backend/docs/developer/quick-start-guide.md).
+You need to set up your development environment before you can do anything.
+
+What you need:
+
+* git
+* JDK 11 or later
+* Maven 3.2 or later
+
+### Clone the project 
+
+Change the current working directory to the location where you want the cloned directory to be:
+
+```
+cd ~/workspace
+```
+
+Clone the project by running the following command:
+
+```
+git clone https://github.com/Robinyo/serendipity-2.0
+cd serendipity-2.0/backend
+``` 
 
 ### Development
 
@@ -57,8 +78,6 @@ To check the logs inside your container:
 
 ```
 docker container logs serendipity-identity-server
-docker container logs postgres
-docker container logs pgadmin
 docker container logs serendipity-web-bff
 ```
 

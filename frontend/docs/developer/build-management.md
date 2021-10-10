@@ -1,5 +1,30 @@
 <h1 align="center">Build Management</h1>
 
+### Set up the Development Environment
+
+You need to set up your development environment before you can do anything.
+
+What you need:
+
+* git
+* Node.js
+* Angular CLI
+
+### Clone the project 
+
+Change the current working directory to the location where you want the cloned directory to be:
+
+```
+cd ~/workspace
+```
+
+Clone the project by running the following command:
+
+```
+git clone https://github.com/Robinyo/serendipity-2.0
+cd serendipity-2.0/frontend
+``` 
+
 ### Development
 
 To build the project:
