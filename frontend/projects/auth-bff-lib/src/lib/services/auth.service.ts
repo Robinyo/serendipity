@@ -68,7 +68,43 @@ export class AuthService {
 
   }
 
-  public logout(returnUrl: string) {
+  public async logoutWithRedirect(returnUrl: string): Promise<void> {
+
+    this.logger.info('AuthService: logoutWithRedirect()');
+
+    const subscription: Subscription = this.logout().subscribe(response => {
+
+      subscription.unsubscribe();
+
+      this.authenticated = false;
+
+      this.router.navigate([returnUrl]);
+
+    });
+
+  }
+
+  protected logout(): Observable<any> {
+
+    this.logger.info('AuthService: logout()');
+
+    this.url = this.urlPrefix + '/bff/logout';
+
+    return this.httpClient.post(this.url, {}, this.httpOptions).pipe(
+      tap(() => {
+        this.logger.info('AuthService: logout() completed');
+      })
+    );
+
+  }
+
+
+
+}
+
+/*
+
+  protected logout(returnUrl: string) {
 
     this.logger.info('AuthService: logout()');
 
@@ -77,4 +113,4 @@ export class AuthService {
     this.router.navigate(['/']);
   }
 
-}
+*/

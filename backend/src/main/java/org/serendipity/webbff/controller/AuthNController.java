@@ -8,9 +8,11 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.serendipity.webbff.model.LoginResponse;
 import org.serendipity.webbff.model.TokenResponse;
+import org.serendipity.webbff.model.UserInfoResponse;
 import org.serendipity.webbff.service.AuthNService;
 import org.serendipity.webbff.utils.AuthConstants;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,22 +33,16 @@ import java.util.UUID;
 public class AuthNController {
 
   private static final String ERROR_PATH = "/error";
-  // private static final String REDIRECT_PATH = "redirect:/"; -> worked
-  // private static final String REDIRECT_PATH = "redirect:/welcome-page"; -> worked
   private static final String REDIRECT_PATH = "redirect:/login-callback";
 
   private final AuthNService authNService;
 
   @PostMapping("/bff/login")
-  public ResponseEntity<LoginResponse> signIn(HttpServletResponse response) {
+  public ResponseEntity<LoginResponse> login(HttpServletResponse response) throws ResponseStatusException {
 
     log.info("AuthNController POST /bff/login");
 
     String state = UUID.randomUUID().toString();
-
-    Cookie authN = new Cookie("authN", "false");
-    authN.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
-    response.addCookie(authN);
 
     Cookie authState = new Cookie("state", state);
     authState.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
@@ -94,6 +90,8 @@ public class AuthNController {
 
     }
 
+    /*
+
     if (!authState.equals(state)) {
 
       String errorMessage = "'authState' is not equal to 'state'";
@@ -103,20 +101,11 @@ public class AuthNController {
       return ERROR_PATH;
     }
 
+   */
+
     try {
 
       TokenResponse tokenResponse = authNService.tokenRequest(code);
-
-      for (Cookie cookie : cookies) {
-
-        if (cookie.getName().equalsIgnoreCase("authN")) {
-
-          log.info("authN = true");
-
-          cookie.setValue("true");
-        }
-
-      }
 
       this.logInfo(tokenResponse);
 
@@ -124,17 +113,7 @@ public class AuthNController {
       // private String scope;
       // private String token_type;
 
-      Cookie idToken = new Cookie("id_token", tokenResponse.getId_token());
-      idToken.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
-      response.addCookie(idToken);
-
-      Cookie accessToken = new Cookie("access_token", tokenResponse.getAccess_token());
-      accessToken.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
-      response.addCookie(accessToken);
-
-      Cookie refreshToken = new Cookie("refresh_token", tokenResponse.getRefresh_token());
-      refreshToken.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
-      response.addCookie(refreshToken);
+      this.createCookies(response, tokenResponse);
 
       return REDIRECT_PATH;
 
@@ -143,6 +122,87 @@ public class AuthNController {
     }
 
     return ERROR_PATH;
+
+  }
+
+  @GetMapping("/bff/userInfo")
+  public ResponseEntity<UserInfoResponse> userInfo(HttpServletResponse response) throws ResponseStatusException {
+
+    log.info("AuthNController GET /bff/userInfo");
+
+    try {
+
+      UserInfoResponse model = new UserInfoResponse();
+      model.setExp("1234");
+
+      return ResponseEntity.ok(model);
+
+    } catch (Exception e) {
+
+      log.error("{}", e.getLocalizedMessage());
+
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+    }
+
+  }
+
+  @PostMapping("/bff/logout")
+  public ResponseEntity<Void> logout(HttpServletResponse response) throws ResponseStatusException {
+
+    log.info("AuthNController POST /bff/logout");
+
+    try {
+
+      this.deleteCookies(response);
+
+      return ResponseEntity.noContent().build();
+
+    } catch (Exception e) {
+
+      log.error("{}", e.getLocalizedMessage());
+
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+    }
+
+  }
+
+  protected void createCookies(HttpServletResponse response, TokenResponse tokenResponse) {
+
+    Cookie authN = new Cookie("authN", "true");
+    authN.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
+    response.addCookie(authN);
+
+    Cookie idToken = new Cookie("id_token", tokenResponse.getId_token());
+    idToken.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
+    response.addCookie(idToken);
+
+    Cookie accessToken = new Cookie("access_token", tokenResponse.getAccess_token());
+    accessToken.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
+    response.addCookie(accessToken);
+
+    Cookie refreshToken = new Cookie("refresh_token", tokenResponse.getRefresh_token());
+    refreshToken.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
+    response.addCookie(refreshToken);
+
+  }
+
+  protected void deleteCookies(HttpServletResponse response) {
+
+    Cookie authState = new Cookie("state", "");
+    authState.setMaxAge(0);
+    response.addCookie(authState);
+
+    Cookie idToken = new Cookie("id_token", "");
+    idToken.setMaxAge(0);
+    response.addCookie(idToken);
+
+    Cookie accessToken = new Cookie("access_token", "");
+    accessToken.setMaxAge(0);
+    response.addCookie(accessToken);
+
+    Cookie refreshToken = new Cookie("refresh_token", "");
+    refreshToken.setMaxAge(0);
+    response.addCookie(refreshToken);
 
   }
 
@@ -169,6 +229,19 @@ public class AuthNController {
   }
 
 }
+
+// private static final String REDIRECT_PATH = "redirect:/"; -> worked
+// private static final String REDIRECT_PATH = "redirect:/welcome-page"; -> worked
+
+/*
+
+    // response.setHeader("Set-Cookie", "SameSite=strict");
+    response.setHeader("Set-Cookie", "key=value; SameSite=strict");
+
+    // response.setHeader("Set-Cookie", "key=value; HttpOnly; SameSite=strict")
+
+*/
+
 
 /*
 

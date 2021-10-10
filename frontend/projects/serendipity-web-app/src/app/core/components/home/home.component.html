@@ -23,7 +23,9 @@
       <section>
         <div class="example-button-row">
 
-          <button mat-raised-button color="accent">LOGIN</button>
+          <ng-container *ngIf="!isAuthenticated()">
+            <button mat-raised-button color="accent" (click)="login()">LOGIN</button>
+          </ng-container>
 
         </div>
       </section>

@@ -38,4 +38,12 @@ export class HomeComponent {
 
   }
 
+  public isAuthenticated(): boolean {
+    return this.authService.isAuthenticated();
+  }
+
+  public login() {
+    this.authService.loginWithRedirect();
+  }
+
 }

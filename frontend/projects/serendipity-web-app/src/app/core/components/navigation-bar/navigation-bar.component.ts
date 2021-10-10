@@ -49,7 +49,7 @@ export class NavigationBarComponent {
   }
 
   public logout() {
-    this.authService.logout("/");
+    this.authService.logoutWithRedirect("/");
   }
 
 }
