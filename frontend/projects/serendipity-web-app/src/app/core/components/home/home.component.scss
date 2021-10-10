@@ -1,3 +1,52 @@
+.container {
+  height: calc(100vh - 160px);
+  width: calc(100% - 96px);
+  margin: 32px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+}
+
+.container {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.mat-icon {
+  padding: 64px;
+  height: 320px;
+  width: 320px;
+}
+
+.welcome-title {
+  font-family: "Open Sans", sans-serif;
+  font-size: 3.4em !important;
+  font-weight: bold !important;
+}
+
+.welcome-text {
+  padding-right: 32px;
+}
+
+.welcome-text {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.4em !important;
+}
+
+
+
+/*
+
+.item {
+  // background: black;
+  color: black;
+  width: 50%;
+  padding: 20px;
+  resize: both;
+  overflow: auto;
+}
+
 .mat-card {
   box-shadow: none;
   border-radius: unset;
@@ -23,6 +72,8 @@
   font-size: 1.4em;
   padding-right: 32px;
 }
+
+*/
 
 /*
 

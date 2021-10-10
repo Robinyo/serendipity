@@ -1,3 +1,40 @@
+<!--
+<div class="container mat-typography">
+-->
+
+<div class="container">
+
+  <mat-icon svgIcon="logo"> </mat-icon>
+
+  <div fxLayout="column">
+
+          <span class="welcome-title" i18n="Welcome Page Title|Home@@HOME_TITLE">
+            Welcome
+          </span>
+
+    <span class="welcome-text" i18n="Welcome Page Welcome Text|Home@@HOME_WELCOME_TEXT">
+            Serendipity is an open source Customer Engagement Platform.<br>
+            You can use it to transform your organisation by connecting your customers, products, people and operations.
+            <br><br>
+          </span>
+
+    <section>
+      <div class="example-button-row">
+
+        <ng-container *ngIf="!isAuthenticated()">
+          <button mat-raised-button color="accent" (click)="login()">LOGIN</button>
+        </ng-container>
+
+      </div>
+    </section>
+
+  </div>
+
+</div>
+
+
+<!--
+
 <mat-card fxLayout="row" fxLayoutAlign="center center">
 
   <mat-card-content fxLayout="row"
@@ -30,13 +67,13 @@
         </div>
       </section>
 
-
     </div>
 
   </mat-card-content>
 
 </mat-card>
 
+-->
 
 <!--
 

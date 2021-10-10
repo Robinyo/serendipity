@@ -1,6 +1,8 @@
 @use '~@angular/material' as mat;
 
+// @use './projects/serendipity-web-app/src/app/core/components/home/home.component-theme' as homeComponent;
 @use './projects/serendipity-web-app/src/app/core/components/sidenav/sidenav.component-theme' as sidenav;
+
 @use './projects/party-lib/src/lib/components/contacts/contacts.component-theme' as contactsComponent;
 
 @import "./projects/utils-lib/src/lib/angular-material/mat-variables";
@@ -38,7 +40,9 @@ $light-theme: mat.define-light-theme((
 // that you are using.
 @include mat.all-component-themes($light-theme);
 
+// @include homeComponent.theme($light-theme);
 @include sidenav.theme($light-theme);
+
 @include contactsComponent.theme($light-theme);
 
 // ------------------------------------------------------------------------------------------------------------------ //
