@@ -167,14 +167,14 @@ public class AuthNController {
 
         accessToken = cookie.getValue();
 
-        log.info("accessToken: {}", accessToken);
+        // log.info("accessToken: {}", accessToken);
       }
 
       if (cookie.getName().equalsIgnoreCase("refresh_token")) {
 
         refreshToken = cookie.getValue();
 
-        log.info("refreshToken: {}", refreshToken);
+        // log.info("refreshToken: {}", refreshToken);
       }
 
     }
