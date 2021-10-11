@@ -297,16 +297,6 @@ public class AuthNController {
 
 /*
 
-    // response.setHeader("Set-Cookie", "SameSite=strict");
-    response.setHeader("Set-Cookie", "key=value; SameSite=strict");
-
-    // response.setHeader("Set-Cookie", "key=value; HttpOnly; SameSite=strict")
-
-*/
-
-
-/*
-
   @PostMapping("/login")
   public RedirectView signIn(HttpServletResponse response) {
 

@@ -39,7 +39,7 @@ export class AuthService {
 
         this.authenticated = true;
 
-        this.logger.info('AuthService: isAuthenticated() is true');
+        // this.logger.info('AuthService: isAuthenticated() is true');
 
       }
 
