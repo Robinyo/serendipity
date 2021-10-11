@@ -3,10 +3,7 @@ version: '3.8'
 services:
 
   serendipity-identity-server:
-    container_name: serendipity-identity-server
-    build:
-      context: ./services/serendipity-identity-server
-      dockerfile: Dockerfile
+    image: robinyo/serendipity-identity-server:0.0.1.Beta1
     ports:
       - "10001:8080"
       - "10443:8443"
@@ -15,10 +12,7 @@ services:
     env_file: ./services/serendipity-identity-server/serendipity-identity-server.env
 
   serendipity-web-bff:
-    container_name: serendipity-web-bff
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: robinyo/serendipity:0.0.1.Beta1
     ports:
       - "8080:8080"
       - "8443:8443"
