@@ -48,7 +48,7 @@ public class WebBffApplication implements ErrorController {
 
 		return WebClient.builder()
 			.baseUrl(baseUrl)
-			.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+			 // .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
 			.filter(WebClientFilter.logRequest())
 			.filter(WebClientFilter.logResponse())
 			.clientConnector(new ReactorClientHttpConnector(httpClient))

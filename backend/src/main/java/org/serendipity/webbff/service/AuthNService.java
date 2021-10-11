@@ -76,6 +76,7 @@ public class AuthNService {
       .uri(uriBuilder -> uriBuilder
         .path(tokenEndpoint)
         .build())
+      .header("Content-Type", "application/x-www-form-urlencoded")
       .body(
         fromFormData("grant_type", AuthConstants.GRANT_TYPE)
           .with("client_id", this.clientId)
@@ -102,6 +103,7 @@ public class AuthNService {
         .path(logoutEndpoint)
         .build())
       .header("Authorization", "Bearer " + accessToken)
+      .header("Content-Type", "application/x-www-form-urlencoded")
       .body(
         fromFormData("client_id", this.clientId)
           .with("client_secret", this.clientSecret)
