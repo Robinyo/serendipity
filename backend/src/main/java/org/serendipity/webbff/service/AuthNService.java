@@ -10,6 +10,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.servlet.http.Cookie;
+
 import static org.springframework.web.reactive.function.BodyInserters.fromFormData;
 
 @Service
@@ -20,6 +22,7 @@ public class AuthNService {
   private final WebClient webClient;
 
   private String clientId;
+  private String clientSecret;
   private String redirectUri;
 
   public AuthNService(Environment env, WebClient webClient) {
@@ -63,10 +66,10 @@ public class AuthNService {
     log.info("AuthNService -> tokenRequest()");
 
     String tokenEndpoint = env.getProperty("TOKEN_ENDPOINT");
-    String clientSecret = env.getProperty("CLIENT_SECRET");
+    this.clientSecret = env.getProperty("CLIENT_SECRET");
 
     Assert.notNull(tokenEndpoint, "TOKEN_ENDPOINT environment variable not found");
-    Assert.notNull(clientSecret, "CLIENT_SECRET environment variable not found");
+    Assert.notNull(this.clientSecret, "CLIENT_SECRET environment variable not found");
 
     return webClient
       .post()
@@ -76,7 +79,7 @@ public class AuthNService {
       .body(
         fromFormData("grant_type", AuthConstants.GRANT_TYPE)
           .with("client_id", this.clientId)
-          .with("client_secret", clientSecret)
+          .with("client_secret", this.clientSecret)
           .with("redirect_uri", this.redirectUri)
           .with("code", code))
       .retrieve()
@@ -85,4 +88,30 @@ public class AuthNService {
 
   }
 
+  public Object logout(String accessToken, String refreshToken) {
+
+    log.info("AuthNService -> logout()");
+
+    String logoutEndpoint = env.getProperty("LOGOUT_ENDPOINT");
+
+    Assert.notNull(logoutEndpoint, "LOGOUT_ENDPOINT environment variable not found");
+
+    return webClient
+      .post()
+      .uri(uriBuilder -> uriBuilder
+        .path(logoutEndpoint)
+        .build())
+      .header("Authorization", "Bearer " + accessToken)
+      .body(
+        fromFormData("client_id", this.clientId)
+          .with("client_secret", this.clientSecret)
+          .with("refresh_token", refreshToken))
+      .retrieve()
+      .bodyToMono(Object.class)
+      .block();
+
+  }
+
 }
+
+// https://stackoverflow.com/questions/46689034/logout-user-via-keycloak-rest-api-doesnt-work

@@ -36,7 +36,7 @@ public class AuthNController {
 
   private static final Boolean HTTP_ONLY_ATTRIBUTE = true;
   private static final Boolean SECURE_ATTRIBUTE = true;
-  private static final String  PATH_ATTRIBUTE = "/bff/login";
+  private static final String  PATH_ATTRIBUTE = "/";
 
   private final AuthNService authNService;
 
@@ -57,7 +57,7 @@ public class AuthNController {
     try {
 
       LoginResponse model = new LoginResponse();
-      model.setAuthorizationRequestUrl(authNService.getUrl(state));
+      model.setAuthorizationRequestUrl(this.authNService.getUrl(state));
 
       return ResponseEntity.ok(model);
 
@@ -72,9 +72,9 @@ public class AuthNController {
 
   @GetMapping("/bff/authorization-code/callback")
   public String authorizationCodeCallback(HttpServletRequest request,
-                                                @RequestParam(required = false) String code,
-                                                @RequestParam(required = false) String state,
-                                                HttpServletResponse response) {
+                                          @RequestParam(required = false) String code,
+                                          @RequestParam(required = false) String state,
+                                          HttpServletResponse response) {
 
     log.info("AuthNController GET /bff/authorization-code/callback");
 
@@ -153,11 +153,37 @@ public class AuthNController {
   }
 
   @PostMapping("/bff/logout")
-  public ResponseEntity<Void> logout(HttpServletResponse response) throws ResponseStatusException {
+  public ResponseEntity<Void> logout(HttpServletRequest request,
+                                     HttpServletResponse response) throws ResponseStatusException {
 
     log.info("AuthNController POST /bff/logout");
 
+    Cookie[] cookies = request.getCookies();
+
+    String accessToken = "";
+    String refreshToken = "";
+
+    for (Cookie cookie : cookies) {
+
+      if (cookie.getName().equalsIgnoreCase("access_token")) {
+
+        accessToken = cookie.getValue();
+
+        log.info("accessToken: {}", accessToken);
+      }
+
+      if (cookie.getName().equalsIgnoreCase("refresh_token")) {
+
+        refreshToken = cookie.getValue();
+
+        log.info("refreshToken: {}", refreshToken);
+      }
+
+    }
+
     try {
+
+      this.authNService.logout(accessToken, refreshToken);
 
       this.deleteCookies(response);
 
