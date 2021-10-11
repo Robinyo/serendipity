@@ -242,6 +242,8 @@ public class AuthNController {
       if (cookie.getName().equalsIgnoreCase("authN")) {
 
         cookie.setValue("false");
+        cookie.setPath(PATH_ATTRIBUTE);
+        response.addCookie(cookie);
 
         log.info("authN: false");
       }

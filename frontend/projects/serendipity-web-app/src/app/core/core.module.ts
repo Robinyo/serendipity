@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { CookieService } from 'ngx-cookie-service';
+
 import { SerendipityComponentsLibModule } from 'serendipity-components-lib';
 import { AngularMaterialModule, UtilsLibModule, LoggerService } from 'utils-lib';
 
@@ -42,7 +44,10 @@ const components: any[] = [
     RouterModule
   ],
   exports: [ ...components ],
-  providers: [ { provide: LOCALE_ID, useValue: 'en' } ]
+  providers: [
+    CookieService,
+    { provide: LOCALE_ID, useValue: 'en' }
+  ]
 })
 export class CoreModule {
 

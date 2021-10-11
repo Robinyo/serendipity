@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router } from "@angular/router";
 
+import { CookieService } from 'ngx-cookie-service';
+
 import { LoggerService } from "utils-lib";
 import {Observable, Subscription} from "rxjs";
 import {tap} from "rxjs/operators";
@@ -23,11 +25,28 @@ export class AuthService {
   protected url: string = '';
 
   constructor(private httpClient: HttpClient,
+              private cookieService: CookieService,
               private logger: LoggerService,
               private router: Router) {}
 
   public isAuthenticated(): boolean {
+
+    if (this.cookieService.check('authN')) {
+
+      const value = this.cookieService.get('authN');
+
+      if (value == "true") {
+
+        this.authenticated = true;
+
+        this.logger.info('AuthService: isAuthenticated() is true');
+
+      }
+
+    }
+
     return this.authenticated;
+
   }
 
   public async loginWithRedirect(): Promise<void> {
@@ -97,8 +116,6 @@ export class AuthService {
     );
 
   }
-
-
 
 }
 
