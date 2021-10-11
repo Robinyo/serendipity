@@ -185,7 +185,7 @@ public class AuthNController {
 
       this.authNService.logout(accessToken, refreshToken);
 
-      this.deleteCookies(response);
+      this.deleteCookies(request, response);
 
       return ResponseEntity.noContent().build();
 
@@ -228,15 +228,29 @@ public class AuthNController {
 
   }
 
-  protected void deleteCookies(HttpServletResponse response) {
+  protected void deleteCookies(HttpServletRequest request,
+                               HttpServletResponse response) {
+
+    // Cookie authN = new Cookie("authN", "");
+    // authN.setMaxAge(0);
+    // response.addCookie(authN);
+
+    Cookie[] cookies = request.getCookies();
+
+    for (Cookie cookie : cookies) {
+
+      if (cookie.getName().equalsIgnoreCase("authN")) {
+
+        cookie.setValue("false");
+
+        log.info("authN: false");
+      }
+
+    }
 
     Cookie authState = new Cookie("state", "");
     authState.setMaxAge(0);
     response.addCookie(authState);
-
-    Cookie authN = new Cookie("authN", "");
-    authN.setMaxAge(0);
-    response.addCookie(authN);
 
     Cookie idToken = new Cookie("id_token", "");
     idToken.setMaxAge(0);
