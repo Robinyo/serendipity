@@ -20,3 +20,13 @@ To serve the applications:
 ```
 docker-compose up -f docker-compose-production.yml -d
 ```
+
+The containers may take a minute or two to startup.
+
+Navigate to `http://localhost:8080`
+
+You can stop the containers using the following command:
+
+```
+docker-compose down -v
+```
