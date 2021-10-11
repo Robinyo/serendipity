@@ -7,6 +7,7 @@ services:
     build:
       context: ./services/serendipity-identity-server
       dockerfile: Dockerfile
+    image: serendipity-identity-server:latest
     ports:
       - "10001:8080"
       - "10443:8443"
@@ -19,6 +20,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: serendipity-web-bff:latest
     ports:
       - "8080:8080"
       - "8443:8443"

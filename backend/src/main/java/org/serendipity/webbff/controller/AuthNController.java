@@ -115,10 +115,6 @@ public class AuthNController {
 
       this.logInfo(tokenResponse);
 
-      // private Integer expires_in;
-      // private String scope;
-      // private String token_type;
-
       this.createCookies(response, tokenResponse);
 
       return REDIRECT_PATH;
@@ -137,6 +133,8 @@ public class AuthNController {
     log.info("AuthNController GET /bff/userInfo");
 
     try {
+
+      // TODO
 
       UserInfoResponse model = new UserInfoResponse();
       model.setExp("1234");
@@ -186,6 +184,154 @@ public class AuthNController {
       this.authNService.logout(accessToken, refreshToken);
 
       this.deleteCookies(request, response);
+
+      return ResponseEntity.noContent().build();
+
+    } catch (Exception e) {
+
+      log.error("{}", e.getLocalizedMessage());
+
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+    }
+
+  }
+
+
+  protected void createCookies(HttpServletResponse response, TokenResponse tokenResponse) {
+
+    Cookie authN = new Cookie("authN", "true");
+    authN.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
+    authN.setPath(PATH_ATTRIBUTE);
+    response.addCookie(authN);
+
+    Cookie idToken = new Cookie("id_token", tokenResponse.getId_token());
+    idToken.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
+    idToken.setHttpOnly(HTTP_ONLY_ATTRIBUTE);
+    idToken.setSecure(SECURE_ATTRIBUTE);
+    idToken.setPath(PATH_ATTRIBUTE);
+    response.addCookie(idToken);
+
+    Cookie accessToken = new Cookie("access_token", tokenResponse.getAccess_token());
+    accessToken.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
+    accessToken.setHttpOnly(HTTP_ONLY_ATTRIBUTE);
+    accessToken.setSecure(SECURE_ATTRIBUTE);
+    accessToken.setPath(PATH_ATTRIBUTE);
+    response.addCookie(accessToken);
+
+    Cookie refreshToken = new Cookie("refresh_token", tokenResponse.getRefresh_token());
+    refreshToken.setMaxAge(AuthConstants.COOKIE_MAX_AGE);
+    refreshToken.setHttpOnly(HTTP_ONLY_ATTRIBUTE);
+    refreshToken.setSecure(SECURE_ATTRIBUTE);
+    refreshToken.setPath(PATH_ATTRIBUTE);
+    response.addCookie(refreshToken);
+
+  }
+
+  protected void deleteCookies(HttpServletRequest request,
+                               HttpServletResponse response) {
+
+    // Cookie authN = new Cookie("authN", "");
+    // authN.setMaxAge(0);
+    // response.addCookie(authN);
+
+    Cookie[] cookies = request.getCookies();
+
+    for (Cookie cookie : cookies) {
+
+      if (cookie.getName().equalsIgnoreCase("authN")) {
+
+        cookie.setValue("false");
+        cookie.setPath(PATH_ATTRIBUTE);
+        response.addCookie(cookie);
+
+        log.info("authN: false");
+      }
+
+    }
+
+    Cookie authState = new Cookie("state", "");
+    authState.setMaxAge(0);
+    response.addCookie(authState);
+
+    Cookie idToken = new Cookie("id_token", "");
+    idToken.setMaxAge(0);
+    response.addCookie(idToken);
+
+    Cookie accessToken = new Cookie("access_token", "");
+    accessToken.setMaxAge(0);
+    response.addCookie(accessToken);
+
+    Cookie refreshToken = new Cookie("refresh_token", "");
+    refreshToken.setMaxAge(0);
+    response.addCookie(refreshToken);
+
+  }
+
+
+  protected void logInfo(Object model) {
+
+    try {
+
+      ObjectMapper mapper = new ObjectMapper();
+
+      mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+      mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+
+      mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+      if (model != null) {
+        log.info("model: {}", "\n" + mapper.writeValueAsString(model));
+      }
+
+    } catch (JsonProcessingException jpe) {
+
+      log.error("Json Processing Exception: {}", jpe.getLocalizedMessage());
+    }
+
+  }
+
+}
+
+// private Integer expires_in;
+// private String scope;
+// private String token_type;
+
+/*
+
+  @PostMapping("/bff/logout")
+  public ResponseEntity<Void> logout(HttpServletRequest request,
+                                     HttpServletResponse response) throws ResponseStatusException {
+
+    log.info("AuthNController POST /bff/logout");
+
+    Cookie[] cookies = request.getCookies();
+
+    String accessToken = "";
+    String refreshToken = "";
+
+    for (Cookie cookie : cookies) {
+
+      if (cookie.getName().equalsIgnoreCase("access_token")) {
+
+        accessToken = cookie.getValue();
+
+        log.info("accessToken: {}", accessToken);
+      }
+
+      if (cookie.getName().equalsIgnoreCase("refresh_token")) {
+
+        refreshToken = cookie.getValue();
+
+        log.info("refreshToken: {}", refreshToken);
+      }
+
+    }
+
+    try {
+
+      this.authNService.logout(accessToken, refreshToken);
+
+      // this.deleteCookies(request, response);
 
       return ResponseEntity.noContent().build();
 
@@ -268,32 +414,9 @@ public class AuthNController {
 
   }
 
-  protected void logInfo(Object model) {
+*/
 
-    try {
 
-      ObjectMapper mapper = new ObjectMapper();
-
-      mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-      mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
-
-      mapper.enable(SerializationFeature.INDENT_OUTPUT);
-
-      if (model != null) {
-        log.info("model: {}", "\n" + mapper.writeValueAsString(model));
-      }
-
-    } catch (JsonProcessingException jpe) {
-
-      log.error("Json Processing Exception: {}", jpe.getLocalizedMessage());
-    }
-
-  }
-
-}
-
-// private static final String REDIRECT_PATH = "redirect:/"; -> worked
-// private static final String REDIRECT_PATH = "redirect:/welcome-page"; -> worked
 
 /*
 
