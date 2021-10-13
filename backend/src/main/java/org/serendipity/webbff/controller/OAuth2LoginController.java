@@ -1,30 +1,42 @@
 package org.serendipity.webbff.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
-import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.serendipity.webbff.model.LoginResponse;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.reactive.function.client.ClientRequest;
-import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
-import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.server.ResponseStatusException;
 
-import reactor.core.publisher.Mono;
-
-import java.util.Collections;
-import java.util.Map;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @Slf4j
 public class OAuth2LoginController {
+
+  // @PostMapping("/bff/login")
+  @GetMapping("/bff/login")
+  public ResponseEntity<LoginResponse> login(HttpServletResponse response) throws ResponseStatusException {
+
+    log.info("OAuth2LoginController -> /bff/login");
+
+    try {
+
+      return ResponseEntity.noContent().build();
+
+    } catch (Exception e) {
+
+      log.error("{}", e.getLocalizedMessage());
+
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+    }
+
+  }
+
+  /*
 
   @Autowired
   private OAuth2AuthorizedClientService authorizedClientService;
@@ -82,11 +94,28 @@ public class OAuth2LoginController {
       });
   }
 
+  */
+
 }
 
 // https://docs.spring.io/spring-security/site/docs/5.2.12.RELEASE/reference/html/oauth2.html#oauth2login-boot-property-mappings
 
 // https://github.com/spring-projects/spring-security-samples/blob/main/servlet/spring-boot/java/oauth2/login/src/main/java/example/web/OAuth2LoginController.java
+
+/*
+
+  @RequestMapping("/error")
+  @ResponseStatus(HttpStatus.OK)
+  public String error() {
+
+    log.info("OAuth2LoginController -> /error");
+
+    // return "redirect:/index.html";
+    return "redirect:/";
+
+  }
+
+*/
 
 /*
 

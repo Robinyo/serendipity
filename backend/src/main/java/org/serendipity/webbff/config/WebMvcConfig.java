@@ -2,6 +2,7 @@ package org.serendipity.webbff.config;
 
 import java.io.IOException;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.Rfc6265CookieProcessor;
 import org.apache.tomcat.util.http.SameSiteCookies;
 import org.springframework.boot.web.embedded.tomcat.TomcatContextCustomizer;
@@ -14,10 +15,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.resource.PathResourceResolver;
 
 @Configuration
+@Slf4j
 public class WebMvcConfig implements WebMvcConfigurer {
 
   @Bean
   public TomcatContextCustomizer sameSiteCookiesConfig() {
+
+    log.info("WebMvcConfig -> sameSiteCookiesConfig()");
 
     return context -> {
       final Rfc6265CookieProcessor cookieProcessor = new Rfc6265CookieProcessor();

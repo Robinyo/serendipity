@@ -40,22 +40,21 @@
 
 	<dependencies>
 
+		<!-- Add Spring Security 5 dependencies -->
+		<!--
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
 		</dependency>
-
-		<!-- Add Spring Security 5 dependencies -->
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-client</artifactId>
 		</dependency>
+        -->
 
 		<!-- Note: Adding both spring-boot-starter-web and spring-boot-starter-webflux modules in your application
 		     results in Spring Boot auto-configuring Spring MVC, not WebFlux. -->
@@ -70,7 +69,7 @@
 		</dependency>
 
 		<!-- Add Thymeleaf dependencies -->
-
+		<!--
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -79,6 +78,7 @@
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
 		</dependency>
+		-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
