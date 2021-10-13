@@ -33,6 +33,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 }
 
+// https://stackoverflow.com/questions/24916894/serving-static-web-resources-in-spring-boot-spring-security-application
+
 // https://stackoverflow.com/questions/38516667/springboot-angular2-how-to-handle-html5-urls/46854105#46854105
 
 // https://stackoverflow.com/questions/42998367/same-site-flag-for-session-cookie-in-spring-security/60860531#60860531
