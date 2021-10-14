@@ -21,7 +21,8 @@ export class AuthService {
     })
   };
 
-  protected urlPrefix: string = 'http' + '://' + 'localhost' +  ':' + '8080';
+  // protected urlPrefix: string = 'http' + '://' + 'localhost' +  ':' + '8080';
+  protected urlPrefix: string = 'http' + '://' + '127.0.0.1' +  ':' + '8080';
   protected url: string = '';
 
   constructor(private httpClient: HttpClient,
@@ -55,11 +56,11 @@ export class AuthService {
 
     const subscription: Subscription = this.login().subscribe(response => {
 
-      // this.logger.info('response: ' + JSON.stringify(response, null, 2));
+      this.logger.info('response: ' + JSON.stringify(response, null, 2));
 
       subscription.unsubscribe();
 
-      window.location = response.authorizationRequestUrl;
+      window.location.href = response.authorizationRequestUrl;
 
     });
 

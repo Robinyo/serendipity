@@ -1,22 +1,33 @@
 package org.serendipity.webbff.config;
 
-import java.io.IOException;
-
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.Rfc6265CookieProcessor;
 import org.apache.tomcat.util.http.SameSiteCookies;
 import org.springframework.boot.web.embedded.tomcat.TomcatContextCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.resource.PathResourceResolver;
 
+// @EnableWebMvc
 @Configuration
 @Slf4j
 public class WebMvcConfig implements WebMvcConfigurer {
+
+  /*
+
+  2021-10-14 20:29:40.719  WARN 1 --- [nio-8080-exec-1] o.s.web.servlet.PageNotFound  : No mapping for GET /
+  2021-10-14 20:29:40.950  WARN 1 --- [nio-8080-exec-2] o.s.web.servlet.PageNotFound  : No mapping for GET /favicon.ico
+
+  @Override
+  public void addCorsMappings(CorsRegistry registry) {
+
+    log.info("WebMvcConfig -> addCorsMappings()");
+
+    registry.addMapping("/**");
+
+  }
+
+  */
 
   @Bean
   public TomcatContextCustomizer sameSiteCookiesConfig() {
