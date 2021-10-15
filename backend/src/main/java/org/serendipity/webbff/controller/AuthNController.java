@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,14 +21,11 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 public class AuthNController {
 
-  // private static final String REDIRECT_PATH = "redirect:/login-callback";
-  // private static final String REDIRECT_PATH = "forward:/login-callback";
-  // private static final String REDIRECT_PATH = "redirect:/?authN=true";
-  // private static final String REDIRECT_PATH = "forward:/"; -> http://127.0.0.1:8080/not-found
-  // private static final String REDIRECT_PATH = "forward:/login-callback"; -> didn't work
-  // private static final String REDIRECT_PATH = "forward:/?authN=true"; -> http://127.0.0.1:8080/bff/login/success
+  private static final Boolean HTTP_ONLY_ATTRIBUTE = true;
+  private static final Boolean SECURE_ATTRIBUTE = true;
+  private static final String  PATH_ATTRIBUTE = "/";
 
-  private static final String REDIRECT_PATH = "forward:/";
+  public static final int COOKIE_MAX_AGE = 60 * 60; // One hour
 
   private final AuthNService authNService;
 
@@ -64,7 +62,10 @@ public class AuthNController {
 
     try {
 
-      return REDIRECT_PATH;
+      this.createCookies(response);
+
+      // Which is forwarded to -> app-roting.module.ts - path: 'bff/login/success'
+      return "forward:/";
 
     } catch (Exception e) {
 
@@ -74,6 +75,97 @@ public class AuthNController {
     }
 
   }
+
+  @ResponseStatus(HttpStatus.OK)
+  @GetMapping("/bff/login/failure")
+  public String loginFailure(HttpServletRequest request, HttpServletResponse response)
+    throws ResponseStatusException {
+
+    log.info("AuthNController GET /bff/login/failure");
+
+    try {
+
+      // Which is forwarded to -> app-roting.module.ts - path: 'bff/login/failure'
+      return "forward:/";
+
+    } catch (Exception e) {
+
+      log.error("{}", e.getLocalizedMessage());
+
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+    }
+
+  }
+
+  @ResponseStatus(HttpStatus.OK)
+  @PostMapping("/bff/logout")
+  public ResponseEntity<Void> logout(HttpServletRequest request, HttpServletResponse response)
+    throws ResponseStatusException {
+
+    log.info("AuthNController POST /bff/logout");
+
+    // String accessToken = "";
+    // String refreshToken = "";
+
+    try {
+
+      // this.authNService.logout(accessToken, refreshToken);
+
+      this.deleteCookies(request, response);
+
+      return ResponseEntity.noContent().build();
+
+    } catch (Exception e) {
+
+      log.error("{}", e.getLocalizedMessage());
+
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+    }
+
+  }
+
+
+  private void createCookies(HttpServletResponse response) {
+
+    Cookie authN = new Cookie("authN", "true");
+    authN.setMaxAge(COOKIE_MAX_AGE);
+    // authN.setHttpOnly(HTTP_ONLY_ATTRIBUTE);
+    // authN.setSecure(SECURE_ATTRIBUTE);
+    authN.setPath(PATH_ATTRIBUTE);
+    response.addCookie(authN);
+
+  }
+
+  private void deleteCookies(HttpServletRequest request,
+                             HttpServletResponse response) {
+
+    Cookie[] cookies = request.getCookies();
+
+    for (Cookie cookie : cookies) {
+
+      if (cookie.getName().equalsIgnoreCase("authN")) {
+
+        cookie.setValue("false");
+        cookie.setPath(PATH_ATTRIBUTE);
+        response.addCookie(cookie);
+
+        log.info("authN: {}", cookie.getValue());
+      }
+
+    }
+
+  }
+
+}
+
+// https://docs.spring.io/spring-security/site/docs/5.2.12.RELEASE/reference/html/oauth2.html#oauth2login-boot-property-mappings
+
+// https://github.com/spring-projects/spring-security-samples/blob/main/servlet/spring-boot/java/oauth2/login/src/main/java/example/web/OAuth2LoginController.java
+
+// @CrossOrigin
+
+// private static final String REDIRECT_PATH = "redirect:/oauth2/authorization/keycloak";
+
 
   /*
 
@@ -103,16 +195,6 @@ public class AuthNController {
   }
 
   */
-
-}
-
-// https://docs.spring.io/spring-security/site/docs/5.2.12.RELEASE/reference/html/oauth2.html#oauth2login-boot-property-mappings
-
-// https://github.com/spring-projects/spring-security-samples/blob/main/servlet/spring-boot/java/oauth2/login/src/main/java/example/web/OAuth2LoginController.java
-
-// @CrossOrigin
-
-// private static final String REDIRECT_PATH = "redirect:/oauth2/authorization/keycloak";
 
 /*
 

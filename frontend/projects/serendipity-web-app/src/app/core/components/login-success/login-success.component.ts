@@ -8,7 +8,7 @@ import { LoggerService } from "utils-lib";
   template: ``
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AuthorizationCodeCallbackComponent implements OnInit {
+export class LoginSuccessComponent implements OnInit {
 
   constructor(private router: Router,
               private authService: AuthService,
@@ -16,7 +16,7 @@ export class AuthorizationCodeCallbackComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.logger.info('AuthorizationCodeCallbackComponent: ngOnInit()');
+    this.logger.info('LoginSuccessComponent: ngOnInit()');
 
     this.authService.handleRedirectCallback();
 

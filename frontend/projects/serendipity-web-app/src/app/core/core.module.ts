@@ -11,7 +11,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { SerendipityComponentsLibModule } from 'serendipity-components-lib';
 import { AngularMaterialModule, UtilsLibModule, LoggerService } from 'utils-lib';
 
-import { AuthorizationCodeCallbackComponent } from './components/authorization-code-callback/authorization-code-callback.component';
+import { LoginSuccessComponent } from './components/login-success/login-success.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { PlaceholderComponent } from './components/placeholder/placeholder.component';
@@ -20,7 +20,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { environment } from '@env/environment';
 
 const components: any[] = [
-  AuthorizationCodeCallbackComponent,
+  LoginSuccessComponent,
   HomeComponent,
   NavigationBarComponent,
   PlaceholderComponent,

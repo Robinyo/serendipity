@@ -46,9 +46,9 @@ export class NavigationBarComponent {
 
   public login() {
 
-    // this.authService.loginWithRedirect();
+    this.authService.loginWithRedirect();
 
-    window.location.href = "http://127.0.0.1:8080/oauth2/authorization/keycloak";
+    // window.location.href = "http://127.0.0.1:8080/oauth2/authorization/keycloak";
   }
 
   public logout() {

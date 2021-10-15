@@ -6,25 +6,16 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.security.web.csrf.CsrfFilter;
-import org.springframework.security.web.csrf.CsrfTokenRepository;
-import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
 @EnableWebSecurity
 @Profile({"dev", "test", "prod"})
 @Slf4j
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-  // private static final String[] CSRF_IGNORE = {"/bff/login/**"};
-
   @Override
   protected void configure(HttpSecurity http) throws Exception {
 
     log.info("WebSecurityConfig -> configure()");
-
-    // http.cors().and()
-    // http.authorizeRequests()
 
     http.authorizeRequests()
       .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
@@ -32,12 +23,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .antMatchers("/assets/**", "/*.woff", "/*.woff2").permitAll()
       .antMatchers("/*.map").permitAll()
       .antMatchers("/bff/**").permitAll()
-      // .antMatchers("/login-callback").permitAll()
       .anyRequest().authenticated()
-      .and().oauth2Login().defaultSuccessUrl("/bff/login/success")
+      .and().oauth2Login()
+        .defaultSuccessUrl("/bff/login/success")
+        .failureUrl("/bff/login/failure")
       .and().csrf().disable();
 
   }
+
+}
+
+// https://docs.spring.io/spring-security/site/docs/5.2.12.RELEASE/reference/html/protection-against-exploits.html
+
+// http://127.0.0.1:8080
+
+// https://stackoverflow.com/questions/24916894/serving-static-web-resources-in-spring-boot-spring-security-application
+
+// Overriding Spring Boot 2.x Auto-configuration
+// https://docs.spring.io/spring-security/site/docs/5.2.12.RELEASE/reference/html/oauth2.html#oauth2login-override-boot-autoconfig
 
   /*
 
@@ -60,17 +63,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   }
 
   */
-
-}
-
-// https://docs.spring.io/spring-security/site/docs/5.2.12.RELEASE/reference/html/protection-against-exploits.html
-
-// http://127.0.0.1:8080
-
-// https://stackoverflow.com/questions/24916894/serving-static-web-resources-in-spring-boot-spring-security-application
-
-// Overriding Spring Boot 2.x Auto-configuration
-// https://docs.spring.io/spring-security/site/docs/5.2.12.RELEASE/reference/html/oauth2.html#oauth2login-override-boot-autoconfig
 
 /*
 

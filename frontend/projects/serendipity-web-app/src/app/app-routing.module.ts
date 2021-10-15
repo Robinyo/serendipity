@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 // Components - local
 //
 
-import { AuthorizationCodeCallbackComponent } from "@app/core/components/authorization-code-callback/authorization-code-callback.component";
+import { LoginSuccessComponent } from "@app/core/components/login-success/login-success.component";
 import { HomeComponent } from '@app/core/components/home/home.component';
 import { PlaceholderComponent } from '@app/core/components/placeholder/placeholder.component';
 
@@ -15,7 +15,7 @@ const routes: Routes = [
     // path: 'authorization-code/callback',
     // path: 'login-callback',
     path: 'bff/login/success',
-    component: AuthorizationCodeCallbackComponent,
+    component: LoginSuccessComponent,
     // canActivate: [AuthGuard],
     // runGuardsAndResolvers: 'always'
   },
