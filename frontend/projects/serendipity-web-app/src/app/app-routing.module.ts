@@ -13,7 +13,8 @@ const routes: Routes = [
 
   {
     // path: 'authorization-code/callback',
-    path: 'login-callback',
+    // path: 'login-callback',
+    path: 'bff/login/success',
     component: AuthorizationCodeCallbackComponent,
     // canActivate: [AuthGuard],
     // runGuardsAndResolvers: 'always'
@@ -57,7 +58,8 @@ const routes: Routes = [
 
   {
     path: '**',
-    redirectTo: 'not-found'
+    component: PlaceholderComponent
+    // redirectTo: 'not-found'
   }
 
 ];

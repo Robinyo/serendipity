@@ -7,7 +7,6 @@ import org.serendipity.webbff.service.AuthNService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -15,17 +14,26 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.net.URI;
 
 @AllArgsConstructor
 @Controller
 @Slf4j
 public class AuthNController {
 
+  // private static final String REDIRECT_PATH = "redirect:/login-callback";
+  // private static final String REDIRECT_PATH = "forward:/login-callback";
+  // private static final String REDIRECT_PATH = "redirect:/?authN=true";
+  // private static final String REDIRECT_PATH = "forward:/"; -> http://127.0.0.1:8080/not-found
+  // private static final String REDIRECT_PATH = "forward:/login-callback"; -> didn't work
+  // private static final String REDIRECT_PATH = "forward:/?authN=true"; -> http://127.0.0.1:8080/bff/login/success
+
+  private static final String REDIRECT_PATH = "forward:/";
+
   private final AuthNService authNService;
 
   @PostMapping("/bff/login")
-  public ResponseEntity<LoginResponse> login(HttpServletResponse response) throws ResponseStatusException {
+  public ResponseEntity<LoginResponse> login(HttpServletResponse response)
+    throws ResponseStatusException {
 
     log.info("AuthNController POST /bff/login");
 
@@ -36,9 +44,27 @@ public class AuthNController {
 
       log.info("requestUrl: {}", model.getAuthorizationRequestUrl());
 
-      // return ResponseEntity.noContent().build();
-
       return ResponseEntity.ok(model);
+
+    } catch (Exception e) {
+
+      log.error("{}", e.getLocalizedMessage());
+
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+    }
+
+  }
+
+  @ResponseStatus(HttpStatus.OK)
+  @GetMapping("/bff/login/success")
+  public String loginSuccess(HttpServletRequest request, HttpServletResponse response)
+    throws ResponseStatusException {
+
+    log.info("AuthNController GET /bff/login/success");
+
+    try {
+
+      return REDIRECT_PATH;
 
     } catch (Exception e) {
 
@@ -87,6 +113,32 @@ public class AuthNController {
 // @CrossOrigin
 
 // private static final String REDIRECT_PATH = "redirect:/oauth2/authorization/keycloak";
+
+/*
+
+  @ResponseStatus(HttpStatus.OK)
+  @GetMapping("/bff/login/success")
+  public String loginSuccess(HttpServletRequest request, HttpServletResponse response)
+    throws ResponseStatusException {
+
+    log.info("AuthNController GET /bff/login/success");
+
+    try {
+
+      return REDIRECT_PATH;
+
+    } catch (Exception e) {
+
+      log.error("{}", e.getLocalizedMessage());
+
+      // throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+    }
+
+    return ERROR_PATH;
+
+  }
+
+ */
 
   /*
 

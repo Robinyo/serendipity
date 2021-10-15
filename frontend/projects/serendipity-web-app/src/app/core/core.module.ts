@@ -1,6 +1,6 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
@@ -37,6 +37,7 @@ const components: any[] = [
     CommonModule,
     FlexLayoutModule,
     HttpClientModule,
+    HttpClientXsrfModule.withOptions({cookieName: 'XSRF-TOKEN'}),
     SerendipityComponentsLibModule,
 
     UtilsLibModule.forRoot(environment),
@@ -56,3 +57,6 @@ export class CoreModule {
   }
 
 }
+
+// https://roufid.com/angular-spring-security-csrf-configuration/
+
