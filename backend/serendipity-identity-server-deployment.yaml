@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: serendipity-identity-server
+  name: serendipity-identity-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: serendipity-identity-server
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: serendipity-identity-server
+    spec:
+      containers:
+      - image: robinyo/serendipity-identity-server:0.0.1.Beta3
+        name: serendipity-identity-server
+        resources: {}
+status: {}

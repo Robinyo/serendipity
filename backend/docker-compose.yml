@@ -4,6 +4,7 @@ services:
 
   serendipity-identity-server:
     container_name: serendipity-identity-server
+    # image: robinyo/serendipity-identity-server:latest
     image: serendipity-identity-server:latest
     build:
       context: ./services/serendipity-identity-server
@@ -17,6 +18,7 @@ services:
 
   serendipity-web-bff:
     container_name: serendipity-web-bff
+    # image: robinyo/serendipity-web-bff:latest
     image: serendipity-web-bff:latest
     build:
       context: .
