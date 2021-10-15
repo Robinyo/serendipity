@@ -4,23 +4,23 @@ services:
 
   serendipity-identity-server:
     container_name: serendipity-identity-server
+    image: serendipity-identity-server:latest
     build:
       context: ./services/serendipity-identity-server
       dockerfile: Dockerfile
-    image: serendipity-identity-server:latest
     ports:
       - "10001:8080"
       - "10443:8443"
-    volumes:
-      - .:/export
+    # volumes:
+    #   - .:/export
     env_file: ./services/serendipity-identity-server/serendipity-identity-server.env
 
   serendipity-web-bff:
     container_name: serendipity-web-bff
+    image: serendipity-web-bff:latest
     build:
       context: .
       dockerfile: Dockerfile
-    image: serendipity-web-bff:latest
     ports:
       - "8080:8080"
       - "8443:8443"

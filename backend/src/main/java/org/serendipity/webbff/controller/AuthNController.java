@@ -134,6 +134,8 @@ public class AuthNController {
     authN.setPath(PATH_ATTRIBUTE);
     response.addCookie(authN);
 
+    log.info("authN: {}", authN.getValue());
+
   }
 
   private void deleteCookies(HttpServletRequest request,

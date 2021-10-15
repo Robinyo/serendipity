@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.24.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: serendipity-identity-server
+  name: serendipity-identity-server
+spec:
+  ports:
+    - name: "10001"
+      port: 10001
+      targetPort: 8080
+    - name: "10443"
+      port: 10443
+      targetPort: 8443
+  selector:
+    io.kompose.service: serendipity-identity-server
+status:
+  loadBalancer: {}

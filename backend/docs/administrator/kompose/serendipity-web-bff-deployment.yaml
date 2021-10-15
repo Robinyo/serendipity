@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.24.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: serendipity-web-bff
+  name: serendipity-web-bff
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: serendipity-web-bff
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.24.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: serendipity-web-bff
+    spec:
+      containers:
+        - env:
+            - name: AUTHORIZATION_URI
+              valueFrom:
+                configMapKeyRef:
+                  key: AUTHORIZATION_URI
+                  name: serendipity-web-bff-env
+            - name: CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: CLIENT_ID
+                  name: serendipity-web-bff-env
+            - name: CLIENT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: CLIENT_SECRET
+                  name: serendipity-web-bff-env
+            - name: JWK_SET_URI
+              valueFrom:
+                configMapKeyRef:
+                  key: JWK_SET_URI
+                  name: serendipity-web-bff-env
+            - name: LOGOUT_URI
+              valueFrom:
+                configMapKeyRef:
+                  key: LOGOUT_URI
+                  name: serendipity-web-bff-env
+            - name: SCOPE
+              valueFrom:
+                configMapKeyRef:
+                  key: SCOPE
+                  name: serendipity-web-bff-env
+            - name: TOKEN_URI
+              valueFrom:
+                configMapKeyRef:
+                  key: TOKEN_URI
+                  name: serendipity-web-bff-env
+            - name: USER_INFO_URI
+              valueFrom:
+                configMapKeyRef:
+                  key: USER_INFO_URI
+                  name: serendipity-web-bff-env
+          image: serendipity-web-bff:latest
+          name: serendipity-web-bff
+          ports:
+            - containerPort: 8080
+            - containerPort: 8443
+          resources: {}
+      restartPolicy: Always
+status: {}

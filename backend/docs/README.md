@@ -1,7 +1,9 @@
 <h1 align="center">Documentation</h1>
 
 * Administrator Documentation
-  * [Serendipity Identity Server](./administrator/serendipity-identity-server.md)
+  * [Working with Docker](./administrator/docker.md)
+  * [Working with Kubernetes](./administrator/kubernetes.md)
+  * [Working with Serendipity Identity Server](./administrator/serendipity-identity-server.md)
 * Developer Documentation
-  * [Quick Start Guide](./developer/quick-start-guide.md)
-  * [Build Management](./developer/build-management.md)
+  * Backend
+    * [Build Management](./developer/build-management.md)  

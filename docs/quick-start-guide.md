@@ -18,7 +18,7 @@ cd serendipity-2.0/backend
 To serve the applications:
 
 ```
-docker-compose -f docker-compose-production.yml up -d
+docker-compose up -d
 ```
 
 The containers may take a minute or two to startup.

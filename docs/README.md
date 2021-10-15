@@ -3,7 +3,9 @@
 * [Quick Start Guide](./quick-start-guide.md)
   
 * Administrator Documentation
-  * [Serendipity Identity Server](../backend/docs/administrator/serendipity-identity-server.md)
+  * [Working with Docker](../backend/docs/administrator/docker.md)
+  * [Working with Kubernetes](../backend/docs/administrator/kubernetes.md)
+  * [Working with Serendipity Identity Server](../backend/docs/administrator/serendipity-identity-server.md)
 * Developer Documentation
   * Frontend
     * [Build Management](../frontend/docs/developer/build-management.md)
