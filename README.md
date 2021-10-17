@@ -13,9 +13,9 @@
 
 ## ❯ Components
 
-- **Serendipity Web App**
-- **Serendipity Web BFF**
-- **Serendipity Identity Server**
+- **Serendipity Web App:** A Progressive Web App (PWA)
+- **Serendipity Web BFF:** A Backend for the Frontend
+- **Serendipity Identity Server:**
 
 
 ![divider](./divider.png)
@@ -23,5 +23,19 @@
 ## ❯ Quick Links
 
 [Documentation, demos, and guides](./docs/README.md)
+
+## ❯ Screen Shots
+
+The Welcome Page:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/master/docs/screen-shots/welcome-page.png">
+</p>
+
+Sidenav:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/master/docs/screen-shots/sidenav.png">
+</p>
 
 ![divider](./divider.png)
