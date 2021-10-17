@@ -29,13 +29,13 @@
 The Welcome Page:
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/master/docs/screen-shots/welcome-page.png">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/welcome-page.png">
 </p>
 
 Sidenav:
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/master/docs/screen-shots/sidenav.png">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/sidenav.png">
 </p>
 
 ![divider](./divider.png)
