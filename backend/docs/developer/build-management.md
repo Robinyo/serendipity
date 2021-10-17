@@ -49,7 +49,6 @@ To build the project:
 ```
 docker-compose build
 ```
-
  
 #### Docker 
 
@@ -95,10 +94,14 @@ docker-compose down -v
 To serve the applications:
 
 ```
+# Create the configmaps
 kubectl create configmap serendipity-identity-server-configmap --from-file serendipity-identity-server-configmap.yaml
 kubectl create configmap serendipity-configmap --from-file serendipity-configmap.yaml
 
+# Deploy the Serendipty Identity Service
 kubectl apply -f serendipity-identity-server-deployment.yaml -f serendipity-identity-server-service.yaml
+
+# Deploy the Serendipty PWA and BFF
 kubectl apply -f serendipity-deployment.yaml -f serendipity-service.yaml
 ```
 
