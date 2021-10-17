@@ -61,7 +61,6 @@ kubectl create configmap serendipity-configmap --from-file serendipity-configmap
 
 kubectl apply -f serendipity-identity-server-deployment.yaml -f serendipity-identity-server-service.yaml
 kubectl apply -f serendipity-deployment.yaml -f serendipity-service.yaml
-
 ```
 
 The containers may take a minute or two to startup.

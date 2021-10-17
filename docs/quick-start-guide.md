@@ -20,19 +20,22 @@ cd serendipity-2.0/backend
 To serve the applications:
 
 ```
-kubectl apply -f serendipity-identity-server-deployment.yaml -f serendipity-identity-server-service.yaml 
+kubectl create configmap serendipity-identity-server-configmap --from-file serendipity-identity-server-configmap.yaml
+kubectl create configmap serendipity-configmap --from-file serendipity-configmap.yaml
+
+kubectl apply -f serendipity-identity-server-deployment.yaml -f serendipity-identity-server-service.yaml
 kubectl apply -f serendipity-deployment.yaml -f serendipity-service.yaml
 ```
 
 The containers may take a minute or two to startup.
 
-Navigate to: http://127.0.0.1:8080
+Navigate to: http://127.0.0.1:30001
 
 You can stop the containers using the following command:
 
 ```
-kubectl delete -f serendipity-identity-server-deployment.yaml -f serendipity-identity-server-service.yaml
 kubectl delete -f serendipity-deployment.yaml -f serendipity-service.yaml
+kubectl delete -f serendipity-identity-server-deployment.yaml -f serendipity-identity-server-service.yaml
 ```
 
 ### Docker 
