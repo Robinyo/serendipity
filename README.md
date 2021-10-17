@@ -20,13 +20,32 @@
 
 ![divider](./divider.png)
 
-## ❯ Quick Links
+## ❯ Quick Start
+
+Clone the project by running the following command:
+
+```
+git clone https://github.com/Robinyo/serendipity-2.0
+cd serendipity-2.0/backend
+``` 
+
+To serve the applications:
+
+```
+docker-compose up -d
+```
+
+The containers may take a minute or two to startup.
+
+Navigate to: http://127.0.0.1:8080
+
+## ❯ Links
 
 [Documentation, demos, and guides](./docs/README.md)
 
 ## ❯ Screen Shots
 
-The Welcome Page:
+Welcome Page:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/welcome-page.png">
