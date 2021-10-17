@@ -11,12 +11,14 @@
 
 ![divider](./divider.png)
 
-## ❯ Components
 
-- **Serendipity Web App:** A Progressive Web App (PWA)
-- **Serendipity Web BFF:** A Backend for the Frontend
-- **Serendipity Identity Server:**
+## ❯ Features
 
+- **Progressive Web App (PWA)**
+- **Backend for Frontend (BFF)**
+- **Spring Security 5 OAuth 2.0 Login (Authorization Code flow)**
+- **Lazy-loading Feature Modules**
+- **Support for Webpack Module Federation**
 
 ![divider](./divider.png)
 
