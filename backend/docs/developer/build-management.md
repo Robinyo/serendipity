@@ -50,49 +50,6 @@ To build the project:
 docker-compose build
 ```
 
-
-#### Kubernetes
-
-To serve the applications:
-
-```
-kubectl create configmap serendipity-identity-server-configmap --from-file serendipity-identity-server-configmap.yaml
-kubectl create configmap serendipity-configmap --from-file serendipity-configmap.yaml
-
-kubectl apply -f serendipity-identity-server-deployment.yaml -f serendipity-identity-server-service.yaml
-kubectl apply -f serendipity-deployment.yaml -f serendipity-service.yaml
-```
-
-The containers may take a minute or two to startup.
-
-Navigate to: http://127.0.0.1:30001
-
-You can stop the containers using the following command:
-
-```
-kubectl delete -f serendipity-deployment.yaml -f serendipity-service.yaml
-kubectl delete -f serendipity-identity-server-deployment.yaml -f serendipity-identity-server-service.yaml
-```
-
-To ...
-
-```
-kubectl get pods
-```
-
-To delete the configMaps:
-
-```
-kubectl delete configmap serendipity-configmap -n default
-kubectl delete configmap serendipity-identity-server-configmap -n default
-```
-
-
-
-
-
-
-
  
 #### Docker 
 
@@ -131,6 +88,42 @@ You can stop the containers using the following command:
 
 ```
 docker-compose down -v
+```
+
+#### Kubernetes
+
+To serve the applications:
+
+```
+kubectl create configmap serendipity-identity-server-configmap --from-file serendipity-identity-server-configmap.yaml
+kubectl create configmap serendipity-configmap --from-file serendipity-configmap.yaml
+
+kubectl apply -f serendipity-identity-server-deployment.yaml -f serendipity-identity-server-service.yaml
+kubectl apply -f serendipity-deployment.yaml -f serendipity-service.yaml
+```
+
+The containers may take a minute or two to startup.
+
+Navigate to: http://127.0.0.1:30001
+
+You can stop the containers using the following command:
+
+```
+kubectl delete -f serendipity-deployment.yaml -f serendipity-service.yaml
+kubectl delete -f serendipity-identity-server-deployment.yaml -f serendipity-identity-server-service.yaml
+```
+
+To ...
+
+```
+kubectl get pods
+```
+
+To delete the configMaps:
+
+```
+kubectl delete configmap serendipity-configmap -n default
+kubectl delete configmap serendipity-identity-server-configmap -n default
 ```
 
 ### Additional Resources

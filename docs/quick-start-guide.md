@@ -15,6 +15,24 @@ git clone https://github.com/Robinyo/serendipity-2.0
 cd serendipity-2.0/backend
 ``` 
 
+### Docker 
+
+To serve the applications:
+
+```
+docker-compose up -d
+```
+
+The containers may take a minute or two to startup.
+
+Navigate to: http://127.0.0.1:8080
+
+You can stop the containers using the following command:
+
+```
+docker-compose down -v
+```
+
 ### Kubernetes
 
 To serve the applications:
@@ -36,22 +54,4 @@ You can stop the containers using the following command:
 ```
 kubectl delete -f serendipity-deployment.yaml -f serendipity-service.yaml
 kubectl delete -f serendipity-identity-server-deployment.yaml -f serendipity-identity-server-service.yaml
-```
-
-### Docker 
-
-To serve the applications:
-
-```
-docker-compose up -d
-```
-
-The containers may take a minute or two to startup.
-
-Navigate to: http://127.0.0.1:8080
-
-You can stop the containers using the following command:
-
-```
-docker-compose down -v
 ```
