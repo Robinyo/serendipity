@@ -15,6 +15,28 @@ git clone https://github.com/Robinyo/serendipity-2.0
 cd serendipity-2.0/backend
 ``` 
 
+### Kubernetes
+
+To serve the applications:
+
+```
+kubectl apply -f serendipity-identity-server-deployment.yaml -f serendipity-identity-server-service.yaml 
+kubectl apply -f serendipity-deployment.yaml -f serendipity-service.yaml
+```
+
+The containers may take a minute or two to startup.
+
+Navigate to: http://127.0.0.1:8080
+
+You can stop the containers using the following command:
+
+```
+kubectl delete -f serendipity-identity-server-deployment.yaml -f serendipity-identity-server-service.yaml
+kubectl delete -f serendipity-deployment.yaml -f serendipity-service.yaml
+```
+
+### Docker 
+
 To serve the applications:
 
 ```

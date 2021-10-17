@@ -19,3 +19,6 @@ kubectl is the main Kubernetes command-line tool, you’ll use it for most Kuber
 
 The kubectl configuration file is called config (aka kubeconfig) and lives in a hidden directory called kube in your 
 home directory ($HOME/.kube/config).
+
+[kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+This page contains a list of commonly used kubectl commands and flags.

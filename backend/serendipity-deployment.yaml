@@ -5,6 +5,7 @@ metadata:
   labels:
     app: serendipity
   name: serendipity
+  namespace: default
 spec:
   replicas: 1
   selector:
@@ -18,7 +19,10 @@ spec:
         app: serendipity
     spec:
       containers:
-      - image: robinyo/serendipity:0.0.1.Beta3
-        name: serendipity
-        resources: {}
-status: {}
+        - name: serendipity
+          image: robinyo/serendipity:0.0.1.Beta3
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: serendipity-configmap
