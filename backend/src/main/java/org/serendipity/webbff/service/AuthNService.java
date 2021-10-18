@@ -11,7 +11,8 @@ public class AuthNService {
 
     log.info("AuthNService -> getUrl()");
 
-    return "http://127.0.0.1:8080/oauth2/authorization/keycloak";
+    // return "http://127.0.0.1:8080/oauth2/authorization/keycloak";
+    return "http://127.0.0.1:30001/oauth2/authorization/keycloak";
 
   }
 

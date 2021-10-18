@@ -50,6 +50,18 @@ To build the project:
 docker-compose build
 ```
 
+#### Docker Hub
+
+To tag the images and push them to Docker Hub:
+
+```
+docker tag serendipity-identity-server robinyo/serendipity-identity-server:latest
+docker tag serendipity robinyo/serendipity:latest
+
+docker push robinyo/serendipity-identity-server:latest
+docker push robinyo/serendipity:latest
+```
+  
 #### Kubernetes
 
 To serve the applications (from the /backend directory):
@@ -86,7 +98,7 @@ serendipity-identity-server-75d8d4b79c-qqxdv   1/1     Running   0          73m
 To check the logs:
 
 ```
-logs <name> --namespace=serendipity
+kubectl logs <name> --namespace=serendipity
 ```
 
 You can stop the containers using the following command:
@@ -95,7 +107,7 @@ You can stop the containers using the following command:
 kubectl delete -n serendipity -f serendipity-identity-server.yaml
 kubectl delete -n serendipity -f serendipity.yaml
 ```
- 
+
 #### Docker 
 
 To serve the applications:

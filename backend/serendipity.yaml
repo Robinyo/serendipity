@@ -44,6 +44,8 @@ spec:
               value: "http://127.0.0.1:30002/auth/realms/development/protocol/openid-connect/certs"
             - name: LOGOUT_URI
               value: "http://127.0.0.1:30002/auth/realms/development/protocol/openid-connect/logout"
+            - name: REDIRECT_URI
+              value: "http://127.0.0.1:30001/login/oauth2/code/keycloak"
             - name: SCOPE
               value: "openid,profile,email,address,phone"
             - name: TOKEN_URI

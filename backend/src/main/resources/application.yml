@@ -29,7 +29,8 @@ spring:
             client-secret: ${CLIENT_SECRET}
             client-authentication-method: client_secret_basic
             authorization-grant-type: authorization_code
-            redirect-uri: '{baseUrl}/login/oauth2/code/{registrationId}'
+            # redirect-uri: '{baseUrl}/login/oauth2/code/{registrationId}'
+            redirect-uri: ${REDIRECT_URI}
             scope: ${SCOPE}
             client-name: Keycloak
         provider:
