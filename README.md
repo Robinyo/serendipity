@@ -49,7 +49,14 @@ The containers may take a minute or two to startup.
 
 Navigate to: http://127.0.0.1:30001
 
-**Note:** You may also want to deploy the [Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/).
+### Kubernetes Dashboard
+
+Follow these [steps](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) to deploy the 
+Kubernetes Dashboard.
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/kubernetes-dashboard.png">
+</p>
 
 ### Docker
 
