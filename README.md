@@ -31,6 +31,27 @@ git clone https://github.com/Robinyo/serendipity-2.0
 cd serendipity-2.0/backend
 ``` 
 
+### Kubernetes
+
+To serve the applications:
+
+```
+# Create a dedicated namespace for our deployments
+kubectl create ns serendipity
+
+# Deploy the Serendipty Identity Service
+kubectl apply -n serendipity -f serendipity-identity-server.yaml
+
+# Deploy the Serendipty PWA and BFF
+kubectl apply -n serendipity -f serendipity.yaml
+```
+
+The containers may take a minute or two to startup.
+
+Navigate to: http://127.0.0.1:30001
+
+### Docker
+
 To serve the applications:
 
 ```

@@ -49,6 +49,38 @@ To build the project:
 ```
 docker-compose build
 ```
+
+#### Kubernetes
+
+To serve the applications:
+
+```
+# Create a dedicated namespace for our deployments
+kubectl create ns serendipity
+
+# Deploy the Serendipty Identity Service
+kubectl apply -n serendipity -f serendipity-identity-server.yaml
+
+# Deploy the Serendipty PWA and BFF
+kubectl apply -n serendipity -f serendipity.yaml
+```
+
+The containers may take a minute or two to startup.
+
+Navigate to: http://127.0.0.1:30001
+
+To list all the services in the 'serendipity' namespace:
+
+```
+kubectl get pods --namespace=serendipity
+```
+
+You can stop the containers using the following command:
+
+```
+kubectl delete -n serendipity -f serendipity-identity-server.yaml
+kubectl delete -n serendipity -f serendipity.yaml
+```
  
 #### Docker 
 
@@ -87,46 +119,6 @@ You can stop the containers using the following command:
 
 ```
 docker-compose down -v
-```
-
-#### Kubernetes
-
-To serve the applications:
-
-```
-# Create the configmaps
-kubectl create configmap serendipity-identity-server-configmap --from-file serendipity-identity-server-configmap.yaml
-kubectl create configmap serendipity-configmap --from-file serendipity-configmap.yaml
-
-# Deploy the Serendipty Identity Service
-kubectl apply -f serendipity-identity-server-deployment.yaml -f serendipity-identity-server-service.yaml
-
-# Deploy the Serendipty PWA and BFF
-kubectl apply -f serendipity-deployment.yaml -f serendipity-service.yaml
-```
-
-The containers may take a minute or two to startup.
-
-Navigate to: http://127.0.0.1:30001
-
-You can stop the containers using the following command:
-
-```
-kubectl delete -f serendipity-deployment.yaml -f serendipity-service.yaml
-kubectl delete -f serendipity-identity-server-deployment.yaml -f serendipity-identity-server-service.yaml
-```
-
-To ...
-
-```
-kubectl get pods
-```
-
-To delete the configMaps:
-
-```
-kubectl delete configmap serendipity-configmap -n default
-kubectl delete configmap serendipity-identity-server-configmap -n default
 ```
 
 ### Additional Resources

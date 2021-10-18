@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: serendipity-identity-server
+  name: serendipity-identity-server
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 8080
+      nodePort: 30002
+      targetPort: 8080
+  selector:
+    app: serendipity-identity-server
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: serendipity-identity-server
+  labels:
+    app: serendipity-identity-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: serendipity-identity-server
+  template:
+    metadata:
+      labels:
+        app: serendipity-identity-server
+    spec:
+      containers:
+        - name: serendipity-identity-server
+          image: robinyo/serendipity-identity-server:0.0.1.Beta3
+          env:
+            - name: KEYCLOAK_USER
+              value: "admin"
+            - name: KEYCLOAK_PASSWORD
+              value: "secret"
+            - name: DB_VENDOR
+              value: "h2"
+            - name: KEYCLOAK_FRONTEND_URL
+              value: "http://127.0.0.1:30002/auth"
+          ports:
+            - name: http
+              containerPort: 8080
