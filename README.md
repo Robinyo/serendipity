@@ -20,6 +20,10 @@
 - **Lazy-loading Feature Modules**
 - **Support for Webpack Module Federation**
 
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/context-diagram.png">
+</p>
+
 ![divider](./divider.png)
 
 ## ❯ Quick Start
