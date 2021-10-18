@@ -12,16 +12,21 @@
 ![divider](./divider.png)
 
 
-## ❯ Features
+## ❯ Components
 
 - **Progressive Web App (PWA)**
 - **Backend for Frontend (BFF)**
-- **Spring Security 5 OAuth 2.0 Login (Authorization Code flow)**
-- **Lazy-loading Feature Modules**
-- **Support for Webpack Module Federation**
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/context-diagram.png">
+</p>
+
+## ❯ Features
+
+- **Spring Security 5 OAuth 2.0 Login (Authorization Code flow)**
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/sequence-diagram.png">
 </p>
 
 ![divider](./divider.png)
