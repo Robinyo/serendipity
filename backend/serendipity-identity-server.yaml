@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
         - name: serendipity-identity-server
-          image: robinyo/serendipity-identity-server:0.0.1.Beta3
+          image: robinyo/serendipity-identity-server:latest
           env:
             - name: KEYCLOAK_USER
               value: "admin"
@@ -42,6 +42,10 @@ spec:
               value: "h2"
             - name: KEYCLOAK_FRONTEND_URL
               value: "http://127.0.0.1:30002/auth"
+            - name: KEYCLOAK_IMPORT
+              value: "/tmp/development-realm.json"
+            - name: KEYCLOAK_MIGRATION_STRATEGY
+              value: "OVERWRITE_EXISTING"
           ports:
             - name: http
               containerPort: 8080

@@ -75,6 +75,20 @@ To list all the services in the 'serendipity' namespace:
 kubectl get pods --namespace=serendipity
 ```
 
+You should see output like:
+
+```
+NAME                                           READY   STATUS    RESTARTS   AGE
+serendipity-69dbb67c9b-w8v7t                   1/1     Running   0          48m
+serendipity-identity-server-75d8d4b79c-qqxdv   1/1     Running   0          73m
+```
+
+To check the logs:
+
+```
+logs <name> --namespace=serendipity
+```
+
 You can stop the containers using the following command:
 
 ```

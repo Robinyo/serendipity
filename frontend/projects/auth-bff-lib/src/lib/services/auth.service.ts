@@ -2,11 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router } from "@angular/router";
 
+import { Observable, Subscription } from "rxjs";
+import { tap } from "rxjs/operators";
+
 import { CookieService } from 'ngx-cookie-service';
 
-import { LoggerService } from "utils-lib";
-import {Observable, Subscription} from "rxjs";
-import {tap} from "rxjs/operators";
+import { Config, EnvironmentService, LoggerService } from "utils-lib";
+
+const LOGIN_PATH = '/bff/login';
+const LOGOUT_PATH = '/bff/logout';
 
 @Injectable({
   providedIn: 'root'
@@ -14,22 +18,22 @@ import {tap} from "rxjs/operators";
 export class AuthService {
 
   protected authenticated = false;
+  protected config: Config;
 
   protected httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
-      // 'Access-Control-Allow-Origin': '*'
     })
   };
 
-  // protected urlPrefix: string = 'http' + '://' + 'localhost' +  ':' + '8080';
-  protected urlPrefix: string = 'http' + '://' + '127.0.0.1' +  ':' + '8080';
-  protected url: string = '';
-
-  constructor(private httpClient: HttpClient,
+  constructor(private router: Router,
+              private httpClient: HttpClient,
               private cookieService: CookieService,
-              private logger: LoggerService,
-              private router: Router) {}
+              private environmentService: EnvironmentService,
+              private logger: LoggerService) {
+
+    this.config = this.environmentService.getConfig();
+  }
 
   public isAuthenticated(): boolean {
 
@@ -71,9 +75,7 @@ export class AuthService {
 
     this.logger.info('AuthService: login()');
 
-    this.url = this.urlPrefix + '/bff/login';
-
-    return this.httpClient.post(this.url, {}, this.httpOptions).pipe(
+    return this.httpClient.post(this.getUrlPrefix() + LOGIN_PATH, {}, this.httpOptions).pipe(
       tap(() => {
         this.logger.info('AuthService: login() completed');
       })
@@ -109,9 +111,7 @@ export class AuthService {
 
     this.logger.info('AuthService: logout()');
 
-    this.url = this.urlPrefix + '/bff/logout';
-
-    return this.httpClient.post(this.url, {}, this.httpOptions).pipe(
+    return this.httpClient.post(this.getUrlPrefix() + LOGOUT_PATH, {}, this.httpOptions).pipe(
       tap(() => {
         this.logger.info('AuthService: logout() completed');
       })
@@ -119,7 +119,17 @@ export class AuthService {
 
   }
 
+  protected getUrlPrefix(): string {
+    return this.config.serverScheme + '://' + this.config.serverHost + ':' + this.config.serverPort;
+  }
+
 }
+
+// protected urlPrefix: string = 'http' + '://' + 'localhost' +  ':' + '8080';
+// protected urlPrefix: string = 'http' + '://' + '127.0.0.1' +  ':' + '8080';
+// protected url: string = '';
+
+// 'Access-Control-Allow-Origin': '*'
 
 /*
 

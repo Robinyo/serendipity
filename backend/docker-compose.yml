@@ -16,10 +16,10 @@ services:
     #   - .:/export
     env_file: ./services/serendipity-identity-server/serendipity-identity-server.env
 
-  serendipity-web-bff:
-    container_name: serendipity-web-bff
-    # image: robinyo/serendipity-web-bff:latest
-    image: serendipity-web-bff:latest
+  serendipity:
+    container_name: serendipity
+    # image: robinyo/serendipity:latest
+    image: serendipity:latest
     build:
       context: .
       dockerfile: Dockerfile
