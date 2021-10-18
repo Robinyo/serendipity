@@ -49,6 +49,8 @@ The containers may take a minute or two to startup.
 
 Navigate to: http://127.0.0.1:30001
 
+**Note:** You may also want to deploy the [Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/).
+
 ### Docker
 
 To serve the applications (from the /backend directory):
@@ -59,7 +61,7 @@ docker-compose up -d
 
 The containers may take a minute or two to startup.
 
-Navigate to: http://127.0.0.1:8080
+Navigate to: http://127.0.0.1:30001
 
 ## ❯ Docker Hub
 
