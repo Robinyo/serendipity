@@ -11,7 +11,6 @@
 
 ![divider](./divider.png)
 
-
 ## ❯ Components
 
 - **Progressive Web App (PWA)**
@@ -21,6 +20,8 @@
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/context-diagram.png">
 </p>
+
+![divider](./divider.png)
 
 ## ❯ Features
 
@@ -80,13 +81,19 @@ The containers may take a minute or two to startup.
 
 Navigate to: http://127.0.0.1:30001
 
+![divider](./divider.png)
+
 ## ❯ Docker Hub
 
 See: https://hub.docker.com/u/robinyo
 
+![divider](./divider.png)
+
 ## ❯ Links
 
 [Documentation, demos, and guides](./docs/README.md)
+
+![divider](./divider.png)
 
 ## ❯ Screen Shots
 
