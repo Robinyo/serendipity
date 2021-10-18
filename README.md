@@ -16,6 +16,7 @@
 
 - **Progressive Web App (PWA)**
 - **Backend for Frontend (BFF)**
+- **Identity Server (Keycloak)**
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/context-diagram.png">
