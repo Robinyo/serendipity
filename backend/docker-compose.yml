@@ -10,8 +10,7 @@ services:
       context: ./services/serendipity-identity-server
       dockerfile: Dockerfile
     ports:
-      - "10001:8080"
-      - "10443:8443"
+      - "30002:8080"
     # volumes:
     #   - .:/export
     env_file: ./services/serendipity-identity-server/serendipity-identity-server.env
@@ -24,8 +23,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
-      - "8443:8443"
+      - "30001:8080"
     env_file: ./serendipity-web-bff.env
     depends_on:
       - serendipity-identity-server

@@ -118,7 +118,7 @@ docker-compose up -d
 
 The containers may take a minute or two to startup.
 
-Navigate to: http://127.0.0.1:8080
+Navigate to: http://127.0.0.1:30001
 
 You can check the status of the containers using the following command:
 
