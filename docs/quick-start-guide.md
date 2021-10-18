@@ -17,7 +17,7 @@ cd serendipity-2.0/backend
 
 ### Docker 
 
-To serve the applications:
+To serve the applications (from the /backend directory):
 
 ```
 docker-compose up -d
@@ -35,14 +35,17 @@ docker-compose down -v
 
 ### Kubernetes
 
-To serve the applications:
+To serve the applications (from the /backend directory):
 
 ```
-kubectl create configmap serendipity-identity-server-configmap --from-file serendipity-identity-server-configmap.yaml
-kubectl create configmap serendipity-configmap --from-file serendipity-configmap.yaml
+# Create a dedicated namespace for our deployments
+kubectl create ns serendipity
 
-kubectl apply -f serendipity-identity-server-deployment.yaml -f serendipity-identity-server-service.yaml
-kubectl apply -f serendipity-deployment.yaml -f serendipity-service.yaml
+# Deploy the Serendipty Identity Service
+kubectl apply -n serendipity -f serendipity-identity-server.yaml
+
+# Deploy the Serendipty PWA and BFF
+kubectl apply -n serendipity -f serendipity.yaml
 ```
 
 The containers may take a minute or two to startup.
@@ -52,6 +55,6 @@ Navigate to: http://127.0.0.1:30001
 You can stop the containers using the following command:
 
 ```
-kubectl delete -f serendipity-deployment.yaml -f serendipity-service.yaml
-kubectl delete -f serendipity-identity-server-deployment.yaml -f serendipity-identity-server-service.yaml
+kubectl delete -n serendipity -f serendipity-identity-server.yaml
+kubectl delete -n serendipity -f serendipity.yaml
 ```

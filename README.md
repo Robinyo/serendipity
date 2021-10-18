@@ -28,12 +28,11 @@ Clone the project by running the following command:
 
 ```
 git clone https://github.com/Robinyo/serendipity-2.0
-cd serendipity-2.0/backend
 ``` 
 
 ### Kubernetes
 
-To serve the applications:
+To serve the applications (from the /backend directory):
 
 ```
 # Create a dedicated namespace for our deployments
@@ -52,7 +51,7 @@ Navigate to: http://127.0.0.1:30001
 
 ### Docker
 
-To serve the applications:
+To serve the applications (from the /backend directory):
 
 ```
 docker-compose up -d

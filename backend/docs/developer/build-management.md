@@ -52,7 +52,7 @@ docker-compose build
 
 #### Kubernetes
 
-To serve the applications:
+To serve the applications (from the /backend directory):
 
 ```
 # Create a dedicated namespace for our deployments
