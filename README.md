@@ -23,7 +23,7 @@
 
 ## ❯ Features
 
-- **Spring Security 5 OAuth 2.0 Login (Authorization Code flow)**
+- **Spring Security 5 OAuth 2.0 Login**
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/sequence-diagram.png">
