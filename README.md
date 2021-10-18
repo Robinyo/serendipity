@@ -52,7 +52,7 @@ Navigate to: http://127.0.0.1:30001
 ### Kubernetes Dashboard
 
 Follow these [steps](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) to deploy the 
-Kubernetes Dashboard.
+Kubernetes Dashboard:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/kubernetes-dashboard.png">
