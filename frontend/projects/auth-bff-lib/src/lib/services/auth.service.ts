@@ -35,6 +35,16 @@ export class AuthService {
     this.config = this.environmentService.getConfig();
   }
 
+  /*
+
+  public isAuthenticated(): boolean {
+    return true;
+  }
+
+  */
+
+  // /*
+
   public isAuthenticated(): boolean {
 
     if (this.cookieService.check('authN')) {
@@ -54,6 +64,8 @@ export class AuthService {
     return this.authenticated;
 
   }
+
+  // */
 
   public async loginWithRedirect(): Promise<void> {
 

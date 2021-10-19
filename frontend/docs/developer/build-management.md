@@ -42,13 +42,13 @@ ng build --configuration="development" serendipity-web-app
 To launch the project:
 
 ```
-ng serve serendipity-web-app
+ng serve serendipity-web-app --port 30001
 ```
 
 Navigate to:
 
 ```
-http://localhost:4200/
+http://localhost:30001/
 ```
 
 ### Production

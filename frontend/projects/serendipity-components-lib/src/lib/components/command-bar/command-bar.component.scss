@@ -3,9 +3,6 @@
 
 $command-bar-row-padding: 8px !default;
 
-$command-bar-button-padding: 16px !default;
-$command-bar-button-min-width: 48px !default;
-
 .command-bar {
 
   height: $command-bar-height-desktop !important;
@@ -31,9 +28,4 @@ $command-bar-button-min-width: 48px !default;
     min-height: $command-bar-height-mobile !important;
   }
 
-}
-
-.command-bar-button {
-  min-width: $command-bar-button-min-width;
-  padding: 0 $command-bar-button-padding;
 }

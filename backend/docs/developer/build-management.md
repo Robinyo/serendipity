@@ -154,7 +154,7 @@ docker-compose down -v
 
 ### Resources
 
-* Spring Security: [OAuth 2.0 Login](https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2login)
+* Spring Security 5: [OAuth 2.0 Login](https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2login)
 
 ### Additional Resources
 

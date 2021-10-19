@@ -1,16 +1,81 @@
 $activity-bar-title-font-size: 1.6em !default;
+$command-bar-button-padding: 16px !default;
+$command-bar-button-min-width: 48px !default;
+$command-bar-button-margin-right: 8px !default;
+
+.default-command-bar-button {
+  margin-right: $command-bar-button-margin-right;
+  min-width: $command-bar-button-min-width;
+  padding: 0 $command-bar-button-padding;
+}
+
+.command-bar-button {
+  background-color: darkgrey;
+  color: white;
+  margin-right: $command-bar-button-margin-right;
+  min-width: $command-bar-button-min-width;
+  padding: 0 $command-bar-button-padding;
+}
 
 .activity-bar-title {
   font-size: $activity-bar-title-font-size;
 }
 
-/*
+// top, right, bottom, and left
 
-.component-title {
-  flex: 1 1 auto;
-  text-align: center;
+//
+// Header
+//
 
+.header-toolbar {
+  background: #fafafa;
+}
+.header-title {
   font-weight: bold;
+  padding: 0 16px 0 40px;
+}
+.header-icon {
+  margin: 0 12px 0 12px;
 }
 
-*/
+th.mat-header-cell {
+  padding-right: 16px;
+  // text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.header-cell-id {
+  text-align: right;
+}
+
+td.mat-cell {
+  padding-right: 16px;
+}
+
+// Columns
+
+.mat-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mat-column-party-displayName {
+  width: 280px;
+  max-width: 280px;
+}
+
+.mat-column-email {
+  width: 260px;
+  max-width: 240px;
+}
+
+.mat-column-organisation-displayName {
+  width: 200px;
+  max-width: 120px;
+}
+
+.mat-column-organisation-phoneNumber {
+  width: 140px;
+  max-width: 120px;
+}
