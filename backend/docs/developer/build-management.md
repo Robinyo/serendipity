@@ -108,6 +108,11 @@ kubectl delete -n serendipity -f serendipity-identity-server.yaml
 kubectl delete -n serendipity -f serendipity.yaml
 ```
 
+##### Kubernetes Dashboard
+
+Follow these [steps](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) to deploy the 
+Kubernetes Dashboard.
+
 #### Docker 
 
 To serve the applications:
@@ -146,6 +151,10 @@ You can stop the containers using the following command:
 ```
 docker-compose down -v
 ```
+
+### Resources
+
+* Spring Security: [OAuth 2.0 Login](https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2login)
 
 ### Additional Resources
 
