@@ -23,6 +23,8 @@ $command-bar-row-padding: 8px !default;
   padding-left: $command-bar-row-padding;
   padding-right: $command-bar-row-padding;
 
+  background: rgba(0, 0, 0, 0.04);
+
   @media ($mat-xsmall) {
     height: $command-bar-height-mobile !important;
     min-height: $command-bar-height-mobile !important;

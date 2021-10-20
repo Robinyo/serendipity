@@ -52,7 +52,9 @@ $light-theme: mat.define-light-theme((
 //
 
 .mat-drawer-container {
-  background-color: white !important;
+  // background-color: white !important;
+  // background: rgba(0, 0, 0, 0.02) !important;
+  background: whitesmoke;
 
   // @media ($mat-xsmall) {
   //   background-color: white !important;
