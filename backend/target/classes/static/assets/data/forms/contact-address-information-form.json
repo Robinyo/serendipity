@@ -1,0 +1,102 @@
+[
+
+  {
+    "type": "input",
+    "id": "line1",
+    "label": "Address Line 1",
+    "appearance": "outline",
+    "autocomplete": "address-line1",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter an Address Line 1"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1-span-2"
+  },
+  {
+    "type": "input",
+    "id": "line2",
+    "label": "Address Line 2",
+    "appearance": "outline",
+    "autocomplete": "address-line2",
+
+    "gridItemClass": "grid-column-1-span-2"
+  },
+  {
+    "type": "input",
+    "id": "city",
+    "label": "City",
+    "appearance": "outline",
+    "autocomplete": "address-level2",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a City"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1"
+  },
+  {
+    "type": "input",
+    "id": "state",
+    "label": "State",
+    "appearance": "outline",
+    "autocomplete": "address-level1",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a State"
+      }
+    ],
+
+    "gridItemClass": "grid-column-2"
+  },
+  {
+    "type": "input",
+    "id": "postalCode",
+    "label": "Postal Code",
+    "appearance": "outline",
+    "autocomplete": "postal-code",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a Postal Code"
+      }
+    ],
+
+    "gridItemClass": "grid-column-3"
+  },
+  {
+    "type": "input",
+    "id": "addressType",
+    "label": "Address Type",
+    "appearance": "outline",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter an Address Type"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1"
+  }
+
+]

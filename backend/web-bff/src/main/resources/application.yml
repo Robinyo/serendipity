@@ -1,0 +1,48 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    # org.springframework.security: INFO
+    org.springframework.security: INFO
+    # org.springframework.boot.autoconfigure: DEBUG
+    reactor:
+      netty:
+        http:
+          client:
+            HttpClient: INFO
+
+spring:
+  main:
+    banner-mode: off
+  profiles:
+    active: @spring.profiles.active@
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: ${CLIENT_ID}
+            client-secret: ${CLIENT_SECRET}
+            client-authentication-method: client_secret_basic
+            authorization-grant-type: authorization_code
+            redirect-uri: '{baseUrl}/login/oauth2/code/{registrationId}'
+            # redirect-uri: ${REDIRECT_URI}
+            scope: ${SCOPE}
+            client-name: Keycloak
+        provider:
+          keycloak:
+            authorization-uri: ${AUTHORIZATION_URI}
+            token-uri: ${TOKEN_URI}
+            user-info-uri: ${USER_INFO_URI}
+            jwk-set-uri: ${JWK_SET_URI}
+            user-name-attribute: preferred_username
+            # issuer-uri: ${AUTHORIZATION_URI}
+
+# https://docs.spring.io/spring-security/site/docs/5.2.12.RELEASE/reference/html/oauth2.html#oauth2login-boot-property-mappings
+# https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html
+# https://github.com/spring-projects/spring-security-samples/blob/main/servlet/spring-boot/java/oauth2/login/src/main/resources/application.yml

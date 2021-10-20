@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: serendipity
+  name: serendipity
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 8080
+      nodePort: 30001
+      targetPort: 8080
+  selector:
+    app: serendipity
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: serendipity
+  labels:
+    app: serendipity
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: serendipity
+  template:
+    metadata:
+      labels:
+        app: serendipity
+    spec:
+      containers:
+        - name: serendipity
+          image: robinyo/serendipity:latest
+          env:
+            - name: AUTHORIZATION_URI
+              value: "http://127.0.0.1:30002/auth/realms/development/protocol/openid-connect/auth"
+            - name: CLIENT_ID
+              value: "serendipity-web-bff"
+            - name: CLIENT_SECRET
+              value: "1daa2667-d208-49a4-ad81-5b94746ba88f"
+            - name: JWK_SET_URI
+              value: "http://serendipity-identity-server:8080/auth/realms/development/protocol/openid-connect/certs"
+            - name: LOGOUT_URI
+              value: "http://serendipity-identity-server:8080/auth/realms/development/protocol/openid-connect/logout"
+            - name: REDIRECT_URI
+              value: "http://127.0.0.1:30001/login/oauth2/code/keycloak"
+            - name: SCOPE
+              value: "openid,profile,email,address,phone"
+            - name: TOKEN_URI
+              value: "http://serendipity-identity-server:8080/auth/realms/development/protocol/openid-connect/token"
+            - name: USER_INFO_URI
+              value: "http://serendipity-identity-server:8080/auth/realms/development/protocol/openid-connect/userinfo"
+          ports:
+            - name: http
+              containerPort: 8080

@@ -1,0 +1,26 @@
+Enabled: ON
+Console Display Name: OpenLDAP
+Priority: 0
+Import Users: ON
+Edit Mode: WRITABLE
+Sync Registrations : ON
+Vendor: Other
+Username LDAP attribute: uid
+RDN LDAP attribute: uid
+UUID LDAP attribute: uid
+User Object Classes: inetOrgPerson
+Connection URL: ldap://host.docker.internal:389
+Users DN: ou=users,dc=flowable,dc=org
+Bind Type: simple
+Enable StartTLS: OFF
+Bind DN: cn=admin,dc=flowable,dc=org
+Bind Credential: secret
+Custom User LDAP Filter:
+Search Scope: One Level
+Validate Password Policy: OFF
+Trust Email: OFF
+Use Truststore SPI: Only for ldaps
+Connection Pooling: ON
+Connection Timeout:
+Read Timeout:
+Pagination: ON

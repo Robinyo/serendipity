@@ -4,12 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.serendipity</groupId>
-	<artifactId>web-bff</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<artifactId>serendipity-parent</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
 
-	<name>web-bff</name>
-	<description>Serendipity Web App Backend for Frontend</description>
+	<name>Serendipity Parent POM</name>
 
 	<inceptionYear>2021</inceptionYear>
 
@@ -31,6 +30,10 @@
 		<version>2.5.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
+	<modules>
+		<module>web-bff</module>
+	</modules>
 
 	<properties>
 		<java.version>11</java.version>
