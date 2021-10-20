@@ -1,25 +1,14 @@
-import { HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpContext, HttpHeaders, HttpParams } from '@angular/common/http';
 
 export interface HttpOptions {
-  body?: any;
+  body?: any | null;
   headers?: HttpHeaders | { [header: string]: string | Array<string> };
+  context?: HttpContext;
   observe?: any;
-  params?: HttpParams | null;
+  params?: HttpParams | {
+    [param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
+  };
   reportProgress?: boolean;
   responseType?: 'json';
   withCredentials?: boolean;
 }
-
-/*
-
-export interface HttpOptions {
-  body?: any;
-  headers?: HttpHeaders | { [header: string]: string | Array<string> };
-  observe?: any;
-  params?: HttpParams | { [param: string]: string | Array<string> };
-  reportProgress?: boolean;
-  responseType?: 'json';
-  withCredentials?: boolean;
-}
-
-*/

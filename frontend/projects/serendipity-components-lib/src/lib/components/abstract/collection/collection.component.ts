@@ -42,15 +42,18 @@ export interface CollectionComponentConfig {
 export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatSort, {static: false})
-  public sort: MatSort | undefined;
+  // @ts-ignore
+  public sort: MatSort;
 
   public alphabet = ALPHABET;
-  public columnDefs: ColumnDef[] | undefined;
-  public dataSource: MatTableDataSource<T> | undefined;
+  // @ts-ignore
+  public columnDefs: ColumnDef[];
+  // @ts-ignore
+  public dataSource: MatTableDataSource<T>;
   public displayedColumns: string[] | undefined;
   public footerAllLabel = ALL;
   public footerColSpan = DEFAULT_FOOTER_COL_SPAN;
-  public items: Array<T> | undefined;
+  public items: Array<T> = [];
   public pageNumber = 1;
   public selectedFooterItemId = ALL;
 

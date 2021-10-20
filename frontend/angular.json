@@ -28,7 +28,12 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/serendipity-web-app/src/favicon.ico",
-              "projects/serendipity-web-app/src/assets"
+              "projects/serendipity-web-app/src/assets",
+              {
+                "glob": "**/*",
+                "input": "projects/party-lib/src/assets",
+                "output": "/assets"
+              }
             ],
             "styles": [
               "projects/serendipity-web-app/src/styles.scss",

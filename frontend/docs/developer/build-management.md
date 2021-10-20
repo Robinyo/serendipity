@@ -45,11 +45,7 @@ To launch the project:
 ng serve serendipity-web-app --port 30001
 ```
 
-Navigate to:
-
-```
-http://localhost:30001/
-```
+Navigate to: http://127.0.0.1:30001
 
 ### Production
 
