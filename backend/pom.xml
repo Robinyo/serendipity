@@ -32,7 +32,7 @@
 	</parent>
 
 	<modules>
-		<module>web-bff</module>
+		<module>modules/web-bff</module>
 	</modules>
 
 	<properties>

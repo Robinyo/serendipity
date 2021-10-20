@@ -46,7 +46,7 @@
 							<outputDirectory>./target/classes/static/</outputDirectory>
 							<resources>
 								<resource>
-									<directory>../../frontend/dist/serendipity-web-app</directory>
+									<directory>../../../frontend/dist/serendipity-web-app</directory>
 								</resource>
 							</resources>
 						</configuration>
