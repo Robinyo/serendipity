@@ -136,14 +136,18 @@ To check the environment variables inside your container:
 ```
 docker inspect -f \
   '{{range $index, $value := .Config.Env}}{{println $value}}{{end}}' \
-  serendipity-api
+  serendipity-identity-server
+
+docker inspect -f \
+  '{{range $index, $value := .Config.Env}}{{println $value}}{{end}}' \
+  serendipity
 ```
 
 To check the logs inside your container:
 
 ```
 docker container logs serendipity-identity-server
-docker container logs serendipity-web-bff
+docker container logs serendipity
 ```
 
 You can stop the containers using the following command:

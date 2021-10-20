@@ -1,4 +1,4 @@
-<h1 align="center">Serendipity Identity Server (Keycloak)</h1>
+<h1 align="center">Serendipity Identity Server</h1>
 
 ### Misc
 #### Specify frontend base URL
@@ -10,5 +10,5 @@ production):
 KEYCLOAK_FRONTEND_URL=http://127.0.0.1:30002/auth
 ```
 
-Note: I could not find this environment variable mentioned in the Keycloak documentation. It is mentioned in the 
+**Note:** I could not find this environment variable mentioned in the Keycloak documentation. It is mentioned in the 
 Keycloak Docker Hub [readme](https://hub.docker.com/r/jboss/keycloak/).

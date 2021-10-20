@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>web-bff</artifactId>
+	<artifactId>party-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>Serendipity Web BFF</name>
-	<description>Serendipity Web App Backend for Frontend</description>
+	<name>Serendipity Party Service</name>
+	<description>Serendipity Party Service</description>
 
 	<inceptionYear>2021</inceptionYear>
 
@@ -18,18 +18,37 @@
 		<version>1.0.0</version>
 	</parent>
 
+	<properties>
+		<evo.inflector.version>1.3</evo.inflector.version>
+	</properties>
+
 	<dependencies>
 
-		<!-- Add Spring Security 5 dependencies -->
+		<!-- Add REST API (HATEOAS) dependencies -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.atteo</groupId>
+			<artifactId>evo-inflector</artifactId>
+			<version>${evo.inflector.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-client</artifactId>
+			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
+
+		<!-- Add JPA dependencies -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
 
 		<!-- Add Test dependencies -->
 
@@ -37,49 +56,26 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!--
-
 		<dependency>
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-		  <groupId>org.springframework.security</groupId>
-		  <artifactId>spring-security-test</artifactId>
-		  <scope>test</scope>
-		</dependency>
-
 	    -->
 
 	</dependencies>
 
 	<build>
 		<plugins>
-
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>copy-resources</id>
-						<phase>validate</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>./target/classes/static/</outputDirectory>
-							<resources>
-								<resource>
-									<directory>../../../frontend/dist/serendipity-web-app</directory>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 
 			<!-- Package as an executable jar -->
 

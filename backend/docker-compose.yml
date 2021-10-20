@@ -7,23 +7,23 @@ services:
     # image: robinyo/serendipity-identity-server:latest
     image: serendipity-identity-server:latest
     build:
-      context: ./services/serendipity-identity-server
+      context: ./modules/identity-service
       dockerfile: Dockerfile
     ports:
       - "30002:8080"
     # volumes:
     #   - .:/export
-    env_file: ./services/serendipity-identity-server/serendipity-identity-server.env
+    env_file: ./modules/identity-service/identity-service.env
 
   serendipity:
     container_name: serendipity
     # image: robinyo/serendipity:latest
     image: serendipity:latest
     build:
-      context: .
+      context: ./modules/web-bff
       dockerfile: Dockerfile
     ports:
       - "30001:8080"
-    env_file: ./serendipity-web-bff.env
+    env_file: ./modules/web-bff/web-bff.env
     depends_on:
       - serendipity-identity-server

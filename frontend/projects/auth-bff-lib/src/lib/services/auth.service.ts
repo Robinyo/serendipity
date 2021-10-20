@@ -30,15 +30,15 @@ export class AuthService {
     this.config = this.environmentService.getConfig();
   }
 
-  // /*
+  /*
 
   public isAuthenticated(): boolean {
     return true;
   }
 
-  // */
+  */
 
-  /*
+  // /*
 
   public isAuthenticated(): boolean {
 
@@ -60,7 +60,7 @@ export class AuthService {
 
   }
 
-  */
+  // */
 
   public async loginWithRedirect(): Promise<void> {
 
@@ -68,11 +68,14 @@ export class AuthService {
 
     const subscription: Subscription = this.login().subscribe(response => {
 
-      this.logger.info('response: ' + JSON.stringify(response, null, 2));
+      // this.logger.info('response: ' + JSON.stringify(response, null, 2));
+      // this.logger.info('authorizationRequestUrl: ' + response.body.authorizationRequestUrl);
 
       subscription.unsubscribe();
 
-      window.location.href = response.authorizationRequestUrl;
+      // See: getHttpOptions() -> observe: 'response'
+      // window.location.href = response.authorizationRequestUrl;
+      window.location.href = response.body.authorizationRequestUrl;
 
     });
 
