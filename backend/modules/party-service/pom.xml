@@ -24,6 +24,13 @@
 
 	<dependencies>
 
+		<!-- Add Spring Security 5 dependencies -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
 		<!-- Add REST API (HATEOAS) dependencies -->
 
 		<dependency>

@@ -49,6 +49,8 @@ docker container logs [name]
 For example:
 
 ```
+docker container logs postgres
+docker container logs pgadmin
 docker container logs serendipity-identity-server
 docker container logs serendipity-web-bff
 ```
@@ -77,6 +79,8 @@ docker container stop [name]
 For example:
 
 ```
+docker container stop postgres
+docker container stop pgadmin
 docker container stop serendipity-identity-server
 docker container stop serendipity-web-bff
 ```
@@ -90,6 +94,8 @@ docker container rm [name]
 For example:
 
 ```
+docker container rm postgres
+docker container rm pgadmin
 docker container rm serendipity-identity-server
 docker container rm serendipity-web-bff
 ```

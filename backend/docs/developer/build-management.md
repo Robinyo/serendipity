@@ -52,6 +52,12 @@ To clean up the test H2 db (application-test.yml):
 rm ~/h2
 ```
 
+To clean up the PostgeSQl db:
+
+```
+rm /backend/pgdata
+```
+
 To build the project:
 
 ```
@@ -155,6 +161,7 @@ To check the logs inside your container:
 
 ```
 docker container logs serendipity-identity-server
+docker container logs serendipity-party-service
 docker container logs serendipity
 ```
 
