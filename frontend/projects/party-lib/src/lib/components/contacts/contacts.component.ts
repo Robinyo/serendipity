@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { DomSanitizer } from "@angular/platform-browser";
 
+import { MatIconRegistry } from "@angular/material/icon";
 import { MatTableDataSource } from '@angular/material/table';
 
 import { CollectionComponent } from 'serendipity-components-lib';
@@ -15,6 +17,8 @@ import {
   CONTACTS_COLUMNS_MOBILE
 } from '../../models/constants';
 
+import { SVG_ICONS } from './svg-icons';
+
 @Component({
   selector: 'lib-contacts',
   templateUrl: './contacts.component.html',
@@ -22,7 +26,9 @@ import {
 })
 export class ContactsComponent extends CollectionComponent<Contact> {
 
-  constructor(private entityAdapter: ContactAdapter,
+  constructor(private domSanitizer: DomSanitizer,
+              private matIconRegistry: MatIconRegistry,
+              private entityAdapter: ContactAdapter,
               private entityService: ContactsService) {
 
     super({
@@ -32,26 +38,21 @@ export class ContactsComponent extends CollectionComponent<Contact> {
       limit: 10
     });
 
+    const svgIconPath = '../assets/images/icons/contacts/';
+
+    SVG_ICONS.forEach(svgIcon => {
+
+      if (svgIcon.name != undefined && svgIcon.filename != undefined) {
+
+        this.matIconRegistry.addSvgIcon(
+          svgIcon.name,
+          this.domSanitizer.bypassSecurityTrustResourceUrl(svgIconPath + svgIcon.filename)
+        );
+
+      }
+    });
+
   }
-
-  /*
-
-  protected subscribe() {
-
-    this.logger.info('ContactsComponent: subscribe()');
-
-    this.items.push(new Contact());
-
-    this.dataSource = new MatTableDataSource(this.items);
-    this.dataSource.data = this.items;
-    this.dataSource.sortingDataAccessor = pathDataAccessor;
-    this.dataSource.sort = this.sort;
-
-  }
-
- */
-
-  // /*
 
   protected subscribe() {
 
@@ -74,7 +75,7 @@ export class ContactsComponent extends CollectionComponent<Contact> {
 
         } else {
 
-          // this.items = [];
+          this.items = [];
           this.items.push(new Contact());
 
         }
@@ -92,8 +93,6 @@ export class ContactsComponent extends CollectionComponent<Contact> {
 
    }
 
-   // */
-
   //
   // Command Bar events
   //
@@ -102,7 +101,7 @@ export class ContactsComponent extends CollectionComponent<Contact> {
 
     this.logger.info('ContactsComponent: onNew()');
 
-    this.router.navigate(['customers/contacts/new']);
+    // this.router.navigate(['customers/contacts/new']);
   }
 
 }
@@ -115,3 +114,23 @@ function pathDataAccessor(item: any, path: string): any {
       return accumulator ? accumulator[key] : undefined;
     }, item);
 }
+
+// https://stackoverflow.com/questions/1232040/how-do-i-empty-an-array-in-javascript
+// this.items.length = 0;
+
+/*
+
+protected subscribe() {
+
+  this.logger.info('ContactsComponent: subscribe()');
+
+  this.items.push(new Contact());
+
+  this.dataSource = new MatTableDataSource(this.items);
+  this.dataSource.data = this.items;
+  this.dataSource.sortingDataAccessor = pathDataAccessor;
+  this.dataSource.sort = this.sort;
+
+}
+
+*/

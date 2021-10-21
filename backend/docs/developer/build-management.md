@@ -64,18 +64,64 @@ To build the project:
 docker-compose build
 ```
 
+#### Docker 
+
+To serve the applications:
+
+```
+docker-compose up -d
+```
+
+The containers may take a minute or two to startup.
+
+Navigate to: http://127.0.0.1:30001
+
+You can check the status of the containers using the following command:
+
+```
+docker-compose ps
+```
+
+To check the environment variables inside your container:
+
+```
+docker inspect -f \
+  '{{range $index, $value := .Config.Env}}{{println $value}}{{end}}' \
+  serendipity-identity-server
+
+docker inspect -f \
+  '{{range $index, $value := .Config.Env}}{{println $value}}{{end}}' \
+  serendipity
+```
+
+To check the logs inside your container:
+
+```
+docker container logs serendipity-identity-server
+docker container logs serendipity-party-service
+docker container logs serendipity
+```
+
+You can stop the containers using the following command:
+
+```
+docker-compose down -v
+```
+
 #### Docker Hub
 
 To tag the images and push them to Docker Hub:
 
 ```
 docker tag serendipity-identity-server robinyo/serendipity-identity-server:latest
+docker tag serendipity-party-service robinyo/serendipity-party-service:latest
 docker tag serendipity robinyo/serendipity:latest
 
 docker push robinyo/serendipity-identity-server:latest
+docker push robinyo/serendipity-party-service:latest
 docker push robinyo/serendipity:latest
 ```
-  
+ 
 #### Kubernetes
 
 To serve the applications (from the /backend directory):
@@ -126,50 +172,6 @@ kubectl delete -n serendipity -f serendipity.yaml
 
 Follow these [steps](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) to deploy the 
 Kubernetes Dashboard.
-
-#### Docker 
-
-To serve the applications:
-
-```
-docker-compose up -d
-```
-
-The containers may take a minute or two to startup.
-
-Navigate to: http://127.0.0.1:30001
-
-You can check the status of the containers using the following command:
-
-```
-docker-compose ps
-```
-
-To check the environment variables inside your container:
-
-```
-docker inspect -f \
-  '{{range $index, $value := .Config.Env}}{{println $value}}{{end}}' \
-  serendipity-identity-server
-
-docker inspect -f \
-  '{{range $index, $value := .Config.Env}}{{println $value}}{{end}}' \
-  serendipity
-```
-
-To check the logs inside your container:
-
-```
-docker container logs serendipity-identity-server
-docker container logs serendipity-party-service
-docker container logs serendipity
-```
-
-You can stop the containers using the following command:
-
-```
-docker-compose down -v
-```
 
 ### Resources
 

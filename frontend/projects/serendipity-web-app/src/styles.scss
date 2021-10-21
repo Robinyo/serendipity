@@ -14,6 +14,9 @@
 
 /* You can add global styles to this file, and also import other style files */
 
+@import "../../../projects/utils-lib/src/lib/angular-material/mat-variables";
+@import "../../../projects/utils-lib/src/lib/angular-material/variables";
+
 html, body {
   height: 100%;
   overflow: hidden;
@@ -21,3 +24,85 @@ html, body {
 body {
   margin: 0;
 }
+
+// ------------------------------------------------------------------------------------------------------------------ //
+
+// top, right, bottom, and left
+
+.content-container {
+  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
+  // 64 + 56 + 96
+  // height: calc(100vh - 216px);
+  height: calc(100vh - 200px);
+  width: 100%;
+
+  @media ($mat-xsmall) {
+    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
+    // 56 + 0 + 84
+    height: calc(100vh - 140px);
+  }
+
+  background: whitesmoke;
+}
+
+.table-container {
+
+  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
+  // 64 + 56 + 96 + 32
+  // height: calc(100vh - 248px);
+  height: calc(100vh - 200px);
+
+  margin-left: $table-margin-desktop;
+  margin-right: $table-margin-desktop;
+  overflow: auto;
+
+  // margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
+
+  @media ($mat-xsmall) {
+    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
+    // 56 + 0 + 84 + 0
+    height: calc(100vh - 140px);
+
+    margin-left: $table-margin-mobile;
+    margin-right: $table-margin-mobile;
+  }
+
+  // background-color: black;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
+  // 64 + 56 + 96
+  height: calc(100vh - 216px);
+  width: 100%;
+
+  @media ($mat-xsmall) {
+    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
+    // 56 + 0 + 84
+    height: calc(100vh - 140px);
+  }
+}
+
+.activity-bar-title {
+  font-size: $activity-bar-title-font-size;
+}
+
+.default-command-bar-button {
+  // background-color: rgba(0, 0, 0, 0.12) !important;
+  margin-right: $command-bar-button-margin-right !important;
+  min-width: $command-bar-button-min-width !important;
+  padding: 0 $command-bar-button-padding !important;
+}
+
+.command-bar-button {
+  // background-color: darkgrey !important;
+  // color: white !important;
+  margin-right: $command-bar-button-margin-right !important;
+  min-width: $command-bar-button-min-width !important;
+  padding: 0 $command-bar-button-padding !important;
+}
+

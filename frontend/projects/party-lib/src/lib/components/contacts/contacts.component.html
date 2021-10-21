@@ -1,14 +1,14 @@
 <command-bar>
 
   <button mat-flat-button class="default-command-bar-button">
-    <mat-icon> add </mat-icon>
+    <mat-icon svgIcon="add"> </mat-icon>
     <span i18n="Command Bar Item|Contacts@@NEW">
       NEW
     </span>
   </button>
 
   <button mat-flat-button class="command-bar-button" disabled>
-    <mat-icon> description </mat-icon>
+    <mat-icon svgIcon="description"> </mat-icon>
     <span i18n="Command Bar Item|Contacts@@RUN_REPORT">
       RUN REPORT
     </span>
@@ -85,8 +85,8 @@
 
         <ng-container matColumnDef="footer">
           <td mat-footer-cell *matFooterCellDef [attr.colspan]="footerColSpan">
-            <sales-collection-footer [host]="this">
-            </sales-collection-footer>
+            <collection-footer [host]="this">
+            </collection-footer>
           </td>
         </ng-container>
 
@@ -104,7 +104,7 @@
 
   <ng-template #skeleton>
 
-    <div class="crm-spinner-container">
+    <div class="spinner-container">
       <mat-spinner color="accent"></mat-spinner>
     </div>
 

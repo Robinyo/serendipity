@@ -17,8 +17,8 @@ export class NavigationBarComponent {
 
   @Output() toggleSidenav = new EventEmitter<void>();
 
-  constructor(private matIconRegistry: MatIconRegistry,
-              private domSanitizer: DomSanitizer,
+  constructor(private domSanitizer: DomSanitizer,
+              private matIconRegistry: MatIconRegistry,
               private authService: AuthService,
               private logger: LoggerService) {
 

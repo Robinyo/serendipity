@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { LoggerService } from 'utils-lib';
 
 @Component({
-  selector: 'sales-collection-footer',
+  selector: 'collection-footer',
   template: `
     <div class="footer-container">
 

@@ -1,73 +1,7 @@
-$mat-xsmall: 'max-width: 599px';
-
-$activity-bar-title-font-size: 1.6em !default;
-$command-bar-button-padding: 16px !default;
-$command-bar-button-min-width: 48px !default;
-$command-bar-button-margin-right: 8px !default;
-
-.default-command-bar-button {
-  background-color: rgba(0, 0, 0, 0.12);
-  margin-right: $command-bar-button-margin-right;
-  min-width: $command-bar-button-min-width;
-  padding: 0 $command-bar-button-padding;
-}
-
-.command-bar-button {
-  background-color: darkgrey;
-  color: white;
-  margin-right: $command-bar-button-margin-right;
-  min-width: $command-bar-button-min-width;
-  padding: 0 $command-bar-button-padding;
-}
-
-.activity-bar-title {
-  font-size: $activity-bar-title-font-size;
-}
-
-// top, right, bottom, and left
-
-.content-container {
-  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
-  // 64 + 56 + 96
-  height: calc(100vh - 216px);
+.mat-table {
+  // background: white;
   width: 100%;
-
-  @media ($mat-xsmall) {
-    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
-    // 56 + 0 + 84
-    height: calc(100vh - 140px);
-  }
-
-  background: whitesmoke;
 }
-
-$table-margin-desktop: 32px;
-$table-margin-mobile: 0;
-
-.table-container {
-
-  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
-  // 64 + 56 + 96 + 32
-  height: calc(100vh - 248px);
-
-  margin-left: $table-margin-desktop;
-  margin-right: $table-margin-desktop;
-  overflow: auto;
-
-  // margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
-
-  @media ($mat-xsmall) {
-    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
-    // 56 + 0 + 84 + 0
-    height: calc(100vh - 140px);
-
-    margin-left: $table-margin-mobile;
-    margin-right: $table-margin-mobile;
-  }
-
-  // background-color: black;
-}
-
 
 //
 // Header
@@ -113,15 +47,18 @@ td.mat-cell {
 
 .mat-column-email {
   width: 260px;
+  // max-width: 240px;
   max-width: 240px;
 }
 
 .mat-column-organisation-displayName {
   width: 200px;
-  max-width: 120px;
+  // max-width: 120px;
+  max-width: 200px;
 }
 
 .mat-column-organisation-phoneNumber {
   width: 140px;
-  max-width: 120px;
+  // max-width: 120px;
+  max-width: 140px;
 }

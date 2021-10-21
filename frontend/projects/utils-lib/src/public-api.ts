@@ -22,4 +22,6 @@ export * from './lib/utils-lib.module';
 // Angular Material module
 //
 
+export * from './lib/angular-material/models/svg-icon-registry';
+
 export * from './lib/angular-material/angular-material.module';

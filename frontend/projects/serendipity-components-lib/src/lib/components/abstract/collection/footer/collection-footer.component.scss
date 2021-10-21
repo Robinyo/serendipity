@@ -1,7 +1,5 @@
-// @import "../../../../../../../../projects/utils-lib/src/lib/angular-material/mat-variables";
-// @import "../../../../../../../../projects/utils-lib/src/lib/angular-material/variables";
-
-$collection-component-footer-button-min-width: 24px !default;
+@import "../../../../../../../../projects/utils-lib/src/lib/angular-material/mat-variables";
+@import "../../../../../../../../projects/utils-lib/src/lib/angular-material/variables";
 
 .footer-container {
   display: flex;
@@ -11,7 +9,7 @@ $collection-component-footer-button-min-width: 24px !default;
 }
 
 .footer-button {
-  min-width: $collection-component-footer-button-min-width;
+  min-width: $footer-button-min-width;
   padding: 0 8px;
 }
 
@@ -19,7 +17,7 @@ $collection-component-footer-button-min-width: 24px !default;
 .footer-button-previous-page,
 .footer-button-next-page,
 .footer-button-last-page {
-  min-width: $collection-component-footer-button-min-width;
+  min-width: $footer-button-min-width;
   padding: 0;
 }
 
