@@ -7,13 +7,52 @@ services:
     # image: robinyo/serendipity-identity-server:latest
     image: serendipity-identity-server:latest
     build:
-      context: ./modules/identity-service
+      context: ./services/identity-service
       dockerfile: Dockerfile
     ports:
       - "30002:8080"
     # volumes:
     #   - .:/export
-    env_file: ./modules/identity-service/identity-service.env
+    env_file: ./services/identity-service/identity-service.env
+
+  postgres:
+    container_name: postgres
+    build:
+      context: ./services/postgres
+      dockerfile: Dockerfile
+    ports:
+      - "5432:5432"
+    volumes:
+      - .:/var/lib/postgresql/data
+    env_file: ./services/postgres/postgres.env
+
+  pgadmin:
+    container_name: pgadmin
+    build:
+      context: ./services/pgadmin
+      dockerfile: Dockerfile
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@serendipity.org.au}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-secret}
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    volumes:
+      - .:/root/.pgadmin
+
+  serendipity-party-service:
+    container_name: serendipity-party-service
+    # image: robinyo/serendipity-party-service:latest
+    image: serendipity-party-service:latest
+    build:
+      context: ./modules/party-service
+      dockerfile: Dockerfile
+    ports:
+      - "30101:8080"
+    environment:
+      # - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI=http://keycloak:8080/auth/realms/development/protocol/openid-connect/certs
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/serendipity
+    depends_on:
+      - postgres
 
   serendipity:
     container_name: serendipity

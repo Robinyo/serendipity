@@ -27,8 +27,17 @@ export abstract class CollectionService {
     this.config = this.environmentService.getConfig();
   }
 
+  /*
+
+  serverScheme: 'http',
+  serverHost: '127.0.0.1',
+  serverPort: '30001',
+
+  */
+
   protected getUrlPrefix(): string {
-    return this.config.serverScheme + '://' + this.config.serverHost + ':' + this.config.serverPort;
+    // return this.config.serverScheme + '://' + this.config.serverHost + ':' + this.config.serverPort;
+    return this.config.serverScheme + '://' + this.config.serverHost + ':' + '30101';
   }
 
   protected getHttpOptions(params: any = undefined): HttpOptions {

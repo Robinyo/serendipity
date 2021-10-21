@@ -44,6 +44,14 @@ mvn clean install -Ptest spring-boot:repackage
 
 **Note:** `dev` is the active by default profile.
 
+To clean up the test H2 db (application-test.yml):
+
+```
+# url: jdbc:h2:~/h2/serendipity;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9091;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+
+rm ~/h2
+```
+
 To build the project:
 
 ```

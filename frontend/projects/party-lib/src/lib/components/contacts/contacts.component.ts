@@ -34,6 +34,8 @@ export class ContactsComponent extends CollectionComponent<Contact> {
 
   }
 
+  /*
+
   protected subscribe() {
 
     this.logger.info('ContactsComponent: subscribe()');
@@ -47,7 +49,9 @@ export class ContactsComponent extends CollectionComponent<Contact> {
 
   }
 
-  /*
+ */
+
+  // /*
 
   protected subscribe() {
 
@@ -88,7 +92,7 @@ export class ContactsComponent extends CollectionComponent<Contact> {
 
    }
 
-   */
+   // */
 
   //
   // Command Bar events

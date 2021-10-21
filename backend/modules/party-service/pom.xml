@@ -8,7 +8,7 @@
 	<packaging>jar</packaging>
 
 	<name>Serendipity Party Service</name>
-	<description>Serendipity Party Service</description>
+	<description>Use Spring HATEOAS and Spring Data REST to build Serendipity's REST API</description>
 
 	<inceptionYear>2021</inceptionYear>
 
@@ -48,7 +48,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-
 
 		<!-- Add Test dependencies -->
 
