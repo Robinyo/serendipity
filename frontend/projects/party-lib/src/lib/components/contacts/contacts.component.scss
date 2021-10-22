@@ -1,44 +1,9 @@
-.mat-table {
-  // background: white;
-  width: 100%;
-}
+// @import "../../../../../../projects/utils-lib/src/lib/angular-material/mat-variables";
+// @import "../../../../../../projects/utils-lib/src/lib/angular-material/variables";
 
-//
-// Header
-//
-
-.header-toolbar {
-  background: #fafafa;
-}
-.header-title {
-  font-weight: bold;
-  padding: 0 16px 0 40px;
-}
-.header-icon {
-  margin: 0 12px 0 12px;
-}
-
-th.mat-header-cell {
-  padding-right: 16px;
-  // text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.header-cell-id {
-  text-align: right;
-}
-
-td.mat-cell {
-  padding-right: 16px;
-}
+@import "../../styles";
 
 // Columns
-
-.mat-cell {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 
 .mat-column-party-displayName {
   width: 280px;

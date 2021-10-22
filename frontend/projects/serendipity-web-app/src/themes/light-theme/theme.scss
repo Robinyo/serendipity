@@ -2,11 +2,10 @@
 
 // @use './projects/serendipity-web-app/src/app/core/components/home/home.component-theme' as homeComponent;
 @use './projects/serendipity-web-app/src/app/core/components/sidenav/sidenav.component-theme' as sidenav;
-
-@use './projects/party-lib/src/lib/components/contacts/contacts.component-theme' as contactsComponent;
+// @use './projects/party-lib/src/lib/components/contacts/contacts.component-theme' as contactsComponent;
 
 @import "./projects/utils-lib/src/lib/angular-material/mat-variables";
-// @import "./projects/utils-lib/src/lib/angular-material/variables";
+@import "./projects/utils-lib/src/lib/angular-material/variables";
 
 @import "../fonts";
 @import "../icons";
@@ -43,7 +42,7 @@ $light-theme: mat.define-light-theme((
 // @include homeComponent.theme($light-theme);
 @include sidenav.theme($light-theme);
 
-@include contactsComponent.theme($light-theme);
+// @include contactsComponent.theme($light-theme);
 
 // ------------------------------------------------------------------------------------------------------------------ //
 
@@ -66,10 +65,8 @@ $light-theme: mat.define-light-theme((
   height: 100%;
 }
 
-$sidenav-width: 320px; // 240px;
-
 .mat-sidenav {
-  width: $sidenav-width;
+  width: $mat-sidenav-width;
 }
 
 .mat-subheader {

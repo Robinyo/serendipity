@@ -12,6 +12,9 @@ export const environment: Environment = {
   serverHost: '127.0.0.1',
   serverPort: '30001',
 
+  partyServicePort: '30101',
+  workServicePort: '30102',
+
   defaultLanguage: 'en-gb', // 'en-gb', 'de-ch'
 
   isDebugMode: false,

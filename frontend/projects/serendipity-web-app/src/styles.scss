@@ -1,8 +1,7 @@
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-
 @use '~@angular/material' as mat;
-// Plus imports for other components in your app.
+
+@import "../../../projects/utils-lib/src/lib/angular-material/mat-variables";
+@import "../../../projects/utils-lib/src/lib/angular-material/variables";
 
 // If you are using the Angular CLI, support for compiling Sass to css is built-in; you only have to add a new entry to
 // the "styles" list in angular.json pointing to the theme file, for example:
@@ -14,9 +13,6 @@
 
 /* You can add global styles to this file, and also import other style files */
 
-@import "../../../projects/utils-lib/src/lib/angular-material/mat-variables";
-@import "../../../projects/utils-lib/src/lib/angular-material/variables";
-
 html, body {
   height: 100%;
   overflow: hidden;
@@ -25,11 +21,17 @@ body {
   margin: 0;
 }
 
-// ------------------------------------------------------------------------------------------------------------------ //
-
 // top, right, bottom, and left
 
-.content-container {
+// ------------------------------------------------------------------------------------------------------------------ //
+
+// https://material.angular.io/guide/customizing-component-styles
+// You should always apply an application-specific prefix to global CSS classes to avoid naming collisions.
+// e.g., md (Material Design)
+
+// Layout containers
+
+.md-content-container {
   // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
   // 64 + 56 + 96
   // height: calc(100vh - 216px);
@@ -45,7 +47,7 @@ body {
   background: whitesmoke;
 }
 
-.table-container {
+.md-table-container {
 
   // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
   // 64 + 56 + 96 + 32
@@ -70,7 +72,7 @@ body {
   // background-color: black;
 }
 
-.spinner-container {
+.md-spinner-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -87,18 +89,16 @@ body {
   }
 }
 
-.activity-bar-title {
-  font-size: $activity-bar-title-font-size;
-}
+// Command Bar
 
-.default-command-bar-button {
+.md-default-command-bar-button {
   // background-color: rgba(0, 0, 0, 0.12) !important;
   margin-right: $command-bar-button-margin-right !important;
   min-width: $command-bar-button-min-width !important;
   padding: 0 $command-bar-button-padding !important;
 }
 
-.command-bar-button {
+.md-command-bar-button {
   // background-color: darkgrey !important;
   // color: white !important;
   margin-right: $command-bar-button-margin-right !important;
@@ -106,3 +106,8 @@ body {
   padding: 0 $command-bar-button-padding !important;
 }
 
+// Activity Bar
+
+.md-activity-bar-title {
+  font-size: $activity-bar-title-font-size;
+}

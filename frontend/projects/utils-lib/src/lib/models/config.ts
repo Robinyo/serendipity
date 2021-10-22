@@ -6,6 +6,9 @@ export interface Config {
   serverHost: string;
   serverPort: string;
 
+  partyServicePort: string;
+  workServicePort: string;
+
   defaultLanguage: string;
 
   isDebugMode: boolean;

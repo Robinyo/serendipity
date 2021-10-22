@@ -38,6 +38,10 @@ mvn clean install spring-boot:repackage
 
 # or
 
+mvn clean install -DskipTests=true spring-boot:repackage
+
+# or
+
 mvn clean install -Pdev spring-boot:repackage
 mvn clean install -Ptest spring-boot:repackage
 ```

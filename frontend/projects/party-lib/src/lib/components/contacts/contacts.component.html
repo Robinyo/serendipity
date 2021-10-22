@@ -1,13 +1,13 @@
 <command-bar>
 
-  <button mat-flat-button class="default-command-bar-button">
+  <button mat-flat-button class="md-default-command-bar-button">
     <mat-icon svgIcon="add"> </mat-icon>
     <span i18n="Command Bar Item|Contacts@@NEW">
       NEW
     </span>
   </button>
 
-  <button mat-flat-button class="command-bar-button" disabled>
+  <button mat-flat-button class="md-command-bar-button" disabled>
     <mat-icon svgIcon="description"> </mat-icon>
     <span i18n="Command Bar Item|Contacts@@RUN_REPORT">
       RUN REPORT
@@ -18,17 +18,17 @@
 
 <activity-bar>
 
-  <span class="activity-bar-title" i18n="Activity Bar Title|Contacts@@CONTACTS_TITLE">
+  <span class="md-activity-bar-title" i18n="Activity Bar Title|Contacts@@CONTACTS_TITLE">
     Contacts
   </span>
 
 </activity-bar>
 
-<div class="content-container">
+<div class="md-content-container">
 
   <ng-container *ngIf="!items; then skeleton"> </ng-container>
 
-  <div class="table-container">
+  <div class="md-table-container">
 
     <ng-container *ngIf="columnDefs">
 
@@ -39,6 +39,8 @@
              matSortStart="desc"
              matSortDisableClear
              class="mat-elevation-z8 crm-table">
+
+        <!-- Note: The Angular Material Table does not support content projection -->
 
         <ng-container *ngFor="let column of columnDefs" [matColumnDef]="column.name">
 
@@ -104,22 +106,10 @@
 
   <ng-template #skeleton>
 
-    <div class="spinner-container">
+    <div class="md-spinner-container">
       <mat-spinner color="accent"></mat-spinner>
     </div>
 
   </ng-template>
 
 </div>
-
-<!--
-
-<div>
-
-  <span>
-    Testing 1, 2, 3
-  </span>
-
-</div>
-
--->

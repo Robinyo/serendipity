@@ -1,0 +1,31 @@
+// Table
+
+.mat-table {
+  // background: white;
+  width: 100%;
+}
+
+.header-toolbar {
+  background: #fafafa;
+}
+.header-title {
+  font-weight: bold;
+  padding: 0 16px 0 40px;
+}
+.header-icon {
+  margin: 0 12px 0 12px;
+}
+
+th.mat-header-cell {
+  padding-right: 16px;
+  // text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.header-cell-id {
+  text-align: right;
+}
+
+td.mat-cell {
+  padding-right: 16px;
+}
