@@ -1,4 +1,4 @@
-import { SvgIconRegistry } from "@app/core/models/models";
+import { SvgIconRegistry } from "utils-lib";
 
 export const SVG_ICONS: SvgIconRegistry[] = [
 

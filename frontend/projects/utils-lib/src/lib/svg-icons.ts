@@ -1,4 +1,4 @@
-import { SvgIconRegistry } from "utils-lib";
+import { SvgIconRegistry } from "./angular-material/models/svg-icon-registry";
 
 export const SVG_ICONS: SvgIconRegistry[] = [
 

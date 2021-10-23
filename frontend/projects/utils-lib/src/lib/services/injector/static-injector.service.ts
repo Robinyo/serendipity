@@ -8,7 +8,6 @@ import { UtilsConfigService } from '../utils-config.service';
 })
 export class StaticInjectorService {
 
-  // private static injector: Injector = null;
   private static injector: Injector;
 
   constructor(@Inject(UtilsConfigService) private config: UtilsConfig ) {

@@ -9,7 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CookieService } from 'ngx-cookie-service';
 
 import { SerendipityComponentsLibModule } from 'serendipity-components-lib';
-import { AngularMaterialModule, UtilsLibModule, LoggerService } from 'utils-lib';
+import { AngularMaterialModule, ConfigService, UtilsLibModule, LoggerService } from 'utils-lib';
 
 import { LoginSuccessComponent } from './components/login-success/login-success.component';
 import { HomeComponent } from './components/home/home.component';
@@ -52,8 +52,13 @@ const components: any[] = [
 })
 export class CoreModule {
 
-  constructor(private logger: LoggerService) {
+  constructor(private configService: ConfigService,
+              private logger: LoggerService) {
+
     this.logger.info('Core Module initialised');
+
+    this.configService.loadSvgIcons();
+
   }
 
 }

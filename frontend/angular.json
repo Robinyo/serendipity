@@ -36,7 +36,7 @@
               },
               {
                 "glob": "**/*",
-                "input": "projects/serendipity-components-lib/src/assets",
+                "input": "projects/utils-lib/src/assets",
                 "output": "/assets"
               }
             ],
