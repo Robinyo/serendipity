@@ -33,6 +33,11 @@
                 "glob": "**/*",
                 "input": "projects/party-lib/src/assets",
                 "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/serendipity-components-lib/src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [

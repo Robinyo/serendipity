@@ -103,10 +103,20 @@ Welcome Page:
   <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/welcome-page.png">
 </p>
 
+### Navigation
+
 Sidenav:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/sidenav.png">
+</p>
+
+### Customer Engagement
+
+Sidenav:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/contacts.png">
 </p>
 
 ![divider](./divider.png)

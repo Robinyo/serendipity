@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { DomSanitizer } from "@angular/platform-browser";
 
-import { MatIconRegistry } from "@angular/material/icon";
 import { MatTableDataSource } from '@angular/material/table';
 
 import { CollectionComponent } from 'serendipity-components-lib';
@@ -17,8 +15,6 @@ import {
   CONTACTS_COLUMNS_MOBILE
 } from '../../models/constants';
 
-import { SVG_ICONS } from './svg-icons';
-
 @Component({
   selector: 'lib-contacts',
   templateUrl: './contacts.component.html',
@@ -26,9 +22,7 @@ import { SVG_ICONS } from './svg-icons';
 })
 export class ContactsComponent extends CollectionComponent<Contact> {
 
-  constructor(private domSanitizer: DomSanitizer,
-              private matIconRegistry: MatIconRegistry,
-              private entityAdapter: ContactAdapter,
+  constructor(private entityAdapter: ContactAdapter,
               private entityService: ContactsService) {
 
     super({
@@ -36,20 +30,6 @@ export class ContactsComponent extends CollectionComponent<Contact> {
       desktopDeviceColumns: CONTACTS_COLUMNS_DESKTOP,
       mobileDeviceColumns: CONTACTS_COLUMNS_MOBILE,
       limit: 10
-    });
-
-    const svgIconPath = '../assets/images/icons/contacts/';
-
-    SVG_ICONS.forEach(svgIcon => {
-
-      if (svgIcon.name != undefined && svgIcon.filename != undefined) {
-
-        this.matIconRegistry.addSvgIcon(
-          svgIcon.name,
-          this.domSanitizer.bypassSecurityTrustResourceUrl(svgIconPath + svgIcon.filename)
-        );
-
-      }
     });
 
   }

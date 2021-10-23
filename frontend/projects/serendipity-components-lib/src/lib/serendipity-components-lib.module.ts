@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { RouterModule } from '@angular/router';
-
+import { DomSanitizer } from "@angular/platform-browser";
 import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { MatIconRegistry } from "@angular/material/icon";
 
 //
 // Utils lib
@@ -34,6 +34,8 @@ import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/conf
 import { CollectionFooterComponent } from './components/abstract/collection/footer/collection-footer.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 
+import { SVG_ICONS } from './svg-icons';
+
 const components = [
   ActivityBarComponent,
   CommandBarComponent,
@@ -41,16 +43,13 @@ const components = [
   CollectionFooterComponent,
   ConfirmDialogComponent,
   SnackBarComponent
-  // UtilsModule
 ];
 
 @NgModule({
   imports: [
     AngularMaterialModule,
     CommonModule,
-    FlexLayoutModule,
-
-    RouterModule
+    FlexLayoutModule
   ],
   declarations: [
     ...components
@@ -64,8 +63,26 @@ const components = [
 })
 export class SerendipityComponentsLibModule {
 
-  constructor(private logger: LoggerService) {
+  constructor(private domSanitizer: DomSanitizer,
+              private matIconRegistry: MatIconRegistry,
+              private logger: LoggerService) {
+
     this.logger.info('Serendipity Components Library initialised');
+
+    const svgIconPath = '../assets/images/icons/';
+
+    SVG_ICONS.forEach(svgIcon => {
+
+      if (svgIcon.name != undefined && svgIcon.filename != undefined) {
+
+        this.matIconRegistry.addSvgIcon(
+          svgIcon.name,
+          this.domSanitizer.bypassSecurityTrustResourceUrl(svgIconPath + svgIcon.filename)
+        );
+
+      }
+    });
+
   }
 
 }
