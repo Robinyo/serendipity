@@ -118,3 +118,9 @@ Contacts:
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/contacts.png">
 </p>
+
+Contact:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/contact.png">
+</p>

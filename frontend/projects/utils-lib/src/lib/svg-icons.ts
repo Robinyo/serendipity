@@ -23,6 +23,10 @@ export const SVG_ICONS: SvgIconRegistry[] = [
     "filename": "description_black_24dp.svg"
   },
   {
+    "name":  "event",
+    "filename": "event_black_24dp.svg"
+  },
+  {
     "name":  "keyboard-arrow-left",
     "filename": "keyboard_arrow_left_black_24dp.svg"
   },
@@ -37,6 +41,10 @@ export const SVG_ICONS: SvgIconRegistry[] = [
   {
     "name":  "save",
     "filename": "save_black_24dp.svg"
+  },
+  {
+    "name":  "search",
+    "filename": "search_black_24dp.svg"
   },
   {
     "name":  "skip-previous",

@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
 
-import { Adapter, LoggerService } from 'utils-lib';
+import { Adapter, EnvironmentService, LoggerService } from 'utils-lib';
+
+import { PartyAdapter } from "./party.adapter";
 
 import { Contact } from '../models/contact';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ContactAdapter implements Adapter<Contact> {
+export class ContactAdapter extends PartyAdapter implements Adapter<Contact> {
 
-  constructor(private logger: LoggerService) {
+  constructor(environmentService: EnvironmentService,
+              logger: LoggerService) {
+
+    super(environmentService, logger);
 
     this.logger.info('ContactAdapter initialised');
   }
@@ -34,7 +39,7 @@ export class ContactAdapter implements Adapter<Contact> {
 
     contact.id = btoa(item.id);
 
-    contact.photoUrl = 'http://127.0.0.1:30101/' + item.photoUrl;
+    contact.photoUrl = this.getUrlPrefix() + item.photoUrl;
 
     if (item.party.addresses && item.party.addresses.length) {
       contact.party.addresses = contact.party.addresses.concat(item.party.addresses);

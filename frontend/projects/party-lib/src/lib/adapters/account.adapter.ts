@@ -1,17 +1,22 @@
 import { Injectable } from '@angular/core';
 
-import { Adapter, LoggerService } from 'utils-lib';
+import { Adapter, EnvironmentService, LoggerService } from 'utils-lib';
+
+import { PartyAdapter } from "./party.adapter";
 
 import { Account } from '../models/account';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AccountAdapter implements Adapter<Account> {
+export class AccountAdapter extends PartyAdapter implements Adapter<Account> {
 
-  constructor(private logger: LoggerService) {
+  constructor(environmentService: EnvironmentService,
+              logger: LoggerService) {
 
-    this.logger.info('AccountAdapter initialised');
+    super(environmentService, logger);
+
+    this.logger.info('ContactAdapter initialised');
   }
 
   adapt(item: any): Account {

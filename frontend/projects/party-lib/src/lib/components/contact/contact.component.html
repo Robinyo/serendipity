@@ -54,7 +54,7 @@
     </button>
     -->
 
-    <button mat-flat-button class="md-command-bar-button"
+    <button mat-button class="md-command-bar-button"
             (click)="onClose()">
       <mat-icon svgIcon="clear"> </mat-icon>
     </button>
@@ -81,7 +81,7 @@
     <mat-tab-group [color]="'primary'"
                    (selectedTabChange)="onTabChanged($event)">
 
-      <mat-tab label="SUMMARY">
+      <mat-tab label="Summary">
 
         <div #gridContainer class="md-grid-container">
 
@@ -131,7 +131,7 @@
               <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
 
               <dynamic-form autocomplete="off"
-                            className="crm-nested-grid-container"
+                            className="md-nested-grid-container"
                             [formGroup]="addressInformationGroup"
                             [model]="addressInformationModel">
               </dynamic-form>
