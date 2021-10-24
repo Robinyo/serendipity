@@ -22,6 +22,8 @@ import { SerendipityComponentsLibModule } from 'serendipity-components-lib';
 // Components - local
 //
 
+import { AccountComponent } from './components/account/account.component';
+import { AccountsComponent } from './components/accounts/accounts.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 
@@ -32,6 +34,8 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { PartyLibRoutingModule } from './party-lib-routing.module';
 
 const components: any[] = [
+  AccountComponent,
+  AccountsComponent,
   ContactComponent,
   ContactsComponent
 ];

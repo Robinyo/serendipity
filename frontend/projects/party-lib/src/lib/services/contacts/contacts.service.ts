@@ -43,8 +43,13 @@ export class ContactsService extends CollectionService {
     this.logger.info('queryParams: ' + queryParams);
 
     return this.httpClient.get(url + queryParams, this.getHttpOptions()).pipe(
+
+      // tap((response: any) => {
       tap(() => {
+
         this.logger.info('ContactsService: find() completed');
+
+        // this.logger.info('response: ' + JSON.stringify(response.body, null, 2) + '\n');
       })
     );
 

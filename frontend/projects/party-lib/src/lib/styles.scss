@@ -1,3 +1,6 @@
+@import "../../../../projects/utils-lib/src/lib/angular-material/mat-variables";
+@import "../../../../projects/utils-lib/src/lib/angular-material/variables";
+
 // Table
 
 .mat-table {
@@ -28,4 +31,60 @@ th.mat-header-cell {
 
 td.mat-cell {
   padding-right: 16px;
+}
+
+/*
+
+.mat-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+*/
+
+// Tab
+
+.mat-tab-group {
+  margin-left: $component-default-margin;
+  margin-right: $component-default-margin;
+}
+
+// Card
+
+.mat-card {
+  padding: 0;
+  margin-top: $component-default-margin;
+}
+
+.mat-card-header {
+  background: rgba(0, 0, 0, 0.04);
+  padding-top: 8px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mat-card-content {
+  padding: 16px;
+}
+
+.map-container {
+
+  margin-top: 32px;
+
+  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
+  // 64 + 56 + 96 + 32 + 16
+  // height: calc(100vh - 248px);
+  height: calc(100vh - 328px);  // 340
+  // width: 100%;
+
+  @media ($mat-xsmall) {
+    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
+    // 56 + 0 + 84 + 0 + 56
+    // height: calc(100vh - 140px);
+    height: calc(100vh - 216px);
+  }
+
 }

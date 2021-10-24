@@ -6,7 +6,7 @@
             [disabled]="!isDirty() || !isValid()"
             (click)="onSave()">
       <mat-icon svgIcon="save"> </mat-icon>
-      <span i18n="Command Bar Item|Contact@@SAVE">
+      <span i18n="Command Bar Item|Account@@SAVE">
       SAVE
       </span>
     </button>
@@ -15,12 +15,13 @@
             [disabled]="!isDirty() || !isValid()"
             (click)="onSaveAndClose()">
       <mat-icon svgIcon="arrow-back"> </mat-icon>
-      <span i18n="Command Bar Item|Contact@NSAVE_AND_CLOSE">
+      <span i18n="Command Bar Item|Account@NSAVE_AND_CLOSE">
       SAVE & CLOSE
       </span>
     </button>
 
   </ng-container>
+
 
   <button mat-flat-button class="md-command-bar-button"
           (click)="onNew()">
@@ -65,12 +66,11 @@
 
 <activity-bar>
 
-  <span class="md-activity-bar-title" i18n="Activity Bar Title|Contact@@CONTACT_TITLE">
-    Contact
+  <span class="md-activity-bar-title" i18n="Activity Bar Title|Account@@ACCOUNT_TITLE">
+    Account
   </span>
 
 </activity-bar>
-
 
 <div #contentContainer class="md-content-container">
 
@@ -78,8 +78,7 @@
 
   <ng-container *ngIf="item">
 
-    <mat-tab-group [color]="'primary'"
-                   (selectedTabChange)="onTabChanged($event)">
+    <mat-tab-group>
 
       <mat-tab label="Summary">
 
@@ -130,12 +129,6 @@
 
               <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
 
-              <dynamic-form autocomplete="off"
-                            className="md-nested-grid-container"
-                            [formGroup]="addressInformationGroup"
-                            [model]="addressInformationModel">
-              </dynamic-form>
-
               <!--
               <p>
                 Form Value: {{ addressInformationGroup.value | json }}
@@ -156,16 +149,6 @@
       <mat-tab label="Related">
       </mat-tab>
 
-      <mat-tab *ngIf="item.electorate" label="Electoral Division">
-
-        <div class="map-container"
-             leaflet
-             [leafletOptions]="mapOptions"
-             (leafletMapReady)="onMapReady($event)">
-        </div>
-
-      </mat-tab>
-
     </mat-tab-group>
 
   </ng-container>
@@ -181,3 +164,4 @@
   </ng-template>
 
 </div>
+

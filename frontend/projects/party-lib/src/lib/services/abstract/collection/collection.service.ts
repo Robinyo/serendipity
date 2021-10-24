@@ -1,10 +1,9 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injector, Type } from '@angular/core';
 
 import { EnvironmentService, HttpOptions, LoggerService, StaticInjectorService } from 'utils-lib';
 
 import { PartyConfig } from '../../../models/config';
-// import { HttpOptions } from '../../../models/http-options';
 
 export abstract class CollectionService {
 
