@@ -31,6 +31,11 @@
               "projects/serendipity-web-app/src/assets",
               {
                 "glob": "**/*",
+                "input": "./node_modules/leaflet/dist/images",
+                "output": "leaflet/"
+              },
+              {
+                "glob": "**/*",
                 "input": "projects/party-lib/src/assets",
                 "output": "/assets"
               },
@@ -42,7 +47,11 @@
             ],
             "styles": [
               "projects/serendipity-web-app/src/styles.scss",
-              "projects/serendipity-web-app/src/themes/light-theme/theme.scss"
+              "projects/serendipity-web-app/src/themes/light-theme/theme.scss",
+              "./node_modules/leaflet/dist/leaflet.css",
+              "./node_modules/quill/dist/quill.core.css",
+              "./node_modules/quill/dist/quill.bubble.css",
+              "./node_modules/quill/dist/quill.snow.css"
             ],
             "scripts": [],
             "extraWebpackConfig": "projects/serendipity-web-app/webpack.config.js",
@@ -116,10 +125,30 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/serendipity-web-app/src/favicon.ico",
-              "projects/serendipity-web-app/src/assets"
+              "projects/serendipity-web-app/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/leaflet/dist/images",
+                "output": "leaflet/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/party-lib/src/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/utils-lib/src/assets",
+                "output": "/assets"
+              }
             ],
             "styles": [
-              "projects/serendipity-web-app/src/styles.scss"
+              "projects/serendipity-web-app/src/styles.scss",
+              "projects/serendipity-web-app/src/themes/light-theme/theme.scss",
+              "./node_modules/leaflet/dist/leaflet.css",
+              "./node_modules/quill/dist/quill.core.css",
+              "./node_modules/quill/dist/quill.bubble.css",
+              "./node_modules/quill/dist/quill.snow.css"
             ],
             "scripts": [],
             "extraWebpackConfig": "projects/serendipity-web-app/webpack.config.js"

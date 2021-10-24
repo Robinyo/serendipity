@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { ContactComponent } from './components/contact/contact.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 
 const routes: Routes = [
@@ -10,6 +11,14 @@ const routes: Routes = [
     component: ContactsComponent,
     // canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always'
+  },
+
+  {
+    path: 'contacts/:id',
+    component: ContactComponent,
+    // canActivate: [AuthGuard],
+    // canDeactivate: [CanDeactivateGuard],
+    runGuardsAndResolvers: 'always'
   }
 
   /*
@@ -17,13 +26,6 @@ const routes: Routes = [
     path: 'contacts/new',
     component: ContactWizardComponent,
     canActivate: [AuthGuard],
-    runGuardsAndResolvers: 'always'
-  },
-  {
-    path: 'contacts/:id',
-    component: ContactComponent,
-    canActivate: [AuthGuard],
-    canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
   }
   */

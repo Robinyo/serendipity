@@ -15,8 +15,8 @@ import { DialogService } from '../../../services/dialogs/dialog.service';
 // tslint:disable-next-line:directive-class-suffix
 export abstract class ItemComponent<T> implements OnInit, AfterViewInit, OnDestroy {
 
-  public id: string | null | undefined;
-  public item: T | undefined;
+  public id!: string;
+  public item!: T;
 
   protected dialogService: DialogService;
   protected logger: LoggerService;
@@ -49,8 +49,10 @@ export abstract class ItemComponent<T> implements OnInit, AfterViewInit, OnDestr
 
     paramSubscription = this.route.paramMap.subscribe(params =>  {
 
-      this.id = params.get('id');
-      if (this.id != null) {
+      const identity = params.get('id');
+
+      if (identity != null) {
+        this.id = identity;
         this.id = atob(this.id);
       }
 

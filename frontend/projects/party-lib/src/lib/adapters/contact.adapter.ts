@@ -34,7 +34,7 @@ export class ContactAdapter implements Adapter<Contact> {
 
     contact.id = btoa(item.id);
 
-    contact.photoUrl = 'http://localhost:30001/' + item.photoUrl;
+    contact.photoUrl = 'http://127.0.0.1:30101/' + item.photoUrl;
 
     if (item.party.addresses && item.party.addresses.length) {
       contact.party.addresses = contact.party.addresses.concat(item.party.addresses);

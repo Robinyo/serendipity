@@ -12,8 +12,8 @@ import { DynamicImageComponent } from './angular-material/components/dynamic-ima
 import { DynamicInputComponent } from './angular-material/components/dynamic-input/dynamic-input.component';
 import { DynamicLabelComponent } from './angular-material/components/dynamic-label/dynamic-label.component';
 
-import { DynamicFormsConfig } from './models/models';
-import { DynamicFormsConfigService } from './services/config.service';
+// import { DynamicFormsConfig } from './models/models';
+// import { DynamicFormsConfigService } from './services/config.service';
 
 const components: any[] = [
   DynamicDatepickerComponent,
@@ -46,6 +46,8 @@ export class DynamicFormsLibModule {
     this.logger.info('Dynamic Forms Module initialised');
   }
 
+  /*
+
   static forRoot(config: DynamicFormsConfig): ModuleWithProviders<DynamicFormsLibModule> {
 
     return {
@@ -56,5 +58,7 @@ export class DynamicFormsLibModule {
     };
 
   }
+
+  */
 
 }

@@ -1,19 +1,14 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 
-// import { Observable } from 'rxjs';
-
-import { DynamicFormsConfig } from '../../../models/models';
-import { DynamicFormsConfigService } from '../../../services/config.service';
+import { Config, EnvironmentService, HttpOptions, LoggerService } from "utils-lib";
 
 import { DynamicFormControlModel } from '../../models/dynamic-form-control.model';
 import { DynamicFormModel } from '../../models/dynamic-form.model';
 import { ValidatorModel } from '../../models/validator.model';
 
 import { DynamicFormsLibModule } from '../../../dynamic-forms-lib.module';
-
-import { LoggerService } from 'utils-lib';
 
 // https://github.com/udos86/ng-dynamic-forms/blob/master/packages/core/src/service/dynamic-form-validation.service.ts
 
@@ -31,10 +26,14 @@ export class DynamicFormService {
   private uriPrefix = 'assets/data/forms/';
   private uriSuffix = '.json';
 
-  constructor(@Inject(DynamicFormsConfigService) private config: DynamicFormsConfig,
-              private formBuilder: FormBuilder,
+  private config: Config;
+
+  constructor(private formBuilder: FormBuilder,
               private httpClient: HttpClient,
+              private environmentService: EnvironmentService,
               private logger: LoggerService) {
+
+    this.config = this.environmentService.getConfig();
 
     // this.uriPrefix = this.uriPrefix + this.config.defaultLanguage.split('-')[0] + '/';
 

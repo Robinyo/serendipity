@@ -20,7 +20,7 @@ import { LoggerService } from 'utils-lib';
              [placeholder]="model.placeholder"
              [required]="model.required" />
 
-      <mat-icon matSuffix class="crm-suffix-icon" (click)="picker.open()"> event </mat-icon>
+      <mat-icon matSuffix class="md-suffix-icon" (click)="picker.open()"> event </mat-icon>
 
       <mat-datepicker #picker></mat-datepicker>
 

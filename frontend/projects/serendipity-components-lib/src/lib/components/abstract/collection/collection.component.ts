@@ -53,7 +53,7 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
   public displayedColumns: string[] | undefined;
   public footerAllLabel = ALL;
   public footerColSpan = DEFAULT_FOOTER_COL_SPAN;
-  public items: Array<T> = [];
+  public items!: Array<T>;
   public pageNumber = 1;
   public selectedFooterItemId = ALL;
 

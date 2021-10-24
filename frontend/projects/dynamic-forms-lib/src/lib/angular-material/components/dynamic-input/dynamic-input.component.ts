@@ -29,7 +29,7 @@ import { LoggerService } from 'utils-lib';
              [type]="model.inputType"/>
 
       <span *ngIf="model.suffixIconName" matSuffix>
-        <mat-icon matSuffix class="crm-suffix-icon" (click)="iconSuffixClickHandler()"> {{ model.suffixIconName }} </mat-icon>
+        <mat-icon matSuffix class="md-suffix-icon" (click)="iconSuffixClickHandler()"> {{ model.suffixIconName }} </mat-icon>
       </span>
 
       <ng-container *ngFor="let validator of model.validators;" ngProjectAs="mat-error">

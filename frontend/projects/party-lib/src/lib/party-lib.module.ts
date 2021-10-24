@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
+// import { QuillModule } from 'ngx-quill';
 
 //
-// Utils lib
+// Libs
 //
+
+import { DynamicFormsLibModule } from 'dynamic-forms-lib';
 
 import { AngularMaterialModule } from 'utils-lib';
 import { LoggerService } from 'utils-lib';
@@ -15,6 +22,7 @@ import { SerendipityComponentsLibModule } from 'serendipity-components-lib';
 // Components - local
 //
 
+import { ContactComponent } from './components/contact/contact.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 
 //
@@ -24,6 +32,7 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { PartyLibRoutingModule } from './party-lib-routing.module';
 
 const components: any[] = [
+  ContactComponent,
   ContactsComponent
 ];
 
@@ -34,7 +43,10 @@ const components: any[] = [
   imports: [
     AngularMaterialModule,
     CommonModule,
-    HttpClientModule,
+    DynamicFormsLibModule,
+    FlexLayoutModule,
+    LeafletModule,
+    ReactiveFormsModule,
     SerendipityComponentsLibModule,
 
     // See core.module.ts
@@ -42,14 +54,12 @@ const components: any[] = [
 
     // https://angular.io/guide/router#routing-module-order
     PartyLibRoutingModule
-  ],
-  exports: [
-    ...components
   ]
 })
 export class PartyLibModule {
 
   constructor(private logger: LoggerService) {
+
     this.logger.info('Party Library initialised');
   }
 
