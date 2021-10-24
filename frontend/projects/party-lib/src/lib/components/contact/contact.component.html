@@ -23,7 +23,8 @@
   </ng-container>
 
   <button mat-flat-button class="md-command-bar-button"
-          (click)="onNew()">
+          (click)="onNew()"
+          [disabled]="true">
     <mat-icon svgIcon="add"> </mat-icon>
     <span i18n="Command Bar Item|Contact@@NEW">
       NEW
@@ -31,7 +32,8 @@
   </button>
 
   <button mat-flat-button class="md-command-bar-button"
-          (click)="onDeactivate()">
+          (click)="onDeactivate()"
+          [disabled]="true">
     <mat-icon svgIcon="visibility-off"> </mat-icon>
     <span i18n="Command Bar Item|Contact@@DEACTIVATE">
       DEACTIVATE
