@@ -31,6 +31,10 @@
         "dist/auth-bff-lib/auth-bff-lib",
         "dist/auth-bff-lib"
       ],
+      "dynamic-forms-lib": [
+        "dist/dynamic-forms-lib/dynamic-forms-lib",
+        "dist/dynamic-forms-lib"
+      ],
       "party-lib": [
         "dist/party-lib"
       ],

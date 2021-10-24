@@ -35,6 +35,7 @@ To build the project:
 ng build --configuration="development" utils-lib && \
 ng build --configuration="development" auth-bff-lib && \
 ng build --configuration="development" serendipity-components-lib && \
+ng build --configuration="development" dynamic-forms-lib && \
 ng build --configuration="development" party-lib && \
 ng build --configuration="development" serendipity-web-app
 ```
