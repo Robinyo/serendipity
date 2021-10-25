@@ -33,6 +33,7 @@ To build the project:
 # In the project's /frontend directory
 
 ng build --configuration="development" utils-lib && \
+ng build --configuration="development" auth-lib && \
 ng build --configuration="development" auth-bff-lib && \
 ng build --configuration="development" serendipity-components-lib && \
 ng build --configuration="development" dynamic-forms-lib && \
@@ -54,8 +55,10 @@ To build the project:
 
 ```
 ng build utils-lib && \
+ng build auth-lib && \
 ng build auth-bff-lib && \
 ng build serendipity-components-lib && \
+ng build dynamic-forms-lib && \
 ng build party-lib && \
 ng build serendipity-web-app
 ```

@@ -3,7 +3,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 
 import { MatIconRegistry } from "@angular/material/icon";
 
-import { AuthService } from 'auth-bff-lib';
+import { AuthService } from 'auth-lib';
 import { LoggerService } from 'utils-lib';
 
 import { SVG_ICONS } from './svg-icons';

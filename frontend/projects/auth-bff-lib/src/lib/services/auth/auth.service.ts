@@ -9,13 +9,15 @@ import { CookieService } from 'ngx-cookie-service';
 
 import { Config, EnvironmentService, HttpOptions, LoggerService } from "utils-lib";
 
+import { Auth } from 'auth-lib';
+
 const LOGIN_PATH = '/bff/login';
 const LOGOUT_PATH = '/bff/logout';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class BffAuthService extends Auth {
 
   protected authenticated = false;
   protected config: Config;
@@ -26,6 +28,8 @@ export class AuthService {
               private cookieService: CookieService,
               private environmentService: EnvironmentService,
               private logger: LoggerService) {
+
+    super();
 
     this.config = this.environmentService.getConfig();
   }
@@ -81,7 +85,7 @@ export class AuthService {
 
   }
 
-  protected login(): Observable<any> {
+  private login(): Observable<any> {
 
     this.logger.info('AuthService: login()');
 
@@ -117,7 +121,7 @@ export class AuthService {
 
   }
 
-  protected logout(): Observable<any> {
+  private logout(): Observable<any> {
 
     this.logger.info('AuthService: logout()');
 
@@ -129,9 +133,7 @@ export class AuthService {
 
   }
 
-  protected getHttpOptions(params: any = undefined): HttpOptions {
-
-    // his.logger.info('CollectionService: getHttpOptions()');
+  private getHttpOptions(params: any = undefined): HttpOptions {
 
     if (!this.httpOptions) {
 
@@ -154,37 +156,8 @@ export class AuthService {
     return this.httpOptions;
   }
 
-  protected getUrlPrefix(): string {
+  private getUrlPrefix(): string {
     return this.config.serverScheme + '://' + this.config.serverHost + ':' + this.config.serverPort;
   }
 
 }
-
-/*
-
-  protected httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
-
-*/
-
-// protected urlPrefix: string = 'http' + '://' + 'localhost' +  ':' + '8080';
-// protected urlPrefix: string = 'http' + '://' + '127.0.0.1' +  ':' + '8080';
-// protected url: string = '';
-
-// 'Access-Control-Allow-Origin': '*'
-
-/*
-
-  protected logout(returnUrl: string) {
-
-    this.logger.info('AuthService: logout()');
-
-    this.authenticated = false;
-
-    this.router.navigate(['/']);
-  }
-
-*/

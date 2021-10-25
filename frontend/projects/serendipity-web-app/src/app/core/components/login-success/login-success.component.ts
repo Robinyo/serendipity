@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 
-import { AuthService } from 'auth-bff-lib';
+import { AuthService } from 'auth-lib';
 import { LoggerService } from "utils-lib";
 
 @Component({

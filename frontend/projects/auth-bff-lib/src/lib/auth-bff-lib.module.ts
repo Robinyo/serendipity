@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { LoggerService } from 'utils-lib';
 
@@ -6,6 +7,7 @@ import { LoggerService } from 'utils-lib';
   declarations: [
   ],
   imports: [
+    CommonModule
   ],
   exports: [
   ]

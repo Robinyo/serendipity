@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { AuthBffLibModule, authProviders } from 'auth-bff-lib';
 import { loggerProviders, LoggerService  } from 'utils-lib';
 
 // import { environment } from '@env/environment';
@@ -8,7 +9,6 @@ import { loggerProviders, LoggerService  } from 'utils-lib';
 import { CoreModule } from './core/core.module';
 
 import { AppComponent } from './app.component';
-
 
 //
 // AppRoutingModule: https://angular.io/guide/router#routing-module-order
@@ -21,6 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent
   ],
   imports: [
+    AuthBffLibModule,
     BrowserModule,
     CoreModule,
 
@@ -28,7 +29,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule
   ],
   providers: [
-    // authProviders,
+    authProviders,
     // angularMaterialProviders,
     // errorProviders,
     loggerProviders
