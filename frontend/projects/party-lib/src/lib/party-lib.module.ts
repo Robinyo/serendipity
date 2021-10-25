@@ -26,6 +26,7 @@ import { AccountComponent } from './components/account/account.component';
 import { AccountsComponent } from './components/accounts/accounts.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
+import { ContactWizardComponent } from './components/contact-wizard/contact-wizard.component';
 
 //
 // PartyLibRoutingModule: https://angular.io/guide/router#routing-module-order
@@ -37,7 +38,8 @@ const components: any[] = [
   AccountComponent,
   AccountsComponent,
   ContactComponent,
-  ContactsComponent
+  ContactsComponent,
+  ContactWizardComponent
 ];
 
 @NgModule({

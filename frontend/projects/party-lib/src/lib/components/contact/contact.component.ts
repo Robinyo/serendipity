@@ -261,7 +261,7 @@ export class ContactComponent extends ItemComponent<Contact> {
 
     this.logger.info('ContactComponent: onNew()');
 
-    // this.router.navigate([CONTACTS + '/new']);
+    this.router.navigate([CONTACTS + '/new']);
   }
 
   public onSave() {

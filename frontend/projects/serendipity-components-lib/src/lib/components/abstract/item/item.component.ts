@@ -52,8 +52,7 @@ export abstract class ItemComponent<T> implements OnInit, AfterViewInit, OnDestr
       const identity = params.get('id');
 
       if (identity != null) {
-        this.id = identity;
-        this.id = atob(this.id);
+        this.id = atob(identity);
       }
 
       this.logger.info('id: ' + this.id);

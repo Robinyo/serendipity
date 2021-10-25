@@ -7,7 +7,7 @@
             (click)="onSave()">
       <mat-icon svgIcon="save"> </mat-icon>
       <span i18n="Command Bar Item|Contact@@SAVE">
-      SAVE
+        SAVE
       </span>
     </button>
 
@@ -16,15 +16,14 @@
             (click)="onSaveAndClose()">
       <mat-icon svgIcon="arrow-back"> </mat-icon>
       <span i18n="Command Bar Item|Contact@NSAVE_AND_CLOSE">
-      SAVE & CLOSE
+        SAVE & CLOSE
       </span>
     </button>
 
   </ng-container>
 
   <button mat-flat-button class="md-command-bar-button"
-          (click)="onNew()"
-          [disabled]="true">
+          (click)="onNew()">
     <mat-icon svgIcon="add"> </mat-icon>
     <span i18n="Command Bar Item|Contact@@NEW">
       NEW
@@ -73,8 +72,7 @@
 
 </activity-bar>
 
-
-<div #contentContainer class="md-content-container">
+<div class="md-content-container">
 
   <ng-container *ngIf="!item; then skeleton"> </ng-container>
 

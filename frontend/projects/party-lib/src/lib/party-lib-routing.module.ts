@@ -13,6 +13,7 @@ import { AccountComponent } from './components/account/account.component';
 import { AccountsComponent } from './components/accounts/accounts.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
+import { ContactWizardComponent } from './components/contact-wizard/contact-wizard.component';
 
 const routes: Routes = [
 
@@ -36,23 +37,19 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always'
   },
-
   {
     path: 'contacts/:id',
     component: ContactComponent,
     canActivate: [AuthGuard],
     canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
-  }
-
-  /*
+  },
   {
     path: 'contacts/new',
     component: ContactWizardComponent,
     canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always'
   }
-  */
 
 ];
 
