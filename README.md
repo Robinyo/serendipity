@@ -41,6 +41,26 @@ Clone the project by running the following command:
 git clone https://github.com/Robinyo/serendipity-2.0
 ``` 
 
+### Docker
+
+To serve the applications (from the /backend directory):
+
+```
+docker-compose up -d
+```
+
+The containers may take a minute or two to startup.
+
+Navigate to: http://127.0.0.1:30001
+
+![divider](./divider.png)
+
+## ❯ Docker Hub
+
+See: https://hub.docker.com/u/robinyo
+
+![divider](./divider.png)
+
 ### Kubernetes
 
 To serve the applications (from the /backend directory):
@@ -68,26 +88,6 @@ Kubernetes Dashboard:
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/kubernetes-dashboard.png">
 </p>
-
-### Docker
-
-To serve the applications (from the /backend directory):
-
-```
-docker-compose up -d
-```
-
-The containers may take a minute or two to startup.
-
-Navigate to: http://127.0.0.1:30001
-
-![divider](./divider.png)
-
-## ❯ Docker Hub
-
-See: https://hub.docker.com/u/robinyo
-
-![divider](./divider.png)
 
 ## ❯ Links
 
