@@ -16,14 +16,22 @@ const routes: Routes = [
     // path: 'login-callback',
     path: 'bff/login/success',
     component: LoginSuccessComponent,
-    // canActivate: [AuthGuard],
-    // runGuardsAndResolvers: 'always'
   },
 
   {
     path: '',
     component: HomeComponent,
     pathMatch: 'full'
+  },
+
+  {
+    path: 'work',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('../../../work-lib/src/lib/work-lib.module').then(m => m.WorkLibModule)
+      }
+    ]
   },
 
   {

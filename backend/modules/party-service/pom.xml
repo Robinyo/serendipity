@@ -20,6 +20,7 @@
 
 	<properties>
 		<evo.inflector.version>1.3</evo.inflector.version>
+		<flowable.version>6.5.0</flowable.version>
 	</properties>
 
 	<dependencies>
@@ -55,6 +56,61 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+
+		<!-- Add Flowable dependencies -->
+
+		<!-- https://flowable.com/open-source/docs/bpmn/ch05a-Spring-Boot/#flowable-starters -->
+		<!-- https://flowable.com/open-source/docs/bpmn/ch05a-Spring-Boot/#flowable-auto-configuration-classes -->
+		<!-- https://github.com/flowable/flowable-engine/blob/master/modules/flowable-spring-boot/flowable-spring-boot-starters/flowable-spring-boot-starter/pom.xml -->
+
+		<dependency>
+			<groupId>org.flowable</groupId>
+			<artifactId>flowable-spring-boot-starter-app</artifactId>
+			<version>${flowable.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowable</groupId>
+			<artifactId>flowable-spring-boot-starter-process-rest</artifactId>
+			<version>${flowable.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowable</groupId>
+			<artifactId>flowable-spring-boot-starter-dmn-rest</artifactId>
+			<version>${flowable.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.flowable</groupId>
+			<artifactId>flowable-spring-configurator</artifactId>
+			<version>${flowable.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowable</groupId>
+			<artifactId>flowable-form-spring-configurator</artifactId>
+			<version>${flowable.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowable</groupId>
+			<artifactId>flowable-dmn-spring-configurator</artifactId>
+			<version>${flowable.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.flowable</groupId>
+			<artifactId>flowable-ldap</artifactId>
+			<version>${flowable.version}</version>
+		</dependency>
+
+		<!--
+        <dependency>
+          <groupId>org.flowable</groupId>
+          <artifactId>flowable-spring-boot-starter-rest</artifactId>
+          <version>${flowable.version}</version>
+        </dependency>
+        -->
+
+
+
 
 		<!-- Add Test dependencies -->
 

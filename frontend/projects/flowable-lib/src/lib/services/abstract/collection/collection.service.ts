@@ -41,7 +41,6 @@ export abstract class CollectionService {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
         }),
-        observe: 'response',
         params: undefined
       };
 

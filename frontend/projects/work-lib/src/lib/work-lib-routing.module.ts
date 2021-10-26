@@ -11,14 +11,14 @@ import { TasksComponent } from './components/tasks/tasks.component';
 const routes: Routes = [
 
   {
-    path: 'work/activities',
+    path: 'activities',
     component: ActivitiesComponent,
     canActivate: [AuthGuard],
     // canDeactivate: [CanDeactivateGuard],
     runGuardsAndResolvers: 'always'
   },
   {
-    path: 'work/activities/:id',
+    path: 'activities/:id',
     component: TasksComponent,
     canActivate: [AuthGuard],
     // canDeactivate: [CanDeactivateGuard],

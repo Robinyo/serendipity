@@ -1,8 +1,7 @@
 <command-bar>
 
   <button mat-flat-button class="md-command-bar-button"
-          (click)="onTask()"
-          [disabled]="true">
+          (click)="onTask()">
     <mat-icon svgIcon="assignment"> </mat-icon>
     <span i18n="Command Bar Item|Activities@@TASKS">
       TASKS
@@ -97,7 +96,7 @@
           <th mat-header-cell *matHeaderCellDef class="header-cell-id">
 
             <button mat-icon-button (click)="onRefresh()">
-              <mat-icon matListIcon class="header-icon">autorenew</mat-icon>
+              <mat-icon svgIcon="autorenew" class="header-icon"> </mat-icon>
             </button>
 
           </th>

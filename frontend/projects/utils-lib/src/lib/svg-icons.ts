@@ -79,6 +79,10 @@ export const SVG_ICONS: SvgIconRegistry[] = [
     "filename": "person_black_24dp.svg"
   },
   {
+    "name":  "phone",
+    "filename": "phone_black_24dp.svg"
+  },
+  {
     "name":  "save",
     "filename": "save_black_24dp.svg"
   },

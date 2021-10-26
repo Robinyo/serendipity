@@ -57,15 +57,12 @@ export class ProcessListComponent extends CollectionComponent<ProcessModel> {
 
         this.logger.info('ProcessListComponent: subscribe() success handler');
 
-        if (model.data != null) {
+        // @ts-ignore
+        this.items = model.data;
 
-          this.items = model.data;
-
-          if (this.items && this.items.length) {
-            this.selectedItem = this.items[0];
-            this.selectEvent.emit(this.selectedItem);
-          }
-
+        if (this.items && this.items.length) {
+          this.selectedItem = this.items[0];
+          this.selectEvent.emit(this.selectedItem);
         }
 
       },

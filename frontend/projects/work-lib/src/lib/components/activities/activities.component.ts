@@ -189,7 +189,7 @@ export class ActivitiesComponent extends CollectionComponent<Activity> implement
         message: message
       },
       duration: 500,
-      panelClass: 'crm-snack-bar'
+      panelClass: 'md-snack-bar'
     });
 
   }
@@ -252,83 +252,3 @@ function pathDataAccessor(item: any, path: string): any {
     return accumulator ? accumulator[key] : undefined;
   }, item);
 }
-
-/*
-
-@Component({
-  selector: 'work-activities',
-  templateUrl: './activities.component.html',
-  styleUrls: ['./activities.component.scss']
-})
-export class ActivitiesComponent extends CollectionComponent<Activity> {
-
-  constructor(private entityService: ActivitiesService) {
-
-    super({
-      columnDefsFilename: ACTIVITIES_COLUMN_DEFS,
-      desktopDeviceColumns: ACTIVITIES_COLUMNS_DESKTOP,
-      mobileDeviceColumns: ACTIVITIES_COLUMNS_MOBILE,
-      limit: 10
-    });
-
-  }
-
-  protected subscribe() {
-
-    this.logger.info('ActivitiesComponent: subscribe()');
-
-    this.items = [{
-      id: '1',
-      type: 'Email',
-      subject: 'Welcome email',
-      regarding: 'Hey',
-      priority: 'Normal',
-      startDate: '',
-      dueDate: ''
-    }, {
-      id: '2',
-      type: 'Phone Call',
-      subject: 'Follow up re initial conversation',
-      regarding: '',
-      priority: 'High',
-      startDate: '',
-      dueDate: ''
-    }, {
-      id: '3',
-      type: 'Task',
-      subject: 'Update \'Welcome\' email template',
-      regarding: 'Email templates',
-      priority: 'Normal',
-      startDate: '',
-      dueDate: ''
-    }];
-
-    this.dataSource = new MatTableDataSource(this.items);
-    this.dataSource.data = this.items;
-    this.dataSource.sortingDataAccessor = pathDataAccessor;
-    this.dataSource.sort = this.sort;
-
-  }
-
-  //
-  // Command Bar events
-  //
-
-  public onEmail() {
-
-    // this.logger.info('ActivitiesComponent: onEmail()');
-
-    // this.router.navigate(['sales/activities/email']);
-    this.router.navigate(['sales/activities/tasks']);
-  }
-
-  public onTask() {
-
-    // this.logger.info('ActivitiesComponent: onTask()');
-
-    this.dialogService.open(StartProcessDialogComponent);
-  }
-
-}
-
-*/

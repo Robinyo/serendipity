@@ -43,6 +43,11 @@
                 "glob": "**/*",
                 "input": "projects/utils-lib/src/assets",
                 "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/work-lib/src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [

@@ -108,9 +108,8 @@ export class TaskListComponent extends CollectionComponent<TaskModel> {
 
         this.logger.info('TaskListComponent: subscribe() success handler');
 
-        if (model.data) {
-          this.items = model.data;
-        }
+        // @ts-ignore
+        this.items = model.data;
 
         if (this.items && this.items.length) {
           this.selectedItem = this.items[0];
