@@ -55,12 +55,6 @@ Navigate to: http://127.0.0.1:30001
 
 ![divider](./divider.png)
 
-## ❯ Docker Hub
-
-See: https://hub.docker.com/u/robinyo
-
-![divider](./divider.png)
-
 ### Kubernetes
 
 To serve the applications (from the /backend directory):
