@@ -107,12 +107,14 @@ To tag the images and push them to Docker Hub:
 
 ```
 docker tag serendipity-identity-server robinyo/serendipity-identity-server:latest
-docker tag serendipity-party-service robinyo/serendipity-party-service:latest
 docker tag serendipity robinyo/serendipity:latest
+docker tag serendipity-party-service robinyo/serendipity-party-service:latest
+docker tag serendipity-work-service robinyo/serendipity-work-service:latest
 
 docker push robinyo/serendipity-identity-server:latest
-docker push robinyo/serendipity-party-service:latest
 docker push robinyo/serendipity:latest
+docker push robinyo/serendipity-party-service:latest
+docker push robinyo/serendipity-work-service:latest
 ```
  
 #### Kubernetes
