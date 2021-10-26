@@ -21,7 +21,7 @@
            mat-list-item
            (click)="navigationSidenav.close()"
            [routerLink]="[item.route]"
-           routerLinkActive="nav-list-item-active">
+           routerLinkActive="list-item-active">
            <mat-icon svgIcon="{{ item.icon }}" class="nav-list-icon"> </mat-icon>
           {{ item.label }}
         </a>
@@ -39,7 +39,7 @@
            mat-list-item
            (click)="navigationSidenav.close()"
            [routerLink]="[item.route]"
-           routerLinkActive="nav-list-item-active">
+           routerLinkActive="list-item-active">
            <mat-icon svgIcon="{{ item.icon }}" class="nav-list-icon"> </mat-icon>
           {{ item.label }}
         </a>
@@ -70,14 +70,12 @@
            mat-list-item
            (click)="navigationSidenav.close()"
            [routerLink]="[item.route]"
-           routerLinkActive="nav-list-item-active">
+           routerLinkActive="list-item-active">
            <mat-icon svgIcon="{{ item.icon }}" class="nav-list-icon"> </mat-icon>
           {{ item.label }}
         </a>
 
       </ng-container>
-
-
 
     </mat-nav-list>
 
@@ -90,15 +88,3 @@
   </mat-sidenav-content>
 
 </mat-sidenav-container>
-
-<!--
-
-    <mat-toolbar>
-      <mat-toolbar-row>
-
-        mat-toolbar-row
-
-      </mat-toolbar-row>
-    </mat-toolbar>
-
--->

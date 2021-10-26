@@ -12,11 +12,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 //
 
 import { DynamicFormsLibModule } from 'dynamic-forms-lib';
-
-import { AngularMaterialModule } from 'utils-lib';
-import { LoggerService } from 'utils-lib';
 import { SerendipityComponentsLibModule } from 'serendipity-components-lib';
-// import { UtilsLibModule } from 'utils-lib';
+import { AngularMaterialModule, LoggerService, UtilsLibModule } from 'utils-lib';
 
 //
 // Components - local
@@ -51,6 +48,7 @@ const components: any[] = [
     LeafletModule,
     ReactiveFormsModule,
     SerendipityComponentsLibModule,
+    UtilsLibModule,
 
     // See core.module.ts
     // UtilsLibModule,

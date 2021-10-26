@@ -1,8 +1,16 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { AngularMaterialModule, UtilsLibModule, LoggerService } from 'utils-lib';
+//
+// Libs
+//
+
+import { AngularMaterialModule, LoggerService, UtilsLibModule } from 'utils-lib';
+
+//
+// Components - local
+//
 
 import { DynamicControlDirective } from './angular-material/directives/dynamic-control/dynamic-control.directive';
 import { DynamicFormComponent } from './angular-material/containers/dynamic-form/dynamic-form.component';
@@ -11,9 +19,6 @@ import { DynamicDatepickerComponent } from './angular-material/components/dynami
 import { DynamicImageComponent } from './angular-material/components/dynamic-image/dynamic-image.component';
 import { DynamicInputComponent } from './angular-material/components/dynamic-input/dynamic-input.component';
 import { DynamicLabelComponent } from './angular-material/components/dynamic-label/dynamic-label.component';
-
-// import { DynamicFormsConfig } from './models/models';
-// import { DynamicFormsConfigService } from './services/config.service';
 
 const components: any[] = [
   DynamicDatepickerComponent,
@@ -37,7 +42,9 @@ const components: any[] = [
   exports: [
     DynamicFormComponent
   ],
-  entryComponents: [ ...components ]
+  entryComponents: [
+    ...components
+  ]
 })
 export class DynamicFormsLibModule {
 
@@ -45,20 +52,5 @@ export class DynamicFormsLibModule {
 
     this.logger.info('Dynamic Forms Library initialised');
   }
-
-  /*
-
-  static forRoot(config: DynamicFormsConfig): ModuleWithProviders<DynamicFormsLibModule> {
-
-    return {
-      ngModule: DynamicFormsLibModule,
-      providers: [
-        { provide: DynamicFormsConfigService, useValue: config }
-      ]
-    };
-
-  }
-
-  */
 
 }

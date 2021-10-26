@@ -8,8 +8,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { CookieService } from 'ngx-cookie-service';
 
+//
+// Libs
+//
+
 import { SerendipityComponentsLibModule } from 'serendipity-components-lib';
 import { AngularMaterialModule, ConfigService, UtilsLibModule, LoggerService } from 'utils-lib';
+
+//
+// Components - local
+//
 
 import { LoginSuccessComponent } from './components/login-success/login-success.component';
 import { HomeComponent } from './components/home/home.component';
@@ -28,9 +36,6 @@ const components: any[] = [
 ];
 
 @NgModule({
-  declarations: [
-    ...components,
-  ],
   imports: [
     AngularMaterialModule,    // The Angular Material module must be imported after Angular's BrowserModule, as the import order matters
     BrowserAnimationsModule,  // for NgModules.
@@ -44,7 +49,12 @@ const components: any[] = [
 
     RouterModule
   ],
-  exports: [ ...components ],
+  declarations: [
+    ...components,
+  ],
+  exports: [
+    ...components
+  ],
   providers: [
     CookieService,
     { provide: LOCALE_ID, useValue: 'en' }
@@ -64,4 +74,3 @@ export class CoreModule {
 }
 
 // https://roufid.com/angular-spring-security-csrf-configuration/
-

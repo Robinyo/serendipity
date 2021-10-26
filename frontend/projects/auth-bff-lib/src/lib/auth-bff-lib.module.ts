@@ -1,15 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LoggerService } from 'utils-lib';
+import { LoggerService, UtilsLibModule } from 'utils-lib';
 
 @NgModule({
-  declarations: [
-  ],
   imports: [
-    CommonModule
-  ],
-  exports: [
+    CommonModule,
+    UtilsLibModule
   ]
 })
 export class AuthBffLibModule {

@@ -1,16 +1,11 @@
-// @import "../../../../../../projects/utils-lib/src/lib/angular-material/mat-variables";
-@import "../../../../../../projects/utils-lib/src/lib/angular-material/variables";
+@import "../../styles";
 
-.md-process-list-container {
+.process-list-container {
+  column-gap: 0;
   display: grid;
   grid-template-columns: $process-list-width auto;
-  column-gap: 0;
   height: $process-list-height;
   margin: 0;
 }
 
-.md-task-list-icon {
-  // margin: 0 12px 0 12px;
-  margin: 0;
-  padding: 0;
-}
+// list-item-active see: sidenav.component-theme.scss

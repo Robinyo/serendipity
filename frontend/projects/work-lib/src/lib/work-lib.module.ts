@@ -11,11 +11,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { DynamicFormsLibModule } from 'dynamic-forms-lib';
 import { FlowableLibModule } from 'flowable-lib';
-
-import { AngularMaterialModule } from 'utils-lib';
-import { LoggerService } from 'utils-lib';
 import { SerendipityComponentsLibModule } from 'serendipity-components-lib';
-// import { UtilsLibModule } from 'utils-lib';
+import { AngularMaterialModule, LoggerService, UtilsLibModule } from 'utils-lib';
 
 //
 // Components - local
@@ -44,13 +41,10 @@ const components: any[] = [
     FlowableLibModule,
     ReactiveFormsModule,
     SerendipityComponentsLibModule,
-
-    // See core.module.ts
-    // UtilsLibModule,
+    UtilsLibModule,
 
     // https://angular.io/guide/router#routing-module-order
     WorkLibRoutingModule
-
   ],
   declarations: [
     ...components

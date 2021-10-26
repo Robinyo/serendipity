@@ -105,6 +105,18 @@ Welcome Page:
 
 ### Navigation
 
+Navigation Bar:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/navigation-bar.png">
+</p>
+
+Command Bar:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/command-bar.png">
+</p>
+
 Sidenav:
 
 <p align="center">
@@ -123,4 +135,24 @@ Contact:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/contact.png">
+</p>
+
+Accounts:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/accounts.png">
+</p>
+
+### Workflow (BPMN), Decision Management (DMN) and Case Management (CMMN)
+
+New Work Item:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/new-work-item.png">
+</p>
+
+### Interactive Maps
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/electoral-division.png">
 </p>

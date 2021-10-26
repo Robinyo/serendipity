@@ -12,7 +12,7 @@ import { ProcessListModel, ProcessModel } from '../../models/process-list.model'
 @Component({
   selector: 'flow-process-list',
   template: `
-    <div class="md-process-list-container">
+    <div class="process-list-container">
 
       <mat-nav-list style="padding-top: 0">
 
@@ -21,7 +21,7 @@ import { ProcessListModel, ProcessModel } from '../../models/process-list.model'
            [class.list-item-active]="item === selectedItem"
            (click)="onSelect(item)">
 
-          <mat-icon matListIcon svgIcon="assignment" class="md-task-list-icon"> </mat-icon>
+          <mat-icon matListIcon svgIcon="assignment" class="task-list-icon"> </mat-icon>
 
           <p mat-line>
             {{item.name}}
