@@ -53,8 +53,6 @@ The containers may take a minute or two to startup.
 
 Navigate to: http://127.0.0.1:30001
 
-![divider](./divider.png)
-
 ### Kubernetes
 
 To serve the applications (from the /backend directory):
@@ -82,6 +80,8 @@ Kubernetes Dashboard:
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/kubernetes-dashboard.png">
 </p>
+
+![divider](./divider.png)
 
 ## ❯ Links
 
