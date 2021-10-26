@@ -15,6 +15,7 @@ import { LoggerService } from 'utils-lib';
 export class AuthBffLibModule {
 
   constructor(private logger: LoggerService) {
+
     this.logger.info('Auth BFF Library initialised');
   }
 

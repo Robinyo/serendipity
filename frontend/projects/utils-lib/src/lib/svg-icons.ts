@@ -11,6 +11,26 @@ export const SVG_ICONS: SvgIconRegistry[] = [
     "filename": "arrow_back_black_24dp.svg"
   },
   {
+    "name":  "arrow-drop-down",
+    "filename": "arrow_drop_down_black_24dp.svg"
+  },
+  {
+    "name":  "arrow-forward",
+    "filename": "arrow_forward_black_24dp.svg"
+  },
+  {
+    "name":  "assignment",
+    "filename": "assignment_black_24dp.svg"
+  },
+  {
+    "name":  "assignment-ind",
+    "filename": "assignment_ind_black_24dp.svg"
+  },
+  {
+    "name":  "attachment",
+    "filename": "attachment_black_24dp.svg"
+  },
+  {
     "name":  "autorenew",
     "filename": "autorenew_black_24dp.svg"
   },
@@ -23,8 +43,16 @@ export const SVG_ICONS: SvgIconRegistry[] = [
     "filename": "description_black_24dp.svg"
   },
   {
+    "name":  "email",
+    "filename": "email_black_24dp.svg"
+  },
+  {
     "name":  "event",
     "filename": "event_black_24dp.svg"
+  },
+  {
+    "name":  "history",
+    "filename": "history_black_24dp.svg"
   },
   {
     "name":  "keyboard-arrow-left",
@@ -39,6 +67,18 @@ export const SVG_ICONS: SvgIconRegistry[] = [
     "filename": "link_black_24dp.svg"
   },
   {
+    "name":  "list",
+    "filename": "list_black_24dp.svg"
+  },
+  {
+    "name":  "people_outline",
+    "filename": "people_outline_black_24dp.svg"
+  },
+  {
+    "name":  "person",
+    "filename": "person_black_24dp.svg"
+  },
+  {
     "name":  "save",
     "filename": "save_black_24dp.svg"
   },
@@ -49,6 +89,10 @@ export const SVG_ICONS: SvgIconRegistry[] = [
   {
     "name":  "skip-previous",
     "filename": "skip_previous_black_24dp.svg"
+  },
+  {
+    "name":  "today",
+    "filename": "today_black_24dp.svg"
   },
   {
     "name":  "visibility-off",

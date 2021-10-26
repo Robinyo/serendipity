@@ -1,6 +1,7 @@
 export abstract class Auth {
 
   protected authenticated = false;
+  protected currentUser: any;
 
   public abstract isAuthenticated(): boolean;
 
@@ -9,5 +10,7 @@ export abstract class Auth {
   public abstract handleRedirectCallback(): void;
 
   public abstract logoutWithRedirect(returnUrl: string): Promise<void>;
+
+  public abstract getCurrentUser(): any;
 
 }

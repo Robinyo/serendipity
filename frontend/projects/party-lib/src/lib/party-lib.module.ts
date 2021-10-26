@@ -43,9 +43,6 @@ const components: any[] = [
 ];
 
 @NgModule({
-  declarations: [
-    ...components
-  ],
   imports: [
     AngularMaterialModule,
     CommonModule,
@@ -60,6 +57,9 @@ const components: any[] = [
 
     // https://angular.io/guide/router#routing-module-order
     PartyLibRoutingModule
+  ],
+  declarations: [
+    ...components
   ]
 })
 export class PartyLibModule {

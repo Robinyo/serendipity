@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-//
-// Auth libs
-//
-
 import { AuthGuard } from 'auth-lib';
 
 import { CanDeactivateGuard } from './guards/can-deactivate/can-deactivate.guard';

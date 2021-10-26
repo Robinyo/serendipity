@@ -454,6 +454,68 @@
           }
         }
       }
+    },
+    "flowable-lib": {
+      "projectType": "library",
+      "root": "projects/flowable-lib",
+      "sourceRoot": "projects/flowable-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/flowable-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/flowable-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/flowable-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/flowable-lib/src/test.ts",
+            "tsConfig": "projects/flowable-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/flowable-lib/karma.conf.js"
+          }
+        }
+      }
+    },
+    "work-lib": {
+      "projectType": "library",
+      "root": "projects/work-lib",
+      "sourceRoot": "projects/work-lib/src",
+      "prefix": "work",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/work-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/work-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/work-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/work-lib/src/test.ts",
+            "tsConfig": "projects/work-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/work-lib/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "serendipity-web-app"

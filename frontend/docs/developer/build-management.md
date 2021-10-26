@@ -37,7 +37,9 @@ ng build --configuration="development" auth-lib && \
 ng build --configuration="development" auth-bff-lib && \
 ng build --configuration="development" serendipity-components-lib && \
 ng build --configuration="development" dynamic-forms-lib && \
+ng build --configuration="development" flowable-lib && \
 ng build --configuration="development" party-lib && \
+ng build --configuration="development" work-lib && \
 ng build --configuration="development" serendipity-web-app
 ```
        
@@ -59,7 +61,9 @@ ng build auth-lib && \
 ng build auth-bff-lib && \
 ng build serendipity-components-lib && \
 ng build dynamic-forms-lib && \
+ng build flowable-lib && \
 ng build party-lib && \
+ng build work-lib && \
 ng build serendipity-web-app
 ```
 

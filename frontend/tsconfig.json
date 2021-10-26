@@ -39,6 +39,10 @@
         "dist/dynamic-forms-lib/dynamic-forms-lib",
         "dist/dynamic-forms-lib"
       ],
+      "flowable-lib": [
+        "dist/flowable-lib/flowable-lib",
+        "dist/flowable-lib"
+      ],
       "party-lib": [
         "dist/party-lib"
       ],
@@ -56,6 +60,10 @@
       ],
       "utils-lib/*": [
         "dist/utils-lib/*"
+      ],
+      "work-lib": [
+        "dist/work-lib/work-lib",
+        "dist/work-lib"
       ]
     }
   },

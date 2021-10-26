@@ -13,6 +13,11 @@ $command-bar-button-min-width: 48px !default;
 $command-bar-button-margin-right: 8px !default;
 $command-bar-row-padding: 8px !default;
 
+// Action Bar
+
+$action-bar-height-desktop: $bar-height-desktop;
+$action-bar-height-mobile: $bar-height-mobile;
+
 // Activity Bar
 $activity-bar-height-desktop: $bar-height-desktop;
 $activity-bar-height-mobile: $bar-height-mobile;
@@ -29,11 +34,13 @@ $footer-button-min-width: 24px !default;
 // Tab
 $component-default-margin: 32px !default;
 
+// Flowable lib
+$process-list-height: calc(56px * 4);
+$process-list-width: 400;
+
+$task-list-width: 320px; // 240px;
 
 /*
-
-$action-bar-height-desktop: $bar-height-desktop;
-$action-bar-height-mobile: $bar-height-mobile;
 
 $collection-component-footer-button-min-width: 24px !default;
 

@@ -27,4 +27,8 @@ export class AuthService extends Auth {
     return Promise.reject('AuthService: logoutWithRedirect()');
   }
 
+  public getCurrentUser(): any {
+    return this.currentUser;
+  }
+
 }

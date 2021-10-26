@@ -133,6 +133,23 @@ export class BffAuthService extends Auth {
 
   }
 
+  public getCurrentUser(): any {
+
+    return {
+      id: '',
+      sub: '',
+      username: 'rob.ferguson',
+      name: 'Rob Ferguson',
+      givenName: 'Rob',
+      middleName: '',
+      familyName: 'Ferguson',
+      email: '',
+      emailVerified: '',
+      groups: ''
+    };
+
+  }
+
   private getHttpOptions(params: any = undefined): HttpOptions {
 
     if (!this.httpOptions) {

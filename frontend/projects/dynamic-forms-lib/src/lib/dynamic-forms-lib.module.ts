@@ -43,7 +43,7 @@ export class DynamicFormsLibModule {
 
   constructor(private logger: LoggerService) {
 
-    this.logger.info('Dynamic Forms Module initialised');
+    this.logger.info('Dynamic Forms Library initialised');
   }
 
   /*

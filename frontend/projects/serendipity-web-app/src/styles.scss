@@ -31,6 +31,24 @@ body {
 
 // Layout containers
 
+.md-activities-container {
+  display: grid;
+  grid-template-columns: $task-list-width auto;
+  // grid-template-rows: 100%; deprecated
+  // grid-template-rows: auto;
+  // grid-template-rows: minmax(250px, auto);
+  column-gap: 32px;
+  // row-gap: 1em;
+
+  margin-top: 0;
+  margin-left: 32px;
+  margin-bottom: 32px;
+  margin-right: 32px;
+
+  // overflow: auto;
+  // overflow: hidden;
+}
+
 .md-content-container {
   // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
   // 64 + 56 + 96
@@ -91,6 +109,42 @@ body {
   // background-color: black;
 }
 
+.md-task-container {
+  background: white;
+  border: 1px solid lightgray;
+  padding-top: 0;
+  margin-top: 0;
+  // background: whitesmoke;
+
+  // padding-left: 32px;
+  // padding-right: 32px;
+
+  // overflow: auto;
+
+  // height: 100%;
+  // height: calc(100vh - ($mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-component-title-margin));
+  // height: calc(100vh - 64 + 56 + 16);
+
+  // height: 100vh;
+  // height: calc(100vh - 64px + 56px + 16px);
+  // height: calc(100vh - 96px);
+  // height: calc(100vh - 128px);
+
+  // height: 400px;
+  // height: calc(100vh - 256px);
+  height: calc(100vh - 200px);
+
+  @media ($mat-xsmall) {
+    height: calc(100vh - 180px);
+  }
+
+}
+
+.md-task-list-container {
+  // background: white;
+  border: 1px solid lightgray;
+}
+
 .md-spinner-container {
   display: flex;
   justify-content: center;
@@ -123,6 +177,23 @@ body {
   margin-right: $command-bar-button-margin-right !important;
   min-width: $command-bar-button-min-width !important;
   padding: 0 $command-bar-button-padding !important;
+}
+
+// Action Bar
+
+.md-action-bar-row {
+  height: $md-action-bar-height-desktop !important;
+  min-height: $md-action-bar-height-desktop !important;
+
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.md-action-bar-button {
+  min-width: 48px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-left: 8px;
 }
 
 // Activity Bar
