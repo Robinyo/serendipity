@@ -1,4 +1,4 @@
-package org.serendipity.party.config;
+package org.serendipity.work.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     http.cors().and().authorizeRequests()
       .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-      .antMatchers("/api/**").permitAll()
+      .antMatchers("/process-api/**").permitAll()
       .anyRequest().authenticated()
       .and().csrf().disable();
   }

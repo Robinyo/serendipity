@@ -13,7 +13,7 @@ export const environment: Environment = {
   serverPort: '30001',
 
   partyServicePort: '30101',
-  workServicePort: '30101',
+  workServicePort: '30102',
 
   defaultLanguage: 'en-gb', // 'en-gb', 'de-ch'
 
