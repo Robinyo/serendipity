@@ -66,6 +66,12 @@ The containers may take a minute or two to startup.
 
 Navigate to: http://127.0.0.1:30001
 
+You can stop the containers using the following command:
+
+```
+docker-compose down -v
+```
+
 You can check the status of the containers using the following command:
 
 ```
@@ -93,12 +99,6 @@ docker container logs serendipity-identity-server
 docker container logs serendipity-party-service
 docker container logs serendipity-work-service
 docker container logs serendipity
-```
-
-You can stop the containers using the following command:
-
-```
-docker-compose down -v
 ```
 
 #### Docker Hub

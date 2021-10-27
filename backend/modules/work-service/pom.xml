@@ -18,7 +18,11 @@
 	</parent>
 
 	<properties>
+		<!--
+		<flowable.version>6.5.0</flowable.version>
 		<flowable.version>6.7.0</flowable.version>
+		-->
+		<flowable.version>6.5.0</flowable.version>
 	</properties>
 
 	<dependencies>
@@ -28,6 +32,25 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+		</dependency>
+
+		<!-- Add REST API dependencies -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-rest</artifactId>
+		</dependency>
+
+		<!-- Add JPA dependencies -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
 		<!-- Add Flowable dependencies -->
@@ -95,14 +118,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
-		<!--
-		<dependency>
-			<groupId>io.projectreactor</groupId>
-			<artifactId>reactor-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	    -->
 
 	</dependencies>
 
