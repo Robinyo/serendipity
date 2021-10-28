@@ -29,9 +29,11 @@
 
 <div class="md-content-container">
 
-  <ng-container *ngIf="!items; then skeleton"> </ng-container>
+  <!-- <ng-container *ngIf="!items; then skeleton"> </ng-container> -->
 
   <div class="md-table-container">
+
+    <!-- Wait until we have loaded the column definitions -->
 
     <ng-container *ngIf="columnDefs">
 
@@ -43,7 +45,12 @@
              matSortDisableClear
              class="mat-elevation-z8">
 
-        <!-- Note: The Angular Material Table does not support content projection -->
+        <!--
+          The Angular Material Table does not support content projection (e.g., <ng-content>) if you
+          dynamically create your columns ...
+
+          See: https://stackoverflow.com/questions/53335929/content-projection-inside-angular-material-table
+        -->
 
         <ng-container *ngFor="let column of columnDefs" [matColumnDef]="column.name">
 
@@ -105,8 +112,7 @@
 
   </div>
 
-  <!-- Skeleton template -->
-
+  <!-- Skeleton template
   <ng-template #skeleton>
 
     <div class="md-spinner-container">
@@ -114,5 +120,6 @@
     </div>
 
   </ng-template>
+  -->
 
 </div>

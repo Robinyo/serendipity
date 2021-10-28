@@ -19,6 +19,7 @@ import { CommandBarComponent } from './components/command-bar/command-bar.compon
 // Dialog components
 import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-dialog.component';
 import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/confirm-dialog.component';
+import { LoadingDialogComponent } from './components/dialogs/loading-dialog/loading-dialog.component';
 
 // Misc components
 import { CollectionFooterComponent } from './components/abstract/collection/footer/collection-footer.component';
@@ -26,10 +27,11 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 
 const components = [
   ActivityBarComponent,
-  CommandBarComponent,
   AlertDialogComponent,
   CollectionFooterComponent,
+  CommandBarComponent,
   ConfirmDialogComponent,
+  LoadingDialogComponent,
   SnackBarComponent
 ];
 

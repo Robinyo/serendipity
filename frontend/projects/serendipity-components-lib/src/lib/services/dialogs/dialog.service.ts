@@ -4,6 +4,7 @@ import { ComponentType } from '@angular/cdk/portal';
 
 import { AlertDialogComponent } from '../../components/dialogs/alert-dialog/alert-dialog.component';
 import { ConfirmDialogComponent } from '../../components/dialogs/confirm-dialog/confirm-dialog.component';
+import { LoadingDialogComponent } from '../../components/dialogs/loading-dialog/loading-dialog.component';
 
 import { SerendipityComponentsLibModule } from '../../serendipity-components-lib.module';
 
@@ -116,6 +117,14 @@ export class DialogService {
     Object.assign(dialogConfig, config);
 
     return dialogConfig;
+  }
+
+  public openDialog<T>(component: ComponentType<T>): MatDialogRef<T> {
+    return this.dialog.open(component);
+  }
+
+  public closeDialog(): void {
+    this.dialog.closeAll();
   }
 
 }

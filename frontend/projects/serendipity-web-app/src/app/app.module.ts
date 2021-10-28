@@ -3,8 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AuthBffLibModule, authProviders } from 'auth-bff-lib';
 import { loggerProviders, LoggerService  } from 'utils-lib';
-
-// import { environment } from '@env/environment';
+import { globalErrorProvider, httpInterceptors } from './providers';
 
 import { CoreModule } from './core/core.module';
 
@@ -17,9 +16,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
     AuthBffLibModule,
     BrowserModule,
@@ -30,15 +26,19 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   providers: [
     authProviders,
-    // angularMaterialProviders,
-    // errorProviders,
+    globalErrorProvider,
+    httpInterceptors,
     loggerProviders
   ],
-  bootstrap: [ AppComponent ]
+  declarations: [
+    AppComponent
+  ],
+  bootstrap: [ AppComponent ],
 })
 export class AppModule {
 
   constructor(private logger: LoggerService) {
+
     this.logger.info('Application Module initialised');
   }
 
