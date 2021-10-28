@@ -1,6 +1,11 @@
-.mat-dialog-container {
+/*
+
+::ng-deep .mat-dialog-container {
+  box-shadow: none !important;
   background: transparent !important;
 }
+
+*/
 
 .mat-dialog-actions {
   margin-top: -2rem !important;

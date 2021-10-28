@@ -9,7 +9,7 @@ export class GlobalErrorHandler implements ErrorHandler {
   constructor(private dialogService: DialogService,
               private zone: NgZone) {}
 
-  handleError(error: any) {
+  handleError(error: any | HttpErrorResponse) {
 
     // Check if it's an error from an HTTP response
 
@@ -27,7 +27,8 @@ export class GlobalErrorHandler implements ErrorHandler {
 
     );
 
-    console.error('Error from global error handler', error);
+    // console.error('Error from Global Error Handler', error);
+
   }
 
 }

@@ -4,7 +4,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { MatIconRegistry } from "@angular/material/icon";
 
 import { AuthService } from 'auth-lib';
-import { LoggerService } from 'utils-lib';
+import { ErrorService, LoggerService } from 'utils-lib';
 
 import { SVG_ICONS } from './svg-icons';
 
@@ -20,6 +20,7 @@ export class NavigationBarComponent {
   constructor(private domSanitizer: DomSanitizer,
               private matIconRegistry: MatIconRegistry,
               private authService: AuthService,
+              private errorService: ErrorService,
               private logger: LoggerService) {
 
     // this.logger.info('NavigationBarComponent: constructor()');
@@ -53,6 +54,14 @@ export class NavigationBarComponent {
 
   public logout() {
     this.authService.logoutWithRedirect("/");
+  }
+
+  public help() {
+    this.errorService.get('401', '4000');
+  }
+
+  public settings() {
+    this.errorService.get('404', '6000');
   }
 
 }

@@ -21,15 +21,13 @@
 
     <span class="navigation-bar-spacer"></span>
 
-    <ng-container *ngIf="isAuthenticated()">
-      <button mat-icon-button>
-        <mat-icon svgIcon="settings-white"> </mat-icon>
-      </button>
+    <button mat-icon-button (click)="settings()">
+      <mat-icon svgIcon="settings-white"> </mat-icon>
+    </button>
 
-      <button mat-icon-button>
-        <mat-icon svgIcon="help-white"> </mat-icon>
-      </button>
-    </ng-container>
+    <button mat-icon-button (click)="help()">
+      <mat-icon svgIcon="help-white"> </mat-icon>
+    </button>
 
     <ul class="navigation-items">
 
@@ -86,7 +84,17 @@
 </mat-toolbar>
 
 <!--
-<button mat-icon-button (click)="toggleSidenav.emit()">
-  <mat-icon svgIcon="menu-white"> </mat-icon>
-</button>
+
+    <ng-container *ngIf="isAuthenticated()">
+
+      <button mat-icon-button (click)="settings()">
+        <mat-icon svgIcon="settings-white"> </mat-icon>
+      </button>
+
+      <button mat-icon-button (click)="help()">
+        <mat-icon svgIcon="help-white"> </mat-icon>
+      </button>
+
+    </ng-container>
+
 -->

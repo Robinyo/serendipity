@@ -8,6 +8,7 @@ export * from './lib/services/abstract/collection/collection.service';
 
 export * from './lib/services/config/config.service';
 export * from './lib/services/environment/environment.service';
+export * from './lib/services/error/error.service';
 export * from './lib/services/logger/logger.service';
 export * from './lib/services/injector/static-injector.service';
 
