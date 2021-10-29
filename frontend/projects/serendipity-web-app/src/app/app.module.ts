@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AuthBffLibModule, authProviders } from 'auth-bff-lib';
 import { loggerProviders, LoggerService  } from 'utils-lib';
-import { globalErrorProvider, httpInterceptors } from './providers';
+import { globalErrorProvider } from './providers';
 
 import { CoreModule } from './core/core.module';
 

@@ -10,6 +10,9 @@ logging:
     reactor.netty.http.client.HttpClient: INFO
 
 spring:
+  datasource:
+    username: serendipity
+    password: secret
   main:
     banner-mode: off
   profiles:

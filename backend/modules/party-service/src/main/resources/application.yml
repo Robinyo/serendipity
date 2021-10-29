@@ -13,6 +13,9 @@ spring:
   data:
     rest:
       base-path: /api
+  datasource:
+    username: serendipity
+    password: secret
   main:
     banner-mode: off
   profiles:

@@ -7,7 +7,6 @@ export * from './lib/components/command-bar/command-bar.component';
 
 export * from './lib/components/dialogs/alert-dialog/alert-dialog.component';
 export * from './lib/components/dialogs/confirm-dialog/confirm-dialog.component';
-export * from './lib/components/dialogs/loading-dialog/loading-dialog.component';
 
 export * from './lib/components/abstract/collection/collection.component';
 export * from './lib/components/abstract/collection/footer/collection-footer.component';

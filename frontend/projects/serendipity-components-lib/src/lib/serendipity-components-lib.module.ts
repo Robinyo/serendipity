@@ -19,7 +19,6 @@ import { CommandBarComponent } from './components/command-bar/command-bar.compon
 // Dialog components
 import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-dialog.component';
 import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/confirm-dialog.component';
-import { LoadingDialogComponent } from './components/dialogs/loading-dialog/loading-dialog.component';
 
 // Misc components
 import { CollectionFooterComponent } from './components/abstract/collection/footer/collection-footer.component';
@@ -31,7 +30,6 @@ const components = [
   CollectionFooterComponent,
   CommandBarComponent,
   ConfirmDialogComponent,
-  LoadingDialogComponent,
   SnackBarComponent
 ];
 
@@ -48,6 +46,10 @@ const components = [
   exports: [
     ...components
   ],
+
+  // https://angular.io/guide/deprecations#entrycomponents-and-analyze_for_entry_components-no-longer-required
+  // NOTE: You may still need to keep these if building a library that will be consumed by a View Engine application.
+
   entryComponents: [
     ...components
   ]

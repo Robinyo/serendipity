@@ -21,13 +21,17 @@
 
     <span class="navigation-bar-spacer"></span>
 
-    <button mat-icon-button (click)="settings()">
-      <mat-icon svgIcon="settings-white"> </mat-icon>
-    </button>
+    <ng-container *ngIf="isAuthenticated()">
 
-    <button mat-icon-button (click)="help()">
-      <mat-icon svgIcon="help-white"> </mat-icon>
-    </button>
+      <button mat-icon-button (click)="settings()">
+        <mat-icon svgIcon="settings-white"> </mat-icon>
+      </button>
+
+      <button mat-icon-button (click)="help()">
+        <mat-icon svgIcon="help-white"> </mat-icon>
+      </button>
+
+    </ng-container>
 
     <ul class="navigation-items">
 

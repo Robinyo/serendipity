@@ -13,6 +13,7 @@ import { ProcessesService } from '../../../services/processes/processes.service'
 @Component({
   selector: 'flow-start-process-dialog',
   template: `
+
     <h2 mat-dialog-title>Start a process</h2>
 
     <mat-dialog-content class="mat-typography">
@@ -27,25 +28,29 @@ import { ProcessesService } from '../../../services/processes/processes.service'
               #cancelBtn
               (keydown.arrowright)="startBtn.focus()"
               (click)="onCancel()">
-        CANCEL
+        {{ cancelButton }}
       </button>
+
       <button mat-button
               cdkFocusInitial
+              color="accent"
               #startBtn
               [disabled]="isDisabled()"
               (keydown.arrowleft)="cancelBtn.focus()"
-              color="accent"
               (click)="onStart()">
-        START
+        {{ startButton }}
       </button>
 
     </mat-dialog-actions>
+
   `,
 })
 export class StartProcessDialogComponent implements OnInit {
 
   public message!: string;
   public title!: string;
+  public cancelButton = 'CANCEL';
+  public startButton = 'START';
 
   private currentUser: any;
   private disabled = false;
