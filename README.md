@@ -131,6 +131,12 @@ Contact:
   <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/contact.png">
 </p>
 
+Lookup Account:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/lookup-account.png">
+</p>
+
 Accounts:
 
 <p align="center">

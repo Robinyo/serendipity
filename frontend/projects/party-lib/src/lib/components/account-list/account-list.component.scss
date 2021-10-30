@@ -1,0 +1,23 @@
+@import "../../styles";
+
+// Columns
+
+.mat-column-name {
+  width: 280px;
+  max-width: 280px;
+}
+
+.mat-column-phoneNumber {
+  width: 140px;
+  max-width: 120px;
+}
+
+.mat-column-individual-displayName {
+  width: 280px;
+  max-width: 220px;
+}
+
+.mat-column-individual-email {
+  width: 260px;
+  max-width: 240px;
+}

@@ -9,10 +9,13 @@ import { latLng, LatLng, LatLngBounds, Layer, LeafletEvent, LeafletMouseEvent, M
 import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'dynamic-forms-lib';
 import { ItemComponent, SnackBarComponent } from 'serendipity-components-lib';
 
-import { Contact } from '../../models/contact';
 import { ContactsService } from '../../services/contacts/contacts.service';
-import { ElectoralDivision } from '../../models/electoral-division';
 import { ElectoralDivisionsService } from '../../services/electoral-divisions/electoral-divisions.service';
+
+import { LookupAccountDialogComponent } from "../dialogs/lookup-account-dialog/lookup-account-dialog.component";
+
+import { Contact } from '../../models/contact';
+import { ElectoralDivision } from '../../models/electoral-division';
 
 import { CONTACTS } from '../../models/constants';
 import { CONTACT_ADDRESS_INFORMATION_GROUP, CONTACT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
@@ -212,13 +215,8 @@ export class ContactComponent extends ItemComponent<Contact> {
 
     this.logger.info('ContactComponent: onCustomEvent()');
 
-    this.dialogService.openAlert({
-      title: 'Alert',
-      message: JSON.stringify(event),
-      closeButton: 'CLOSE'
-    });
+    this.openLookupAccountDialog();
 
-    // this.logger.info('event: ' + JSON.stringify(event));
   }
 
   public onDeactivate() {
@@ -326,6 +324,24 @@ export class ContactComponent extends ItemComponent<Contact> {
   // Misc
   //
 
+  private openLookupAccountDialog() {
+
+    this.logger.info('ContactComponent: openLookupAccountDialog()');
+
+    const dialogRef =  this.dialogService.open(LookupAccountDialogComponent);
+
+    dialogRef.afterClosed().subscribe(response => {
+
+      if (response) {
+
+        this.logger.info('response: ' + JSON.stringify(response, null, 2) + '\n');
+
+      }
+
+    });
+
+  }
+
   private openSnackBar() {
 
     this.snackBar.openFromComponent(SnackBarComponent, {
@@ -333,7 +349,7 @@ export class ContactComponent extends ItemComponent<Contact> {
         message: 'Contact saved'
       },
       duration: 500,
-      panelClass: 'crm-snack-bar'
+      panelClass: 'md-snack-bar'
     });
 
   }
@@ -362,6 +378,23 @@ export class ContactComponent extends ItemComponent<Contact> {
 }
 
 /*
+
+export interface DynamicFormControlCustomEvent {
+
+  type: string;                    // 'click' string
+  id: string;                      // 'organisation.name'
+  directive: string;               // 'matSuffix'
+  name: string;                    // 'search'
+
+}
+
+    this.dialogService.openAlert({
+      title: 'Alert',
+      message: JSON.stringify(event),
+      closeButton: 'CLOSE'
+    });
+
+    // this.logger.info('event: ' + JSON.stringify(event));
 
 const keys = response.headers.keys();
 keys.map(key => {

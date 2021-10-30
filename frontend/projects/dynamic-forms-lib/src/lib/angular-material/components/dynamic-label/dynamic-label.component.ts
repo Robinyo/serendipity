@@ -29,32 +29,3 @@ export class DynamicLabelComponent implements OnInit {
   }
 
 }
-
-/*
-
-    // N.B. mat-form-field requires a control
-
-    <mat-form-field [appearance]="model.appearance"
-                    [className]="model.gridItemClass"
-                    [formGroup]="formGroup">
-
-      <mat-label> {{ model.label }} </mat-label>
-
-    </mat-form-field>
-
-*/
-
-/*
-
-  template: `
-    <div class="form-field-label">
-      <mat-label> {{ model.label }} </mat-label>
-    </div>
-  `,
-  styles: [`
-    .form-field-label {
-      align-self: center;
-    }
-  `],
-
-*/

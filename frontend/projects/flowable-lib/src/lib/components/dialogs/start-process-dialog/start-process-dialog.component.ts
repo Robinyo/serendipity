@@ -99,7 +99,7 @@ export class StartProcessDialogComponent implements OnInit {
 
     this.disabled = true;
 
-     const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
      // @ts-ignore
     const today = new Date().toLocaleString('en-GB', options);
 
@@ -196,7 +196,7 @@ export class StartProcessDialogComponent implements OnInit {
         message: message
       },
       duration: 500,
-      panelClass: 'crm-snack-bar'
+      panelClass: 'snack-bar'
     });
 
   }

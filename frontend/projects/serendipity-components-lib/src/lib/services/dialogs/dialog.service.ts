@@ -118,15 +118,19 @@ export class DialogService {
     return dialogConfig;
   }
 
-  public openDialog<T>(component: ComponentType<T>): MatDialogRef<T> {
-    return this.dialog.open(component);
-  }
-
-  public closeDialog(): void {
-    this.dialog.closeAll();
-  }
-
 }
 
 // https://github.com/angular/components/blob/master/src/material/dialog/dialog.ts
 // https://github.com/angular/components/blob/master/src/material/dialog/dialog-config.ts
+
+/*
+
+public openDialog<T>(component: ComponentType<T>): MatDialogRef<T> {
+  return this.dialog.open(component);
+}
+
+public closeDialog(): void {
+  this.dialog.closeAll();
+}
+
+*/

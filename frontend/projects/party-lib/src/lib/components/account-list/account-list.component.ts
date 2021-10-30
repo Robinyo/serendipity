@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { SelectionModel } from "@angular/cdk/collections";
+import { Component, EventEmitter, Output } from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -8,23 +9,27 @@ import { AccountAdapter } from '../../adapters/account.adapter';
 import { AccountsService } from '../../services/accounts/accounts.service';
 
 import { Account } from '../../models/account';
-import { ACCOUNTS_COLUMN_DEFS } from '../../models/column-defs';
-import { ACCOUNTS_COLUMNS_DESKTOP, ACCOUNTS_COLUMNS_MOBILE } from '../../models/constants';
+import { ACCOUNT_LIST_COLUMN_DEFS } from '../../models/column-defs';
+import { ACCOUNT_LIST_COLUMNS_DESKTOP, ACCOUNT_LIST_COLUMNS_MOBILE } from '../../models/constants';
 
 @Component({
-  selector: 'party-accounts',
-  templateUrl: './accounts.component.html',
-  styleUrls: ['./accounts.component.scss']
+  selector: 'party-account-list',
+  templateUrl: './account-list.component.html',
+  styleUrls: ['./account-list.component.scss']
 })
-export class AccountsComponent extends CollectionComponent<Account> {
+export class AccountListComponent extends CollectionComponent<Account> {
+
+  @Output() selectEvent = new EventEmitter<Account>();
+
+  selection = new SelectionModel<Account>(false, []);
 
   constructor(private entityAdapter: AccountAdapter,
               private entityService: AccountsService) {
 
     super({
-      columnDefsFilename: ACCOUNTS_COLUMN_DEFS,
-      desktopDeviceColumns: ACCOUNTS_COLUMNS_DESKTOP,
-      mobileDeviceColumns: ACCOUNTS_COLUMNS_MOBILE,
+      columnDefsFilename: ACCOUNT_LIST_COLUMN_DEFS,
+      desktopDeviceColumns: ACCOUNT_LIST_COLUMNS_DESKTOP,
+      mobileDeviceColumns: ACCOUNT_LIST_COLUMNS_MOBILE,
       limit: 10
     });
 
@@ -32,13 +37,13 @@ export class AccountsComponent extends CollectionComponent<Account> {
 
   protected subscribe() {
 
-    this.logger.info('AccountsComponent: subscribe()');
+    this.logger.info('AccountListComponent: subscribe()');
 
     this.subscription = this.entityService.find(this.offset, this.limit, this.filter).subscribe(
 
       (response: any) => {
 
-        this.logger.info('AccountsComponent: subscribe() success handler');
+        this.logger.info('AccountListComponent: subscribe() success handler');
 
         this.count = response.body.page.totalElements;
 
@@ -66,7 +71,7 @@ export class AccountsComponent extends CollectionComponent<Account> {
       },
       (error) => {
 
-        this.logger.error('AccountsComponent: subscribe() error handler');
+        this.logger.error('AccountListComponent: subscribe() error handler');
 
         this.items = [];
 
@@ -85,10 +90,26 @@ export class AccountsComponent extends CollectionComponent<Account> {
       },
       () =>  {
 
-        this.logger.info('AccountsComponent: subscribe() completion handler');
+        this.logger.info('AccountListComponent: subscribe() completion handler');
       }
 
     );
+
+  }
+
+  selectHandler(row: Account) {
+
+    if (!this.selection.isSelected(row)) {
+      this.selection.clear();
+    }
+
+    this.selection.toggle(row);
+
+    if (this.selection.isSelected(row)) {
+      this.selectEvent.emit(row);
+    } else {
+      this.selectEvent.emit(new Account());
+    }
 
   }
 

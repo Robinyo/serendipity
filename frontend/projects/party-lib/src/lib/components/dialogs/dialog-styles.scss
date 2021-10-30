@@ -1,0 +1,14 @@
+$lookup-list-height: calc(56px * 4);
+$lookup-list-width: 400;
+
+.lookup-list-container {
+  column-gap: 0;
+  display: grid;
+  grid-template-columns: $lookup-list-width auto;
+  height: $lookup-list-height;
+  margin: 0;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+
