@@ -114,17 +114,20 @@ public class NationalPartyOfAustralia implements CommandLineRunner {
 
       organisationRepository.save(organisation);
 
-      // Organisation, Relationship -> Primary Contact
+      // | Party             | Role         | Relationship  | Role            | Party             |
+      // | ----------------- | ------------ | --------------| --------------- | ----------------- |
+      // | Australian Greens | Organisation | Office Bearer | Primary Contact | Jordan Hull       |
+      // | Jordan Hull       | Member       | Membership    | Organisation    | Australian Greens |
 
       Role role = Role.builder()
-        .role("Organisation")
         .partyId(organisation.getParty().getId())
         .partyType(organisation.getParty().getType())
         .partyName(organisation.getParty().getDisplayName())
         .partyEmail(organisation.getEmail())
         .partyPhoneNumber(organisation.getPhoneNumber())
-        .relationship("Primary Contact")
-        .reciprocalRole("Member")
+        .role("Organisation")
+        .relationship("Office Bearer")
+        .reciprocalRole("Primary Contact")
         .reciprocalPartyId(individual.getParty().getId())
         .reciprocalPartyType(individual.getParty().getType())
         .reciprocalPartyName(individual.getParty().getDisplayName())
@@ -139,15 +142,13 @@ public class NationalPartyOfAustralia implements CommandLineRunner {
 
       organisationRepository.save(organisation);
 
-      // Primary Contact, Relationship -> Membership
-
       Role reciprocalRole = Role.builder()
-        .role("Member")
         .partyId(individual.getParty().getId())
         .partyType(individual.getParty().getType())
         .partyName(individual.getParty().getDisplayName())
         .partyEmail(individual.getEmail())
         .partyPhoneNumber(individual.getPhoneNumber())
+        .role("Member")
         .relationship("Membership")
         .reciprocalRole("Organisation")
         .reciprocalPartyId(organisation.getParty().getId())

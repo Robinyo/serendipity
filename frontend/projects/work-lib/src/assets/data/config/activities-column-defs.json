@@ -3,7 +3,7 @@
   {
     "type": "string",
     "name": "type",
-    "displayName": "ACTIVITY_TYPE",
+    "displayName": "ACTIVITY TYPE",
     "routerLink": "",
     "class": ""
   },
@@ -31,14 +31,14 @@
   {
     "type": "date",
     "name": "startDate",
-    "displayName": "START_DATE",
+    "displayName": "START DATE",
     "routerLink": "",
     "class": ""
   },
   {
     "type": "date",
     "name": "dueDate",
-    "displayName": "DUE_DATE",
+    "displayName": "DUE DATE",
     "routerLink": "",
     "class": ""
   }

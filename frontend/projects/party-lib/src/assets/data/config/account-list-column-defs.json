@@ -2,25 +2,25 @@
 
   {
     "name": "name",
-    "displayName": "ACCOUNT_NAME",
+    "displayName": "ACCOUNT NAME",
     "routerLink": "",
     "class": ""
   },
   {
     "name":  "phoneNumber",
-    "displayName": "MAIN_PHONE",
+    "displayName": "MAIN PHONE",
     "routerLink": "",
     "class": ""
   },
   {
     "name":  "individual.displayName",
-    "displayName": "PRIMARY_CONTACT",
+    "displayName": "PRIMARY CONTACT",
     "routerLink": "",
     "class": ""
   },
   {
     "name":  "individual.email",
-    "displayName": "EMAIL_PRIMARY_CONTACT",
+    "displayName": "EMAIL (PRIMARY_CONTACT)",
     "routerLink": "",
     "class": ""
   }
