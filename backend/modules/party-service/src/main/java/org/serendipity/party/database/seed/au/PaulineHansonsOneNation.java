@@ -115,10 +115,11 @@ public class PaulineHansonsOneNation implements CommandLineRunner {
 
       organisationRepository.save(organisation);
 
-      // | Party             | Role         | Relationship  | Role            | Party             |
-      // | ----------------- | ------------ | --------------| --------------- | ----------------- |
-      // | Australian Greens | Organisation | Office Bearer | Primary Contact | Jordan Hull       |
-      // | Jordan Hull       | Member       | Membership    | Organisation    | Australian Greens |
+      // | Party             | Role            | Relationship   | Role            | Party             |
+      // | ----------------- | --------------- | -------------- | --------------- | ----------------- |
+      // | Australian Greens | Political Party | Office Holder  | Primary Contact | Jordan Hull       |
+      // | Jordan Hull       | Member          | Membership     | Political Party | Australian Greens |
+      // | Jordan Hull       | Public Officer  | Office Holder  | Political Party | Australian Greens |
 
       Role role = Role.builder()
         .partyId(organisation.getParty().getId())
@@ -126,8 +127,8 @@ public class PaulineHansonsOneNation implements CommandLineRunner {
         .partyName(organisation.getParty().getDisplayName())
         .partyEmail(organisation.getEmail())
         .partyPhoneNumber(organisation.getPhoneNumber())
-        .role("Organisation")
-        .relationship("Office Bearer")
+        .role("Political Party")
+        .relationship("Office Holder")
         .reciprocalRole("Primary Contact")
         .reciprocalPartyId(individual.getParty().getId())
         .reciprocalPartyType(individual.getParty().getType())
@@ -151,7 +152,7 @@ public class PaulineHansonsOneNation implements CommandLineRunner {
         .partyPhoneNumber(individual.getPhoneNumber())
         .role("Member")
         .relationship("Membership")
-        .reciprocalRole("Organisation")
+        .reciprocalRole("Political Party")
         .reciprocalPartyId(organisation.getParty().getId())
         .reciprocalPartyType(organisation.getParty().getType())
         .reciprocalPartyName(organisation.getParty().getDisplayName())
