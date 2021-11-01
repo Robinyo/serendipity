@@ -156,3 +156,19 @@ New Work Item:
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/electoral-division.png">
 </p>
+
+### Identity and Access Management
+
+#### OpenID Connect (OIDC)
+
+Register page:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/register.png">
+</p>
+
+Login page:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/signin.png">
+</p>

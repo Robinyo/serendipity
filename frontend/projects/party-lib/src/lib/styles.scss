@@ -1,18 +1,23 @@
 @import "../../../../projects/utils-lib/src/lib/angular-material/mat-variables";
 @import "../../../../projects/utils-lib/src/lib/angular-material/variables";
 
+$name-column-width: 280px !default;
+$phone-number-column-width: 140px !default;
+$display-name-column-width: 280px !default;
+$email-column-width: 260px !default;
+
 .map-container {
 
   margin-top: 32px;
 
-  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
+  // $mat-toolbar-height-desktop + $command-bar-height-desktop + $view-bar-height-desktop
   // 64 + 56 + 96 + 32 + 16
   // height: calc(100vh - 248px);
   height: calc(100vh - 328px);  // 340
   // width: 100%;
 
   @media ($mat-xsmall) {
-    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
+    // $mat-toolbar-height-mobile + $command-bar-height-mobile + $view-bar-height-mobile
     // 56 + 0 + 84 + 0 + 56
     // height: calc(100vh - 140px);
     height: calc(100vh - 216px);
@@ -22,34 +27,40 @@
 
 // Table
 
-.mat-table {
-  // background: white;
-  width: 100%;
-}
+/*
 
 .header-toolbar {
   background: #fafafa;
 }
+
 .header-title {
   font-weight: bold;
   padding: 0 16px 0 40px;
 }
+
+*/
+
 .header-icon {
   margin: 0 12px 0 12px;
-}
-
-th.mat-header-cell {
-  padding-right: 16px;
-  // text-transform: uppercase;
-  white-space: nowrap;
 }
 
 .header-cell-id {
   text-align: right;
 }
 
+th.mat-header-cell {
+  padding-right: 16px;
+  white-space: nowrap;
+}
+
 td.mat-cell {
   padding-right: 16px;
+}
+
+// Mat Table
+
+.mat-table {
+  width: 100%;
 }
 
 /*
@@ -62,14 +73,14 @@ td.mat-cell {
 
 */
 
-// Tab
+// Mat Tab
 
 .mat-tab-group {
   margin-left: $component-default-margin;
   margin-right: $component-default-margin;
 }
 
-// Card
+// Mat Card
 
 .mat-card {
   padding: 0;

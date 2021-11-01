@@ -20,7 +20,7 @@
   },
   {
     "name":  "individual.email",
-    "displayName": "EMAIL (PRIMARY_CONTACT)",
+    "displayName": "EMAIL (PRIMARY CONTACT)",
     "routerLink": "",
     "class": ""
   }

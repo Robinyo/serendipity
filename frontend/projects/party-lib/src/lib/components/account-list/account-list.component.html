@@ -13,7 +13,7 @@
 
       <ng-container matColumnDef="select">
 
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+        <th mat-header-cell *matHeaderCellDef> </th>
 
         <td mat-cell *matCellDef="let row">
           <mat-checkbox (click)="$event.stopPropagation()" (change)="selectHandler(row)"
