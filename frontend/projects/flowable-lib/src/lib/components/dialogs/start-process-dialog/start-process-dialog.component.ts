@@ -24,15 +24,15 @@ import { ProcessesService } from '../../../services/processes/processes.service'
 
     <mat-dialog-actions align="end">
 
-      <button mat-button
+      <button mat-raised-button
+              cdkFocusInitial
               #cancelBtn
               (keydown.arrowright)="startBtn.focus()"
               (click)="onCancel()">
         {{ cancelButton }}
       </button>
 
-      <button mat-button
-              cdkFocusInitial
+      <button mat-raised-button
               color="accent"
               #startBtn
               [disabled]="isDisabled()"
