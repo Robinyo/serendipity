@@ -26,7 +26,7 @@ Create Connection Wizard - Connection Tab:
 
 **Note:** The 'Host name / address' field must match the value (e.g., postgres) specified in the project's docker-compose.yml.
 
-Dashboard - Schemas:
+Browser - Schemas:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/backend/docs/screen-shots/pgadmin-schemas.png">
