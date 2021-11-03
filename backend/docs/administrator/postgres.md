@@ -2,8 +2,6 @@
 
 ### Getting Started
 
-Follow the steps in the [Quick Start Guide](https://github.com/Robinyo/serendipity-api/blob/master/projects/spring-boot/docs/developer/quick-start-guide.md).
-
 You can use [pgAdmin](https://www.pgadmin.org/) to manage PostrgeSQL.
 
 Navigate to the pgAdmin Welcome page: http://localhost:5050
@@ -31,5 +29,5 @@ Create Connection Wizard - Connection Tab:
 Dashboard - Schemas:
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/backend/docs/screen-shots/pgamin-schemas.png">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/backend/docs/screen-shots/pgadmin-schemas.png">
 </p>
