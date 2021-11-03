@@ -137,9 +137,11 @@ Lookup Account:
   <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/lookup-account.png">
 </p>
 
+Accounts:
 
-
-
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/accounts.png">
+</p>
 
 ### Workflow (BPMN), Decision Management (DMN) and Case Management (CMMN)
 
