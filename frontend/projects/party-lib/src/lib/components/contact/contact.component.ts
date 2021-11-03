@@ -12,10 +12,12 @@ import { ItemComponent, SnackBarComponent } from 'serendipity-components-lib';
 import { ContactsService } from '../../services/contacts/contacts.service';
 import { ElectoralDivisionsService } from '../../services/electoral-divisions/electoral-divisions.service';
 
-import { LookupAccountDialogComponent } from "../dialogs/lookup-account-dialog/lookup-account-dialog.component";
+import { LookupAccountDialogComponent, DialogResult } from "../dialogs/lookup-account-dialog/lookup-account-dialog.component";
 
+import { Account } from '../../models/account';
 import { Contact } from '../../models/contact';
 import { ElectoralDivision } from '../../models/electoral-division';
+import { Role } from '../../models/role';
 
 import { CONTACTS } from '../../models/constants';
 import { CONTACT_ADDRESS_INFORMATION_GROUP, CONTACT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
@@ -186,6 +188,20 @@ export class ContactComponent extends ItemComponent<Contact> {
     return valid;
   }
 
+  public markAsDirty() {
+
+    // this.logger.info('ContactComponent - markAsPristine()');
+
+    if (this.generalInformationGroup) {
+      this.generalInformationGroup.markAsDirty();
+    }
+
+    if (this.addressInformationGroup) {
+      this.addressInformationGroup.markAsDirty();
+    }
+
+  }
+
   public markAsPristine() {
 
     // this.logger.info('ContactComponent - markAsPristine()');
@@ -330,13 +346,69 @@ export class ContactComponent extends ItemComponent<Contact> {
 
     const dialogRef =  this.dialogService.open(LookupAccountDialogComponent);
 
-    dialogRef.afterClosed().subscribe(response => {
+    dialogRef.afterClosed().subscribe((response: DialogResult) => {
 
-      if (response) {
+      this.logger.info('result: ' + JSON.stringify(response, null, 2) + '\n');
 
-        this.logger.info('response: ' + JSON.stringify(response, null, 2) + '\n');
+      if (!response.result) { return; }
+
+      switch (response.action) {
+
+        case 'add':
+
+          this.logger.info('openLookupAccountDialog() - add');
+
+          this.item.party.roles = [];
+
+          const contact: Contact = this.item;
+          const account: Account = response.record;
+
+          const role: Role = {
+
+            // @ts-ignore
+            partyId: contact.party.id,
+            partyType: contact.party.type,
+            partyName: contact.party.displayName,
+            partyEmail: contact.email,
+            partyPhoneNumber: contact.phoneNumber,
+
+            role: 'Contact',
+            relationship: 'Membership',
+            reciprocalRole: 'Account',
+
+            // @ts-ignore
+            reciprocalPartyId: account.party.id,
+            reciprocalPartyType: account.party.type,
+            reciprocalPartyName: account.party.displayName,
+            reciprocalPartyEmail: account.email,
+            reciprocalPartyPhoneNumber: account.phoneNumber
+          };
+
+          contact.party.roles.push(role);
+
+          break;
+
+        case 'remove':
+
+          this.logger.info('openLookupAccountDialog() - remove');
+
+          this.item.party.roles = [];
+
+          this.item.organisation.id = '';
+          this.item.organisation.displayName = '';
+          this.item.organisation.email = '';
+          this.item.organisation.phoneNumber = '';
+
+          break;
+
+        default:
+
+          this.logger.error('openLookupAccountDialog() - default');
+          break;
 
       }
+
+      this.markAsDirty();
 
     });
 

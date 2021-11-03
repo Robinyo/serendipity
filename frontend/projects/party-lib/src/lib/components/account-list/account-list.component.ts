@@ -124,6 +124,14 @@ export class AccountListComponent extends CollectionComponent<Account> {
     // this.router.navigate(['sales/accounts/new']);
   }
 
+  //
+  // Misc
+  //
+
+  public showCheckbox(): boolean {
+    return !!(this.items && this.items.length);
+  }
+
 }
 
 // https://stackoverflow.com/questions/48891174/angular-material-2-datatable-sorting-with-nested-objects

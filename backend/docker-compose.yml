@@ -7,14 +7,14 @@ volumes:
 services:
 
   postgres:
+    image: postgres:latest
+    restart: always
     container_name: postgres
-    build:
-      context: ./services/postgres
-      dockerfile: Dockerfile
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./services/postgres/scripts/create_schema.sql:/docker-entrypoint-initdb.d/create_schema.sql
     environment:
       POSTGRES_USER: serendipity
       POSTGRES_PASSWORD: secret
@@ -56,7 +56,9 @@ services:
       DB_USER: serendipity
       DB_PASSWORD: secret
       DB_DATABASE: serendipity
-      DB_SCHEMA: public
+      # DB_SCHEMA: public
+      # See: /services/postgres/scripts/create_schema.sql
+      DB_SCHEMA: keycloak
     depends_on:
       - postgres
 

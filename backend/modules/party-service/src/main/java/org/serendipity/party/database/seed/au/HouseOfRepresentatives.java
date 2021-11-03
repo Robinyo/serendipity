@@ -146,19 +146,14 @@ public class HouseOfRepresentatives implements CommandLineRunner {
         individualRepository.save(individual);
 
         Role role = Role.builder()
-          .role("Member")
           .partyId(individual.getParty().getId())
           .partyType(individual.getParty().getType())
           .partyName(individual.getParty().getDisplayName())
           .partyEmail(individual.getEmail())
           .partyPhoneNumber(individual.getPhoneNumber())
+          .role("Member")
           .relationship("Membership")
-          .reciprocalRole("Organisation")
-          // .reciprocalPartyId(1L)
-          // .reciprocalPartyType(PartyType.ORGANISATION)
-          // .reciprocalPartyName("")
-          // .reciprocalPartyEmail("")
-          // .reciprocalPartyPhoneNumber("")
+          .reciprocalRole("Political Party")
           .build();
 
         boolean membership = true;

@@ -34,6 +34,23 @@ export class AccountAdapter extends PartyAdapter implements Adapter<Account> {
 
     account.id = btoa(item.id);
 
+    if (account.party.roles && account.party.roles.length) {
+
+      account.individual.id = btoa(account.party.roles[0].reciprocalPartyId);
+      account.individual.displayName = account.party.roles[0].reciprocalPartyName;
+      account.individual.email = account.party.roles[0].reciprocalPartyEmail;
+      account.individual.phoneNumber = account.party.roles[0].reciprocalPartyPhoneNumber;
+    }
+
+    // this.logger.info('account: ' + JSON.stringify(account, null, 2));
+
+    return account;
+  }
+
+}
+
+/*
+
     if (item.party.addresses && item.party.addresses.length) {
       account.party.addresses = account.party.addresses.concat(item.party.addresses);
     }
@@ -48,9 +65,5 @@ export class AccountAdapter extends PartyAdapter implements Adapter<Account> {
       account.individual.phoneNumber = account.party.roles[0].reciprocalPartyPhoneNumber;
     }
 
-    // this.logger.info('account: ' + JSON.stringify(account, null, 2));
 
-    return account;
-  }
-
-}
+*/
