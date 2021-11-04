@@ -1,39 +1,63 @@
 <command-bar>
 
-  <button mat-flat-button class="md-command-bar-button"
-          (click)="onTask()">
-    <mat-icon svgIcon="assignment"> </mat-icon>
-    <span i18n="Command Bar Item|Activities@@TASKS">
+  <ng-container *ngIf="isHandsetPortrait(); else web">
+
+    <button mat-flat-button class="md-command-bar-button" (click)="onTask()">
+      <mat-icon svgIcon="assignment"> </mat-icon>
+    </button>
+
+    <button mat-flat-button class="md-command-bar-button" (click)="onEmail()" [disabled]="true">
+      <mat-icon svgIcon="email"> </mat-icon>
+    </button>
+
+    <button mat-flat-button class="md-command-bar-button" (click)="onAppointment()" [disabled]="true">
+      <mat-icon svgIcon="today"> </mat-icon>
+    </button>
+
+    <button mat-flat-button class="md-command-bar-button" (click)="onPhone()" [disabled]="true">
+      <mat-icon svgIcon="phone"> </mat-icon>
+    </button>
+
+  </ng-container>
+
+  <ng-template #web>
+
+    <button mat-flat-button class="md-command-bar-button"
+            (click)="onTask()">
+      <mat-icon svgIcon="assignment"> </mat-icon>
+      <span i18n="Command Bar Item|Activities@@TASKS">
       TASKS
     </span>
-  </button>
+    </button>
 
-  <button mat-flat-button class="md-command-bar-button"
-          (click)="onEmail()"
-          [disabled]="true">
-    <mat-icon svgIcon="email"> </mat-icon>
-    <span i18n="Command Bar Item|Activities@@EMAIL">
+    <button mat-flat-button class="md-command-bar-button"
+            (click)="onEmail()"
+            [disabled]="true">
+      <mat-icon svgIcon="email"> </mat-icon>
+      <span i18n="Command Bar Item|Activities@@EMAIL">
       EMAIL
     </span>
-  </button>
+    </button>
 
-  <button mat-flat-button class="md-command-bar-button"
-          (click)="onAppointment()"
-          [disabled]="true">
-    <mat-icon svgIcon="today"> </mat-icon>
-    <span i18n="Command Bar Item|Activities@@APPOINTMENT">
+    <button mat-flat-button class="md-command-bar-button"
+            (click)="onAppointment()"
+            [disabled]="true">
+      <mat-icon svgIcon="today"> </mat-icon>
+      <span i18n="Command Bar Item|Activities@@APPOINTMENT">
       APPOINTMENT
     </span>
-  </button>
+    </button>
 
-  <button mat-flat-button class="md-command-bar-button"
-          (click)="onPhone()"
-          [disabled]="true">
-    <mat-icon svgIcon="phone"> </mat-icon>
-    <span i18n="Command Bar Item|Activities@@PHONE_CALL">
+    <button mat-flat-button class="md-command-bar-button"
+            (click)="onPhone()"
+            [disabled]="true">
+      <mat-icon svgIcon="phone"> </mat-icon>
+      <span i18n="Command Bar Item|Activities@@PHONE_CALL">
       PHONE CALL
     </span>
-  </button>
+    </button>
+
+  </ng-template>
 
 </command-bar>
 

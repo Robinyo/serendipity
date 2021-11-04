@@ -34,32 +34,21 @@ body {
 .md-activities-container {
   display: grid;
   grid-template-columns: $task-list-width auto;
-  // grid-template-rows: 100%; deprecated
-  // grid-template-rows: auto;
-  // grid-template-rows: minmax(250px, auto);
   column-gap: 32px;
-  // row-gap: 1em;
-
   margin-top: 0;
   margin-left: 32px;
   margin-bottom: 32px;
   margin-right: 32px;
-
-  // overflow: auto;
-  // overflow: hidden;
 }
 
 .md-content-container {
-  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
-  // 64 + 56 + 96
-  // height: calc(100vh - 216px);
-  height: calc(100vh - 200px);
+  // $toolbar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop
+  height: calc(100vh - (64px + 48px + 56px));
   width: 100%;
 
   @media ($mat-xsmall) {
-    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
-    // 56 + 0 + 84
-    height: calc(100vh - 140px);
+    // $toolbar-height-mobile + $command-bar-height-mobile + $activity-bar-height-mobile
+    height: calc(100vh - (56px + 48px + 48px));
   }
 
   background: whitesmoke;
@@ -85,28 +74,20 @@ body {
 }
 
 .md-table-container {
-
-  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
-  // 64 + 56 + 96 + 32
-  // height: calc(100vh - 248px);
-  height: calc(100vh - 200px);
+  // $toolbar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop
+  height: calc(100vh - (64px + 48px + 56px));
 
   margin-left: $table-margin-desktop;
   margin-right: $table-margin-desktop;
   overflow: auto;
 
-  // margin-top: $mat-toolbar-height-desktop + $crm-command-bar-height-desktop;
-
   @media ($mat-xsmall) {
-    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
-    // 56 + 0 + 84 + 0
-    height: calc(100vh - 140px);
+    // $toolbar-height-mobile + $command-bar-height-mobile + $activity-bar-height-mobile
+    height: calc(100vh - (56px + 48px + 48px));
 
     margin-left: $table-margin-mobile;
     margin-right: $table-margin-mobile;
   }
-
-  // background-color: black;
 }
 
 .md-task-container {
@@ -114,24 +95,7 @@ body {
   border: 1px solid lightgray;
   padding-top: 0;
   margin-top: 0;
-  // background: whitesmoke;
 
-  // padding-left: 32px;
-  // padding-right: 32px;
-
-  // overflow: auto;
-
-  // height: 100%;
-  // height: calc(100vh - ($mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-component-title-margin));
-  // height: calc(100vh - 64 + 56 + 16);
-
-  // height: 100vh;
-  // height: calc(100vh - 64px + 56px + 16px);
-  // height: calc(100vh - 96px);
-  // height: calc(100vh - 128px);
-
-  // height: 400px;
-  // height: calc(100vh - 256px);
   height: calc(100vh - 200px);
 
   @media ($mat-xsmall) {
@@ -141,7 +105,6 @@ body {
 }
 
 .md-task-list-container {
-  // background: white;
   border: 1px solid lightgray;
 }
 
@@ -150,15 +113,13 @@ body {
   justify-content: center;
   align-items: center;
 
-  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
-  // 64 + 56 + 96
-  height: calc(100vh - 216px);
+  // $toolbar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop
+  height: calc(100vh - (64px + 48px + 56px));
   width: 100%;
 
   @media ($mat-xsmall) {
-    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
-    // 56 + 0 + 84
-    height: calc(100vh - 140px);
+    // $toolbar-height-mobile + $command-bar-height-mobile + $activity-bar-height-mobile
+    height: calc(100vh - (56px + 48px + 48px));
   }
 }
 
@@ -190,10 +151,16 @@ body {
 }
 
 .md-action-bar-button {
+
+  margin-left: 8px;
   min-width: 48px;
   padding-left: 16px;
   padding-right: 16px;
-  margin-left: 8px;
+
+  @media ($mat-xsmall) {
+    min-width: 48px;
+  }
+
 }
 
 // Activity Bar

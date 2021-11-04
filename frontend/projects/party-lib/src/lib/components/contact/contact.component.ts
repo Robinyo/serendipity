@@ -352,6 +352,8 @@ export class ContactComponent extends ItemComponent<Contact> {
 
       if (!response.result) { return; }
 
+      let role: Role;
+
       switch (response.action) {
 
         case 'add':
@@ -363,7 +365,7 @@ export class ContactComponent extends ItemComponent<Contact> {
           const contact: Contact = this.item;
           const account: Account = response.record;
 
-          const role: Role = {
+          role = {
 
             // @ts-ignore
             partyId: contact.party.id,
@@ -392,12 +394,13 @@ export class ContactComponent extends ItemComponent<Contact> {
 
           this.logger.info('openLookupAccountDialog() - remove');
 
-          this.item.party.roles = [];
+          const roleId: string = this.item.party.roles[0].id ? this.item.party.roles[0].id : '1L';
 
-          this.item.organisation.id = '';
-          this.item.organisation.displayName = '';
-          this.item.organisation.email = '';
-          this.item.organisation.phoneNumber = '';
+          this.logger.info('roleId: ' + roleId);
+
+          const subscription: Subscription = this.entityService.deleteRole(this.id, roleId).subscribe(() => {
+            subscription.unsubscribe();
+          });
 
           break;
 
@@ -408,7 +411,7 @@ export class ContactComponent extends ItemComponent<Contact> {
 
       }
 
-      this.markAsDirty();
+      // this.markAsDirty();
 
     });
 

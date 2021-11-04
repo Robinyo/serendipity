@@ -45,7 +45,7 @@ public class Party {
   @Builder.Default
   private String displayName = "";
 
-  @ManyToMany(fetch = FetchType.EAGER)
+  @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JoinTable(
     name = "PartyAddress",
     joinColumns = @JoinColumn(name = "partyId"),
@@ -53,7 +53,7 @@ public class Party {
   )
   private Set<Address> addresses;
 
-  @ManyToMany(fetch = FetchType.EAGER)
+  @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JoinTable(
     name = "PartyRole",
     joinColumns = @JoinColumn(name = "partyId"),
@@ -101,9 +101,7 @@ public class Party {
   }
 
   @Override
-  public int hashCode() {
-    return 31;
-  }
+  public int hashCode() { return 31; }
 
 }
 

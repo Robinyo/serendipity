@@ -98,6 +98,16 @@ export class ContactsService extends CollectionService {
 
   }
 
+  public deleteRole(id: string, roleId: string): Observable<Contact> {
+
+    return this.httpClient.delete<Contact>(this.url + id + '/roles/' + roleId).pipe(
+      tap(() => {
+        this.logger.info('ContactsService: deleteRole() completed');
+      })
+    );
+
+  }
+
 }
 
 /*

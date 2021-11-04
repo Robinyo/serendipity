@@ -1,20 +1,36 @@
 <command-bar>
 
-  <button mat-flat-button class="md-default-command-bar-button"
-          (click)="onNew()">
-    <mat-icon svgIcon="add"> </mat-icon>
-    <span i18n="Command Bar Item|Contacts@@NEW">
-      NEW
-    </span>
-  </button>
+  <ng-container *ngIf="isHandsetPortrait(); else web">
 
-  <button mat-flat-button class="md-command-bar-button"
-          [disabled]="true">
-    <mat-icon svgIcon="description"> </mat-icon>
-    <span i18n="Command Bar Item|Contacts@@RUN_REPORT">
-      RUN REPORT
-    </span>
-  </button>
+    <button mat-flat-button class="md-default-command-bar-button" (click)="onNew()">
+      <mat-icon svgIcon="add"> </mat-icon>
+    </button>
+
+    <button mat-flat-button class="md-command-bar-button" [disabled]="true">
+      <mat-icon svgIcon="description"> </mat-icon>
+    </button>
+
+  </ng-container>
+
+  <ng-template #web>
+
+    <button mat-flat-button class="md-default-command-bar-button"
+            (click)="onNew()">
+      <mat-icon svgIcon="add"> </mat-icon>
+      <span i18n="Command Bar Item|Contacts@@NEW">
+        NEW
+      </span>
+    </button>
+
+    <button mat-flat-button class="md-command-bar-button"
+            [disabled]="true">
+      <mat-icon svgIcon="description"> </mat-icon>
+      <span i18n="Command Bar Item|Contacts@@RUN_REPORT">
+        RUN REPORT
+      </span>
+    </button>
+
+  </ng-template>
 
 </command-bar>
 

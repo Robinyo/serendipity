@@ -291,6 +291,10 @@ export abstract class CollectionComponent<T> implements OnInit, AfterViewInit, O
   // Misc
   //
 
+  public isHandsetPortrait() {
+    return this.displayedColumns === this.mobileDeviceColumns;
+  }
+
   public getFormattedCellValue(row: any, column: any) {
 
     // this.logger.info('CollectionComponent: getFormattedCellValue()');

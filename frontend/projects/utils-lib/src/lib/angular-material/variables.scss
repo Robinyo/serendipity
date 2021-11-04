@@ -5,8 +5,8 @@ $bar-height-desktop: 56px !default;
 $bar-height-mobile: 48px !default;
 
 // Command Bar
-$command-bar-height-desktop: 48px !default;
-$command-bar-height-mobile: 0 !default;
+$command-bar-height-desktop: $bar-height-mobile !default;
+$command-bar-height-mobile: $bar-height-mobile !default;
 
 $command-bar-button-padding: 16px !default;
 $command-bar-button-min-width: 48px !default;
@@ -14,7 +14,6 @@ $command-bar-button-margin-right: 8px !default;
 $command-bar-row-padding: 8px !default;
 
 // Action Bar
-
 $action-bar-height-desktop: $bar-height-desktop;
 $action-bar-height-mobile: $bar-height-mobile;
 
