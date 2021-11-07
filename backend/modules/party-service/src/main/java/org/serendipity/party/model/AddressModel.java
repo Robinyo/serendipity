@@ -21,4 +21,23 @@ public class AddressModel extends RepresentationModel<AddressModel> {
   private String country;
   private String addressType;
 
+  @Override
+  public boolean equals(Object o) {
+
+    if (this == o)
+      return true;
+
+    if (!(o instanceof AddressModel))
+      return false;
+
+    AddressModel other = (AddressModel) o;
+
+    return id != 0L && id.equals(other.getId());
+  }
+
+  @Override
+  public int hashCode() {
+    return 31;
+  }
+
 }

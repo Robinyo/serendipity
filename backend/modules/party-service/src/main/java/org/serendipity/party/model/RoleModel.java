@@ -26,4 +26,23 @@ public class RoleModel extends RepresentationModel<RoleModel> {
   private String reciprocalPartyEmail;
   private String reciprocalPartyPhoneNumber;
 
+  @Override
+  public boolean equals(Object o) {
+
+    if (this == o)
+      return true;
+
+    if (!(o instanceof RoleModel))
+      return false;
+
+    RoleModel other = (RoleModel) o;
+
+    return id != 0L && id.equals(other.getId());
+  }
+
+  @Override
+  public int hashCode() {
+    return 31;
+  }
+
 }

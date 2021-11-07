@@ -22,4 +22,23 @@ public class ElectoralDivisionModel extends RepresentationModel<ElectoralDivisio
   private String latitude;
   private String longitude;
 
+  @Override
+  public boolean equals(Object o) {
+
+    if (this == o)
+      return true;
+
+    if (!(o instanceof ElectoralDivisionModel))
+      return false;
+
+    ElectoralDivisionModel other = (ElectoralDivisionModel) o;
+
+    return id != 0L && id.equals(other.getId());
+  }
+
+  @Override
+  public int hashCode() {
+    return 31;
+  }
+
 }

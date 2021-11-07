@@ -12,11 +12,13 @@ import org.serendipity.party.model.RoleModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.Set;
-import java.util.stream.Collectors;
+
+import static java.util.Collections.emptySet;
+import static java.util.stream.Collectors.toSet;
 
 @Component
+// @Slf4j
 public class PartyModelAssembler extends RepresentationModelAssemblerSupport<Party, PartyModel> {
 
   public PartyModelAssembler() {
@@ -25,6 +27,8 @@ public class PartyModelAssembler extends RepresentationModelAssemblerSupport<Par
 
   @Override
   public PartyModel toModel(Party entity) {
+
+    // log.info("PartyModelAssembler -> toModel()");
 
     PartyModel model = instantiateModel(entity);
 
@@ -35,14 +39,20 @@ public class PartyModelAssembler extends RepresentationModelAssemblerSupport<Par
     model.setAddresses(toAddressModel(entity.getAddresses()));
     model.setRoles(toRoleModel(entity.getRoles()));
 
+    // logInfo(model);
+
     return model;
   }
 
   private Set<AddressModel> toAddressModel(Set<Address> addresses) {
 
+    // log.info("PartyModelAssembler -> toAddressModel()");
+
     if (addresses.isEmpty()) {
-      return Collections.emptySet();
+      return emptySet();
     }
+
+    // log.info("addresses size: {}", addresses.size());
 
     return addresses.stream()
       .map(address -> AddressModel.builder()
@@ -57,7 +67,7 @@ public class PartyModelAssembler extends RepresentationModelAssemblerSupport<Par
         .country(address.getCountry())
         .addressType(address.getAddressType())
         .build())
-      .collect(Collectors.toSet());
+      .collect(toSet());
   }
 
   private LocationModel toLocationModel(Location location) {
@@ -73,8 +83,10 @@ public class PartyModelAssembler extends RepresentationModelAssemblerSupport<Par
 
   private Set<RoleModel> toRoleModel(Set<Role> roles) {
 
+    // log.info("PartyModelAssembler -> toRoleModel()");
+
     if (roles.isEmpty()) {
-      return Collections.emptySet();
+      return emptySet();
     }
 
     return roles.stream()
@@ -94,7 +106,77 @@ public class PartyModelAssembler extends RepresentationModelAssemblerSupport<Par
         .reciprocalPartyEmail(role.getReciprocalPartyEmail())
         .reciprocalPartyPhoneNumber(role.getReciprocalPartyPhoneNumber())
         .build())
-      .collect(Collectors.toSet());
+      .collect(toSet());
+
   }
 
 }
+
+/*
+
+  private Set<RoleModel> toRoleModel(Set<Role> roles) {
+
+    log.info("PartyModelAssembler -> toRoleModel()");
+
+    if (roles.isEmpty()) {
+      return emptySet();
+    }
+
+    log.info("roles size: {}", roles.size());
+
+    Set<RoleModel> roleModels = new HashSet<>();
+
+    for (Role role : roles) {
+
+      log.info("roles id: {}", role.getId());
+
+      roleModels.add(RoleModel.builder()
+        .id(role.getId())
+        .role(role.getRole())
+        .partyId(role.getPartyId())
+        .partyType(role.getPartyType())
+        .partyName(role.getPartyName())
+        .partyEmail(role.getPartyEmail())
+        .partyPhoneNumber(role.getPartyPhoneNumber())
+        .relationship(role.getRelationship())
+        .reciprocalRole(role.getReciprocalRole())
+        .reciprocalPartyId(role.getReciprocalPartyId())
+        .reciprocalPartyType(role.getReciprocalPartyType())
+        .reciprocalPartyName(role.getReciprocalPartyName())
+        .reciprocalPartyEmail(role.getReciprocalPartyEmail())
+        .reciprocalPartyPhoneNumber(role.getReciprocalPartyPhoneNumber())
+        .build());
+
+    }
+
+    log.info("roleModels size: {}", roleModels.size());
+
+    logInfo(roleModels);
+
+    return roleModels;
+
+  }
+
+  protected void logInfo(Object model) {
+
+    try {
+
+      ObjectMapper mapper = new ObjectMapper();
+
+      mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+      mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+
+      mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+      if (model != null) {
+        log.info("model: {}", "\n" + mapper.writeValueAsString(model));
+      }
+
+    } catch (JsonProcessingException jpe) {
+
+      log.error("Json Processing Exception: {}", jpe.getLocalizedMessage());
+    }
+
+  }
+
+*/

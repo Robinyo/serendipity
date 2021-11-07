@@ -41,6 +41,31 @@ export class ContactAdapter extends PartyAdapter implements Adapter<Contact> {
 
     contact.photoUrl = this.getUrlPrefix() + item.photoUrl;
 
+    contact.party.roles.every(item => {
+
+      if (item.role === 'Contact' && item.reciprocalRole === 'Account') {
+
+        contact.organisation.id = item.reciprocalPartyId;
+        contact.organisation.displayName = item.reciprocalPartyName;
+        contact.organisation.email = item.reciprocalPartyEmail;
+        contact.organisation.phoneNumber = item.reciprocalPartyPhoneNumber;
+
+        return false;
+      }
+
+      return true;
+
+    });
+
+    // this.logger.info('contact: ' + JSON.stringify(contact, null, 2));
+
+    return contact;
+  }
+
+}
+
+/*
+
     if (contact.party.roles && contact.party.roles.length) {
 
       contact.organisation.id = btoa(contact.party.roles[0].reciprocalPartyId);
@@ -50,12 +75,7 @@ export class ContactAdapter extends PartyAdapter implements Adapter<Contact> {
 
     }
 
-    // this.logger.info('contact: ' + JSON.stringify(contact, null, 2));
-
-    return contact;
-  }
-
-}
+*/
 
 /*
 

@@ -16,4 +16,23 @@ public class OrganisationModel extends RepresentationModel<OrganisationModel> {
   private String email;
   private String phoneNumber;
 
+  @Override
+  public boolean equals(Object o) {
+
+    if (this == o)
+      return true;
+
+    if (!(o instanceof OrganisationModel))
+      return false;
+
+    OrganisationModel other = (OrganisationModel) o;
+
+    return id != 0L && id.equals(other.getId());
+  }
+
+  @Override
+  public int hashCode() {
+    return 31;
+  }
+
 }

@@ -20,4 +20,23 @@ public class PartyModel extends RepresentationModel<PartyModel> {
   private Set<AddressModel> addresses;
   private Set<RoleModel> roles;
 
+  @Override
+  public boolean equals(Object o) {
+
+    if (this == o)
+      return true;
+
+    if (!(o instanceof PartyModel))
+      return false;
+
+    PartyModel other = (PartyModel) o;
+
+    return id != 0L && id.equals(other.getId());
+  }
+
+  @Override
+  public int hashCode() {
+    return 31;
+  }
+
 }

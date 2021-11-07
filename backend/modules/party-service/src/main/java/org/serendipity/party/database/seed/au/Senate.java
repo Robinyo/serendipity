@@ -129,7 +129,7 @@ public class Senate implements CommandLineRunner {
 
         individualRepository.save(individual);
 
-        Role role = Role.builder()
+        Role member = Role.builder()
           .partyId(individual.getParty().getId())
           .partyType(individual.getParty().getType())
           .partyName(individual.getParty().getDisplayName())
@@ -138,6 +138,17 @@ public class Senate implements CommandLineRunner {
           .role("Member")
           .relationship("Membership")
           .reciprocalRole("Political Party")
+          .build();
+
+        Role contact = Role.builder()
+          .partyId(individual.getParty().getId())
+          .partyType(individual.getParty().getType())
+          .partyName(individual.getParty().getDisplayName())
+          .partyEmail(individual.getEmail())
+          .partyPhoneNumber(individual.getPhoneNumber())
+          .role("Contact")
+          .relationship("Association")
+          .reciprocalRole("Account")
           .build();
 
         boolean membership = true;
@@ -163,11 +174,17 @@ public class Senate implements CommandLineRunner {
 
             Organisation organisation = organisations.getContent().get(0);
 
-            role.setReciprocalPartyId(organisation.getParty().getId());
-            role.setReciprocalPartyType(organisation.getParty().getType());
-            role.setReciprocalPartyName(organisation.getParty().getDisplayName());
-            role.setReciprocalPartyEmail(organisation.getEmail());
-            role.setReciprocalPartyPhoneNumber(organisation.getPhoneNumber());
+            member.setReciprocalPartyId(organisation.getParty().getId());
+            member.setReciprocalPartyType(organisation.getParty().getType());
+            member.setReciprocalPartyName(organisation.getParty().getDisplayName());
+            member.setReciprocalPartyEmail(organisation.getEmail());
+            member.setReciprocalPartyPhoneNumber(organisation.getPhoneNumber());
+
+            contact.setReciprocalPartyId(organisation.getParty().getId());
+            contact.setReciprocalPartyType(organisation.getParty().getType());
+            contact.setReciprocalPartyName(organisation.getParty().getDisplayName());
+            contact.setReciprocalPartyEmail(organisation.getEmail());
+            contact.setReciprocalPartyPhoneNumber(organisation.getPhoneNumber());
 
             break;
 
@@ -184,8 +201,10 @@ public class Senate implements CommandLineRunner {
         individualParty.getAddresses().add(parliamentHouse);
 
         if (membership) {
-          roleRepository.save(role);
-          individualParty.getRoles().add(role);
+          roleRepository.save(member);
+          roleRepository.save(contact);
+          individualParty.getRoles().add(member);
+          individualParty.getRoles().add(contact);
         }
 
         individualRepository.save(individual);

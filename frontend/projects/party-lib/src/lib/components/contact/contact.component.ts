@@ -360,6 +360,8 @@ export class ContactComponent extends ItemComponent<Contact> {
 
           this.logger.info('openLookupAccountDialog() - add');
 
+          /*
+
           this.item.party.roles = [];
 
           const contact: Contact = this.item;
@@ -388,18 +390,30 @@ export class ContactComponent extends ItemComponent<Contact> {
 
           contact.party.roles.push(role);
 
+          */
+
           break;
 
         case 'remove':
 
           this.logger.info('openLookupAccountDialog() - remove');
 
-          const roleId: string = this.item.party.roles[0].id ? this.item.party.roles[0].id : '1L';
+          this.item.party.roles.every(item => {
 
-          this.logger.info('roleId: ' + roleId);
+            if (item.role === 'Contact' && item.reciprocalRole === 'Account') {
 
-          const subscription: Subscription = this.entityService.deleteRole(this.id, roleId).subscribe(() => {
-            subscription.unsubscribe();
+              this.logger.info('remove - role === Contact && reciprocalRole === Account');
+
+              // @ts-ignore
+              const subscription: Subscription = this.entityService.deleteRole(this.id, item.id).subscribe(() => {
+                subscription.unsubscribe();
+              });
+
+              return false;
+            }
+
+            return true;
+
           });
 
           break;

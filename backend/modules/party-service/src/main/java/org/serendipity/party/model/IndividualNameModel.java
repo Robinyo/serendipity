@@ -25,4 +25,23 @@ public class IndividualNameModel extends RepresentationModel<IndividualNameModel
   private Date fromDate;
   private Date toDate;
 
+  @Override
+  public boolean equals(Object o) {
+
+    if (this == o)
+      return true;
+
+    if (!(o instanceof IndividualNameModel))
+      return false;
+
+    IndividualNameModel other = (IndividualNameModel) o;
+
+    return id != 0L && id.equals(other.getId());
+  }
+
+  @Override
+  public int hashCode() {
+    return 31;
+  }
+
 }

@@ -18,4 +18,23 @@ public class LocationModel {
   private Date fromDate;
   private Date toDate;
 
+  @Override
+  public boolean equals(Object o) {
+
+    if (this == o)
+      return true;
+
+    if (!(o instanceof LocationModel))
+      return false;
+
+    LocationModel other = (LocationModel) o;
+
+    return id != 0L && id.equals(other.getId());
+  }
+
+  @Override
+  public int hashCode() {
+    return 31;
+  }
+
 }

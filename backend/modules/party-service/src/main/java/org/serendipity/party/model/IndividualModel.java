@@ -31,6 +31,25 @@ public class IndividualModel extends RepresentationModel<IndividualModel> {
   private String placeOfDeath;
   private String countryOfDeath;
 
+  @Override
+  public boolean equals(Object o) {
+
+    if (this == o)
+      return true;
+
+    if (!(o instanceof IndividualModel))
+      return false;
+
+    IndividualModel other = (IndividualModel) o;
+
+    return id != 0L && id.equals(other.getId());
+  }
+
+  @Override
+  public int hashCode() {
+    return 31;
+  }
+
 }
 
 // https://docs.spring.io/spring-hateoas/docs/current/reference/html/#fundamentals.representation-models
