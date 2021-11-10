@@ -171,6 +171,8 @@ Kubernetes Dashboard.
 ### Resources
 
 * Spring Security 5: [OAuth 2.0 Login](https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2login)
+* Spring Spring HATEOAS: [Basic Example](https://github.com/spring-projects/spring-hateoas-examples/tree/main/simplified)
+* Spring Spring HATEOAS: [API Evolution Example](https://github.com/spring-projects/spring-hateoas-examples/tree/main/api-evolution)
 
 ### Additional Resources
 
