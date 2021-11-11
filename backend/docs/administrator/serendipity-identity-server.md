@@ -108,3 +108,8 @@ The 'Access Type' should be confidential. Check 'Standard Flow Enabled' and 'Dir
 Valid Redirect URI (e.g., `https://localhost:8080/*`), enter a valid Web Origins (e.g., `*`) and then click the 'Save' button.
 
 **Note:** Standard Flow is Keycloak's name for the OpenID Connect Authorization Code Flow.
+
+### Resources
+
+* IETF: [OAuth 2.0 for Browser-Based Apps - Best Practices](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-browser-based-apps)
+* Github: [keycloak-config-cli](https://github.com/adorsys/keycloak-config-cli)
