@@ -190,7 +190,7 @@ export class ContactComponent extends ItemComponent<Contact> {
 
   public markAsDirty() {
 
-    // this.logger.info('ContactComponent - markAsPristine()');
+    // this.logger.info('ContactComponent: markAsDirty()');
 
     if (this.generalInformationGroup) {
       this.generalInformationGroup.markAsDirty();
@@ -204,7 +204,7 @@ export class ContactComponent extends ItemComponent<Contact> {
 
   public markAsPristine() {
 
-    // this.logger.info('ContactComponent - markAsPristine()');
+    // this.logger.info('ContactComponent: markAsPristine()');
 
     if (this.generalInformationGroup) {
       this.generalInformationGroup.markAsPristine();
@@ -352,75 +352,23 @@ export class ContactComponent extends ItemComponent<Contact> {
 
       if (!response.result) { return; }
 
-      let role: Role;
-
       switch (response.action) {
 
         case 'add':
 
-          this.logger.info('openLookupAccountDialog() - add');
-
-          /*
-
-          this.item.party.roles = [];
-
-          const contact: Contact = this.item;
-          const account: Account = response.record;
-
-          role = {
-
-            // @ts-ignore
-            partyId: contact.party.id,
-            partyType: contact.party.type,
-            partyName: contact.party.displayName,
-            partyEmail: contact.email,
-            partyPhoneNumber: contact.phoneNumber,
-
-            role: 'Contact',
-            relationship: 'Membership',
-            reciprocalRole: 'Account',
-
-            // @ts-ignore
-            reciprocalPartyId: account.party.id,
-            reciprocalPartyType: account.party.type,
-            reciprocalPartyName: account.party.displayName,
-            reciprocalPartyEmail: account.email,
-            reciprocalPartyPhoneNumber: account.phoneNumber
-          };
-
-          contact.party.roles.push(role);
-
-          */
+          this.removeAccount();
+          this.addAccount(response);
 
           break;
 
         case 'remove':
 
-          this.logger.info('openLookupAccountDialog() - remove');
-
-          this.item.party.roles.every(item => {
-
-            if (item.role === 'Contact' && item.reciprocalRole === 'Account') {
-
-              this.logger.info('remove - role === Contact && reciprocalRole === Account');
-
-              // @ts-ignore
-              const subscription: Subscription = this.entityService.deleteRole(this.id, item.id).subscribe(() => {
-                subscription.unsubscribe();
-              });
-
-              return false;
-            }
-
-            return true;
-
-          });
-
+          this.removeAccount();
           break;
 
         default:
 
-          this.logger.error('openLookupAccountDialog() - default');
+          this.logger.error('openLookupAccountDialog() -> default');
           break;
 
       }
@@ -431,7 +379,7 @@ export class ContactComponent extends ItemComponent<Contact> {
 
   }
 
-  private openSnackBar() {
+  private openSnackBar(): void {
 
     this.snackBar.openFromComponent(SnackBarComponent, {
       data: {
@@ -443,7 +391,65 @@ export class ContactComponent extends ItemComponent<Contact> {
 
   }
 
-  private update() {
+  private addAccount(response: DialogResult): void {
+
+    this.logger.info('addAccount()');
+
+    const contact: Contact = this.item;
+    const account: Account = response.record;
+
+    const role: Role = {
+
+      // @ts-ignore
+      partyId: contact.party.id,
+      partyType: contact.party.type,
+      partyName: contact.party.displayName,
+      partyEmail: contact.email,
+      partyPhoneNumber: contact.phoneNumber,
+
+      role: 'Contact',
+      relationship: 'Membership',
+      reciprocalRole: 'Account',
+
+      // @ts-ignore
+      reciprocalPartyId: account.party.id,
+      reciprocalPartyType: account.party.type,
+      reciprocalPartyName: account.party.displayName,
+      reciprocalPartyEmail: account.email,
+      reciprocalPartyPhoneNumber: account.phoneNumber
+    };
+
+    const subscription: Subscription = this.entityService.createRole(this.id, role).subscribe(() => {
+      subscription.unsubscribe();
+    });
+
+  }
+
+  private removeAccount(): void {
+
+    this.logger.info('removeAccount()');
+
+    this.item.party.roles.every(item => {
+
+      if (item.role === 'Contact' && item.reciprocalRole === 'Account') {
+
+        this.logger.info('remove -> role === Contact && reciprocalRole === Account');
+
+        // @ts-ignore
+        const subscription: Subscription = this.entityService.deleteRole(this.id, item.id).subscribe(() => {
+          subscription.unsubscribe();
+        });
+
+        return false;
+      }
+
+      return true;
+
+    });
+
+  }
+
+  private update(): void {
 
     this.logger.info('ContactComponent: update()');
 
@@ -465,6 +471,38 @@ export class ContactComponent extends ItemComponent<Contact> {
   }
 
 }
+
+/*
+
+this.item.party.roles = [];
+
+const contact: Contact = this.item;
+const account: Account = response.record;
+
+role = {
+
+  // @ts-ignore
+  partyId: contact.party.id,
+  partyType: contact.party.type,
+  partyName: contact.party.displayName,
+  partyEmail: contact.email,
+  partyPhoneNumber: contact.phoneNumber,
+
+  role: 'Contact',
+  relationship: 'Membership',
+  reciprocalRole: 'Account',
+
+  // @ts-ignore
+  reciprocalPartyId: account.party.id,
+  reciprocalPartyType: account.party.type,
+  reciprocalPartyName: account.party.displayName,
+  reciprocalPartyEmail: account.email,
+  reciprocalPartyPhoneNumber: account.phoneNumber
+};
+
+contact.party.roles.push(role);
+
+*/
 
 /*
 

@@ -7,6 +7,7 @@ import { map, tap } from 'rxjs/operators';
 import { CollectionService } from '../abstract/collection/collection.service';
 
 import { Contact } from '../../models/contact';
+import { Role } from '../../models/role';
 import { ContactAdapter } from '../../adapters/contact.adapter';
 
 @Injectable({
@@ -93,6 +94,16 @@ export class ContactsService extends CollectionService {
     return this.httpClient.delete<Contact>(this.url + id).pipe(
       tap(() => {
         this.logger.info('ContactsService: delete() completed');
+      })
+    );
+
+  }
+
+  public createRole(id: string, role: Role): Observable<HttpResponse<Role>>  {
+
+    return this.httpClient.post<HttpResponse<Role>>(this.url + id + '/roles', role, this.getHttpOptions()).pipe(
+      tap(() => {
+        this.logger.info('ContactsService: createRole() completed');
       })
     );
 

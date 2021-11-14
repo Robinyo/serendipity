@@ -2,10 +2,12 @@ package org.serendipity.party.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.serendipity.party.assembler.IndividualModelAssembler;
+import org.serendipity.party.assembler.RoleModelAssembler;
 import org.serendipity.party.entity.Individual;
 import org.serendipity.party.entity.Party;
 import org.serendipity.party.entity.Role;
 import org.serendipity.party.model.IndividualModel;
+import org.serendipity.party.model.RoleModel;
 import org.serendipity.party.repository.IndividualRepository;
 import org.serendipity.party.repository.RoleRepository;
 import org.springframework.data.domain.Page;
@@ -30,17 +32,20 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class IndividualController extends Controller<Individual, IndividualRepository, IndividualModelAssembler> {
 
   protected final RoleRepository roleRepository;
+  protected final RoleModelAssembler roleModelAssembler;
 
   // Suppress IntelliJ IDEA Error: Could not autowire. No beans of 'PagedResourcesAssembler<Individual>' type found.
   @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
   public IndividualController(IndividualRepository repository,
                               IndividualModelAssembler assembler,
                               PagedResourcesAssembler<Individual> pagedResourcesAssembler,
-                              RoleRepository roleRepository) {
+                              RoleRepository roleRepository,
+                              RoleModelAssembler roleModelAssembler) {
 
     super(repository, assembler, pagedResourcesAssembler);
 
     this.roleRepository = roleRepository;
+    this.roleModelAssembler = roleModelAssembler;
   }
 
   @GetMapping("/individuals")
@@ -128,6 +133,42 @@ public class IndividualController extends Controller<Individual, IndividualRepos
       logInfo(entity, model);
 
       return ResponseEntity.created(linkTo(methodOn(IndividualController.class).findById(entity.getId())).toUri()).body(model);
+
+    } catch (Exception e) {
+
+      log.error("{}", e.getLocalizedMessage());
+
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+    }
+
+  }
+
+  @PostMapping("/individuals/{id}/roles")
+  @Transactional
+  public ResponseEntity<RoleModel> createRole(
+    @PathVariable("id") final Long id,
+    @RequestBody Role role) throws ResponseStatusException {
+
+    log.info("IndividualController POST /individuals/{id}/roles");
+
+    try {
+
+      Individual individual = repository.findById(id).orElseThrow(() ->
+        new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+      Role entity = roleRepository.save(role);
+
+      individual.getParty().getRoles().add(entity);
+
+      repository.save(individual);
+
+      RoleModel model = roleModelAssembler.toModel(entity);
+
+      logInfo(individual, null);
+
+      logInfo(entity, model);
+
+      return ResponseEntity.created(linkTo(methodOn(RoleController.class).findById(entity.getId())).toUri()).body(model);
 
     } catch (Exception e) {
 
