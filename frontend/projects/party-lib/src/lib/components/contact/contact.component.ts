@@ -419,8 +419,23 @@ export class ContactComponent extends ItemComponent<Contact> {
       reciprocalPartyPhoneNumber: account.phoneNumber
     };
 
-    const subscription: Subscription = this.entityService.createRole(this.id, role).subscribe(() => {
+    const subscription: Subscription = this.entityService.createRole(this.id, role).subscribe(data => {
+
+      if (data.body != null ) {
+
+        // Organisation Ref
+        this.item.organisation.id = data.body.reciprocalPartyId;
+        this.item.organisation.displayName = data.body.reciprocalPartyName;
+        this.item.organisation.email = data.body.reciprocalPartyEmail;
+        this.item.organisation.phoneNumber = data.body.reciprocalPartyPhoneNumber;
+
+        // contact-general-information-form-with-avatar.json
+        this.generalInformationGroup.controls['organisation.displayName'].setValue(this.item.organisation.displayName);
+
+      }
+
       subscription.unsubscribe();
+
     });
 
   }
@@ -437,7 +452,18 @@ export class ContactComponent extends ItemComponent<Contact> {
 
         // @ts-ignore
         const subscription: Subscription = this.entityService.deleteRole(this.id, item.id).subscribe(() => {
+
+          // Organisation Ref
+          this.item.organisation.id = '';
+          this.item.organisation.displayName = '';
+          this.item.organisation.email = '';
+          this.item.organisation.phoneNumber = '';
+
+          // contact-general-information-form-with-avatar.json
+          this.generalInformationGroup.controls['organisation.displayName'].setValue('');
+
           subscription.unsubscribe();
+
         });
 
         return false;

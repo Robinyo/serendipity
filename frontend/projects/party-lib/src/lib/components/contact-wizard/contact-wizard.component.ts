@@ -205,7 +205,7 @@ export class ContactWizardComponent implements OnInit, OnDestroy {
 
     this.logger.info('ContactWizardComponent: create()');
 
-    const subscription: Subscription = this.contactsService.create(this.item).subscribe(response => {
+    const subscription: Subscription = this.contactsService.create(this.item).subscribe(() => {
 
       this.markAsPristine();
       this.openSnackBar();
