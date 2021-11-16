@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AuthService } from 'auth-lib';
-import { DialogService, SnackBarComponent } from 'serendipity-components-lib';
+import { SnackBarComponent } from 'serendipity-components-lib';
 import { LoggerService } from 'utils-lib';
 
 import { Account } from '../../../models/account';
@@ -31,27 +31,28 @@ export interface DialogResult {
 
       <button mat-raised-button
               color="accent"
-              #addBtn
-              [disabled]="isDisabled()"
-              (keydown.arrowright)="removeBtn.focus()"
+              #addButton
+              [disabled]="disableAddButton"
+              (keydown.arrowright)="removeButton.focus()"
               (click)="onAdd()">
-        {{ addButton }}
+        {{ addButtonLabel }}
       </button>
 
       <button mat-raised-button
               color="accent"
-              #removeBtn
-              (keydown.arrowright)="cancelBtn.focus()"
+              #removeButton
+              [disabled]="disableRemoveButton"
+              (keydown.arrowright)="cancelButton.focus()"
               (click)="onRemove()">
-        {{ removeButton }}
+        {{ removeButtonLabel }}
       </button>
 
       <button mat-raised-button
               cdkFocusInitial
-              #cancelBtn
-              (keydown.arrowleft)="removeBtn.focus()"
+              #cancelButton
+              (keydown.arrowleft)="removeButton.focus()"
               (click)="onCancel()">
-        {{ cancelButton }}
+        {{ cancelButtonLabel }}
       </button>
 
     </mat-dialog-actions>
@@ -63,19 +64,29 @@ export class LookupAccountDialogComponent implements OnInit {
 
   public message!: string;
   public title!: string;
-  public addButton = 'ADD';
-  public cancelButton = 'CANCEL';
-  public removeButton = 'REMOVE';
+
+  public addButtonLabel = 'ADD';
+  public cancelButtonLabel = 'CANCEL';
+  public removeButtonLabel = 'REMOVE';
+
+  public disableAddButton = true;
+  public disableRemoveButton = true;
 
   private currentUser: any;
-  private disabled = true;
   private selectedItem!: any;
 
-  constructor(private authService: AuthService,
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {disableRemoveButton: boolean},
+              private authService: AuthService,
               private dialogRef: MatDialogRef<LookupAccountDialogComponent>,
-              private dialogService: DialogService,
               private snackBar: MatSnackBar,
-              private logger: LoggerService) {}
+              private logger: LoggerService) {
+
+    this.logger.info('LookupAccountDialogComponent: constructor()');
+
+    this.logger.info('data: ' + JSON.stringify(data, null, 2) + '\n');
+
+    this.disableRemoveButton = data.disableRemoveButton;
+  }
 
   public ngOnInit() {
 
@@ -96,11 +107,11 @@ export class LookupAccountDialogComponent implements OnInit {
 
       this.logger.info('selectedItem: ' + JSON.stringify(this.selectedItem, null, 2));
 
-      this.disabled = false;
+      this.disableAddButton = false;
 
     } else {
 
-      this.disabled = true;
+      this.disableAddButton = true;
 
     }
 
@@ -139,14 +150,6 @@ export class LookupAccountDialogComponent implements OnInit {
       action: 'remove'
     });
 
-  }
-
-  //
-  // Validation
-  //
-
-  public isDisabled(): boolean {
-    return this.disabled;
   }
 
   //

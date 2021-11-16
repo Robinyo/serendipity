@@ -22,6 +22,7 @@ import { Role } from '../../models/role';
 import { CONTACTS } from '../../models/constants';
 import { CONTACT_ADDRESS_INFORMATION_GROUP, CONTACT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
 
+
 class LeafletControlLayersConfig {
   baseLayers: { [name: string]: Layer } = {};
   overlays: { [name: string]: Layer } = {};
@@ -344,7 +345,24 @@ export class ContactComponent extends ItemComponent<Contact> {
 
     this.logger.info('ContactComponent: openLookupAccountDialog()');
 
-    const dialogRef =  this.dialogService.open(LookupAccountDialogComponent);
+    let config = { disableRemoveButton: true };
+
+    this.item.party.roles.every((item, index) => {
+
+      if (item.role === 'Contact' && item.reciprocalRole === 'Account') {
+
+        config.disableRemoveButton = false;
+
+        return false;
+      }
+
+      return true;
+
+    });
+
+    this.logger.info('config: ' + JSON.stringify(config, null, 2) + '\n');
+
+    const dialogRef = this.dialogService.open(LookupAccountDialogComponent, { data: config });
 
     dialogRef.afterClosed().subscribe((response: DialogResult) => {
 
@@ -423,6 +441,8 @@ export class ContactComponent extends ItemComponent<Contact> {
 
       if (data.body != null ) {
 
+        this.item.party.roles.push(data.body);
+
         // Organisation Ref
         this.item.organisation.id = data.body.reciprocalPartyId;
         this.item.organisation.displayName = data.body.reciprocalPartyName;
@@ -444,7 +464,7 @@ export class ContactComponent extends ItemComponent<Contact> {
 
     this.logger.info('removeAccount()');
 
-    this.item.party.roles.every(item => {
+    this.item.party.roles.every((item, index) => {
 
       if (item.role === 'Contact' && item.reciprocalRole === 'Account') {
 
@@ -452,6 +472,9 @@ export class ContactComponent extends ItemComponent<Contact> {
 
         // @ts-ignore
         const subscription: Subscription = this.entityService.deleteRole(this.id, item.id).subscribe(() => {
+
+          // remove the Role
+          this.item.party.roles.splice(index, 1);
 
           // Organisation Ref
           this.item.organisation.id = '';
@@ -498,64 +521,4 @@ export class ContactComponent extends ItemComponent<Contact> {
 
 }
 
-/*
-
-this.item.party.roles = [];
-
-const contact: Contact = this.item;
-const account: Account = response.record;
-
-role = {
-
-  // @ts-ignore
-  partyId: contact.party.id,
-  partyType: contact.party.type,
-  partyName: contact.party.displayName,
-  partyEmail: contact.email,
-  partyPhoneNumber: contact.phoneNumber,
-
-  role: 'Contact',
-  relationship: 'Membership',
-  reciprocalRole: 'Account',
-
-  // @ts-ignore
-  reciprocalPartyId: account.party.id,
-  reciprocalPartyType: account.party.type,
-  reciprocalPartyName: account.party.displayName,
-  reciprocalPartyEmail: account.email,
-  reciprocalPartyPhoneNumber: account.phoneNumber
-};
-
-contact.party.roles.push(role);
-
-*/
-
-/*
-
-export interface DynamicFormControlCustomEvent {
-
-  type: string;                    // 'click' string
-  id: string;                      // 'organisation.name'
-  directive: string;               // 'matSuffix'
-  name: string;                    // 'search'
-
-}
-
-    this.dialogService.openAlert({
-      title: 'Alert',
-      message: JSON.stringify(event),
-      closeButton: 'CLOSE'
-    });
-
-    // this.logger.info('event: ' + JSON.stringify(event));
-
-const keys = response.headers.keys();
-keys.map(key => {
-  this.logger.info('ContactComponent update() key: ' + response.headers.get(key));
-});
-
-this.item = { ...response.body };
-
-this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
-
-*/
+// const dialogRef =  this.dialog.open(LookupAccountDialogComponent, { data: config });
