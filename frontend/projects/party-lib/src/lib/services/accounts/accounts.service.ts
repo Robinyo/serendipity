@@ -38,8 +38,8 @@ export class AccountsService extends CollectionService {
       queryParams = '?page=' + offset + '&size=' + limit + '&sort=name&name.dir=asc';
     }
 
-    this.logger.info('AccountsService url: ' + url);
-    this.logger.info('AccountsService queryParams: ' + queryParams);
+    this.logger.info('url: ' + url);
+    this.logger.info('queryParams: ' + queryParams);
 
     return this.httpClient.get(url + queryParams, this.getHttpOptions()).pipe(
 

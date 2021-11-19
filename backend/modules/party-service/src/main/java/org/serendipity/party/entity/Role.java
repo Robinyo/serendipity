@@ -11,6 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Setter
 @Getter
+@Table(indexes = { @Index(name = "PARTY_ID_INDEX", columnList = "partyId", unique = false) })
 public class Role {
 
   @Id

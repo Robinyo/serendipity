@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 @BasePathAwareController
@@ -29,14 +30,15 @@ public class RoleController extends Controller<Role, RoleRepository, RoleModelAs
     super(repository, assembler, pagedResourcesAssembler);
   }
 
-  @GetMapping("/roles")
-  public ResponseEntity<PagedModel<RoleModel>> findAll(Pageable pageable) throws ResponseStatusException {
+  @GetMapping("/roles/search/findByPartyId")
+  public ResponseEntity<PagedModel<RoleModel>> findByPartyId(
+    @RequestParam("partyId") final Long partyId, Pageable pageable) throws ResponseStatusException {
 
-    log.info("RoleController GET /roles");
+    log.info("IndividualController GET /roles/search/findByPartyId");
 
     try {
 
-      Page<Role> entities = repository.findAll(pageable);
+      Page<Role> entities = repository.findByPartyId(partyId, pageable);
       PagedModel<RoleModel> models = pagedResourcesAssembler.toModel(entities, assembler);
 
       // logInfo(entities, models);

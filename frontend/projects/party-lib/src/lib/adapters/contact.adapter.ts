@@ -32,7 +32,7 @@ export class ContactAdapter extends PartyAdapter implements Adapter<Contact> {
       item.photoUrl,
       item.electorate,
       item.dateOfBirth,
-      item.placeOfBirth,
+      item.placeOfBirth
     );
 
     // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding

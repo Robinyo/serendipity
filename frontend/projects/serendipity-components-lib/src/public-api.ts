@@ -10,6 +10,7 @@ export * from './lib/components/dialogs/confirm-dialog/confirm-dialog.component'
 
 export * from './lib/components/abstract/collection/collection.component';
 export * from './lib/components/abstract/collection/footer/collection-footer.component';
+export * from './lib/components/abstract/collection/paginated-footer/paginated-footer.component';
 export * from './lib/components/abstract/item/item.component';
 export * from './lib/components/snack-bar/snack-bar.component';
 

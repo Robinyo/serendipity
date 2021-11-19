@@ -58,7 +58,7 @@ export interface DialogResult {
     </mat-dialog-actions>
 
   `,
-  styleUrls: ['../dialog-styles.scss' ]
+  styleUrls: ['../dialog-styles.scss']
 })
 export class LookupAccountDialogComponent implements OnInit {
 
@@ -113,6 +113,12 @@ export class LookupAccountDialogComponent implements OnInit {
 
       this.disableAddButton = true;
 
+    }
+
+    // If we haven't disabled the remove button, then when there isn't a selection, enable the remove button.
+
+    if (!this.data.disableRemoveButton) {
+      this.disableRemoveButton = !this.disableAddButton;
     }
 
   }

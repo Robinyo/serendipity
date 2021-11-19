@@ -22,12 +22,14 @@ import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/conf
 
 // Misc components
 import { CollectionFooterComponent } from './components/abstract/collection/footer/collection-footer.component';
+import { PaginatedFooterComponent } from './components/abstract/collection/paginated-footer/paginated-footer.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 
 const components = [
   ActivityBarComponent,
   AlertDialogComponent,
   CollectionFooterComponent,
+  PaginatedFooterComponent,
   CommandBarComponent,
   ConfirmDialogComponent,
   SnackBarComponent

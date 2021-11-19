@@ -25,6 +25,7 @@ import { AccountsComponent } from './components/accounts/accounts.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { ContactWizardComponent } from './components/contact-wizard/contact-wizard.component';
+import { ContactRelationshipListComponent } from './components/contact-relationship-list/contact-relationship-list.component';
 
 import { LookupAccountDialogComponent } from './components/dialogs/lookup-account-dialog/lookup-account-dialog.component';
 
@@ -41,7 +42,8 @@ const components: any[] = [
   ContactComponent,
   ContactsComponent,
   ContactWizardComponent,
-  LookupAccountDialogComponent
+  LookupAccountDialogComponent,
+  ContactRelationshipListComponent
 ];
 
 @NgModule({

@@ -66,9 +66,13 @@
 
 <activity-bar>
 
-  <span class="md-activity-bar-title" i18n="Activity Bar Title|Contact@@CONTACT_TITLE">
-    Contact
-  </span>
+  <ng-container *ngIf="item">
+
+    <span class="md-activity-bar-title" i18n="Activity Bar Title|Contact@@CONTACT_TITLE">
+      Contact: {{ item.party.displayName }}
+    </span>
+
+  </ng-container>
 
 </activity-bar>
 
@@ -151,9 +155,27 @@
       </mat-tab>
 
       <mat-tab label="Details">
+
+        <ng-template matTabContent>
+
+          <!-- See: https://material.angular.io/components/tabs/overview#lazy-loading -->
+
+          Details tab: I was lazy loaded...
+
+        </ng-template>
+
       </mat-tab>
 
-      <mat-tab label="Related">
+      <mat-tab label="Relationships">
+
+        <ng-template matTabContent>
+
+          <contact-relationship-list [item]="item">
+
+          </contact-relationship-list>
+
+        </ng-template>
+
       </mat-tab>
 
       <mat-tab *ngIf="item.electorate" label="Electoral Division">

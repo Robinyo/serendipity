@@ -114,17 +114,6 @@ export class AccountListComponent extends CollectionComponent<Account> {
   }
 
   //
-  // Command Bar events
-  //
-
-  public onNew() {
-
-    this.logger.info('AccountsComponent: onNew()');
-
-    // this.router.navigate(['sales/accounts/new']);
-  }
-
-  //
   // Misc
   //
 

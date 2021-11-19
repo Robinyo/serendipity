@@ -3,31 +3,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { LoggerService } from 'utils-lib';
 
 @Component({
-  selector: 'collection-footer',
+  selector: 'paginated-footer',
   template: `
     <div class="footer-container">
-
-      <button id="{{ host.footerAllLabel }}" mat-button class="footer-button"
-              (click)="host.onClickFilterButton(host.footerAllLabel)"
-              [class.active]="host.selectedFooterItemId === host.footerAllLabel">
-        {{ host.footerAllLabel }}
-      </button>
-
-      <button mat-button disabled class="footer-button" fxHide.xs>
-        |
-      </button>
-
-      <div *ngFor="let character of host.alphabet" fxHide.xs>
-        <button id="{{ character }}" mat-button class="footer-button"
-                (click)="host.onClickFilterButton(character)"
-                [class.active]="host.selectedFooterItemId === character">
-          {{ character }}
-        </button>
-      </div>
-
-      <button mat-button disabled class="footer-button" fxHide.xs>
-        |
-      </button>
 
       <div>
 
@@ -62,7 +40,7 @@ import { LoggerService } from 'utils-lib';
   `,
   styleUrls: ['../footer-styles.scss']
 })
-export class CollectionFooterComponent implements OnInit {
+export class PaginatedFooterComponent implements OnInit {
 
   @Input() host: any;
 
@@ -70,7 +48,7 @@ export class CollectionFooterComponent implements OnInit {
 
   public ngOnInit() {
 
-    this.logger.info('CollectionFooterComponent: ngOnInit()');
+    this.logger.info('PaginatedFooterComponent: ngOnInit()');
   }
 
 }
