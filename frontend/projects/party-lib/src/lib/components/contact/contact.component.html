@@ -1,6 +1,38 @@
 <command-bar>
 
-  <ng-container>
+  <ng-container *ngIf="isHandsetPortrait(); else web">
+
+    <button mat-flat-button class="md-command-bar-button"
+            [disabled]="!isDirty() || !isValid()"
+            (click)="onSave()">
+      <mat-icon svgIcon="save"> </mat-icon>
+    </button>
+
+    <button mat-flat-button class="md-command-bar-button"
+            [disabled]="!isDirty() || !isValid()"
+            (click)="onSaveAndClose()">
+      <mat-icon svgIcon="arrow-back"> </mat-icon>
+    </button>
+
+    <button mat-flat-button class="md-command-bar-button"
+            (click)="onNew()">
+      <mat-icon svgIcon="add"> </mat-icon>
+    </button>
+
+    <button mat-flat-button class="md-command-bar-button"
+            (click)="onDeactivate()"
+            [disabled]="true">
+      <mat-icon svgIcon="visibility-off"> </mat-icon>
+     </button>
+
+    <button mat-flat-button class="md-command-bar-button"
+            [disabled]="true">
+      <mat-icon svgIcon="link"> </mat-icon>
+    </button>
+
+  </ng-container>
+
+  <ng-template #web>
 
     <button mat-flat-button class="md-command-bar-button"
             [disabled]="!isDirty() || !isValid()"
@@ -20,46 +52,38 @@
       </span>
     </button>
 
-  </ng-container>
-
-  <button mat-flat-button class="md-command-bar-button"
-          (click)="onNew()">
-    <mat-icon svgIcon="add"> </mat-icon>
-    <span i18n="Command Bar Item|Contact@@NEW">
+    <button mat-flat-button class="md-command-bar-button"
+            (click)="onNew()">
+      <mat-icon svgIcon="add"> </mat-icon>
+      <span i18n="Command Bar Item|Contact@@NEW">
       NEW
     </span>
-  </button>
+    </button>
 
-  <button mat-flat-button class="md-command-bar-button"
-          (click)="onDeactivate()"
-          [disabled]="true">
-    <mat-icon svgIcon="visibility-off"> </mat-icon>
-    <span i18n="Command Bar Item|Contact@@DEACTIVATE">
+    <button mat-flat-button class="md-command-bar-button"
+            (click)="onDeactivate()"
+            [disabled]="true">
+      <mat-icon svgIcon="visibility-off"> </mat-icon>
+      <span i18n="Command Bar Item|Contact@@DEACTIVATE">
       DEACTIVATE
     </span>
-  </button>
+    </button>
 
-  <button mat-flat-button class="md-command-bar-button"
-          [disabled]="true">
-    <mat-icon svgIcon="link"> </mat-icon>
-    <span i18n="Command Bar Item|Contact@@EMAIL_A_LINK">
+    <button mat-flat-button class="md-command-bar-button"
+            [disabled]="true">
+      <mat-icon svgIcon="link"> </mat-icon>
+      <span i18n="Command Bar Item|Contact@@EMAIL_A_LINK">
       EMAIL A LINK
     </span>
-  </button>
+    </button>
+
+  </ng-template>
 
   <div fxFlex fxLayout fxLayoutAlign="flex-end">
-
-    <!--
-    <button mat-button class="crm-command-bar-button" [disabled]="true">
-      <mat-icon>open_in_new</mat-icon>
-    </button>
-    -->
-
     <button mat-button class="md-command-bar-button"
             (click)="onClose()">
       <mat-icon svgIcon="clear"> </mat-icon>
     </button>
-
   </div>
 
 </command-bar>
@@ -87,7 +111,7 @@
 
       <mat-tab label="Summary">
 
-        <div #gridContainer class="md-grid-container">
+        <div class="md-grid-container">
 
           <mat-card>
 
@@ -158,9 +182,12 @@
 
         <ng-template matTabContent>
 
-          <!-- See: https://material.angular.io/components/tabs/overview#lazy-loading -->
+          <div class="md-tab-component-container">
 
-          Details tab: I was lazy loaded...
+            <!-- See: https://material.angular.io/components/tabs/overview#lazy-loading -->
+            Details tab: I was lazy loaded...
+
+          </div>
 
         </ng-template>
 
@@ -170,9 +197,12 @@
 
         <ng-template matTabContent>
 
-          <contact-relationship-list [item]="item">
+          <div class="md-tab-component-container">
 
-          </contact-relationship-list>
+            <contact-relationship-list [item]="item">
+            </contact-relationship-list>
+
+          </div>
 
         </ng-template>
 
@@ -180,11 +210,15 @@
 
       <mat-tab *ngIf="item.electorate" label="Electoral Division">
 
-        <div class="map-container"
-             leaflet
-             [leafletOptions]="mapOptions"
-             (leafletMapReady)="onMapReady($event)">
-        </div>
+        <ng-template matTabContent>
+
+          <div class="md-tab-component-container"
+               leaflet
+               [leafletOptions]="mapOptions"
+               (leafletMapReady)="onMapReady($event)">
+          </div>
+
+        </ng-template>
 
       </mat-tab>
 

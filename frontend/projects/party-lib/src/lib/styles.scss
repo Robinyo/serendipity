@@ -2,28 +2,11 @@
 @import "../../../../projects/utils-lib/src/lib/angular-material/variables";
 
 $name-column-width: 280px !default;
-$phone-number-column-width: 140px !default;
 $display-name-column-width: 280px !default;
+$phone-number-column-width: 140px !default;
 $email-column-width: 260px !default;
-
-.map-container {
-
-  margin-top: 32px;
-
-  // $mat-toolbar-height-desktop + $command-bar-height-desktop + $view-bar-height-desktop
-  // 64 + 56 + 96 + 32 + 16
-  // height: calc(100vh - 248px);
-  height: calc(100vh - 328px);  // 340
-  // width: 100%;
-
-  @media ($mat-xsmall) {
-    // $mat-toolbar-height-mobile + $command-bar-height-mobile + $view-bar-height-mobile
-    // 56 + 0 + 84 + 0 + 56
-    // height: calc(100vh - 140px);
-    height: calc(100vh - 216px);
-  }
-
-}
+$relationship-column-width: 180px !default;
+$role-column-width: 140px !default;
 
 // Table
 

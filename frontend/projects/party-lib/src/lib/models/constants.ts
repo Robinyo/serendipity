@@ -57,8 +57,8 @@ export const ACTIVITIES_COLUMNS_MOBILE  = [ 'type', 'subject', 'id' ];
 export const CONTACTS_COLUMNS_DESKTOP = [ 'party.displayName', 'email', 'organisation.displayName', 'organisation.phoneNumber', 'id' ];
 export const CONTACTS_COLUMNS_MOBILE  = [ 'party.displayName', 'organisation.phoneNumber', 'id' ];
 
-export const RELATIONSHIP_LIST_COLUMNS_DESKTOP = [ 'partyName', 'role', 'relationship', 'reciprocalRole', 'reciprocalPartyName' ];
-export const RELATIONSHIP_LIST_COLUMNS_MOBILE  = [ 'partyName', 'role', 'reciprocalRole', 'reciprocalPartyName' ];
+export const RELATIONSHIP_LIST_COLUMNS_DESKTOP = [ 'partyName', 'role', 'relationship', 'reciprocalRole', 'reciprocalPartyName', 'id' ];
+export const RELATIONSHIP_LIST_COLUMNS_MOBILE  = [ 'partyName', 'role', 'reciprocalRole', 'reciprocalPartyName', 'id' ];
 
 //
 // TODO

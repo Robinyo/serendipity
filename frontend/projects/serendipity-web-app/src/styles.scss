@@ -36,9 +36,9 @@ body {
   grid-template-columns: $task-list-width auto;
   column-gap: 32px;
   margin-top: 0;
-  margin-left: 32px;
-  margin-bottom: 32px;
-  margin-right: 32px;
+  margin-left: $component-default-margin;
+  margin-bottom: $component-default-margin;
+  margin-right: $component-default-margin;
 }
 
 .md-content-container {
@@ -61,9 +61,9 @@ body {
   row-gap: 1em;
 
   margin-top: 0;
-  // margin-left: 32px;
-  margin-bottom: 32px;
-  // margin-right: 32px;
+  // margin-left: $component-default-margin;
+  margin-bottom: $component-default-margin;
+  // margin-right: $component-default-margin;
 }
 
 .md-nested-grid-container {
@@ -71,6 +71,20 @@ body {
   grid-template-columns: repeat(3, 1fr);
   column-gap: 16px;  // 32px;
   row-gap: 1em;
+}
+
+.md-tab-component-container {
+
+  margin-top: $component-default-margin;
+
+  // $toolbar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop + mat-tab-height
+  height: calc(100vh - (64px + 48px + 56px + 48px));
+
+  @media ($mat-xsmall) {
+    // $toolbar-height-mobile + $command-bar-height-mobile + $activity-bar-height-mobile + mat-tab-height
+    height: calc(100vh - (56px + 48px + 48px + 48px));
+  }
+
 }
 
 .md-table-container {

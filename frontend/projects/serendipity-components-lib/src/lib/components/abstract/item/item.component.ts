@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 // import { TranslateService } from '@ngx-translate/core';
 
@@ -18,11 +19,13 @@ export abstract class ItemComponent<T> implements OnInit, AfterViewInit, OnDestr
   public id!: string;
   public item!: T;
 
+  protected breakpointObserver: BreakpointObserver;
   protected dialogService: DialogService;
   protected logger: LoggerService;
 
   protected route: ActivatedRoute;
   protected router: Router;
+  protected handsetPortrait: boolean = false;
   protected snackBar: MatSnackBar;
   protected subscriptions: Subscription[] = [];
   // protected translate: TranslateService;
@@ -33,6 +36,7 @@ export abstract class ItemComponent<T> implements OnInit, AfterViewInit, OnDestr
 
     const injector: Injector = StaticInjectorService.getInjector();
 
+    this.breakpointObserver = injector.get<BreakpointObserver>(BreakpointObserver as Type<BreakpointObserver>);
     this.dialogService = injector.get<DialogService>(DialogService as Type<DialogService>);
     this.logger = injector.get<LoggerService>(LoggerService as Type<LoggerService>);
     this.router = injector.get<Router>(Router as Type<Router>);
@@ -76,7 +80,15 @@ export abstract class ItemComponent<T> implements OnInit, AfterViewInit, OnDestr
   }
 
   public ngAfterViewInit() {
+
     this.logger.info('ItemComponent: ngAfterViewInit()');
+
+    // React to changes to the viewport
+
+    this.breakpointObserver.observe([ Breakpoints.HandsetPortrait ]).subscribe(result => {
+      this.handsetPortrait = result.matches;
+    });
+
   }
 
   public refresh(): void {
@@ -102,5 +114,13 @@ export abstract class ItemComponent<T> implements OnInit, AfterViewInit, OnDestr
   public abstract isDirty(): boolean;
   public abstract isValid(): boolean;
   public abstract markAsPristine(): void;
+
+  //
+  // Misc
+  //
+
+  public isHandsetPortrait() {
+    return this.handsetPortrait;
+  }
 
 }

@@ -7,6 +7,8 @@ import { LoggerService } from 'utils-lib';
   template: `
     <div class="footer-container">
 
+      <span class="footer-spacer"></span>
+
       <div>
 
         <button mat-button class="footer-button-first-page"

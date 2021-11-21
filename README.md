@@ -172,3 +172,13 @@ Login page:
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/signin.png">
 </p>
+
+![divider](./divider.png)
+
+## ❯ Resources
+
+### Blog Posts
+
+* Rob Ferguson's blog: [Serendipity 2.0](https://robferguson.org/blog/2021/11/11/serendipity-2-0/)
+
+![divider](./divider.png)

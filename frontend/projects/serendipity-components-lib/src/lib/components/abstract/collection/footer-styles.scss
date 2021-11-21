@@ -23,6 +23,10 @@
   white-space: nowrap;
 }
 
+.footer-spacer {
+  flex: 1 1 auto;
+}
+
 .footer-button {
   min-width: $footer-button-min-width;
   padding: 0 8px;
