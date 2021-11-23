@@ -8,6 +8,8 @@ import { AccountAdapter } from '../../adapters/account.adapter';
 import { AccountsService } from '../../services/accounts/accounts.service';
 
 import { Account } from '../../models/account';
+
+import { ACCOUNT_WIZARD, ACCOUNTS } from '../../models/constants';
 import { ACCOUNTS_COLUMN_DEFS } from '../../models/column-defs';
 import { ACCOUNTS_COLUMNS_DESKTOP, ACCOUNTS_COLUMNS_MOBILE } from '../../models/constants';
 
@@ -100,7 +102,7 @@ export class AccountsComponent extends CollectionComponent<Account> {
 
     this.logger.info('AccountsComponent: onNew()');
 
-    // this.router.navigate(['sales/accounts/new']);
+    this.router.navigate([ACCOUNT_WIZARD]);
   }
 
 }

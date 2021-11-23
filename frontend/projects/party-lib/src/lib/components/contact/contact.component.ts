@@ -19,9 +19,8 @@ import { Contact } from '../../models/contact';
 import { ElectoralDivision } from '../../models/electoral-division';
 import { Role } from '../../models/role';
 
-import { CONTACTS } from '../../models/constants';
+import { CONTACT_WIZARD, CONTACTS } from '../../models/constants';
 import { CONTACT_ADDRESS_INFORMATION_GROUP, CONTACT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
-
 
 class LeafletControlLayersConfig {
   baseLayers: { [name: string]: Layer } = {};
@@ -232,6 +231,12 @@ export class ContactComponent extends ItemComponent<Contact> {
 
     this.logger.info('ContactComponent: onCustomEvent()');
 
+    // this.dialogService.openAlert({
+    //   title: 'Alert',
+    //   message: JSON.stringify(event),
+    //   closeButton: 'CLOSE'
+    // });
+
     this.openLookupAccountDialog();
 
   }
@@ -276,7 +281,7 @@ export class ContactComponent extends ItemComponent<Contact> {
 
     this.logger.info('ContactComponent: onNew()');
 
-    this.router.navigate([CONTACTS + '/new']);
+    this.router.navigate([CONTACT_WIZARD]);
   }
 
   public onSave() {

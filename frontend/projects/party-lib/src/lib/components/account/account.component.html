@@ -15,7 +15,8 @@
     </button>
 
     <button mat-flat-button class="md-command-bar-button"
-            (click)="onNew()">
+            (click)="onNew()"
+            [disabled]="true">
       <mat-icon svgIcon="add"> </mat-icon>
     </button>
 
@@ -90,9 +91,13 @@
 
 <activity-bar>
 
-  <span class="md-activity-bar-title" i18n="Activity Bar Title|Account@@ACCOUNT_TITLE">
-    Account
-  </span>
+  <ng-container *ngIf="item">
+
+    <span class="md-activity-bar-title" i18n="Activity Bar Title|Account@@ACCOUNT_TITLE">
+      Account: {{ item.party.displayName }}
+    </span>
+
+  </ng-container>
 
 </activity-bar>
 
@@ -109,14 +114,6 @@
         <div #gridContainer class="md-grid-container">
 
           <mat-card>
-
-            <!--
-            <mat-card-header>
-              <mat-card-title>
-                General Information
-              </mat-card-title>
-            </mat-card-header>
-            -->
 
             <mat-card-content>
 
@@ -141,17 +138,16 @@
 
           <mat-card>
 
-            <!--
-            <mat-card-header>
-              <mat-card-title>
-                Address Information
-              </mat-card-title>
-            </mat-card-header>
-            -->
 
             <mat-card-content>
 
               <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
+
+              <dynamic-form autocomplete="off"
+                            className="md-nested-grid-container"
+                            [formGroup]="addressInformationGroup"
+                            [model]="addressInformationModel">
+              </dynamic-form>
 
               <!--
               <p>
@@ -186,8 +182,12 @@
 
         <ng-template matTabContent>
 
-          <!-- See: https://material.angular.io/components/tabs/overview#lazy-loading -->
-          Relationships tab: I was lazy loaded...
+          <div class="md-tab-component-container">
+
+            <!-- See: https://material.angular.io/components/tabs/overview#lazy-loading -->
+            Relationships tab: I was lazy loaded...
+
+          </div>
 
         </ng-template>
 

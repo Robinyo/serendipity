@@ -10,8 +10,8 @@ import { ItemComponent, SnackBarComponent } from 'serendipity-components-lib';
 import { Account } from '../../models/account';
 import { AccountsService } from '../../services/accounts/accounts.service';
 
-import { ACCOUNTS } from '../../models/constants';
-import { ACCOUNT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
+import { ACCOUNT_WIZARD, ACCOUNTS } from '../../models/constants';
+import { ACCOUNT_ADDRESS_INFORMATION_GROUP, ACCOUNT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
 
 @Component({
   selector: 'party-account',
@@ -20,8 +20,11 @@ import { ACCOUNT_GENERAL_INFORMATION_GROUP } from '../../models/form-ids';
 })
 export class AccountComponent extends ItemComponent<Account> {
 
-  public generalInformationModel!: DynamicFormModel; // DynamicFormControlModel[] = [];
+  public generalInformationModel!: DynamicFormModel;
   public generalInformationGroup!: FormGroup;
+
+  public addressInformationModel!: DynamicFormModel;
+  public addressInformationGroup!: FormGroup;
 
   constructor(route: ActivatedRoute,
               private entityService: AccountsService,
@@ -37,6 +40,9 @@ export class AccountComponent extends ItemComponent<Account> {
     this.generalInformationModel = await this.dynamicFormService.getFormMetadata(ACCOUNT_GENERAL_INFORMATION_GROUP);
     this.generalInformationGroup = this.dynamicFormService.createGroup(this.generalInformationModel);
 
+    this.addressInformationModel = await this.dynamicFormService.getFormMetadata(ACCOUNT_ADDRESS_INFORMATION_GROUP);
+    this.addressInformationGroup = this.dynamicFormService.createGroup(this.addressInformationModel);
+
     let entitySubscription: Subscription = new Subscription();
     this.subscriptions.push(entitySubscription);
 
@@ -47,6 +53,7 @@ export class AccountComponent extends ItemComponent<Account> {
       this.logger.info('item: ' + JSON.stringify(this.item, null, 2));
 
       this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
+      this.dynamicFormService.initGroup(this.addressInformationGroup, this.item.party.addresses[0]);
     });
 
   }
@@ -57,7 +64,7 @@ export class AccountComponent extends ItemComponent<Account> {
 
   public canDeactivate(): Observable<boolean> | boolean {
 
-    // this.logger.info('AccountComponent: canDeactivate()');
+    this.logger.info('AccountComponent: canDeactivate()');
 
     if (!this.isDirty() && this.isValid()) {
       return true;
@@ -74,28 +81,67 @@ export class AccountComponent extends ItemComponent<Account> {
 
   public isDirty() {
 
-    // this.logger.info('AccountComponent - isDirty()');
-
     let dirty = false;
 
-    if ((this.generalInformationGroup && this.generalInformationGroup.dirty)) {
+    if ((this.generalInformationGroup && this.generalInformationGroup.dirty) ||
+      (this.addressInformationGroup && this.addressInformationGroup.dirty)) {
       dirty = true;
     }
+
+    // this.logger.info('ContactComponent - isDirty(): ' + dirty);
 
     return dirty;
   }
 
   public isValid() {
 
-    // this.logger.info('AccountComponent - isValid()');
-
     let valid = false;
 
-    if (this.generalInformationGroup && this.generalInformationGroup.valid) {
+    if (this.generalInformationGroup) {
+
       valid = true;
+
+      const controls = this.generalInformationGroup.controls;
+      for (const name in controls) {
+        if (controls[name].invalid) {
+          this.logger.info('generalInformationGroup ' + name + ' is invalid');
+          valid = false;
+        }
+      }
+
     }
 
+    if (valid && this.addressInformationGroup) {
+
+      valid = true;
+
+      const controls = this.addressInformationGroup.controls;
+      for (const name in controls) {
+        if (controls[name].invalid) {
+          this.logger.info('addressInformationGroup ' + name + ' is invalid');
+          valid = false;
+        }
+      }
+
+    }
+
+    // this.logger.info('ContactComponent - isValid(): ' + valid);
+
     return valid;
+  }
+
+  public markAsDirty() {
+
+    // this.logger.info('ContactComponent: markAsDirty()');
+
+    if (this.generalInformationGroup) {
+      this.generalInformationGroup.markAsDirty();
+    }
+
+    if (this.addressInformationGroup) {
+      this.addressInformationGroup.markAsDirty();
+    }
+
   }
 
   public markAsPristine() {
@@ -104,6 +150,10 @@ export class AccountComponent extends ItemComponent<Account> {
 
     if (this.generalInformationGroup) {
       this.generalInformationGroup.markAsPristine();
+    }
+
+    if (this.addressInformationGroup) {
+      this.addressInformationGroup.markAsPristine();
     }
 
   }
@@ -150,8 +200,9 @@ export class AccountComponent extends ItemComponent<Account> {
         this.logger.info('AccountComponent onDeactivate() response: true');
 
         // const subscription: Subscription = this.contactsService.delete(this.partyId).subscribe(() => {
+        //
         //   subscription.unsubscribe();
-        //   this.router.navigate([CONTACTS]);
+        //   this.router.navigate([ACCOUNTS]);
         // });
 
       }
@@ -164,12 +215,17 @@ export class AccountComponent extends ItemComponent<Account> {
 
     this.logger.info('AccountComponent: onNew()');
 
-    this.router.navigate([ACCOUNTS + '/new']);
+    this.router.navigate([ACCOUNT_WIZARD]);
   }
 
   public onSave() {
 
     this.logger.info('AccountComponent: onSave()');
+
+    this.dynamicFormService.value(this.generalInformationGroup, this.item);
+    this.dynamicFormService.value(this.addressInformationGroup, this.item.party.addresses[0]);
+
+    // this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
 
     this.update();
   }
@@ -193,7 +249,7 @@ export class AccountComponent extends ItemComponent<Account> {
         message: 'Account saved'
       },
       duration: 500,
-      panelClass: 'crm-snack-bar'
+      panelClass: 'md-snack-bar'
     });
 
   }
@@ -202,8 +258,18 @@ export class AccountComponent extends ItemComponent<Account> {
 
     this.logger.info('AccountComponent: update()');
 
-    this.markAsPristine();
-    // this.openSnackBar();
-  }
+    this.item.id = this.id;
 
+    this.logger.info('item: ' + JSON.stringify(this.item, null, 2) + '\n');
+
+    const subscription: Subscription = this.entityService.update(this.id, this.item).subscribe(() => {
+
+      this.markAsPristine();
+      this.openSnackBar();
+
+      subscription.unsubscribe();
+
+    });
+
+  }
 }

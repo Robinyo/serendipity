@@ -17,7 +17,9 @@ $mat-toolbar-row-padding: 16px !default;
 // btoa(0) === 'MA=='
 
 export const ZERO = '/MA==';
+export const ACCOUNT_WIZARD = 'customers/accounts-new';
 export const ACCOUNTS = 'customers/accounts';
+export const CONTACT_WIZARD = 'customers/contacts-new';
 export const CONTACTS = 'customers/contacts';
 export const ACTIVITIES = 'customers/activities';
 

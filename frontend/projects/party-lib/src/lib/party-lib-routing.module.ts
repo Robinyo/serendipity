@@ -41,7 +41,7 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always'
   },
   {
-    path: 'contacts/new',
+    path: 'contacts-new',
     component: ContactWizardComponent,
     canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always'

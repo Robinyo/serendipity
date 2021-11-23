@@ -8,12 +8,10 @@ import { ContactAdapter } from '../../adapters/contact.adapter';
 import { ContactsService } from '../../services/contacts/contacts.service';
 
 import { Contact } from '../../models/contact';
-import { CONTACTS_COLUMN_DEFS } from '../../models/column-defs';
 
-import {
-  CONTACTS_COLUMNS_DESKTOP,
-  CONTACTS_COLUMNS_MOBILE
-} from '../../models/constants';
+import { CONTACT_WIZARD, CONTACTS } from '../../models/constants';
+import { CONTACTS_COLUMN_DEFS } from '../../models/column-defs';
+import { CONTACTS_COLUMNS_DESKTOP, CONTACTS_COLUMNS_MOBILE } from '../../models/constants';
 
 @Component({
   selector: 'lib-contacts',
@@ -81,7 +79,7 @@ export class ContactsComponent extends CollectionComponent<Contact> {
 
     this.logger.info('ContactsComponent: onNew()');
 
-    this.router.navigate(['customers/contacts/new']);
+    this.router.navigate([CONTACT_WIZARD]);
   }
 
 }
