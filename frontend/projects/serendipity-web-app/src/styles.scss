@@ -76,6 +76,7 @@ body {
 .md-tab-component-container {
 
   margin-top: $component-default-margin;
+  margin-bottom: $component-default-margin;
 
   // $toolbar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop + mat-tab-height
   height: calc(100vh - (64px + 48px + 56px + 48px));

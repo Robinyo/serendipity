@@ -29,6 +29,7 @@ export class Individual {
     public electorate: string = '',
     public dateOfBirth: string = '',
     public placeOfBirth: string = '',
+    public countryOfBirth: string = ''
   ) {
     this.organisation = new OrganisationRef();
   }

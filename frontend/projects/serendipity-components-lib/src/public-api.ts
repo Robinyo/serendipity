@@ -12,6 +12,7 @@ export * from './lib/components/abstract/collection/collection.component';
 export * from './lib/components/abstract/collection/footer/collection-footer.component';
 export * from './lib/components/abstract/collection/paginated-footer/paginated-footer.component';
 export * from './lib/components/abstract/item/item.component';
+export * from './lib/components/abstract/wizard/wizard.component';
 export * from './lib/components/snack-bar/snack-bar.component';
 
 export * from './lib/services/sidenav/sidenav.service';

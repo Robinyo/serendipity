@@ -22,11 +22,11 @@ export abstract class ItemComponent<T> implements OnInit, AfterViewInit, OnDestr
   protected breakpointObserver: BreakpointObserver;
   protected dialogService: DialogService;
   protected logger: LoggerService;
-
-  protected route: ActivatedRoute;
   protected router: Router;
-  protected handsetPortrait: boolean = false;
   protected snackBar: MatSnackBar;
+
+  protected handsetPortrait: boolean = false;
+  protected route: ActivatedRoute;
   protected subscriptions: Subscription[] = [];
   // protected translate: TranslateService;
 

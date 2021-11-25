@@ -1,6 +1,22 @@
 <command-bar>
 
-  <ng-container>
+  <ng-container *ngIf="isHandsetPortrait(); else web">
+
+    <button mat-flat-button class="md-command-bar-button"
+            [disabled]="!isDirty() || !isValid()"
+            (click)="onSave()">
+      <mat-icon svgIcon="save"> </mat-icon>
+    </button>
+
+    <button mat-flat-button class="md-command-bar-button"
+            [disabled]="!isDirty() || !isValid()"
+            (click)="onSaveAndClose()">
+      <mat-icon svgIcon="arrow-back"> </mat-icon>
+    </button>
+
+  </ng-container>
+
+  <ng-template #web>
 
     <button mat-flat-button class="md-command-bar-button"
             [disabled]="!isDirty() || !isValid()"
@@ -15,26 +31,18 @@
             [disabled]="!isDirty() || !isValid()"
             (click)="onSaveAndClose()">
       <mat-icon svgIcon="arrow-back"> </mat-icon>
-      <span i18n="Command Bar Item|Contact@NSAVE_AND_CLOSE">
+      <span i18n="Command Bar Item|Contact@@SAVE_AND_CLOSE">
         SAVE & CLOSE
       </span>
     </button>
 
-  </ng-container>
+  </ng-template>
 
   <div fxFlex fxLayout fxLayoutAlign="flex-end">
-
-    <!--
-    <button mat-button class="crm-command-bar-button" [disabled]="true">
-      <mat-icon>open_in_new</mat-icon>
-    </button>
-    -->
-
     <button mat-button class="md-command-bar-button"
             (click)="onClose()">
       <mat-icon svgIcon="clear"> </mat-icon>
     </button>
-
   </div>
 
 </command-bar>

@@ -227,20 +227,6 @@ export class ContactComponent extends ItemComponent<Contact> {
     this.router.navigate([CONTACTS]);
   }
 
-  public onCustomEvent(event: DynamicFormControlCustomEvent) {
-
-    this.logger.info('ContactComponent: onCustomEvent()');
-
-    // this.dialogService.openAlert({
-    //   title: 'Alert',
-    //   message: JSON.stringify(event),
-    //   closeButton: 'CLOSE'
-    // });
-
-    this.openLookupAccountDialog();
-
-  }
-
   public onDeactivate() {
 
     this.logger.info('ContactComponent: onDeactivate()');
@@ -270,13 +256,6 @@ export class ContactComponent extends ItemComponent<Contact> {
 
   }
 
-  public onMapReady(map: Map): void {
-
-    this.logger.info('ContactComponent: onMapReady()');
-
-    this.map = map;
-  }
-
   public onNew() {
 
     this.logger.info('ContactComponent: onNew()');
@@ -304,47 +283,23 @@ export class ContactComponent extends ItemComponent<Contact> {
     this.onClose();
   }
 
-  public async onTabChanged($event: any) {
+  //
+  // Dynamic Form events
+  //
 
-    this.logger.info('ContactComponent: onTabChanged()');
+  public onCustomEvent(event: DynamicFormControlCustomEvent) {
 
-    const clickedIndex = $event.index;
+    this.logger.info('ContactComponent: onCustomEvent()');
 
-    this.logger.info('clickedIndex: ' + clickedIndex);
+    // this.dialogService.openAlert({
+    //   title: 'Alert',
+    //   message: JSON.stringify(event),
+    //   closeButton: 'CLOSE'
+    // });
 
-    if (clickedIndex === ELECTORAL_DIVISION_TAB_INDEX && this.item !== undefined && this.item.electorate) {
-
-      if (this.electoralDivision === undefined) {
-
-        this.electoralDivision = await this.electoralDivisionsService.findByName(this.item.electorate);
-
-        this.logger.info('Electoral Division: ' + JSON.stringify(this.electoralDivision, null, 2) + '\n');
-
-        let latitude = DEFAULT_LATITUDE;
-        let longitude = DEFAULT_LONGITUDE;
-
-        if (!isNaN(Number(this.electoralDivision.latitude))) {
-          latitude = Number(this.electoralDivision.latitude);
-        }
-
-        if (!isNaN(Number(this.electoralDivision.longitude))) {
-          longitude = Number(this.electoralDivision.longitude);
-        }
-
-        if (this.map !== undefined) {
-          this.map.setView(latLng(latitude, longitude), DEFAULT_ZOOM);
-          this.map.invalidateSize();
-        }
-
-      }
-
-    }
+    this.openLookupAccountDialog();
 
   }
-
-  //
-  // Misc
-  //
 
   private openLookupAccountDialog() {
 
@@ -398,18 +353,6 @@ export class ContactComponent extends ItemComponent<Contact> {
 
       // this.markAsDirty();
 
-    });
-
-  }
-
-  private openSnackBar(): void {
-
-    this.snackBar.openFromComponent(SnackBarComponent, {
-      data: {
-        message: 'Contact saved'
-      },
-      duration: 500,
-      panelClass: 'md-snack-bar'
     });
 
   }
@@ -524,6 +467,70 @@ export class ContactComponent extends ItemComponent<Contact> {
 
   }
 
-}
 
-// const dialogRef =  this.dialog.open(LookupAccountDialogComponent, { data: config });
+  //
+  // Misc events
+  //
+
+  public onMapReady(map: Map): void {
+
+    this.logger.info('ContactComponent: onMapReady()');
+
+    this.map = map;
+  }
+
+  public async onTabChanged($event: any) {
+
+    this.logger.info('ContactComponent: onTabChanged()');
+
+    const clickedIndex = $event.index;
+
+    this.logger.info('clickedIndex: ' + clickedIndex);
+
+    if (clickedIndex === ELECTORAL_DIVISION_TAB_INDEX && this.item !== undefined && this.item.electorate) {
+
+      if (this.electoralDivision === undefined) {
+
+        this.electoralDivision = await this.electoralDivisionsService.findByName(this.item.electorate);
+
+        this.logger.info('Electoral Division: ' + JSON.stringify(this.electoralDivision, null, 2) + '\n');
+
+        let latitude = DEFAULT_LATITUDE;
+        let longitude = DEFAULT_LONGITUDE;
+
+        if (!isNaN(Number(this.electoralDivision.latitude))) {
+          latitude = Number(this.electoralDivision.latitude);
+        }
+
+        if (!isNaN(Number(this.electoralDivision.longitude))) {
+          longitude = Number(this.electoralDivision.longitude);
+        }
+
+        if (this.map !== undefined) {
+          this.map.setView(latLng(latitude, longitude), DEFAULT_ZOOM);
+          this.map.invalidateSize();
+        }
+
+      }
+
+    }
+
+  }
+
+  //
+  // Misc
+  //
+
+  private openSnackBar(): void {
+
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      data: {
+        message: 'Contact saved'
+      },
+      duration: 500,
+      panelClass: 'md-snack-bar'
+    });
+
+  }
+
+}
