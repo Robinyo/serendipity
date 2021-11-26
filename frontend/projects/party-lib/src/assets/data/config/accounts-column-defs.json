@@ -2,7 +2,7 @@
 
   {
     "name": "name",
-    "displayName": "ACCOUNT NAME",
+    "displayName": "NAME",
     "routerLink": "id",
     "class": "anchor"
   },

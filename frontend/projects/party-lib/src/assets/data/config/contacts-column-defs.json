@@ -2,7 +2,7 @@
 
   {
     "name": "party.displayName",
-    "displayName": "FULL NAME",
+    "displayName": "NAME",
     "routerLink": "id",
     "class": "anchor"
   },
@@ -14,7 +14,7 @@
   },
   {
     "name":  "organisation.displayName",
-    "displayName": "COMPANY NAME",
+    "displayName": "ACCOUNT NAME",
     "routerLink": "organisation.id",
     "class": "anchor"
   },

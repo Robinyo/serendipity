@@ -26,7 +26,7 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   providers: [
     authProviders,
-    // globalErrorProvider,
+    globalErrorProvider,
     loggerProviders
   ],
   declarations: [
@@ -42,5 +42,3 @@ export class AppModule {
   }
 
 }
-
-// httpInterceptors

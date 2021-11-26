@@ -35,8 +35,7 @@
       }
     ],
 
-    "gridItemClass": "grid-column-1",
-    "required": false
+    "gridItemClass": "grid-column-1"
   },
 
   {
@@ -46,7 +45,18 @@
     "appearance": "outline",
     "autocomplete": "tel",
 
-    "gridItemClass": "grid-column-1"
+    "gridItemClass": "grid-column-2"
+  },
+
+  {
+    "type": "input",
+    "id": "individual.displayName",
+    "label": "Primary Contact",
+    "appearance": "outline",
+
+    "gridItemClass": "grid-column-1-span-2",
+
+    "suffixIconName": "search"
   }
 
 ]

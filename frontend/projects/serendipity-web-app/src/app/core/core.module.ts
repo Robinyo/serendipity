@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 import { CookieService } from 'ngx-cookie-service';
 
@@ -37,8 +38,8 @@ const components: any[] = [
 
 @NgModule({
   imports: [
-    AngularMaterialModule,    // The Angular Material module must be imported after Angular's BrowserModule, as the import order matters
-    BrowserAnimationsModule,  // for NgModules.
+    AngularMaterialModule,    // The Angular Material module must be imported after Angular's BrowserModule, as the
+    BrowserAnimationsModule,  // import order matters for NgModules.
     CommonModule,
     FlexLayoutModule,
     HttpClientModule,
@@ -57,7 +58,8 @@ const components: any[] = [
   ],
   providers: [
     CookieService,
-    { provide: LOCALE_ID, useValue: 'en' }
+    { provide: LOCALE_ID, useValue: 'en' },
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ]
 })
 export class CoreModule {
