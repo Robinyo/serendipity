@@ -23,6 +23,7 @@ import { AccountComponent } from './components/account/account.component';
 import { AccountListComponent } from './components/account-list/account-list.component';
 import { AccountsComponent } from './components/accounts/accounts.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { ContactRelatedTabComponent } from './components/contact-related-tab/contact-related-tab.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { ContactWizardComponent } from './components/contact-wizard/contact-wizard.component';
 import { ContactRelationshipListComponent } from './components/contact-relationship-list/contact-relationship-list.component';
@@ -40,6 +41,7 @@ const components: any[] = [
   AccountListComponent,
   AccountsComponent,
   ContactComponent,
+  ContactRelatedTabComponent,
   ContactsComponent,
   ContactWizardComponent,
   LookupAccountDialogComponent,
