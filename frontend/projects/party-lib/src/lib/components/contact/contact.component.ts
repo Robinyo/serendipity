@@ -467,7 +467,6 @@ export class ContactComponent extends ItemComponent<Contact> {
 
   }
 
-
   //
   // Misc events
   //

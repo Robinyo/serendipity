@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { SelectionModel } from "@angular/cdk/collections";
+import { Component, EventEmitter, Output } from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -16,6 +17,10 @@ import { Role } from '../../models/role';
   styleUrls: ['./contact-relationship-list.component.scss']
 })
 export class ContactRelationshipListComponent extends RelationshipListComponent<Contact> {
+
+  @Output() selectEvent = new EventEmitter<Role>();
+
+  selection = new SelectionModel<Role>(false, []);
 
   constructor(private entityAdapter: RoleAdapter,
               private entityService: RelationshipsService) {
@@ -86,6 +91,22 @@ export class ContactRelationshipListComponent extends RelationshipListComponent<
       }
 
     );
+
+  }
+
+  selectHandler(row: Role) {
+
+    if (!this.selection.isSelected(row)) {
+      this.selection.clear();
+    }
+
+    this.selection.toggle(row);
+
+    if (this.selection.isSelected(row)) {
+      this.selectEvent.emit(row);
+    } else {
+      this.selectEvent.emit(new Role());
+    }
 
   }
 

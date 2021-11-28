@@ -2,6 +2,11 @@
 
 // Columns
 
+.mat-column-select {
+  width: $select-column-width;
+  max-width: $select-column-width;
+}
+
 .mat-column-partyName {
   width: $name-column-width;
   max-width: $name-column-width;

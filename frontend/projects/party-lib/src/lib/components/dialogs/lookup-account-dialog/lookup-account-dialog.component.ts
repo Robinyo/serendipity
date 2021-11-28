@@ -124,7 +124,7 @@ export class LookupAccountDialogComponent implements OnInit {
   }
 
   //
-  // Action bar events
+  // Action Bar events
   //
 
   public onAdd(): void {
