@@ -83,7 +83,7 @@ export class ContactWizardComponent extends WizardComponent<Contact> {
 
   }
 
-  public isDirty() {
+  public isDirty(): boolean {
 
     let dirty = false;
 
@@ -97,7 +97,7 @@ export class ContactWizardComponent extends WizardComponent<Contact> {
     return dirty;
   }
 
-  public isValid() {
+  public isValid(): boolean {
 
     let valid = false;
 
@@ -151,7 +151,7 @@ export class ContactWizardComponent extends WizardComponent<Contact> {
     return valid;
   }
 
-  public markAsPristine() {
+  public markAsPristine(): void  {
 
     // this.logger.info('ContactWizardComponent - markAsPristine()');
 
@@ -169,7 +169,7 @@ export class ContactWizardComponent extends WizardComponent<Contact> {
   // Command Bar events
   //
 
-  public onClose() {
+  public onClose(): void {
 
     this.logger.info('ContactWizardComponent: onClose()');
 
@@ -190,7 +190,7 @@ export class ContactWizardComponent extends WizardComponent<Contact> {
 
   }
 
-  public onSave() {
+  public onSave(): void  {
 
     this.logger.info('ContactWizardComponent: onSave()');
 
@@ -207,7 +207,7 @@ export class ContactWizardComponent extends WizardComponent<Contact> {
 
   }
 
-  public onSaveAndClose() {
+  public onSaveAndClose(): void  {
 
     this.logger.info('ContactWizardComponent: onSaveAndClose()');
 
@@ -220,14 +220,14 @@ export class ContactWizardComponent extends WizardComponent<Contact> {
   // Misc
   //
 
-  private create() {
+  private create(): void  {
 
     this.logger.info('ContactWizardComponent: create()');
 
     const subscription: Subscription = this.entityService.create(this.item).subscribe(() => {
 
       this.markAsPristine();
-      this.openSnackBar();
+      this.openSnackBar('Contact saved');
 
       subscription.unsubscribe();
 
@@ -237,11 +237,11 @@ export class ContactWizardComponent extends WizardComponent<Contact> {
 
   }
 
-  private openSnackBar() {
+  private openSnackBar(message: string): void {
 
     this.snackBar.openFromComponent(SnackBarComponent, {
       data: {
-        message: 'Contact saved'
+        message: message
       },
       duration: 500,
       panelClass: 'md-snack-bar'
@@ -249,7 +249,7 @@ export class ContactWizardComponent extends WizardComponent<Contact> {
 
   }
 
-  private update() {
+  private update(): void  {
 
     this.logger.info('ContactWizardComponent: update()');
 
@@ -264,7 +264,7 @@ export class ContactWizardComponent extends WizardComponent<Contact> {
       this.logger.info('contact: ' + JSON.stringify(response, null, 2) + '\n');
 
       this.markAsPristine();
-      this.openSnackBar();
+      this.openSnackBar('Contact updated');
 
       subscription.unsubscribe();
 
@@ -274,7 +274,7 @@ export class ContactWizardComponent extends WizardComponent<Contact> {
 
   }
 
-  private createSampleContact() {
+  private createSampleContact(): void {
 
     const name: Name = new Name(
       'Mr',

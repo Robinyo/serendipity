@@ -412,14 +412,14 @@ export class ContactComponent extends ItemComponent<Contact> {
 
     this.logger.info('removeAccount()');
 
-    this.item.party.roles.every((item, index) => {
+    this.item.party.roles.every((role, index) => {
 
-      if (item.role === 'Contact' && item.reciprocalRole === 'Account') {
+      if (role.role === 'Contact' && role.reciprocalRole === 'Account') {
 
         this.logger.info('remove -> role === Contact && reciprocalRole === Account');
 
         // @ts-ignore
-        const subscription: Subscription = this.entityService.deleteRole(this.id, item.id).subscribe(() => {
+        const subscription: Subscription = this.entityService.deleteRole(this.id, role.id).subscribe(() => {
 
           // remove the Role
           this.item.party.roles.splice(index, 1);

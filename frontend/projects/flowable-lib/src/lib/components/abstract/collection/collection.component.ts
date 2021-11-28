@@ -27,7 +27,7 @@ export abstract class CollectionComponent<T> implements OnInit, OnDestroy {
 
   protected abstract subscribe(): void;
 
-  protected unsubscribe() {
+  protected unsubscribe(): void {
 
     this.logger.info('CollectionComponent: unsubscribe()');
 
@@ -37,12 +37,12 @@ export abstract class CollectionComponent<T> implements OnInit, OnDestroy {
 
   }
 
-  public refresh() {
+  public refresh(): void {
     this.unsubscribe();
     this.subscribe();
   }
 
-  public ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.unsubscribe();
   }
 
@@ -50,7 +50,7 @@ export abstract class CollectionComponent<T> implements OnInit, OnDestroy {
   // Command events
   //
 
-  public onSelect(item: T) {
+  public onSelect(item: T): void {
     this.selectedItem = item;
   }
 

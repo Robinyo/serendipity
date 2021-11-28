@@ -25,8 +25,6 @@ export class ContactRelationshipListComponent extends RelationshipListComponent<
   constructor(private entityAdapter: RoleAdapter,
               private entityService: RelationshipsService) {
     super();
-
-    this.logger.info('item: ' + JSON.stringify(this.item, null, 2));
   }
 
   protected subscribe() {

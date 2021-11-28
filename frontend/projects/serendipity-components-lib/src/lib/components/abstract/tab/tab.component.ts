@@ -1,4 +1,4 @@
-import {Directive, Injector, Input, Type} from '@angular/core';
+import { Directive, Injector, Input, Type } from '@angular/core';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 
