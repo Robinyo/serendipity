@@ -18,6 +18,8 @@ import { Role } from '../../models/role';
 })
 export class ContactRelationshipListComponent extends RelationshipListComponent<Contact> {
 
+  public placeholder = false;
+
   @Output() selectEvent = new EventEmitter<Role>();
 
   selection = new SelectionModel<Role>(false, []);
@@ -49,10 +51,14 @@ export class ContactRelationshipListComponent extends RelationshipListComponent<
           this.items = response.body._embedded.roleModels.map(
             ((item: any) => this.entityAdapter.adapt(item)));
 
+          this.placeholder = false;
+
         } else {
 
           this.items = [];
           this.items.push(new Role());
+
+          this.placeholder = true;
 
         }
 

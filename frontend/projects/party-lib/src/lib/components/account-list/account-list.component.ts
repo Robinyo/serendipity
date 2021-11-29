@@ -19,6 +19,8 @@ import { ACCOUNT_LIST_COLUMNS_DESKTOP, ACCOUNT_LIST_COLUMNS_MOBILE } from '../..
 })
 export class AccountListComponent extends CollectionComponent<Account> {
 
+  public placeholder = false;
+
   @Output() selectEvent = new EventEmitter<Account>();
 
   selection = new SelectionModel<Account>(false, []);
@@ -54,10 +56,14 @@ export class AccountListComponent extends CollectionComponent<Account> {
           this.items = response.body._embedded.organisationModels.map(
             ((item: any) => this.entityAdapter.adapt(item)));
 
+          this.placeholder = false;
+
         } else {
 
           this.items = [];
           this.items.push(new Account());
+
+          this.placeholder = true;
 
         }
 
@@ -111,14 +117,6 @@ export class AccountListComponent extends CollectionComponent<Account> {
       this.selectEvent.emit(new Account());
     }
 
-  }
-
-  //
-  // Misc
-  //
-
-  public showCheckbox(): boolean {
-    return !!(this.items && this.items.length);
   }
 
 }

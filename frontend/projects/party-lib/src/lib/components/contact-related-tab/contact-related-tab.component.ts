@@ -135,9 +135,8 @@ export class ContactRelatedTabComponent extends TabComponent<Contact> implements
 
         });
 
-        if (this.item.party.roles.length === 0) {
-          this.disableRemoveButton = true;
-        }
+        this.disableRemoveButton = true;
+        this.disableAddButton = !this.disableRemoveButton;
 
       }
 
