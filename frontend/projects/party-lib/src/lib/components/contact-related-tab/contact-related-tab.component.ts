@@ -8,7 +8,10 @@ import { ContactsService } from '../../services/contacts/contacts.service';
 
 import { ContactRelationshipListComponent } from '../contact-relationship-list/contact-relationship-list.component';
 
+import { AddRelationshipDialogComponent } from "../dialogs/add-relationship-dialog/add-relationship-dialog.component";
+
 import { Contact } from '../../models/contact';
+import { DialogResult } from "../../models/dialog";
 import { Role } from '../../models/role';
 
 @Component({
@@ -76,6 +79,42 @@ export class ContactRelatedTabComponent extends TabComponent<Contact> implements
   public onAdd(): void {
 
     this.logger.info('ContactRelatedTabComponent: onAdd()');
+
+    this.openAddRelationshipAccountDialog();
+  }
+
+  private openAddRelationshipAccountDialog() {
+
+    this.logger.info('ContactRelatedTabComponent: openAddRelationshipAccountDialog()');
+
+    let config = { item: this.item };
+
+    const dialogRef = this.dialogService.open(AddRelationshipDialogComponent, { data: config });
+
+    dialogRef.afterClosed().subscribe((response: DialogResult) => {
+
+      this.logger.info('result: ' + JSON.stringify(response, null, 2) + '\n');
+
+      if (!response.result) { return; }
+
+      switch (response.action) {
+
+        case 'ok':
+
+          this.openSnackBar('Role added');
+
+          this.contactRelationshipListComponent.refresh();
+
+          break;
+
+        default:
+
+          this.logger.error('openLookupAccountDialog() -> default');
+          break;
+
+      }
+
+    });
 
   }
 

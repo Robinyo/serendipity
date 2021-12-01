@@ -50,7 +50,7 @@ export class BffAuthService extends Auth {
 
       const value = this.cookieService.get('authN');
 
-      if (value == "true") {
+      if (value === "true") {
 
         this.authenticated = true;
 

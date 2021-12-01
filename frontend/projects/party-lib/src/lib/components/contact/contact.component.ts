@@ -12,10 +12,11 @@ import { ItemComponent, SnackBarComponent } from 'serendipity-components-lib';
 import { ContactsService } from '../../services/contacts/contacts.service';
 import { ElectoralDivisionsService } from '../../services/electoral-divisions/electoral-divisions.service';
 
-import { LookupAccountDialogComponent, DialogResult } from "../dialogs/lookup-account-dialog/lookup-account-dialog.component";
+import { LookupAccountDialogComponent } from "../dialogs/lookup-account-dialog/lookup-account-dialog.component";
 
 import { Account } from '../../models/account';
 import { Contact } from '../../models/contact';
+import { DialogResult } from "../../models/dialog";
 import { ElectoralDivision } from '../../models/electoral-division';
 import { Role } from '../../models/role';
 

@@ -149,6 +149,12 @@ Contact - Related Tab:
   <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/contact-related-tab.png">
 </p>
 
+Contact - Add Relationship:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/contact-add-relationship.png">
+</p>
+
 Accounts:
 
 <p align="center">

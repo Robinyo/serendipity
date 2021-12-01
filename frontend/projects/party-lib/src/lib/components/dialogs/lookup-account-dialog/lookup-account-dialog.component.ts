@@ -9,12 +9,6 @@ import { LoggerService } from 'utils-lib';
 
 import { Account } from '../../../models/account';
 
-export interface DialogResult {
-  result: boolean,
-  action?: string,
-  record?: any
-}
-
 @Component({
   selector: 'party-lookup-account-dialog',
   template: `
@@ -62,8 +56,8 @@ export interface DialogResult {
 })
 export class LookupAccountDialogComponent implements OnInit {
 
-  public message!: string;
-  public title!: string;
+  // public message!: string;
+  // public title!: string;
 
   public addButtonLabel = 'ADD';
   public cancelButtonLabel = 'CANCEL';

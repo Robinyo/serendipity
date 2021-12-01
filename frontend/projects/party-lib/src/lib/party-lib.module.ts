@@ -29,6 +29,7 @@ import { ContactWizardComponent } from './components/contact-wizard/contact-wiza
 import { ContactRelationshipListComponent } from './components/contact-relationship-list/contact-relationship-list.component';
 
 import { LookupAccountDialogComponent } from './components/dialogs/lookup-account-dialog/lookup-account-dialog.component';
+import { AddRelationshipDialogComponent } from './components/dialogs/add-relationship-dialog/add-relationship-dialog.component';
 
 //
 // PartyLibRoutingModule: https://angular.io/guide/router#routing-module-order
@@ -44,8 +45,10 @@ const components: any[] = [
   ContactRelatedTabComponent,
   ContactsComponent,
   ContactWizardComponent,
-  LookupAccountDialogComponent,
-  ContactRelationshipListComponent
+  ContactRelationshipListComponent,
+
+  AddRelationshipDialogComponent,
+  LookupAccountDialogComponent
 ];
 
 @NgModule({
