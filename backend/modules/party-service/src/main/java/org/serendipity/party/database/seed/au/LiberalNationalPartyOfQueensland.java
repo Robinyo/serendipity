@@ -101,7 +101,7 @@ public class LiberalNationalPartyOfQueensland implements CommandLineRunner {
       Party organisationParty = Party.builder()
         .type(PartyType.ORGANISATION)
         .legalType(LegalType.OTHER_INCORPORATED_ENTITY.toString())
-        .displayName(PoliticalParty.AUSTRALIAN_GREENS.toString())
+        .displayName(PoliticalParty.LIBERAL_NATIONAL_PARTY_OF_QUEENSLAND.toString())
         .addresses(new HashSet<Address>())
         .roles(new HashSet<Role>())
         .build();

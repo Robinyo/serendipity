@@ -35,6 +35,7 @@ import { Account } from '../../../models/account';
       <button mat-raised-button
               color="accent"
               #removeButton
+              [hidden]="hideRemoveButton"
               [disabled]="disableRemoveButton"
               (keydown.arrowright)="cancelButton.focus()"
               (click)="onRemove()">
@@ -65,11 +66,15 @@ export class LookupAccountDialogComponent implements OnInit {
 
   public disableAddButton = true;
   public disableRemoveButton = true;
+  public hideRemoveButton = true;
 
   private currentUser: any;
   private selectedItem!: any;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {disableRemoveButton: boolean},
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {
+                disableRemoveButton: boolean,
+                hideRemoveButton: boolean,
+                addButtonLabel: string},
               private authService: AuthService,
               private dialogRef: MatDialogRef<LookupAccountDialogComponent>,
               private snackBar: MatSnackBar,
@@ -80,6 +85,8 @@ export class LookupAccountDialogComponent implements OnInit {
     this.logger.info('data: ' + JSON.stringify(data, null, 2) + '\n');
 
     this.disableRemoveButton = data.disableRemoveButton;
+    this.hideRemoveButton = data.hideRemoveButton;
+    this.addButtonLabel = data.addButtonLabel;
   }
 
   public ngOnInit() {
@@ -125,9 +132,11 @@ export class LookupAccountDialogComponent implements OnInit {
 
     this.logger.info('LookupAccountDialogComponent: onAdd()');
 
+    const action = (this.addButtonLabel === 'ADD') ? 'add' : 'ok';
+
     this.dialogRef.close({
       result: true,
-      action: 'add',
+      action: action,
       record: this.selectedItem
     });
 

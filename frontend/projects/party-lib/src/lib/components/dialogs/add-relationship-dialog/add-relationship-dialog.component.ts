@@ -4,19 +4,14 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { AuthService } from 'auth-lib';
-import { SnackBarComponent } from 'serendipity-components-lib';
+import { DialogService, SnackBarComponent } from 'serendipity-components-lib';
 import { LoggerService } from 'utils-lib';
 
-import { Role } from '../../../models/role';
-import { PartyType } from '../../../types/party-type';
-import {Account} from "../../../models/account";
+import { LookupAccountDialogComponent } from "../lookup-account-dialog/lookup-account-dialog.component";
 
-export interface DialogResult {
-  result: boolean,
-  action?: string,
-  record?: any
-}
+import { DialogResult } from "../../../models/dialog";
+import { PartyType } from '../../../types/party-type';
+import { Role } from '../../../models/role';
 
 interface RoleClassificationScheme {
   role: string;
@@ -70,30 +65,44 @@ const RELATIONSHIP_LIST_COLUMNS = [ 'partyName', 'role', 'relationship', 'recipr
               </mat-select>
 
             </td>
-
-            <td mat-footer-cell *matFooterCellDef> </td>
-
           </ng-container>
 
           <ng-container matColumnDef="relationship">
             <!-- See: .scss for mat-column styles -->
             <th mat-header-cell *matHeaderCellDef> RELATIONSHIP </th>
             <td mat-cell *matCellDef="let element">  {{ element.relationship }} </td>
-            <td mat-footer-cell *matFooterCellDef> </td>
           </ng-container>
 
           <ng-container matColumnDef="reciprocalRole">
             <!-- See: .scss for mat-column styles -->
             <th mat-header-cell *matHeaderCellDef> RECIPROCAL ROLE </th>
             <td mat-cell *matCellDef="let element">  {{ element.reciprocalRole }} </td>
-            <td mat-footer-cell *matFooterCellDef> </td>
           </ng-container>
 
           <ng-container matColumnDef="reciprocalPartyName">
             <!-- See: .scss for mat-column styles -->
             <th mat-header-cell *matHeaderCellDef> NAME </th>
-            <td mat-cell *matCellDef="let element">  {{ element.reciprocalPartyName }} </td>
-            <td mat-footer-cell *matFooterCellDef> </td>
+            <td mat-cell *matCellDef="let element">
+
+              <div class="md-input">
+                <div class="md-input-trigger">
+
+                  <div class="md-input-value">
+                    <span class="md-input-value-text">
+                      {{ element.reciprocalPartyName }}
+                    </span>
+                  </div>
+
+                  <div class="md-input-search-wrapper">
+                    <mat-icon matSuffix svgIcon="search"
+                              (click)="reciprocalPartyNameClickHandler()">
+                    </mat-icon>
+                  </div>
+
+                </div>
+              </div>
+
+            </td>
           </ng-container>
 
           <!-- Footer -->
@@ -139,7 +148,8 @@ const RELATIONSHIP_LIST_COLUMNS = [ 'partyName', 'role', 'relationship', 'recipr
 })
 export class AddRelationshipDialogComponent implements OnInit {
 
-  public item!: any;
+  public item!: any;             // Contact or Account
+  public reciprocalParty!: any;  // Contact or Account
 
   public items!: Array<Role>;
   public dataSource!: MatTableDataSource<Role>;
@@ -157,8 +167,8 @@ export class AddRelationshipDialogComponent implements OnInit {
   private currentUser: any;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: {item: any},
-              private authService: AuthService,
               private dialogRef: MatDialogRef<AddRelationshipDialogComponent>,
+              private dialogService: DialogService,
               private snackBar: MatSnackBar,
               private logger: LoggerService) {
 
@@ -172,8 +182,6 @@ export class AddRelationshipDialogComponent implements OnInit {
   public ngOnInit() {
 
     this.logger.info('AddRelationshipDialogComponent: ngOnInit()');
-
-    this.currentUser = this.authService.getCurrentUser();
 
     // this.logger.info('currentUser: ' + JSON.stringify(this.currentUser, null, 2));
 
@@ -197,6 +205,8 @@ export class AddRelationshipDialogComponent implements OnInit {
       this.role = this.scheme[0].role;
 
     } else {
+
+      // PartyType.ORGANISATION
 
       this.scheme = [
         { role: 'Public Officer',
@@ -234,25 +244,98 @@ export class AddRelationshipDialogComponent implements OnInit {
 
   }
 
-  public onSelectionChange() {
+  //
+  // Dynamic Form events
+  //
+
+  public onSelectionChange(): void {
 
     this.logger.info('AddRelationshipDialogComponent: onSelectionChange()');
 
     this.logger.info('role: ' + this.role);
 
-    this.scheme.every((item, index) => {
+    this.scheme.every((element, index) => {
 
-      if (item.role === this.role) {
+      if (element.role === this.role) {
 
         this.logger.info('item.role === this.role');
 
         this.items[0].relationship = this.scheme[index].relationship;
         this.items[0].reciprocalRole = this.scheme[index].reciprocalRole;
 
+        this.reciprocalParty = null;
+
+        this.items[0].reciprocalPartyId = '';
+        this.items[0].reciprocalPartyType = '';
+        this.items[0].reciprocalPartyName = '';
+        this.items[0].reciprocalPartyEmail = '';
+        this.items[0].reciprocalPartyPhoneNumber = '';
+
         return false;
       }
 
       return true;
+
+    });
+
+  }
+
+  public reciprocalPartyNameClickHandler(): void {
+
+    this.logger.info('AddRelationshipDialogComponent: reciprocalPartyNameClickHandler()');
+
+    if (this.items[0].reciprocalRole === PartyType.INDIVIDUAL) {
+
+      this.logger.info('this.items[0].reciprocalRole === PartyType.INDIVIDUAL');
+
+    } else {
+
+      this.logger.info('this.items[0].reciprocalRole === PartyType.ORGANISATION');
+
+      this.openLookupAccountDialog();
+
+    }
+
+  }
+
+  private openLookupAccountDialog() {
+
+    this.logger.info('AddRelationshipDialogComponent: openLookupAccountDialog()');
+
+    let config = {
+      disableRemoveButton: true,
+      hideRemoveButton: true,
+      addButtonLabel: 'OK'
+    };
+
+    const lookupAccountDialogRef = this.dialogService.open(LookupAccountDialogComponent, { data: config });
+
+    lookupAccountDialogRef.afterClosed().subscribe((response: DialogResult) => {
+
+      this.logger.info('response: ' + JSON.stringify(response, null, 2) + '\n');
+
+      if (!response.result) { return; }
+
+      switch (response.action) {
+
+        case 'ok':
+
+          this.reciprocalParty = response.record;
+
+          this.items[0].reciprocalPartyId = this.reciprocalParty.party.id;
+          this.items[0].reciprocalPartyType = this.reciprocalParty.party.type;
+          this.items[0].reciprocalPartyName = this.reciprocalParty.party.displayName;
+          this.items[0].reciprocalPartyEmail = this.reciprocalParty.email;
+          this.items[0].reciprocalPartyPhoneNumber = this.reciprocalParty.phoneNumber;
+
+          break;
+
+        default:
+
+          this.logger.error('openLookupAccountDialog() -> default');
+          break;
+
+      }
 
     });
 

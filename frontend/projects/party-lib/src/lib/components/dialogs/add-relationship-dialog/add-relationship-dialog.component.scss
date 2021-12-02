@@ -1,6 +1,40 @@
 @import "../../../styles";
 @import "../dialog-styles";
 
+.md-input {
+  display: inline-block;
+  width: 100%;
+  outline: none;
+}
+
+.md-input-trigger {
+  display: inline-table;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+  height: 1.125em;
+}
+
+.md-input-value {
+  display: table-cell;
+  max-width: 0;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.md-input-value-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.md-input-search-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
 // Columns
 
 .mat-column-partyName {

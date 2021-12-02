@@ -306,7 +306,11 @@ export class ContactComponent extends ItemComponent<Contact> {
 
     this.logger.info('ContactComponent: openLookupAccountDialog()');
 
-    let config = { disableRemoveButton: true };
+    let config = {
+      disableRemoveButton: true,
+      hideRemoveButton: false,
+      addButtonLabel: 'ADD'
+    };
 
     this.item.party.roles.every((item, index) => {
 
@@ -327,7 +331,7 @@ export class ContactComponent extends ItemComponent<Contact> {
 
     dialogRef.afterClosed().subscribe((response: DialogResult) => {
 
-      this.logger.info('result: ' + JSON.stringify(response, null, 2) + '\n');
+      this.logger.info('response: ' + JSON.stringify(response, null, 2) + '\n');
 
       if (!response.result) { return; }
 
