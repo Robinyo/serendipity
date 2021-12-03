@@ -21,44 +21,67 @@ import { Account } from '../../../models/account';
 
     </mat-dialog-content>
 
-    <mat-dialog-actions align="end">
+    <ng-container *ngIf="hideRemoveButton; else showRemoveButton">
 
-      <button mat-raised-button
-              color="accent"
-              #addButton
-              [disabled]="disableAddButton"
-              (keydown.arrowright)="removeButton.focus()"
-              (click)="onAdd()">
-        {{ addButtonLabel }}
-      </button>
+      <mat-dialog-actions align="end">
 
-      <button mat-raised-button
-              color="accent"
-              #removeButton
-              [hidden]="hideRemoveButton"
-              [disabled]="disableRemoveButton"
-              (keydown.arrowright)="cancelButton.focus()"
-              (click)="onRemove()">
-        {{ removeButtonLabel }}
-      </button>
+        <button mat-raised-button
+                color="accent"
+                #addButton
+                [disabled]="disableAddButton"
+                (click)="onAdd()">
+          {{ addButtonLabel }}
+        </button>
 
-      <button mat-raised-button
-              cdkFocusInitial
-              #cancelButton
-              (keydown.arrowleft)="removeButton.focus()"
-              (click)="onCancel()">
-        {{ cancelButtonLabel }}
-      </button>
+        <button mat-raised-button
+                cdkFocusInitial
+                #cancelButton
+                (click)="onCancel()">
+          {{ cancelButtonLabel }}
+        </button>
 
-    </mat-dialog-actions>
+      </mat-dialog-actions>
 
+    </ng-container>
+
+    <ng-template #showRemoveButton>
+
+      <mat-dialog-actions align="end">
+
+        <button mat-raised-button
+                color="accent"
+                #addButton
+                [disabled]="disableAddButton"
+                (keydown.arrowright)="removeButton.focus()"
+                (click)="onAdd()">
+          {{ addButtonLabel }}
+        </button>
+
+        <button mat-raised-button
+                color="accent"
+                #removeButton
+                [hidden]="hideRemoveButton"
+                [disabled]="disableRemoveButton"
+                (keydown.arrowright)="cancelButton.focus()"
+                (click)="onRemove()">
+          {{ removeButtonLabel }}
+        </button>
+
+        <button mat-raised-button
+                cdkFocusInitial
+                #cancelButton
+                (keydown.arrowleft)="removeButton.focus()"
+                (click)="onCancel()">
+          {{ cancelButtonLabel }}
+        </button>
+
+      </mat-dialog-actions>
+
+    </ng-template>
   `,
   styleUrls: ['../dialog-styles.scss']
 })
 export class LookupAccountDialogComponent implements OnInit {
-
-  // public message!: string;
-  // public title!: string;
 
   public addButtonLabel = 'ADD';
   public cancelButtonLabel = 'CANCEL';

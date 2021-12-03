@@ -10,9 +10,11 @@
 .md-input-trigger {
   display: inline-table;
   cursor: pointer;
-  position: relative;
+  // position: relative;
   box-sizing: border-box;
   height: 1.125em;
+
+  vertical-align: middle;
 }
 
 .md-input-value {
@@ -22,18 +24,38 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  vertical-align: middle;
 }
 
 .md-input-value-text {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: auto;
 }
 
-.md-input-search-wrapper {
+.md-input-search-icon-wrapper {
   display: table-cell;
   vertical-align: middle;
 }
+
+.md-input-search-icon {
+  vertical-align: middle;
+}
+
+/*
+
+.mat-select-arrow {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid;
+    margin: 0 4px;
+}
+
+*/
 
 // Columns
 

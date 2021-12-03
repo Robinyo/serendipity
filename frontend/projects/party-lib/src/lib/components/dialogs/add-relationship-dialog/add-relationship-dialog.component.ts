@@ -1,11 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
 
+import { Subscription } from "rxjs";
+
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { DialogService, SnackBarComponent } from 'serendipity-components-lib';
 import { LoggerService } from 'utils-lib';
+
+import { ContactsService } from '../../../services/contacts/contacts.service';
 
 import { LookupAccountDialogComponent } from "../lookup-account-dialog/lookup-account-dialog.component";
 
@@ -93,8 +97,8 @@ const RELATIONSHIP_LIST_COLUMNS = [ 'partyName', 'role', 'relationship', 'recipr
                     </span>
                   </div>
 
-                  <div class="md-input-search-wrapper">
-                    <mat-icon matSuffix svgIcon="search"
+                  <div class="md-input-search-icon-wrapper">
+                    <mat-icon matSuffix svgIcon="search" class="md-input-search-icon"
                               (click)="reciprocalPartyNameClickHandler()">
                     </mat-icon>
                   </div>
@@ -164,11 +168,10 @@ export class AddRelationshipDialogComponent implements OnInit {
 
   public disableOkButton = true;
 
-  private currentUser: any;
-
   constructor(@Inject(MAT_DIALOG_DATA) public data: {item: any},
               private dialogRef: MatDialogRef<AddRelationshipDialogComponent>,
               private dialogService: DialogService,
+              private entityService: ContactsService,
               private snackBar: MatSnackBar,
               private logger: LoggerService) {
 
@@ -271,6 +274,8 @@ export class AddRelationshipDialogComponent implements OnInit {
         this.items[0].reciprocalPartyEmail = '';
         this.items[0].reciprocalPartyPhoneNumber = '';
 
+        this.disableOkButton = true;
+
         return false;
       }
 
@@ -328,6 +333,8 @@ export class AddRelationshipDialogComponent implements OnInit {
           this.items[0].reciprocalPartyEmail = this.reciprocalParty.email;
           this.items[0].reciprocalPartyPhoneNumber = this.reciprocalParty.phoneNumber;
 
+          this.disableOkButton = false;
+
           break;
 
         default:
@@ -356,6 +363,12 @@ export class AddRelationshipDialogComponent implements OnInit {
   public onOk(): void {
 
     this.logger.info('AddRelationshipDialogComponent: onOk()');
+
+    const subscription: Subscription = this.entityService.createRole(this.item.party.id, this.items[0]).subscribe(() => {
+
+      subscription.unsubscribe();
+
+    });
 
     this.dialogRef.close({
       result: true,
