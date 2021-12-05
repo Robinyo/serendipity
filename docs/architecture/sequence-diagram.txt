@@ -1,0 +1,25 @@
+actor End User
+participant Frontend
+participant Backend
+participant Identity Server
+participant Microservice
+
+End User -> Frontend: End User logs in
+Frontend -> Backend: /bff/login
+Backend -> Identity Server: Authorization  Code flow
+Identity Server -> Backend: ID, Access & Refresk Tokens
+Backend -> Backend: Cache Tokens
+Backend -> Frontend: Encrypted Cookie
+Frontend -> Backend: API Request (Encrypted Cookie)
+Backend -> Backend: Perform course-grained authorisation
+Backend -> Microservice: API Request (Access Token)
+Microservice -> Microservice: Validate the Access Token
+Microservice -> Microservice: Perform fine-grained authorisation
+Microservice -> Backend: API Response
+Backend -> Frontend: API Response
+End User -> Frontend: End User logs out
+Frontend -> Backend: /bff/logout
+Backend -> Identity Server: Relying Party initiated logout
+Identity Server -> Backend: Redirect to Relying Party
+Backend -> Backend: Delete Token Cache
+Backend -> Frontend: Redirect to Frontend

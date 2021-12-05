@@ -1,0 +1,239 @@
+<command-bar>
+
+  <ng-container *ngIf="isHandsetPortrait(); else web">
+
+    <button mat-flat-button class="md-command-bar-button"
+            [disabled]="!isDirty() || !isValid()"
+            (click)="onSave()">
+      <mat-icon svgIcon="save"> </mat-icon>
+    </button>
+
+    <button mat-flat-button class="md-command-bar-button"
+            [disabled]="!isDirty() || !isValid()"
+            (click)="onSaveAndClose()">
+      <mat-icon svgIcon="arrow-back"> </mat-icon>
+    </button>
+
+    <button mat-flat-button class="md-command-bar-button"
+            (click)="onNew()">
+      <mat-icon svgIcon="add"> </mat-icon>
+    </button>
+
+    <button mat-flat-button class="md-command-bar-button"
+            (click)="onDeactivate()"
+            [disabled]="true">
+      <mat-icon svgIcon="visibility-off"> </mat-icon>
+     </button>
+
+    <button mat-flat-button class="md-command-bar-button"
+            [disabled]="true">
+      <mat-icon svgIcon="link"> </mat-icon>
+    </button>
+
+  </ng-container>
+
+  <ng-template #web>
+
+    <button mat-flat-button class="md-command-bar-button"
+            [disabled]="!isDirty() || !isValid()"
+            (click)="onSave()">
+      <mat-icon svgIcon="save"> </mat-icon>
+      <span i18n="Command Bar Item|Contact@@SAVE">
+        SAVE
+      </span>
+    </button>
+
+    <button mat-flat-button class="md-command-bar-button"
+            [disabled]="!isDirty() || !isValid()"
+            (click)="onSaveAndClose()">
+      <mat-icon svgIcon="arrow-back"> </mat-icon>
+      <span i18n="Command Bar Item|Contact@@SAVE_AND_CLOSE">
+        SAVE & CLOSE
+      </span>
+    </button>
+
+    <button mat-flat-button class="md-command-bar-button"
+            (click)="onNew()">
+      <mat-icon svgIcon="add"> </mat-icon>
+      <span i18n="Command Bar Item|Contact@@NEW">
+      NEW
+    </span>
+    </button>
+
+    <button mat-flat-button class="md-command-bar-button"
+            (click)="onDeactivate()"
+            [disabled]="true">
+      <mat-icon svgIcon="visibility-off"> </mat-icon>
+      <span i18n="Command Bar Item|Contact@@DEACTIVATE">
+      DEACTIVATE
+    </span>
+    </button>
+
+    <button mat-flat-button class="md-command-bar-button"
+            [disabled]="true">
+      <mat-icon svgIcon="link"> </mat-icon>
+      <span i18n="Command Bar Item|Contact@@EMAIL_A_LINK">
+      EMAIL A LINK
+    </span>
+    </button>
+
+  </ng-template>
+
+  <div fxFlex fxLayout fxLayoutAlign="flex-end">
+    <button mat-button class="md-command-bar-button"
+            (click)="onClose()">
+      <mat-icon svgIcon="clear"> </mat-icon>
+    </button>
+  </div>
+
+</command-bar>
+
+<activity-bar>
+
+  <ng-container *ngIf="item">
+
+    <span class="md-activity-bar-title" i18n="Activity Bar Title|Contact@@CONTACT_TITLE">
+      Contact: {{ item.party.displayName }}
+    </span>
+
+  </ng-container>
+
+</activity-bar>
+
+<div class="md-content-container">
+
+  <ng-container *ngIf="!item; then skeleton"> </ng-container>
+
+  <ng-container *ngIf="item">
+
+    <mat-tab-group [color]="'primary'"
+                   (selectedTabChange)="onTabChanged($event)">
+
+      <mat-tab label="Summary">
+
+        <div class="md-grid-container">
+
+          <mat-card>
+
+            <!--
+            <mat-card-header>
+              <mat-card-title>
+                General Information
+              </mat-card-title>
+            </mat-card-header>
+            -->
+
+            <mat-card-content>
+
+              <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
+
+              <dynamic-form autocomplete="off"
+                            className="md-nested-grid-container"
+                            [formGroup]="generalInformationGroup"
+                            [model]="generalInformationModel"
+                            (customEvent)="onCustomEvent($event)">
+              </dynamic-form>
+
+              <!--
+              <p>
+                Form Value: {{ generalInformationGroup.value | json }}
+              </p>
+              -->
+
+            </mat-card-content>
+
+          </mat-card>
+
+          <mat-card>
+
+            <!--
+            <mat-card-header>
+              <mat-card-title>
+                Address Information
+              </mat-card-title>
+            </mat-card-header>
+            -->
+
+            <mat-card-content>
+
+              <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
+
+              <dynamic-form autocomplete="off"
+                            className="md-nested-grid-container"
+                            [formGroup]="addressInformationGroup"
+                            [model]="addressInformationModel">
+              </dynamic-form>
+
+              <!--
+              <p>
+                Form Value: {{ addressInformationGroup.value | json }}
+              </p>
+              -->
+
+            </mat-card-content>
+
+          </mat-card>
+
+        </div>
+
+      </mat-tab>
+
+      <mat-tab label="Details">
+
+        <ng-template matTabContent>
+
+          <div class="md-tab-component-container">
+
+            <!-- See: https://material.angular.io/components/tabs/overview#lazy-loading -->
+            Details tab: I was lazy loaded...
+
+          </div>
+
+        </ng-template>
+
+      </mat-tab>
+
+      <mat-tab label="Related">
+
+        <ng-template matTabContent>
+
+          <div class="md-tab-component-container">
+
+            <contact-related-tab [item]="item">
+            </contact-related-tab>
+
+          </div>
+
+        </ng-template>
+
+      </mat-tab>
+
+      <mat-tab *ngIf="item.electorate" label="Electoral Division">
+
+        <ng-template matTabContent>
+
+          <div class="md-tab-component-container"
+               leaflet
+               [leafletOptions]="mapOptions"
+               (leafletMapReady)="onMapReady($event)">
+          </div>
+
+        </ng-template>
+
+      </mat-tab>
+
+    </mat-tab-group>
+
+  </ng-container>
+
+  <!-- Skeleton template -->
+
+  <ng-template #skeleton>
+
+    <div class="md-spinner-container">
+      <mat-spinner color="accent"></mat-spinner>
+    </div>
+
+  </ng-template>
+
+</div>

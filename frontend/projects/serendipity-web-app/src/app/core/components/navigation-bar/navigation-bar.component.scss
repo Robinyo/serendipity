@@ -1,0 +1,18 @@
+.material-icons.color_white { color: #FFFFFF; }
+
+$toolbar-title-padding: 16px !default;
+
+.navigation-bar-title {
+  margin: 0 $toolbar-title-padding 0 $toolbar-title-padding;
+}
+
+.navigation-bar-spacer {
+  flex: 1 1 auto;
+}
+
+.navigation-items {
+  cursor: pointer;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,51 @@
+// See: constants.ts in Serendipity Components lib
+
+// Bar Misc Bar
+$bar-height-desktop: 56px !default;
+$bar-height-mobile: 48px !default;
+
+// Command Bar
+$command-bar-height-desktop: $bar-height-mobile !default;
+$command-bar-height-mobile: $bar-height-mobile !default;
+
+$command-bar-button-padding: 16px !default;
+$command-bar-button-min-width: 48px !default;
+$command-bar-button-margin-right: 8px !default;
+$command-bar-row-padding: 8px !default;
+
+// Action Bar
+$action-bar-height-desktop: $bar-height-desktop;
+$action-bar-height-mobile: $bar-height-mobile;
+
+// Activity Bar
+$activity-bar-height-desktop: $bar-height-desktop;
+$activity-bar-height-mobile: $bar-height-mobile;
+
+$activity-bar-title-font-size: 1.6em !default;
+$activity-bar-row-padding: 32px !default;
+
+// Table
+$table-margin-desktop: 32px;
+$table-margin-mobile: 0;
+
+$footer-button-min-width: 24px !default;
+
+// Tab
+$component-default-margin: 32px !default;
+
+// Flowable lib
+$process-list-height: calc(56px * 4);
+$process-list-width: 400;
+
+$task-list-width: 320px; // 240px;
+
+/*
+
+$collection-component-footer-button-min-width: 24px !default;
+
+$component-title-margin: 16px !default;
+
+$view-bar-height-desktop: 96px !default;
+$view-bar-height-mobile: 84px !default;
+
+*/

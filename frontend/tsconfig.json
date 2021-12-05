@@ -1,0 +1,76 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2017",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "@app/*": [
+        "projects/serendipity-web-app/src/app/*"
+      ],
+      "@env/*": [
+        "projects/serendipity-web-app/src/environments/*"
+      ],
+      "auth-bff-lib": [
+        "dist/auth-bff-lib/auth-bff-lib",
+        "dist/auth-bff-lib"
+      ],
+      "auth-lib": [
+        "dist/auth-lib/auth-lib",
+        "dist/auth-lib"
+      ],
+      "dynamic-forms-lib": [
+        "dist/dynamic-forms-lib/dynamic-forms-lib",
+        "dist/dynamic-forms-lib"
+      ],
+      "flowable-lib": [
+        "dist/flowable-lib/flowable-lib",
+        "dist/flowable-lib"
+      ],
+      "party-lib": [
+        "dist/party-lib"
+      ],
+      "party-lib/*": [
+        "dist/party-lib/*"
+      ],
+      "serendipity-components-lib": [
+        "dist/serendipity-components-lib"
+      ],
+      "serendipity-components-lib/*": [
+        "dist/serendipity-components-lib/*"
+      ],
+      "utils-lib": [
+        "dist/utils-lib"
+      ],
+      "utils-lib/*": [
+        "dist/utils-lib/*"
+      ],
+      "work-lib": [
+        "dist/work-lib/work-lib",
+        "dist/work-lib"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}

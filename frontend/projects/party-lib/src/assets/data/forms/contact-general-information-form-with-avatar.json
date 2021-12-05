@@ -1,0 +1,123 @@
+[
+
+  {
+    "type": "input",
+    "id": "name.givenName",
+    "label": "Given Name",
+    "appearance": "outline",
+    "autocomplete": "given-name",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a given name"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1",
+    "required": true
+  },
+
+  {
+    "type": "input",
+    "id": "name.middleName",
+    "label": "Middle Name",
+    "appearance": "outline",
+    "autocomplete": "additional-name",
+
+    "gridItemClass": "grid-column-2",
+    "required": false
+  },
+
+  {
+    "type": "image",
+    "id": "photoUrl",
+    "label": "Avatar",
+    "gridItemClass": "grid-column-3-row-1-span-3"
+  },
+
+  {
+    "type": "input",
+    "id": "name.familyName",
+    "label": "Family Name",
+    "appearance": "outline",
+    "autocomplete": "family-name",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a family name"
+      }
+    ],
+
+    "gridItemClass": "grid-column-1-span-2",
+    "required": true
+  },
+
+  {
+    "type": "input",
+    "id": "party.displayName",
+    "label": "Full Name",
+    "appearance": "outline",
+    "autocomplete": "name",
+
+    "gridItemClass": "grid-column-1-span-2"
+  },
+
+  {
+    "type": "input",
+    "id": "name.title",
+    "label": "Title",
+    "appearance": "outline",
+    "autocomplete": "organization-title",
+
+    "gridItemClass": "grid-column-1"
+  },
+
+  {
+    "type": "input",
+    "id": "email",
+    "label": "Email",
+    "appearance": "outline",
+    "autocomplete": "email",
+
+    "validators": [
+      {
+        "name": "email",
+        "args": null,
+        "propertyName": "email",
+        "message": "Please enter a valid email address"
+      }
+    ],
+
+    "gridItemClass": "grid-column-2",
+    "required": false
+  },
+
+  {
+    "type": "input",
+    "id": "organisation.phoneNumber",
+    "label": "Business Phone",
+    "appearance": "outline",
+    "autocomplete": "tel",
+
+    "gridItemClass": "grid-column-3"
+  },
+
+  {
+    "type": "input",
+    "id": "organisation.displayName",
+    "label": "Account Name",
+    "appearance": "outline",
+    "autocomplete": "organization",
+
+    "gridItemClass": "grid-column-1-span-2",
+
+    "suffixIconName": "search"
+  }
+
+]

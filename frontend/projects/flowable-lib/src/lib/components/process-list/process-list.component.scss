@@ -1,0 +1,11 @@
+@import "../../styles";
+
+.process-list-container {
+  column-gap: 0;
+  display: grid;
+  grid-template-columns: $process-list-width auto;
+  height: $process-list-height;
+  margin: 0;
+}
+
+// list-item-active see: sidenav.component-theme.scss

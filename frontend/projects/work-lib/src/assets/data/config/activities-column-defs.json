@@ -1,0 +1,46 @@
+[
+
+  {
+    "type": "string",
+    "name": "type",
+    "displayName": "ACTIVITY TYPE",
+    "routerLink": "",
+    "class": ""
+  },
+  {
+    "type": "string",
+    "name":  "subject",
+    "displayName": "SUBJECT",
+    "routerLink": "id",
+    "class": "anchor"
+  },
+  {
+    "type": "string",
+    "name":  "regarding",
+    "displayName": "REGARDING",
+    "routerLink": "id",
+    "class": "anchor"
+  },
+  {
+    "type": "string",
+    "name": "priority",
+    "displayName": "PRIORITY",
+    "routerLink": "",
+    "class": ""
+  },
+  {
+    "type": "date",
+    "name": "startDate",
+    "displayName": "START DATE",
+    "routerLink": "",
+    "class": ""
+  },
+  {
+    "type": "date",
+    "name": "dueDate",
+    "displayName": "DUE DATE",
+    "routerLink": "",
+    "class": ""
+  }
+
+]

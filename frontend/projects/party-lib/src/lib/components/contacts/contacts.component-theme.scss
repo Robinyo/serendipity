@@ -1,0 +1,23 @@
+/*
+
+@use 'sass:map';
+@use '~@angular/material' as mat;
+
+@mixin typography($theme) {
+
+  .activity-bar-title {
+    font-size: 1.6em;
+  }
+
+}
+
+@mixin theme($theme) {
+
+  $typography-config: mat.get-typography-config($theme);
+  @if $typography-config != null {
+    @include typography($theme);
+  }
+
+}
+
+*/

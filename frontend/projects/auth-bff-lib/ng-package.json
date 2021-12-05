@@ -1,0 +1,12 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/auth-bff-lib",
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "auth-lib": "auth-lib",
+      "ngx-cookie-service": "ngx-cookie-service",
+      "utils-lib": "utils-lib"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+@import "../../../../../../projects/utils-lib/src/lib/angular-material/mat-variables";
+@import "../../../../../../projects/utils-lib/src/lib/angular-material/variables";
+
+.activity-bar {
+
+  height: $activity-bar-height-desktop !important;
+  min-height: $activity-bar-height-desktop !important;
+
+  @media ($mat-xsmall) {
+    height: $activity-bar-height-mobile !important;
+    min-height: $activity-bar-height-mobile !important;
+  }
+
+}
+
+.activity-bar-row {
+
+  height: $activity-bar-height-desktop !important;
+  min-height: $activity-bar-height-desktop !important;
+
+  padding-left: $activity-bar-row-padding;
+  padding-right: $activity-bar-row-padding;
+  justify-content: center;
+
+  background: whitesmoke;
+
+  @media ($mat-xsmall) {
+    height: $activity-bar-height-mobile !important;
+    min-height: $activity-bar-height-mobile !important;
+  }
+
+}

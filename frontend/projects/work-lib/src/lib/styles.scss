@@ -1,0 +1,90 @@
+@import "../../../../projects/utils-lib/src/lib/angular-material/mat-variables";
+@import "../../../../projects/utils-lib/src/lib/angular-material/variables";
+
+.map-container {
+
+  margin-top: 32px;
+
+  // $mat-toolbar-height-desktop + $crm-command-bar-height-desktop + $crm-view-bar-height-desktop
+  // 64 + 56 + 96 + 32 + 16
+  // height: calc(100vh - 248px);
+  height: calc(100vh - 328px);  // 340
+  // width: 100%;
+
+  @media ($mat-xsmall) {
+    // $mat-toolbar-height-mobile + $crm-command-bar-height-mobile + $crm-view-bar-height-mobile
+    // 56 + 0 + 84 + 0 + 56
+    // height: calc(100vh - 140px);
+    height: calc(100vh - 216px);
+  }
+
+}
+
+// Table
+
+.mat-table {
+  // background: white;
+  width: 100%;
+}
+
+.header-toolbar {
+  background: #fafafa;
+}
+.header-title {
+  font-weight: bold;
+  padding: 0 16px 0 40px;
+}
+.header-icon {
+  margin: 0 12px 0 12px;
+}
+
+th.mat-header-cell {
+  padding-right: 16px;
+  // text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.header-cell-id {
+  text-align: right;
+}
+
+td.mat-cell {
+  padding-right: 16px;
+}
+
+/*
+
+.mat-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+*/
+
+// Tab
+
+.mat-tab-group {
+  margin-left: $component-default-margin;
+  margin-right: $component-default-margin;
+}
+
+// Card
+
+.mat-card {
+  padding: 0;
+  margin-top: $component-default-margin;
+}
+
+.mat-card-header {
+  background: rgba(0, 0, 0, 0.04);
+  padding-top: 8px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mat-card-content {
+  padding: 16px;
+}

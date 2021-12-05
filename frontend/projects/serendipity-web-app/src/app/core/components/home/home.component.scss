@@ -1,0 +1,56 @@
+// Theming Angular Material components
+// For more information: https://material.angular.io/guide/theming-your-components
+// To change this file to participate in Angular Material's theming system, we split the styles into two files, with
+// the color and typography styles moved into mixins. By convention, the new file name ends with -theme.
+
+$font-family: "Open Sans", sans-serif;
+
+$container-height-offset: 160px;
+$container-width-offset: 96px;
+$container-margin: 32px !default;
+$container-padding: 20px !default;
+
+$mat-icon-padding: 64px !default;
+$mat-icon-size: 320px !default;
+
+$welcome-title-font-size: 3.4em !important;
+$welcome-title-font-weight: bold !important;
+
+$welcome-text-font-size: 1.4em !important;
+$welcome-text-padding: 32px !default;
+
+.container {
+  height: calc(100vh - #{$container-height-offset});
+  width: calc(100% - #{$container-width-offset});
+  margin: $container-margin;
+  padding: $container-padding;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+}
+
+.container {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.mat-icon {
+  padding: $mat-icon-padding;
+  height: $mat-icon-size;
+  width: $mat-icon-size;
+}
+
+.welcome-title {
+  font-family: $font-family;
+  font-size: $welcome-title-font-size;
+  font-weight: $welcome-title-font-weight;
+}
+
+.welcome-text {
+  padding-right: $welcome-text-padding;
+}
+
+.welcome-text {
+  font-family: $font-family;
+  font-size: $welcome-text-font-size;
+}

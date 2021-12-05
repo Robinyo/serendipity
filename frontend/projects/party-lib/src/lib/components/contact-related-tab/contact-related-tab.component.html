@@ -1,0 +1,55 @@
+<mat-accordion multi>
+
+  <!-- Relationships -->
+
+  <mat-expansion-panel expanded>
+
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Relationships
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <ng-template matExpansionPanelContent>
+
+      <contact-relationship-list [item]="item" (selectEvent)="onSelectEvent($event)">
+      </contact-relationship-list>
+
+      <mat-action-row>
+
+        <button mat-raised-button
+                color="accent"
+                #addButton
+                [disabled]="disableAddButton"
+                (keydown.arrowright)="removeButton.focus()"
+                (click)="onAdd()">
+          {{ addButtonLabel }}
+        </button>
+
+        <button mat-raised-button
+                color="accent"
+                #removeButton
+                [disabled]="disableRemoveButton"
+                (click)="onRemove()">
+          {{ removeButtonLabel }}
+        </button>
+
+      </mat-action-row>
+
+    </ng-template>
+
+  </mat-expansion-panel>
+
+  <!-- Connections -->
+
+  <mat-expansion-panel disabled>
+
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Connections
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+  </mat-expansion-panel>
+
+</mat-accordion>

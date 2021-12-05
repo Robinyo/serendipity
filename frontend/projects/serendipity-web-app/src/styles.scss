@@ -1,0 +1,242 @@
+@use '~@angular/material' as mat;
+
+@import "../../../projects/utils-lib/src/lib/angular-material/mat-variables";
+@import "../../../projects/utils-lib/src/lib/angular-material/variables";
+
+// If you are using the Angular CLI, support for compiling Sass to css is built-in; you only have to add a new entry to
+// the "styles" list in angular.json pointing to the theme file, for example:
+//
+//   "styles": [
+//     "src/styles.scss",
+//     "src/themes/light-theme/theme.scss"
+//   ]
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  margin: 0;
+}
+
+// top, right, bottom, and left
+
+// ------------------------------------------------------------------------------------------------------------------ //
+
+// https://material.angular.io/guide/customizing-component-styles
+// You should always apply an application-specific prefix to global CSS classes to avoid naming collisions.
+// e.g., md (Material Design)
+
+// Layout containers
+
+.md-activities-container {
+  display: grid;
+  grid-template-columns: $task-list-width auto;
+  column-gap: 32px;
+  margin-top: 0;
+  margin-left: $component-default-margin;
+  margin-bottom: $component-default-margin;
+  margin-right: $component-default-margin;
+}
+
+.md-content-container {
+  // $toolbar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop
+  height: calc(100vh - (64px + 48px + 56px));
+  width: 100%;
+
+  @media ($mat-xsmall) {
+    // $toolbar-height-mobile + $command-bar-height-mobile + $activity-bar-height-mobile
+    height: calc(100vh - (56px + 48px + 48px));
+  }
+
+  background: whitesmoke;
+}
+
+.md-grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 32px;
+  row-gap: 1em;
+
+  margin-top: 0;
+  // margin-left: $component-default-margin;
+  margin-bottom: $component-default-margin;
+  // margin-right: $component-default-margin;
+}
+
+.md-nested-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 16px;  // 32px;
+  row-gap: 1em;
+}
+
+.md-tab-component-container {
+
+  margin-top: $component-default-margin;
+  margin-bottom: $component-default-margin;
+
+  // $toolbar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop + mat-tab-height
+  height: calc(100vh - (64px + 48px + 56px + 48px));
+
+  @media ($mat-xsmall) {
+    // $toolbar-height-mobile + $command-bar-height-mobile + $activity-bar-height-mobile + mat-tab-height
+    height: calc(100vh - (56px + 48px + 48px + 48px));
+  }
+
+}
+
+.md-table-container {
+  // $toolbar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop
+  height: calc(100vh - (64px + 48px + 56px));
+
+  margin-left: $table-margin-desktop;
+  margin-right: $table-margin-desktop;
+  overflow: auto;
+
+  @media ($mat-xsmall) {
+    // $toolbar-height-mobile + $command-bar-height-mobile + $activity-bar-height-mobile
+    height: calc(100vh - (56px + 48px + 48px));
+
+    margin-left: $table-margin-mobile;
+    margin-right: $table-margin-mobile;
+  }
+}
+
+.md-task-container {
+  background: white;
+  border: 1px solid lightgray;
+  padding-top: 0;
+  margin-top: 0;
+
+  height: calc(100vh - 200px);
+
+  @media ($mat-xsmall) {
+    height: calc(100vh - 180px);
+  }
+
+}
+
+.md-task-list-container {
+  border: 1px solid lightgray;
+}
+
+.md-spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // $toolbar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop
+  height: calc(100vh - (64px + 48px + 56px));
+  width: 100%;
+
+  @media ($mat-xsmall) {
+    // $toolbar-height-mobile + $command-bar-height-mobile + $activity-bar-height-mobile
+    height: calc(100vh - (56px + 48px + 48px));
+  }
+}
+
+// Command Bar
+
+.md-default-command-bar-button {
+  // background-color: rgba(0, 0, 0, 0.12) !important;
+  margin-right: $command-bar-button-margin-right !important;
+  min-width: $command-bar-button-min-width !important;
+  padding: 0 $command-bar-button-padding !important;
+}
+
+.md-command-bar-button {
+  // background-color: darkgrey !important;
+  // color: white !important;
+  margin-right: $command-bar-button-margin-right !important;
+  min-width: $command-bar-button-min-width !important;
+  padding: 0 $command-bar-button-padding !important;
+}
+
+// Action Bar
+
+.md-action-bar-row {
+  height: $action-bar-height-desktop !important;
+  min-height: $action-bar-height-desktop !important;
+
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.md-action-bar-button {
+
+  margin-left: 8px;
+  min-width: 48px;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @media ($mat-xsmall) {
+    min-width: 48px;
+  }
+
+}
+
+// Activity Bar
+
+.md-activity-bar-title {
+  font-size: $activity-bar-title-font-size;
+}
+
+// Snack Bar
+
+.md-snack-bar {
+  text-align: center;
+}
+
+//
+// Dynamic Reactive Forms
+//
+
+.md-prefix-icon {
+  cursor: pointer;
+}
+
+.md-suffix-icon {
+  cursor: pointer;
+}
+
+.grid-column-1 {
+  grid-column: 1;
+}
+
+.grid-column-1-span-2 {
+  grid-column: 1 / span 2;
+}
+
+.grid-column-2 {
+  grid-column: 2;
+}
+
+.grid-column-2-span-2 {
+  grid-column: 2 / span 2;
+  // min-width: 180px;
+}
+
+.grid-column-3 {
+  grid-column: 3;
+}
+
+.grid-column-3-row-1-span-2 {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+}
+
+.grid-column-3-row-1-span-3 {
+  grid-column: 3;
+  grid-row: 1 / span 3;
+}
+
+.grid-column-4 {
+  grid-column: 4;
+}
+
+.grid-row-2 {
+  grid-row: 2;
+}

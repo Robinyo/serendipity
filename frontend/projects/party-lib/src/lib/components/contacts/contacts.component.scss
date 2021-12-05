@@ -1,0 +1,23 @@
+@import "../../styles";
+
+// Columns
+
+.mat-column-party-displayName {
+  width: $display-name-column-width;
+  max-width: $display-name-column-width;
+}
+
+.mat-column-email {
+  width: $email-column-width;
+  max-width: $email-column-width;
+}
+
+.mat-column-organisation-displayName {
+  width: $display-name-column-width;
+  max-width: $display-name-column-width;
+}
+
+.mat-column-organisation-phoneNumber {
+  width: $phone-number-column-width;
+  max-width: $phone-number-column-width;
+}

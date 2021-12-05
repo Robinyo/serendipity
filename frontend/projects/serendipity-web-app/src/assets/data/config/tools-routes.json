@@ -1,0 +1,10 @@
+[
+
+  {
+    "id":    "REPORTS_LIST_ITEM",
+    "label": "Reports",
+    "icon":  "analytics",
+    "route": "reports"
+  }
+
+]
