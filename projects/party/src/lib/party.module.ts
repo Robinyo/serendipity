@@ -13,8 +13,7 @@ import { DashboardModule } from 'dashboard';
 import { DynamicFormsModule } from 'dynamic-forms';
 import { FlowableModule } from 'flowable';
 import { SerendipityComponentsModule } from 'serendipity-components';
-import { UtilsModule, LoggerService } from 'utils';
-import { AngularMaterialModule } from 'utils';
+import { AngularMaterialModule, LoggerService, UtilsModule } from 'utils';
 
 import { AccountComponent } from './components/account/account.component';
 import { AccountsComponent } from './components/accounts/accounts.component';

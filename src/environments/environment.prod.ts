@@ -1,8 +1,8 @@
-import { enableProdMode } from '@angular/core';
+// import { enableProdMode } from '@angular/core';
 
 import { Environment } from './models';
 
-enableProdMode();
+// enableProdMode();
 
 export const environment: Environment = {
 
