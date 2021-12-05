@@ -292,13 +292,19 @@ export class ContactComponent extends ItemComponent<Contact> {
 
     this.logger.info('ContactComponent: onCustomEvent()');
 
-    // this.dialogService.openAlert({
-    //   title: 'Alert',
-    //   message: JSON.stringify(event),
-    //   closeButton: 'CLOSE'
-    // });
+    if (event.id === 'organisation.displayName' && event.name === 'search') {
 
-    this.openLookupAccountDialog();
+      this.openLookupAccountDialog();
+      
+    } else {
+
+      this.dialogService.openAlert({
+        title: 'Alert',
+        message: JSON.stringify(event),
+        closeButton: 'CLOSE'
+      });
+
+    }
 
   }
 
