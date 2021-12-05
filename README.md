@@ -38,7 +38,7 @@
 Clone the project by running the following command:
 
 ```
-git clone https://github.com/Robinyo/serendipity-2.0
+git clone https://github.com/Robinyo/serendipity
 ``` 
 
 ### Docker
