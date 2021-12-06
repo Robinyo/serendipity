@@ -20,6 +20,7 @@ export class ElectoralDivisionsService extends CollectionService {
 
     const queryParams = '?name=' + name;
 
+    // @ts-ignore
     return this.httpClient.get<ElectoralDivision>(this.url + 'search/findByName' + queryParams).toPromise();
   }
 

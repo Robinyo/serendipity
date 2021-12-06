@@ -295,7 +295,7 @@ export class ContactComponent extends ItemComponent<Contact> {
     if (event.id === 'organisation.displayName' && event.name === 'search') {
 
       this.openLookupAccountDialog();
-      
+
     } else {
 
       this.dialogService.openAlert({

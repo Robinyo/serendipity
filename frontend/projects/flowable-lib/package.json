@@ -2,12 +2,12 @@
   "name": "flowable-lib",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/animations": "~12.2.0",
-    "@angular/common": "^12.2.0",
-    "@angular/core": "^12.2.0",
-    "@angular/cdk": "^12.2.7",
+    "@angular/animations": "^13.0.0",
+    "@angular/cdk": "^13.0.0",
+    "@angular/common": "^13.0.0",
+    "@angular/core": "^13.0.0",
     "@angular/flex-layout": "^12.0.0-beta.35",
-    "@angular/material": "^12.2.7"
+    "@angular/material": "^13.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

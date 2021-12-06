@@ -41,6 +41,7 @@ export class DynamicFormService {
   }
 
   public getFormMetadata(formId: string): Promise<DynamicFormControlModel[]> {
+    // @ts-ignore
     return this.httpClient.get<DynamicFormControlModel[]>(this.uriPrefix + formId + this.uriSuffix).toPromise();
   }
 
