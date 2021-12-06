@@ -169,6 +169,10 @@ export class AccountComponent extends ItemComponent<Account> {
     this.router.navigate([ACCOUNTS]);
   }
 
+  //
+  // Dynamic Form events
+  //
+
   public onCustomEvent(event: DynamicFormControlCustomEvent) {
 
     this.logger.info('AccountComponent: onCustomEvent()');
