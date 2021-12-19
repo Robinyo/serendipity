@@ -33,6 +33,7 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-secret}
 
   serendipity-identity-server:
+    # uncomment the following line to use the project's Docker Hub image
     # image: robinyo/serendipity-identity-server:latest
     image: serendipity-identity-server:latest
     container_name: serendipity-identity-server
@@ -62,6 +63,7 @@ services:
       - postgres
 
   serendipity-party-service:
+    # uncomment the following line to use the project's Docker Hub image
     # image: robinyo/serendipity-party-service:latest
     image: serendipity-party-service:latest
     container_name: serendipity-party-service
@@ -76,6 +78,7 @@ services:
       - postgres
 
   serendipity-work-service:
+    # uncomment the following line to use the project's Docker Hub image
     # image: robinyo/serendipity-work-service:latest
     image: serendipity-work-service:latest
     container_name: serendipity-work-service
@@ -90,6 +93,7 @@ services:
       - postgres
 
   serendipity:
+    # uncomment the following line to use the project's Docker Hub image
     # image: robinyo/serendipity:latest
     image: serendipity:latest
     container_name: serendipity
