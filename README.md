@@ -2,7 +2,7 @@
   <img src="./serendipity-logo.svg" alt="Serendipity" width="400"/>
 </p>
 
-<h1 align="center">Serendipity 2.0</h1>
+<h1 align="center">Serendipity 3.0</h1>
 
 <p align="center">
   <b>Serendipity is an open-source Customer Engagement Platform.</b></br>

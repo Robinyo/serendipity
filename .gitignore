@@ -21,12 +21,10 @@
 .DS_Store
 Thumbs.db
 
+/archive
+/architecture
 /temp
+
 temp.txt
 
 TODO.txt
-
-/archive
-/aaa
-
-/architecture
