@@ -5,7 +5,7 @@
 <h1 align="center">Serendipity 2.0</h1>
 
 <p align="center">
-  <Serendipity is an open-source Customer Engagement Platform.</br>
+  Serendipity is an open-source Customer Engagement Platform.</br>
   You can use it to transform your organisation by connecting your customers, products, people and operations.</br>
 </p>
 
