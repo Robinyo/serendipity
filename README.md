@@ -9,9 +9,7 @@
   You can use it to transform your organisation by connecting your customers, products, people and operations.</br>
 </p>
 
-<p align="center">
-  <b>Take a look at the Serendipity 3.0 feature branch.</b></br>
-</p>
+<h1 align="center">Take a look at the Serendipity 3.0 feature branch.</h1>
 
 ![divider](./divider.png)
 
