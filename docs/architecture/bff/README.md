@@ -2,8 +2,8 @@
 
 ### Introduction
 
-The Backend for Frontend (BFF) design pattern is an architectural approach that a browser-based application can utilise 
-to handle all of its authentication and authorisation responsibilities and API interactions, for example:
+The Backend for Frontend (BFF) design pattern is an architectural approach that a browser-based application can use to 
+handle all of its authentication and authorisation responsibilities and API interactions, for example:
 
 - The BFF interacts with an OAuth 2.0 Authorization Server as a confidential OAuth 2.0 Client.
 - The BFF manages OAuth 2.0 access and refresh tokens in the context of a cookie-based session, avoiding the direct exposure of any tokens to the browser-based application.
