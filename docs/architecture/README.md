@@ -1,6 +1,6 @@
 <h1 align="center">Documentation</h1>
 
 * Architecture Documentation
-  * [BFF](./bff/README.md)
-  * [PWA](./pwa/README.md)
+  * [Backend for Frontend](./bff/README.md)
+  * [Progressive Web App](./pwa/README.md)
   * [Static Content](./static-content/README.md)
