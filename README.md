@@ -23,10 +23,10 @@
 
 Serendipity is composed of the following components:
 
-- **Progressive Web App**
-- **Backend for Frontend**
-- **Identity Service**
-- **Microservices**
+- Progressive Web App
+- [Backend for Frontend](./docs/architecture/bff/README.md)
+- Identity Service
+- Microservices
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/context-diagram.png">
