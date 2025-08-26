@@ -15,8 +15,8 @@
 
 Serendipity is composed of the following components:
 
-- **Progressive Web App (PWA)**
-- **Backend for Frontend (BFF)**
+- **Progressive Web App**
+- **Backend for Frontend**
 - **Identity Service**
 - **Microservices**
 
