@@ -14,7 +14,7 @@ It also discusses how different architectural approaches can help address some o
 
 ### Application Architecture
 
-The Progressive Web App (PWA) is [loaded](.././static-content/README.md) and runs in the web browser.
+The Progressive Web App ([PWA](.././pwa/README.md)) is [loaded](.././static-content/README.md) and runs in the web browser.
 
 The PWA checks with the BFF if there is an active session by calling a "check session" API endpoint.
 
