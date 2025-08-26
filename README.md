@@ -10,11 +10,11 @@
 </p>
 
 <p align="center">
-  TLS is used to encrypt <b>data in transit</b> and AES to encrypt <b>data at rest</b>.
+  OpenID Connect is used for authentication and OAuth 2.0 for authorisation. <br>
 </p>
 
 <p align="center">
-  OpenID Connect is used for authentication and OAuth 2.0 for authorisation. <br>
+  TLS is used to encrypt <b>data in transit</b> and AES to encrypt <b>data at rest</b>.
 </p>
 
 ![divider](./divider.png)
@@ -27,10 +27,6 @@ Serendipity is composed of the following components:
 - [Backend for Frontend](./docs/architecture/bff/README.md)
 - Identity Service
 - Microservices
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/context-diagram.png">
-</p>
 
 ## ❯ Documentation
 
