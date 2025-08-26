@@ -16,7 +16,7 @@ It also discusses how different architectural approaches can help address some o
 
 The Progressive Web App ([PWA](.././pwa/README.md)) is [loaded](.././static-content/README.md) and runs in the web browser.
 
-The PWA checks with the BFF if there is an active session by calling a "check session" API endpoint.
+The PWA checks with the BFF to see if there is an active session by calling a "check session" API endpoint.
 
 When no active session is found, the PWA triggers a navigation to the BFF to initiate the Authorization Code flow with 
 the PKCE extension, to which the BFF responds by redirecting the browser to the authorization endpoint. 
