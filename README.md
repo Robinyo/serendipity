@@ -88,18 +88,6 @@ Serendipity is composed of the following components:
 * Google Group: [Keycloak User](https://groups.google.com/g/keycloak-user)
 * Google Group: [Keycloak Dev](https://groups.google.com/g/keycloak-dev)
 
-### APISIX
-
-* APISIX: [Documentation](https://apisix.apache.org/docs/)
-* APISIX docs: [Deployment modes](https://apisix.apache.org/docs/apisix/deployment-modes/#standalone)
-* APISIX docs: [SSL Protocol](https://apisix.apache.org/docs/apisix/ssl-protocol/)
-* APISIX docs: [Certificate](https://apisix.apache.org/docs/apisix/certificate/)
-* APISIX docs: [openid-connect plugin](https://apisix.apache.org/docs/apisix/plugins/openid-connect/)
-* APISIX docs: [authz-keycloak plugin](https://apisix.apache.org/docs/apisix/plugins/authz-keycloak/)
-* API7 docs: [authz-keycloak plugin](https://docs.api7.ai/hub/authz-keycloak)
-* APISIX docs: [Code Samples](https://apisix.apache.org/docs/general/code-samples/)
-
 ### Nginx
 
 * Nginx docs: [NGINX SSL Termination](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/)
-* Nginx docs: [Authentication Based on Subrequest Result](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-subrequest-authentication/)
