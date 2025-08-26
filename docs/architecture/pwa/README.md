@@ -9,4 +9,6 @@ home screen.
 Built with web technologies like HTML, CSS, and JavaScript, PWAs run across all devices and platforms from a single 
 codebase, adapting to device capabilities to provide a customized, reliable, and engaging experience.
 
-For more information: [web.dev](https://web.dev/explore/progressive-web-apps)
+For more information:
+- [web.dev](https://web.dev/explore/progressive-web-apps)
+- [mdn](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)
