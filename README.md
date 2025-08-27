@@ -31,15 +31,15 @@ Serendipity is composed of the following components:
 ## ❯ Documentation
 
 * Developer Documentation
-    * [Quick Start Guide](./docs/developer/quick-start-guide/README.md)
-    * [mkcert](./docs/developer/mkcert/README.md)
+  * [Quick Start Guide](./docs/developer/quick-start-guide/README.md)
+  * [Build Management](./developer/build-management/README.md)
+  * [mkcert](./docs/developer/mkcert/README.md)
 * Administrator Documentation
-    * [Working with APISIX](./docs/administrator/apisix/README.md)
-    * [Working with Docker and Docker Compose](./docs/administrator/docker/README.md)
-    * [Working with Keycloak](./docs/administrator/keycloak/README.md)
-    * [Working with PostgreSQL](./docs/administrator/postgres/README.md)
-    * [Working with pgAdmin](./docs/administrator/pgadmin/README.md)
-    * [Working with the Percona Distribution for PostgreSQL](./docs/administrator/percona-distribution-for-postgresql/README.md)
+  * [Working with Docker and Docker Compose](./docs/administrator/docker/README.md)
+  * [Working with Keycloak](./docs/administrator/keycloak/README.md)
+  * [Working with PostgreSQL](./docs/administrator/postgres/README.md)
+  * [Working with pgAdmin](./docs/administrator/pgadmin/README.md)
+  * [Working with the Percona Distribution for PostgreSQL](./docs/administrator/percona-distribution-for-postgresql/README.md)
 
 ![divider](./divider.png)
 
