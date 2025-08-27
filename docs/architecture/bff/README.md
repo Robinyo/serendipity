@@ -9,12 +9,15 @@ handle all of its authentication and authorisation responsibilities and API inte
 - The BFF manages OAuth 2.0 access and refresh tokens in the context of a cookie-based session, avoiding the direct exposure of any tokens to the browser-based application.
 - The BFF forwards all requests to a OAuth 2.0 Resource Server, augmenting them with the correct access token before forwarding them to the resource server.
 
-The [OAuth 2.0 for Browser-Based Applications](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-browser-based-apps) specification outlines the threats, attack consequences, security considerations and best practices that must be taken into account when developing browser-based applications. 
-It also discusses how different architectural approaches can help address some of these challenges.
+The [OAuth 2.0 for Browser-Based Applications](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-browser-based-apps) 
+specification outlines the threats, attack consequences, security considerations and best practices that must be taken 
+into account when developing browser-based applications. It also discusses how different architectural approaches can 
+help address some of these challenges.
 
 ### Application Architecture
 
-The Progressive Web App ([PWA](.././pwa/README.md)) is [loaded](.././static-content/README.md) and runs in the web browser (user agent).
+A user launches Serendipity's Progressive Web App ([PWA](.././pwa/README.md)) which is [loaded](.././static-content/README.md) 
+and then runs in the web browser (user agent).
 
 The PWA checks with the BFF to see if there is an active session by calling a "check session" API endpoint.
 
@@ -61,14 +64,12 @@ Java: 21
 
 Dependencies:
 
-Gateway (Spring Cloud Routing)
-Provides a simple, yet effective way to route to APIs in Servlet-based applications. Provides cross-cutting concerns to those APIs such as security, monitoring/metrics, and resiliency.
+Gateway (Spring Cloud Routing): Provides a simple, yet effective way to route to APIs in Servlet-based applications. 
+Provides cross-cutting concerns to those APIs such as security, monitoring/metrics, and resiliency.
 
-OAuth2 Client (Security)
-Spring Boot integration for Spring Security's OAuth2/OpenID Connect client features.
+OAuth2 Client (Security): Spring Boot integration for Spring Security's OAuth2/OpenID Connect client features.
 
-Spring Boot Actuator (Ops)
-Supports built in (or custom) endpoints that let you monitor and manage your application - such as application health, metrics, sessions, etc.
+Spring Boot Actuator (Ops): Supports built in (or custom) endpoints that let you monitor and manage your application - such as application health, metrics, sessions, etc.
 
 
 
