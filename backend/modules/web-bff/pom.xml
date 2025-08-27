@@ -21,14 +21,10 @@
 		<!--
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
+			<artifactId>spring-boot-starter-oauth2-client</artifactId>
 		</dependency>
 		-->
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-client</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-gateway-server-webmvc</artifactId>
@@ -62,9 +58,6 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<!-- Package as an executable jar -->
-
-	<!--
 	<build>
 		<plugins>
 
@@ -81,7 +74,7 @@
 							<outputDirectory>./target/classes/static/</outputDirectory>
 							<resources>
 								<resource>
-									<directory>../../../frontend/dist/serendipity-web-app</directory>
+									<directory>../../../frontend/dist/serendipity-pwa/browser</directory>
 								</resource>
 							</resources>
 						</configuration>
@@ -103,6 +96,5 @@
 
 		</plugins>
 	</build>
-    -->
 
 </project>
