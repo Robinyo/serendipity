@@ -163,68 +163,6 @@ docker container logs serendipity-work-service
 docker container logs serendipity
 ```
 
-#### Docker Hub
-
-To tag the images and push them to Docker Hub:
-
-```
-docker tag serendipity-identity-server robinyo/serendipity-identity-server:latest
-docker tag serendipity robinyo/serendipity:latest
-docker tag serendipity-party-service robinyo/serendipity-party-service:latest
-docker tag serendipity-work-service robinyo/serendipity-work-service:latest
-
-docker push robinyo/serendipity-identity-server:latest
-docker push robinyo/serendipity:latest
-docker push robinyo/serendipity-party-service:latest
-docker push robinyo/serendipity-work-service:latest
-```
-
-#### Kubernetes
-
-To serve the applications (from the /backend directory):
-
-```
-# Create a dedicated namespace for our deployments
-kubectl create ns serendipity
-
-# Deploy the Serendipty Identity Service
-kubectl apply -n serendipity -f serendipity-identity-server.yaml
-
-# Deploy the Serendipty PWA and BFF
-kubectl apply -n serendipity -f serendipity.yaml
-```
-
-The containers may take a minute or two to startup.
-
-Navigate to: http://127.0.0.1:30001
-
-To list all the services in the 'serendipity' namespace:
-
-```
-kubectl get pods --namespace=serendipity
-```
-
-You should see output like:
-
-```
-NAME                                           READY   STATUS    RESTARTS   AGE
-serendipity-69dbb67c9b-w8v7t                   1/1     Running   0          48m
-serendipity-identity-server-75d8d4b79c-qqxdv   1/1     Running   0          73m
-```
-
-To check the logs:
-
-```
-kubectl logs <name> --namespace=serendipity
-```
-
-You can stop the containers using the following command:
-
-```
-kubectl delete -n serendipity -f serendipity-identity-server.yaml
-kubectl delete -n serendipity -f serendipity.yaml
-```
-
 ### References
 
 * Apache docs: [Maven](https://maven.apache.org/guides/index.html)

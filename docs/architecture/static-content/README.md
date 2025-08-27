@@ -11,21 +11,22 @@ For example:
 
 ```
  ├── /serendipity
-     └── /modules
-        └── /web-bff
-            └── /src
-                └── /main
-                    └── /java
-                    └── /resources
-                        └── /static
-                            ├── 3rdpartylicenses.txt
-                            ├── favicon.ico
-                            ├── index.html
-                            ├── main-2STXNAPZ.js
-                            ├── polyfills-EQXJKH7W.js
-                            ├── prerendered-routes.json
-                            ├── styles-5INURTSO.css
-                └── /test
+     └── /backend 
+         └── /modules
+            └── /web-bff
+                └── /src
+                    └── /main
+                        └── /java
+                        └── /resources
+                            └── /static
+                                ├── 3rdpartylicenses.txt
+                                ├── favicon.ico
+                                ├── index.html
+                                ├── main-2STXNAPZ.js
+                                ├── polyfills-EQXJKH7W.js
+                                ├── prerendered-routes.json
+                                ├── styles-5INURTSO.css
+                    └── /test
 
 ```
 
@@ -71,20 +72,21 @@ For example:
 
 ```
  ├── /serendipity
-     └── /modules
-        └── /web-bff        
-            └── /src
-                └── /main
-                    └── /java
-                    └── /resources
-                    └── /webapp
-                        └── /app
-                        └── /environments
-                        ├── favicon.ico
-                        ├── index.html
-                        ├── main.ts
-                        ├── styles.scss                        
-                └── /test
+     └── /backend 
+         └── /modules
+            └── /web-bff        
+                └── /src
+                    └── /main
+                        └── /java
+                        └── /resources
+                        └── /webapp
+                            └── /app
+                            └── /environments
+                            ├── favicon.ico
+                            ├── index.html
+                            ├── main.ts
+                            ├── styles.scss                        
+                    └── /test
 ```
 
 Spring Boot will ignore the `src/main/webapp` directory if your application is packaged as a fat (aka uber) jar.
