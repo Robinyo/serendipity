@@ -14,22 +14,74 @@ It also discusses how different architectural approaches can help address some o
 
 ### Application Architecture
 
-The Progressive Web App ([PWA](.././pwa/README.md)) is [loaded](.././static-content/README.md) and runs in the web browser.
+The Progressive Web App ([PWA](.././pwa/README.md)) is [loaded](.././static-content/README.md) and runs in the web browser (user agent).
 
 The PWA checks with the BFF to see if there is an active session by calling a "check session" API endpoint.
 
 When no active session is found, the PWA triggers a navigation to the BFF to initiate the Authorization Code flow with 
 the PKCE extension, to which the BFF responds by redirecting the browser to the authorization endpoint. 
 
-When the user is redirected back, the browser delivers the authorization code to the BFF, where the BFF can then 
-exchange it for tokens at the token endpoint using its client credentials and PKCE code verifier.
+When the user is redirected back, the browser delivers the authorization code to the BFF, the BFF can then exchange it 
+for tokens at the token endpoint using its client credentials and PKCE code verifier.
 
 The BFF associates the obtained tokens with the user's session and sets a cookie in the response to keep track of this 
 session. At this point, the redirect-based Authorization Code flow has been completed, so the BFF can hand control back 
 to the PWA.
 
 When the PWA wants to make a request to the resource server, it sends a request to the corresponding endpoint on the BFF. 
-This request includes a cookie, allowing the BFF to obtain the proper tokens for this user's session. The BFF removes 
-the cookie from the request, attaches the user's access token to the request, and forwards it to the actual resource server. 
+This request includes a cookie, allowing the BFF to obtain the proper tokens for this user's session. The BFF removes the 
+cookie from the request, attaches the user's access token to the request, and forwards it to the actual resource server. 
 
 The Backend for Frontend then forwards the response back to the Progressive Web App.
+
+#### Implementation
+
+We’ll use Spring's [Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) to implement the Backend for Frontend design pattern.
+
+Spring Cloud Gateway Server Web MVC can leverage lightweight threads (introduced in Java 21), to enhance its scalability and performance.
+
+#### Spring Initializr
+
+We'll bootstrap the BFF by using [Spring Initializr](https://start.spring.io/).
+
+For example:
+
+```
+Project: Maven
+Language: Java
+Spring Boot: 3.5.5
+Group: org.serendipity
+Artifact: web-bff
+Name: Serendipity Web BFF
+Description: The Backend for Frontend (BFF) for the Progressive Web App (PWA).
+Package name: org.serendipity.webbff
+Packaging: Jar
+Java: 21
+```
+
+Dependencies:
+
+Gateway (Spring Cloud Routing)
+Provides a simple, yet effective way to route to APIs in Servlet-based applications. Provides cross-cutting concerns to those APIs such as security, monitoring/metrics, and resiliency.
+
+OAuth2 Client (Security)
+Spring Boot integration for Spring Security's OAuth2/OpenID Connect client features.
+
+Spring Boot Actuator (Ops)
+Supports built in (or custom) endpoints that let you monitor and manage your application - such as application health, metrics, sessions, etc.
+
+
+
+
+
+#### Application Properties
+
+Convert `application.properties` to yaml.
+
+
+
+
+
+### References
+
+* Spring Cloud Gateway: [Server MVC](https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway-server-mvc.html)
