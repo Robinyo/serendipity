@@ -2,6 +2,7 @@
 
 * Developer Documentation
   * [Quick Start Guide](./developer/quick-start-guide/README.md)
+  * [Build Management](./developer/build-management/README.md)
   * [mkcert](./docs/developer/mkcert/README.md)
 * Administrator Documentation
   * [Working with Docker and Docker Compose](./administrator/docker/README.md)
