@@ -5,12 +5,15 @@
 
 	<artifactId>web-bff</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
 	<name>Serendipity Web BFF</name>
 
 	<parent>
 		<groupId>org.serendipity</groupId>
 		<artifactId>serendipity-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../../pom.xml</relativePath>
 	</parent>
 
 	<dependencies>
