@@ -1,5 +1,7 @@
 <h1 align="center">mkcert</h1>
 
+## ❯ Introduction
+
 mkcert is a simple tool for making locally-trusted development certificates. It requires no configuration.
 
 ### Create a certificate authority with mkcert

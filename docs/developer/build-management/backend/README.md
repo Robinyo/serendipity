@@ -1,6 +1,6 @@
 <h1 align="center">Backend Build Management</h1>
 
-### Set up your Development Environment
+## ❯ Set up your Development Environment
 
 You need to set up your development environment before you can do anything.
 
@@ -175,7 +175,7 @@ docker container logs serendipity-work-service
 docker container logs serendipity-pwa
 ```
 
-### References
+## ❯ References
 
 * Apache docs: [Maven](https://maven.apache.org/guides/index.html)
 * Spring Boot docs: [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/3.5.5/maven-plugin)
@@ -183,7 +183,7 @@ docker container logs serendipity-pwa
 * Spring Boot docs: [OAuth2 Client](https://docs.spring.io/spring-boot/3.5.5/reference/web/spring-security.html#web.security.oauth2.client)
 * Spring Boot docs: [Spring Boot Actuator](https://docs.spring.io/spring-boot/3.5.5/reference/actuator/index.html)
 
-### Additional Resources
+## ❯ Additional Resources
 
 * Github: [Checking for existing SSH keys](https://docs.github.com/en/github/authenticating-to-github/checking-for-existing-ssh-keys)
 * Github: [Generating a new SSH key](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)

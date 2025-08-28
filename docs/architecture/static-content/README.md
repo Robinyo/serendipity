@@ -1,8 +1,8 @@
 <h1 align="center">Static Content</h1>
 
-### Spring Boot 
+## ❯ Spring Boot 
 
-#### Static Content
+### Static Content
 
 Static content can be served from your Spring Boot application if you place it in the right location. By default, 
 Spring Boot serves static content from resources in the classpath at `/static`.

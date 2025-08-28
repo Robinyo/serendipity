@@ -1,6 +1,6 @@
 <h1 align="center">Backend for Frontend</h1>
 
-### Introduction
+## ❯ Introduction
 
 The Backend for Frontend (BFF) design pattern is an architectural approach that a browser-based application can use to 
 handle all of its authentication and authorisation responsibilities and API interactions, for example:
@@ -14,7 +14,7 @@ specification outlines the threats, attack consequences, security considerations
 into account when developing browser-based applications. It also discusses how different architectural approaches can 
 help address some of these challenges.
 
-### Application Architecture
+## ❯ Application Architecture
 
 A user launches Serendipity's Progressive Web App ([PWA](.././pwa/README.md)) which is [loaded](.././static-content/README.md) 
 and then runs in the web browser (user agent).
@@ -106,6 +106,6 @@ Convert the BFF's `application.properties` to yaml.
 
 
 
-### References
+## ❯ References
 
 * Spring Cloud Gateway docs: [Spring Cloud Gateway Server MVC](https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway-server-mvc.html)

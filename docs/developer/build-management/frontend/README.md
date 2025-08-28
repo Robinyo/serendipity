@@ -1,6 +1,6 @@
 <h1 align="center">Frontend Build Management</h1>
 
-### Set up your Development Environment
+## ❯ Set up your Development Environment
 
 You need to set up your development environment before you can do anything.
 
@@ -59,11 +59,54 @@ To build the frontend:
 ng build
 ```
 
-### References
+## ❯ References
 
 * Angular dev: [Angular CLI](https://angular.dev/cli)
 * Angular dev: [Angular Style Guide](https://angular.dev/style-guide)
 * Material Angular dev: [Getting Started with Angular Material](https://material.angular.dev/guide/getting-started)
+
+### System Hardening
+
+* Australian Signals Directorate: [Implementing Certificates, TLS, HTTPS and Opportunistic TLS](https://www.cyber.gov.au/resources-business-and-government/maintaining-devices-and-systems/system-hardening-and-administration/web-hardening/implementing-certificates-tls-https-and-opportunistic-tls)
+* Cloudflare docs: [Cipher suites recommendations](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/cipher-suites/recommendations/)
+
+### OAuth 2.0
+
+* IETF: [The OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749)
+* IETF: [OAuth 2.0 Token Exchange](https://datatracker.ietf.org/doc/html/rfc8693)
+* IETF: [The OAuth 2.0 Authorization Framework: Bearer Token Usage](https://datatracker.ietf.org/doc/html/rfc6750)
+* IETF: [Resource Indicators for OAuth 2.0](https://datatracker.ietf.org/doc/html/rfc8707)
+* IETF: [JSON Web Token (JWT)](https://datatracker.ietf.org/doc/html/rfc7519)
+* IETF: [JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens](https://datatracker.ietf.org/doc/html/rfc9068)
+* IETF: [OAuth 2.0 Dynamic Client Registration Protocol](https://datatracker.ietf.org/doc/html/rfc7591)
+* IETF: [OAuth 2.0 for Browser-Based Applications](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-browser-based-apps)
+* Spring docs: [Implementation Guidelines for Browser-Based Applications](https://github.com/spring-projects/spring-authorization-server/issues/297#issue-896744390)
+
+### Keycloak
+
+* Keycloak docs: [Configuring Keycloak for production](https://www.keycloak.org/server/configuration-production)
+* Keycloak docs: [Configuring TLS](https://www.keycloak.org/server/enabletls)
+* Keycloak docs: [Configuring trusted certificates](https://www.keycloak.org/server/keycloak-truststore)
+* Keycloak docs: [Configuring the hostname](https://www.keycloak.org/server/hostname)
+* Keycloak docs: [Using a reverse proxy](https://www.keycloak.org/server/reverseproxy)
+* Keycloak docs: [Running Keycloak in a container](https://www.keycloak.org/server/containers)
+* Keycloak docs: [Migrating to the Quarkus distribution](https://www.keycloak.org/migration/migrating-to-quarkus)
+* Keycloak docs: [Upgrading Guide - 26.1.0](https://www.keycloak.org/docs/latest/upgrading/)
+* Keycloak docs: [Authorization Services Guide](https://www.keycloak.org/docs/latest/authorization_services/index.html)
+
+### Keycloak-based  Development
+
+* GitHub: [Keycloak Project Example](https://github.com/thomasdarimont/keycloak-project-example)
+* GitHub: [Awesome Keycloak](https://github.com/thomasdarimont/awesome-keycloak)
+
+### Keycloak Support
+
+* Google Group: [Keycloak User](https://groups.google.com/g/keycloak-user)
+* Google Group: [Keycloak Dev](https://groups.google.com/g/keycloak-dev)
+
+### Nginx
+
+* Nginx docs: [NGINX SSL Termination](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/)
 
 ### Additional Resources
 
