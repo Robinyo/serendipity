@@ -63,6 +63,7 @@ ng build
 
 * Angular dev: [Angular CLI](https://angular.dev/cli)
 * Angular dev: [Angular Style Guide](https://angular.dev/style-guide)
+* Material Angular dev: [Getting Started with Angular Material](https://material.angular.dev/guide/getting-started)
 
 ### Additional Resources
 
