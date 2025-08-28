@@ -28,12 +28,16 @@ You can then generate applications and libraries with names that are unique with
 ```
 cd frontend
 ng generate application serendipity-pwa
+ng generate library auth-lib
 ng generate library party-lib
 ng generate library work-lib
 ng generate library utils-lib
 ```
 
-### Project structure
+### Multiple project file structure
+
+The first explicitly generated application goes into the `/projects` folder along with all other projects in the 
+workspace. Newly generated libraries are also added under projects.
 
 For example:
 
