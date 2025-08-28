@@ -1,0 +1,35 @@
+services:
+
+  serendipity-bff:
+    container_name: serendipity-bff
+    build:
+      context: ./modules/web-bff
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    networks:
+      - backend
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./services/nginx
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    volumes:
+      - '${PWD}/services/nginx/conf/ssl.conf:/etc/nginx/conf/ssl.conf'
+      - '${PWD}/services/nginx/conf/nginx-default.conf.template:/etc/nginx/templates/default.conf.template'
+      - '${PWD}/certs:/etc/nginx/certs'
+    networks:
+      - frontend
+      - backend
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge

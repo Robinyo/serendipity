@@ -8,7 +8,7 @@ What you need:
 
 * git
 * Java JDK 21 or later
-* Maven 3.2 or later
+* Maven 3.9.11 or later
 
 ### Java JDK
 
@@ -113,31 +113,43 @@ mvn clean install -Ptest spring-boot:repackage
 To build the project:
 
 ```
-docker-compose build
+docker compose build
 ```
 
 #### Docker
 
-To serve the applications:
+With a single command, you can create and start all the services:
 
 ```
-docker-compose up -d
+docker compose up
 ```
 
 The containers may take a minute or two to startup.
 
-Navigate to: http://127.0.0.1:30001
+**Note:** Docker Compose will look for an `.env` file in the current working directory.
 
-You can stop the containers using the following command:
-
-```
-docker-compose down -v
-```
-
-You can check the status of the containers using the following command:
+Navigate to:
 
 ```
-docker-compose ps
+https://serendipity.localhost
+```
+
+To stop the services:
+
+```
+docker compose stop
+```
+
+To remove the services:
+
+```
+docker compose down
+```
+
+To remove the data volumes:
+
+```
+docker volume rm backend_postgres_data
 ```
 
 To check the environment variables inside your container:
@@ -160,7 +172,7 @@ docker container logs pgadmin
 docker container logs serendipity-identity-server
 docker container logs serendipity-party-service
 docker container logs serendipity-work-service
-docker container logs serendipity
+docker container logs serendipity-pwa
 ```
 
 ### References

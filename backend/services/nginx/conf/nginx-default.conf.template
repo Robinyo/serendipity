@@ -1,0 +1,29 @@
+server {
+
+  server_name serendipity.localhost;
+  listen 80;
+  include /etc/nginx/conf/ssl.conf;
+
+  return 301 https://$host$request_uri;
+
+}
+
+server {
+
+  server_name serendipity.localhost;
+  listen 443 ssl default_server;
+  include /etc/nginx/conf/ssl.conf;
+
+  location / {
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header Host $host;
+
+      proxy_pass http://serendipity-bff:8080/;
+      proxy_redirect off;
+  }
+
+}
+
+# https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/

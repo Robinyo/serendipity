@@ -31,12 +31,12 @@ The local CA is now installed in the Firefox trust store (requires browser resta
 ```
 
 Use `mkcert` to generate a key and a certificate for the following hostnames:
-- `hapi-fhir.au.localhost`
-- `keycloak.au.localhost`
+- `serendipity.localhost`
+- `serendipity-identity-service.localhost`
 
 ```
-mkcert -key-file key.pem -cert-file cert.pem hapi-fhir.au.localhost
-mkcert -key-file keycloak-key.pem -cert-file keycloak-cert.pem keycloak.au.localhost
+mkcert -key-file key.pem -cert-file cert.pem serendipity.localhost
+mkcert -key-file serendipity-identity-service-key.pem -cert-file serendipity-identity-service-cert.pem serendipity-identity-service.localhost
 ```
 
 Move the files into the `\backend\certs` directory and set the file permissions:
@@ -68,7 +68,7 @@ sudo nano /etc/hosts
 Add the hostnames, `hapi-fhir.au.localhost` and `keycloak.au.localhost`:
 
 ```
-127.0.0.1 localhost hapi-fhir.au.localhost keycloak.au.localhost
+127.0.0.1 localhost serendipity.localhost serendipity-identity-service.localhost
 ```
 
 **Note**: Remember that `mkcert` is meant for development purposes, not production, so it should not be used on end 
@@ -81,9 +81,9 @@ You can also use command-line tools to view and manage digital certificates.
 For example:
 
 ```
-curl -v https://provider-directory.au.localhost
+curl -v https://serendipity.localhost
 openssl x509 -in certs/cert.pem -text -noout
-nmap --script ssl-cert -p 443 provider-directory.au.localhost
+nmap --script ssl-cert -p 443 serendipity.localhost
 ```
 
 ## ❯ References
