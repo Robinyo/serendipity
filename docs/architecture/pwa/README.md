@@ -33,17 +33,11 @@ ng generate library work-lib
 ng generate library utils-lib
 ```
 
-
-
-
-
-
-
 ### Project structure
 
 ...
 
-https://angular.dev/style-guide#project-structure
+
 
 
 
@@ -94,3 +88,4 @@ This often involves:
 ## ❯ References
 
 * Angular dev: [Multi-Project Workspace](https://angular.dev/reference/configs/file-structure#multiple-projects)
+* Angular dev: [Project Structure](https://angular.dev/style-guide#project-structure)
