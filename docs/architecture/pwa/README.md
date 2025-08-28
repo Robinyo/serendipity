@@ -35,12 +35,33 @@ ng generate library utils-lib
 
 ### Project structure
 
-...
+For example:
 
-
-
-
-
+```
+ ├── /serendipity
+     └── /frontend
+         └── /projects
+            └── /serendiptiy-pwa (app)
+                └── /public
+                └── /src
+                    └── /app
+                        └── /core
+                            └── /models
+                            └── /error-handlers
+                            └── /services
+                        └── /features
+                            └── /navigation-bar
+                            └── /sidenav
+                        └── /shared
+                            └── /components
+                            └── /pipes
+                        ├── favicon.ico
+                        ├── index.html
+            └── /auth-lib (lib)                        
+            └── /party-lib (lib)
+            └── /work-lib (lib)
+            └── /utils-lib (lib)
+```
 
 ### NgModules
 
@@ -88,4 +109,4 @@ This often involves:
 ## ❯ References
 
 * Angular dev: [Multi-Project Workspace](https://angular.dev/reference/configs/file-structure#multiple-projects)
-* Angular dev: [Project Structure](https://angular.dev/style-guide#project-structure)
+* Angular dev: [Multiple Project File Structure](https://angular.dev/reference/configs/file-structure#multiple-projects)
