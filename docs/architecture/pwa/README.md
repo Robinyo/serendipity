@@ -54,6 +54,7 @@ For example:
                             └── /error-handlers
                             └── /services
                         └── /features
+                            └── /home                        
                             └── /navigation-bar
                             └── /sidenav
                         └── /shared
@@ -65,6 +66,15 @@ For example:
             └── /party-lib (lib)
             └── /work-lib (lib)
             └── /utils-lib (lib)
+```
+
+### Home page
+
+In Angular, the home page of an application is typically implemented as a dedicated component. This component serves as 
+the entry point and primary view for users when they first access the application or navigate to the root path.
+
+```
+ng generate component features/home --project serendipity-pwa
 ```
 
 ### NgModules
@@ -109,6 +119,18 @@ This often involves:
 - Removing `NgModule` decorators and related arrays (e.g., declarations, imports, exports).
 - Directly importing dependencies into the standalone component files.
 - Using the `standalone: true` property in component, directive, and pipe decorators.
+
+### Flex Layout
+
+Angular 20, or any recent version of Angular, primarily encourages the use of native CSS Flexbox and CSS Grid for 
+creating layouts, rather than relying on the previously popular `@angular/flex-layout` library. 
+The `@angular/flex-layout` library has been deprecated and is no longer actively maintained by the Angular team.
+
+### Angular CDK Layout: 
+
+The Angular Component Dev Kit (CDK) provides the `@angular/cdk/layout` module, which offers utilities for responsive 
+design, including breakpoint observers, that can be combined with native CSS Flexbox and Grid.
+
 
 ## ❯ References
 
