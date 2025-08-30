@@ -40,3 +40,28 @@ Serendipity is composed of the following components:
   * [Working with PostgreSQL](./docs/administrator/postgres/README.md)
   * [Working with pgAdmin](./docs/administrator/pgadmin/README.md)
   * [Working with the Percona Distribution for PostgreSQL](./docs/administrator/percona-distribution-for-postgresql/README.md)
+
+![divider](./divider.png)
+
+## ❯ Screen Shots
+
+Home Page
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/home-page.png">
+</p>
+
+### Navigation
+
+Navigation Bar
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/navigation-bar.png">
+</p>
+
+Sidenav
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/sidenav.png">
+</p>
+

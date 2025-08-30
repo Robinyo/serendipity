@@ -113,7 +113,37 @@ This often involves:
 - Directly importing dependencies into the standalone component files.
 - Using the `standalone: true` property in component, directive, and pipe decorators.
 
+## ❯ Material Design
+
+Material Design 3 is Google’s open-source design system for building beautiful, usable products.
+
+### Foundations - Layout
+
+For more information: [Layout](https://m3.material.io/foundations/layout/understanding-layout/overview)
+
+### Styles - Color Roles
+
+There are 26 standard color roles organised into six groups: primary, secondary, tertiary, error, surface, and outline.
+
+- Surface: A role used for backgrounds and large, low-emphasis areas of the screen.
+- Primary, Secondary, Tertiary: Accent color roles used to emphasize or de-emphasize foreground elements.
+- Container: Roles used as a fill color for foreground elements like buttons. They should not be used for text or icons.
+- On: Roles starting with this term indicate a color for text or icons on top of its paired parent color. For example, on primary is used for text and icons against the primary fill color.
+- Variant: Roles ending with this term offer a lower emphasis alternative to its non-variant pair. For example, outline variant is a less emphasized version of the outline color.
+
+Color roles are mapped to Material Components.
+
+The most common combination of surface roles uses surface for a background area and surface container for a navigation area.
+
+Text and icons typically use on surface and on surface variant on all types of surfaces.
+
+For more information: [Color Roles](https://m3.material.io/styles/color/roles)
+
 ## ❯ Angular Material
+
+Recent versions of Angular Material have adopted version 3 of the Material Design specification.
+
+For more information: [Material Design 3](https://m3.material.io/)
 
 ### Install Angular Material
 
@@ -130,6 +160,8 @@ For more information: [Getting Started with Angular Material](https://material.a
 Angular Material lets you customize the appearance of your components by defining a custom theme.
 
 For more information: [Theming](https://material.angular.dev/guide/themingted)
+
+
 
 #### System Variables
 
@@ -160,8 +192,8 @@ A container for headers, titles, or actions.
 ng generate component features/navigation-bar --project serendipity-pwa
 ```
 
-**Note:** Due to changes in the Material Design specification the `mat-toolbar` component no longer supports the 
-predefined background colour options.
+**Note:** Due to changes in the Material Design specification (M2 -> M3) the `mat-toolbar` component no longer supports 
+the predefined colour options e.g., <mat-toolbar color="primary">.
 
 A simple workaround is to override the toolbar's background-color:
 
