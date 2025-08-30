@@ -13,6 +13,8 @@ For more information:
 - [web.dev](https://web.dev/explore/progressive-web-apps)
 - [mdn](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)
 
+## ❯ Angular
+
 ### Setting up for a multi-project workspace
 
 If you intend to have multiple projects in a workspace, you can skip the initial application generation when you create 
@@ -68,15 +70,6 @@ For example:
             └── /utils-lib (lib)
 ```
 
-### Home page
-
-In Angular, the home page of an application is typically implemented as a dedicated component. This component serves as 
-the entry point and primary view for users when they first access the application or navigate to the root path.
-
-```
-ng generate component features/home --project serendipity-pwa
-```
-
 ### NgModules
 
 Angular 20 continues to support the use of NgModules, although it strongly encourages and promotes the adoption of 
@@ -120,6 +113,62 @@ This often involves:
 - Directly importing dependencies into the standalone component files.
 - Using the `standalone: true` property in component, directive, and pipe decorators.
 
+## ❯ Angular Material
+
+### Install Angular Material
+
+Add Angular Material to your application by running the following command:
+
+```
+ng add @angular/material
+```
+
+For more information: [Getting Started with Angular Material](https://material.angular.dev/guide/getting-started)
+
+### Theming
+
+Angular Material lets you customize the appearance of your components by defining a custom theme.
+
+For more information: [Theming](https://material.angular.dev/guide/themingted)
+
+#### System Variables
+
+Angular Material components depend on system variables defined as CSS variables through the material.theme Sass mixin.
+
+For more information: [System Variables](https://material.angular.dev/guide/system-variables)
+
+### Material Icons
+
+For more information: [Material Icons](https://developers.google.com/fonts/docs/material_icons)
+
+## ❯ Features
+
+### Home page
+
+In Angular, the home page of an application is typically implemented as a dedicated component. This component serves as
+the entry point and primary view for users when they first access the application or navigate to the root path.
+
+```
+ng generate component features/home --project serendipity-pwa
+```
+
+### Navigation Bar
+
+A container for headers, titles, or actions.
+
+```
+ng generate component features/navigation-bar --project serendipity-pwa
+```
+
+### Sidenav
+
+Angular Material provides two sets of components designed to add collapsible side content (often navigation, though it 
+can be any content) alongside some primary content.
+
+```
+ng generate component features/sidenav --project serendipity-pwa
+```
+
 ### Flex Layout
 
 Angular 20, or any recent version of Angular, primarily encourages the use of native CSS Flexbox and CSS Grid for 
@@ -131,8 +180,10 @@ The `@angular/flex-layout` library has been deprecated and is no longer actively
 The Angular Component Dev Kit (CDK) provides the `@angular/cdk/layout` module, which offers utilities for responsive 
 design, including breakpoint observers, that can be combined with native CSS Flexbox and Grid.
 
-
 ## ❯ References
 
+* Angular dev: [Angular CLI](https://angular.dev/cli)
+* Angular dev: [Angular Style Guide](https://angular.dev/style-guide)
+* Material Angular dev: [Getting Started with Angular Material](https://material.angular.dev/guide/getting-started)
 * Angular dev: [Multi-Project Workspace](https://angular.dev/reference/configs/file-structure#multiple-projects)
 * Angular dev: [Multiple Project File Structure](https://angular.dev/reference/configs/file-structure#multiple-projects)

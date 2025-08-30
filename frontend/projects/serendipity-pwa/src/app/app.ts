@@ -1,13 +1,13 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { NavigationBar } from './features/navigation-bar/navigation-bar';
+import { Sidenav } from './features/sidenav/sidenav';
 
 @Component({
   selector: 'app-root',
   imports: [
-    RouterOutlet,
-    MatSlideToggleModule
+    NavigationBar,
+    Sidenav
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
