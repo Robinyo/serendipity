@@ -17,29 +17,9 @@
   TLS is used to encrypt <b>data in transit</b> and AES to encrypt <b>data at rest</b>.
 </p>
 
-![divider](./divider.png)
-
-## ❯ Architecture
-
-Serendipity is composed of the following components:
-
-- [Progressive Web App](./docs/architecture/pwa/README.md)
-- [Backend for Frontend](./docs/architecture/bff/README.md)
-- Identity Service
-- Microservices
-
-## ❯ Documentation
-
-* Developer Documentation
-  * [Quick Start Guide](./docs/developer/quick-start-guide/README.md)
-  * [Build Management](./docs/developer/build-management/README.md)
-  * [mkcert](./docs/developer/mkcert/README.md)
-* Administrator Documentation
-  * [Working with Docker and Docker Compose](./docs/administrator/docker/README.md)
-  * [Working with Keycloak](./docs/administrator/keycloak/README.md)
-  * [Working with PostgreSQL](./docs/administrator/postgres/README.md)
-  * [Working with pgAdmin](./docs/administrator/pgadmin/README.md)
-  * [Working with the Percona Distribution for PostgreSQL](./docs/administrator/percona-distribution-for-postgresql/README.md)
+<p align="center">
+  Built using <b>Angular 20</b> and <b>Spring Boot 3.5.5</b>.
+</p>
 
 ![divider](./divider.png)
 
@@ -65,3 +45,26 @@ Sidenav
   <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/sidenav.png">
 </p>
 
+![divider](./divider.png)
+
+## ❯ Architecture
+
+Serendipity is composed of the following components:
+
+- [Progressive Web App](./docs/architecture/pwa/README.md)
+- [Backend for Frontend](./docs/architecture/bff/README.md)
+- Identity Service
+- Microservices
+
+## ❯ Documentation
+
+* Developer Documentation
+  * [Quick Start Guide](./docs/developer/quick-start-guide/README.md)
+  * [Build Management](./docs/developer/build-management/README.md)
+  * [mkcert](./docs/developer/mkcert/README.md)
+* Administrator Documentation
+  * [Working with Docker and Docker Compose](./docs/administrator/docker/README.md)
+  * [Working with Keycloak](./docs/administrator/keycloak/README.md)
+  * [Working with PostgreSQL](./docs/administrator/postgres/README.md)
+  * [Working with pgAdmin](./docs/administrator/pgadmin/README.md)
+  * [Working with the Percona Distribution for PostgreSQL](./docs/administrator/percona-distribution-for-postgresql/README.md)
