@@ -48,7 +48,7 @@ Serendipity is composed of the following components:
 Home Page
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/home-page.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/home-page.png">
 </p>
 
 ### Navigation
@@ -56,12 +56,12 @@ Home Page
 Navigation Bar
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/navigation-bar.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/navigation-bar.png">
 </p>
 
 Sidenav
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/sidenav.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/sidenav.png">
 </p>
 
