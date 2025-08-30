@@ -160,6 +160,17 @@ A container for headers, titles, or actions.
 ng generate component features/navigation-bar --project serendipity-pwa
 ```
 
+**Note:** Due to changes in the Material Design specification the `mat-toolbar` component no longer supports the 
+predefined background colour options.
+
+A simple workaround is to override the toolbar's background-color:
+
+```
+mat-toolbar {
+  background-color: black !important;
+}
+```
+
 ### Sidenav
 
 Angular Material provides two sets of components designed to add collapsible side content (often navigation, though it 
