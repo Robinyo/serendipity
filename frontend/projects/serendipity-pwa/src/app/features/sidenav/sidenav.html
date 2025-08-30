@@ -1,2 +1,47 @@
 
-<router-outlet />
+<mat-sidenav-container class="example-container">
+
+  <mat-sidenav mode="over" opened>
+
+    <mat-nav-list>
+
+      <h2 matSubheader>
+        My Work
+      </h2>
+
+      <!--
+
+        <a *ngFor="let item of myWorkRoutes"
+           mat-list-item
+           (click)="navigationSidenav.close()"
+           [routerLink]="[item.route]"
+           routerLinkActive="list-item-active">
+           <mat-icon svgIcon="{{ item.icon }}" class="nav-list-icon"> </mat-icon>
+          {{ item.label }}
+        </a>
+
+      -->
+
+      @if (myWorkRoutes) {
+
+        @for (item of myWorkRoutes; track item.id) {
+          <a mat-list-item [routerLink]="[item.route]">
+            <mat-icon class="material-icons">help</mat-icon>
+            {{ item.label }}
+          </a>
+        }
+
+      }
+
+
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <router-outlet />
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

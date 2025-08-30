@@ -1,0 +1,22 @@
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { Observable } from 'rxjs';
+
+@Injectable({ providedIn: 'root' })
+export class Config {
+
+  private httpClient = inject(HttpClient);
+
+  private uriPrefix = 'assets/data/config/';
+  private uriSuffix = '.json';
+
+  public get(filename: string): Observable<any> {
+    return this.httpClient.get<any>(this.uriPrefix + filename + this.uriSuffix);
+  }
+
+}
+
+// https://angular.dev/guide/http
+// https://angular.dev/essentials/dependency-injection
+// https://angular.dev/tools/libraries/creating-libraries

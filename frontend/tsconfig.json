@@ -13,7 +13,12 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+    "paths": {
+      "utils-lib": [
+        "./dist/utils-lib"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -29,6 +34,12 @@
     },
     {
       "path": "./projects/serendipity-pwa/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/utils-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/utils-lib/tsconfig.spec.json"
     }
   ]
 }

@@ -46,17 +46,84 @@ To build the frontend:
 ```
 # In the project's /frontend directory
 
-ng build --configuration="development"
+ng build --configuration="development" utils-lib && \
+ng build --configuration="development" serendipity-pwa
 ```
 
-### Production
-
-To build the frontend:
+To launch the project:
 
 ```
-# In the project's /frontend directory
+ng serve serendipity-pwa --open
+```
 
-ng build
+### Aliases
+
+To add support for aliases update the "paths" array in the `compilerOptions` section of `tsconfig.json`:
+
+```
+  "paths": {
+    "@app/*": [
+      "src/app/*"
+    ],
+    "@env/*": [
+      "src/environments/*"
+    ],
+
+    ...
+    
+  }
+```
+
+### Project Assets
+
+You use the assets array inside the build target in `angular.json` to list files or folders you want to copy as-is when building your project:
+
+```
+  "assets": [
+    "projects/serendipity-pwa/src/favicon.ico",
+    "projects/serendipity-pwa/src/assets",
+    {
+      "glob": "**/*",
+      "input": "projects/serendipity-pwa/public"
+    },
+      
+    ...
+     
+  ]
+```
+
+### Source Control
+
+Check in:
+
+```
+git add .
+git commit -m "Updated the README.md file"
+git push -u origin main
+```
+
+Tag Format:
+
+```
+1.0.0-beta.1
+```
+
+To create a local tag on your current branch, run this:
+
+```
+git tag <tagname>
+```
+
+To push the local tags to GitHub:
+
+```
+git push origin --tags
+```
+
+or
+
+```
+git push origin <tag>
 ```
 
 ## ❯ References

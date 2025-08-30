@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 
-import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-navigation-bar',
   imports: [
-    MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule
   ],
   templateUrl: './navigation-bar.html',
   styleUrl: './navigation-bar.scss'
