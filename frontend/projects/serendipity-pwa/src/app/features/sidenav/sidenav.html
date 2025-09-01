@@ -1,7 +1,9 @@
+<app-navigation-bar (toggleSidenav)="sidenav.toggle()">
+</app-navigation-bar>
 
-<mat-sidenav-container class="example-container">
+<mat-sidenav-container>
 
-  <mat-sidenav mode="over" opened>
+  <mat-sidenav #sidenav mode="over" opened>
 
     <mat-nav-list>
 
@@ -9,29 +11,59 @@
         My Work
       </h2>
 
-      <!--
+      @if (myWorkRoutes) {
+        @for (item of myWorkRoutes; track item.id) {
+          <a mat-list-item
+             (click)="sidenav.close()"
+             [routerLink]="[item.route]">
+             <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+               {{ item.label }}
+          </a>
+        }
+      }
 
-        <a *ngFor="let item of myWorkRoutes"
-           mat-list-item
-           (click)="navigationSidenav.close()"
-           [routerLink]="[item.route]"
-           routerLinkActive="list-item-active">
-           <mat-icon svgIcon="{{ item.icon }}" class="nav-list-icon"> </mat-icon>
-          {{ item.label }}
-        </a>
-
-      -->
+      <h2 matSubheader>
+        Customers
+      </h2>
 
       @if (myWorkRoutes) {
-
-        @for (item of myWorkRoutes; track item.id) {
-          <a mat-list-item [routerLink]="[item.route]">
-            <mat-icon class="material-icons">help</mat-icon>
+        @for (item of customerRoutes; track item.id) {
+          <a mat-list-item
+             (click)="sidenav.close()"
+             [routerLink]="[item.route]">
+            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
             {{ item.label }}
           </a>
         }
-
       }
+
+      <h2 matSubheader>
+        Sales
+      </h2>
+
+      <h2 matSubheader>
+        Collateral
+      </h2>
+
+      <h2 matSubheader>
+        Marketing
+      </h2>
+
+      <h2 matSubheader>
+        Tools
+      </h2>
+
+      @if (myWorkRoutes) {
+        @for (item of toolsRoutes; track item.id) {
+          <a mat-list-item
+             (click)="sidenav.close()"
+             [routerLink]="[item.route]">
+            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+            {{ item.label }}
+          </a>
+        }
+      }
+
 
 
     </mat-nav-list>
