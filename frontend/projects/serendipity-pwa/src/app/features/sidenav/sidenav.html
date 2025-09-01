@@ -3,13 +3,13 @@
 
 <mat-sidenav-container>
 
-  <mat-sidenav #sidenav mode="over" opened>
+  <mat-sidenav #sidenav mode="over">
 
     <mat-nav-list>
 
-      <h2 matSubheader>
+      <h3 matSubheader>
         My Work
-      </h2>
+      </h3>
 
       @if (myWorkRoutes) {
         @for (item of myWorkRoutes; track item.id) {
@@ -22,11 +22,11 @@
         }
       }
 
-      <h2 matSubheader>
+      <h3 matSubheader>
         Customers
-      </h2>
+      </h3>
 
-      @if (myWorkRoutes) {
+      @if (customerRoutes) {
         @for (item of customerRoutes; track item.id) {
           <a mat-list-item
              (click)="sidenav.close()"
@@ -37,23 +37,23 @@
         }
       }
 
-      <h2 matSubheader>
+      <h3 matSubheader>
         Sales
-      </h2>
+      </h3>
 
-      <h2 matSubheader>
+      <h3 matSubheader>
         Collateral
-      </h2>
+      </h3>
 
-      <h2 matSubheader>
+      <h3 matSubheader>
         Marketing
-      </h2>
+      </h3>
 
-      <h2 matSubheader>
+      <h3 matSubheader>
         Tools
-      </h2>
+      </h3>
 
-      @if (myWorkRoutes) {
+      @if (toolsRoutes) {
         @for (item of toolsRoutes; track item.id) {
           <a mat-list-item
              (click)="sidenav.close()"
