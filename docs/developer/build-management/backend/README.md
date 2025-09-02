@@ -74,9 +74,7 @@ Matching Java Virtual Machines (4):
 
 ### Development
 
-The build supports the following Maven project profiles: dev and test.
-
-To build the application:
+To build the backend services:
 
 ```
 # In the project's /backend directory
@@ -86,14 +84,18 @@ mvn clean install spring-boot:repackage
 # or
 
 mvn clean install -DskipTests=true spring-boot:repackage
+```
 
-# or
+**Note:** `dev` is the active by default profile.
+
+The build supports the following Maven project profiles: dev and test.
+
+```
+# In the project's /backend directory
 
 mvn clean install -Pdev spring-boot:repackage
 mvn clean install -Ptest spring-boot:repackage
 ```
-
-**Note:** `dev` is the active by default profile.
 
 To build the project:
 
