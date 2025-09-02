@@ -34,8 +34,6 @@ ng build --configuration="development" serendipity-pwa
 
 To build the **backend** services:
 
-The build supports the following Maven project profiles: dev and test.
-
 ```
 # In the project's /backend directory
 
@@ -44,21 +42,24 @@ mvn clean install spring-boot:repackage
 # or
 
 mvn clean install -DskipTests=true spring-boot:repackage
+```
 
-# or
+**Note:** `dev` is the active by default profile.
+
+The build supports the following Maven project profiles: dev and test.
+
+```
+# In the project's /backend directory
 
 mvn clean install -Pdev spring-boot:repackage
 mvn clean install -Ptest spring-boot:repackage
 ```
-
-**Note:** `dev` is the active by default profile.
 
 To build the project:
 
 ```
 docker compose build
 ```
-
 
 #### Docker Compose
 
@@ -94,27 +95,4 @@ To remove the data volumes:
 
 ```
 docker volume rm backend_postgres_data
-```
-
-To check the environment variables inside your container:
-
-```
-docker inspect -f \
-  '{{range $index, $value := .Config.Env}}{{println $value}}{{end}}' \
-  serendipity-identity-server
-
-docker inspect -f \
-  '{{range $index, $value := .Config.Env}}{{println $value}}{{end}}' \
-  serendipity
-```
-
-To check the logs inside your container:
-
-```
-docker container logs postgres
-docker container logs pgadmin
-docker container logs serendipity-identity-server
-docker container logs serendipity-party-service
-docker container logs serendipity-work-service
-docker container logs serendipity-pwa
 ```
