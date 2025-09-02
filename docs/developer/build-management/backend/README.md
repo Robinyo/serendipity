@@ -72,21 +72,6 @@ Matching Java Virtual Machines (4):
 11.0.28 (arm64) "Eclipse Adoptium" - "OpenJDK 11.0.28" /Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home
 ```
 
-### Clone the project
-
-Change the current working directory to the location where you want the cloned directory to be:
-
-```
-cd ~/workspace
-```
-
-Clone the project by running the following command:
-
-```
-git clone https://github.com/Robinyo/serendipity
-cd serendipity/backend
-``` 
-
 ### Development
 
 The build supports the following Maven project profiles: dev and test.
@@ -116,7 +101,7 @@ To build the project:
 docker compose build
 ```
 
-#### Docker
+#### Docker Compose
 
 With a single command, you can create and start all the services:
 
