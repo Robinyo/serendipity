@@ -1,17 +1,14 @@
-//
-// Angular Material Styles
-//
-
-$mat-sidenav-width: 320px;
+$sidenav-width: 320px;
 
 .mat-sidenav-container {
-  // height: 100vh;
   height: 100%;
 }
 
 .mat-sidenav {
-  width: $mat-sidenav-width;
+  width: $sidenav-width;
 }
+
+
 
 /*
 .mat-drawer-container {

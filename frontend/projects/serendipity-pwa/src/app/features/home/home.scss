@@ -1,0 +1,52 @@
+// https://v18.material.angular.dev/guide/typography#type-scale-levels
+
+$container-padding: 64px;
+
+$icon-padding: 64px;
+$icon-size: 320px;
+
+.container {
+  display: grid;
+  // grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: 1fr 3fr;
+  background: rgba(0, 0, 0, 0.04);
+  height: 100%;
+}
+
+.column-1 {
+  grid-column: 1;
+  align-content: center;
+}
+
+.column-2 {
+  grid-column: 2;
+  align-content: center;
+  padding-right: $container-padding;
+}
+
+.logo {
+  padding: $icon-padding;
+  height: $icon-size;
+  width: $icon-size;
+}
+
+/*
+
+  // justify-content: center;
+  // align-content: center;
+
+.column-1 {
+  grid-column: 1;
+  // align-items: center;
+  align-content: center;
+  justify-items: end;
+}
+
+.column-2 {
+  grid-column: 2;
+  // align-items: center;
+  align-content: center;
+  justify-items: end;
+}
+
+*/

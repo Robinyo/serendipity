@@ -25,7 +25,7 @@
 
 ## ❯ Screen Shots
 
-Home Page
+Home (Welcome) Page
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/home-page.png">

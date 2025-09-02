@@ -3,3 +3,5 @@
  */
 
 export * from './lib/services/config';
+
+export * from './lib/models/svg-icon-registry';
