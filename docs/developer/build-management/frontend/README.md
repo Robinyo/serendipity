@@ -128,9 +128,17 @@ git push origin <tag>
 
 ## ❯ References
 
+### Angular
+
 * Angular dev: [Angular CLI](https://angular.dev/cli)
 * Angular dev: [Angular Style Guide](https://angular.dev/style-guide)
+* Angular dev: [Multi-Project Workspace](https://angular.dev/reference/configs/file-structure#multiple-projects)
+* Angular dev: [Multiple Project File Structure](https://angular.dev/reference/configs/file-structure#multiple-projects)
+
+### Angular Material
+
 * Material Angular dev: [Getting Started with Angular Material](https://material.angular.dev/guide/getting-started)
+* GitHub: [Teradata Covalent](https://teradata.github.io/covalent/v11/#/)
 
 ### System Hardening
 
@@ -177,8 +185,8 @@ git push origin <tag>
 
 ### Additional Resources
 
-* Github: [Checking for existing SSH keys](https://docs.github.com/en/github/authenticating-to-github/checking-for-existing-ssh-keys)
-* Github: [Generating a new SSH key](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)
-* Github: [Adding a new SSH key to your GitHub account](https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account)
-* Github: [Testing your SSH connection](https://docs.github.com/en/github/authenticating-to-github/testing-your-ssh-connection)
-* Github: [Switching remote URLs from HTTPS to SSH](https://docs.github.com/en/github/using-git/changing-a-remotes-url#switching-remote-urls-from-https-to-ssh)
+* GitHub: [Checking for existing SSH keys](https://docs.github.com/en/github/authenticating-to-github/checking-for-existing-ssh-keys)
+* GitHub: [Generating a new SSH key](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)
+* GitHub: [Adding a new SSH key to your GitHub account](https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account)
+* GitHub: [Testing your SSH connection](https://docs.github.com/en/github/authenticating-to-github/testing-your-ssh-connection)
+* GitHub: [Switching remote URLs from HTTPS to SSH](https://docs.github.com/en/github/using-git/changing-a-remotes-url#switching-remote-urls-from-https-to-ssh)

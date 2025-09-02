@@ -48,22 +48,22 @@ For example:
      └── /frontend
          └── /projects
             └── /serendiptiy-pwa (app)
-                └── /public
                 └── /src
                     └── /app
                         └── /core
+                            └── /error-handlers                        
                             └── /models
-                            └── /error-handlers
                             └── /services
                         └── /features
-                            └── /home                        
+                            └── /home
+                            └── /layout
                             └── /navigation-bar
-                            └── /sidenav
                         └── /shared
-                            └── /components
-                            └── /pipes
                         ├── favicon.ico
                         ├── index.html
+                    └── /assets
+                        └── /data   
+                        └── /images                                                                  
             └── /auth-lib (lib)                        
             └── /party-lib (lib)
             └── /work-lib (lib)
@@ -225,8 +225,14 @@ design, including breakpoint observers, that can be combined with native CSS Fle
 
 ## ❯ References
 
+### Angular
+
 * Angular dev: [Angular CLI](https://angular.dev/cli)
 * Angular dev: [Angular Style Guide](https://angular.dev/style-guide)
-* Material Angular dev: [Getting Started with Angular Material](https://material.angular.dev/guide/getting-started)
 * Angular dev: [Multi-Project Workspace](https://angular.dev/reference/configs/file-structure#multiple-projects)
 * Angular dev: [Multiple Project File Structure](https://angular.dev/reference/configs/file-structure#multiple-projects)
+
+### Angular Material
+
+* Material Angular dev: [Getting Started with Angular Material](https://material.angular.dev/guide/getting-started)
+* GitHub: [Teradata Covalent](https://teradata.github.io/covalent/v11/#/)

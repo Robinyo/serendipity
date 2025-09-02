@@ -19,7 +19,7 @@ const CUSTOMER_ROUTES = 'customers-routes';
 const TOOLS_ROUTES = 'tools-routes';
 
 @Component({
-  selector: 'app-sidenav',
+  selector: 'app-layout',
   imports: [
     MatIconModule,
     MatListModule,
@@ -30,10 +30,10 @@ const TOOLS_ROUTES = 'tools-routes';
     RouterOutlet,
     RouterLink
   ],
-  templateUrl: './sidenav.html',
-  styleUrl: './sidenav.scss'
+  templateUrl: './layout.html',
+  styleUrl: './layout.scss'
 })
-export class Sidenav implements OnInit  {
+export class Layout  implements OnInit  {
 
   private config = inject(Config);
 

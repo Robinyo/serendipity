@@ -1,15 +1,15 @@
 import { Component, signal } from '@angular/core';
 
-import { Sidenav } from './features/sidenav/sidenav';
+import { Layout } from './features/layout/layout';
 
 @Component({
   selector: 'app-root',
   imports: [
-    Sidenav
+    Layout
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('Serendipity PWA');
+  // protected readonly title = signal('Serendipity PWA');
 }
