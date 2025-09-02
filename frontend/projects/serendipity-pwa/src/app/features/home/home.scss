@@ -6,13 +6,13 @@ $container-margin: 32px;
 $container-padding: 64px;
 
 $icon-padding: 64px;
-$icon-size: 320px;
+$icon-size: 420px;
 
 .container {
   display: grid;
   grid-template-columns: 1fr 3fr;
   height: calc(100vh - #{$container-height-offset});
-  background: rgba(0, 0, 0, 0.04);
+  background: var(--mat-sys-inverse-on-surface);
   margin: $container-margin;
 }
 
@@ -33,8 +33,19 @@ $icon-size: 320px;
   width: $icon-size;
 }
 
+.welcome-title-text {
+  font: var(--mat-sys-display-large);
+}
+
+.welcome-text {
+  font: var(--mat-sys-headline-small);
+  font-weight: lighter;
+}
+
 /*
 
   // grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+  // background: rgba(0, 0, 0, 0.04);
 
 */
