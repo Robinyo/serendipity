@@ -33,8 +33,9 @@
 
 	<modules>
 		<module>modules/web-bff</module>
+    <module>modules/party-service</module>
 		<!--
-		<module>modules/party-service</module>
+
 		<module>modules/work-service</module>
 		-->
 	</modules>
@@ -53,6 +54,34 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
+    <!-- Misc -->
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Add Test dependencies -->
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
 	</dependencies>
 
 	<profiles>
@@ -68,20 +97,6 @@
 			</properties>
 			<dependencies>
 
-				<!--
-				<dependency>
-					<groupId>org.postgresql</groupId>
-					<artifactId>postgresql</artifactId>
-					<scope>runtime</scope>
-				</dependency>
-
-				<dependency>
-					<groupId>com.h2database</groupId>
-					<artifactId>h2</artifactId>
-					<scope>test</scope>
-				</dependency>
-                -->
-
 			</dependencies>
 		</profile>
 
@@ -95,14 +110,6 @@
 			</properties>
 			<dependencies>
 
-				<!--
-				<dependency>
-					<groupId>com.h2database</groupId>
-					<artifactId>h2</artifactId>
-					<scope>runtime</scope>
-				</dependency>
-                -->
-
 			</dependencies>
 		</profile>
 
@@ -110,10 +117,33 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </path>
+          </annotationProcessorPaths>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+
 		</plugins>
 	</build>
 

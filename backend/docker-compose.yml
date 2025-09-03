@@ -1,13 +1,8 @@
 services:
 
-  serendipity-bff:
-    container_name: serendipity-bff
-    build:
-      context: ./modules/web-bff
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    networks:
-      - backend
+  # Make sure your certificates and keys (the *.pem files in the ./certs directory) have the correct permissions -> i.e., sudo chmod 600 *.pem
+
+  # frontend Network
 
   nginx:
     container_name: nginx
@@ -26,6 +21,17 @@ services:
       - '${PWD}/certs:/etc/nginx/certs'
     networks:
       - frontend
+      - backend
+
+  # backend Network
+
+  serendipity-bff:
+    container_name: serendipity-bff
+    build:
+      context: ./modules/web-bff
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    networks:
       - backend
 
 networks:
