@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    org.flowable: INFO
+    org.hibernate.SQL: WARN
+    org.springframework.web: INFO
+    reactor.netty.http.client.HttpClient: INFO
+
+spring:
+  data:
+    rest:
+      base-path: /api
+  main:
+    banner-mode: off
+  profiles:
+    active: @spring.profiles.active@
