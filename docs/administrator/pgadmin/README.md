@@ -24,7 +24,7 @@ In the 'Quick Links' click on 'Add New Server':
   <img src="./pgadmin-register-server-general-tab.png" alt="Register Server - General Tab"/>
 </p>
 
-Enter the Name (HAPI FHIR PostgreSQL) and then click on the 'Connection' tab:
+Enter the Name (Serendipity PostgreSQL) and then click on the 'Connection' tab:
 
 <p align="center">
   <img src="./pgadmin-register-server-connection-tab.png" alt="Register Server - Connection Tab"/>

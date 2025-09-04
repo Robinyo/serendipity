@@ -203,15 +203,6 @@ spring:
     properties:
       hibernate:
         globally_quoted_identifiers: true
-    hibernate:
-      ddl-auto: create-drop
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-      settings:
-        trace: false
-        web-allow-others: true
 ```
 
 ## ❯ References

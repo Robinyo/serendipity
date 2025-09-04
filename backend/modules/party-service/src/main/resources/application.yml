@@ -5,7 +5,8 @@ logging:
   level:
     root: INFO
     org.flowable: INFO
-    org.hibernate.SQL: WARN
+    org.hibernate.SQL: INFO
+    # org.hibernate.SQL: DEBUG
     org.springframework.web: INFO
     reactor.netty.http.client.HttpClient: INFO
 
@@ -13,7 +14,20 @@ spring:
   data:
     rest:
       base-path: /api
+  # jpa:
+  #   show-sql: true
   main:
     banner-mode: off
   profiles:
     active: @spring.profiles.active@
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: beans, env, health, info, metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: always

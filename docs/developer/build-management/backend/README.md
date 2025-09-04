@@ -100,6 +100,9 @@ mvn clean install -Ptest spring-boot:repackage
 To build the project:
 
 ```
+docker system prune && \
+docker container prune && docker volume prune && docker network prune
+
 docker compose build
 ```
 
