@@ -56,6 +56,10 @@ Serendipity is composed of the following components:
 - Identity Service
 - Microservices
 
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/context=diagram.png">
+</p>
+
 ## ❯ Documentation
 
 * Developer Documentation
