@@ -84,6 +84,8 @@ For example:
          └── /modules
             └── /web-bff
                 ├── pom.xml
+            └── /party-service
+                ├── pom.xml                
 ```
 
 Parent POM: This acts as an aggregator, defining common dependencies, plugin configurations, and properties shared across all 

@@ -37,6 +37,43 @@ Rest Repositories (Web): Exposing Spring Data repositories over REST via Spring 
 
 Spring Data JPA (SQL): Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.
 
+### Module Structure
+
+A Maven multi-module project with Spring Boot refers to a project structure where a large application is broken down
+into smaller, independent modules, all managed under a single parent Maven project. This approach offers several
+benefits for developing scalable and maintainable Spring Boot applications.
+
+For example:
+
+```
+ ├── /serendipity
+     └── /backend
+         ├── pom.xml (Parent POM)
+         └── /modules
+            └── /web-bff
+                ├── pom.xml
+            └── /party-service
+                └── /src
+                    └── /main
+                        └── /java
+                            └── /org.serendipity.party
+                                └── /assembler
+                                └── /controller
+                                └── /database
+                                └── /entity
+                                └── /model
+                                └── /repository
+                                └── /type
+                        └── /resources
+                            ├── application.yml
+                            ├── application-dev.yml
+                            ├── application-prod.yml
+                            ├── application-test.yml
+                    └── /test
+                ├── Dockerfile
+                ├── pom.xml
+```
+
 ### Application Properties
 
 Convert the application's `application.properties` to yaml.
@@ -51,7 +88,7 @@ logging:
   level:
     root: INFO
     org.flowable: INFO
-    org.hibernate.SQL: WARN
+    org.hibernate.SQL: INFO
     org.springframework.web: INFO
     reactor.netty.http.client.HttpClient: INFO
 
@@ -59,13 +96,21 @@ spring:
   data:
     rest:
       base-path: /api
-  datasource:
-    username: serendipity
-    password: secret
   main:
     banner-mode: off
   profiles:
     active: @spring.profiles.active@
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: beans, env, health, info, metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: always
 ```
 
 ### Domain Model
@@ -186,11 +231,24 @@ public interface PartyRepository extends PagingAndSortingRepository<Party, Long>
 Spring Data REST will automatically expose the `PartyRepository` as a RESTful endpoint. By default, it will provide 
 endpoints for CRUD operations on the `Party` entity. No additional configuration is needed to expose the repository.
 
+### Database Seeding
+
+Database seeding in Spring Boot with JPA involves populating your database with initial data, which is useful for 
+development, testing, or providing default application settings. Several methods can be employed for this purpose.
+
+For example, Spring `ApplicationRunner` or `CommandLineRunner`.
+
+- Implement ApplicationRunner or CommandLineRunner and override the run method.
+- Inside the run method, inject your JPA repositories and use them to persist entities with initial data.
+- These runners are executed after the Spring application context has been fully loaded, allowing access to all beans, including repositories.
+
 ### H2
 
-In newer versions of the H2 database you don't need to explicitly configure the dialect in your `application.yml` file.
+he H2 Database Engine has a specific list of keywords or reserved words that cannot be used as identifiers (such as 
+table names, column names, etc.) unless they are enclosed in double quotes. 
 
-You should however set `globally_quoted_identifiers` to `true`.
+You should set `globally_quoted_identifiers` to `true` in order to avoid any 
+[keyword](https://h2database.com/html/advanced.html?highlight=keyword&search=keywo#keywords) issues.
 
 For example:
 
