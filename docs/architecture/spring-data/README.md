@@ -280,3 +280,4 @@ spring:
 
 * GitHub: [Spring Data JPA](https://github.com/spring-projects/spring-data-jpa)
 * Spring docs: [JPA Core Concepts](https://docs.spring.io/spring-data/jpa/reference/repositories/core-concepts.html)
+* Spring docs: [Spring Data REST Reference Guide](https://docs.spring.io/spring-data/rest/docs/current-SNAPSHOT/reference/html/#reference)
