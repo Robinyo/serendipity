@@ -35,6 +35,7 @@ build/
 ### VS Code ###
 .vscode/
 
-/pgdata
-
 /certs
+
+/pgdata
+/pgadmin_data
