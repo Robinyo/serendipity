@@ -1,6 +1,11 @@
 <h1 align="center">Quick Start Guide</h1>
 
-### Clone the project
+## ❯ Set up your Development Environment
+
+* [Frontend Build Management](../build-management/frontend/README.md)
+* [Backend Build Management](../build-management/backend/README.md)
+
+## ❯ Clone the project
 
 Change the current working directory to the location where you want the cloned project to be:
 
@@ -14,14 +19,14 @@ Clone the project by running the following command:
 git clone git@github.com:Robinyo/serendipity.git
 ``` 
 
-### Enable TLS
+## ❯ Enable TLS
 
-#### Local Development
+### Local Development
 
 Follow the steps in the project's Developer Documentation to use [mkcert](../mkcert/README.md) to create and install a 
 local certificate authority and to generate the certificates required to enable TLS.
 
-### Development
+## ❯ Development
 
 To build the **frontend**:
 
@@ -58,10 +63,13 @@ mvn clean install -Ptest spring-boot:repackage
 To build the project:
 
 ```
+docker system prune && \
+docker container prune && docker volume prune && docker network prune
+
 docker compose build
 ```
 
-#### Docker Compose
+### Docker Compose
 
 With a single command, you can create and start all the services:
 

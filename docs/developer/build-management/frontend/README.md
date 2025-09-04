@@ -39,7 +39,7 @@ To install the Angular CLI, open a terminal window and run the following command
 npm install -g @angular/cli
 ```
 
-### Development
+## ❯ Development
 
 To build the frontend:
 

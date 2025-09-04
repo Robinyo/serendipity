@@ -72,7 +72,7 @@ Matching Java Virtual Machines (4):
 11.0.28 (arm64) "Eclipse Adoptium" - "OpenJDK 11.0.28" /Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home
 ```
 
-### Development
+## ❯ Development
 
 To build the backend services:
 
@@ -106,7 +106,7 @@ docker container prune && docker volume prune && docker network prune
 docker compose build
 ```
 
-#### Docker Compose
+### Docker Compose
 
 With a single command, you can create and start all the services:
 

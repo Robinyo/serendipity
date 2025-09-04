@@ -10,7 +10,7 @@ Navigate to the pgAdmin Login page: https://hapi-fhir.au.localhost:5443
   <img src="./pgadmin-login.png" alt="Login to pgAdmin"/>
 </p>
 
-Login using the PGADMIN_DEFAULT_EMAIL (admin@hapi-fhir.au) and PGADMIN_DEFAULT_PASSWORD (secret) credentials.
+Login using the PGADMIN_DEFAULT_EMAIL (admin@serendipity.org) and PGADMIN_DEFAULT_PASSWORD (secret) credentials.
 
 You should see something like:
 
