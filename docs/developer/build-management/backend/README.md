@@ -8,7 +8,7 @@ What you need:
 
 * git
 * Java JDK 21 or later
-* Maven 3.9.11 or later[pom.xml](../../../../../../../Downloads/party/pom.xml)
+* Maven 3.9.11 or later
 
 ### Java JDK
 
@@ -72,7 +72,7 @@ Matching Java Virtual Machines (4):
 11.0.28 (arm64) "Eclipse Adoptium" - "OpenJDK 11.0.28" /Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home
 ```
 
-### Development[pom.xml](../../../../../../../Downloads/party/pom.xml)
+### Development
 
 To build the backend services:
 
