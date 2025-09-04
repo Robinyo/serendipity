@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  OpenID Connect is used for authentication and OAuth 2.0 for authorisation. <br>
+  <b>OpenID Connect</b> is used for authentication and <b>OAuth 2.0</b> for authorisation. <br>
 </p>
 
 <p align="center">
@@ -19,30 +19,6 @@
 
 <p align="center">
   Built using <b>Angular v20</b>, <b>Angular Material (M3) v20.2.1</b> and <b>Spring Boot v3.5.5</b>.
-</p>
-
-![divider](./divider.png)
-
-## ❯ Screen Shots
-
-Home (Welcome) Page
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/home-page.png">
-</p>
-
-### Navigation
-
-Navigation Bar
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/navigation-bar.png">
-</p>
-
-Sidenav
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/sidenav.png">
 </p>
 
 ![divider](./divider.png)
@@ -72,3 +48,27 @@ Serendipity is composed of the following components:
   * [Working with PostgreSQL](./docs/administrator/postgres/README.md)
   * [Working with pgAdmin](./docs/administrator/pgadmin/README.md)
   * [Working with the Percona Distribution for PostgreSQL](./docs/administrator/percona-distribution-for-postgresql/README.md)
+
+![divider](./divider.png)
+
+## ❯ Screen Shots
+
+Home (Welcome) Page
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/home-page.png">
+</p>
+
+### Navigation
+
+Navigation Bar
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/navigation-bar.png">
+</p>
+
+Sidenav
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/sidenav.png">
+</p>
