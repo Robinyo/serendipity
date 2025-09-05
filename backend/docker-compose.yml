@@ -76,6 +76,8 @@ services:
 
   serendipity-bff:
     container_name: serendipity-bff
+    environment:
+      PARTY_SERVICE_URI: http://serendipity-party-service:8080/api/party-service
     build:
       context: ./modules/web-bff
       dockerfile: Dockerfile

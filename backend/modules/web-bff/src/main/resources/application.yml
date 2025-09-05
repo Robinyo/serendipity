@@ -1,8 +1,24 @@
 server:
   port: 8080
+  # servlet:
+    # context-path: /api
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.cloud.gateway.server.mvc: DEBUG
 
 spring:
   main:
     banner-mode: off
   profiles:
     active: @spring.profiles.active@
+  cloud:
+    gateway:
+      http-client:
+        type: autodetect
+        connect-timeout: 30s
+        read-timeout: 30s
+
+# https://docs.spring.io/spring-cloud-gateway/reference/appendix.html

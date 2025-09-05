@@ -4,16 +4,13 @@ server:
 logging:
   level:
     root: INFO
-    org.flowable: INFO
     org.hibernate.SQL: INFO
-    # org.hibernate.SQL: DEBUG
     org.springframework.web: INFO
-    reactor.netty.http.client.HttpClient: INFO
 
 spring:
   data:
     rest:
-      base-path: /api
+      base-path: /api/party-service
   # jpa:
   #   show-sql: true
   main:
