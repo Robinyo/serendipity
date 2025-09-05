@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
-import { Config } from 'utils-lib';
+import { Config } from 'serendipity-utils-lib';
 
 import { NavigationBar } from '../navigation-bar/navigation-bar';
 
@@ -31,6 +31,7 @@ const TOOLS_ROUTES = 'tools-routes';
     RouterLink
   ],
   templateUrl: './layout.html',
+  standalone: true,
   styleUrl: './layout.scss'
 })
 export class Layout  implements OnInit  {

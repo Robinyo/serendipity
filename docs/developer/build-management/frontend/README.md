@@ -46,7 +46,7 @@ To build the frontend:
 ```
 # In the project's /frontend directory
 
-ng build --configuration="development" utils-lib && \
+ng build --configuration="development" serendipity-utils-lib && \
 ng build --configuration="development" serendipity-pwa
 ```
 

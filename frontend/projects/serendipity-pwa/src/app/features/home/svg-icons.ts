@@ -1,4 +1,4 @@
-import { SvgIconRegistry } from "utils-lib";
+import { SvgIconRegistry } from "serendipity-utils-lib";
 
 export const SVG_ICONS: SvgIconRegistry[] = [
 

@@ -29,7 +29,8 @@
               }
             ],
             "styles": [
-              "projects/serendipity-pwa/src/styles.scss"
+              "projects/serendipity-pwa/src/styles.scss",
+              "projects/serendipity-pwa/src/theme.scss"
             ]
           },
           "configurations": {
@@ -91,20 +92,20 @@
         }
       }
     },
-    "utils-lib": {
+    "serendipity-utils-lib": {
       "projectType": "library",
-      "root": "projects/utils-lib",
-      "sourceRoot": "projects/utils-lib/src",
+      "root": "projects/serendipity-utils-lib",
+      "sourceRoot": "projects/serendipity-utils-lib/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular/build:ng-packagr",
           "configurations": {
             "production": {
-              "tsConfig": "projects/utils-lib/tsconfig.lib.prod.json"
+              "tsConfig": "projects/serendipity-utils-lib/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/utils-lib/tsconfig.lib.json"
+              "tsConfig": "projects/serendipity-utils-lib/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -112,7 +113,7 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "tsConfig": "projects/utils-lib/tsconfig.spec.json"
+            "tsConfig": "projects/serendipity-utils-lib/tsconfig.spec.json"
           }
         }
       }

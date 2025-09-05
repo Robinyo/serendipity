@@ -15,8 +15,8 @@
     "target": "ES2022",
     "module": "preserve",
     "paths": {
-      "utils-lib": [
-        "./dist/utils-lib"
+      "serendipity-utils-lib": [
+        "./dist/serendipity-utils-lib"
       ]
     }
   },
@@ -36,10 +36,10 @@
       "path": "./projects/serendipity-pwa/tsconfig.spec.json"
     },
     {
-      "path": "./projects/utils-lib/tsconfig.lib.json"
+      "path": "./projects/serendipity-utils-lib/tsconfig.lib.json"
     },
     {
-      "path": "./projects/utils-lib/tsconfig.spec.json"
+      "path": "./projects/serendipity-utils-lib/tsconfig.spec.json"
     }
   ]
 }

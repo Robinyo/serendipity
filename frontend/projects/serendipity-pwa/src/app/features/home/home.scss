@@ -1,12 +1,9 @@
-// https://v18.material.angular.dev/guide/typography#type-scale-levels
-
-
 $container-height-offset: 128px;
 $container-margin: 32px;
 $container-padding: 64px;
 
 $icon-padding: 64px;
-$icon-size: 420px;
+$icon-size: 320px;
 
 .container {
   display: grid;
@@ -33,6 +30,12 @@ $icon-size: 420px;
   width: $icon-size;
 }
 
+// https://github.com/angular/components/blob/main/src/material/core/tokens/_classes.scss
+
+
+
+/*
+
 .welcome-title-text {
   font: var(--mat-sys-display-large);
 }
@@ -41,8 +44,6 @@ $icon-size: 420px;
   font: var(--mat-sys-headline-small);
   font-weight: lighter;
 }
-
-/*
 
   // grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 

@@ -15,6 +15,7 @@ const PATH = '../assets/images/icons/misc/';
     MatIconModule
   ],
   templateUrl: './home.html',
+  standalone: true,
   styleUrl: './home.scss'
 })
 export class Home {
