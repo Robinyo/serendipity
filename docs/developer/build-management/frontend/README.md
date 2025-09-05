@@ -47,6 +47,8 @@ To build the frontend:
 # In the project's /frontend directory
 
 ng build --configuration="development" serendipity-utils-lib && \
+ng build --configuration="development" serendipity-components-lib && \
+ng build --configuration="development" serendipity-party-lib && \
 ng build --configuration="development" serendipity-pwa
 ```
 
@@ -74,7 +76,7 @@ To add support for aliases update the "paths" array in the `compilerOptions` sec
   }
 ```
 
-### Project Assets
+### Assets
 
 You use the assets array inside the build target in `angular.json` to list files or folders you want to copy as-is when building your project:
 
@@ -86,6 +88,21 @@ You use the assets array inside the build target in `angular.json` to list files
       "glob": "**/*",
       "input": "projects/serendipity-pwa/public"
     },
+      
+    ...
+     
+  ]
+```
+
+### Styles
+
+You use the styles array inside the build target in `angular.json` to list files you want to include when building your project:
+
+```
+  "styles": [
+    "projects/serendipity-pwa/src/styles.scss",
+    "projects/serendipity-pwa/src/theme.scss"
+  ],
       
     ...
      

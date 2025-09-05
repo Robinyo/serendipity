@@ -15,6 +15,12 @@
     "target": "ES2022",
     "module": "preserve",
     "paths": {
+      "serendipity-components-lib": [
+        "./dist/serendipity-components-lib"
+      ],
+      "serendipity-party-lib": [
+        "./dist/serendipity-party-lib"
+      ],
       "serendipity-utils-lib": [
         "./dist/serendipity-utils-lib"
       ]
@@ -40,6 +46,18 @@
     },
     {
       "path": "./projects/serendipity-utils-lib/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/serendipity-components-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/serendipity-components-lib/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/serendipity-party-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/serendipity-party-lib/tsconfig.spec.json"
     }
   ]
 }

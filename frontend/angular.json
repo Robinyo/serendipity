@@ -117,6 +117,58 @@
           }
         }
       }
+    },
+    "serendipity-components-lib": {
+      "projectType": "library",
+      "root": "projects/serendipity-components-lib",
+      "sourceRoot": "projects/serendipity-components-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/serendipity-components-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/serendipity-components-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/serendipity-components-lib/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "serendipity-party-lib": {
+      "projectType": "library",
+      "root": "projects/serendipity-party-lib",
+      "sourceRoot": "projects/serendipity-party-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/serendipity-party-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/serendipity-party-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/serendipity-party-lib/tsconfig.spec.json"
+          }
+        }
+      }
     }
   }
 }

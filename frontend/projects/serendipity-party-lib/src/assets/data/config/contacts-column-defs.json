@@ -1,0 +1,28 @@
+[
+
+  {
+    "name": "party.displayName",
+    "displayName": "NAME",
+    "routerLink": "id",
+    "class": "anchor"
+  },
+  {
+    "name": "email",
+    "displayName": "EMAIL",
+    "routerLink": "",
+    "class": ""
+  },
+  {
+    "name":  "organisation.displayName",
+    "displayName": "ACCOUNT NAME",
+    "routerLink": "organisation.id",
+    "class": "anchor"
+  },
+  {
+    "name":  "organisation.phoneNumber",
+    "displayName": "BUSINESS PHONE",
+    "routerLink": "",
+    "class": ""
+  }
+
+]

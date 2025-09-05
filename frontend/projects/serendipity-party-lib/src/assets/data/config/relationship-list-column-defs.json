@@ -1,0 +1,34 @@
+[
+
+  {
+    "name": "partyName",
+    "displayName": "NAME",
+    "routerLink": "",
+    "class": ""
+  },
+  {
+    "name": "role",
+    "displayName": "ROLE",
+    "routerLink": "",
+    "class": ""
+  },
+  {
+    "name": "relationship",
+    "displayName": "RELATIONSHIP",
+    "routerLink": "",
+    "class": ""
+  },
+  {
+    "name": "reciprocalRole",
+    "displayName": "RECIPROCAL ROLE",
+    "routerLink": "",
+    "class": ""
+  },
+  {
+    "name": "reciprocalPartyName",
+    "displayName": "NAME",
+    "routerLink": "",
+    "class": ""
+  }
+
+]

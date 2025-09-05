@@ -1,0 +1,28 @@
+[
+
+  {
+    "name": "name",
+    "displayName": "NAME",
+    "routerLink": "id",
+    "class": "anchor"
+  },
+  {
+    "name":  "phoneNumber",
+    "displayName": "MAIN PHONE",
+    "routerLink": "",
+    "class": ""
+  },
+  {
+    "name":  "individual.displayName",
+    "displayName": "PRIMARY CONTACT",
+    "routerLink": "individual.id",
+    "class": "anchor"
+  },
+  {
+    "name":  "individual.email",
+    "displayName": "EMAIL (PRIMARY CONTACT)",
+    "routerLink": "",
+    "class": ""
+  }
+
+]
