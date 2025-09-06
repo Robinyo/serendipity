@@ -1,5 +1,10 @@
 $text-padding: 16px !default;
 
+.navigation-bar {
+  background-color: black;
+  color: white;
+}
+
 .navigation-bar-title-text {
   margin: 0 $text-padding 0 $text-padding;
 }

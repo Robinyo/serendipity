@@ -41,21 +41,33 @@ npm install -g @angular/cli
 
 ## ❯ Development
 
+In a terminal:
+
+```
+# In the project's /frontend directory
+
+npm run watch
+```
+
+In a another terminal:
+
+```
+# In the project's /frontend directory
+
+ng serve serendipity-pwa --open
+```
+
+## ❯ Production
+
 To build the frontend:
 
 ```
 # In the project's /frontend directory
 
-ng build --configuration="development" serendipity-utils-lib && \
-ng build --configuration="development" serendipity-components-lib && \
-ng build --configuration="development" serendipity-party-lib && \
-ng build --configuration="development" serendipity-pwa
-```
-
-To launch the project:
-
-```
-ng serve serendipity-pwa --open
+ng build serendipity-utils-lib && \
+ng build serendipity-components-lib && \
+ng build serendipity-party-lib && \
+ng build serendipity-pwa
 ```
 
 ### Aliases
