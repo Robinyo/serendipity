@@ -25,12 +25,14 @@
               "projects/serendipity-pwa/src/assets",
               {
                 "glob": "**/*",
-                "input": "projects/serendipity-pwa/public"
+                "input": "projects/serendipity-party-lib/src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [
               "projects/serendipity-pwa/src/styles.scss",
-              "projects/serendipity-pwa/src/theme.scss"
+              "projects/serendipity-pwa/src/theme.scss",
+              "projects/serendipity-components-lib/src/styles.scss"
             ]
           },
           "configurations": {
@@ -82,11 +84,14 @@
               "projects/serendipity-pwa/src/assets",
               {
                 "glob": "**/*",
-                "input": "projects/serendipity-pwa/public"
+                "input": "projects/serendipity-party-lib/src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [
-              "projects/serendipity-pwa/src/styles.scss"
+              "projects/serendipity-pwa/src/styles.scss",
+              "projects/serendipity-pwa/src/theme.scss",
+              "projects/serendipity-components-lib/src/styles.scss"
             ]
           }
         }
@@ -94,6 +99,11 @@
     },
     "serendipity-utils-lib": {
       "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "projects/serendipity-utils-lib",
       "sourceRoot": "projects/serendipity-utils-lib/src",
       "prefix": "lib",
@@ -120,6 +130,11 @@
     },
     "serendipity-components-lib": {
       "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "projects/serendipity-components-lib",
       "sourceRoot": "projects/serendipity-components-lib/src",
       "prefix": "lib",
@@ -146,6 +161,11 @@
     },
     "serendipity-party-lib": {
       "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "projects/serendipity-party-lib",
       "sourceRoot": "projects/serendipity-party-lib/src",
       "prefix": "lib",

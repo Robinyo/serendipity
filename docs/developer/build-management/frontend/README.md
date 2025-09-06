@@ -49,12 +49,21 @@ In a terminal:
 npm run watch
 ```
 
-In a another terminal:
+In another terminal:
 
 ```
 # In the project's /frontend directory
 
 ng serve serendipity-pwa --open
+```
+
+Alternatively:
+
+```
+ng build --configuration="development" serendipity-utils-lib && \
+ng build --configuration="development" serendipity-components-lib && \
+ng build --configuration="development" serendipity-party-lib && \
+ng build --configuration="development" serendipity-pwa
 ```
 
 ## ❯ Production

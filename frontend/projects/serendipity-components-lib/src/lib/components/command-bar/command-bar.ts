@@ -9,7 +9,7 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
   ],
   templateUrl: './command-bar.html',
   standalone: true,
-  styleUrl: './command-bar.css'
+  styleUrl: './command-bar.scss'
 })
 export class CommandBar {
 
