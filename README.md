@@ -41,7 +41,6 @@ Serendipity is composed of the following components:
 * Developer Documentation
   * [Quick Start Guide](./docs/developer/quick-start-guide/README.md)
   * [Build Management](./docs/developer/build-management/README.md)
-  * [mkcert](./docs/developer/mkcert/README.md)
 * Administrator Documentation
   * [Working with Docker and Docker Compose](./docs/administrator/docker/README.md)
   * [Working with Keycloak](./docs/administrator/keycloak/README.md)
