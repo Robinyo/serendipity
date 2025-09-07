@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class Config {
+export class ConfigService {
 
   private httpClient = inject(HttpClient);
 

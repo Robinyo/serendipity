@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
-import { Config } from 'serendipity-utils-lib';
+import { ConfigService } from 'serendipity-utils-lib';
 
 import { NavigationBar } from '../navigation-bar/navigation-bar';
 
@@ -36,8 +36,6 @@ const TOOLS_ROUTES = 'tools-routes';
 })
 export class Layout  implements OnInit  {
 
-  private config = inject(Config);
-
   public myWorkRoutes: SidenavRoute[] | undefined;
   public customerRoutes: SidenavRoute[] | undefined;
   // public salesRoutes: SidenavRoute[] | undefined;
@@ -45,21 +43,23 @@ export class Layout  implements OnInit  {
   // public marketingRoutes: SidenavRoute[] | undefined;
   public toolsRoutes: SidenavRoute[] | undefined;
 
+  private configService = inject(ConfigService);
+
   ngOnInit(): void {
     this.loadNavListItems();
   }
 
   loadNavListItems() {
 
-    this.config.get(MY_WORK_ROUTES).subscribe(data => {
+    this.configService.get(MY_WORK_ROUTES).subscribe(data => {
       this.myWorkRoutes = data;
     });
 
-    this.config.get(CUSTOMER_ROUTES).subscribe(data => {
+    this.configService.get(CUSTOMER_ROUTES).subscribe(data => {
       this.customerRoutes = data;
     });
 
-    this.config.get(TOOLS_ROUTES).subscribe(data => {
+    this.configService.get(TOOLS_ROUTES).subscribe(data => {
       this.toolsRoutes = data;
     });
 
