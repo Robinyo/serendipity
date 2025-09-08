@@ -9,11 +9,9 @@ import { Subscription } from 'rxjs';
 
 import { ConfigService, LoggerService } from 'serendipity-utils-lib';
 
-const ALPHABET: string[] = [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' ];
 import { ColumnDef } from '../../../models/column';
 
-const ALL = 'All';
-const DEFAULT_FOOTER_COL_SPAN = 5;
+import { ALL, ALPHABET, DEFAULT_FOOTER_COL_SPAN } from './constants';
 
 export interface CollectionComponentConfig {
 
@@ -31,21 +29,20 @@ export interface CollectionComponentConfig {
 
 }
 
+@Directive()
 export abstract class Collection<T> implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatSort, {static: false})
-  // @ts-ignore
-  public sort: MatSort;
+  public sort: MatSort | undefined;
 
   public alphabet = ALPHABET;
   // @ts-ignore
   public columnDefs: ColumnDef[];
-  // @ts-ignore
-  public dataSource: MatTableDataSource<T>;
+  public dataSource: MatTableDataSource<T> | undefined;
   public displayedColumns: string[] | undefined;
   public footerAllLabel = ALL;
   public footerColSpan = DEFAULT_FOOTER_COL_SPAN;
-  public items!: Array<T>;
+  public items!: Array<T> | undefined;
   public pageNumber = 1;
   public selectedFooterItemId = ALL;
 
@@ -63,8 +60,8 @@ export abstract class Collection<T> implements OnInit, AfterViewInit, OnDestroy 
   protected offset = 0;
 
   protected columnDefsFilename: string;
-  protected desktopDeviceColumns: string[];
-  protected mobileDeviceColumns: string[];
+  protected desktopDeviceColumns: string[] | undefined;
+  protected mobileDeviceColumns: string[] | undefined;
 
   constructor(config: CollectionComponentConfig) {
 

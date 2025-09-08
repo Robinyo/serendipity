@@ -1,2 +1,11 @@
-// @use './lib/components/activity-bar/styles' as *;
-@use './lib/components/command-bar/styles' as *;
+@use './variables';
+
+.md-command-bar-button {
+  background: white !important;
+  color: black !important;
+  margin-right: variables.$button-margin-right;
+}
+
+.md-content-container {
+
+}

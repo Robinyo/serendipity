@@ -79,6 +79,20 @@ ng build serendipity-party-lib && \
 ng build serendipity-pwa
 ```
 
+In a terminal:
+
+```
+# In the project's /frontend directory
+
+http-server ./dist/serendipity-pwa/browser
+```
+
+In your browser navigate to:
+
+```
+http://localhost:8080
+```
+
 ### Aliases
 
 To add support for aliases update the "paths" array in the `compilerOptions` section of `tsconfig.json`:
@@ -99,7 +113,7 @@ To add support for aliases update the "paths" array in the `compilerOptions` sec
 
 ### Assets
 
-You use the assets array inside the build target in `angular.json` to list files or folders you want to copy as-is when building your project:
+You use the `assets` array inside the build target in `angular.json` to list files or folders you want to copy as-is when building your project:
 
 ```
   "assets": [
@@ -107,27 +121,34 @@ You use the assets array inside the build target in `angular.json` to list files
     "projects/serendipity-pwa/src/assets",
     {
       "glob": "**/*",
-      "input": "projects/serendipity-pwa/public"
-    },
-      
-    ...
-     
-  ]
+      "input": "projects/serendipity-party-lib/src/assets",
+      "output": "/assets"
+    }
+  ]  
 ```
 
 ### Styles
 
-You use the styles array inside the build target in `angular.json` to list files you want to include when building your project:
+You use the `styles` array inside the build target in `angular.json` to list files you want to include when building your project:
 
 ```
   "styles": [
     "projects/serendipity-pwa/src/styles.scss",
-    "projects/serendipity-pwa/src/theme.scss"
-  ],
-      
-    ...
-     
+    "projects/serendipity-pwa/src/theme.scss",
+    "projects/serendipity-components-lib/src/styles.scss"
   ]
+```
+
+### Angular Schematics
+
+You use the `schematics` entry for applications and libraries in `angular.json` to set the stylesheet format when generating components:
+
+```
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
 ```
 
 ### Source Control
@@ -137,7 +158,8 @@ Check in:
 ```
 git add .
 git commit -m "Updated the README.md file"
-git push -u origin main
+git push -u origin serendipity-3.0
+# git push -u origin main
 ```
 
 Tag Format:
