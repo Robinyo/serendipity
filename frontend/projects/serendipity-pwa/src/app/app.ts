@@ -1,6 +1,4 @@
-import { Component, signal } from '@angular/core';
-
-import { loggerProviders } from 'serendipity-utils-lib';
+import { Component } from '@angular/core';
 
 import { Layout } from './features/layout/layout';
 
@@ -9,12 +7,18 @@ import { Layout } from './features/layout/layout';
   imports: [
     Layout
   ],
-  providers: [
-    loggerProviders
-  ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App {
-  // protected readonly title = signal('Serendipity PWA');
 }
+
+/*
+
+import { loggerProviders } from 'serendipity-utils-lib';
+
+  providers: [
+    loggerProviders
+  ],
+
+*/

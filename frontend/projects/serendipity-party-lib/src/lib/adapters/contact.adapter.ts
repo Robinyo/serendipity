@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Adapter, EnvironmentService, LoggerService } from 'utils-lib';
+import { Adapter } from 'serendipity-utils-lib';
 
 import { PartyAdapter } from "./party.adapter";
 
@@ -11,12 +11,11 @@ import { Contact } from '../models/contact';
 })
 export class ContactAdapter extends PartyAdapter implements Adapter<Contact> {
 
-  constructor(environmentService: EnvironmentService,
-              logger: LoggerService) {
+  constructor() {
 
-    super(environmentService, logger);
+    super();
 
-    this.logger.info('ContactAdapter initialised');
+    // this.logger.info('Contact Adapter initialised');
   }
 
   adapt(item: any): Contact {
@@ -63,34 +62,3 @@ export class ContactAdapter extends PartyAdapter implements Adapter<Contact> {
   }
 
 }
-
-/*
-
-    if (contact.party.roles && contact.party.roles.length) {
-
-      contact.organisation.id = btoa(contact.party.roles[0].reciprocalPartyId);
-      contact.organisation.displayName = contact.party.roles[0].reciprocalPartyName;
-      contact.organisation.email = contact.party.roles[0].reciprocalPartyEmail;
-      contact.organisation.phoneNumber = contact.party.roles[0].reciprocalPartyPhoneNumber;
-
-    }
-
-*/
-
-/*
-
-    if (item.party.addresses && item.party.addresses.length) {
-      contact.party.addresses = contact.party.addresses.concat(item.party.addresses);
-    }
-
-    if (item.party.roles && item.party.roles.length) {
-
-      contact.party.roles = contact.party.roles.concat(item.party.roles);
-
-      contact.organisation.id = btoa(contact.party.roles[0].reciprocalPartyId);
-      contact.organisation.displayName = contact.party.roles[0].reciprocalPartyName;
-      contact.organisation.email = contact.party.roles[0].reciprocalPartyEmail;
-      contact.organisation.phoneNumber = contact.party.roles[0].reciprocalPartyPhoneNumber;
-    }
-
-*/

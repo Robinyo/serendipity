@@ -8,15 +8,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { ConfigService } from 'serendipity-utils-lib';
 
 import { NavigationBar } from '../navigation-bar/navigation-bar';
-
 import { SidenavRoute } from './sidenav-route';
 
-const MY_WORK_ROUTES = 'my-work-routes';
-const CUSTOMER_ROUTES = 'customers-routes';
-// const SALES_ROUTES = 'sales-routes';
-// const COLLATERAL_ROUTES = 'collateral-routes';
-// const MARKETING_ROUTES = 'marketing-routes';
-const TOOLS_ROUTES = 'tools-routes';
+import { CUSTOMER_ROUTES, MY_WORK_ROUTES, TOOLS_ROUTES } from './constants';
 
 @Component({
   selector: 'app-layout',
@@ -50,6 +44,8 @@ export class Layout  implements OnInit  {
   }
 
   loadNavListItems() {
+
+    // The JSON configuration files are in the /src/assets/data/config directory
 
     this.configService.get(MY_WORK_ROUTES).subscribe(data => {
       this.myWorkRoutes = data;

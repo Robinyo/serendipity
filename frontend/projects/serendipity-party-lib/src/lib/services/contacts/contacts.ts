@@ -1,10 +1,10 @@
+import { inject, Injectable } from '@angular/core';
 import { HttpResponse} from '@angular/common/http';
-import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { CollectionService } from 'serendipity-utils-lib';
+import { CollectionService } from '../abstract/collection/collection';
 
 import { Contact } from '../../models/contact';
 import { Role } from '../../models/role';
@@ -15,13 +15,16 @@ import { ContactAdapter } from '../../adapters/contact.adapter';
 })
 export class ContactsService extends CollectionService {
 
-  constructor(private adapter: ContactAdapter) {
+  private adapter: ContactAdapter = inject(ContactAdapter);
+
+  constructor() {
 
     super();
 
     this.url = this.getUrlPrefix() + '/api/party-service/individuals/';
-  }
 
+    this.logger.info('Contacts Service: constructor()');
+  }
 
   public find(filter: string, offset: number = 0, limit: number = 100): Observable<any> {
 

@@ -1,20 +1,13 @@
-import { Config, EnvironmentService, LoggerService } from 'utils-lib';
+import { inject } from '@angular/core';
+
+import { environment, LoggerService } from 'serendipity-utils-lib';
 
 export class PartyAdapter {
 
-  protected config: Config;
-
-  constructor(protected environmentService: EnvironmentService,
-              protected logger: LoggerService) {
-
-    this.config = this.environmentService.getConfig();
-
-  }
+  protected logger = inject(LoggerService);
 
   protected getUrlPrefix(): string {
-
-    return this.config.serverScheme + '://' + this.config.serverHost + ':' + this.config.partyServicePort + '/';
-
+    return environment.serverScheme + '://' + environment.serverHost + '/';
   }
 
 }

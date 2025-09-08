@@ -1,11 +1,9 @@
-import { inject } from '@angular/core';
+import { inject, Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { HttpOptions } from '../../../models/http-options';
-import { LoggerService } from '../../logger/logger.service';
+import { environment, HttpOptions, LoggerService } from 'serendipity-utils-lib';
 
-import { environment } from '../../../environments/environment';
-
+@Injectable()
 export abstract class CollectionService {
 
   protected httpClient = inject(HttpClient);
@@ -20,7 +18,7 @@ export abstract class CollectionService {
 
   protected getHttpOptions(params: any = undefined): HttpOptions {
 
-    // his.logger.info('Collection Service: getHttpOptions()');
+    // this.logger.info('Collection Service: getHttpOptions()');
 
     if (!this.httpOptions) {
 

@@ -42,7 +42,7 @@ export abstract class Collection<T> implements OnInit, AfterViewInit, OnDestroy 
   public displayedColumns: string[] | undefined;
   public footerAllLabel = ALL;
   public footerColSpan = DEFAULT_FOOTER_COL_SPAN;
-  public items!: Array<T> | undefined;
+  public items!: Array<T>;
   public pageNumber = 1;
   public selectedFooterItemId = ALL;
 
@@ -85,17 +85,19 @@ export abstract class Collection<T> implements OnInit, AfterViewInit, OnDestroy 
 
   public ngOnInit(): void {
 
-    this.logger.info('CollectionComponent: ngOnInit()');
+    // this.logger.info('Collection Component: ngOnInit()');
 
     this.loadColumnDefs(this.columnDefsFilename);
   }
 
   protected loadColumnDefs(configFilename: string) {
 
-    this.logger.info('CollectionComponent: loadColumnDefs()');
+    // this.logger.info('Collection Component: loadColumnDefs()');
 
     this.configService.get(configFilename).subscribe(data => {
       this.columnDefs = data;
+
+      this.subscribe();
     });
 
   }
@@ -104,7 +106,7 @@ export abstract class Collection<T> implements OnInit, AfterViewInit, OnDestroy 
 
   protected unsubscribe(): void {
 
-    this.logger.info('CollectionComponent: unsubscribe()');
+    // this.logger.info('Collection Component: unsubscribe()');
 
     if (this.subscription) {
       this.subscription.unsubscribe();
@@ -114,7 +116,7 @@ export abstract class Collection<T> implements OnInit, AfterViewInit, OnDestroy 
 
   public ngAfterViewInit(): void {
 
-    this.logger.info('CollectionComponent: ngAfterViewInit()');
+    // this.logger.info('Collection Component: ngAfterViewInit()');
 
   }
 
