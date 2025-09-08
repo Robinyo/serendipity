@@ -58,6 +58,16 @@ html, body { height: 100%; }
 .material-icons.md-light { color: rgba(255, 255, 255, 1); }
 .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 
+:root {
+
+  // https://material.angular.dev/components/button/styling
+  @include mat.fab-overrides((
+    container-color: orange,
+    foreground-color: white
+  ));
+
+}
+
 /*
 
 // Customize the entire app. Change :root to your selector if you want to scope the styles.
