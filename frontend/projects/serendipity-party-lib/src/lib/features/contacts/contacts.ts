@@ -44,9 +44,9 @@ export class Contacts extends Collection<Contact> {
 
   }
 
-  protected subscribe() {}
+  // protected subscribe() {}
 
-  /*
+  // /*
 
   protected subscribe() {
 
@@ -60,7 +60,7 @@ export class Contacts extends Collection<Contact> {
 
         this.count = response.body.page.totalElements;
 
-        this.logger.info('count: ' + this.count);
+        this.logger.info('count: ' + this.count + ' Contacts');
 
         if (this.count > 0) {
 
@@ -87,7 +87,7 @@ export class Contacts extends Collection<Contact> {
 
   }
 
-  */
+  // */
 
 }
 

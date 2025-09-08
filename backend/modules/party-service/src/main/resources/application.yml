@@ -4,8 +4,8 @@ server:
 logging:
   level:
     root: INFO
-    org.hibernate.SQL: INFO
     org.springframework.web: INFO
+    org.hibernate.SQL: INFO
 
 spring:
   data:

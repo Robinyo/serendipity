@@ -49,11 +49,10 @@
 
 	</dependencies>
 
-
-
 	<build>
 		<plugins>
 
+      <!--
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
@@ -74,6 +73,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			-->
 
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

@@ -1,13 +1,11 @@
 server:
   port: 8080
-  # servlet:
-    # context-path: /api
 
 logging:
   level:
     root: INFO
     org.springframework.web: INFO
-    org.springframework.cloud.gateway.server.mvc: DEBUG
+    org.springframework.cloud.gateway.server.mvc: INFO
 
 spring:
   main:
@@ -20,5 +18,21 @@ spring:
         type: autodetect
         connect-timeout: 30s
         read-timeout: 30s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: beans, env, health, info, metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: always
+
+party-service:
+  uri: http://serendipity-party-service/api/party-service
+# work-service:
+#   uri: http://serendipity-work-service/api/work-service
 
 # https://docs.spring.io/spring-cloud-gateway/reference/appendix.html

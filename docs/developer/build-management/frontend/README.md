@@ -46,7 +46,11 @@ In a terminal:
 ```
 # In the project's /frontend directory
 
-npm run watch
+npm run watch-lib:serendipity-utils-lib
+npm run watch-lib:serendipity-components-lib
+npm run watch-lib:serendipity-party-lib
+    
+# npm run watch
 ```
 
 In another terminal:

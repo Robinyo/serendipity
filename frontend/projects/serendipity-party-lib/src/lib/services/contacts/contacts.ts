@@ -21,7 +21,7 @@ export class ContactsService extends CollectionService {
 
     super();
 
-    this.url = this.getUrlPrefix() + '/api/party-service/individuals/';
+    this.url = this.getUrlPrefix() + '/api/party-service/individuals';
 
     // this.logger.info('Contacts Service: constructor()');
   }
