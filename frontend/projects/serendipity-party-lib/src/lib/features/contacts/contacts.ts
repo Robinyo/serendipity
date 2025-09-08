@@ -40,6 +40,8 @@ export class Contacts extends Collection<Contact> {
       limit: 10
     });
 
+    this.logger.info('Contacts');
+
   }
 
   protected subscribe() {}

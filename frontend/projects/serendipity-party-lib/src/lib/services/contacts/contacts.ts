@@ -23,7 +23,7 @@ export class ContactsService extends CollectionService {
 
     this.url = this.getUrlPrefix() + '/api/party-service/individuals/';
 
-    this.logger.info('Contacts Service: constructor()');
+    // this.logger.info('Contacts Service: constructor()');
   }
 
   public find(filter: string, offset: number = 0, limit: number = 100): Observable<any> {
