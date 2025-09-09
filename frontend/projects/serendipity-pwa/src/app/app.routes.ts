@@ -1,7 +1,9 @@
 import { Routes } from '@angular/router';
 
-import { Home } from './features/home/home';
 import { Placeholder } from 'serendipity-components-lib';
+import { ContactsResolver } from 'serendipity-party-lib';
+
+import { Home } from './features/home/home';
 
 export const routes: Routes = [
 
@@ -11,17 +13,19 @@ export const routes: Routes = [
 
   {
     path: 'work/activities',
-    component: Placeholder,
+    component: Placeholder
   },
 
   {
     path: 'customers/dashboards',
-    component: Placeholder,
+    component: Placeholder
+
   },
 
   {
     path: 'customers/contacts',
-    loadComponent: () => import('../../../serendipity-party-lib/src/lib/features/contacts/contacts').then(m => m.Contacts)
+    loadComponent: () => import('../../../serendipity-party-lib/src/lib/features/contacts/contacts').then(m => m.Contacts),
+    resolve: { columnDefs: ContactsResolver }
   }
 
 ];

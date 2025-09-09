@@ -1,0 +1,23 @@
+@use './variables';
+
+// Columns
+
+.mat-column-party-displayName {
+  width: variables.$display-name-column-width;
+  max-width: variables.$display-name-column-width;
+}
+
+.mat-column-email {
+  width: variables.$email-column-width;
+  max-width: variables.$email-column-width;
+}
+
+.mat-column-organisation-displayName {
+  width: variables.$display-name-column-width;
+  max-width: variables.$display-name-column-width;
+}
+
+.mat-column-organisation-phoneNumber {
+  width: variables.$phone-number-column-width;
+  max-width: variables.$phone-number-column-width;
+}

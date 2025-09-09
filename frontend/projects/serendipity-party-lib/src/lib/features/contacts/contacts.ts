@@ -1,8 +1,13 @@
-import { inject, Component } from '@angular/core';
+import { inject, ChangeDetectorRef, Component } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
+
+// import { delay } from 'rxjs';
 
 import { ActivityBar, CommandBar, Collection } from 'serendipity-components-lib';
 
@@ -14,6 +19,7 @@ import { Contact } from '../../models/contact';
 import { COLUMN_DEFS } from './column-defs';
 import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './constants';
 
+
 @Component({
   selector: 'lib-contacts',
   imports: [
@@ -21,6 +27,10 @@ import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './constants';
     CommandBar,
     MatButtonModule,
     MatIconModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
+    MatTableModule,
+    RouterLink
   ],
   templateUrl: './contacts.html',
   standalone: true,
@@ -30,6 +40,8 @@ export class Contacts extends Collection<Contact> {
 
   private entityAdapter: ContactAdapter = inject(ContactAdapter);
   private entityService: ContactsService = inject(ContactsService);
+
+  private route: ActivatedRoute = inject(ActivatedRoute);
 
   constructor() {
 
@@ -42,15 +54,17 @@ export class Contacts extends Collection<Contact> {
 
     this.logger.info('Contacts');
 
+    this.columnDefs = this.route.snapshot.data['columnDefs'];
+
+    this.logger.info('columnDefs: ' + JSON.stringify(this.columnDefs, null, 2));
+
   }
-
-  // protected subscribe() {}
-
-  // /*
 
   protected subscribe() {
 
     this.logger.info('Contacts Component: subscribe()');
+
+    this.isLoading = true;
 
     this.subscription = this.entityService.find(this.filter, this.offset, this.limit).subscribe(
 
@@ -74,6 +88,8 @@ export class Contacts extends Collection<Contact> {
 
         }
 
+        this.isLoading = false;
+
         // this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
 
         this.dataSource = new MatTableDataSource(this.items);
@@ -81,13 +97,29 @@ export class Contacts extends Collection<Contact> {
         this.dataSource.sortingDataAccessor = pathDataAccessor;
         this.dataSource.sort = this.sort;
 
+        // The error "Expression has changed after it was checked" in Angular, specifically with an Angular Material
+        // table's dataSource, indicates that a binding expression's value changed during or immediately after
+        // Angular's change detection cycle, but before the view could be re-rendered to reflect this change.
+        // This error typically occurs in development mode, where Angular performs an extra check to ensure view stability.
+
+        this.changeDetector.detectChanges();
+
       }
 
     );
 
   }
 
-  // */
+  //
+  // Command Bar events
+  //
+
+  public onNew() {
+
+    this.logger.info('Contacts Component: onNew()');
+
+    // this.router.navigate([CONTACT_WIZARD]);
+  }
 
 }
 

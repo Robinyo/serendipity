@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, inject, OnInit, OnDestroy, Type, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterViewInit, ChangeDetectorRef, Directive, inject, OnInit, OnDestroy, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MatSort } from '@angular/material/sort';
@@ -30,7 +30,7 @@ export interface CollectionComponentConfig {
 }
 
 @Directive()
-export abstract class Collection<T> implements OnInit, AfterViewInit, OnDestroy {
+export abstract class Collection<T> implements AfterContentChecked, AfterViewInit, OnInit, OnDestroy {
 
   @ViewChild(MatSort, {static: false})
   public sort: MatSort | undefined;
@@ -38,20 +38,24 @@ export abstract class Collection<T> implements OnInit, AfterViewInit, OnDestroy 
   public alphabet = ALPHABET;
   // @ts-ignore
   public columnDefs: ColumnDef[];
-  public dataSource: MatTableDataSource<T> | undefined;
+  public isLoading: boolean = true;
+  // @ts-ignore
+  public dataSource: MatTableDataSource<T>;
   public displayedColumns: string[] | undefined;
   public footerAllLabel = ALL;
   public footerColSpan = DEFAULT_FOOTER_COL_SPAN;
-  public items!: Array<T>;
+
   public pageNumber = 1;
   public selectedFooterItemId = ALL;
 
   // protected breakpointObserver: BreakpointObserver;
+  protected items!: Array<T>;
   protected count = 0;
   protected configService = inject(ConfigService);
   // protected dialogService: DialogService;
   protected logger = inject(LoggerService);
   protected router = inject(Router);
+  protected changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   // protected sidenavService: SidenavService;
   protected subscription: Subscription | undefined;
 
@@ -69,6 +73,13 @@ export abstract class Collection<T> implements OnInit, AfterViewInit, OnDestroy 
     this.desktopDeviceColumns = config.desktopDeviceColumns;
     this.mobileDeviceColumns = config.mobileDeviceColumns;
 
+
+
+    this.displayedColumns = this.desktopDeviceColumns;
+    this.footerColSpan = this.displayedColumns.length;
+
+
+
     if (config.filter !== undefined) {
       this.filter = config.filter;
     }
@@ -85,20 +96,23 @@ export abstract class Collection<T> implements OnInit, AfterViewInit, OnDestroy 
 
   public ngOnInit(): void {
 
-    // this.logger.info('Collection Component: ngOnInit()');
+    this.logger.info('Collection Component: ngOnInit()');
 
-    this.loadColumnDefs(this.columnDefsFilename);
+    // this.subscribe();
+
   }
 
-  protected loadColumnDefs(configFilename: string) {
+  public ngAfterViewInit(): void {
 
-    // this.logger.info('Collection Component: loadColumnDefs()');
+    this.logger.info('Collection Component: ngAfterViewInit()');
 
-    this.configService.get(configFilename).subscribe(data => {
-      this.columnDefs = data;
+    this.subscribe();
 
-      this.subscribe();
-    });
+  }
+
+  public ngAfterContentChecked(): void {
+
+    this.logger.info('Collection Component: ngAfterContentChecked()');
 
   }
 
@@ -114,12 +128,6 @@ export abstract class Collection<T> implements OnInit, AfterViewInit, OnDestroy 
 
   }
 
-  public ngAfterViewInit(): void {
-
-    // this.logger.info('Collection Component: ngAfterViewInit()');
-
-  }
-
   public refresh(): void {
 
     this.logger.info('CollectionComponent: refresh()');
@@ -131,7 +139,6 @@ export abstract class Collection<T> implements OnInit, AfterViewInit, OnDestroy 
   public ngOnDestroy(): void {
 
   }
-
 
   //
   // Pagination events
