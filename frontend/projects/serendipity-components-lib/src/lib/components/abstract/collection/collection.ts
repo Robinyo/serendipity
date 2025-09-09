@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterViewInit, ChangeDetectorRef, Directive, inject, OnInit, OnDestroy, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Directive, inject, isDevMode, OnDestroy, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MatSort } from '@angular/material/sort';
@@ -12,6 +12,8 @@ import { ConfigService, LoggerService } from 'serendipity-utils-lib';
 import { ColumnDef } from '../../../models/column';
 
 import { ALL, ALPHABET, DEFAULT_FOOTER_COL_SPAN } from './constants';
+
+const noop = (): any => undefined;
 
 export interface CollectionComponentConfig {
 
@@ -30,7 +32,7 @@ export interface CollectionComponentConfig {
 }
 
 @Directive()
-export abstract class Collection<T> implements AfterContentChecked, AfterViewInit, OnInit, OnDestroy {
+export abstract class Collection<T> implements AfterViewInit, OnDestroy {
 
   @ViewChild(MatSort, {static: false})
   public sort: MatSort | undefined;
@@ -94,14 +96,6 @@ export abstract class Collection<T> implements AfterContentChecked, AfterViewIni
 
   }
 
-  public ngOnInit(): void {
-
-    this.logger.info('Collection Component: ngOnInit()');
-
-    // this.subscribe();
-
-  }
-
   public ngAfterViewInit(): void {
 
     this.logger.info('Collection Component: ngAfterViewInit()');
@@ -110,13 +104,22 @@ export abstract class Collection<T> implements AfterContentChecked, AfterViewIni
 
   }
 
-  public ngAfterContentChecked(): void {
+  protected abstract subscribe(): void;
 
-    this.logger.info('Collection Component: ngAfterContentChecked()');
+  protected detectChanges() {
+
+    // The error "Expression has changed after it was checked" in Angular, specifically with an Angular Material
+    // table's dataSource, indicates that a binding expression's value changed during or immediately after
+    // Angular's change detection cycle, but before the view could be re-rendered to reflect this change.
+    // This error typically occurs in development mode, where Angular performs an extra check to ensure view stability.
+
+    if (isDevMode()) {
+      return this.changeDetector.detectChanges();
+    } else {
+      return noop;
+    }
 
   }
-
-  protected abstract subscribe(): void;
 
   protected unsubscribe(): void {
 

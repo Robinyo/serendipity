@@ -38,7 +38,10 @@ body {
 // Each category has three sizes: small, medium, and large.
 // See: https://m3.material.io/styles/typography/applying-type
 
-html, body { height: 100%; }
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
 
 /* You can add global styles to this file, and also import other style files. */
 

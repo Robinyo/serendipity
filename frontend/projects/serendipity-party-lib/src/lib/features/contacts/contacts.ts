@@ -1,4 +1,4 @@
-import { inject, ChangeDetectorRef, Component } from '@angular/core';
+import { inject, Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -6,8 +6,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
-
-// import { delay } from 'rxjs';
 
 import { ActivityBar, CommandBar, Collection } from 'serendipity-components-lib';
 
@@ -18,7 +16,6 @@ import { Contact } from '../../models/contact';
 
 import { COLUMN_DEFS } from './column-defs';
 import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './constants';
-
 
 @Component({
   selector: 'lib-contacts',
@@ -97,12 +94,7 @@ export class Contacts extends Collection<Contact> {
         this.dataSource.sortingDataAccessor = pathDataAccessor;
         this.dataSource.sort = this.sort;
 
-        // The error "Expression has changed after it was checked" in Angular, specifically with an Angular Material
-        // table's dataSource, indicates that a binding expression's value changed during or immediately after
-        // Angular's change detection cycle, but before the view could be re-rendered to reflect this change.
-        // This error typically occurs in development mode, where Angular performs an extra check to ensure view stability.
-
-        this.changeDetector.detectChanges();
+        this.detectChanges();
 
       }
 

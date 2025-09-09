@@ -28,11 +28,9 @@
 
   <div class="md-table-container">
 
-    <!--
     @if (isLoading) {
       <mat-spinner class="md-spinner"></mat-spinner>
     }
-    -->
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -87,8 +85,8 @@
 
       <ng-container matColumnDef="id">
 
-        <th mat-header-cell *matHeaderCellDef class="header-cell-id">
-          <button matButton="filled" class="md-command-bar-button" aria-label="Reload button">
+        <th mat-header-cell *matHeaderCellDef>
+          <button matIconButton class="md-table-header-id-column" aria-label="Reload button">
             <mat-icon class="material-icons">autorenew</mat-icon>
           </button>
         </th>
