@@ -58,6 +58,22 @@ Home (Welcome) Page
   <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/home.png">
 </p>
 
+### Navigation
+
+Navigation Bar
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/navigation-bar.png">
+</p>
+
+Command Bar
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/command-bar.png">
+</p>
+
+### Customer Engagement
+
 Contacts Page
 
 <p align="center">
