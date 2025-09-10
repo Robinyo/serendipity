@@ -1,5 +1,3 @@
-//
-
 export const MY_WORK_ROUTES = 'my-work-routes';
 export const CUSTOMER_ROUTES = 'customers-routes';
 // export const SALES_ROUTES = 'sales-routes';

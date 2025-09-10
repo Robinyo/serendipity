@@ -10,6 +10,8 @@ import { Contact } from '../../models/contact';
 import { Role } from '../../models/role';
 import { ContactAdapter } from '../../adapters/contact.adapter';
 
+import { INDIVIDUALS } from './constants';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,7 +23,7 @@ export class ContactsService extends CollectionService {
 
     super();
 
-    this.url = this.getUrlPrefix() + '/api/party-service/individuals';
+    this.url = this.getUrlPrefix() + INDIVIDUALS;
 
     // this.logger.info('Contacts Service: constructor()');
   }
@@ -35,7 +37,7 @@ export class ContactsService extends CollectionService {
 
     if (filter.length) {
 
-      url = this.getUrlPrefix() + '/api/individuals/search/findByFamilyNameStartsWith';
+      url = this.getUrlPrefix() + INDIVIDUALS + '/search/findByFamilyNameStartsWith';
       queryParams = '?name=' + filter + '&page=' + offset + '&size=' + limit + '&sort=name.familyName&name.familyName.dir=asc';
 
     } else {
