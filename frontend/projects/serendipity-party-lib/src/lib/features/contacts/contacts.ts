@@ -7,7 +7,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 
-import { ActivityBar, CommandBar, Collection } from 'serendipity-components-lib';
+import { ActivityBar, CommandBar, Collection, CollectionFooter } from 'serendipity-components-lib';
 
 import { ContactAdapter } from '../../adapters/contact.adapter';
 import { ContactsService } from '../../services/contacts/contacts';
@@ -27,6 +27,7 @@ import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './constants';
     MatProgressSpinnerModule,
     MatSortModule,
     MatTableModule,
+    CollectionFooter,
     RouterLink
   ],
   templateUrl: './contacts.html',

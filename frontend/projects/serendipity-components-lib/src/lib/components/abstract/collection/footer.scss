@@ -1,0 +1,30 @@
+@use './variables';
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  white-space: nowrap;
+}
+
+.footer-spacer {
+  flex: 1 1 auto;
+}
+
+.footer-button {
+  min-width: variables.$footer-button-min-width;
+  padding: 0 8px;
+}
+
+.footer-button-first-page,
+.footer-button-previous-page,
+.footer-button-next-page,
+.footer-button-last-page {
+  min-width: variables.$footer-button-min-width;
+  padding: 0;
+}
+
+.footer-page-number {
+  padding-top: 14px;
+  padding-left: 8px;
+  padding-right: 8px;
+}

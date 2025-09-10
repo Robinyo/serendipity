@@ -13,8 +13,8 @@
 }
 
 .md-table-container {
-  // $toolbar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop
-  height: calc(100vh - (64px + 48px + 56px));
+  // $toolbar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop + $table-footer-height-desktop
+  height: calc(100vh - (64px + 48px + 56px + 40px));
 
   margin-left: variables.$table-margin-desktop;
   margin-right: variables.$table-margin-desktop;

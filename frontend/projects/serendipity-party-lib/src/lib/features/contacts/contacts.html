@@ -28,9 +28,11 @@
 
   <div class="md-table-container">
 
+    <!--
     @if (isLoading) {
       <mat-spinner class="md-spinner"></mat-spinner>
     }
+    -->
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -97,7 +99,7 @@
       </ng-container>
 
       <!-- Footer -->
-      <!--
+
       <ng-container matColumnDef="footer">
 
         <td mat-footer-cell *matFooterCellDef [attr.colspan]="footerColSpan">
@@ -106,11 +108,10 @@
         </td>
 
       </ng-container>
-      -->
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      <!-- <tr mat-footer-row *matFooterRowDef="['footer']; sticky: true"></tr> -->
+      <tr mat-footer-row *matFooterRowDef="['footer']; sticky: true"></tr>
 
     </table>
 

@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Directive, inject, isDevMode, OnDestroy, ViewChild} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Directive, inject, isDevMode, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MatSort } from '@angular/material/sort';
