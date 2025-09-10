@@ -28,8 +28,8 @@ body {
   // You can use the following styles to apply the theme’s surface background and on-surface text colors as a default
   // across your application.
 
-  background: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
+  // background: var(--mat-sys-surface);
+  // color: var(--mat-sys-on-surface);
 
 }
 
@@ -69,16 +69,21 @@ html, body {
     foreground-color: white
   ));
 
-  // https://material.angular.dev/components/table/styling
-  @include mat.table-overrides((
-    background-color: white
-  ));
-
-  --mat-table-background-color: rgba(0, 0, 0, 0.02);
-  // --mat-table-header-background-color: rgba(0, 0, 0, 0.04);
 
 }
 
+/*
+
+  // https://material.angular.dev/components/table/styling
+  @include mat.table-overrides((
+    background-color: rgba(0, 0, 0, 0.02)
+  ));
+
+  // --mat-table-background-color: rgba(0, 0, 0, 0.02);
+
+  // --mat-table-header-background-color: rgba(0, 0, 0, 0.04);
+
+ */
 
 
 

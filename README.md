@@ -58,3 +58,8 @@ Home (Welcome) Page
   <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/home.png">
 </p>
 
+Contacts Page
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/contacts.png">
+</p>
