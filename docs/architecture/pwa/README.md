@@ -139,6 +139,14 @@ For more information: [Material Icons](https://developers.google.com/fonts/docs/
 
 ## ❯ Features
 
+### Layout
+
+Sidenav components are designed to add collapsible side content (often navigation) alongside some primary content.
+
+```
+ng generate component features/layout --project serendipity-pwa
+```
+
 ### Home page
 
 In Angular, the home page of an application is typically implemented as a dedicated component. This component serves as
@@ -156,16 +164,9 @@ A container for headers, titles, or actions.
 ng generate component features/navigation-bar --project serendipity-pwa
 ```
 
-### Sidenav
+## ❯ Layout
 
-Angular Material provides two sets of components designed to add collapsible side content (often navigation, though it 
-can be any content) alongside some primary content.
-
-```
-ng generate component features/sidenav --project serendipity-pwa
-```
-
-### Flex Layout
+### Angular Flex Layout
 
 Angular 20, or any recent version of Angular, primarily encourages the use of native 
 [CSS Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) and 
