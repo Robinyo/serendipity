@@ -127,8 +127,6 @@ Angular Material lets you customize the appearance of your components by definin
 
 For more information: [Theming](https://material.angular.dev/guide/themingted)
 
-
-
 #### System Variables
 
 Angular Material components depend on system variables defined as CSS variables through the material.theme Sass mixin.
@@ -158,17 +156,6 @@ A container for headers, titles, or actions.
 ng generate component features/navigation-bar --project serendipity-pwa
 ```
 
-**Note:** Due to changes in the Material Design specification (M2 -> M3) the `mat-toolbar` component no longer supports 
-the predefined colour options e.g., <mat-toolbar color="primary">.
-
-A simple workaround is to override the toolbar's background-color:
-
-```
-mat-toolbar {
-  background-color: black !important;
-}
-```
-
 ### Sidenav
 
 Angular Material provides two sets of components designed to add collapsible side content (often navigation, though it 
@@ -180,11 +167,13 @@ ng generate component features/sidenav --project serendipity-pwa
 
 ### Flex Layout
 
-Angular 20, or any recent version of Angular, primarily encourages the use of native CSS Flexbox and CSS Grid for 
-creating layouts, rather than relying on the previously popular `@angular/flex-layout` library. 
-The `@angular/flex-layout` library has been deprecated and is no longer actively maintained by the Angular team.
+Angular 20, or any recent version of Angular, primarily encourages the use of native 
+[CSS Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) and 
+[CSS Grid](https://css-tricks.com/snippets/css/complete-guide-grid/) for creating layouts, rather than relying on the 
+previously popular `@angular/flex-layout` library. The `@angular/flex-layout` library has been deprecated and is no 
+longer actively maintained by the Angular team.
 
-### Angular CDK Layout: 
+### Angular CDK Layout
 
 The Angular Component Dev Kit (CDK) provides the `@angular/cdk/layout` module, which offers utilities for responsive 
 design, including breakpoint observers, that can be combined with native CSS Flexbox and Grid.
