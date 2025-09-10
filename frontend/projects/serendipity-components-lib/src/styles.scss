@@ -1,33 +1,40 @@
 @use './variables';
 
-.md-command-bar-button {
-  background-color: white !important;
-  color: black !important;
-  margin-right: variables.$button-margin-right;
-}
+// Content Containers
 
 .md-content-container {
-  // $toolbar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop + 2 x $table-margin-desktop
-  height: calc(100vh - (64px + 48px + 56px + 32px));
-  width: 100%;
-
   background: whitesmoke;
+  // $toolbar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop + 2 x $table-margin-desktop
+  height: calc(100vh - (64px + 48px + 56px));
+  width: 100%;
 }
 
 .md-table-container {
   // $toolbar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop + 2 x $table-margin-desktop
-  height: calc(100vh - (64px + 48px + 56px + 32px));
-  overflow: auto;
-
+  height: calc(100vh - (64px + 48px + 56px + 16px));
   margin-left: variables.$table-margin-desktop;
   margin-right: variables.$table-margin-desktop;
+  overflow: auto;
 }
 
-.md-spinner {
-
-}
+// Table
 
 .md-table-header-id-column {
   float: right;
   margin: 0 12px 0 12px;
+}
+
+// Command Bar
+
+.md-command-bar-button {
+  background-color: white !important;
+  border-radius: 3px !important;
+  color: black !important;
+  margin-right: variables.$button-margin-right;
+}
+
+// Spinner
+
+.md-spinner {
+
 }

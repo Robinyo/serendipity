@@ -1,10 +1,12 @@
-@use './variables';
+@use '../variables';
 
 .command-bar {
   background: rgba(0, 0, 0, 0.04);
   color: black;
+  height: variables.$command-bar-height-desktop !important;
+  min-height: variables.$command-bar-height-desktop !important;
 }
 
 .command-bar-row {
-  // background: rgba(0, 0, 0, 0.04);
+
 }
