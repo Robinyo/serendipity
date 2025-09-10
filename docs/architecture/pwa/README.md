@@ -30,10 +30,10 @@ You can then generate applications and libraries with names that are unique with
 ```
 cd frontend
 ng generate application serendipity-pwa
-ng generate library auth-lib
-ng generate library party-lib
-ng generate library work-lib
-ng generate library utils-lib
+ng generate library serendipity-auth-lib
+ng generate library serendipity-party-lib
+ng generate library serendipity-work-lib
+ng generate library serendipity-utils-lib
 ```
 
 ### Multiple project file structure
