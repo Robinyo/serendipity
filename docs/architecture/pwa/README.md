@@ -27,6 +27,8 @@ ng new frontend --no-create-application
 
 You can then generate applications and libraries with names that are unique within the workspace.
 
+For example:
+
 ```
 cd frontend
 ng generate application serendipity-pwa
@@ -73,45 +75,9 @@ For example:
 ### NgModules
 
 Angular 20 continues to support the use of NgModules, although it strongly encourages and promotes the adoption of 
-standalone components, directives, and pipes as the preferred approach for new projects and for migrating existing ones.
+**standalone components**, **directives**, and **pipes** as the preferred approach for new projects and for migrating existing ones.
 
-While NgModules are still functional, the Angular team recommends transitioning to standalone wherever possible to benefit from:
-
-Reduced boilerplate <br />
-Standalone components eliminate the need for declaring components, directives, and pipes within declarations arrays in modules.
-
-Improved tree-shaking <br />
-Standalone components can lead to smaller bundle sizes as only the necessary code is included.
-
-Simplified dependency management <br />
-Dependencies are directly imported into standalone components, making them easier to track.
-
-Better developer experience <br />
-Less configuration and clearer dependency chains can enhance development.
-
-Types of NgModules still in use: <br />
-
-Root Module (AppModule) <br />
-The main module of an Angular application, typically responsible for bootstrapping the application.
-
-Feature Modules <br />
-Modules that encapsulate a specific feature or domain within an application.
-
-Shared Modules <br />
-Modules containing reusable components, directives, and pipes that are shared across multiple feature modules.
-
-Core Modules <br />
-Modules that contain singleton services or application-wide functionalities.
-
-Routing Modules <br />
-Modules dedicated to defining and managing the application's routes.
-
-Transitioning to Standalone <br />
-Angular 20 provides tools and guidance for migrating existing module-based applications to leverage standalone components. <br />
-This often involves:
-- Removing `NgModule` decorators and related arrays (e.g., declarations, imports, exports).
-- Directly importing dependencies into the standalone component files.
-- Using the `standalone: true` property in component, directive, and pipe decorators.
+While NgModules are still functional, the Angular team recommends transitioning to standalone wherever possible.
 
 ## ❯ Material Design
 
