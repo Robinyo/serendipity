@@ -21,7 +21,7 @@ There are currently 150 members of the House of Representatives. Each member is 
 area of Australia called an **electorate**. Each electorate has approximately the same population.
 
 ### The Speaker of the House of Representatives
-[repository](../../../repository)
+
 The Speaker is the principal office holder in the House of Representatives. They are the House's representative or 
 spokesperson and chair its meetings. The Speaker is also responsible for the administration of the Department of the 
 House of Representatives. The Speaker is elected from among the 150 members of the House and is usually a person of 
@@ -61,7 +61,7 @@ For example, we need to seed the Political Parties (i.e, create Organisations) b
   | Jordan Hull       | Public Officer  | Office Holder  | Political Party | Australian Greens |
 ```
 
-Accordingly, we would assign a lower `@Order` value to the Political Party seeder class and a higher `@Order` value to 
+Accordingly, we would assign a lower `@Order` value to the Political Party seeder classes and a higher `@Order` value to 
 the Senate seeder class.
 
 ### CSV files
