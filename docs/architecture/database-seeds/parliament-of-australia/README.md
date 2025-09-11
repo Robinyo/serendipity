@@ -6,7 +6,7 @@
 
 ## ❯ Who is a Senator?
 
-A senator is a member of the Australian Senate, elected to represent a **state** or **territory**. There are 76 senators, 12 
+A senator is a member of the Australian Senate, elected to represent a **state** or **territory**. There are 75 senators, 12 
 from each state and two each from the Australian Capital Territory and the Northern Territory.
 
 <p align="center">
@@ -44,10 +44,10 @@ development, testing, or providing default application settings. Several methods
 
 ### CommandLineRunner
 
-- Implement CommandLineRunner.
-- Override the run() method to execute custom code when the application starts.
+- Implement `CommandLineRunner`.
+- Override the `run()` method to execute custom code when the application starts.
 - Inject your JPA repositories and use them to save entities with initial data.
-- 
+
 This approach provides more programmatic control and allows for complex data generation.
 
 ### @Order
@@ -58,8 +58,8 @@ order of multiple seeders.
 Annotate each seeder class with `@Order(value)`. The value parameter is an integer, and seeders with lower values will 
 execute before those with higher values.
 
-For example, we need to seed the Political Parties (i.e, create Organisations) before we can create a Relationship 
-(e.g., Membership) between a Political Party (an Organisation) and a Senator (an Individual).
+For example, we need to seed the Political Parties (i.e, create an Organisation for each Political Party) before we can 
+create a Relationship (e.g., Office Holder) between a Political Party (an Organisation) and a Senator (an Individual).
 
 ```
   | Party                  | Role            | Relationship   | Role               | Party                  |
