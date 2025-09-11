@@ -64,6 +64,11 @@ For example, we need to seed the Political Parties (i.e, create Organisations) b
 Accordingly, we would assign a lower `@Order` value to the Political Party seeder class and a higher `@Order` value to 
 the Senate seeder class.
 
+### CSV files
+
+Senators: [All Senators by Name - Electorate Office](https://www.aph.gov.au/-/media/03_Senators_and_Members/Address_Labels_and_CSV_files/Senators/allsenel.csv)
+Members: [All Members by Name](https://www.aph.gov.au/-/media/03_Senators_and_Members/Address_Labels_and_CSV_files/FamilynameRepsCSV.csv)
+
 ## Resources
 
 * Parliament of Australia: [Senators and Members](https://www.aph.gov.au/Senators_and_Members)
