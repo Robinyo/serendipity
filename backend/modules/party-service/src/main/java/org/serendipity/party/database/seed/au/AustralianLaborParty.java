@@ -117,7 +117,7 @@ public class AustralianLaborParty implements CommandLineRunner {
 
       // | Party                  | Role            | Relationship   | Role               | Party                  |
       // | ---------------------- | --------------- | -------------- | ------------------ | ---------------------- |
-      // | Australian Labor Party | Political Party | Office Holder  | National President | Wayne Swan             |
+      // | Australian Labor Party | Political Party | Office Holder  | Primary Contact    | Wayne Swan             |
       // | Wayne Swan             | Member          | Membership     | Political Party    | Australian Labor Party |
       // | Wayne Swan             | Public Officer  | Office Holder  | Political Party    | Australian Labor Party |
 
@@ -129,7 +129,7 @@ public class AustralianLaborParty implements CommandLineRunner {
         .partyPhoneNumber(organisation.getPhoneNumber())
         .role("Political Party")
         .relationship("Office Holder")
-        .reciprocalRole("National President")
+        .reciprocalRole("Primary Contact")
         .reciprocalPartyId(individual.getParty().getId())
         .reciprocalPartyType(individual.getParty().getType())
         .reciprocalPartyName(individual.getParty().getDisplayName())

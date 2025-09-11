@@ -185,8 +185,13 @@ public class HouseOfRepresentatives implements CommandLineRunner {
 
         switch (politicalParty) {
 
+          case AUSTRALIAN_GREENS:
           case AUSTRALIAN_LABOR_PARTY:
+          case LIBERAL_NATIONAL_PARTY_OF_QUEENSLAND:
+          case LIBERAL_PARTY:
           case LIBERAL_PARTY_OF_AUSTRALIA:
+          case NATIONAL_PARTY_OF_AUSTRALIA:
+          case PAULINE_HANSONS_ONE_NATION:
 
             // log.info("Political Party: {}", politicalParty.toString());
 
@@ -211,7 +216,9 @@ public class HouseOfRepresentatives implements CommandLineRunner {
           case INDEPENDENT:
           default:
 
-            log.info("Political Party: {}", abbreviation);
+            if (!abbreviation.equals("IND")) {
+              log.info("Political Party: {}", abbreviation);
+            }
 
             membership = false;
 

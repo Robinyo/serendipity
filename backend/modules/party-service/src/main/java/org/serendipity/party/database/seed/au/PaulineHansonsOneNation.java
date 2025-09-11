@@ -16,12 +16,13 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.HashSet;
 
 @Component
 @Slf4j
 @Order(2)
-public class LiberalPartyOfAustralia implements CommandLineRunner {
+public class PaulineHansonsOneNation implements CommandLineRunner {
 
   @Autowired
   private AddressRepository addressRepository;
@@ -39,7 +40,7 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
   @Transactional
   public void run(String... args) throws Exception {
 
-    log.info("Create {} ...", PoliticalParty.LIBERAL_PARTY_OF_AUSTRALIA.toString());
+    log.info("Create {} ...", PoliticalParty.PAULINE_HANSONS_ONE_NATION.toString());
 
     try {
 
@@ -51,18 +52,18 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
 
       Location location = Location.builder()
         .type(LocationType.ADDRESS)
-        .displayName("Cnr Blackall and Macquarie Streets Barton ACT 2600")
+        .displayName("2/6-12 Boronia Rd Brisbane Airport QLD 4008")
         // .fromDate(currentTime)
         .build();
 
       Address headOffice = Address.builder()
         .location(location)
-        .name("RG Menzies House")
-        .line1("Cnr Blackall and Macquarie Streets")
+        .name("")
+        .line1("2/6-12 Boronia Rd")
         .line2("")
-        .city("Barton")
-        .state("ACT")
-        .postalCode("2600")
+        .city("Brisbane Airport")
+        .state("QLD")
+        .postalCode("4008")
         .country("Australia")
         .addressType("Principle Place of Business")
         .build();
@@ -72,8 +73,8 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
       // Create the Primary Contact (Individual)
 
       Name name = Name.builder()
-        .givenName("John")
-        .familyName("Olsen")
+        .givenName("Pauline")
+        .familyName("Hanson")
         .build();
 
       Party individualParty = Party.builder()
@@ -87,8 +88,8 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
         .party(individualParty)
         .name(name)
         .sex(Sex.MALE.toString())
-        .email("john.olsen@liberal.org.au")
-        .phoneNumber("(02) 6140 3220")
+        .email("pauline.hanson@onenation.org.au")
+        .phoneNumber("1300 857 466")
         .build();
 
       // Save the Primary Contact (Individual)
@@ -100,16 +101,16 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
       Party organisationParty = Party.builder()
         .type(PartyType.ORGANISATION)
         .legalType(LegalType.OTHER_INCORPORATED_ENTITY.toString())
-        .displayName(PoliticalParty.LIBERAL_PARTY_OF_AUSTRALIA.toString())
+        .displayName(PoliticalParty.PAULINE_HANSONS_ONE_NATION.toString())
         .addresses(new HashSet<Address>())
         .roles(new HashSet<Role>())
         .build();
 
       Organisation organisation = Organisation.builder()
         .party(organisationParty)
-        .name(PoliticalParty.LIBERAL_PARTY_OF_AUSTRALIA.toString())
-        .email("hey@liberal.org.au")
-        .phoneNumber("(02) 6273 2564")
+        .name(PoliticalParty.PAULINE_HANSONS_ONE_NATION.toString())
+        .email("hey@onenation.org.au")
+        .phoneNumber("1300 857 466")
         .build();
 
       organisationRepository.save(organisation);
@@ -160,7 +161,7 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
 
       individualRepository.save(individual);
 
-      log.info("Create {} complete", PoliticalParty.LIBERAL_PARTY_OF_AUSTRALIA.toString());
+      log.info("Create {} complete", PoliticalParty.PAULINE_HANSONS_ONE_NATION.toString());
 
     } catch (Exception e) {
 

@@ -1,5 +1,9 @@
 package org.serendipity.party.database.seed.au;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import lombok.extern.slf4j.Slf4j;
 import org.serendipity.party.entity.*;
 import org.serendipity.party.repository.AddressRepository;
@@ -21,7 +25,7 @@ import java.util.HashSet;
 @Component
 @Slf4j
 @Order(2)
-public class LiberalPartyOfAustralia implements CommandLineRunner {
+public class AustralianGreens implements CommandLineRunner {
 
   @Autowired
   private AddressRepository addressRepository;
@@ -39,7 +43,7 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
   @Transactional
   public void run(String... args) throws Exception {
 
-    log.info("Create {} ...", PoliticalParty.LIBERAL_PARTY_OF_AUSTRALIA.toString());
+    log.info("Create {} ...", PoliticalParty.AUSTRALIAN_GREENS.toString());
 
     try {
 
@@ -51,18 +55,18 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
 
       Location location = Location.builder()
         .type(LocationType.ADDRESS)
-        .displayName("Cnr Blackall and Macquarie Streets Barton ACT 2600")
+        .displayName("PO Box 1108, Canberra ACT 2601")
         // .fromDate(currentTime)
         .build();
 
       Address headOffice = Address.builder()
         .location(location)
-        .name("RG Menzies House")
-        .line1("Cnr Blackall and Macquarie Streets")
+        .name("")
+        .line1("PO Box 1108")
         .line2("")
-        .city("Barton")
+        .city("Canberra")
         .state("ACT")
-        .postalCode("2600")
+        .postalCode("2601")
         .country("Australia")
         .addressType("Principle Place of Business")
         .build();
@@ -72,8 +76,8 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
       // Create the Primary Contact (Individual)
 
       Name name = Name.builder()
-        .givenName("John")
-        .familyName("Olsen")
+        .givenName("Larissa")
+        .familyName("Waters")
         .build();
 
       Party individualParty = Party.builder()
@@ -86,8 +90,9 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
       Individual individual = Individual.builder()
         .party(individualParty)
         .name(name)
-        .sex(Sex.MALE.toString())
-        .email("john.olsen@liberal.org.au")
+        // .names(new HashSet<>())
+        .sex(Sex.FEMALE.toString())
+        .email("larissa.waters@greens.org.au")
         .phoneNumber("(02) 6140 3220")
         .build();
 
@@ -100,16 +105,16 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
       Party organisationParty = Party.builder()
         .type(PartyType.ORGANISATION)
         .legalType(LegalType.OTHER_INCORPORATED_ENTITY.toString())
-        .displayName(PoliticalParty.LIBERAL_PARTY_OF_AUSTRALIA.toString())
-        .addresses(new HashSet<Address>())
-        .roles(new HashSet<Role>())
+        .displayName(PoliticalParty.AUSTRALIAN_GREENS.toString())
+        .addresses(new HashSet<>())
+        .roles(new HashSet<>())
         .build();
 
       Organisation organisation = Organisation.builder()
         .party(organisationParty)
-        .name(PoliticalParty.LIBERAL_PARTY_OF_AUSTRALIA.toString())
-        .email("hey@liberal.org.au")
-        .phoneNumber("(02) 6273 2564")
+        .name(PoliticalParty.AUSTRALIAN_GREENS.toString())
+        .email("hey@greens.org.au")
+        .phoneNumber("(02) 6140 3220")
         .build();
 
       organisationRepository.save(organisation);
@@ -158,9 +163,25 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
       individualParty.getAddresses().add(headOffice);
       individualParty.getRoles().add(member);
 
+      try {
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        log.info("individual:  {}", "\n" + mapper.writeValueAsString(individual));
+
+      } catch (JsonProcessingException jpe) {
+
+        log.error("Json Processing Exception: {}", jpe.getLocalizedMessage());
+      }
+
       individualRepository.save(individual);
 
-      log.info("Create {} complete", PoliticalParty.LIBERAL_PARTY_OF_AUSTRALIA.toString());
+      log.info("Create {} complete", PoliticalParty.AUSTRALIAN_GREENS.toString());
 
     } catch (Exception e) {
 

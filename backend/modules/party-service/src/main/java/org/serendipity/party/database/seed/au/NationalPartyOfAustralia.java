@@ -21,7 +21,7 @@ import java.util.HashSet;
 @Component
 @Slf4j
 @Order(2)
-public class LiberalPartyOfAustralia implements CommandLineRunner {
+public class NationalPartyOfAustralia implements CommandLineRunner {
 
   @Autowired
   private AddressRepository addressRepository;
@@ -39,7 +39,7 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
   @Transactional
   public void run(String... args) throws Exception {
 
-    log.info("Create {} ...", PoliticalParty.LIBERAL_PARTY_OF_AUSTRALIA.toString());
+    log.info("Create {} ...", PoliticalParty.NATIONAL_PARTY_OF_AUSTRALIA.toString());
 
     try {
 
@@ -51,16 +51,16 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
 
       Location location = Location.builder()
         .type(LocationType.ADDRESS)
-        .displayName("Cnr Blackall and Macquarie Streets Barton ACT 2600")
+        .displayName("1/6 Geils Court Deakin ACT 2600")
         // .fromDate(currentTime)
         .build();
 
       Address headOffice = Address.builder()
         .location(location)
-        .name("RG Menzies House")
-        .line1("Cnr Blackall and Macquarie Streets")
+        .name("")
+        .line1("1/6 Geils Court")
         .line2("")
-        .city("Barton")
+        .city("Deakin")
         .state("ACT")
         .postalCode("2600")
         .country("Australia")
@@ -72,8 +72,8 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
       // Create the Primary Contact (Individual)
 
       Name name = Name.builder()
-        .givenName("John")
-        .familyName("Olsen")
+        .givenName("Kay")
+        .familyName("Hull")
         .build();
 
       Party individualParty = Party.builder()
@@ -86,9 +86,9 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
       Individual individual = Individual.builder()
         .party(individualParty)
         .name(name)
-        .sex(Sex.MALE.toString())
-        .email("john.olsen@liberal.org.au")
-        .phoneNumber("(02) 6140 3220")
+        .sex(Sex.FEMALE.toString())
+        .email("kay.hull@nationals.org.au")
+        .phoneNumber("(02) 6273 3822")
         .build();
 
       // Save the Primary Contact (Individual)
@@ -100,16 +100,16 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
       Party organisationParty = Party.builder()
         .type(PartyType.ORGANISATION)
         .legalType(LegalType.OTHER_INCORPORATED_ENTITY.toString())
-        .displayName(PoliticalParty.LIBERAL_PARTY_OF_AUSTRALIA.toString())
+        .displayName(PoliticalParty.NATIONAL_PARTY_OF_AUSTRALIA.toString())
         .addresses(new HashSet<Address>())
         .roles(new HashSet<Role>())
         .build();
 
       Organisation organisation = Organisation.builder()
         .party(organisationParty)
-        .name(PoliticalParty.LIBERAL_PARTY_OF_AUSTRALIA.toString())
-        .email("hey@liberal.org.au")
-        .phoneNumber("(02) 6273 2564")
+        .name(PoliticalParty.NATIONAL_PARTY_OF_AUSTRALIA.toString())
+        .email("federal.nationals@nationals.org.au")
+        .phoneNumber("(02) 6273 3822")
         .build();
 
       organisationRepository.save(organisation);
@@ -160,7 +160,7 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
 
       individualRepository.save(individual);
 
-      log.info("Create {} complete", PoliticalParty.LIBERAL_PARTY_OF_AUSTRALIA.toString());
+      log.info("Create {} complete", PoliticalParty.NATIONAL_PARTY_OF_AUSTRALIA.toString());
 
     } catch (Exception e) {
 
