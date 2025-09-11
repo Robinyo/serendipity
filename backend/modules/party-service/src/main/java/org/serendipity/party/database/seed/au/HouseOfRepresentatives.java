@@ -31,6 +31,8 @@ public class HouseOfRepresentatives implements CommandLineRunner {
 
   static final String PATH = "sample-data/house-of-representatives.csv";
 
+  // The first row in a CSV file contains the names or labels for each column of data
+
   static final int HONORIFIC = 0;
   static final int SALUTATION = 1;
   static final int POST_NOMINALS = 2;
@@ -40,9 +42,10 @@ public class HouseOfRepresentatives implements CommandLineRunner {
   static final int PREFERRED_NAME = 6;
   static final int INITIALS = 7;
   static final int ELECTORATE = 8;
+  // static final int STATE = 9;
   static final int POLITICAL_PARTY = 10;
   static final int SEX = 11;
-  // static final int TITLE = 0; // Parliamentary Title,Ministerial Title
+  static final int NUMBER_OF_REQUIRED_COLUMNS = SEX + 1;
 
   @Autowired
   private AddressRepository addressRepository;
@@ -92,7 +95,7 @@ public class HouseOfRepresentatives implements CommandLineRunner {
       Pageable pageable = PageRequest.of(0, 1);
 
       Page<Address> addresses = addressRepository.findByName("The Senate", pageable);
-      Address parliamentHouse = addresses.getContent().get(0);
+      Address parliamentHouse = addresses.getContent().getFirst();
 
       //
       // Process sample data file
@@ -110,6 +113,13 @@ public class HouseOfRepresentatives implements CommandLineRunner {
 
         // Note: No support for strings with embedded commas, for example: "Commonwealth Parliament Offices, Suite 8"
         String[] fields = line.split(",");
+
+        // log.info("row: {}", line);
+        // log.info("fields.length: {}", fields.length);
+
+        if (fields.length < NUMBER_OF_REQUIRED_COLUMNS) {
+          continue;
+        }
 
         Name name = Name.builder()
           .title(fields[HONORIFIC])
@@ -169,27 +179,20 @@ public class HouseOfRepresentatives implements CommandLineRunner {
 
         boolean membership = true;
 
-        // "AG" | "ALP" | "CA" | "JLN" | "LP" | "NATS" | "PHON" | "IND
         String abbreviation = fields[POLITICAL_PARTY].toUpperCase();
 
         PoliticalParty politicalParty = PoliticalParty.valueOfAbbreviation(abbreviation);
 
         switch (politicalParty) {
 
-          case AUSTRALIAN_GREENS:
           case AUSTRALIAN_LABOR_PARTY:
-          case CENTRE_ALLIANCE:
-          case JACQUI_LAMBIE_NETWORK:
-          case LIBERAL_NATIONAL_PARTY_OF_QUEENSLAND:
           case LIBERAL_PARTY_OF_AUSTRALIA:
-          case NATIONAL_PARTY_OF_AUSTRALIA:
-          case PAULINE_HANSONS_ONE_NATION:
 
             // log.info("Political Party: {}", politicalParty.toString());
 
             Page<Organisation> organisations = organisationRepository.findByName(politicalParty.toString(), pageable);
 
-            Organisation organisation = organisations.getContent().get(0);
+            Organisation organisation = organisations.getContent().getFirst();
 
             member.setReciprocalPartyId(organisation.getParty().getId());
             member.setReciprocalPartyType(organisation.getParty().getType());

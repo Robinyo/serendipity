@@ -115,11 +115,11 @@ public class AustralianLaborParty implements CommandLineRunner {
 
       organisationRepository.save(organisation);
 
-      // | Party             | Role            | Relationship   | Role            | Party             |
-      // | ----------------- | --------------- | -------------- | --------------- | ----------------- |
-      // | Australian Greens | Political Party | Office Holder  | Primary Contact | Jordan Hull       |
-      // | Jordan Hull       | Member          | Membership     | Political Party | Australian Greens |
-      // | Jordan Hull       | Public Officer  | Office Holder  | Political Party | Australian Greens |
+      // | Party                  | Role            | Relationship   | Role               | Party                  |
+      // | ---------------------- | --------------- | -------------- | ------------------ | ---------------------- |
+      // | Australian Labor Party | Political Party | Office Holder  | National President | Wayne Swan             |
+      // | Wayne Swan             | Member          | Membership     | Political Party    | Australian Labor Party |
+      // | Wayne Swan             | Public Officer  | Office Holder  | Political Party    | Australian Labor Party |
 
       Role politicalParty = Role.builder()
         .partyId(organisation.getParty().getId())
@@ -129,7 +129,7 @@ public class AustralianLaborParty implements CommandLineRunner {
         .partyPhoneNumber(organisation.getPhoneNumber())
         .role("Political Party")
         .relationship("Office Holder")
-        .reciprocalRole("Primary Contact")
+        .reciprocalRole("National President")
         .reciprocalPartyId(individual.getParty().getId())
         .reciprocalPartyType(individual.getParty().getType())
         .reciprocalPartyName(individual.getParty().getDisplayName())

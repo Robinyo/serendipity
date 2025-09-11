@@ -42,8 +42,10 @@ public class Senate implements CommandLineRunner {
   static final int PREFERRED_NAME = 5;
   static final int INITIALS = 6;
   static final int POST_NOMINALS = 7;
+  // static final int STATE = 9;
   static final int POLITICAL_PARTY = 9;
   static final int SEX = 10;
+  static final int NUMBER_OF_REQUIRED_COLUMNS = SEX + 1;
 
   @Autowired
   private AddressRepository addressRepository;
@@ -77,7 +79,7 @@ public class Senate implements CommandLineRunner {
 
       Page<Address> addresses = addressRepository.findByName("The Senate", pageable);
 
-      Address parliamentHouse = addresses.getContent().get(0);
+      Address parliamentHouse = addresses.getContent().getFirst();
 
       //
       // Process sample data file
@@ -95,6 +97,13 @@ public class Senate implements CommandLineRunner {
 
         // Note: No support for strings with embedded commas, for example: "Commonwealth Parliament Offices, Suite 8"
         String[] fields = line.split(",");
+
+        // log.info("row: {}", line);
+        // log.info("fields.length: {}", fields.length);
+
+        if (fields.length < NUMBER_OF_REQUIRED_COLUMNS) {
+          continue;
+        }
 
         Name name = Name.builder()
           .title(fields[TITLE])
@@ -153,26 +162,20 @@ public class Senate implements CommandLineRunner {
 
         boolean membership = true;
 
-        // "AG" | "ALP" | "CA" | "JLN" | "LP" | "NATS" | "PHON" | "IND
         String abbreviation = fields[POLITICAL_PARTY].toUpperCase();
 
         PoliticalParty politicalParty = PoliticalParty.valueOfAbbreviation(abbreviation);
 
         switch (politicalParty) {
 
-          case AUSTRALIAN_GREENS:
           case AUSTRALIAN_LABOR_PARTY:
-          case CENTRE_ALLIANCE:
-          case JACQUI_LAMBIE_NETWORK:
           case LIBERAL_PARTY_OF_AUSTRALIA:
-          case NATIONAL_PARTY_OF_AUSTRALIA:
-          case PAULINE_HANSONS_ONE_NATION:
 
             // log.info("Political Party: {}", politicalParty.toString());
 
             Page<Organisation> organisations = organisationRepository.findByName(politicalParty.toString(), pageable);
 
-            Organisation organisation = organisations.getContent().get(0);
+            Organisation organisation = organisations.getContent().getFirst();
 
             member.setReciprocalPartyId(organisation.getParty().getId());
             member.setReciprocalPartyType(organisation.getParty().getType());

@@ -72,8 +72,8 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
       // Create the Primary Contact (Individual)
 
       Name name = Name.builder()
-        .givenName("Nick")
-        .familyName("Greiner")
+        .givenName("John")
+        .familyName("Olsen")
         .build();
 
       Party individualParty = Party.builder()
@@ -87,7 +87,7 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
         .party(individualParty)
         .name(name)
         .sex(Sex.MALE.toString())
-        .email("nick.greiner@liberal.org.au")
+        .email("john.olsen@liberal.org.au")
         .phoneNumber("(02) 6140 3220")
         .build();
 
@@ -108,17 +108,11 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
       Organisation organisation = Organisation.builder()
         .party(organisationParty)
         .name(PoliticalParty.LIBERAL_PARTY_OF_AUSTRALIA.toString())
-        .email("libadm@liberal.org.au")
+        .email("hey@liberal.org.au")
         .phoneNumber("(02) 6273 2564")
         .build();
 
       organisationRepository.save(organisation);
-
-      // | Party             | Role            | Relationship   | Role            | Party             |
-      // | ----------------- | --------------- | -------------- | --------------- | ----------------- |
-      // | Australian Greens | Political Party | Office Holder  | Primary Contact | Jordan Hull       |
-      // | Jordan Hull       | Member          | Membership     | Political Party | Australian Greens |
-      // | Jordan Hull       | Public Officer  | Office Holder  | Political Party | Australian Greens |
 
       Role politicalParty = Role.builder()
         .partyId(organisation.getParty().getId())
@@ -128,7 +122,7 @@ public class LiberalPartyOfAustralia implements CommandLineRunner {
         .partyPhoneNumber(organisation.getPhoneNumber())
         .role("Political Party")
         .relationship("Office Holder")
-        .reciprocalRole("Primary Contact")
+        .reciprocalRole("President")
         .reciprocalPartyId(individual.getParty().getId())
         .reciprocalPartyType(individual.getParty().getType())
         .reciprocalPartyName(individual.getParty().getDisplayName())

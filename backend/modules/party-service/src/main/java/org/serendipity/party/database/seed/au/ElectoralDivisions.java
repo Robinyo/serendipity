@@ -17,7 +17,7 @@ import java.io.InputStreamReader;
 @Component
 @Slf4j
 @Order(1)
-public class Electorate implements CommandLineRunner {
+public class ElectoralDivisions implements CommandLineRunner {
 
   static final String PATH = "sample-data/electoral-divisions.csv";
 

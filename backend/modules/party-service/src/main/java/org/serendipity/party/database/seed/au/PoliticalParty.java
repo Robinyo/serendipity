@@ -2,59 +2,84 @@ package org.serendipity.party.database.seed.au;
 
 public enum PoliticalParty {
 
-  AUSTRALIAN_GREENS("AG") {
+  AUSTRALIAN_CONSERVATIVE_PARTY("ACP") {
     @Override
     public String toString() {
-      return "Australian Greens";
+      return "Australian Conservative Party";
     }
   },
   AUSTRALIAN_LABOR_PARTY("ALP") {
     @Override
-  public String toString() {
-    return "Australian Labor Party";
-  }
+    public String toString() { return "Australian Labor Party"; }
   },
-  CENTRE_ALLIANCE("CA") {
+  ANTI_SOCIALIST_PARTY("ANTI-SOC") {
     @Override
-    public String toString() {
-      return "Centre Alliance";
-    }
+    public String toString() { return "Anti-Socialist Party"; }
   },
-  JACQUI_LAMBIE_NETWORK("JLN") {
+  AUSTRALIAN_SHOOTERS_PARTY("ASP") {
     @Override
-    public String toString() {
-      return "Jacqui Lambie Network";
-    }
+    public String toString() { return "Australian Shooters Party"; }
   },
-  LIBERAL_NATIONAL_PARTY_OF_QUEENSLAND("LNP") {
+  NORTHERN_TERRITORY_COUNTRY_LIBERIAL_PARTY("CLP") {
     @Override
-    public String toString() {
-      return "Liberal National Party of Queensland";
-    }
+    public String toString() { return "Northern Territory Country Liberal Party"; }
   },
-  LIBERAL_PARTY_OF_AUSTRALIA("LP") {
+  AUSTRALIAN_COUNTRY_PARTY("CP") {
     @Override
-    public String toString() {
-      return "Liberal Party of Australia";
-    }
+    public String toString() { return "Australian Country Party"; }
   },
-  NATIONAL_PARTY_OF_AUSTRALIA("NATS") {
+  AUSTRALIAN_DEMOCRATS("DEM") {
     @Override
-    public String toString() {
-      return "National Party of Australia";
-    }
+    public String toString() { return "Australian Democrats"; }
   },
-  PAULINE_HANSONS_ONE_NATION("PHON") {
+  FEDERAL_LABOR_PARTY("FLP") {
     @Override
-    public String toString() {
-      return "Pauline Hanson's One Nation";
-    }
+    public String toString() { return "Federal Labor Party"; }
+  },
+  FARMERS_AND_SETTLERS_UNION("FSU") {
+    @Override
+    public String toString() { return "Farmers and Settlers Union"; }
+  },
+  FREE_TRADE("FT") {
+    @Override
+    public String toString() { return "Free Trade"; }
+  },
+  FARMERS_UNION("FU") {
+    @Override
+    public String toString() { return "Farmers Union"; }
+  },
+  AUSTRALIAN_GREENS("GRN") {
+    @Override
+    public String toString() { return "Australian Greens"; }
   },
   INDEPENDENT("IND") {
     @Override
-    public String toString() {
-      return "Independent";
-    }
+    public String toString() { return "Independent"; }
+  },
+  INDEPENDENT_LABOR("IND LAB") {
+    @Override
+    public String toString() { return "Independent Labor"; }
+  },
+
+
+
+  LIBERAL_PARTY("LIB") {
+    @Override
+    public String toString() { return "Liberal Party"; }
+  },
+
+
+
+  LIBERAL_PARTY_OF_AUSTRALIA("LP") {
+    @Override
+    public String toString() { return "Liberal Party of Australia"; }
+  },
+
+
+
+  WESTERN_AUSTRALIA_PARTY("WAP") {
+    @Override
+    public String toString() { return "Western Australia Party"; }
   };
 
   private final String abbreviation;

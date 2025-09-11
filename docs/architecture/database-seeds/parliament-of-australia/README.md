@@ -71,11 +71,12 @@ Members: [All Members by Name](https://www.aph.gov.au/-/media/03_Senators_and_Me
 
 ## Resources
 
+* Spring Boot docs: [Database Initialization](https://docs.spring.io/spring-boot/how-to/data-initialization.html)
 * Parliament of Australia: [Senators and Members](https://www.aph.gov.au/Senators_and_Members)
 * Parliament of Australia: [Contacting Senators and Members](https://www.aph.gov.au/Senators_and_Members/Contacting_Senators_and_Members)
 * Parliament of Australia: [Senators and Members - Address labels and CSV files](https://www.aph.gov.au/Senators_and_Members/Contacting_Senators_and_Members/Address_labels_and_CSV_files)
 * Australian Electoral Commission: [Current federal electoral divisions](https://www.aec.gov.au/profiles/)
+* Australian Electoral Commission: [Political party names and abbreviations](https://www.aec.gov.au/Electorates/party-codes.htm)
+* Wikipedia: [Electoral Divisions]( https://en.wikipedia.org/wiki/Divisions_of_the_Australian_House_of_Representatives)
 * Wikipedia: [List of political parties in Australia](https://en.wikipedia.org/wiki/List_of_political_parties_in_Australia)
 * Computational Methods in the Civic Sphere: [Parsing JSON with jq](http://www.compciv.org/recipes/cli/jq-for-parsing-json/)
-* Spring Boot docs: [Database Initialization](https://docs.spring.io/spring-boot/how-to/data-initialization.html)
-* Wikipedia: [Electoral Divisions]( https://en.wikipedia.org/wiki/Divisions_of_the_Australian_House_of_Representatives)
