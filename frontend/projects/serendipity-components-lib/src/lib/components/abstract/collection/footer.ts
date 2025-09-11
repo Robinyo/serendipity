@@ -53,8 +53,8 @@ import { LoggerService } from 'serendipity-utils-lib';
         </button>
 
         <span class="footer-page-number">
-                Page {{ host.pageNumber }}
-              </span>
+          Page {{ host.pageNumber }}
+        </span>
 
         <button mat-button class="footer-button-next-page"
                 [disabled]="!host.canClickNextPageButton()"
