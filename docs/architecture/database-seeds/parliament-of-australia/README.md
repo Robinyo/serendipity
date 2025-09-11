@@ -44,18 +44,14 @@ This approach provides more programmatic control and allows for complex data gen
 
 ### @Order
 
-When performing database seeding in Spring Boot with JPA, the @Order annotation can be used to control the execution 
+When performing database seeding in Spring Boot with JPA, the `@Order` annotation can be used to control the execution 
 order of multiple seeders.
 
-Annotate each seeder class with @Order(value). The value parameter is an integer, and seeders with lower values will 
+Annotate each seeder class with `@Order(value)`. The value parameter is an integer, and seeders with lower values will 
 execute before those with higher values.
 
-For example, we need to seed the Political Parties (i.e, create an Organisation) before we can create a Relationship 
+For example, we need to seed the Political Parties (i.e, create Organisations) before we can create a Relationship 
 (e.g., Membership) between a Political Party and a Senator (Individual).
-
-Accordingly, we would assign a lower @Order value to the Political Party seeder class and a higher @Order value to the 
-Senate seeder class.
-
 
 ```
   | Party             | Role            | Relationship   | Role            | Party             |
@@ -64,6 +60,9 @@ Senate seeder class.
   | Jordan Hull       | Member          | Membership     | Political Party | Australian Greens |
   | Jordan Hull       | Public Officer  | Office Holder  | Political Party | Australian Greens |
 ```
+
+Accordingly, we would assign a lower `@Order` value to the Political Party seeder class and a higher `@Order` value to 
+the Senate seeder class.
 
 ## Resources
 
