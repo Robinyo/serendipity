@@ -36,6 +36,10 @@ Serendipity is composed of the following components:
   <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/context-diagram.png">
 </p>
 
+## ❯ Getting Started
+
+Follow the steps in the [Quick Start Guide](./docs/developer/quick-start-guide/README.md).
+
 ## ❯ Documentation
 
 * Developer Documentation
@@ -47,6 +51,12 @@ Serendipity is composed of the following components:
   * [Working with PostgreSQL](./docs/administrator/postgres/README.md)
   * [Working with pgAdmin](./docs/administrator/pgadmin/README.md)
   * [Working with the Percona Distribution for PostgreSQL](./docs/administrator/percona-distribution-for-postgresql/README.md)
+* Architecture Documentation
+  * [Backend for Frontend](./docs/architecture/bff/README.md)
+  * [Database Seeds](./docs/architecture/database-seeds/parliment-of-australia/README.md)
+  * [Progressive Web App](./docs/architecture/pwa/README.md)
+  * [Static Content](./docs/architecture/static-content/README.md)
+  * [Spring Data](./docs/architecture/spring-data/README.md)
 
 ![divider](./divider.png)
 
