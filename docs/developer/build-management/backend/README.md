@@ -97,6 +97,8 @@ mvn clean install -Pdev spring-boot:repackage
 mvn clean install -Ptest spring-boot:repackage
 ```
 
+### Docker Compose
+
 To build the project:
 
 ```
@@ -105,8 +107,6 @@ docker container prune && docker volume prune && docker network prune
 
 docker compose build
 ```
-
-### Docker Compose
 
 With a single command, you can create and start all the services:
 
