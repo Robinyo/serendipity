@@ -59,7 +59,7 @@ Annotate each seeder class with `@Order(value)`. The value parameter is an integ
 execute before those with higher values.
 
 For example, we need to seed the Political Parties (i.e, create Organisations) before we can create a Relationship 
-(e.g., Membership) between a Political Party and a Senator (Individual).
+(e.g., Membership) between a Political Party (an Organisation) and a Senator (an Individual).
 
 ```
   | Party                  | Role            | Relationship   | Role               | Party                  |
@@ -74,7 +74,7 @@ the Senate seeder class.
 
 ### CSV files
 
-Senators: [All Senators by Name - Electorate Office](https://www.aph.gov.au/-/media/03_Senators_and_Members/Address_Labels_and_CSV_files/Senators/allsenel.csv)
+Senators: [All Senators by Name - Electorate Office](https://www.aph.gov.au/-/media/03_Senators_and_Members/Address_Labels_and_CSV_files/Senators/allsenel.csv) </br>
 Members: [All Members by Name](https://www.aph.gov.au/-/media/03_Senators_and_Members/Address_Labels_and_CSV_files/FamilynameRepsCSV.csv)
 
 ## Resources
