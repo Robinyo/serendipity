@@ -1,7 +1,7 @@
 <h1 align="center">Parliament of Australia</h1>
 
 <p align="center">
-  <b>Database seeds for the Senate and the House of Representatives as at September 2025</b> </br>
+  <b>Database seeds for the Senate and the House of Representatives</b> </br>
 </p>
 
 ## ❯ Who is a Senator?
