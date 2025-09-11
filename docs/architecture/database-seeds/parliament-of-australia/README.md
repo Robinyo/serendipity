@@ -9,6 +9,10 @@
 A senator is a member of the Australian Senate, elected to represent a **state** or **territory**. There are 76 senators, 12 
 from each state and two each from the Australian Capital Territory and the Northern Territory.
 
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/architecture/database-seeds/parliament-of-australia/state-map.png">
+</p>
+
 ### The President of the Senate
 
 The President of the Senate is the presiding officer of the Senate, whose chief function is to guide and regulate the 
@@ -19,6 +23,10 @@ The President is a senator who is elected to the position by the members of the 
 
 There are currently 150 members of the House of Representatives. Each member is elected to represent one geographic 
 area of Australia called an **electorate**. Each electorate has approximately the same population.
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/architecture/database-seeds/parliament-of-australia/electorate-map.png">
+</p>
 
 ### The Speaker of the House of Representatives
 
