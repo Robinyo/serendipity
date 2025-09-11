@@ -78,4 +78,4 @@ Members: [All Members by Name](https://www.aph.gov.au/-/media/03_Senators_and_Me
 * Wikipedia: [List of political parties in Australia](https://en.wikipedia.org/wiki/List_of_political_parties_in_Australia)
 * Computational Methods in the Civic Sphere: [Parsing JSON with jq](http://www.compciv.org/recipes/cli/jq-for-parsing-json/)
 * Spring Boot docs: [Database Initialization](https://docs.spring.io/spring-boot/how-to/data-initialization.html)
-
+* Wikipedia: [Electoral Divisions]( https://en.wikipedia.org/wiki/Divisions_of_the_Australian_House_of_Representatives)
