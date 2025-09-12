@@ -93,6 +93,5 @@ Contacts Page - Desktop
 Contacts Page - Mobile
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/contacts-mobile.png"
-       width="1109">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/contacts-mobile.png" width="599">
 </p>
