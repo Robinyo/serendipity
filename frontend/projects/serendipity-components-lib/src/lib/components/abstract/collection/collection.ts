@@ -1,9 +1,9 @@
 import { AfterViewInit, ChangeDetectorRef, Directive, inject, isDevMode, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-// import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { Subscription } from 'rxjs';
 
@@ -34,30 +34,30 @@ export interface CollectionComponentConfig {
 @Directive()
 export abstract class Collection<T> implements AfterViewInit, OnDestroy {
 
-  @ViewChild(MatSort, {static: false})
-  public sort: MatSort | undefined;
-
   public alphabet = ALPHABET;
   // @ts-ignore
   public columnDefs: ColumnDef[];
   public isLoading: boolean = true;
   // @ts-ignore
   public dataSource: MatTableDataSource<T>;
-  public displayedColumns: string[] | undefined;
+  public displayedColumns: string[];
   public footerAllLabel = ALL;
   public footerColSpan = DEFAULT_FOOTER_COL_SPAN;
 
   public pageNumber = 1;
   public selectedFooterItemId = ALL;
 
-  // protected breakpointObserver: BreakpointObserver;
-  protected items!: Array<T>;
+  @ViewChild(MatSort, {static: false})
+  public sort: MatSort | undefined;
+
+  protected breakpointObserver: BreakpointObserver  = inject(BreakpointObserver);
+  protected changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   protected count = 0;
   protected configService = inject(ConfigService);
   // protected dialogService: DialogService;
+  protected items!: Array<T>;
   protected logger = inject(LoggerService);
   protected router = inject(Router);
-  protected changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   // protected sidenavService: SidenavService;
   protected subscription: Subscription | undefined;
 
@@ -66,8 +66,8 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
   protected offset = 0;
 
   protected columnDefsFilename: string;
-  protected desktopDeviceColumns: string[] | undefined;
-  protected mobileDeviceColumns: string[] | undefined;
+  protected desktopDeviceColumns: string[];
+  protected mobileDeviceColumns: string[];
 
   constructor(config: CollectionComponentConfig) {
 
@@ -75,12 +75,8 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
     this.desktopDeviceColumns = config.desktopDeviceColumns;
     this.mobileDeviceColumns = config.mobileDeviceColumns;
 
-
-
     this.displayedColumns = this.desktopDeviceColumns;
     this.footerColSpan = this.displayedColumns.length;
-
-
 
     if (config.filter !== undefined) {
       this.filter = config.filter;
@@ -101,6 +97,25 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
     this.logger.info('Collection Component: ngAfterViewInit()');
 
     this.subscribe();
+
+    // React to changes to the viewport
+
+    this.breakpointObserver.observe([ Breakpoints.HandsetPortrait ]).subscribe(result => {
+
+      if (result.matches) {
+        this.displayedColumns = this.mobileDeviceColumns;
+      } else {
+        this.displayedColumns = this.desktopDeviceColumns;
+      }
+
+      if (this.footerColSpan != this.displayedColumns.length) {
+        this.footerColSpan = this.displayedColumns.length;
+        this.detectChanges();
+      }
+
+      this.logger.info('footerColSpan: ' + this.footerColSpan);
+
+    });
 
   }
 

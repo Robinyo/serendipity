@@ -3,21 +3,21 @@
 // Columns
 
 .mat-column-party-displayName {
+  min-width: variables.$display-name-column-width;
   width: variables.$display-name-column-width;
-  max-width: variables.$display-name-column-width;
 }
 
 .mat-column-email {
+  min-width: variables.$email-column-width;
   width: variables.$email-column-width;
-  max-width: variables.$email-column-width;
 }
 
 .mat-column-organisation-displayName {
+  min-width: variables.$display-name-column-width;
   width: variables.$display-name-column-width;
-  max-width: variables.$display-name-column-width;
 }
 
 .mat-column-organisation-phoneNumber {
+  min-width: variables.$phone-number-column-width;
   width: variables.$phone-number-column-width;
-  max-width: variables.$phone-number-column-width;
 }
