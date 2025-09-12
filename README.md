@@ -94,5 +94,5 @@ Contacts Page - Mobile
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/contacts-mobile.png" 
-   width="80%" height="auto">
+   width="50%" height="auto">
 </p>
