@@ -84,8 +84,14 @@ Command Bar
 
 ### Customer Engagement
 
-Contacts Page
+Contacts Page - Desktop
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/contacts.png">
+</p>
+
+Contacts Page - Mobile
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/contacts-mobile.png">
 </p>

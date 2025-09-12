@@ -1,18 +1,36 @@
 <command-bar>
 
-  <ng-container>
+  @if (isHandsetPortrait()) {
 
-    <button matButton="filled" class="md-command-bar-button" aria-label="New Contact button">
-      <mat-icon class="material-icons">add</mat-icon>
-      NEW
-    </button>
+    <ng-container>
 
-    <button matButton="filled" class="md-command-bar-button" aria-label="Run Report button">
-      <mat-icon class="material-icons">description</mat-icon>
-      RUN REPORT
-    </button>
+      <button matIconButton class="md-command-bar-button" (click)="onNew()" aria-label="New Contact button">
+        <mat-icon class="material-icons">add</mat-icon>
+      </button>
 
-  </ng-container>
+      <button matIconButton class="md-command-bar-button" [disabled]="true" aria-label="Run Report button">
+        <mat-icon class="material-icons">description</mat-icon>
+      </button>
+
+    </ng-container>
+
+  } @else {
+
+    <ng-container>
+
+      <button matButton="filled" class="md-command-bar-button" aria-label="New Contact button">
+        <mat-icon class="material-icons">add</mat-icon>
+        NEW
+      </button>
+
+      <button matButton="filled" class="md-command-bar-button" aria-label="Run Report button">
+        <mat-icon class="material-icons">description</mat-icon>
+        RUN REPORT
+      </button>
+
+    </ng-container>
+
+  }
 
 </command-bar>
 

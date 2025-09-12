@@ -14,19 +14,19 @@ import { LoggerService } from 'serendipity-utils-lib';
   template: `
     <div class="footer-container">
 
-      <button id="{{ host.footerAllLabel }}" mat-button class="footer-button"
+      <button id="{{ host.footerAllLabel }}" mat-button class="footer-all-button"
               (click)="host.onClickFilterButton(host.footerAllLabel)"
               [class.active]="host.selectedFooterItemId === host.footerAllLabel">
         {{ host.footerAllLabel }}
       </button>
 
-      <button mat-button disabled class="footer-button">
+      <button mat-button disabled class="footer-separator-button">
         |
       </button>
 
       @for (character of host.alphabet; track $index) {
 
-        <button id="{{ character }}" mat-button class="footer-button"
+        <button id="{{ character }}" mat-button class="footer-character-button"
                 (click)="host.onClickFilterButton(character)"
                 [class.active]="host.selectedFooterItemId === character">
           {{ character }}
@@ -34,7 +34,7 @@ import { LoggerService } from 'serendipity-utils-lib';
 
       }
 
-      <button mat-button disabled class="footer-button">
+      <button mat-button disabled class="footer-separator-button">
         |
       </button>
 

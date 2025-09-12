@@ -1,3 +1,4 @@
+@use '../../variables' as *;
 @use './variables';
 
 .footer-container {
@@ -10,9 +11,27 @@
   flex: 1 1 auto;
 }
 
-.footer-button {
+.footer-all-button {
   min-width: variables.$footer-button-min-width;
   padding: 0 8px;
+}
+
+.footer-character-button {
+  min-width: variables.$footer-button-min-width;
+  padding: 0 8px;
+
+  @media ($xsmall) {
+    display: none;
+  }
+}
+
+.footer-separator-button {
+  min-width: variables.$footer-button-min-width;
+  padding: 0 8px;
+
+  @media ($xsmall) {
+    display: none;
+  }
 }
 
 .footer-button-first-page,
