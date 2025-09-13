@@ -5,7 +5,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { ConfigService, LoggerService } from 'serendipity-utils-lib';
 
@@ -55,7 +56,9 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
   protected count = 0;
   protected configService = inject(ConfigService);
   // protected dialogService: DialogService;
+
   protected items!: Array<T>;
+
   protected logger = inject(LoggerService);
   protected router = inject(Router);
   // protected sidenavService: SidenavService;
@@ -68,6 +71,8 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
   protected columnDefsFilename: string;
   protected desktopDeviceColumns: string[];
   protected mobileDeviceColumns: string[];
+
+  private destroyed: Subject<void> = new Subject<void>();
 
   constructor(config: CollectionComponentConfig) {
 
@@ -98,9 +103,13 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
 
     this.subscribe();
 
-    // React to changes to the viewport
+    // A layout breakpoint is viewport size threshold at which a layout shift can occur.
+    // The viewport size ranges between breakpoints correspond to different standard screen sizes.
+    // See: https://material.angular.dev/cdk/layout/overview
 
-    this.breakpointObserver.observe([ Breakpoints.HandsetPortrait ]).subscribe(result => {
+    this.breakpointObserver.observe([ Breakpoints.HandsetPortrait ])
+      .pipe(takeUntil(this.destroyed))
+      .subscribe(result => {
 
       if (result.matches) {
         this.displayedColumns = this.mobileDeviceColumns;
@@ -155,6 +164,9 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
+
+    this.destroyed.next();
+    this.destroyed.complete();
 
   }
 

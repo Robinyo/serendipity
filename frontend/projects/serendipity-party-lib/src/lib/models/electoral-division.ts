@@ -1,4 +1,4 @@
-export class ElectoralDivision {
+export class ElectoralDivisionModel {
 
   public id?: string;
 

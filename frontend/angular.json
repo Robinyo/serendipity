@@ -195,6 +195,99 @@
           }
         }
       }
+    },
+    "serendipity-flowable-lib": {
+      "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/serendipity-flowable-lib",
+      "sourceRoot": "projects/serendipity-flowable-lib/src",
+      "prefix": "flow",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/serendipity-flowable-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/serendipity-flowable-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/serendipity-flowable-lib/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "serendipity-work-lib": {
+      "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/serendipity-work-lib",
+      "sourceRoot": "projects/serendipity-work-lib/src",
+      "prefix": "work",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/serendipity-work-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/serendipity-work-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/serendipity-work-lib/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "serendipity-dynamic-forms-lib": {
+      "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/serendipity-dynamic-forms-lib",
+      "sourceRoot": "projects/serendipity-dynamic-forms-lib/src",
+      "prefix": "form",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/serendipity-dynamic-forms-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/serendipity-dynamic-forms-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/serendipity-dynamic-forms-lib/tsconfig.spec.json"
+          }
+        }
+      }
     }
   }
 }

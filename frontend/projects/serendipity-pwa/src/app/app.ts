@@ -15,10 +15,20 @@ export class App {
 
 /*
 
-import { loggerProviders } from 'serendipity-utils-lib';
+  import { loggerProviders } from 'serendipity-utils-lib';
 
   providers: [
     loggerProviders
+  ],
+
+    providers: [
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
+  ]
+
+  import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+
+  providers: [
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'} }
   ],
 
 */

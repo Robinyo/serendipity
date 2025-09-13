@@ -4,12 +4,12 @@ import { Adapter } from 'serendipity-utils-lib';
 
 import { PartyAdapter } from "./party.adapter";
 
-import { Contact } from '../models/contact';
+import { ContactModel } from '../models/contact';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ContactAdapter extends PartyAdapter implements Adapter<Contact> {
+export class ContactAdapter extends PartyAdapter implements Adapter<ContactModel> {
 
   constructor() {
 
@@ -18,11 +18,11 @@ export class ContactAdapter extends PartyAdapter implements Adapter<Contact> {
     // this.logger.info('Contact Adapter initialised');
   }
 
-  adapt(item: any): Contact {
+  adapt(item: any): ContactModel {
 
     // this.logger.info('item: ' + JSON.stringify(item, null, 2));
 
-    const contact = new Contact(
+    const contact = new ContactModel(
       item.party,
       item.name,
       item.sex,

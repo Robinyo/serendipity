@@ -6,8 +6,8 @@ import { map, tap } from 'rxjs/operators';
 
 import { CollectionService } from '../abstract/collection/collection';
 
-import { Contact } from '../../models/contact';
-import { Role } from '../../models/role';
+import { ContactModel } from '../../models/contact';
+import { RoleModel } from '../../models/role';
 import { ContactAdapter } from '../../adapters/contact.adapter';
 
 import { INDIVIDUALS } from './constants';
@@ -62,7 +62,7 @@ export class ContactsService extends CollectionService {
 
   }
 
-  public findById(id: string): Observable<Contact> {
+  public findById(id: string): Observable<ContactModel> {
 
     return this.httpClient.get(this.url + id).pipe(
 
@@ -75,9 +75,9 @@ export class ContactsService extends CollectionService {
 
   }
 
-  public create(contact: Contact): Observable<HttpResponse<Contact>> {
+  public create(contact: ContactModel): Observable<HttpResponse<ContactModel>> {
 
-    return this.httpClient.post<HttpResponse<Contact>>(this.url, contact, this.getHttpOptions()).pipe(
+    return this.httpClient.post<HttpResponse<ContactModel>>(this.url, contact, this.getHttpOptions()).pipe(
       tap(() => {
         this.logger.info('Contacts Service: create() completed');
       })
@@ -85,9 +85,9 @@ export class ContactsService extends CollectionService {
 
   }
 
-  public update(id: string, contact: Contact): Observable<HttpResponse<Contact>> {
+  public update(id: string, contact: ContactModel): Observable<HttpResponse<ContactModel>> {
 
-    return this.httpClient.patch<HttpResponse<Contact>>(this.url + id, contact, this.getHttpOptions()).pipe(
+    return this.httpClient.patch<HttpResponse<ContactModel>>(this.url + id, contact, this.getHttpOptions()).pipe(
       tap(() => {
         this.logger.info('Contacts Service: update() completed');
       })
@@ -95,9 +95,9 @@ export class ContactsService extends CollectionService {
 
   }
 
-  public delete(id: string): Observable<Contact> {
+  public delete(id: string): Observable<ContactModel> {
 
-    return this.httpClient.delete<Contact>(this.url + id).pipe(
+    return this.httpClient.delete<ContactModel>(this.url + id).pipe(
       tap(() => {
         this.logger.info('Contacts Service: delete() completed');
       })
@@ -105,9 +105,9 @@ export class ContactsService extends CollectionService {
 
   }
 
-  public createRole(id: string, role: Role): Observable<HttpResponse<Role>>  {
+  public createRole(id: string, role: RoleModel): Observable<HttpResponse<RoleModel>>  {
 
-    return this.httpClient.post<HttpResponse<Role>>(this.url + id + '/roles', role, this.getHttpOptions()).pipe(
+    return this.httpClient.post<HttpResponse<RoleModel>>(this.url + id + '/roles', role, this.getHttpOptions()).pipe(
       tap(() => {
         this.logger.info('Contacts Service: createRole() completed');
       })
@@ -115,9 +115,9 @@ export class ContactsService extends CollectionService {
 
   }
 
-  public deleteRole(id: string, roleId: string): Observable<Contact> {
+  public deleteRole(id: string, roleId: string): Observable<ContactModel> {
 
-    return this.httpClient.delete<Contact>(this.url + id + '/roles/' + roleId).pipe(
+    return this.httpClient.delete<ContactModel>(this.url + id + '/roles/' + roleId).pipe(
       tap(() => {
         this.logger.info('Contacts Service: deleteRole() completed');
       })

@@ -1,1 +1,43 @@
-<p>contact works!</p>
+<command-bar>
+
+  @if (isHandsetPortrait()) {
+
+    <ng-container>
+
+      <button matIconButton class="md-command-bar-button"
+              [disabled]="!isDirty() || !isValid()"
+              (click)="onSave()" aria-label="Save Contact button">
+        <mat-icon class="material-icons">save</mat-icon>
+      </button>
+
+    </ng-container>
+
+  } @else {
+
+    <ng-container>
+
+      <button matButton="filled" class="md-command-bar-button"
+              [disabled]="!isDirty() || !isValid()"
+              (click)="onSave()" aria-label="New Contact button">
+        <mat-icon class="material-icons">save</mat-icon>
+        NEW
+      </button>
+
+    </ng-container>
+
+  }
+
+</command-bar>
+
+<activity-bar>
+
+  <span class="md-font-headline-lg" aria-label="Activity Bar Title">
+    Contact: {{ item.party.displayName }}
+  </span>
+
+</activity-bar>
+
+<div class="md-content-container">
+
+
+</div>

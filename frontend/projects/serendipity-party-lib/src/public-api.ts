@@ -5,3 +5,5 @@
 // export * from './lib/serendipity-party-lib';
 
 export * from './lib/resolvers/contacts';
+
+export * from './lib/lib.routes';

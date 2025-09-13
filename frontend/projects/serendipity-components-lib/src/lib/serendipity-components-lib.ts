@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'lib-serendipity-components-lib',
+  selector: 'serendipity-components-lib',
   imports: [],
   template: `
     <p>

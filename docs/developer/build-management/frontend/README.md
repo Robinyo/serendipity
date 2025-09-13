@@ -22,7 +22,8 @@ brew upgrade
 brew install node
 ```
 
-After the installation completes, you can verify that Node.js and npm (Node Package Manager, which comes bundled with Node.js) are installed correctly by checking their versions:
+After the installation completes, you can verify that Node.js and npm (Node Package Manager, which comes bundled with 
+Node.js) are installed correctly by checking their versions:
 
 ```
 node -v
@@ -31,7 +32,8 @@ npm -v
 
 ### Angular CLI
 
-Angular requires an active LTS or maintenance LTS version of Node.js. See Angular's [version](https://angular.dev/reference/versions) compatibility guide for more information.
+Angular requires an active LTS or maintenance LTS version of Node.js. See Angular's [version](https://angular.dev/reference/versions) compatibility guide 
+for more information.
 
 To install the Angular CLI, open a terminal window and run the following command:
 
@@ -46,11 +48,14 @@ In a terminal:
 ```
 # In the project's /frontend directory
 
+# Watch the component you are making changes to
+
 npm run watch-lib:serendipity-utils-lib
 npm run watch-lib:serendipity-components-lib
+npm run watch-lib:serendipity-dynamic-forms-lib
+npm run watch-lib:serendipity-flowable-lib
 npm run watch-lib:serendipity-party-lib
-    
-# npm run watch
+npm run watch-lib:serendipity-work-lib
 ```
 
 In another terminal:
@@ -66,7 +71,10 @@ Alternatively:
 ```
 ng build --configuration="development" serendipity-utils-lib && \
 ng build --configuration="development" serendipity-components-lib && \
+ng build --configuration="development" serendipity-dynamic-forms-lib && \
+ng build --configuration="development" serendipity-flowable-lib && \
 ng build --configuration="development" serendipity-party-lib && \
+ng build --configuration="development" serendipity-work-lib && \
 ng build --configuration="development" serendipity-pwa
 ```
 
@@ -79,7 +87,10 @@ To build the frontend:
 
 ng build serendipity-utils-lib && \
 ng build serendipity-components-lib && \
+ng build serendipity-dynamic-forms-lib && \
+ng build serendipity-flowable-lib && \
 ng build serendipity-party-lib && \
+ng build serendipity-work-lib && \
 ng build serendipity-pwa
 ```
 
@@ -117,7 +128,8 @@ To add support for aliases update the "paths" array in the `compilerOptions` sec
 
 ### Assets
 
-You use the `assets` array inside the build target in `angular.json` to list files or folders you want to copy as-is when building your project:
+You use the `assets` array inside the build target in `angular.json` to list files or folders you want to copy as-is 
+when building your project:
 
 ```
   "assets": [
@@ -133,7 +145,8 @@ You use the `assets` array inside the build target in `angular.json` to list fil
 
 ### Styles
 
-You use the `styles` array inside the build target in `angular.json` to list files you want to include when building your project:
+You use the `styles` array inside the build target in `angular.json` to list files you want to include when building 
+your project:
 
 ```
   "styles": [
@@ -145,7 +158,8 @@ You use the `styles` array inside the build target in `angular.json` to list fil
 
 ### Angular Schematics
 
-You use the `schematics` entry for applications and libraries in `angular.json` to set the stylesheet format when generating components:
+You use the `schematics` entry for applications and libraries in `angular.json` to set the stylesheet format when 
+generating components:
 
 ```
       "schematics": {

@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class ConfigService {
 
   private httpClient = inject(HttpClient);
@@ -16,7 +18,3 @@ export class ConfigService {
   }
 
 }
-
-// https://angular.dev/guide/http
-// https://angular.dev/essentials/dependency-injection
-// https://angular.dev/tools/libraries/creating-libraries

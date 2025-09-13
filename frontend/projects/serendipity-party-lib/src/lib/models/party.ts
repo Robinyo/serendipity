@@ -1,5 +1,5 @@
 import { Address } from './address';
-import { Role } from './role';
+import { RoleModel } from './role';
 
 export class Party {
 
@@ -11,7 +11,7 @@ export class Party {
     public type: string = 'PARTY',
     public displayName: string = '',
     public addresses: Address[] = [],
-    public roles: Role[] = []
+    public roles: RoleModel[] = []
   ) {
     this.legalType = '';
   }

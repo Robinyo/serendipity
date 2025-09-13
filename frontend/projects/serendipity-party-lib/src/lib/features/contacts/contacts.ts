@@ -12,7 +12,7 @@ import { ActivityBar, CommandBar, Collection, CollectionFooter } from 'serendipi
 import { ContactAdapter } from '../../adapters/contact.adapter';
 import { ContactsService } from '../../services/contacts/contacts';
 
-import { Contact } from '../../models/contact';
+import { ContactModel } from '../../models/contact';
 
 import { COLUMN_DEFS } from './column-defs';
 import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './constants';
@@ -34,7 +34,7 @@ import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './constants';
   standalone: true,
   styleUrl: './contacts.scss'
 })
-export class Contacts extends Collection<Contact> {
+export class Contacts extends Collection<ContactModel> {
 
   private entityAdapter: ContactAdapter = inject(ContactAdapter);
   private entityService: ContactsService = inject(ContactsService);
@@ -54,7 +54,7 @@ export class Contacts extends Collection<Contact> {
 
     this.columnDefs = this.route.snapshot.data['columnDefs'];
 
-    this.logger.info('columnDefs: ' + JSON.stringify(this.columnDefs, null, 2));
+    // this.logger.info('columnDefs: ' + JSON.stringify(this.columnDefs, null, 2));
 
   }
 
@@ -82,7 +82,7 @@ export class Contacts extends Collection<Contact> {
         } else {
 
           this.items = [];
-          this.items.push(new Contact());
+          this.items.push(new ContactModel());
 
         }
 
