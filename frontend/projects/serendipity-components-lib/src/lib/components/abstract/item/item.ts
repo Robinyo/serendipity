@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, inject, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Directive, inject, isDevMode, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Observable, Subscription } from 'rxjs';
@@ -10,6 +10,8 @@ import { LoggerService } from 'serendipity-utils-lib';
 
 import { DialogService } from '../../../services/dialogs/dialog';
 
+const noop = (): any => undefined;
+
 @Directive()
 export abstract class Item<T> implements OnInit, AfterViewInit, OnDestroy {
 
@@ -17,6 +19,7 @@ export abstract class Item<T> implements OnInit, AfterViewInit, OnDestroy {
   public item!: T;
 
   protected breakpointObserver: BreakpointObserver  = inject(BreakpointObserver);
+  protected changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   protected dialogService: DialogService = inject(DialogService);
   protected logger = inject(LoggerService);
   protected router: Router = inject(Router);
@@ -44,13 +47,28 @@ export abstract class Item<T> implements OnInit, AfterViewInit, OnDestroy {
 
       this.logger.info('id: ' + this.id);
 
-      this.subscribe();
+      // this.subscribe();
 
     });
 
   }
 
   protected abstract subscribe(): void;
+
+  protected detectChanges() {
+
+    // The error "Expression has changed after it was checked" in Angular, specifically with an Angular Material
+    // table's dataSource, indicates that a binding expression's value changed during or immediately after
+    // Angular's change detection cycle, but before the view could be re-rendered to reflect this change.
+    // This error typically occurs in development mode, where Angular performs an extra check to ensure view stability.
+
+    if (isDevMode()) {
+      return this.changeDetector.detectChanges();
+    } else {
+      return noop;
+    }
+
+  }
 
   protected unsubscribe(): void {
 
@@ -65,6 +83,8 @@ export abstract class Item<T> implements OnInit, AfterViewInit, OnDestroy {
   public ngAfterViewInit() {
 
     this.logger.info('Item Component: ngAfterViewInit()');
+
+    this.subscribe();
 
     // React to changes to the viewport
 

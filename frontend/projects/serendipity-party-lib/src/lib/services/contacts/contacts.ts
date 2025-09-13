@@ -10,7 +10,7 @@ import { ContactModel } from '../../models/contact';
 import { RoleModel } from '../../models/role';
 import { ContactAdapter } from '../../adapters/contact.adapter';
 
-import { INDIVIDUALS } from './constants';
+import { INDIVIDUALS, INDIVIDUALS_WITHOUT_A_TRAILING_SLASH } from './constants';
 
 @Injectable({
   providedIn: 'root'
@@ -32,12 +32,12 @@ export class ContactsService extends CollectionService {
 
     this.logger.info('Contacts Service: find()');
 
-    let url = this.url;
+    let url = this.getUrlPrefix() + INDIVIDUALS_WITHOUT_A_TRAILING_SLASH;
     let queryParams;
 
     if (filter.length) {
 
-      url = this.getUrlPrefix() + INDIVIDUALS + '/search/findByFamilyNameStartsWith';
+      url = url + '/search/findByFamilyNameStartsWith';
       queryParams = '?name=' + filter + '&page=' + offset + '&size=' + limit + '&sort=name.familyName&name.familyName.dir=asc';
 
     } else {

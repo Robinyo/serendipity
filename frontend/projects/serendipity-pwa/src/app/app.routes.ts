@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { Placeholder } from 'serendipity-components-lib';
-import { ContactsRoute } from 'serendipity-party-lib';
+import { ContactRoute, ContactsRoute } from 'serendipity-party-lib';
 
 import { Home } from './features/home/home';
 
@@ -21,6 +21,7 @@ export const routes: Routes = [
     component: Placeholder
   },
 
+  ContactRoute,
   ContactsRoute,
 
   //

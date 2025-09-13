@@ -31,9 +31,12 @@
 
 <activity-bar>
 
-  <span class="md-font-headline-lg" aria-label="Activity Bar Title">
-    Contact: {{ item.party.displayName }}
-  </span>
+  @if (item) {
+
+    <span class="md-font-headline-lg" aria-label="Activity Bar Title">
+      Contact: {{ item.party.displayName }}
+    </span>
+  }
 
 </activity-bar>
 

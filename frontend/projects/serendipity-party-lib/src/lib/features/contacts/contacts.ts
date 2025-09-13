@@ -18,7 +18,7 @@ import { COLUMN_DEFS } from './column-defs';
 import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './constants';
 
 @Component({
-  selector: 'lib-contacts',
+  selector: 'contacts',
   imports: [
     ActivityBar,
     CommandBar,

@@ -2,11 +2,18 @@ import { Route } from '@angular/router';
 
 import { ContactsResolver } from './resolvers/contacts';
 
+export const ContactRoute: Route = {
+  path: 'customers/contacts/:id',
+  loadComponent: () => import('./features/contact/contact').then(m => m.Contact)
+};
+
 export const ContactsRoute: Route = {
   path: 'customers/contacts',
   loadComponent: () => import('./features/contacts/contacts').then(m => m.Contacts),
   resolve: { columnDefs: ContactsResolver }
 };
+
+
 
 /*
 

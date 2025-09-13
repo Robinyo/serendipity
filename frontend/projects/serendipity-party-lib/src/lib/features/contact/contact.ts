@@ -1,13 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { Observable, Subscription } from 'rxjs';
 
-import { latLng, LatLng, LatLngBounds, Layer, LeafletEvent, LeafletMouseEvent, Map, MapOptions, tileLayer } from 'leaflet';
-
+import { ActivityBar, CommandBar, Item } from 'serendipity-components-lib';
 import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'serendipity-dynamic-forms-lib';
-import { Item } from 'serendipity-components-lib';
+
+import { latLng, LatLng, LatLngBounds, Layer, LeafletEvent, LeafletMouseEvent, Map, MapOptions, tileLayer } from 'leaflet';
 
 import { ContactsService } from '../../services/contacts/contacts';
 // import { ElectoralDivisionsService } from '../../services/electoral-divisions/electoral-divisions.service';
@@ -36,8 +40,16 @@ const ELECTORAL_DIVISION_TAB_INDEX = 3;
 
 @Component({
   selector: 'party-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  imports: [
+    ActivityBar,
+    CommandBar,
+    MatButtonModule,
+    MatIconModule,
+    MatProgressSpinnerModule
+  ],
+  templateUrl: './contact.html',
+  standalone: true,
+  styleUrls: ['./contact.scss']
 })
 export class Contact extends Item<ContactModel> {
 
@@ -78,7 +90,7 @@ export class Contact extends Item<ContactModel> {
 
   }
 
-  protected async subscribe() {
+  protected subscribe() {
 
     this.logger.info('ContactComponent: subscribe()');
 
@@ -95,10 +107,12 @@ export class Contact extends Item<ContactModel> {
 
       this.item = data;
 
+      this.detectChanges();
+
       this.logger.info('item: ' + JSON.stringify(this.item, null, 2));
 
-      this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
-      this.dynamicFormService.initGroup(this.addressInformationGroup, this.item.party.addresses[0]);
+      // this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
+      // this.dynamicFormService.initGroup(this.addressInformationGroup, this.item.party.addresses[0]);
     });
 
   }
