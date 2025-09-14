@@ -14,6 +14,7 @@ import { ActivityBar, CommandBar, Item } from 'serendipity-components-lib';
 import { DynamicForm, DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'serendipity-dynamic-forms-lib';
 
 import { latLng, LatLng, LatLngBounds, Layer, LeafletEvent, LeafletMouseEvent, Map, MapOptions, tileLayer } from 'leaflet';
+import { LeafletModule } from '@bluehalo/ngx-leaflet';
 
 import { ContactsService } from '../../services/contacts/contacts';
 // import { ElectoralDivisionsService } from '../../services/electoral-divisions/electoral-divisions.service';
@@ -45,6 +46,7 @@ const ELECTORAL_DIVISION_TAB_INDEX = 3;
     ActivityBar,
     CommandBar,
     DynamicForm,
+    LeafletModule,
     MatButtonModule,
     MatCardModule,
     MatIconModule,
@@ -72,8 +74,6 @@ export class Contact extends Item<ContactModel> {
   private dynamicFormService: DynamicFormService = inject(DynamicFormService);
   // private electoralDivisionsService: ElectoralDivisionsService
 
-  // private route: ActivatedRoute = inject(ActivatedRoute);
-
   private map!: Map;
 
   constructor() {
@@ -91,7 +91,7 @@ export class Contact extends Item<ContactModel> {
     // this.logger.info('addressInformationModel: ' + JSON.stringify(this.addressInformationModel, null, 2));
 
     this.generalInformationGroup = this.dynamicFormService.createGroup(this.generalInformationModel);
-    // this.addressInformationGroup = this.dynamicFormService.createGroup(this.addressInformationModel);
+    this.addressInformationGroup = this.dynamicFormService.createGroup(this.addressInformationModel);
 
     this.mapOptions = {
       layers: [
@@ -119,7 +119,7 @@ export class Contact extends Item<ContactModel> {
       // this.logger.info('item: ' + JSON.stringify(this.item, null, 2));
 
       this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
-      // this.dynamicFormService.initGroup(this.addressInformationGroup, this.item.party.addresses[0]);
+      this.dynamicFormService.initGroup(this.addressInformationGroup, this.item.party.addresses[0]);
 
       this.detectChanges();
 

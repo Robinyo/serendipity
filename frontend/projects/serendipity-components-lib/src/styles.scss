@@ -16,9 +16,9 @@
   row-gap: 1em;
 
   margin-top: 0;
-  // margin-left: $component-default-margin;
+  margin-left: variables.$component-default-margin;
   margin-bottom: variables.$component-default-margin;
-  // margin-right: $component-default-margin;
+  margin-right: variables.$component-default-margin;
 }
 
 .md-nested-grid-container {

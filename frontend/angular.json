@@ -27,12 +27,18 @@
                 "glob": "**/*",
                 "input": "projects/serendipity-party-lib/src/assets",
                 "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/leaflet/dist/images",
+                "output": "leaflet/"
               }
             ],
             "styles": [
               "projects/serendipity-pwa/src/styles.scss",
               "projects/serendipity-pwa/src/theme.scss",
-              "projects/serendipity-components-lib/src/styles.scss"
+              "projects/serendipity-components-lib/src/styles.scss",
+              "./node_modules/leaflet/dist/leaflet.css"
             ]
           },
           "configurations": {
