@@ -3,13 +3,15 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { Observable, Subscription } from 'rxjs';
 
 import { ActivityBar, CommandBar, Item } from 'serendipity-components-lib';
-import { DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'serendipity-dynamic-forms-lib';
+import { DynamicForm, DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'serendipity-dynamic-forms-lib';
 
 import { latLng, LatLng, LatLngBounds, Layer, LeafletEvent, LeafletMouseEvent, Map, MapOptions, tileLayer } from 'leaflet';
 
@@ -24,7 +26,6 @@ import { ElectoralDivisionModel } from '../../models/electoral-division';
 import { RoleModel } from '../../models/role';
 
 import { CONTACT_WIZARD, CONTACTS } from './constants';
-import { CONTACT_ADDRESS_INFORMATION_GROUP, CONTACT_GENERAL_INFORMATION_GROUP } from './form-ids';
 
 class LeafletControlLayersConfig {
   baseLayers: { [name: string]: Layer } = {};
@@ -43,9 +44,12 @@ const ELECTORAL_DIVISION_TAB_INDEX = 3;
   imports: [
     ActivityBar,
     CommandBar,
+    DynamicForm,
     MatButtonModule,
+    MatCardModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTabsModule
   ],
   templateUrl: './contact.html',
   standalone: true,
@@ -78,6 +82,17 @@ export class Contact extends Item<ContactModel> {
 
     this.route = inject(ActivatedRoute);
 
+    this.logger.info('Contact Component');
+
+    this.generalInformationModel = this.route.snapshot.data['formDefs'].generalInformation;
+    this.addressInformationModel = this.route.snapshot.data['formDefs'].addressInformation;
+
+    // this.logger.info('generalInformationModel: ' + JSON.stringify(this.generalInformationModel, null, 2));
+    // this.logger.info('addressInformationModel: ' + JSON.stringify(this.addressInformationModel, null, 2));
+
+    this.generalInformationGroup = this.dynamicFormService.createGroup(this.generalInformationModel);
+    // this.addressInformationGroup = this.dynamicFormService.createGroup(this.addressInformationModel);
+
     this.mapOptions = {
       layers: [
         tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -92,13 +107,7 @@ export class Contact extends Item<ContactModel> {
 
   protected subscribe() {
 
-    this.logger.info('ContactComponent: subscribe()');
-
-    // this.generalInformationModel = await this.dynamicFormService.getFormMetadata(CONTACT_GENERAL_INFORMATION_GROUP);
-    // this.generalInformationGroup = this.dynamicFormService.createGroup(this.generalInformationModel);
-
-    // this.addressInformationModel = await this.dynamicFormService.getFormMetadata(CONTACT_ADDRESS_INFORMATION_GROUP);
-    // this.addressInformationGroup = this.dynamicFormService.createGroup(this.addressInformationModel);
+    this.logger.info('Contact Component: subscribe()');
 
     let entitySubscription: Subscription = new Subscription();
     this.subscriptions.push(entitySubscription);
@@ -107,12 +116,13 @@ export class Contact extends Item<ContactModel> {
 
       this.item = data;
 
+      // this.logger.info('item: ' + JSON.stringify(this.item, null, 2));
+
+      this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
+      // this.dynamicFormService.initGroup(this.addressInformationGroup, this.item.party.addresses[0]);
+
       this.detectChanges();
 
-      this.logger.info('item: ' + JSON.stringify(this.item, null, 2));
-
-      // this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
-      // this.dynamicFormService.initGroup(this.addressInformationGroup, this.item.party.addresses[0]);
     });
 
   }
@@ -123,7 +133,7 @@ export class Contact extends Item<ContactModel> {
 
   public canDeactivate(): Observable<boolean> | boolean {
 
-    this.logger.info('ContactComponent: canDeactivate()');
+    this.logger.info('Contact Component: canDeactivate()');
 
     if (!this.isDirty() && this.isValid()) {
       return true;
@@ -147,7 +157,7 @@ export class Contact extends Item<ContactModel> {
       dirty = true;
     }
 
-    // this.logger.info('ContactComponent - isDirty(): ' + dirty);
+    // this.logger.info('Contact Component - isDirty(): ' + dirty);
 
     return dirty;
   }
@@ -208,7 +218,7 @@ export class Contact extends Item<ContactModel> {
 
   public markAsDirty() {
 
-    // this.logger.info('ContactComponent: markAsDirty()');
+    // this.logger.info('Contact Component: markAsDirty()');
 
     if (this.generalInformationGroup) {
       this.generalInformationGroup.markAsDirty();
@@ -222,7 +232,7 @@ export class Contact extends Item<ContactModel> {
 
   public markAsPristine() {
 
-    // this.logger.info('ContactComponent: markAsPristine()');
+    // this.logger.info('Contact Component: markAsPristine()');
 
     if (this.generalInformationGroup) {
       this.generalInformationGroup.markAsPristine();
@@ -247,7 +257,7 @@ export class Contact extends Item<ContactModel> {
 
   public onDeactivate() {
 
-    this.logger.info('ContactComponent: onDeactivate()');
+    this.logger.info('Contact Component: onDeactivate()');
 
     this.dialogService.openConfirm({
       title: 'Contact',
@@ -260,7 +270,7 @@ export class Contact extends Item<ContactModel> {
 
       if (response) {
 
-        this.logger.info('ContactComponent onDeactivate() response: true');
+        this.logger.info('Contact Component onDeactivate() response: true');
 
         const subscription: Subscription = this.entityService.delete(this.id).subscribe(() => {
 
@@ -304,6 +314,12 @@ export class Contact extends Item<ContactModel> {
   //
   // Dynamic Form events
   //
+
+  public onCustomEvent(event: DynamicFormControlCustomEvent) {
+
+    this.logger.info('ContactComponent: onCustomEvent()');
+
+  }
 
   /*
 
@@ -484,7 +500,7 @@ export class Contact extends Item<ContactModel> {
 
   private update(): void {
 
-    this.logger.info('ContactComponent: update()');
+    this.logger.info('Contact Component: update()');
 
     // contact.id = btoa(item.id);
     // this.id = atob(this.id);
@@ -509,9 +525,15 @@ export class Contact extends Item<ContactModel> {
 
   public onMapReady(map: Map): void {
 
-    this.logger.info('ContactComponent: onMapReady()');
+    this.logger.info('Contact Component: onMapReady()');
 
     this.map = map;
+  }
+
+  public async onTabChanged($event: any) {
+
+    this.logger.info('Contact omponent: onTabChanged()');
+
   }
 
   /*

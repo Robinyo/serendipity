@@ -20,7 +20,10 @@ import { DynamicFormControlModel } from '../../models/dynamic-form-control.model
     ReactiveFormsModule
   ],
   template: `
-    <mat-form-field appearance="outline" [className]="model.gridItemClass">
+    <mat-form-field
+      appearance="outline"
+      [className]="model.gridItemClass"
+      [formGroup]="formGroup">
 
       @if (model.label) {
         <mat-label> {{ model.label }} </mat-label>

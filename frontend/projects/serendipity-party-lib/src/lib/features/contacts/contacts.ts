@@ -50,7 +50,7 @@ export class Contacts extends Collection<ContactModel> {
       limit: 10
     });
 
-    this.logger.info('Contacts');
+    this.logger.info('Contacts Component');
 
     this.columnDefs = this.route.snapshot.data['columnDefs'];
 

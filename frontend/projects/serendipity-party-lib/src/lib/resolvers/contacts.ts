@@ -11,7 +11,7 @@ const COLUMN_DEFS = 'contacts-column-defs';
 @Injectable({
   providedIn: 'root'
 })
-export class ContactsResolver implements Resolve<any> {
+export class ContactsResolver implements Resolve<any[]> {
 
   protected configService = inject(ConfigService);
   protected logger = inject(LoggerService);

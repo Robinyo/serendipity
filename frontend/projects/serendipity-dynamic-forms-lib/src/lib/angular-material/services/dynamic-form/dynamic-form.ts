@@ -32,7 +32,7 @@ export class DynamicFormService {
 
     const group = this.formBuilder.group({});
 
-    this.logger.info('DynamicFormService: createGroup()');
+    this.logger.info('Dynamic Form Service: createGroup()');
 
     formModel.forEach(controlModel => {
 
@@ -93,7 +93,7 @@ export class DynamicFormService {
 
   public initGroup(formGroup: FormGroup, item: any): void {
 
-    this.logger.info('DynamicFormService: initGroup()');
+    this.logger.info('Dynamic Form Service: initGroup()');
 
     for (const field of Object.keys(formGroup.controls)) {
 
@@ -102,7 +102,14 @@ export class DynamicFormService {
       // formGroup.controls[field] type === ???
 
       if (typeof property !== 'undefined') {
+
+        // this.logger.info('field: ' + field + ' value: ' + formGroup.controls[field].value);
+        // this.logger.info('field: ' + field + ' property: ' + property);
+
         formGroup.controls[field].setValue(property);
+
+        // this.logger.info('field: ' + field + ' value: ' + formGroup.controls[field].value);
+
       }
 
     }

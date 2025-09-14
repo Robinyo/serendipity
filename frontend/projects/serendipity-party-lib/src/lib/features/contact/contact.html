@@ -20,7 +20,7 @@
               [disabled]="!isDirty() || !isValid()"
               (click)="onSave()" aria-label="New Contact button">
         <mat-icon class="material-icons">save</mat-icon>
-        NEW
+        SAVE
       </button>
 
     </ng-container>
@@ -36,11 +36,50 @@
     <span class="md-font-headline-lg" aria-label="Activity Bar Title">
       Contact: {{ item.party.displayName }}
     </span>
+
   }
 
 </activity-bar>
 
 <div class="md-content-container">
 
+  @if (item) {
+
+    <mat-tab-group (selectedTabChange)="onTabChanged($event)">
+
+      <mat-tab label="Summary">
+
+        <div class="md-grid-container">
+
+          <mat-card>
+
+            <mat-card-content>
+
+              <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
+
+              <dynamic-form autocomplete="off"
+                            className="md-nested-grid-container"
+                            [formGroup]="generalInformationGroup"
+                            [model]="generalInformationModel"
+                            (customEvent)="onCustomEvent($event)">
+              </dynamic-form>
+
+              <!--
+              <p>
+                Form Value: {{ generalInformationGroup.value | json }}
+              </p>
+              -->
+
+            </mat-card-content>
+
+          </mat-card>
+
+        </div>
+
+      </mat-tab>
+
+    </mat-tab-group>
+
+  }
 
 </div>

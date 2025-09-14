@@ -47,8 +47,6 @@ export abstract class Item<T> implements OnInit, AfterViewInit, OnDestroy {
 
       this.logger.info('id: ' + this.id);
 
-      // this.subscribe();
-
     });
 
   }

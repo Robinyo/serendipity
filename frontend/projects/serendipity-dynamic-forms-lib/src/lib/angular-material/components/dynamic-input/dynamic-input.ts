@@ -18,7 +18,11 @@ import { DynamicFormControlModel, DynamicFormControlCustomEvent } from '../../mo
     ReactiveFormsModule
   ],
   template: `
-    <mat-form-field appearance="outline" [className]="model.gridItemClass">
+    <mat-form-field
+      appearance="outline"
+      floatLabel="always"
+      [className]="model.gridItemClass"
+      [formGroup]="formGroup">
 
       @if (model.label) {
         <mat-label> {{ model.label }} </mat-label>
@@ -28,8 +32,9 @@ import { DynamicFormControlModel, DynamicFormControlCustomEvent } from '../../mo
         <mat-icon matPrefix> {{ model.prefixIconName }} </mat-icon>
       }
 
-      <input [id]="model.id" matInput
+      <input matInput
              [autocomplete]="model.autocomplete"
+             [formControlName]="model.id"
              [placeholder]="model.placeholder"
              [readonly]="model.readonly"
              [required]="model.required"

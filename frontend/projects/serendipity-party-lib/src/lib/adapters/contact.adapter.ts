@@ -38,7 +38,13 @@ export class ContactAdapter extends PartyAdapter implements Adapter<ContactModel
 
     contact.id = btoa(item.id);
 
-    contact.photoUrl = this.getUrlPrefix() + item.photoUrl;
+    // contact.photoUrl = this.getUrlPrefix() + item.photoUrl;
+
+    if (item.photoUrl.includes('avatar.svg')) {
+      contact.photoUrl = 'assets/' + item.photoUrl;
+    } else {
+      contact.photoUrl = this.getUrlPrefix() + item.photoUrl;
+    }
 
     contact.party.roles.every(item => {
 

@@ -9,6 +9,40 @@
   width: 100%;
 }
 
+.md-grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 32px;
+  row-gap: 1em;
+
+  margin-top: 0;
+  // margin-left: $component-default-margin;
+  margin-bottom: variables.$component-default-margin;
+  // margin-right: $component-default-margin;
+}
+
+.md-nested-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 16px;
+  row-gap: 1em;
+}
+
+.md-tab-component-container {
+
+  margin-top: variables.$component-default-margin;
+  margin-bottom: variables.$component-default-margin;
+
+  // $toolbar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop + mat-tab-height
+  height: calc(100vh - (64px + 48px + 56px + 48px));
+
+  @media (variables.$xsmall) {
+    // $toolbar-height-mobile + $command-bar-height-mobile + $activity-bar-height-mobile + mat-tab-height
+    height: calc(100vh - (56px + 48px + 48px + 48px));
+  }
+
+}
+
 .md-table-container {
   // $toolbar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop + $table-margin-desktop
   height: calc(100vh - (64px + 48px + 56px + 16px));
@@ -44,3 +78,90 @@
 .md-spinner {
 
 }
+
+
+// Snack Bar
+
+.md-snack-bar {
+  text-align: center;
+}
+
+
+// Mat Tab
+
+.mat-tab-group {
+  margin-left: variables.$component-default-margin;
+  margin-right: variables.$component-default-margin;
+}
+
+// Mat Card
+
+.mat-card {
+  padding: 0;
+  margin-top: variables.$component-default-margin;
+}
+
+.mat-card-header {
+  background: rgba(0, 0, 0, 0.04);
+  padding-top: 8px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mat-card-content {
+  padding: 16px;
+}
+
+//
+// Dynamic Reactive Forms
+//
+
+.md-prefix-icon {
+  cursor: pointer;
+}
+
+.md-suffix-icon {
+  cursor: pointer;
+}
+
+.grid-column-1 {
+  grid-column: 1;
+}
+
+.grid-column-1-span-2 {
+  grid-column: 1 / span 2;
+}
+
+.grid-column-2 {
+  grid-column: 2;
+}
+
+.grid-column-2-span-2 {
+  grid-column: 2 / span 2;
+  // min-width: 180px;
+}
+
+.grid-column-3 {
+  grid-column: 3;
+}
+
+.grid-column-3-row-1-span-2 {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+}
+
+.grid-column-3-row-1-span-3 {
+  grid-column: 3;
+  grid-row: 1 / span 3;
+}
+
+.grid-column-4 {
+  grid-column: 4;
+}
+
+.grid-row-2 {
+  grid-row: 2;
+}
+
