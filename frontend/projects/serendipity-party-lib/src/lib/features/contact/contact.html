@@ -113,116 +113,119 @@
 
   @if (item) {
 
-    <mat-tab-group (selectedTabChange)="onTabChanged($event)">
+    <div class="md-tab-group-container">
 
-      <mat-tab label="Summary">
+      <mat-tab-group (selectedTabChange)="onTabChanged($event)">
 
-        <div class="md-grid-container">
+        <mat-tab label="Summary">
 
-          <mat-card>
+          <div class="md-grid-2-column-layout-container">
 
-            <!-- General Information -->
+            <mat-card>
 
-            <mat-card-content>
+              <!-- General Information -->
 
-              <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
+              <mat-card-content class="md-card-content">
 
-              <dynamic-form autocomplete="off"
-                            className="md-nested-grid-container"
-                            [formGroup]="generalInformationGroup"
-                            [model]="generalInformationModel"
-                            (customEvent)="onCustomEvent($event)">
-              </dynamic-form>
+                <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
 
-              <!--
-              <p>
-                Form Value: {{ generalInformationGroup.value | json }}
-              </p>
-              -->
+                <dynamic-form autocomplete="off"
+                              className="md-grid-3-column-layout-container"
+                              [formGroup]="generalInformationGroup"
+                              [model]="generalInformationModel"
+                              (customEvent)="onCustomEvent($event)">
+                </dynamic-form>
 
-            </mat-card-content>
+                <!--
+                <p>
+                  Form Value: {{ generalInformationGroup.value | json }}
+                </p>
+                -->
 
-          </mat-card>
+              </mat-card-content>
 
-          <mat-card>
+            </mat-card>
 
-            <!-- Address Information -->
+            <mat-card>
 
-            <mat-card-content>
+              <!-- Address Information -->
 
-              <dynamic-form autocomplete="off"
-                            className="md-nested-grid-container"
-                            [formGroup]="addressInformationGroup"
-                            [model]="addressInformationModel">
-              </dynamic-form>
+              <mat-card-content class="md-card-content">
 
-              <!--
-              <p>
-                Form Value: {{ addressInformationGroup.value | json }}
-              </p>
-              -->
+                <dynamic-form autocomplete="off"
+                              className="md-grid-3-column-layout-container"
+                              [formGroup]="addressInformationGroup"
+                              [model]="addressInformationModel">
+                </dynamic-form>
 
-            </mat-card-content>
+                <!--
+                <p>
+                  Form Value: {{ addressInformationGroup.value | json }}
+                </p>
+                -->
 
-          </mat-card>
+              </mat-card-content>
 
-        </div>
-
-      </mat-tab>
-
-      <mat-tab label="Details">
-
-        <ng-template matTabContent>
-
-          <div class="md-tab-component-container">
-
-            <!-- See: https://material.angular.io/components/tabs/overview#lazy-loading -->
-            Details tab: I was lazy loaded...
+            </mat-card>
 
           </div>
 
-        </ng-template>
+        </mat-tab>
 
-      </mat-tab>
-
-      <mat-tab label="Related">
-
-        <ng-template matTabContent>
-
-          <div class="md-tab-component-container">
-
-            <!--
-            <contact-related-tab [item]="item">
-            </contact-related-tab>
-            -->
-
-          </div>
-
-        </ng-template>
-
-      </mat-tab>
-
-      @if (item.electorate) {
-
-        <mat-tab label="Electoral Division">
+        <mat-tab label="Details">
 
           <ng-template matTabContent>
 
-            <div class="md-tab-component-container"
-                 leaflet
-                 [leafletOptions]="mapOptions"
-                 (leafletMapReady)="onMapReady($event)">
+            <div class="md-tab-component-container">
+
+              <!-- See: https://material.angular.io/components/tabs/overview#lazy-loading -->
+              Details tab: I was lazy loaded...
+
             </div>
 
           </ng-template>
 
         </mat-tab>
 
+        <mat-tab label="Related">
 
-      }
+          <ng-template matTabContent>
+
+            <div class="md-tab-component-container">
+
+              <!--
+              <contact-related-tab [item]="item">
+              </contact-related-tab>
+              -->
+
+            </div>
+
+          </ng-template>
+
+        </mat-tab>
+
+        @if (item.electorate) {
+
+          <mat-tab label="Electoral Division">
+
+            <ng-template matTabContent>
+
+              <div class="md-tab-component-container"
+                   leaflet
+                   [leafletOptions]="mapOptions"
+                   (leafletMapReady)="onMapReady($event)">
+              </div>
+
+            </ng-template>
+
+          </mat-tab>
 
 
-    </mat-tab-group>
+        }
+
+      </mat-tab-group>
+
+    </div>
 
   }
 

@@ -9,19 +9,26 @@
   width: 100%;
 }
 
-.md-grid-container {
+.md-tab-group-container {
+  margin-top: 0;
+  margin-left: variables.$component-margin-desktop;
+  margin-bottom: variables.$component-margin-desktop;
+  margin-right: variables.$component-margin-desktop;
+}
+
+.md-grid-2-column-layout-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 32px;
   row-gap: 1em;
 
-  margin-top: 0;
-  margin-left: variables.$component-default-margin;
-  margin-bottom: variables.$component-default-margin;
-  margin-right: variables.$component-default-margin;
+  // margin-top: 0;
+  // margin-left: variables.$component-default-margin;
+  // margin-bottom: variables.$component-default-margin;
+  // margin-right: variables.$component-default-margin;
 }
 
-.md-nested-grid-container {
+.md-grid-3-column-layout-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 16px;
@@ -30,8 +37,8 @@
 
 .md-tab-component-container {
 
-  margin-top: variables.$component-default-margin;
-  margin-bottom: variables.$component-default-margin;
+  margin-top: variables.$component-margin-desktop;
+  margin-bottom: variables.$component-margin-desktop;
 
   // $toolbar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop + mat-tab-height
   height: calc(100vh - (64px + 48px + 56px + 48px));
@@ -64,13 +71,17 @@
   margin: 0 12px 0 12px;
 }
 
+// Card
+
+.md-card-content {
+  margin-top: variables.$card-content-margin-top-desktop
+}
+
 // Command Bar
 
 .md-command-bar-button {
-  background-color: white !important;
   border-radius: 3px !important;
-  color: black !important;
-  margin-right: variables.$button-margin-right;
+  margin-right: variables.$component-margin-desktop;
 }
 
 // Spinner
@@ -79,39 +90,10 @@
 
 }
 
-
 // Snack Bar
 
 .md-snack-bar {
   text-align: center;
-}
-
-
-// Mat Tab
-
-.mat-tab-group {
-  margin-left: variables.$component-default-margin;
-  margin-right: variables.$component-default-margin;
-}
-
-// Mat Card
-
-.mat-card {
-  padding: 0;
-  margin-top: variables.$component-default-margin;
-}
-
-.mat-card-header {
-  background: rgba(0, 0, 0, 0.04);
-  padding-top: 8px;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.mat-card-content {
-  padding: 16px;
 }
 
 //

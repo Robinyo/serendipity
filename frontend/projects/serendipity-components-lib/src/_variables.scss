@@ -1,13 +1,29 @@
 // See: https://github.com/angular/components/blob/main/src/material/core/style/_variables.scss
+
 $xsmall: 'max-width: 599px';
 $small: 'max-width: 959px';
 
+$margin-desktop: 16px;
+$margin-mobile: 0;
+
+$margin-top-desktop: 32px;
+$margin-top-mobile: 16px;
+
+$button-margin-right-desktop: 8px !default;
+$button-margin-right-mobile: 8px !default;
+
+// Card
+$card-content-margin-top-desktop: 16px !default;
+$card-content-margin-top-mobile: 8px !default;
+
 // Command Bar Button
-$button-margin-right: 8px !default;
+$command-bar-button-margin-right-desktop: $button-margin-right-desktop !default;
+$command-bar-button-margin-right-movile: $button-margin-right-desktop !default;
 
 // Table
-$table-margin-desktop: 16px;
-$table-margin-mobile: 0;
+$table-margin-desktop: $margin-desktop !default;
+$table-margin-mobile: $margin-mobile !default;
 
 // Tab
-$component-default-margin: 32px !default;
+$component-margin-desktop: $margin-desktop !default;
+$component-margin-mobile: $margin-desktop !default;
