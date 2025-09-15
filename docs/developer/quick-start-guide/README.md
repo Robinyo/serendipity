@@ -35,7 +35,10 @@ To build the **frontend**:
 
 ng build --configuration="development" serendipity-utils-lib && \
 ng build --configuration="development" serendipity-components-lib && \
+ng build --configuration="development" serendipity-dynamic-forms-lib && \
+ng build --configuration="development" serendipity-flowable-lib && \
 ng build --configuration="development" serendipity-party-lib && \
+ng build --configuration="development" serendipity-work-lib && \
 ng build --configuration="development" serendipity-pwa
 ```
 
@@ -45,21 +48,6 @@ To build the **backend** services:
 # In the project's /backend directory
 
 mvn clean install spring-boot:repackage
-
-# or
-
-mvn clean install -DskipTests=true spring-boot:repackage
-```
-
-**Note:** `dev` is the active by default profile.
-
-The build supports the following Maven project profiles: dev and test.
-
-```
-# In the project's /backend directory
-
-mvn clean install -Pdev spring-boot:repackage
-mvn clean install -Ptest spring-boot:repackage
 ```
 
 ### Docker Compose
@@ -67,9 +55,6 @@ mvn clean install -Ptest spring-boot:repackage
 To build the project:
 
 ```
-docker system prune && \
-docker container prune && docker volume prune && docker network prune
-
 docker compose build
 ```
 
