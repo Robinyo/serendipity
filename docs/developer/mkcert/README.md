@@ -67,7 +67,7 @@ Update your `/etc/hosts` file:
 sudo nano /etc/hosts
 ```
 
-Add the hostnames, `hapi-fhir.au.localhost` and `keycloak.au.localhost`:
+Add the hostnames, `serendipity.localhost` and `serendipity-identity-service.localhost`:
 
 ```
 127.0.0.1 localhost serendipity.localhost serendipity-identity-service.localhost
