@@ -16,7 +16,7 @@
       }
     ],
 
-    "gridItemClass": "grid-column-1",
+    "gridItemClass": "md-grid-column-1",
     "required": true
   },
 
@@ -27,7 +27,7 @@
     "appearance": "outline",
     "autocomplete": "additional-name",
 
-    "gridItemClass": "grid-column-2",
+    "gridItemClass": "md-grid-column-2",
     "required": false
   },
 
@@ -35,7 +35,7 @@
     "type": "image",
     "id": "photoUrl",
     "label": "Avatar",
-    "gridItemClass": "grid-column-3-row-1-span-3"
+    "gridItemClass": "md-grid-column-3-row-1-span-3"
   },
 
   {
@@ -54,7 +54,7 @@
       }
     ],
 
-    "gridItemClass": "grid-column-1-span-2",
+    "gridItemClass": "md-grid-column-1-span-2",
     "required": true
   },
 
@@ -65,7 +65,7 @@
     "appearance": "outline",
     "autocomplete": "name",
 
-    "gridItemClass": "grid-column-1-span-2"
+    "gridItemClass": "md-grid-column-1-span-2"
   },
 
   {
@@ -75,7 +75,7 @@
     "appearance": "outline",
     "autocomplete": "organization-title",
 
-    "gridItemClass": "grid-column-1"
+    "gridItemClass": "md-grid-column-1"
   },
 
   {
@@ -94,7 +94,7 @@
       }
     ],
 
-    "gridItemClass": "grid-column-2",
+    "gridItemClass": "md-grid-column-2",
     "required": false
   },
 
@@ -105,7 +105,7 @@
     "appearance": "outline",
     "autocomplete": "tel",
 
-    "gridItemClass": "grid-column-3"
+    "gridItemClass": "md-grid-column-3"
   },
 
   {
@@ -115,7 +115,7 @@
     "appearance": "outline",
     "autocomplete": "organization",
 
-    "gridItemClass": "grid-column-1-span-2",
+    "gridItemClass": "md-grid-column-1-span-2",
 
     "suffixIconName": "search"
   }

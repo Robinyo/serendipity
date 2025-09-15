@@ -5,7 +5,7 @@
     "id": "fromLabel",
     "label": "From",
     "appearance": "standard",
-    "gridItemClass": "grid-column-1 crm-form-field-label"
+    "gridItemClass": "md-grid-column-1"
   },
 
   {
@@ -23,7 +23,7 @@
       }
     ],
 
-    "gridItemClass": "grid-column-2",
+    "gridItemClass": "md-grid-column-2",
     "required": true
   },
 
@@ -32,7 +32,7 @@
     "id": "toLabel",
     "label": "To",
     "appearance": "standard",
-    "gridItemClass": "grid-column-1 crm-form-field-label"
+    "gridItemClass": "md-grid-column-1"
   },
 
   {
@@ -50,7 +50,7 @@
       }
     ],
 
-    "gridItemClass": "grid-column-2",
+    "gridItemClass": "md-grid-column-2",
     "required": true
   }
 

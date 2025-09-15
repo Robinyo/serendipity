@@ -15,7 +15,7 @@
       }
     ],
 
-    "gridItemClass": "grid-column-1-span-2",
+    "gridItemClass": "md-grid-column-1-span-2",
     "required": true
   },
 
@@ -35,7 +35,7 @@
       }
     ],
 
-    "gridItemClass": "grid-column-1"
+    "gridItemClass": "md-grid-column-1"
   },
 
   {
@@ -45,7 +45,7 @@
     "appearance": "outline",
     "autocomplete": "tel",
 
-    "gridItemClass": "grid-column-2"
+    "gridItemClass": "md-grid-column-2"
   },
 
   {
@@ -54,7 +54,7 @@
     "label": "Primary Contact",
     "appearance": "outline",
 
-    "gridItemClass": "grid-column-1-span-2",
+    "gridItemClass": "md-grid-column-1-span-2",
 
     "suffixIconName": "search"
   }

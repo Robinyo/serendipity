@@ -16,7 +16,7 @@
       }
     ],
 
-    "gridItemClass": "grid-column-1-span-2"
+    "gridItemClass": "md-grid-column-1-span-2"
   },
   {
     "type": "input",
@@ -25,7 +25,7 @@
     "appearance": "outline",
     "autocomplete": "address-line2",
 
-    "gridItemClass": "grid-column-1-span-2"
+    "gridItemClass": "md-grid-column-1-span-2"
   },
   {
     "type": "input",
@@ -43,7 +43,7 @@
       }
     ],
 
-    "gridItemClass": "grid-column-1"
+    "gridItemClass": "md-grid-column-1"
   },
   {
     "type": "input",
@@ -61,7 +61,7 @@
       }
     ],
 
-    "gridItemClass": "grid-column-2"
+    "gridItemClass": "md-grid-column-2"
   },
   {
     "type": "input",
@@ -79,7 +79,7 @@
       }
     ],
 
-    "gridItemClass": "grid-column-3"
+    "gridItemClass": "md-grid-column-3"
   },
   {
     "type": "input",
@@ -96,7 +96,7 @@
       }
     ],
 
-    "gridItemClass": "grid-column-1"
+    "gridItemClass": "md-grid-column-1"
   }
 
 ]
