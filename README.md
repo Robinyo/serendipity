@@ -53,7 +53,7 @@ Follow the steps in the [Quick Start Guide](./docs/developer/quick-start-guide/R
   * [Working with the Percona Distribution for PostgreSQL](./docs/administrator/percona-distribution-for-postgresql/README.md)
 * Architecture Documentation
   * [Backend for Frontend](./docs/architecture/bff/README.md)
-  * [Database Seeds](./docs/architecture/database-seeds/parliment-of-australia/README.md)
+  * [Database Seeds](./docs/architecture/database-seeds/parliament-of-australia/README.md)
   * [Progressive Web App](./docs/architecture/pwa/README.md)
   * [Static Content](./docs/architecture/static-content/README.md)
   * [Spring Data](./docs/architecture/spring-data/README.md)
