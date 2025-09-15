@@ -62,11 +62,11 @@ For example, we need to seed the Political Parties (i.e, create an Organisation 
 create a Relationship (e.g., Office Holder) between a Political Party (an Organisation) and a Senator (an Individual).
 
 ```
-  | Party                  | Role            | Relationship   | Role               | Party                  |
-  | ---------------------- | --------------- | -------------- | ------------------ | ---------------------- |
-  | Australian Labor Party | Political Party | Office Holder  | National President | Wayne Swan             |
-  | Wayne Swan             | Member          | Membership     | Political Party    | Australian Labor Party |
-  | Wayne Swan             | Public Officer  | Office Holder  | Political Party    | Australian Labor Party |
+  | Party                  | Role            | Relationship   | Role            | Party                  |
+  | ---------------------- | --------------- | -------------- | --------------- | ---------------------- |
+  | Australian Labor Party | Political Party | Office Holder  | Primary Contact | Wayne Swan             |
+  | Wayne Swan             | Member          | Membership     | Political Party | Australian Labor Party |
+  | Wayne Swan             | Public Officer  | Office Holder  | Political Party | Australian Labor Party |
 ```
 
 Accordingly, we would assign a lower `@Order` value to the Political Party seeder classes and a higher `@Order` value to 
