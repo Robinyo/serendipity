@@ -4,12 +4,18 @@
 
     <ng-container>
 
-      <button matIconButton class="md-command-bar-button" (click)="onNew()" aria-label="New Contact button">
-        <mat-icon class="material-icons">add</mat-icon>
+      <button matIconButton
+              aria-label="New Contact button"
+              class="md-command-bar-button"
+              (click)="onNew()">
+        <mat-icon class="material-icons"> add </mat-icon>
       </button>
 
-      <button matIconButton class="md-command-bar-button" [disabled]="true" aria-label="Run Report button">
-        <mat-icon class="material-icons">description</mat-icon>
+      <button matIconButton
+              aria-label="Run Report button"
+              class="md-command-bar-button"
+              [disabled]="true">
+        <mat-icon class="material-icons"> description </mat-icon>
       </button>
 
     </ng-container>
@@ -18,13 +24,19 @@
 
     <ng-container>
 
-      <button matButton="filled" class="md-command-bar-button" (click)="onNew()" aria-label="New Contact button">
-        <mat-icon class="material-icons">add</mat-icon>
+      <button matButton="filled"
+              aria-label="New Contact button"
+              class="md-command-bar-button"
+              (click)="onNew()">
+        <mat-icon class="material-icons"> add </mat-icon>
         NEW
       </button>
 
-      <button matButton="filled" class="md-command-bar-button" aria-label="Run Report button">
-        <mat-icon class="material-icons">description</mat-icon>
+      <button matButton="filled"
+              aria-label="Run Report button"
+              class="md-command-bar-button"
+              [disabled]="true">
+        <mat-icon class="material-icons"> description </mat-icon>
         RUN REPORT
       </button>
 

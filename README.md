@@ -58,6 +58,12 @@ Follow the steps in the [Quick Start Guide](./docs/developer/quick-start-guide/R
   * [Static Content](./docs/architecture/static-content/README.md)
   * [Spring Data](./docs/architecture/spring-data/README.md)
 
+## ❯ Resources
+
+* [Cyber Security Resources](./docs/developer/resources/cyber-security-resources/README.md)
+* [DevSecOps Resources](./docs/developer/resources/devsecops/README.md)
+* [Secure Software Development Resources](./docs/developer/resources/secure-software-development/README.md)
+
 ![divider](./divider.png)
 
 ## ❯ Screen Shots

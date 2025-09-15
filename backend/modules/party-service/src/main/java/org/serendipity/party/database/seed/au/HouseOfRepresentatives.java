@@ -132,7 +132,21 @@ public class HouseOfRepresentatives implements CommandLineRunner {
           .initials(fields[INITIALS])
           .build();
 
-        String displayName = name.getFamilyName() + ", " + name.getTitle() + " " + name.getGivenName();
+        // String displayName = name.getFamilyName() + ", " + name.getTitle() + " " + name.getGivenName();
+
+        String displayName = name.getTitle();
+
+        if (name.getTitle().isEmpty()) {
+          displayName += name.getGivenName();
+        } else {
+          displayName += " " + name.getGivenName();
+        }
+
+        if (name.getGivenName().isEmpty()) {
+          displayName += name.getFamilyName();
+        } else {
+          displayName += " " + name.getFamilyName();
+        }
 
         Party individualParty = Party.builder()
           .type(PartyType.INDIVIDUAL)

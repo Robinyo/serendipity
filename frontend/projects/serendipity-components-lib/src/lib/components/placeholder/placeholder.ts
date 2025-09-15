@@ -10,8 +10,7 @@ import { CommandBar } from '../command-bar/command-bar';
     CommandBar
   ],
   templateUrl: './placeholder.html',
-  standalone: true,
-  styleUrl: './placeholder.scss'
+  standalone: true
 })
 export class Placeholder {
 

@@ -63,6 +63,10 @@ html, body {
 
 :root {
 
+  @include mat.card-overrides((
+    filled-container-color: white
+  ));
+
   // https://material.angular.dev/components/button/styling
   @include mat.fab-overrides((
     container-color: orange,

@@ -1,5 +1,4 @@
-@use '../../variables' as *;
-@use './variables';
+@use '../../../../variables';
 
 .footer-container {
   display: flex;
@@ -20,7 +19,7 @@
   min-width: variables.$footer-button-min-width;
   padding: 0 8px;
 
-  @media ($xsmall) {
+  @media (variables.$xsmall) {
     display: none;
   }
 }
@@ -29,7 +28,7 @@
   min-width: variables.$footer-button-min-width;
   padding: 0 8px;
 
-  @media ($xsmall) {
+  @media (variables.$xsmall) {
     display: none;
   }
 }
