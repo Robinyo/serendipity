@@ -10,12 +10,16 @@
   height: calc(100vh - (64px + 50px + 64px));
   width: 100%;
 }
-/*
 
-  height: calc( 100vh - (var(variables.$navigation-bar-height-desktop) +
-                         var(variables.$command-bar-height-desktop) +
-                         var(variables.$activity-bar-height-desktop)) );
- */
+.md-lookup-list-container {
+  column-gap: 0;
+  display: grid;
+  grid-template-columns: variables.$lookup-list-width-desktop auto;
+  height: variables.$lookup-list-height-desktop;
+  margin: 0;
+  padding-top: variables.$padding-desktop;
+  padding-bottom: variables.$padding-desktop;
+}
 
 .md-tab-group-container {
   margin: 0 variables.$component-margin-desktop variables.$component-margin-desktop;
@@ -52,22 +56,6 @@
   }
 }
 
-/*
-
-  height: calc( 100vh - (var(variables.$navigation-bar-height-desktop) +
-                         var(variables.$command-bar-height-desktop) +
-                         var(variables.$activity-bar-height-desktop) +
-                         var(variables.$tab-height-desktop)) );
-
-  @media (variables.$xsmall) {
-    height: calc( 100vh - (var(variables.$navigation-bar-height-mobile) +
-                           var(variables.$command-bar-height-mobile) +
-                           var(variables.$activity-bar-height-mobile) +
-                           var(variables.$tab-height-mobile)) );
-  }
-
-*/
-
 .md-table-container {
   // $navigation-bar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop + $table-margin-desktop
   height: calc(100vh - (64px + 50px + 64px + 16px));
@@ -82,14 +70,7 @@
   }
 }
 
-/*
 
-  height: calc( 100vh - (var(variables.$navigation-bar-height-desktop) +
-                         var(variables.$command-bar-height-desktop) +
-                         var(variables.$activity-bar-height-desktop) +
-                         var(variables.$table-margin-desktop)) );
-
-*/
 
 // Table
 
@@ -177,3 +158,35 @@
   grid-row: 2;
 }
 
+/*
+
+  height: calc( 100vh - (var(variables.$navigation-bar-height-desktop) +
+                         var(variables.$command-bar-height-desktop) +
+                         var(variables.$activity-bar-height-desktop)) );
+*/
+
+
+/*
+
+  height: calc( 100vh - (var(variables.$navigation-bar-height-desktop) +
+                         var(variables.$command-bar-height-desktop) +
+                         var(variables.$activity-bar-height-desktop) +
+                         var(variables.$tab-height-desktop)) );
+
+  @media (variables.$xsmall) {
+    height: calc( 100vh - (var(variables.$navigation-bar-height-mobile) +
+                           var(variables.$command-bar-height-mobile) +
+                           var(variables.$activity-bar-height-mobile) +
+                           var(variables.$tab-height-mobile)) );
+  }
+
+*/
+
+/*
+
+  height: calc( 100vh - (var(variables.$navigation-bar-height-desktop) +
+                         var(variables.$command-bar-height-desktop) +
+                         var(variables.$activity-bar-height-desktop) +
+                         var(variables.$table-margin-desktop)) );
+
+*/

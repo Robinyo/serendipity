@@ -6,7 +6,7 @@ import { ContactsResolver } from './resolvers/contacts';
 export const ContactRoute: Route = {
   path: 'customers/contacts/:id',
   loadComponent: () => import('./features/contact/contact').then(m => m.Contact),
-  resolve: { formDefs: ContactResolver }
+  resolve: { metaData: ContactResolver }
 };
 
 export const ContactsRoute: Route = {

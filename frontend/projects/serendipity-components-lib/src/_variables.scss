@@ -6,6 +6,9 @@ $small: 'max-width: 959px';
 $margin-desktop: 16px;
 $margin-mobile: 0;
 
+$padding-desktop: 16px;
+$padding-mobile: 0;
+
 $margin-top-desktop: 32px;
 $margin-top-mobile: 16px;
 
@@ -46,6 +49,12 @@ $activity-bar-height-mobile: $height-mobile;
 // Card
 $card-content-margin-top-desktop: 16px !default;
 $card-content-margin-top-mobile: 8px !default;
+
+// Lookup List
+$lookup-list-height-desktop: calc(56px * 4);
+$lookup-list-height-mobile: calc(56px * 4);
+$lookup-list-width-desktop: 400;
+$lookup-list-width-mobile: 400;
 
 // Table
 $table-margin-desktop: $margin-desktop !default;

@@ -8,7 +8,7 @@ import { CollectionService } from '../abstract/collection/collection';
 
 import { ContactModel } from '../../models/contact';
 import { RoleModel } from '../../models/role';
-import { ContactAdapter } from '../../adapters/contact.adapter';
+import { ContactAdapter } from '../../adapters/contact';
 
 import { INDIVIDUALS, INDIVIDUALS_WITHOUT_A_TRAILING_SLASH } from './constants';
 

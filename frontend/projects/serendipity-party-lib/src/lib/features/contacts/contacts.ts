@@ -9,7 +9,7 @@ import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 
 import { ActivityBar, CommandBar, Collection, CollectionFooter } from 'serendipity-components-lib';
 
-import { ContactAdapter } from '../../adapters/contact.adapter';
+import { ContactAdapter } from '../../adapters/contact';
 import { ContactsService } from '../../services/contacts/contacts';
 
 import { ContactModel } from '../../models/contact';

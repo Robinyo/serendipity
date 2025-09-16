@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Adapter } from 'serendipity-utils-lib';
 
-import { PartyAdapter } from "./party.adapter";
+import { PartyAdapter } from "./party";
 
 import { ContactModel } from '../models/contact';
 

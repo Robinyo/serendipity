@@ -1,0 +1,48 @@
+@use './variables';
+
+// Columns
+
+.mat-column-select, .mat-column-partyName, .mat-column-role, .mat-column-relationship, .mat-column-reciprocalRole,
+  .mat-column-reciprocalPartyName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mat-column-select {
+  min-width: variables.$select-column-width;
+  width: variables.$select-column-width;
+}
+
+.mat-column-partyName {
+  min-width: variables.$name-column-width;
+  width: variables.$name-column-width;
+}
+
+.mat-column-role {
+  min-width: variables.$role-column-width;
+  width: variables.$role-column-width;
+}
+
+.mat-column-relationship {
+  min-width: variables.$relationship-column-width;
+  width: variables.$relationship-column-width;
+}
+
+.mat-column-reciprocalRole {
+  min-width: variables.$role-column-width;
+  width: variables.$role-column-width;
+}
+
+.mat-column-reciprocalPartyName {
+  min-width: variables.$name-column-width;
+  width: variables.$name-column-width;
+}
+
+// To clip text with an ellipsis when it overflows a table cell, you need to set the following CSS properties:
+//   width: variables.$email-column-width;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+
+// See: https://css-tricks.com/snippets/css/truncate-string-with-ellipsis/

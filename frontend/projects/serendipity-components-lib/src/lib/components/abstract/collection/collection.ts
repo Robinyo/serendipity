@@ -10,6 +10,9 @@ import { takeUntil } from 'rxjs/operators';
 
 import { ConfigService, LoggerService } from 'serendipity-utils-lib';
 
+import { DialogService } from '../../../services/dialogs/dialog';
+// import { SidenavService } from '../../../services/sidenav/sidenav.service';
+
 import { ColumnDef } from '../../../models/column';
 
 import { ALL, ALPHABET, DEFAULT_FOOTER_COL_SPAN } from './constants';
@@ -38,12 +41,12 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
   public alphabet = ALPHABET;
   // @ts-ignore
   public columnDefs: ColumnDef[];
-  public isLoading: boolean = true;
   // @ts-ignore
   public dataSource: MatTableDataSource<T>;
   public displayedColumns: string[];
   public footerAllLabel = ALL;
   public footerColSpan = DEFAULT_FOOTER_COL_SPAN;
+  public isLoading: boolean = true;
 
   public pageNumber = 1;
   public selectedFooterItemId = ALL;
@@ -55,7 +58,7 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
   protected changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   protected count = 0;
   protected configService = inject(ConfigService);
-  // protected dialogService: DialogService;
+  protected dialogService: DialogService = inject(DialogService);
 
   protected items!: Array<T>;
 
@@ -74,7 +77,7 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
 
   private destroyed: Subject<void> = new Subject<void>();
 
-  constructor(config: CollectionComponentConfig) {
+  protected constructor(config: CollectionComponentConfig) {
 
     this.columnDefsFilename = config.columnDefsFilename;
     this.desktopDeviceColumns = config.desktopDeviceColumns;

@@ -21,13 +21,14 @@ export abstract class Item<T> implements OnInit, AfterViewInit, OnDestroy {
   protected breakpointObserver: BreakpointObserver  = inject(BreakpointObserver);
   protected changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   protected dialogService: DialogService = inject(DialogService);
+  protected handsetPortrait: boolean = false;
   protected logger = inject(LoggerService);
+  protected route: ActivatedRoute = inject(ActivatedRoute);
   protected router: Router = inject(Router);
   protected snackBar: MatSnackBar = inject(MatSnackBar);
-
-  protected handsetPortrait: boolean = false;
-  protected route: ActivatedRoute | undefined;
   protected subscriptions: Subscription[] = [];
+
+  protected constructor() {}
 
   public ngOnInit() {
 

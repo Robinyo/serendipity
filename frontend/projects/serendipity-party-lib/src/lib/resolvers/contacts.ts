@@ -6,7 +6,7 @@ import { catchError } from 'rxjs/operators';
 
 import { ConfigService, LoggerService } from 'serendipity-utils-lib';
 
-const COLUMN_DEFS = 'contacts-column-defs';
+import { CONTACTS_COLUMN_DEFS } from './column-defs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class ContactsResolver implements Resolve<any[]> {
 
     this.logger.info('Contacts Resolver: resolve()');
 
-    return this.configService.get(COLUMN_DEFS).pipe(
+    return this.configService.get(CONTACTS_COLUMN_DEFS).pipe(
       catchError(error => {
         return of('No data');
       })
