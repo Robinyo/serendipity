@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -17,7 +16,7 @@ import { latLng, LatLng, LatLngBounds, Layer, LeafletEvent, LeafletMouseEvent, M
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 
 import { ContactsService } from '../../services/contacts/contacts';
-// import { ElectoralDivisionsService } from '../../services/electoral-divisions/electoral-divisions.service';
+import { ElectoralDivisionsService } from '../../services/electoral-divisions/electoral-divisions';
 // import { LookupAccountDialogComponent } from "../dialogs/lookup-account-dialog/lookup-account-dialog.component";
 
 import { AccountModel } from '../../models/account';
@@ -36,8 +35,8 @@ class LeafletControlLayersConfig {
 class MapLayersControl extends LeafletControlLayersConfig {}
 
 const DEFAULT_ZOOM = 13;
-const DEFAULT_LATITUDE = -28.15;
-const DEFAULT_LONGITUDE = 133.28;
+const DEFAULT_LATITUDE = -32.841;
+const DEFAULT_LONGITUDE = 151.753;
 const ELECTORAL_DIVISION_TAB_INDEX = 3;
 
 @Component({
@@ -68,12 +67,12 @@ export class Contact extends Item<ContactModel> {
 
   private electoralDivision!: ElectoralDivisionModel;
 
-  public mapOptions: MapOptions;
   public mapLayersControl!: MapLayersControl;
+  public mapOptions: MapOptions;
 
-  private entityService: ContactsService = inject(ContactsService);
   private dynamicFormService: DynamicFormService = inject(DynamicFormService);
-  // private electoralDivisionsService: ElectoralDivisionsService
+  private electoralDivisionsService: ElectoralDivisionsService = inject(ElectoralDivisionsService);
+  private entityService: ContactsService = inject(ContactsService);
 
   private map!: Map;
 
@@ -96,12 +95,13 @@ export class Contact extends Item<ContactModel> {
 
     this.mapOptions = {
       layers: [
-        tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; OpenStreetMap contributors'
+        tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         })
       ],
-      zoom: 4,
-      center: latLng([-28.15, 133.28])
+      zoom: DEFAULT_ZOOM,
+      center: latLng([DEFAULT_LATITUDE, DEFAULT_LONGITUDE])
     };
 
   }
@@ -110,19 +110,26 @@ export class Contact extends Item<ContactModel> {
 
     this.logger.info('Contact Component: subscribe()');
 
+    this.isLoading = true;
+
     let entitySubscription: Subscription = new Subscription();
     this.subscriptions.push(entitySubscription);
 
-    entitySubscription = this.entityService.findById(this.id).subscribe(data => {
+    entitySubscription = this.entityService.findById(this.id).subscribe(
 
-      this.item = data;
+      (response: any) => {
 
-      // this.logger.info('item: ' + JSON.stringify(this.item, null, 2));
+        this.item = response;
+        // this.item = response.body;
 
-      this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
-      this.dynamicFormService.initGroup(this.addressInformationGroup, this.item.party.addresses[0]);
+        // this.logger.info('item: ' + JSON.stringify(this.item, null, 2));
 
-      this.detectChanges();
+        this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
+        this.dynamicFormService.initGroup(this.addressInformationGroup, this.item.party.addresses[0]);
+
+        this.isLoading = false;
+
+        this.detectChanges();
 
     });
 
@@ -531,15 +538,7 @@ export class Contact extends Item<ContactModel> {
     this.map = map;
   }
 
-  public async onTabChanged($event: any) {
-
-    this.logger.info('Contact omponent: onTabChanged()');
-
-  }
-
-  /*
-
-  public async onTabChanged($event: any) {
+  public onTabChanged($event: any) {
 
     this.logger.info('ContactComponent: onTabChanged()');
 
@@ -549,29 +548,45 @@ export class Contact extends Item<ContactModel> {
 
     if (clickedIndex === ELECTORAL_DIVISION_TAB_INDEX && this.item !== undefined && this.item.electorate) {
 
-      if (this.electoralDivision === undefined) {
+      let electoralDivisionSubscription: Subscription = new Subscription();
+      this.subscriptions.push(electoralDivisionSubscription);
 
-        this.electoralDivision = await this.electoralDivisionsService.findByName(this.item.electorate);
+      // this.isLoading = true;
 
-        this.logger.info('Electoral Division: ' + JSON.stringify(this.electoralDivision, null, 2) + '\n');
+      electoralDivisionSubscription = this.electoralDivisionsService.findByName(this.item.electorate).subscribe(
 
-        let latitude = DEFAULT_LATITUDE;
-        let longitude = DEFAULT_LONGITUDE;
+        (response: any) => {
 
-        if (!isNaN(Number(this.electoralDivision.latitude))) {
-          latitude = Number(this.electoralDivision.latitude);
-        }
+          // this.electoralDivision = data;
+          this.electoralDivision = response.body;
 
-        if (!isNaN(Number(this.electoralDivision.longitude))) {
-          longitude = Number(this.electoralDivision.longitude);
-        }
+          this.logger.info('Electoral Division: ' + JSON.stringify(this.electoralDivision, null, 2) + '\n');
 
-        if (this.map !== undefined) {
-          this.map.setView(latLng(latitude, longitude), DEFAULT_ZOOM);
-          this.map.invalidateSize();
-        }
+          let latitude = parseFloat(this.electoralDivision.latitude);
+          let longitude = parseFloat(this.electoralDivision.longitude);
 
-      }
+          this.logger.info('latitude: ' +  latitude + ' longitude: ' + longitude );
+
+          if (isNaN(latitude)) {
+            latitude = DEFAULT_LATITUDE;
+          }
+
+          if (isNaN(longitude)) {
+            longitude = DEFAULT_LONGITUDE;
+          }
+
+          this.logger.info('latitude: ' +  latitude + ' longitude: ' + longitude );
+
+          if (this.map !== undefined) {
+            this.map.setView(latLng(latitude, longitude), DEFAULT_ZOOM);
+            this.map.invalidateSize();
+          }
+
+          // this.isLoading = false;
+
+          // this.detectChanges();
+
+        });
 
     }
 
@@ -580,6 +595,8 @@ export class Contact extends Item<ContactModel> {
   //
   // Misc
   //
+
+  /*
 
   private openSnackBar(): void {
 

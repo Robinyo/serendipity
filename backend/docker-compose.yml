@@ -59,8 +59,8 @@ services:
       context: ./modules/party-service
       dockerfile: Dockerfile
     restart: unless-stopped
-    ports:
-      - "30101:8080"
+    # ports:
+    #   - "30101:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${SERENDIPITY_DB}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}

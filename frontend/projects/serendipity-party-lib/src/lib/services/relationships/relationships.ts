@@ -1,22 +1,18 @@
-import { inject, Injectable } from '@angular/core';
-import { HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 import { Observable} from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 import { CollectionService } from '../abstract/collection/collection';
 
-import { RoleAdapter } from '../../adapters/role';
-
 import { ROLES, ROLES_WITHOUT_A_TRAILING_SLASH } from './constants';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class RelationshipsService extends CollectionService {
 
-  private adapter: RoleAdapter = inject(RoleAdapter);
+  // private adapter: RoleAdapter = inject(RoleAdapter);
 
   constructor() {
 

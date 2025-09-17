@@ -86,14 +86,14 @@ export class Contacts extends Collection<ContactModel> {
 
         }
 
-        this.isLoading = false;
-
         // this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
 
         this.dataSource = new MatTableDataSource(this.items);
         this.dataSource.data = this.items;
         this.dataSource.sortingDataAccessor = pathDataAccessor;
         this.dataSource.sort = this.sort;
+
+        this.isLoading = false;
 
         this.detectChanges();
 

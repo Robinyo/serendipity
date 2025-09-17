@@ -18,6 +18,8 @@ export abstract class Item<T> implements OnInit, AfterViewInit, OnDestroy {
   public id!: string;
   public item!: T;
 
+  public isLoading: boolean = true;
+
   protected breakpointObserver: BreakpointObserver  = inject(BreakpointObserver);
   protected changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   protected dialogService: DialogService = inject(DialogService);

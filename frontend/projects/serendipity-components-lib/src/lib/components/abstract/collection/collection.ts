@@ -38,6 +38,11 @@ export interface CollectionComponentConfig {
 @Directive()
 export abstract class Collection<T> implements AfterViewInit, OnDestroy {
 
+  @ViewChild(MatSort, {static: false})
+  public sort: MatSort | undefined;
+
+  protected items!: Array<T>;
+
   public alphabet = ALPHABET;
   // @ts-ignore
   public columnDefs: ColumnDef[];
@@ -47,21 +52,14 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
   public footerAllLabel = ALL;
   public footerColSpan = DEFAULT_FOOTER_COL_SPAN;
   public isLoading: boolean = true;
-
   public pageNumber = 1;
   public selectedFooterItemId = ALL;
-
-  @ViewChild(MatSort, {static: false})
-  public sort: MatSort | undefined;
 
   protected breakpointObserver: BreakpointObserver  = inject(BreakpointObserver);
   protected changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   protected count = 0;
   protected configService = inject(ConfigService);
   protected dialogService: DialogService = inject(DialogService);
-
-  protected items!: Array<T>;
-
   protected logger = inject(LoggerService);
   protected router = inject(Router);
   // protected sidenavService: SidenavService;

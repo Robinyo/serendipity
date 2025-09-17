@@ -108,3 +108,9 @@ Contact
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/contact.png">
 </p>
+
+### Interactive Maps
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/electoral-division.png">
+</p>
