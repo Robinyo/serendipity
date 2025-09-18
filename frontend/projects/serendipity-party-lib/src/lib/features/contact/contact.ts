@@ -17,6 +17,7 @@ import { LeafletModule } from '@bluehalo/ngx-leaflet';
 
 import { ContactsService } from '../../services/contacts/contacts';
 import { ElectoralDivisionsService } from '../../services/electoral-divisions/electoral-divisions';
+import { ContactRelatedTab } from '../../components/contact/contact-related-tab/contact-related-tab';
 // import { LookupAccountDialogComponent } from "../dialogs/lookup-account-dialog/lookup-account-dialog.component";
 
 import { AccountModel } from '../../models/account';
@@ -44,6 +45,7 @@ const ELECTORAL_DIVISION_TAB_INDEX = 3;
   imports: [
     ActivityBar,
     CommandBar,
+    ContactRelatedTab,
     DynamicForm,
     LeafletModule,
     MatButtonModule,

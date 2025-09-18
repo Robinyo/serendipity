@@ -38,7 +38,6 @@ export class Contacts extends Collection<ContactModel> {
 
   private entityAdapter: ContactAdapter = inject(ContactAdapter);
   private entityService: ContactsService = inject(ContactsService);
-
   private route: ActivatedRoute = inject(ActivatedRoute);
 
   constructor() {

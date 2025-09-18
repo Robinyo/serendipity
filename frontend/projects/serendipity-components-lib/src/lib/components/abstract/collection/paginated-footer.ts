@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { LoggerService } from 'serendipity-utils-lib';
 
 @Component({
-  selector: 'collection-footer',
+  selector: 'paginated-footer',
   imports: [
     MatButtonModule,
     MatIconModule
@@ -14,29 +14,7 @@ import { LoggerService } from 'serendipity-utils-lib';
   template: `
     <div class="footer-container">
 
-      <button id="{{ host.footerAllLabel }}" mat-button class="footer-all-button"
-              (click)="host.onClickFilterButton(host.footerAllLabel)"
-              [class.active]="host.selectedFooterItemId === host.footerAllLabel">
-        {{ host.footerAllLabel }}
-      </button>
-
-      <button mat-button disabled class="footer-separator-button">
-        |
-      </button>
-
-      @for (character of host.alphabet; track $index) {
-
-        <button id="{{ character }}" mat-button class="footer-character-button"
-                (click)="host.onClickFilterButton(character)"
-                [class.active]="host.selectedFooterItemId === character">
-          {{ character }}
-        </button>
-
-      }
-
-      <button mat-button disabled class="footer-separator-button">
-        |
-      </button>
+      <span class="footer-spacer"></span>
 
       <div>
 
@@ -69,7 +47,7 @@ import { LoggerService } from 'serendipity-utils-lib';
   standalone: true,
   styleUrls: ['footer.scss']
 })
-export class CollectionFooter implements OnInit {
+export class PaginatedFooter implements OnInit {
 
   @Input() host: any;
 
@@ -77,7 +55,7 @@ export class CollectionFooter implements OnInit {
 
   public ngOnInit() {
 
-    this.logger.info('Collection Footer Component: ngOnInit()');
+    this.logger.info('Paginated Footer Component: ngOnInit()');
   }
 
 }

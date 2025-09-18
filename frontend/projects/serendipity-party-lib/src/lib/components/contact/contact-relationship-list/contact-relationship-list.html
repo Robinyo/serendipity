@@ -1,49 +1,54 @@
 <div class="md-lookup-list-container">
 
-  <ng-container *ngIf="columnDefs">
+  <!--
+  @if (isLoading) {
+    <mat-spinner class="md-spinner"></mat-spinner>
+  }
+  -->
 
-    <table mat-table
-           [hidden]="!items"
-           [dataSource]="dataSource"
-           matSort
-           matSortStart="desc"
-           matSortDisableClear>
+  <table mat-table
+         [hidden]="!items"
+         [dataSource]="dataSource"
+         matSort
+         matSortStart="desc"
+         matSortDisableClear>
 
-      <!-- Checkbox column -->
+    <!-- Checkbox column -->
 
-      <ng-container *ngIf="placeholder; else select">
+    @if (placeholder) {
 
-        <ng-container matColumnDef="select">
+      <ng-container matColumnDef="select">
 
-          <th mat-header-cell *matHeaderCellDef> </th>
-          <td mat-cell *matCellDef="let row"> </td>
-          <td mat-footer-cell *matFooterCellDef> </td>
-
-        </ng-container>
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let row"> </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
 
       </ng-container>
 
-      <ng-template #select>
+    } @else {
 
-        <ng-container matColumnDef="select">
+    <ng-container matColumnDef="select">
 
-          <th mat-header-cell *matHeaderCellDef> </th>
+      <th mat-header-cell *matHeaderCellDef> </th>
 
-          <td mat-cell *matCellDef="let row">
-            <mat-checkbox (click)="$event.stopPropagation()" (change)="selectHandler(row)"
-                          [checked]="selection.isSelected(row)">
-            </mat-checkbox>
-          </td>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="selectHandler(row)"
+                      [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </td>
 
-          <td mat-footer-cell *matFooterCellDef> </td>
+      <td mat-footer-cell *matFooterCellDef> </td>
 
-        </ng-container>
+    </ng-container>
 
-      </ng-template>
+    }
 
-      <!-- Dynamic columns -->
+    <!-- Dynamic columns -->
 
-      <ng-container *ngFor="let column of columnDefs" [matColumnDef]="column.name">
+    @for (column of columnDefs; track $index) {
+
+      <ng-container [matColumnDef]="column.name">
 
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ column.displayName }}
@@ -58,37 +63,41 @@
 
       </ng-container>
 
-      <!-- ID column (padding column RTL) -->
+    }
 
-      <ng-container matColumnDef="id">
+    <!-- ID column (padding column RTL) -->
 
-        <th mat-header-cell *matHeaderCellDef class="header-cell-id">
-          <button mat-icon-button>
-            <mat-icon svgIcon="autorenew" class="header-icon"> </mat-icon>
-          </button>
-        </th>
+    <ng-container matColumnDef="id">
 
-        <td mat-cell *matCellDef="let element"> </td>
-        <td mat-footer-cell *matFooterCellDef> </td>
+      <th mat-header-cell *matHeaderCellDef class="header-cell-id">
 
-      </ng-container>
+        <button matIconButton
+                aria-label="Reload button"
+                class="header-icon">
+          <mat-icon class="material-icons"> autorenew </mat-icon>
+        </button>
 
-      <!-- Footer -->
+      </th>
 
-      <ng-container matColumnDef="footer">
-        <td mat-footer-cell *matFooterCellDef [attr.colspan]="footerColSpan">
-          <paginated-footer [host]="this">
-          </paginated-footer>
-        </td>
-      </ng-container>
+      <td mat-cell *matCellDef="let element"> </td>
+      <td mat-footer-cell *matFooterCellDef> </td>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      <tr mat-footer-row *matFooterRowDef="['footer']; sticky: true"></tr>
+    </ng-container>
 
-    </table>
+    <!-- Footer -->
 
-  </ng-container>
+    <ng-container matColumnDef="footer">
+      <td mat-footer-cell *matFooterCellDef [attr.colspan]="footerColSpan">
+        <paginated-footer [host]="this">
+        </paginated-footer>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-footer-row *matFooterRowDef="['footer']; sticky: true"></tr>
+
+  </table>
 
 </div>
 

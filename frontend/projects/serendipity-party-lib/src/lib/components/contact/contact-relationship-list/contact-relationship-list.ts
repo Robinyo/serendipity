@@ -1,7 +1,13 @@
 import { SelectionModel } from "@angular/cdk/collections";
-import {Component, EventEmitter, inject, Output} from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 
-import { MatTableDataSource } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
+
+import { PaginatedFooter } from 'serendipity-components-lib';
 
 import { RoleAdapter } from '../../../adapters/role';
 import { RelationshipsService } from '../../../services/relationships/relationships';
@@ -10,11 +16,17 @@ import { RelationshipList } from "./relationship-list";
 
 import { ContactModel } from '../../../models/contact';
 import { RoleModel } from '../../../models/role';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'contact-relationship-list',
   imports: [
-
+    MatButtonModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatSortModule,
+    MatTableModule,
+    PaginatedFooter
   ],
   templateUrl: './contact-relationship-list.html',
   standalone: true,
@@ -25,19 +37,24 @@ export class ContactRelationshipList extends RelationshipList<ContactModel> {
   @Output() selectEvent = new EventEmitter<RoleModel>();
 
   public placeholder = false;
-
-  selection = new SelectionModel<RoleModel>(false, []);
+  public selection = new SelectionModel<RoleModel>(false, []);
 
   private entityAdapter: RoleAdapter = inject(RoleAdapter);
   private entityService: RelationshipsService = inject(RelationshipsService);
+  private route: ActivatedRoute = inject(ActivatedRoute);
 
   constructor() {
+
     super();
+
+    this.logger.info('Relationship List Component');
+
+    this.columnDefs = this.route.snapshot.data['metaData'].relationshipListColumDefs;
   }
 
   protected subscribe() {
 
-    this.logger.info('RelationshipListComponent: subscribe()');
+    this.logger.info('Relationship List Component: subscribe()');
 
     this.isLoading = true;
 
@@ -46,18 +63,20 @@ export class ContactRelationshipList extends RelationshipList<ContactModel> {
 
       (response: any) => {
 
-        this.logger.info('RelationshipListComponent: subscribe() success handler');
+        this.logger.info('Relationship List Component: subscribe() success handler');
 
         this.count = response.body.page.totalElements;
 
-        this.logger.info('response.body: ' + JSON.stringify(response.body, null, 2));
-
-        this.logger.info('count: ' + this.count);
+        // this.logger.info('response.body: ' + JSON.stringify(response.body, null, 2));
+        // this.logger.info('count: ' + this.count);
 
         if (this.count > 0) {
 
           this.items = response.body._embedded.roleModels.map(
             ((item: any) => this.entityAdapter.adapt(item)));
+
+          this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
+          this.logger.info('count: ' + this.count);
 
           this.placeholder = false;
 

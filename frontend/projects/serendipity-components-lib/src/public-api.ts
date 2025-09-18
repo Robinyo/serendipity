@@ -6,6 +6,7 @@
 
 export * from './lib/components/abstract/collection/collection';
 export * from './lib/components/abstract/collection/footer';
+export * from './lib/components/abstract/collection/paginated-footer';
 export * from './lib/components/abstract/item/item';
 export * from './lib/components/abstract/tab/tab';
 export * from './lib/components/abstract/wizard/wizard';
