@@ -47,7 +47,7 @@ export class ContactRelatedTab extends Tab<ContactModel> implements AfterViewIni
 
   public ngAfterViewInit() {
 
-    this.logger.info('ContactRelatedTabComponent: ngAfterViewInit()');
+    this.logger.info('Contact Related Tab Component: ngAfterViewInit()');
 
     if (this.item.party.roles.length === 0) {
       this.disableRemoveButton = true;
@@ -57,7 +57,7 @@ export class ContactRelatedTab extends Tab<ContactModel> implements AfterViewIni
 
   public onSelectEvent(role: RoleModel) {
 
-    this.logger.info('ContactRelatedTabComponent: onSelectEvent()');
+    this.logger.info('Contact Related Tab Component: onSelectEvent()');
 
     if (role.id !== undefined) {
 
@@ -87,7 +87,7 @@ export class ContactRelatedTab extends Tab<ContactModel> implements AfterViewIni
 
   public onAdd(): void {
 
-    this.logger.info('ContactRelatedTabComponent: onAdd()');
+    this.logger.info('Contact Related Tab Component: onAdd()');
 
     this.openAddRelationshipAccountDialog();
   }

@@ -70,13 +70,19 @@
   }
 }
 
-
-
 // Table
 
 .md-table-header-id-column {
   float: right;
   margin: 0 12px 0 12px;
+}
+
+// Button
+
+.md-button, .md-command-bar-button, .md-sidenav, .md-nav-list, .md-nav-list-item {
+  border-radius: 3px !important;
+  // border-radius: var(--mat-list-active-indicator-shape, var(--mat-sys-corner-full));
+  // --mat-focus-indicator-border-radius: var(--mat-list-active-indicator-shape, var(--mat-sys-corner-full));
 }
 
 // Card
@@ -88,7 +94,7 @@
 // Command Bar
 
 .md-command-bar-button {
-  border-radius: 3px !important;
+  // border-radius: 3px !important;
   margin-right: variables.$component-margin-desktop;
 }
 
@@ -96,10 +102,18 @@
   flex: 1 1 auto;
 }
 
-// Spinner
 
-.md-spinner {
+// Sidenav
 
+.md-sidenav-nav-list-item {
+  border-radius: 3px !important;
+  // padding-left: 16px;
+}
+
+.mdc-list-item--with-leading-radio.mdc-list-item, .mdc-list-item--with-leading-checkbox.mdc-list-item,
+.mdc-list-item--with-leading-icon.mdc-list-item, .mdc-list-item--with-leading-avatar.mdc-list-item {
+  padding-left: 16px !important;
+  // padding-right: 16px;
 }
 
 // Snack Bar

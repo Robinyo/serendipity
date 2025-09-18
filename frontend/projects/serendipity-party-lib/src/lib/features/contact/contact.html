@@ -180,20 +180,20 @@
 
         </mat-tab>
 
+        <!--
+
         <mat-tab label="Details">
 
           <ng-template matTabContent>
 
             <div class="md-tab-component-container">
-
-              <!-- See: https://material.angular.io/components/tabs/overview#lazy-loading -->
-              Details tab: I was lazy loaded...
-
             </div>
 
           </ng-template>
 
         </mat-tab>
+
+        -->
 
         <mat-tab label="Related">
 
@@ -210,7 +210,7 @@
 
         </mat-tab>
 
-        @if (item.electorate) {
+        @if (item && item.electorate) {
 
           <mat-tab label="Electoral Division">
 

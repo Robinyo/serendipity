@@ -17,18 +17,18 @@
 
       <mat-action-row>
 
-        <button matButton="filled"
+        <button #addButton matButton="filled"
                 aria-label="Add Relationship button"
-                #addButton
+                class="md-button"
                 [disabled]="disableAddButton"
                 (keydown.arrowright)="removeButton.focus()"
                 (click)="onAdd()">
           {{ addButtonLabel }}
         </button>
 
-        <button matButton="filled"
+        <button #removeButton matButton="filled"
                 aria-label="Remove Relationship button"
-                #removeButton
+                class="md-button"
                 [disabled]="disableRemoveButton"
                 (click)="onRemove()">
           {{ removeButtonLabel }}

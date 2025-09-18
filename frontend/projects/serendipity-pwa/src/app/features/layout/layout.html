@@ -3,9 +3,9 @@
 
 <mat-sidenav-container>
 
-  <mat-sidenav #sidenav mode="over">
+  <mat-sidenav #sidenav mode="over" class="md-sidenav">
 
-    <mat-nav-list>
+    <mat-nav-list class="md-nav-list">
 
       <h3 matSubheader>
         My Work
@@ -14,6 +14,7 @@
       @if (myWorkRoutes) {
         @for (item of myWorkRoutes; track item.id) {
           <a mat-list-item
+             class="md-sidenav-nav-list-item"
              (click)="sidenav.close()"
              [routerLink]="[item.route]">
             <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
@@ -29,6 +30,7 @@
       @if (customerRoutes) {
         @for (item of customerRoutes; track item.id) {
           <a mat-list-item
+             class="md-sidenav-nav-list-item"
              (click)="sidenav.close()"
              [routerLink]="[item.route]">
             <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
