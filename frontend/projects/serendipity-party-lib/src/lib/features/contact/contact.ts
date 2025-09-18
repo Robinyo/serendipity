@@ -38,7 +38,7 @@ class MapLayersControl extends LeafletControlLayersConfig {}
 const DEFAULT_ZOOM = 13;
 const DEFAULT_LATITUDE = -32.841;
 const DEFAULT_LONGITUDE = 151.753;
-const ELECTORAL_DIVISION_TAB_INDEX = 2; // 3
+const ELECTORAL_DIVISION_TAB_INDEX = 3;
 
 @Component({
   selector: 'party-contact',
