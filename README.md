@@ -88,6 +88,12 @@ Command Bar
   <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/command-bar.png">
 </p>
 
+Sidenav
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/sidenav.png">
+</p>
+
 ### Customer Engagement
 
 Contacts - Desktop
