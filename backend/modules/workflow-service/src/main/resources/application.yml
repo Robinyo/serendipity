@@ -4,25 +4,31 @@ server:
 logging:
   level:
     root: INFO
+    org.flowable: INFO
     org.hibernate.SQL: INFO
     org.springframework.web: INFO
 
 spring:
-  data:
-    rest:
-      base-path: /api/party-service
-  # jpa:
-  #   show-sql: true
+  datasource:
+    username: admin
+    password: secret
   main:
     banner-mode: off
   profiles:
     active: @spring.profiles.active@
 
+flowable:
+  process:
+    servlet:
+      # path: /process-api
+      path: /api/workflow-service
+  process-definition-location-prefix: classpath*:/processes/
+
 management:
   endpoints:
     web:
       exposure:
-        include: beans, env, health, info, metrics
+        include: beans, env, health, info, metrics, flowable
   endpoint:
     health:
       probes:

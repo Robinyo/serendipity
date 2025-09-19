@@ -14,20 +14,40 @@ import static org.springframework.cloud.gateway.server.mvc.handler.GatewayRouter
 public class ApplicationConfig {
 
   @Value("${party-service.uri}")
-  private String targetUri;
+  private String partyServiceUri;
+
+  @Value("${workflow-service.uri}")
+  private String workflowServiceUri;
 
   @Bean
   public RouterFunction<ServerResponse> getRoute() {
 
     return route("party-service")
         .GET("/api/party-service/**", HandlerFunctions.http())
-        .before(BeforeFilterFunctions.uri(targetUri))
+        .before(BeforeFilterFunctions.uri(partyServiceUri))
         .build();
+
   }
 
 }
 
 /*
+
+    return route("party-service")
+        .GET("/api/party-service/**", HandlerFunctions.http()).before(BeforeFilterFunctions.uri(partyServiceUri))
+        .GET("/api/workflow-service/**", HandlerFunctions.http()).before(BeforeFilterFunctions.uri(workflowServiceUri))
+        .build();
+
+
+    return route("party-service")
+        .GET("/api/party-service/**", HandlerFunctions.http()).before(BeforeFilterFunctions.uri(partyServiceUri))
+        .GET("/api/workflow-service/**", HandlerFunctions.http()).before(BeforeFilterFunctions.uri(workflowServiceUri))
+        .build();
+
+    return route("party-service")
+        .GET("/api/party-service/**", HandlerFunctions.http())
+        .before(BeforeFilterFunctions.uri(partyServiceUri))
+        .build();
 
     return route("party-service")
         .route(

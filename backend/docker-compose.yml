@@ -53,6 +53,27 @@ services:
     networks:
       - backend
 
+  serendipity-workflow-service:
+    container_name: serendipity-workflow-service
+    build:
+      context: ./modules/workflow-service
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    # ports:
+    #   - "30102:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${SERENDIPITY_DB}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_JPA_PROPERTIES_SEARCH_ENABLED: false
+    volumes:
+      - '${PWD}/certs/keystore.p12:/keystore/keystore.p12'
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
   serendipity-party-service:
     container_name: serendipity-party-service
     build:

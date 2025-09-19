@@ -64,6 +64,7 @@ For example:
                                 └── /model
                                 └── /repository
                                 └── /type
+                                ├── PartyServiceApplication.java   
                         └── /resources
                             ├── application.yml
                             ├── application-dev.yml
@@ -111,6 +112,19 @@ management:
       probes:
         enabled: true
       show-details: always
+```
+
+`application-dev.properties`:
+
+```
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://postgres:5432/serendipity
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create
 ```
 
 ### Domain Model

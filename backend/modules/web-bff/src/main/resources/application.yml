@@ -4,8 +4,9 @@ server:
 logging:
   level:
     root: INFO
-    org.springframework.web: INFO
     org.springframework.cloud.gateway.server.mvc: INFO
+    org.springframework.security: DEBUG
+    org.springframework.web: INFO
 
 spring:
   main:
@@ -30,9 +31,9 @@ management:
         enabled: true
       show-details: always
 
+serendipity-bff:
+  uri: https://serendipity.localhost
 party-service:
   uri: http://serendipity-party-service/api/party-service
-# work-service:
-#   uri: http://serendipity-work-service/api/work-service
-
-# https://docs.spring.io/spring-cloud-gateway/reference/appendix.html
+workflow-service:
+  uri: http://serendipity-workflow-service/api/workflow-service

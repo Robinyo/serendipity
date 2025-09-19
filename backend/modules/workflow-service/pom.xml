@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+  <artifactId>workflow-service</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>Serendipity Workflow Service</name>
+
+  <parent>
+    <groupId>org.serendipity</groupId>
+    <artifactId>serendipity-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+
+  <properties>
+    <!-- <flowable.version>6.5.0</flowable.version> -->
+    <flowable.version>7.2.0</flowable.version>
+  </properties>
+
+  <dependencies>
+
+    <!-- Add Flowable dependencies -->
+    <!-- See: https://www.flowable.com/open-source/docs/bpmn/ch05a-Spring-Boot -->
+    <!-- See: https://github.com/flowable/flowable-engine/blob/main/modules/flowable-spring-boot/flowable-spring-boot-starters/flowable-spring-boot-starter-rest/pom.xml -->
+    <!-- Contains the dependencies for booting all Flowable Engines (Process, CMMN, DMN, and IDM) and their respective REST API. -->
+
+    <dependency>
+      <groupId>org.flowable</groupId>
+      <artifactId>flowable-spring-boot-starter-rest</artifactId>
+      <version>${flowable.version}</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

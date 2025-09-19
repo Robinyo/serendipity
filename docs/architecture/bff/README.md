@@ -102,6 +102,27 @@ Create a Parent POM in the `/backend` directory.
 
 Convert the BFF's `application.properties` to yaml.
 
+### CORS
+
+During development, we allow connections from `localhost:4200`.
+
+For example:
+
+```
+  @Bean
+  public WebMvcConfigurer corsConfigurer() {
+    return new WebMvcConfigurer() {
+      @Override
+      public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**").allowedOrigins(
+            "http://localhost:4200",
+            serendipityBffUri
+        );
+      }
+    };
+  }
+```
+
 ## ❯ References
 
 * Spring Cloud Gateway docs: [Spring Cloud Gateway Server MVC](https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway-server-mvc.html)

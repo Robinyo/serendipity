@@ -43,7 +43,38 @@ npm install -g @angular/cli
 
 ## ❯ Development
 
-In a terminal:
+Follow the steps in the [Backend Build Management](../backend/README.md) guide.
+
+In a terminal, create and start all the services:
+
+```
+# In the project's /backend directory
+
+docker compose up
+```
+
+In another terminal:
+
+```
+# In the project's /frontend directory
+
+ng build --configuration="development" serendipity-utils-lib && \
+ng build --configuration="development" serendipity-components-lib && \
+ng build --configuration="development" serendipity-dynamic-forms-lib && \
+ng build --configuration="development" serendipity-flowable-lib && \
+ng build --configuration="development" serendipity-party-lib && \
+ng build --configuration="development" serendipity-work-lib && \
+ng build --configuration="development" serendipity-pwa && \
+ng serve serendipity-pwa
+```
+
+Navigate to:
+
+```
+http://localhost:4200/
+```
+
+Alternatively, in a terminal:
 
 ```
 # In the project's /frontend directory
@@ -64,48 +95,6 @@ In another terminal:
 # In the project's /frontend directory
 
 ng serve serendipity-pwa --open
-```
-
-Alternatively:
-
-```
-ng build --configuration="development" serendipity-utils-lib && \
-ng build --configuration="development" serendipity-components-lib && \
-ng build --configuration="development" serendipity-dynamic-forms-lib && \
-ng build --configuration="development" serendipity-flowable-lib && \
-ng build --configuration="development" serendipity-party-lib && \
-ng build --configuration="development" serendipity-work-lib && \
-ng build --configuration="development" serendipity-pwa
-```
-
-## ❯ Production
-
-To build the frontend:
-
-```
-# In the project's /frontend directory
-
-ng build serendipity-utils-lib && \
-ng build serendipity-components-lib && \
-ng build serendipity-dynamic-forms-lib && \
-ng build serendipity-flowable-lib && \
-ng build serendipity-party-lib && \
-ng build serendipity-work-lib && \
-ng build serendipity-pwa
-```
-
-In a terminal:
-
-```
-# In the project's /frontend directory
-
-http-server ./dist/serendipity-pwa/browser
-```
-
-In your browser navigate to:
-
-```
-http://localhost:8080
 ```
 
 ### Aliases
