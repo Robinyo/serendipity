@@ -30,6 +30,16 @@
               },
               {
                 "glob": "**/*",
+                "input": "projects/serendipity-workflow-lib/src/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/serendipity-utils-lib/src/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
                 "input": "./node_modules/leaflet/dist/images",
                 "output": "leaflet/"
               }
@@ -233,25 +243,25 @@
         }
       }
     },
-    "serendipity-work-lib": {
+    "serendipity-workflow-lib": {
       "projectType": "library",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/serendipity-work-lib",
-      "sourceRoot": "projects/serendipity-work-lib/src",
+      "root": "projects/serendipity-workflow-lib",
+      "sourceRoot": "projects/serendipity-workflow-lib/src",
       "prefix": "work",
       "architect": {
         "build": {
           "builder": "@angular/build:ng-packagr",
           "configurations": {
             "production": {
-              "tsConfig": "projects/serendipity-work-lib/tsconfig.lib.prod.json"
+              "tsConfig": "projects/serendipity-workflow-lib/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/serendipity-work-lib/tsconfig.lib.json"
+              "tsConfig": "projects/serendipity-workflow-lib/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -259,7 +269,7 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "tsConfig": "projects/serendipity-work-lib/tsconfig.spec.json"
+            "tsConfig": "projects/serendipity-workflow-lib/tsconfig.spec.json"
           }
         }
       }

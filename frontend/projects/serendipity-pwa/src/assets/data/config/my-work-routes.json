@@ -4,7 +4,7 @@
     "id":    "ACTIVITIES_LIST_ITEM",
     "label": "Activities",
     "icon":  "assignment",
-    "route": "work/activities"
+    "route": "workflow/activities"
 
   },
   {

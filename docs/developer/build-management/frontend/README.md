@@ -63,7 +63,7 @@ ng build --configuration="development" serendipity-components-lib && \
 ng build --configuration="development" serendipity-dynamic-forms-lib && \
 ng build --configuration="development" serendipity-flowable-lib && \
 ng build --configuration="development" serendipity-party-lib && \
-ng build --configuration="development" serendipity-work-lib && \
+ng build --configuration="development" serendipity-workflow-lib && \
 ng build --configuration="development" serendipity-pwa && \
 ng serve serendipity-pwa
 ```

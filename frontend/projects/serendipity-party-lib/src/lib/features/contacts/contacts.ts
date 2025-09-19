@@ -14,8 +14,8 @@ import { ContactsService } from '../../services/contacts/contacts';
 
 import { ContactModel } from '../../models/contact';
 
-import { COLUMN_DEFS } from './column-defs';
-import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './constants';
+import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs';
+import { COLUMN_DEFS } from './constants';
 
 @Component({
   selector: 'contacts',

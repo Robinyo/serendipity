@@ -6,7 +6,7 @@ import { Observable, forkJoin } from 'rxjs';
 import { DynamicFormService } from 'serendipity-dynamic-forms-lib';
 import { ConfigService, LoggerService } from 'serendipity-utils-lib';
 
-import { RELATIONSHIP_LIST_COLUMN_DEFS } from './column-defs';
+import { RELATIONSHIP_LIST_COLUMN_DEFS } from './constants';
 import { CONTACT_ADDRESS_INFORMATION_GROUP, CONTACT_GENERAL_INFORMATION_GROUP } from './form-ids';
 
 @Injectable({

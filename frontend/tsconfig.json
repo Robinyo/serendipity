@@ -30,8 +30,8 @@
       "serendipity-utils-lib": [
         "./dist/serendipity-utils-lib"
       ],
-      "serendipity-work-lib": [
-        "./dist/serendipity-work-lib"
+      "serendipity-workflow-lib": [
+        "./dist/serendipity-workflow-lib"
       ]
     }
   },
@@ -75,10 +75,10 @@
       "path": "./projects/serendipity-flowable-lib/tsconfig.spec.json"
     },
     {
-      "path": "./projects/serendipity-work-lib/tsconfig.lib.json"
+      "path": "./projects/serendipity-workflow-lib/tsconfig.lib.json"
     },
     {
-      "path": "./projects/serendipity-work-lib/tsconfig.spec.json"
+      "path": "./projects/serendipity-workflow-lib/tsconfig.spec.json"
     },
     {
       "path": "./projects/serendipity-dynamic-forms-lib/tsconfig.lib.json"
