@@ -59,8 +59,8 @@ services:
       context: ./modules/workflow-service
       dockerfile: Dockerfile
     restart: unless-stopped
-    # ports:
-    #   - "30102:8080"
+    ports:
+      - "30102:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${SERENDIPITY_DB}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
@@ -80,8 +80,8 @@ services:
       context: ./modules/party-service
       dockerfile: Dockerfile
     restart: unless-stopped
-    # ports:
-    #   - "30101:8080"
+    ports:
+      - "30101:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${SERENDIPITY_DB}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
@@ -99,6 +99,7 @@ services:
     container_name: serendipity-bff
     environment:
       PARTY_SERVICE_URI: http://serendipity-party-service:8080/api/party-service
+      WORKFLOW_SERVICE_URI: http://serendipity-workflow-service:8080/api/workflow-service
     build:
       context: ./modules/web-bff
       dockerfile: Dockerfile

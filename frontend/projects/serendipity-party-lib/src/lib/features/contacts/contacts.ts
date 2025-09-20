@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 
@@ -15,7 +16,6 @@ import { ContactsService } from '../../services/contacts/contacts';
 import { ContactModel } from '../../models/contact';
 
 import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs';
-import { COLUMN_DEFS } from './constants';
 
 @Component({
   selector: 'contacts',
@@ -25,6 +25,7 @@ import { COLUMN_DEFS } from './constants';
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule,
     MatSortModule,
     MatTableModule,
     CollectionFooter,
@@ -43,7 +44,8 @@ export class Contacts extends Collection<ContactModel> {
   constructor() {
 
     super({
-      columnDefsFilename: COLUMN_DEFS,
+      // columnDefsFilename: COLUMN_DEFS,
+      columnDefsFilename: "",
       desktopDeviceColumns: COLUMNS_DESKTOP,
       mobileDeviceColumns: COLUMNS_MOBILE,
       limit: 10

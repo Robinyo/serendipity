@@ -22,7 +22,7 @@ public class ApplicationConfig {
   @Bean
   public RouterFunction<ServerResponse> getRoute() {
 
-    return route("party-service")
+    return route("party-service-route")
         .GET("/api/party-service/**", HandlerFunctions.http())
         .before(BeforeFilterFunctions.uri(partyServiceUri))
         .build();
@@ -32,6 +32,15 @@ public class ApplicationConfig {
 }
 
 /*
+
+        .GET("/api/workflow-service/**", HandlerFunctions.http())
+        .before(BeforeFilterFunctions.uri(workflowServiceUri))
+
+    return route("party-service")
+        .GET("/api/party-service/**", HandlerFunctions.http())
+        .before(BeforeFilterFunctions.uri(partyServiceUri))
+        .build();
+
 
     return route("party-service")
         .GET("/api/party-service/**", HandlerFunctions.http()).before(BeforeFilterFunctions.uri(partyServiceUri))

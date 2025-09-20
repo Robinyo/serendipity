@@ -1,7 +1,9 @@
 import { inject, Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { environment, HttpOptions, LoggerService } from 'serendipity-utils-lib';
+import { environment } from '../../../environments/environment';
+import { HttpOptions } from '../../../models/http-options';
+import { LoggerService } from '../../logger/logger.service';
 
 @Injectable()
 export abstract class CollectionService {

@@ -3,10 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { CollectionService } from '../abstract/collection/collection';
+import { CollectionService } from 'serendipity-utils-lib';
 
 import { ELECTORIAL_DIVISIONS } from './constants';
-import {ROLES_WITHOUT_A_TRAILING_SLASH} from '../relationships/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +24,6 @@ export class ElectoralDivisionsService extends CollectionService {
 
     this.logger.info('Electoral Divisions Service: findByName()');
 
-    // const url = this.getUrlPrefix() + 'search/findByName';
     const url = this.url + 'search/findByName';
     const queryParams = '?name=' + name;
 

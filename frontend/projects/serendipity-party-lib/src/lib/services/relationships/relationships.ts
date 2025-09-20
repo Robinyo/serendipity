@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { CollectionService } from '../abstract/collection/collection';
+import { CollectionService } from 'serendipity-utils-lib';
 
 import { ROLES, ROLES_WITHOUT_A_TRAILING_SLASH } from './constants';
 

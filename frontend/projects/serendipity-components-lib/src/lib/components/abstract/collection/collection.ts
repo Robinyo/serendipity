@@ -2,6 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Directive, inject, isDevMode, OnDestr
 import { Router } from '@angular/router';
 
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -16,6 +17,7 @@ import { DialogService } from '../../../services/dialogs/dialog';
 import { ColumnDef } from '../../../models/column';
 
 import { ALL, ALPHABET, DEFAULT_FOOTER_COL_SPAN } from './constants';
+
 
 const noop = (): any => undefined;
 
@@ -62,6 +64,7 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
   protected dialogService: DialogService = inject(DialogService);
   protected logger = inject(LoggerService);
   protected router = inject(Router);
+  protected snackBar: MatSnackBar = inject(MatSnackBar);
   // protected sidenavService: SidenavService;
   protected subscription: Subscription | undefined;
 

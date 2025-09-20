@@ -4,7 +4,7 @@ import { HttpResponse} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { CollectionService } from '../abstract/collection/collection';
+import { CollectionService } from 'serendipity-utils-lib';
 
 import { ContactModel } from '../../models/contact';
 import { RoleModel } from '../../models/role';

@@ -20,9 +20,16 @@ spring:
 flowable:
   process:
     servlet:
-      # path: /process-api
-      path: /api/workflow-service
-  process-definition-location-prefix: classpath*:/processes/
+      path: /api/workflow-service/process-api
+  cmmn:
+    servlet:
+      path: /api/workflow-service/cmmn-api
+  dmn:
+    servlet:
+      path: /api/workflow-service/dmn-api
+  idm:
+    servlet:
+      path: /api/workflow-service/idm-api
 
 management:
   endpoints:
