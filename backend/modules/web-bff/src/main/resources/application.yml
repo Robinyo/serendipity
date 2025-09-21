@@ -9,16 +9,23 @@ logging:
     org.springframework.web: INFO
 
 spring:
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+            - id: party-service-route
+              uri: http://serendipity-party-service:8080/api/party-service
+              predicates:
+                - Path=/api/party-service/**
+            - id: workflow-service-route
+              uri: http://serendipity-workflow-service:8080/api/workflow-service
+              predicates:
+                - Path=/api/workflow-service/**
   main:
     banner-mode: off
   profiles:
     active: @spring.profiles.active@
-  cloud:
-    gateway:
-      http-client:
-        type: autodetect
-        connect-timeout: 30s
-        read-timeout: 30s
 
 management:
   endpoints:
@@ -33,7 +40,3 @@ management:
 
 serendipity-bff:
   uri: https://serendipity.localhost
-party-service:
-  uri: http://serendipity-party-service:8080/api/party-service
-workflow-service:
-  uri: http://serendipity-workflow-service:8080/api/workflow-service
