@@ -86,7 +86,7 @@ npm run watch-lib:serendipity-components-lib
 npm run watch-lib:serendipity-dynamic-forms-lib
 npm run watch-lib:serendipity-flowable-lib
 npm run watch-lib:serendipity-party-lib
-npm run watch-lib:serendipity-work-lib
+npm run watch-lib:serendipity-workflow-lib
 ```
 
 In another terminal:

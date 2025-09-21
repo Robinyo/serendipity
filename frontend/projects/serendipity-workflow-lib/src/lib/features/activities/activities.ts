@@ -85,6 +85,8 @@ export class Activities extends Collection<ActivityModel> {
 
     this.logger.info('Activities Component: subscribe()');
 
+    this.isLoading = true;
+
     this.subscription = this.entityService.find(this.getParams()).subscribe(
 
       (response: any) => {
@@ -92,8 +94,12 @@ export class Activities extends Collection<ActivityModel> {
         this.logger.info('ActivitiesComponent: subscribe() success handler');
 
         if (response.data && response.data.length) {
+          this.count = response.data.length;
+        }
 
-          this.logger.info('count: ' + response.data.length);
+        this.logger.info('count: ' + this.count + ' Activities');
+
+        if (this.count > 0) {
 
           this.items = response.data.map(
             ((item: any) => this.entityAdapter.adapt(item)));
@@ -111,6 +117,10 @@ export class Activities extends Collection<ActivityModel> {
         this.dataSource.data = this.items;
         this.dataSource.sortingDataAccessor = pathDataAccessor;
         this.dataSource.sort = this.sort;
+
+        this.isLoading = false;
+
+        this.detectChanges();
 
       });
 
