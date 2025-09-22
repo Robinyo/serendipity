@@ -1,0 +1,237 @@
+import { Component, OnInit, inject } from '@angular/core';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { AuthService } from 'serendipity-auth-lib';
+import { DialogService, SnackBar } from 'serendipity-components-lib';
+import { LoggerService } from 'serendipity-utils-lib';
+
+import { ProcessList } from '../../components/process-list/process-list';
+import { ProcessModel } from '../../models/process-list';
+import { ProcessesService } from '../../services/processes/processes';
+
+@Component({
+  selector: 'workflow-start-process-dialog',
+  imports: [
+    MatButtonModule,
+    MatDialogModule,
+    ProcessList
+  ],
+  template: `
+
+    <h2 mat-dialog-title>Start a process</h2>
+
+    <mat-dialog-content class="mat-typography">
+
+      <workflow-process-list (selectEvent)="onSelectEvent($event)"> </workflow-process-list>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+
+      <button #cancelBtn matButton="filled"
+              aria-label="Cancel button"
+              cdkFocusInitial
+              (keydown.arrowright)="startBtn.focus()"
+              (click)="onCancel()">
+        {{ cancelButton }}
+      </button>
+
+      <button #startBtn matButton="filled"
+              aria-label="Start button"
+              [disabled]="isDisabled()"
+              (keydown.arrowleft)="cancelBtn.focus()"
+              (click)="onStart()">
+        {{ startButton }}
+      </button>
+
+    </mat-dialog-actions>
+
+  `,
+})
+export class StartProcessDialog implements OnInit {
+
+  public message!: string;
+  public title!: string;
+  public cancelButton = 'CANCEL';
+  public startButton = 'START';
+
+  private currentUser: any;
+  private disabled = false;
+  private selectedItem!: ProcessModel;
+
+  private authService: AuthService = inject(AuthService);
+  private dialogRef: MatDialogRef<StartProcessDialog> = inject(MatDialogRef);
+  private dialogService: DialogService = inject(DialogService);
+  private logger: LoggerService = inject(LoggerService);
+  private processesService: ProcessesService = inject(ProcessesService);
+  private snackBar: MatSnackBar = inject(MatSnackBar);
+
+  constructor() {}
+
+  public ngOnInit() {
+
+    this.logger.info('Start Process Dialog Component: ngOnInit()');
+
+    this.currentUser = this.authService.getCurrentUser();
+
+    this.logger.info('currentUser: ' + JSON.stringify(this.currentUser, null, 2));
+
+  }
+
+  public onSelectEvent(event: ProcessModel) {
+
+    this.logger.info('Start Process Dialog Component: onSelectEvent()');
+
+    this.selectedItem = event;
+
+    // this.logger.info('selectedItem: ' + JSON.stringify(this.selectedItem, null, 2));
+
+  }
+
+  //
+  // Action bar events
+  //
+
+  public onCancel(): void {
+
+    this.dialogRef.close(false);
+  }
+
+  public onStart(): void {
+
+    this.logger.info('Start Process Dialog Component: onStart()');
+
+    // This may take a while ...
+
+    this.disabled = true;
+
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+     // @ts-ignore
+    const today = new Date().toLocaleString('en-GB', options);
+
+    this.logger.info('today: ' + today);
+
+    const processModel = {
+      name : this.selectedItem.name + ' - ' + today,
+      processDefinitionId : this.selectedItem.id,
+      variables : [
+        {
+          name: 'initiator',
+          type : 'string',
+          value: this.currentUser.username,
+          scope : 'local'
+        }
+      ]
+    };
+
+    /*
+
+      variables : [
+        {
+          name: 'initiator',
+          type : 'string',
+          value: 'flowable',
+          scope : 'local'
+        }
+      ]
+
+    */
+
+    this.logger.info('processModel: ' + JSON.stringify(processModel, null, 2));
+
+    this.processesService.startProcess(processModel).then((responce) => {
+
+      this.openSnackBar('Process started');
+
+      // this.disabled = false;
+
+      /*
+
+      const processAction = {
+        // assignee: 'flowable',
+        // assignment: 'involved'
+        userId : 'flowable',
+        type : 'participant'
+      };
+
+      this.logger.info('processAction: ' + JSON.stringify(processAction, null, 2));
+
+      this.processesService.updateProcess(responce.id, processAction);
+
+      */
+
+      this.dialogRef.close(true);
+
+    }).catch(error => {
+
+      // let message = error.message;
+      let message = error;
+
+      if (error.details) {
+        message = error.details.message;
+      }
+
+      this.dialogService.openAlert({
+        title: 'Alert',
+        message: message,
+        closeButton: 'CLOSE'
+      });
+
+      this.disabled = false;
+
+    });
+
+  }
+
+  //
+  // Validation
+  //
+
+  public isDisabled(): boolean {
+    return this.disabled;
+  }
+
+  //
+  // Misc
+  //
+
+  private openSnackBar(message: string) {
+
+    this.snackBar.openFromComponent(SnackBar, {
+      data: {
+        message: message
+      },
+      duration: 500,
+      panelClass: 'snack-bar'
+    });
+
+  }
+
+}
+
+/*
+
+      startUserId : 'flowable',
+
+        {
+          'name': 'startUserId',
+          'type' : 'string',
+          'value': 'flowable',
+          'scope' : 'local'
+        }
+
+      'startedBy' : {
+        'email' : 'admin@serendipity.org.au',
+        'firstName' : 'Flowable',
+        'fullName' : 'Flowable Admin',
+        'groups': [],
+        'id' : 'flowable',
+        'lastName' : 'Admin',
+        'privileges': [],
+        'tenantId' : null
+      },
+
+*/

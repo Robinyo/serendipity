@@ -15,6 +15,9 @@
     "target": "ES2022",
     "module": "preserve",
     "paths": {
+      "serendipity-auth-lib": [
+        "./dist/serendipity-auth-lib"
+      ],
       "serendipity-components-lib": [
         "./dist/serendipity-components-lib"
       ],
@@ -85,6 +88,12 @@
     },
     {
       "path": "./projects/serendipity-dynamic-forms-lib/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/serendipity-auth-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/serendipity-auth-lib/tsconfig.spec.json"
     }
   ]
 }

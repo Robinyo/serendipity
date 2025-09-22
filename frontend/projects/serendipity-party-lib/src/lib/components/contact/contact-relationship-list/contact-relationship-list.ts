@@ -1,5 +1,6 @@
 import { SelectionModel } from "@angular/cdk/collections";
 import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -16,7 +17,7 @@ import { RelationshipList } from "./relationship-list";
 
 import { ContactModel } from '../../../models/contact';
 import { RoleModel } from '../../../models/role';
-import {ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'contact-relationship-list',
@@ -67,15 +68,12 @@ export class ContactRelationshipList extends RelationshipList<ContactModel> {
 
         this.count = response.body.page.totalElements;
 
-        // this.logger.info('response.body: ' + JSON.stringify(response.body, null, 2));
-        // this.logger.info('count: ' + this.count);
-
         if (this.count > 0) {
 
           this.items = response.body._embedded.roleModels.map(
             ((item: any) => this.entityAdapter.adapt(item)));
 
-          this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
+          // this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
           this.logger.info('count: ' + this.count);
 
           this.placeholder = false;

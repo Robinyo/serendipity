@@ -1,0 +1,11 @@
+@use './variables';
+
+.process-list-container {
+  column-gap: 0;
+  display: grid;
+  grid-template-columns: variables.$process-list-width auto;
+  height: variables.$process-list-height;
+  margin: 0;
+}
+
+// list-item-active see: sidenav.component-theme.scss

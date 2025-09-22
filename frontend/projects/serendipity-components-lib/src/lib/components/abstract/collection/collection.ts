@@ -18,7 +18,6 @@ import { ColumnDef } from '../../../models/column';
 
 import { ALL, ALPHABET, DEFAULT_FOOTER_COL_SPAN } from './constants';
 
-
 const noop = (): any => undefined;
 
 export interface CollectionComponentConfig {
@@ -43,7 +42,8 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
   @ViewChild(MatSort, {static: false})
   public sort: MatSort | undefined;
 
-  protected items!: Array<T>;
+  public items!: Array<T>;
+  public selectedItem!: T;
 
   public alphabet = ALPHABET;
   // @ts-ignore
@@ -161,7 +161,7 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
 
   public refresh(): void {
 
-    this.logger.info('CollectionComponent: refresh()');
+    this.logger.info('Collection Component: refresh()');
 
     this.unsubscribe();
     this.subscribe();
@@ -180,7 +180,7 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
 
   public onClickFilterButton(id: string): void {
 
-    this.logger.info('CollectionComponent: onClickFilterButton()');
+    this.logger.info('Collection Component: onClickFilterButton()');
 
     this.logger.info('Button Id: ' + id);
 
@@ -209,7 +209,7 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
 
   public onClickFirstPageButton(): void {
 
-    this.logger.info('CollectionComponent: onClickFirstPageButton()');
+    this.logger.info('Collection Component: onClickFirstPageButton()');
 
     this.offset = 0;
     this.pageNumber = 1;
@@ -227,7 +227,7 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
 
   public onClickPreviousPageButton(): void {
 
-    this.logger.info('CollectionComponent: onClickPreviousPageButton()');
+    this.logger.info('Collection Component: onClickPreviousPageButton()');
 
     // this.offset = this.offset - this.limit;
     this.offset--;
@@ -243,7 +243,7 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
 
   public canClickNextPageButton(): boolean {
 
-    // this.logger.info('CollectionComponent: canClickNextPageButton()');
+    // this.logger.info('Collection Component: canClickNextPageButton()');
 
     if (this.count === 0) {
       return false;
@@ -259,7 +259,7 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
 
   public onClickNextPageButton(): void {
 
-    this.logger.info('CollectionComponent: onClickNextPageButton()');
+    this.logger.info('Collection Component: onClickNextPageButton()');
 
     // this.offset = this.offset + this.limit;
     this.offset++;
@@ -275,7 +275,7 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
 
   public onToggleSidenav(): void {
 
-    this.logger.info('CollectionComponent: onToggleSidenav()');
+    this.logger.info('Collection Component: onToggleSidenav()');
 
     // this.sidenavService.toggle();
   }
@@ -311,7 +311,7 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
 
       default:
 
-        this.logger.error('CollectionComponent getFormattedCellValue() - invalid column type');
+        this.logger.error('Collection Component getFormattedCellValue() - invalid column type');
         break;
 
     }

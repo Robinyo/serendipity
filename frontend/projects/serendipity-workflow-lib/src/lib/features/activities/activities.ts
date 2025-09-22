@@ -9,9 +9,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 
-// import { AuthService } from 'serendipity-auth-lib';
-// import { FilterRepresentationModel, StartProcessDialogComponent } from 'serendipity-flowable-lib';
-import { FilterRepresentationModel } from 'serendipity-flowable-lib';
+import { AuthService } from 'serendipity-auth-lib';
+import { FilterRepresentationModel, StartProcessDialog } from 'serendipity-flowable-lib';
 import { ActivityBar, CommandBar, Collection, CollectionFooter, SnackBar } from 'serendipity-components-lib';
 
 import { ActivitiesAdapter } from '../../adapters/activities';
@@ -44,6 +43,7 @@ export class Activities extends Collection<ActivityModel> {
 
   public currentUser: any;
 
+  private authService: AuthService = inject(AuthService);
   private entityAdapter: ActivitiesAdapter = inject(ActivitiesAdapter);
   private entityService: ActivitiesService = inject(ActivitiesService);
   private route: ActivatedRoute = inject(ActivatedRoute);
@@ -64,17 +64,16 @@ export class Activities extends Collection<ActivityModel> {
 
     this.columnDefs = this.route.snapshot.data['columnDefs'];
 
-    this.logger.info('columnDefs: ' + JSON.stringify(this.columnDefs, null, 2));
+    // this.logger.info('columnDefs: ' + JSON.stringify(this.columnDefs, null, 2));
 
-    // this.currentUser = this.authService.getCurrentUser();
+    this.currentUser = this.authService.getCurrentUser();
 
     this.tasksFilter = {
       name : 'I am one of the candidates',
       filter : {
         // name: 'candidateUser',
         name: 'candidate',
-        // assignment: this.currentUser.username
-        assignment: 'rob.ferguson'
+        assignment: this.currentUser.username
       },
       icon : 'assignment_ind'
     };
@@ -201,17 +200,9 @@ export class Activities extends Collection<ActivityModel> {
 
   public onTask() {
 
-    this.logger.info('Activities Component: onTask()');
-  }
-
-
-  /*
-
-  public onTask() {
-
     // this.logger.info('Activities Component: onTask()');
 
-    const dialogRef =  this.dialogService.open(StartProcessDialogComponent);
+    const dialogRef =  this.dialogService.open(StartProcessDialog);
 
     dialogRef.afterClosed().subscribe(result => {
 
@@ -222,8 +213,6 @@ export class Activities extends Collection<ActivityModel> {
     });
 
   }
-
-  */
 
   //
   // Misc

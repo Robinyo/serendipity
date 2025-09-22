@@ -163,22 +163,6 @@ public class AustralianGreens implements CommandLineRunner {
       individualParty.getAddresses().add(headOffice);
       individualParty.getRoles().add(member);
 
-      try {
-
-        ObjectMapper mapper = new ObjectMapper();
-
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
-
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
-
-        log.info("individual:  {}", "\n" + mapper.writeValueAsString(individual));
-
-      } catch (JsonProcessingException jpe) {
-
-        log.error("Json Processing Exception: {}", jpe.getLocalizedMessage());
-      }
-
       individualRepository.save(individual);
 
       log.info("Create {} complete", PoliticalParty.AUSTRALIAN_GREENS.toString());
@@ -191,3 +175,27 @@ public class AustralianGreens implements CommandLineRunner {
   }
 
 }
+
+/*
+
+      try {
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        // log.info("individual:  {}", "\n" + mapper.writeValueAsString(individual));
+
+      } catch (JsonProcessingException jpe) {
+
+        log.error("Json Processing Exception: {}", jpe.getLocalizedMessage());
+      }
+
+      individualRepository.save(individual);
+
+      log.info("Create {} complete", PoliticalParty.AUSTRALIAN_GREENS.toString());
+
+*/

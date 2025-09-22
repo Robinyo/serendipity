@@ -19,8 +19,6 @@ export interface ConfirmDialogConfig extends DialogConfig {
   cancelButton?: string;
 }
 
-// https://angular.io/guide/providers#providedin-and-ngmodules
-
 @Injectable({
   providedIn: 'root'
 })

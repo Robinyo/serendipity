@@ -38,7 +38,7 @@ export class RelationshipsService extends CollectionService {
       // tap((response: any) => {
       tap(() => {
 
-        this.logger.info('RelationshipsService: findByPartyId() completed');
+        this.logger.info('Relationships Service: findByPartyId() completed');
 
         // this.logger.info('response: ' + JSON.stringify(response.body, null, 2) + '\n');
       })

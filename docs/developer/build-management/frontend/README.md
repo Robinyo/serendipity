@@ -58,6 +58,7 @@ In another terminal:
 ```
 # In the project's /frontend directory
 
+ng build --configuration="development" serendipity-auth-lib && \
 ng build --configuration="development" serendipity-utils-lib && \
 ng build --configuration="development" serendipity-components-lib && \
 ng build --configuration="development" serendipity-dynamic-forms-lib && \
@@ -81,6 +82,7 @@ Alternatively, in a terminal:
 
 # Watch the component you are making changes to
 
+npm run watch-lib:serendipity-auth-lib
 npm run watch-lib:serendipity-utils-lib
 npm run watch-lib:serendipity-components-lib
 npm run watch-lib:serendipity-dynamic-forms-lib

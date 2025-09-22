@@ -48,6 +48,7 @@
               "projects/serendipity-pwa/src/styles.scss",
               "projects/serendipity-pwa/src/theme.scss",
               "projects/serendipity-components-lib/src/styles.scss",
+              "projects/serendipity-flowable-lib/src/styles.scss",
               "./node_modules/leaflet/dist/leaflet.css"
             ]
           },
@@ -221,7 +222,7 @@
       },
       "root": "projects/serendipity-flowable-lib",
       "sourceRoot": "projects/serendipity-flowable-lib/src",
-      "prefix": "flow",
+      "prefix": "flowable",
       "architect": {
         "build": {
           "builder": "@angular/build:ng-packagr",
@@ -252,7 +253,7 @@
       },
       "root": "projects/serendipity-workflow-lib",
       "sourceRoot": "projects/serendipity-workflow-lib/src",
-      "prefix": "work",
+      "prefix": "workflow",
       "architect": {
         "build": {
           "builder": "@angular/build:ng-packagr",
@@ -301,6 +302,37 @@
           "builder": "@angular/build:karma",
           "options": {
             "tsConfig": "projects/serendipity-dynamic-forms-lib/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "serendipity-auth-lib": {
+      "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/serendipity-auth-lib",
+      "sourceRoot": "projects/serendipity-auth-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/serendipity-auth-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/serendipity-auth-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/serendipity-auth-lib/tsconfig.spec.json"
           }
         }
       }

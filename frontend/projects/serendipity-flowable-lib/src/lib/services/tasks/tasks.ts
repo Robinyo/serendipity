@@ -1,17 +1,15 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { CollectionService } from 'serendipity-utils-lib';
 
 import { TaskListModel } from '../../models/task-list';
 import { TaskActionRequest } from '../../models/task-action';
 
-import { TASKS, TASKS_WITHOUT_A_TRAILING_SLASH } from './constants';
-
-const HTTP_SERVER_ERROR_CONNECTION_REFUSED = 'Connection refused';
+import { HTTP_SERVER_ERROR_CONNECTION_REFUSED, TASKS, TASKS_WITHOUT_A_TRAILING_SLASH } from './constants';
 
 @Injectable({
   providedIn: 'root'
