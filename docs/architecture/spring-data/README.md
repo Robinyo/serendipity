@@ -46,10 +46,10 @@ benefits for developing scalable and maintainable Spring Boot applications.
 For example:
 
 ```
- ├── /serendipity
-     └── /backend
-         ├── pom.xml (Parent POM)
-         └── /modules
+├── /serendipity
+    └── /backend
+        ├── pom.xml (Parent POM)
+        └── /modules
             └── /web-bff
                 ├── pom.xml
             └── /party-service

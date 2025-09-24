@@ -14,10 +14,10 @@ services:
       - "389:1389"
       - "636:1636"
     environment:
-      LDAP_ROOT: 'dc=flowable,dc=org'
-      LDAP_ADMIN_USERNAME: 'admin'
-      LDAP_ADMIN_PASSWORD: 'secret'
-      LDAP_ADMIN_DN: 'cn=admin,dc=flowable,dc=org'
+      LDAP_ROOT: 'dc=serendipity,dc=org'
+      LDAP_ADMIN_USERNAME: '${LDAP_ADMIN_USERNAME}'
+      LDAP_ADMIN_PASSWORD: '${LDAP_ADMIN_PASSWORD}'
+      LDAP_ADMIN_DN: 'cn=admin,dc=serendipity,dc=org'
       LDAP_CUSTOM_LDIF_DIR: '/ldifs'
     env_file:
       - '${PWD}/.env'
