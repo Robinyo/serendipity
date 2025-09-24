@@ -167,6 +167,32 @@ result: 0 Success
 
 You can also use an LDAP browser to manage OpenLDAP.
 
+[Download](https://www.eclipse.org/downloads/) the Eclipse Technology that is right for you and then search for 'LDAP' in the Eclipse Marketplace:
+
+<p align="center">
+  <img src="./eclipse-marketplace.png" alt="Eclipse Marketplace"/>
+</p>
+
+Install Apache Directory Studio.
+
+### Apache Directory Studio
+
+On the right hand side of the toolbar choose the LDAP perspective.
+
+Create a new connection and then configure the network and authentication settings.
+
+Network Settings:
+
+<p align="center">
+  <img src="./network-settings.png" alt="Network Settings"/>
+</p>
+
+Authentication Settings:
+
+<p align="center">
+  <img src="./authentication-settings.png" alt="Authentication Settings"/>
+</p>
+
 ## ❯ References
 
 ### OpenLDAP
