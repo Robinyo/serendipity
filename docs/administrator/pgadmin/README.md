@@ -4,7 +4,7 @@
 
 You can use [pgAdmin](https://www.pgadmin.org/) to manage PostrgeSQL.
 
-Navigate to the pgAdmin Login page: https://hapi-fhir.au.localhost:5443
+Navigate to the pgAdmin Login page: https://serendipity.localhost:5443
 
 <p align="center">
   <img src="./pgadmin-login.png" alt="Login to pgAdmin"/>
@@ -31,7 +31,7 @@ Enter the Name (Serendipity PostgreSQL) and then click on the 'Connection' tab:
 </p>
 
 Enter the Host name / address (postgres) and the PostgreSQL Username (POSTGRES_USER=admin) and Password (POSTGRES_PASSWORD=secret), 
-the Maintenance database (hapi-fhir) then click the 'Save' button:
+the Maintenance database (serendipity) then click the 'Save' button:
 
 **Note:** The 'Host name / address' field must match the value (e.g., postgres) specified in the project's docker-compose.yml.
 

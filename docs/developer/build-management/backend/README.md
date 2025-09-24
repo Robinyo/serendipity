@@ -51,9 +51,9 @@ java -version
 You should see something like:
 
 ```
-openjdk version "21.0.6" 2025-01-21 LTS
-OpenJDK Runtime Environment Temurin-21.0.6+7 (build 21.0.6+7-LTS)
-OpenJDK 64-Bit Server VM Temurin-21.0.6+7 (build 21.0.6+7-LTS, mixed mode, sharing)
+openjdk version "21.0.8" 2025-07-15 LTS
+OpenJDK Runtime Environment Temurin-21.0.8+9 (build 21.0.8+9-LTS)
+OpenJDK 64-Bit Server VM Temurin-21.0.8+9 (build 21.0.8+9-LTS, mixed mode, sharing)
 ```
 
 To check for installed Java SDKs:
@@ -139,7 +139,8 @@ docker compose down
 To remove the data volumes:
 
 ```
-docker volume rm backend_postgres_data
+docker volume rm backend_postgres_data && \
+docker volume rm backend_openldap_data
 ```
 
 To check the environment variables inside your container:

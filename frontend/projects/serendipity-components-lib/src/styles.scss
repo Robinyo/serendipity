@@ -102,12 +102,21 @@
   flex: 1 1 auto;
 }
 
+// Dialog
+
+/*
+.md-dialog-container {
+  .mat-mdc-dialog-container {
+    border-radius: 3px !important;
+  }
+}
+*/
+
 
 // Sidenav
 
 .md-sidenav-nav-list-item {
   border-radius: 3px !important;
-  // padding-left: 16px;
 }
 
 .mdc-list-item--with-leading-radio.mdc-list-item, .mdc-list-item--with-leading-checkbox.mdc-list-item,

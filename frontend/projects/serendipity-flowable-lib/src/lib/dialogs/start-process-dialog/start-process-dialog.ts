@@ -33,6 +33,7 @@ import { ProcessesService } from '../../services/processes/processes';
 
       <button #cancelBtn matButton="filled"
               aria-label="Cancel button"
+              class="md-button"
               cdkFocusInitial
               (keydown.arrowright)="startBtn.focus()"
               (click)="onCancel()">
@@ -41,6 +42,7 @@ import { ProcessesService } from '../../services/processes/processes';
 
       <button #startBtn matButton="filled"
               aria-label="Start button"
+              class="md-button"
               [disabled]="isDisabled()"
               (keydown.arrowleft)="cancelBtn.focus()"
               (click)="onStart()">

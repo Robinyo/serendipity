@@ -4,6 +4,28 @@ services:
 
   # backend Network
 
+  openldap:
+    container_name: openldap
+    build:
+      context: ./services/openldap
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "389:1389"
+      - "636:1636"
+    environment:
+      LDAP_ROOT: 'dc=flowable,dc=org'
+      LDAP_ADMIN_USERNAME: 'admin'
+      LDAP_ADMIN_PASSWORD: 'secret'
+      LDAP_ADMIN_DN: 'cn=admin,dc=flowable,dc=org'
+      LDAP_CUSTOM_LDIF_DIR: '/ldifs'
+    env_file:
+      - '${PWD}/.env'
+    volumes:
+      - openldap_data:/var/lib/openldap/data
+    networks:
+      - backend
+
   postgres:
     container_name: postgres
     # image: postgres:17.5-alpine
@@ -36,7 +58,7 @@ services:
 
   pgadmin:
     container_name: pgadmin
-    image: dpage/pgadmin4:9.7.0
+    image: dpage/pgadmin4:9.8.0
     restart: unless-stopped
     ports:
       - "5443:443"
@@ -140,5 +162,7 @@ networks:
     driver: bridge
 
 volumes:
+  openldap_data:
+    driver: local
   postgres_data:
     driver: local

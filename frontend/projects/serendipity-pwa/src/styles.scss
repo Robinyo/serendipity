@@ -63,18 +63,21 @@ html, body {
 
 :root {
 
+  @include mat.button-overrides((
+    filled-container-color: black
+  ));
+
   @include mat.card-overrides((
     filled-container-color: white
   ));
 
-  // https://material.angular.dev/components/button/styling
+  @include mat.dialog-overrides((
+    container-shape: rectangle,
+  ));
+
   @include mat.fab-overrides((
     container-color: orange,
     foreground-color: white
-  ));
-
-  @include mat.button-overrides((
-    filled-container-color: black
   ));
 
 }

@@ -22,12 +22,13 @@ import { ProcessListModel, ProcessModel } from '../../models/process-list';
         @for (item of items; track item.id) {
 
           <a mat-list-item
+             class="md-nav-list-item"
              [class.list-item-active]="item === selectedItem"
              (click)="onSelect(item)">
 
             <mat-icon matListItemIcon> assignment </mat-icon>
 
-            <p mat-line>
+            <p>
               {{item.name}}
             </p>
 

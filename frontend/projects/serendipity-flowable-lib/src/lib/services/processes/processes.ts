@@ -22,7 +22,7 @@ export class ProcessesService extends CollectionService {
     super();
   }
 
-  // https://flowable.com/open-source/docs/bpmn/ch15-REST/#list-of-process-definitions
+  // https://www.flowable.com/open-source/docs/bpmn/ch14-REST#list-of-process-definitions
 
   public find(): Observable<any> {
 
@@ -100,7 +100,7 @@ export class ProcessesService extends CollectionService {
 
     this.logger.info('url: ' + url);
 
-    return this.httpClient.post(request, this.getHttpOptions()).pipe(
+    return this.httpClient.post(url, request, this.getHttpOptions()).pipe(
 
       tap((response: any) => {
       // tap(() => {

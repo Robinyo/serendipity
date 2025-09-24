@@ -122,7 +122,8 @@ export class TasksService extends CollectionService {
     this.logger.info('url: ' + url);
     this.logger.info('params: ' +  JSON.stringify(params, null, 2));
 
-    return this.httpClient.get<TaskListModel>(url, this.getHttpOptions(params)).pipe(
+    // return this.httpClient.get<TaskListModel>(url, this.getHttpOptions(params)).pipe(
+    return this.httpClient.get<TaskListModel>(url).pipe(
       tap(() => {
         this.logger.info('Tasks Service: find() completed');
       })

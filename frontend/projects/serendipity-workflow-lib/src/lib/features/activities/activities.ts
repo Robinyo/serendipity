@@ -19,7 +19,6 @@ import { ActivitiesService } from '../../services/activities/activities';
 import { ActivityModel } from '../../models/activity';
 
 import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs';
-import { COLUMN_DEFS } from './constants';
 
 @Component({
   selector: 'activities',
@@ -288,3 +287,11 @@ function pathDataAccessor(item: any, path: string): any {
       return accumulator ? accumulator[key] : undefined;
     }, item);
 }
+
+/*
+
+    const dialogRef =  this.dialogService.open(StartProcessDialog, {
+      panelClass: 'md-dialog-container'
+    });
+
+*/

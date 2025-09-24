@@ -108,6 +108,23 @@ spring:
   profiles:
     active: @spring.profiles.active@
 
+flowable:
+  process:
+    servlet:
+      path: /api/workflow-service/process-api
+  cmmn:
+    servlet:
+      path: /api/workflow-service/cmmn-api
+  dmn:
+    servlet:
+      path: /api/workflow-service/dmn-api
+  idm:
+    servlet:
+      path: /api/workflow-service/idm-api
+  rest:
+    app:
+      authentication-mode: any-user
+
 management:
   endpoints:
     web:
@@ -118,6 +135,7 @@ management:
       probes:
         enabled: true
       show-details: always
+
 ```
 
 `application-dev.properties`:
@@ -133,9 +151,75 @@ spring:
       ddl-auto: create
 ```
 
-### REST API Endpoints
+### Identity management
 
-???
+By default, the IDM engine is initialised and started when the Flowable engine is started. 
+The idm-engine manages its own database schema and the following entities:
+
+- User and UserEntity, the user information.
+- Group and GroupEntity, the group information.
+- MembershipEntity, the memberships of users in groups
+- Privilege and PrivilegeEntity, a privilege definition (for example used for controlling access to the UI apps, such as the Flowable Modeler and Flowable Task app)
+- PrivilegeMappingEntity, linking a user and/or group to a privilege
+- Token and TokenEntity, an authentication token used by the UI apps
+
+The default IDM engine configurator can also be overridden to initialise the IDM Engine in a custom way. A good example 
+is the LDAPConfigurator implementation which overrides the default IDM engine to use a LDAP server instead of the 
+default IDM database tables.
+
+See: [IDM](https://www.flowable.com/open-source/docs/bpmn/ch11-IDM)
+
+### REST API
+
+#### General Flowable REST principles
+
+The REST API uses JSON format and is built upon the [Spring MVC](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html).
+
+#### Authentication and Authorization
+
+The Open Source version of Flowable provides basic support for **users**, **groups** and memberships which are defined in the Flowable database.
+There is also support for LDAP integration.
+
+All REST-resources require a valid user with the `rest-access-api` privilege to be authenticated by default.
+
+A default user that can access the REST API can be configured by settings the following properties:
+
+```
+flowable.rest.app.admin.user-id=rest-admin
+flowable.rest.app.admin.password=test
+flowable.rest.app.admin.first-name=Rest
+flowable.rest.app.admin.last-name=Admin
+```
+
+When the REST app boots up, the user is created if it doesn’t exist or fetched otherwise. This user will be given the 
+`access-rest-api` privilege which is needed by default to access the REST API. 
+
+If the `flowable.rest.app.admin.user-id` is not set, no users or privileges will be created.
+
+Basic HTTP access authentication is used, so you should always include a `Authorization: Basic` when performing requests.
+
+For example:
+
+```
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Basic ' + btoa('username:password')
+  }),
+  params: null
+};
+```
+
+If any valid user should be able to call the REST API, the `flowable.rest.app.authentication-mode` can be set to `any-user`.
+
+See: [REST API](https://www.flowable.com/open-source/docs/bpmn/ch14-REST)
+See: [Flowable Default Properties](https://github.com/flowable/flowable-engine/blob/main/modules/flowable-app-rest/src/main/resources/flowable-default.properties)
+
+### LDAP
+
+Flowable offers an out-of-the-box solution for configuring how Flowable should connect with an LDAP system.
+
+See: [LDAP](https://www.flowable.com/open-source/docs/bpmn/ch16-Ldap)
 
 ## ❯ References
 
@@ -149,9 +233,8 @@ spring:
 * Spring Boot docs: [Create an OCI image](https://docs.spring.io/spring-boot/3.5.5/maven-plugin/build-image.html)
 * Spring Boot docs: [OAuth2 Client](https://docs.spring.io/spring-boot/3.5.5/reference/web/spring-security.html#web.security.oauth2.client)
 * Spring Boot docs: [Spring Boot Actuator](https://docs.spring.io/spring-boot/3.5.5/reference/actuator/index.html)
+ 
+### Flowable
 
-### Spring Data
-
-* GitHub: [Spring Data JPA](https://github.com/spring-projects/spring-data-jpa)
-* Spring docs: [JPA Core Concepts](https://docs.spring.io/spring-data/jpa/reference/repositories/core-concepts.html)
-* Spring docs: [Spring Data REST Reference Guide](https://docs.spring.io/spring-data/rest/docs/current-SNAPSHOT/reference/html/#reference)
+* Flowable docs: [REST API](https://www.flowable.com/open-source/docs/bpmn/ch14-REST)
+* GitHub: [Flowable Default Properties](https://github.com/flowable/flowable-engine/blob/main/modules/flowable-app-rest/src/main/resources/flowable-default.properties)

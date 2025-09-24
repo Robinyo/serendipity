@@ -58,6 +58,7 @@
       @if (toolsRoutes) {
         @for (item of toolsRoutes; track item.id) {
           <a mat-list-item
+             class="md-sidenav-nav-list-item"
              (click)="sidenav.close()"
              [routerLink]="[item.route]">
             <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
@@ -65,8 +66,6 @@
           </a>
         }
       }
-
-
 
     </mat-nav-list>
 
