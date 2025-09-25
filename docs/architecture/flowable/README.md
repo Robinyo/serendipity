@@ -237,4 +237,5 @@ See: [LDAP](https://www.flowable.com/open-source/docs/bpmn/ch16-Ldap)
 ### Flowable
 
 * Flowable docs: [REST API](https://www.flowable.com/open-source/docs/bpmn/ch14-REST)
+* GitHub: [Flowable Releases](https://github.com/flowable/flowable-engine/releases)
 * GitHub: [Flowable Default Properties](https://github.com/flowable/flowable-engine/blob/main/modules/flowable-app-rest/src/main/resources/flowable-default.properties)

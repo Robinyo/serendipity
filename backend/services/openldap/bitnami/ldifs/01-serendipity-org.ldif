@@ -1,0 +1,88 @@
+# Base domain entries - converting AD-style DN to OpenLDAP format
+
+dn: dc=serendipity,dc=org
+dc: serendipity
+objectClass: dcObject
+objectClass: organization
+o: Serendipity Org
+
+# Users root
+
+dn: ou=users, dc=serendipity,dc=org
+changetype: add
+objectclass: organizationalUnit
+objectClass: extensibleObject
+objectClass: top
+ou: users
+description: All users in the organisation
+
+# Groups root
+
+dn: ou=groups, dc=serendipity,dc=org
+changetype: add
+objectclass: organizationalUnit
+objectClass: extensibleObject
+objectClass: top
+ou: groups
+description: All groups in the organisation
+
+# Users
+
+dn: uid=rob.ferguson, ou=users,dc=serendipity,dc=org
+changetype: add
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Rob
+sn: Ferguson
+mail: rob.ferguson@serendipity.org
+uid: rob.ferguson
+userPassword: Password12
+
+dn: uid=sean.doyle, ou=users,dc=serendipity,dc=org
+changetype: add
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Sean
+sn: Doyle
+mail: sean.doyle@serendipity.org
+uid: sean.doyle
+userPassword: Password12
+
+dn: uid=robert.russo, ou=users,dc=serendipity,dc=org
+changetype: add
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Robert
+sn: Russo
+mail: robert.russo@serendipity.org
+uid: robert.russo
+userPassword: Password12
+
+# Groups
+
+dn: cn=Team_Leader, ou=groups, dc=serendipity,dc=org
+changetype: add
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: Team_Leader
+ou: Team_Leader
+uniqueMember: uid=rob.ferguson,ou=users,dc=serendipity,dc=org
+
+dn: cn=Team_Member, ou=groups, dc=serendipity,dc=org
+changetype: add
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: Team_Member
+ou: Team_Member
+uniqueMember: uid=rob.ferguson,ou=users,dc=serendipity,dc=org
+uniqueMember: uid=sean.doyle,ou=users,dc=serendipity,dc=org
+uniqueMember: uid=robert.russo,ou=users,dc=serendipity,dc=org
+
+# Password12
+# UGFzc3dvcmQxMg==
