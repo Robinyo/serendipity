@@ -30,10 +30,10 @@ Enter the Name (Serendipity PostgreSQL) and then click on the 'Connection' tab:
   <img src="./pgadmin-register-server-connection-tab.png" alt="Register Server - Connection Tab"/>
 </p>
 
-Enter the Host name / address (postgres) and the PostgreSQL Username (POSTGRES_USER=admin) and Password (POSTGRES_PASSWORD=secret), 
-the Maintenance database (serendipity) then click the 'Save' button:
+Enter the Host name / address (postgres) and the Username (POSTGRES_USER=admin) and Password (POSTGRES_PASSWORD=secret), 
+and the Maintenance database (serendipity) then click the 'Save' button:
 
-**Note:** The 'Host name / address' field must match the value (e.g., postgres) specified in the project's docker-compose.yml.
+**Note:** The 'Host name / address' field must match the value (e.g., postgres) specified in the project's `docker-compose.yml`.
 
 ## ❯ References
 
