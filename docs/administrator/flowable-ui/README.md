@@ -32,3 +32,16 @@ You should see something like:
   <img src="./flowable-task-landing-page.png" alt="Flowable Task landing page"/>
 </p>
 
+You can stop the container using the following command:
+
+```
+docker container stop flowable-all-in-one
+```
+
+You can remove the container using the following command:
+
+```
+docker container rm flowable-all-in-one
+```
+
+**Note**: The latest version of Flowable's Web Applications all-in-one im age is 6.5.0.

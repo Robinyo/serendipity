@@ -2,6 +2,17 @@
 
 ## ❯ Flowable
 
+### LDAP
+
+```
+
+
+```
+
+
+
+
+
 ### Groups
 
 Groups manage groups of users. Serendipity uses OpenLDAP to store groups and user credentials.
