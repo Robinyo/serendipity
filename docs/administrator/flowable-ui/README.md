@@ -8,7 +8,7 @@ The [flowable/all-in-one](https://hub.docker.com/r/flowable/all-in-one) image in
 - Flowable Task
 - Flowable Admin
 
-With a single command, you can launch the Flowable web applications:
+With a single command, you can launch Flowable's web applications:
 
 ```
 docker run --name flowable-all-in-one \
