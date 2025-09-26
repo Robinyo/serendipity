@@ -26,6 +26,13 @@ schemaspy.o=./docs
 schemaspy.s=public
 ```
 
+docker-compose.yml:
+
+```
+  ports:
+    - "5432:5432"
+```
+
 ### Running SchemaSpy
 
 You can run SchemaSpy from the command line:

@@ -63,9 +63,8 @@ services:
     # image: postgres:17.5-alpine
     image: percona/percona-distribution-postgresql:17.5
     restart: unless-stopped
-    # Flowable (UI Applications) - See: flowable-all-in-one.env
-    ports:
-      - "5432:5432"
+    # ports:
+    #   - "5432:5432"
     command: >
       -c ssl=on 
       -c ssl_cert_file=/var/lib/postgresql/server.crt 
