@@ -9,7 +9,7 @@ import { DialogService, SnackBar } from 'serendipity-components-lib';
 import { LoggerService } from 'serendipity-utils-lib';
 
 import { ProcessList } from '../../components/process-list/process-list';
-import { ProcessModel } from '../../models/process-list';
+import { ProcessModel, StartProcessModel } from '../../models/process-list';
 import { ProcessesService } from '../../services/processes/processes';
 
 @Component({
@@ -34,7 +34,6 @@ import { ProcessesService } from '../../services/processes/processes';
       <button #cancelBtn matButton="filled"
               aria-label="Cancel button"
               class="md-button"
-              cdkFocusInitial
               (keydown.arrowright)="startBtn.focus()"
               (click)="onCancel()">
         {{ cancelButton }}
@@ -79,7 +78,7 @@ export class StartProcessDialog implements OnInit {
 
     this.currentUser = this.authService.getCurrentUser();
 
-    this.logger.info('currentUser: ' + JSON.stringify(this.currentUser, null, 2));
+    // this.logger.info('currentUser: ' + JSON.stringify(this.currentUser, null, 2));
 
   }
 
@@ -106,8 +105,6 @@ export class StartProcessDialog implements OnInit {
 
     this.logger.info('Start Process Dialog Component: onStart()');
 
-    // This may take a while ...
-
     this.disabled = true;
 
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -116,54 +113,30 @@ export class StartProcessDialog implements OnInit {
 
     this.logger.info('today: ' + today);
 
-    const processModel = {
+    // Request body (start by process definition id)
+    // Only one of processDefinitionId, processDefinitionKey or message can be used in the request body.
+    // See: https://www.flowable.com/open-source/docs/bpmn/ch14-REST/#start-a-process-instance
+
+    const startProcessModel: StartProcessModel = {
+      processDefinitionId :  this.selectedItem.id,
+      businessKey : this.selectedItem.name,
+      returnVariables : true,
       name : this.selectedItem.name + ' - ' + today,
-      processDefinitionId : this.selectedItem.id,
       variables : [
         {
           name: 'initiator',
-          type : 'string',
-          value: this.currentUser.username,
-          scope : 'local'
+          value: this.currentUser.username
         }
       ]
     };
 
-    /*
+    this.logger.info('startProcessModel: ' + JSON.stringify(startProcessModel, null, 2));
 
-      variables : [
-        {
-          name: 'initiator',
-          type : 'string',
-          value: 'flowable',
-          scope : 'local'
-        }
-      ]
+    this.processesService.startProcess(startProcessModel).then((responce) => {
 
-    */
+      this.logger.info('responce: ' + JSON.stringify(responce, null, 2));
 
-    this.logger.info('processModel: ' + JSON.stringify(processModel, null, 2));
-
-    this.processesService.startProcess(processModel).then((responce) => {
-
-      this.openSnackBar('Process started');
-
-      // this.disabled = false;
-
-      /*
-
-      const processAction = {
-        // assignee: 'flowable',
-        // assignment: 'involved'
-        userId : 'flowable',
-        type : 'participant'
-      };
-
-      this.logger.info('processAction: ' + JSON.stringify(processAction, null, 2));
-
-      this.processesService.updateProcess(responce.id, processAction);
-
-      */
+      this.openSnackBar(startProcessModel.name + ' process started');
 
       this.dialogRef.close(true);
 
@@ -213,27 +186,3 @@ export class StartProcessDialog implements OnInit {
   }
 
 }
-
-/*
-
-      startUserId : 'flowable',
-
-        {
-          'name': 'startUserId',
-          'type' : 'string',
-          'value': 'flowable',
-          'scope' : 'local'
-        }
-
-      'startedBy' : {
-        'email' : 'admin@serendipity.org.au',
-        'firstName' : 'Flowable',
-        'fullName' : 'Flowable Admin',
-        'groups': [],
-        'id' : 'flowable',
-        'lastName' : 'Admin',
-        'privileges': [],
-        'tenantId' : null
-      },
-
-*/

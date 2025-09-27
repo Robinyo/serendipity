@@ -1,39 +1,47 @@
+export interface StartProcessModel {
+
+  processDefinitionId?: string;
+  businessKey?: string;
+  returnVariables?: boolean;
+  name?: string;
+  variables?: any;
+
+}
+
 export interface ProcessModel {
 
   id?: string;
   url?: string;
-  key?: string;
-  version?: number;
+  owner?: string;
+  assignee?: string;
+  delegationState?: string;
   name?: string;
   description?: string;
-  tenantId?: string;
-  deploymentId?: string;
-  deploymentUrl?: string;
-  resource?: string;
-  diagramResource?: string;
-  category?: string;
-  graphicalNotationDefined?: boolean;
+  createTime?: Date;
+  dueDate?: Date;
+  priority?: number;
   suspended?: boolean;
-  startFormDefined?: boolean;
-  hasStartForm?: boolean;
-
-  // businessKey?: string;
-  // ended?: Date;
-  // processDefinitionCategory?: string;
-  // processDefinitionDeploymentId?: string;
-  // processDefinitionDescription?: string;
-  // processDefinitionId?: string;
-  // processDefinitionKey?: string;
-  // processDefinitionName?: string;
-  // processDefinitionVersion?: number;
-  // started?: Date;
-  // startedBy?: LightUserRepresentation;
-  // variables?: RestVariable[];
+  claimTime?: Date;
+  taskDefinitionKey?: string;
+  scopeDefinitionId?: string;
+  scopeId?: string;
+  subScopeId?: string;
+  scopeType?: string;
+  propagatedStageInstanceId?: string;
+  tenantId?: string;
+  category?: string;
+  formKey?: string;
+  parentTaskId?: string;
+  parentTaskUrl?: string;
+  executionId?: string;
+  executionUrl?: string;
+  processInstanceId?: string;
+  processInstanceUrl?: string;
+  processDefinitionId?: string;
+  processDefinitionUrl?: string;
+  variables?: any;
 
 }
-
-// tslint:disable-next-line:max-line-length
-// https://github.com/Alfresco/alfresco-ng2-components/blob/develop/lib/process-services/src/lib/process-list/models/process-instance.model.ts
 
 export interface ProcessListModel {
 
@@ -45,5 +53,3 @@ export interface ProcessListModel {
   // length: number;
 
 }
-
-// https://github.com/Alfresco/alfresco-ng2-components/blob/develop/lib/process-services/src/lib/process-list/models/process-list.model.ts

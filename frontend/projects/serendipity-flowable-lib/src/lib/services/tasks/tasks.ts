@@ -23,7 +23,7 @@ export class TasksService extends CollectionService {
     this.url = this.getUrlPrefix() + TASKS;
   }
 
-  // https://flowable.com/open-source/docs/bpmn/ch15-REST/#task-actions
+  // https://www.flowable.com/open-source/docs/bpmn/ch14-REST/#tasks
 
   public async actionTask(id: string, request: any): Promise<any> {
 
@@ -120,7 +120,7 @@ export class TasksService extends CollectionService {
     const url = this.getUrlPrefix() + TASKS_WITHOUT_A_TRAILING_SLASH;
 
     this.logger.info('url: ' + url);
-    this.logger.info('params: ' +  JSON.stringify(params, null, 2));
+    // this.logger.info('params: ' +  JSON.stringify(params, null, 2));
 
     // return this.httpClient.get<TaskListModel>(url, this.getHttpOptions(params)).pipe(
     return this.httpClient.get<TaskListModel>(url).pipe(

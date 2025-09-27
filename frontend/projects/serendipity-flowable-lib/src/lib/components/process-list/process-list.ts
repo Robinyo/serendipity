@@ -23,7 +23,7 @@ import { ProcessListModel, ProcessModel } from '../../models/process-list';
 
           <a mat-list-item
              class="md-nav-list-item"
-             [class.list-item-active]="item === selectedItem"
+             [activated]="item.id === selectedItem.id"
              (click)="onSelect(item)">
 
             <mat-icon matListItemIcon> assignment </mat-icon>

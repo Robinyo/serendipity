@@ -125,7 +125,7 @@
             @if (!column.routerLink) {
 
               <ng-container>
-                {{ getProperty(row, column.name) }}
+                {{ getFormattedCellValue(row, column) }}
               </ng-container>
 
             } @else {
