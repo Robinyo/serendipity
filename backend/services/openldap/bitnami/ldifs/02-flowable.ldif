@@ -1,0 +1,49 @@
+# Users
+
+# Flowable (UI Applications) User
+
+dn: uid=flowable.admin, ou=users,dc=serendipity,dc=org
+changetype: add
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Flowable
+sn: Admin
+mail: flowable.admin@serendipity.org
+uid: flowable
+userPassword: Password12
+
+# Flowable Reporter User
+
+dn: uid=flowable.reporter, ou=users,dc=serendipity,dc=org
+changetype: add
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Flowable
+sn: Reporter
+mail: flowable.reporter@serendipity.org
+uid: flowable
+userPassword: Password12
+
+# Groups
+
+dn: cn=Admin, ou=groups, dc=serendipity,dc=org
+changetype: add
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: Admin
+ou: Admin
+uniqueMember: uid=flowable.admin,ou=users,dc=serendipity,dc=org
+
+# Groups
+
+dn: cn=Reporter, ou=groups, dc=serendipity,dc=org
+changetype: add
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: Reporter
+ou: Reporter
+uniqueMember: uid=flowable.reporter,ou=users,dc=serendipity,dc=org

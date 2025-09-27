@@ -30,9 +30,6 @@ flowable:
   idm:
     servlet:
       path: /api/workflow-service/idm-api
-  rest:
-    app:
-      authentication-mode: any-user
 
 management:
   endpoints:

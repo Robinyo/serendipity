@@ -2,8 +2,8 @@
 
 * Administrator Documentation
   * [Working with Docker and Docker Compose](./administrator/docker/README.md)
-  * [Working with Flowable](./administrator/flowable/README.md)
-  * [Working with Flowable's Web Applications](./administrator/flowable-ui/README.md)
+  * [Working with Flowable](./administrator/flowable/7-2-0/README.md)
+  * [Working with Flowable's Web Applications](./administrator/flowable-ui/6-5-0/README.md)
   * [Working with Keycloak](./administrator/keycloak/README.md)
   * [Working with OpenLDAP](./administrator/openldap/README.md)
   * [Working with PostgreSQL](./administrator/postgres/README.md)

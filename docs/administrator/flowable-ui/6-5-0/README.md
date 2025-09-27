@@ -13,7 +13,7 @@ With a single command, you can launch Flowable's web applications:
 ```
 docker run --name flowable-all-in-one \
   -p 8080:8080 \
-  --env-file ./flowable-all-in-one.env \
+  --env-file ./flowable-all-in-one-6-5-0.env \
   flowable/all-in-one:6.5.0
 ```
 
