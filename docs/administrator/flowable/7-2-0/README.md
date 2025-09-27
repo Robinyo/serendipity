@@ -1,6 +1,6 @@
-<h1 align="center">Working with Flowable - Version 7.2.0</h1>
+<h1 align="center">Working with Flowable</h1>
 
-## ❯ Flowable
+## ❯ Flowable 7.2.0
 
 ### LDAP
 
@@ -57,7 +57,7 @@ flowable.ldap.user.mappings.user-definition-group-mappings[1].group-key=Reporter
 flowable.ldap.user.mappings.user-definition-group-mappings[1].user-definition-key=user-reporting
 ```
 
-See: [flowable-ldap-config-7-2-0.env]()
+See: [flowable-ldap-config-7-2-0.env](https://github.com/Robinyo/serendipity/blob/serendipity-3.0/backend/flowable-ldap-config-7-2-0.env)
 
 ### Users and Groups
 
@@ -117,7 +117,7 @@ ou: Reporter
 uniqueMember: uid=flowable.reporter,ou=users,dc=serendipity,dc=org
 ```
 
-See: [02-flowable.ldif]()
+See: [02-flowable.ldif](https://github.com/Robinyo/serendipity/blob/serendipity-3.0/backend/services/openldap/bitnami/ldifs/02-flowable.ldif)
 
 ## ❯ References
 
