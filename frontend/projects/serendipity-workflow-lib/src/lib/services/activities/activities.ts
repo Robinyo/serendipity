@@ -19,16 +19,17 @@ export class ActivitiesService {
     this.logger.info('Activities Service: constructor()');
   }
 
-  public find(params: HttpParams): Observable<any> {
+  // public find(params: HttpParams): Observable<any> {
+  public find(params: any = undefined): Observable<any> {
 
-    this.logger.info('Activities Service: getActivities()');
+    this.logger.info('Activities Service: find()');
 
     return this.tasksService.find(params);
   }
 
   public startTask(request: any): Promise<any> {
 
-    this.logger.info('Activities Service: getActivities()');
+    this.logger.info('Activities Service: startTask()');
 
     return this.tasksService.startTask(request);
   }

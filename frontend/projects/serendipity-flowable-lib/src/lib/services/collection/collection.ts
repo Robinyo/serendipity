@@ -1,43 +1,33 @@
-import { inject, Injectable} from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable} from '@angular/core';
+import { HttpHeaders } from '@angular/common/http';
 
-import { environment } from '../../../environments/environment';
-import { HttpOptions } from '../../../models/http-options';
-import { LoggerService } from '../../logger/logger.service';
+import { AbstractCollectionService, HttpOptions } from 'serendipity-utils-lib';
 
 @Injectable()
-export abstract class AbstractCollectionService {
-
-  protected httpClient = inject(HttpClient);
-  protected logger: LoggerService = inject(LoggerService);
-
-  protected httpOptions: HttpOptions | undefined;
-  protected url = '';
-
-  protected getUrlPrefix(): string {
-    return environment.serverScheme + '://' + environment.serverHost;
-  }
+export class CollectionService extends AbstractCollectionService {
 
   // In Angular, when using the HttpClient to make HTTP requests, the observe option allows you to specify how much of
   // the HTTP response you want to receive. By default, HttpClient methods return an Observable that emits only the
   // response body. To receive the complete HttpResponse object, including headers, status code, and the body, you must
   // set the observe option to 'response'.
 
-  protected getDefaultHttpGetOptions(params: any = undefined): HttpOptions {
+  protected override getDefaultHttpGetOptions(params: any = undefined): HttpOptions {
 
-    this.logger.info('Abstract Collection Service: getDefaultHttpGetOptions()');
+    this.logger.info('Collection Service: getDefaultHttpGetOptions()');
 
     if (!this.httpOptions) {
 
       // https://www.flowable.com/open-source/docs/bpmn/ch14-REST#usage-in-tomcat
 
-      const baseHeaders = new HttpHeaders().set('Accept', 'application/json');
+      const baseHeaders = new HttpHeaders()
+        .set('Accept', 'application/json')
+        .set('Authorization', 'Basic ' + btoa('flowable.admin:Password12'));
 
       this.logger.info('baseHeaders: ' + JSON.stringify(baseHeaders, null, 2));
 
       this.httpOptions = {
         headers: baseHeaders,
-        observe: 'response' as const,
+        // observe: 'response' as const,
         params: undefined
       };
 
@@ -56,21 +46,23 @@ export abstract class AbstractCollectionService {
     return this.httpOptions;
   }
 
-  protected getDefaultHttpPostOptions(params: any = undefined): HttpOptions {
+  protected override getDefaultHttpPostOptions(params: any = undefined): HttpOptions {
 
-    this.logger.info('Abstract Collection Service: getDefaultHttpPostOptions()');
+    this.logger.info('Collection Service: getDefaultHttpPostOptions()');
 
     if (!this.httpOptions) {
 
       // https://www.flowable.com/open-source/docs/bpmn/ch14-REST#usage-in-tomcat
 
-      const baseHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+      const baseHeaders = new HttpHeaders()
+        .set('Content-Type', 'application/json')
+        .set('Authorization', 'Basic ' + btoa('flowable.admin:Password12'));
 
       this.logger.info('baseHeaders: ' + JSON.stringify(baseHeaders, null, 2));
 
       this.httpOptions = {
         headers: baseHeaders,
-        observe: 'response' as const,
+        // observe: 'response' as const,
         params: undefined
       };
 
@@ -88,6 +80,7 @@ export abstract class AbstractCollectionService {
 
     return this.httpOptions;
   }
+
 }
 
 // https://angular.dev/guide/http/making-requests

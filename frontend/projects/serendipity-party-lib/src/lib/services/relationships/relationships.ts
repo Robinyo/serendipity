@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { CollectionService } from 'serendipity-utils-lib';
+import { AbstractCollectionService } from 'serendipity-utils-lib';
 
 import { ROLES, ROLES_WITHOUT_A_TRAILING_SLASH } from './constants';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RelationshipsService extends CollectionService {
+export class RelationshipsService extends AbstractCollectionService {
 
   // private adapter: RoleAdapter = inject(RoleAdapter);
 
@@ -33,7 +33,7 @@ export class RelationshipsService extends CollectionService {
     this.logger.info('url: ' + url);
     this.logger.info('queryParams: ' + queryParams);
 
-    return this.httpClient.get(url + queryParams, this.getHttpOptions()).pipe(
+    return this.httpClient.get(url + queryParams, this.getDefaultHttpGetOptions()).pipe(
 
       // tap((response: any) => {
       tap(() => {

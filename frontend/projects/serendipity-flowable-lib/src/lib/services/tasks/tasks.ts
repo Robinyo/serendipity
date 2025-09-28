@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { CollectionService } from 'serendipity-utils-lib';
+import { CollectionService } from '../collection/collection';
 
 import { TaskListModel } from '../../models/task-list';
 import { TaskActionRequest } from '../../models/task-action';
@@ -34,7 +34,7 @@ export class TasksService extends CollectionService {
 
     this.logger.info('url: ' + url);
 
-    return this.httpClient.post<any>(url, request, this.getHttpOptions()).pipe(
+    return this.httpClient.post<any>(url, request, this.getDefaultHttpPostOptions()).pipe(
 
       tap(() => {
 
@@ -60,7 +60,7 @@ export class TasksService extends CollectionService {
 
     this.logger.info('url: ' + this.url);
 
-    return this.httpClient.post<any>(this.url, request, this.getHttpOptions()).pipe(
+    return this.httpClient.post<any>(this.url, request, this.getDefaultHttpPostOptions()).pipe(
 
       tap(() => {
 
@@ -92,7 +92,7 @@ export class TasksService extends CollectionService {
 
     this.logger.info('url: ' + this.url);
 
-    return this.httpClient.post<any>(this.url, request, this.getHttpOptions()).pipe(
+    return this.httpClient.post<any>(this.url, request, this.getDefaultHttpPostOptions()).pipe(
 
       tap(() => {
 
@@ -112,7 +112,8 @@ export class TasksService extends CollectionService {
 
   }
 
-  public find(params: HttpParams): Observable<any> {
+  // public find(params: HttpParams): Observable<any> {
+  public find(params: any = undefined): Observable<any> {
 
     this.logger.info('Tasks Service: find()');
 
@@ -122,8 +123,8 @@ export class TasksService extends CollectionService {
     this.logger.info('url: ' + url);
     // this.logger.info('params: ' +  JSON.stringify(params, null, 2));
 
-    // return this.httpClient.get<TaskListModel>(url, this.getHttpOptions(params)).pipe(
-    return this.httpClient.get<TaskListModel>(url).pipe(
+    return this.httpClient.get<TaskListModel>(url, this.getDefaultHttpGetOptions(params)).pipe(
+    // return this.httpClient.get<TaskListModel>(url).pipe(
       tap(() => {
         this.logger.info('Tasks Service: find() completed');
       })
@@ -139,7 +140,7 @@ export class TasksService extends CollectionService {
 
     this.logger.info('url: ' + this.url);
 
-    return this.httpClient.get<any>(this.url, this.getHttpOptions()).pipe(
+    return this.httpClient.get<any>(this.url, this.getDefaultHttpGetOptions()).pipe(
 
       tap(() => {
 
@@ -167,7 +168,7 @@ export class TasksService extends CollectionService {
 
     this.logger.info('url: ' + this.url);
 
-    return this.httpClient.get<TaskListModel>(this.url, this.getHttpOptions()).pipe(
+    return this.httpClient.get<TaskListModel>(this.url, this.getDefaultHttpGetOptions()).pipe(
       tap(() => {
         this.logger.info('TasksService: getRoles() completed');
       })
@@ -183,7 +184,7 @@ export class TasksService extends CollectionService {
 
     this.logger.info('url: ' + this.url);
 
-    return this.httpClient.post(this.url, request, this.getHttpOptions()).pipe(
+    return this.httpClient.post(this.url, request, this.getDefaultHttpPostOptions()).pipe(
 
       tap((response: any) => {
         // tap(() => {
@@ -214,7 +215,7 @@ export class TasksService extends CollectionService {
 
     this.logger.info('url: ' + this.url);
 
-    return this.httpClient.put<any>(this.url, request, this.getHttpOptions()).pipe(
+    return this.httpClient.put<any>(this.url, request, this.getDefaultHttpPostOptions()).pipe(
 
       tap(() => {
 

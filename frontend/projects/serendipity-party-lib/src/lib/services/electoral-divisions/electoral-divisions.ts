@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { CollectionService } from 'serendipity-utils-lib';
+import { AbstractCollectionService } from 'serendipity-utils-lib';
 
 import { ELECTORIAL_DIVISIONS } from './constants';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ElectoralDivisionsService extends CollectionService {
+export class ElectoralDivisionsService extends AbstractCollectionService {
 
   constructor() {
 
@@ -30,7 +30,7 @@ export class ElectoralDivisionsService extends CollectionService {
     this.logger.info('url: ' + url);
     this.logger.info('queryParams: ' + queryParams);
 
-    return this.httpClient.get(url + queryParams, this.getHttpOptions()).pipe(
+    return this.httpClient.get(url + queryParams, this.getDefaultHttpGetOptions()).pipe(
 
       // tap((response: any) => {
       tap(() => {

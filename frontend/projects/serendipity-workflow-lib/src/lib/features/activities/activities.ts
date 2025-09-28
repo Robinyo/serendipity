@@ -109,7 +109,7 @@ export class Activities extends Collection<ActivityModel> {
 
         }
 
-        // this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
+        this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
 
         this.dataSource = new MatTableDataSource(this.items);
         this.dataSource.data = this.items;
@@ -123,6 +123,13 @@ export class Activities extends Collection<ActivityModel> {
       });
 
   }
+
+  private getParams() {
+    // return new HttpParams();
+    return undefined;
+  }
+
+  /*
 
   private getParams() {
 
@@ -159,6 +166,8 @@ export class Activities extends Collection<ActivityModel> {
 
     return params;
   }
+
+  */
 
   //
   // Command Bar events

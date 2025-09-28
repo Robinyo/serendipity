@@ -4,7 +4,7 @@ import { HttpResponse} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { CollectionService } from 'serendipity-utils-lib';
+import { AbstractCollectionService } from 'serendipity-utils-lib';
 
 import { ContactModel } from '../../models/contact';
 import { RoleModel } from '../../models/role';
@@ -15,7 +15,7 @@ import { INDIVIDUALS, INDIVIDUALS_WITHOUT_A_TRAILING_SLASH } from './constants';
 @Injectable({
   providedIn: 'root'
 })
-export class ContactsService extends CollectionService {
+export class ContactsService extends AbstractCollectionService {
 
   private adapter: ContactAdapter = inject(ContactAdapter);
 
@@ -49,7 +49,7 @@ export class ContactsService extends CollectionService {
     this.logger.info('url: ' + url);
     this.logger.info('queryParams: ' + queryParams);
 
-    return this.httpClient.get(url + queryParams, this.getHttpOptions()).pipe(
+    return this.httpClient.get(url + queryParams, this.getDefaultHttpGetOptions()).pipe(
 
       // tap((response: any) => {
       tap(() => {
@@ -64,7 +64,7 @@ export class ContactsService extends CollectionService {
 
   public findById(id: string): Observable<ContactModel> {
 
-    return this.httpClient.get(this.url + id).pipe(
+    return this.httpClient.get(this.url + id, this.getDefaultHttpGetOptions()).pipe(
 
       map((item: any) => this.adapter.adapt(item)),
 
@@ -77,7 +77,7 @@ export class ContactsService extends CollectionService {
 
   public create(contact: ContactModel): Observable<HttpResponse<ContactModel>> {
 
-    return this.httpClient.post<HttpResponse<ContactModel>>(this.url, contact, this.getHttpOptions()).pipe(
+    return this.httpClient.post<HttpResponse<ContactModel>>(this.url, contact, this.getDefaultHttpPostOptions()).pipe(
       tap(() => {
         this.logger.info('Contacts Service: create() completed');
       })
@@ -87,7 +87,7 @@ export class ContactsService extends CollectionService {
 
   public update(id: string, contact: ContactModel): Observable<HttpResponse<ContactModel>> {
 
-    return this.httpClient.patch<HttpResponse<ContactModel>>(this.url + id, contact, this.getHttpOptions()).pipe(
+    return this.httpClient.patch<HttpResponse<ContactModel>>(this.url + id, contact).pipe(
       tap(() => {
         this.logger.info('Contacts Service: update() completed');
       })
@@ -107,7 +107,7 @@ export class ContactsService extends CollectionService {
 
   public createRole(id: string, role: RoleModel): Observable<HttpResponse<RoleModel>>  {
 
-    return this.httpClient.post<HttpResponse<RoleModel>>(this.url + id + '/roles', role, this.getHttpOptions()).pipe(
+    return this.httpClient.post<HttpResponse<RoleModel>>(this.url + id + '/roles', role, this.getDefaultHttpPostOptions()).pipe(
       tap(() => {
         this.logger.info('Contacts Service: createRole() completed');
       })

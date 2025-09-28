@@ -4,7 +4,7 @@ import { HttpParams } from '@angular/common/http';
 import { Observable} from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { CollectionService } from 'serendipity-utils-lib';
+import { CollectionService } from '../collection/collection';
 
 import {
   HTTP_SERVER_ERROR_CONNECTION_REFUSED,
@@ -24,7 +24,7 @@ export class ProcessesService extends CollectionService {
 
   // https://www.flowable.com/open-source/docs/bpmn/ch14-REST#list-of-process-definitions
 
-  public find(): Observable<any> {
+  public find(params: any = undefined): Observable<any> {
 
     this.logger.info('Processes Service: find()');
 
@@ -35,10 +35,10 @@ export class ProcessesService extends CollectionService {
     // const params = new HttpParams().set('latest', latest);
 
     this.logger.info('url: ' + url);
-    // this.logger.info('params: ' + params);
+    this.logger.info('params: ' + params);
 
-    // return this.httpClient.get(url, this.getHttpOptions(params)).pipe(
-    return this.httpClient.get(url).pipe(
+    return this.httpClient.get(url, this.getDefaultHttpGetOptions(params)).pipe(
+    // return this.httpClient.get(url).pipe(
       tap(() => {
         this.logger.info('Processes Service: find() completed');
       })
@@ -55,7 +55,7 @@ export class ProcessesService extends CollectionService {
 
     this.logger.info('url: ' + url);
 
-    return this.httpClient.get(url).pipe(
+    return this.httpClient.get(url, this.getDefaultHttpGetOptions()).pipe(
       tap(() => {
         this.logger.info('Processes Service: findById() completed');
       })
@@ -100,7 +100,7 @@ export class ProcessesService extends CollectionService {
 
     this.logger.info('url: ' + url);
 
-    return this.httpClient.post(url, request, this.getHttpOptions()).pipe(
+    return this.httpClient.post(url, request, this.getDefaultHttpPostOptions()).pipe(
 
       tap((response: any) => {
       // tap(() => {
@@ -130,7 +130,7 @@ export class ProcessesService extends CollectionService {
 
     this.logger.info('url: ' + url);
 
-    return this.httpClient.post(url, request, this.getHttpOptions()).pipe(
+    return this.httpClient.post(url, request, this.getDefaultHttpPostOptions()).pipe(
 
       tap((response: any) => {
         // tap(() => {

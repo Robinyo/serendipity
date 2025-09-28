@@ -108,7 +108,8 @@ export class StartProcessDialog implements OnInit {
     this.disabled = true;
 
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
-     // @ts-ignore
+
+    // @ts-ignore
     const today = new Date().toLocaleString('en-GB', options);
 
     this.logger.info('today: ' + today);
@@ -132,11 +133,11 @@ export class StartProcessDialog implements OnInit {
 
     this.logger.info('startProcessModel: ' + JSON.stringify(startProcessModel, null, 2));
 
-    this.processesService.startProcess(startProcessModel).then((responce) => {
-
-      this.logger.info('responce: ' + JSON.stringify(responce, null, 2));
+    this.processesService.startProcess(startProcessModel).then((response) => {
 
       this.openSnackBar(startProcessModel.name + ' process started');
+
+      this.logger.info('response: ' + JSON.stringify(response, null, 2));
 
       this.dialogRef.close(true);
 
