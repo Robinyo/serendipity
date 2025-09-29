@@ -25,15 +25,15 @@ export abstract class AbstractCollectionService {
 
   protected getDefaultHttpGetOptions(params: any = undefined): HttpOptions {
 
-    this.logger.info('Abstract Collection Service: getDefaultHttpGetOptions()');
-
     if (!this.httpOptions) {
+
+      this.logger.info('Abstract Collection Service: getDefaultHttpGetOptions()');
 
       // https://www.flowable.com/open-source/docs/bpmn/ch14-REST#usage-in-tomcat
 
       const baseHeaders = new HttpHeaders().set('Accept', 'application/json');
 
-      this.logger.info('baseHeaders: ' + JSON.stringify(baseHeaders, null, 2));
+      // this.logger.info('baseHeaders: ' + JSON.stringify(baseHeaders, null, 2));
 
       this.httpOptions = {
         headers: baseHeaders,
@@ -58,15 +58,15 @@ export abstract class AbstractCollectionService {
 
   protected getDefaultHttpPostOptions(params: any = undefined): HttpOptions {
 
-    this.logger.info('Abstract Collection Service: getDefaultHttpPostOptions()');
-
     if (!this.httpOptions) {
+
+      this.logger.info('Abstract Collection Service: getDefaultHttpPostOptions()');
 
       // https://www.flowable.com/open-source/docs/bpmn/ch14-REST#usage-in-tomcat
 
       const baseHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 
-      this.logger.info('baseHeaders: ' + JSON.stringify(baseHeaders, null, 2));
+      // this.logger.info('baseHeaders: ' + JSON.stringify(baseHeaders, null, 2));
 
       this.httpOptions = {
         headers: baseHeaders,

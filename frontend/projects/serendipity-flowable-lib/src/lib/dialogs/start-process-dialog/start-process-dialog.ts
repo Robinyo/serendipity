@@ -88,7 +88,7 @@ export class StartProcessDialog implements OnInit {
 
     this.selectedItem = event;
 
-    // this.logger.info('selectedItem: ' + JSON.stringify(this.selectedItem, null, 2));
+    this.logger.info('selectedItem: ' + JSON.stringify(this.selectedItem, null, 2));
 
   }
 
@@ -114,19 +114,15 @@ export class StartProcessDialog implements OnInit {
 
     this.logger.info('today: ' + today);
 
-    // Request body (start by process definition id)
-    // Only one of processDefinitionId, processDefinitionKey or message can be used in the request body.
-    // See: https://www.flowable.com/open-source/docs/bpmn/ch14-REST/#start-a-process-instance
-
     const startProcessModel: StartProcessModel = {
-      processDefinitionId :  this.selectedItem.id,
-      businessKey : this.selectedItem.name,
-      returnVariables : true,
       name : this.selectedItem.name + ' - ' + today,
+      processDefinitionId : this.selectedItem.id,
       variables : [
         {
           name: 'initiator',
-          value: this.currentUser.username
+          type : 'string',
+          value: this.currentUser.username,
+          scope : 'local'
         }
       ]
     };
@@ -187,3 +183,25 @@ export class StartProcessDialog implements OnInit {
   }
 
 }
+
+/*
+
+    // Request body (start by process definition id)
+    // Only one of processDefinitionId, processDefinitionKey or message can be used in the request body.
+    // See: https://www.flowable.com/open-source/docs/bpmn/ch14-REST/#start-a-process-instance
+
+    const startProcessModel: StartProcessModel = {
+      processDefinitionId :  this.selectedItem.id,
+      businessKey : this.selectedItem.name,
+      returnVariables : true,
+      name : this.selectedItem.name + ' - ' + today,
+      variables : [
+        {
+          name: 'initiator',
+          value: this.currentUser.username
+        }
+      ]
+    };
+
+
+*/

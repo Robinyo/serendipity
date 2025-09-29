@@ -3,8 +3,14 @@ import { HttpHeaders } from '@angular/common/http';
 
 import { AbstractCollectionService, HttpOptions } from 'serendipity-utils-lib';
 
+import { FLOWABLE_TASK } from './constants';
+
 @Injectable()
 export class CollectionService extends AbstractCollectionService {
+
+  protected override getUrlPrefix(): string {
+    return super.getUrlPrefix() + FLOWABLE_TASK;
+  }
 
   // In Angular, when using the HttpClient to make HTTP requests, the observe option allows you to specify how much of
   // the HTTP response you want to receive. By default, HttpClient methods return an Observable that emits only the
@@ -21,7 +27,7 @@ export class CollectionService extends AbstractCollectionService {
 
       const baseHeaders = new HttpHeaders()
         .set('Accept', 'application/json')
-        .set('Authorization', 'Basic ' + btoa('flowable.admin:Password12'));
+        .set('Authorization', 'Basic ' + btoa('flowable:Password12'));
 
       this.logger.info('baseHeaders: ' + JSON.stringify(baseHeaders, null, 2));
 
@@ -56,7 +62,7 @@ export class CollectionService extends AbstractCollectionService {
 
       const baseHeaders = new HttpHeaders()
         .set('Content-Type', 'application/json')
-        .set('Authorization', 'Basic ' + btoa('flowable.admin:Password12'));
+        .set('Authorization', 'Basic ' + btoa('flowable:Password12'));
 
       this.logger.info('baseHeaders: ' + JSON.stringify(baseHeaders, null, 2));
 

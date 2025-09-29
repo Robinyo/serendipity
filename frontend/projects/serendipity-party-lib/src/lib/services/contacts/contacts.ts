@@ -64,9 +64,13 @@ export class ContactsService extends AbstractCollectionService {
 
   public findById(id: string): Observable<ContactModel> {
 
+    this.logger.info('Contacts Service: findById()');
+
+    this.logger.info('url: ' + this.url + id);
+
     return this.httpClient.get(this.url + id, this.getDefaultHttpGetOptions()).pipe(
 
-      map((item: any) => this.adapter.adapt(item)),
+      map((response: any) => this.adapter.adapt(response.body)),
 
       tap(() => {
         this.logger.info('Contacts Service: findById() completed');

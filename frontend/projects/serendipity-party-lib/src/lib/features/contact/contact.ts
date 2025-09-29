@@ -121,8 +121,9 @@ export class Contact extends Item<ContactModel> {
 
       (response: any) => {
 
+        this.logger.info('Contact Component: subscribe() success handler');
+
         this.item = response;
-        // this.item = response.body;
 
         // this.logger.info('item: ' + JSON.stringify(this.item, null, 2));
 

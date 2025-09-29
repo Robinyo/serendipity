@@ -13,6 +13,9 @@ spring:
       base-path: /api/party-service
   # jpa:
   #   show-sql: true
+  datasource:
+    username: admin
+    password: secret
   main:
     banner-mode: off
   profiles:

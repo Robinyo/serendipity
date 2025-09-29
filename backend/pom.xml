@@ -34,11 +34,7 @@
 	<modules>
 		<module>modules/web-bff</module>
     <module>modules/party-service</module>
-    <module>modules/workflow-service</module>
-		<!--
-
-		<module>modules/work-service</module>
-		-->
+    <!-- <module>modules/workflow-service</module> -->
 	</modules>
 
 	<properties>

@@ -20,16 +20,16 @@ spring:
 flowable:
   process:
     servlet:
-      path: '/api/workflow-service/process-api'
+      path: /api/workflow-service/process-api
   cmmn:
     servlet:
-      path: '/api/workflow-service/cmmn-api'
+      path: /api/workflow-service/cmmn-api
   dmn:
     servlet:
-      path: '/api/workflow-service/dmn-api'
+      path: /api/workflow-service/dmn-api
   idm:
     servlet:
-      path: '/api/workflow-service/idm-api'
+      path: /api/workflow-service/idm-api
 
 management:
   endpoints:

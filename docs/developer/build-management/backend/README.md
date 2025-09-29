@@ -148,22 +148,20 @@ To check the environment variables inside your container:
 ```
 docker inspect -f \
   '{{range $index, $value := .Config.Env}}{{println $value}}{{end}}' \
-  serendipity-identity-server
-
-docker inspect -f \
-  '{{range $index, $value := .Config.Env}}{{println $value}}{{end}}' \
-  serendipity
+  serendipity-bff
 ```
 
 To check the logs inside your container:
 
 ```
+docker container logs openldap
 docker container logs postgres
+docker container logs workflow-service-postgres
 docker container logs pgadmin
-docker container logs serendipity-identity-server
+docker container logs serendipity-workflow-service
 docker container logs serendipity-party-service
-docker container logs serendipity-work-service
-docker container logs serendipity-pwa
+docker container logs serendipity-identity-server
+docker container logs serendipity-bff
 ```
 
 ## ❯ References
