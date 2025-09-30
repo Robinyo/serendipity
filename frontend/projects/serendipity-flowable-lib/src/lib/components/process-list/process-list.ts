@@ -89,7 +89,7 @@ export class ProcessList extends List<ProcessModel> {
 
         }
 
-        // this.logger.info('items: ' + JSON.stringify(this.items, null, 2))
+        this.logger.info('items: ' + JSON.stringify(this.items, null, 2))
 
       },
       (error) => {

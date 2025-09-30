@@ -61,7 +61,7 @@ To check for installed Java SDKs:
 ```
 /usr/libexec/java_home -V
 ```
-
+[case-evaluation-and-outcomes.json](../../../../../archive/serendipity/serendipity-api/projects/spring-boot/server/apps/flowable/apps/case-management-v1.4/bpmn-models/case-evaluation-and-outcomes.json)
 You should see something like:
 
 ```
@@ -123,6 +123,13 @@ Navigate to:
 ```
 https://serendipity.localhost
 ```
+
+Or launch a Flowable web application:
+
+Flowable Modeler: http://localhost:8080/flowable-modeler
+Flowable Task: http://localhost:8080/flowable-task
+Flowable Admin: http://localhost:8080/flowable-admin
+Flowable Identity Management: http://localhost:8080/flowable-idm
 
 To stop the services:
 

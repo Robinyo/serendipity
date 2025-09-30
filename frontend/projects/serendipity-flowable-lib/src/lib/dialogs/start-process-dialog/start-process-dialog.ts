@@ -114,9 +114,14 @@ export class StartProcessDialog implements OnInit {
 
     this.logger.info('today: ' + today);
 
+    // https://www.flowable.com/open-source/docs/bpmn/ch14-REST#start-a-process-instance
+
+    // See: auth.ts and collection.ts in serendipity-flowable-lib
+
     const startProcessModel: StartProcessModel = {
       name : this.selectedItem.name + ' - ' + today,
-      processDefinitionId : this.selectedItem.id,
+      processDefinitionKey: this.selectedItem.key,
+      businessKey: this.selectedItem.name,
       variables : [
         {
           name: 'initiator',

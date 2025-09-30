@@ -29,6 +29,23 @@ export class AuthService extends Auth {
 
   public getCurrentUser(): any {
 
+    // See: 02-flowable.ldif
+
+    return {
+      id: '',
+      sub: '',
+      username: 'flowable',
+      name: 'Flowable',
+      givenName: '',
+      middleName: '',
+      familyName: '',
+      email: '',
+      emailVerified: '',
+      groups: ''
+    };
+
+    /*
+
     return {
       id: '',
       sub: '',
@@ -41,6 +58,8 @@ export class AuthService extends Auth {
       emailVerified: '',
       groups: ''
     };
+
+    */
 
   }
 

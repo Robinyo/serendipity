@@ -2,6 +2,8 @@ export interface StartProcessModel {
 
   name?: string;
   processDefinitionId?: string;
+  processDefinitionKey?: string;
+  businessKey?: string;
   variables?: any;
 
 }
@@ -11,7 +13,7 @@ export interface ProcessModel {
   id?: string;
   url?: string;
   key?: string;
-  version?: number;
+  version?: number
   name?: string;
   description?: string;
   tenantId?: string;
@@ -23,25 +25,29 @@ export interface ProcessModel {
   graphicalNotationDefined?: boolean;
   suspended?: boolean;
   startFormDefined?: boolean;
-  hasStartForm?: boolean;
 
-  // businessKey?: string;
-  // ended?: Date;
-  // processDefinitionCategory?: string;
-  // processDefinitionDeploymentId?: string;
-  // processDefinitionDescription?: string;
-  // processDefinitionId?: string;
-  // processDefinitionKey?: string;
-  // processDefinitionName?: string;
-  // processDefinitionVersion?: number;
-  // started?: Date;
-  // startedBy?: LightUserRepresentation;
-  // variables?: RestVariable[];
+  owner?: string;
+  assignee?: string;
+  delegationState?: string;
+  createTime?: Date;
+  dueDate?: Date;
+  priority?: number;
+  taskDefinitionKey?: string;
+  scopeDefinitionId?: string;
+  scopeId?: string;
+  scopeType?: string;
+  formKey?: string;
+  parentTaskId?: string;
+  parentTaskUrl?: string;
+  executionId?: string;
+  executionUrl?: string;
+  processInstanceId?: string;
+  processInstanceUrl?: string;
+  processDefinitionId?: string;
+  processDefinitionUrl?: string;
+  variables?: any;
 
 }
-
-// tslint:disable-next-line:max-line-length
-// https://github.com/Alfresco/alfresco-ng2-components/blob/develop/lib/process-services/src/lib/process-list/models/process-instance.model.ts
 
 export interface ProcessListModel {
 
