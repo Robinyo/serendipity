@@ -1,7 +1,3 @@
-// https://github.com/Alfresco/alfresco-js-api
-// https://github.com/Alfresco/alfresco-js-api/blob/master/src/api/activiti-rest-api/model/taskFilterRepresentation.ts
-// https://github.com/Alfresco/alfresco-js-api/blob/master/src/api/activiti-rest-api/model/userTaskFilterRepresentation.ts
-
 export interface TaskFilterRepresentation {
 
   assignment?: string;            // username
@@ -35,8 +31,4 @@ export interface UserTaskFilterRepresentation {
 
 }
 
-// https://github.com/Alfresco/alfresco-ng2-components
-// https://github.com/Alfresco/alfresco-ng2-components/tree/master/lib/process-services/src/lib/task-list/models
-
-// tslint:disable-next-line:no-empty-interface
 export interface FilterRepresentationModel extends UserTaskFilterRepresentation {}

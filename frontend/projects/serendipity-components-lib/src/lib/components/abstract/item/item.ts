@@ -1,13 +1,13 @@
 import { AfterViewInit, ChangeDetectorRef, Directive, inject, isDevMode, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Observable, Subscription } from 'rxjs';
-
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
-import { LoggerService } from 'serendipity-utils-lib';
+import { Observable, Subscription } from 'rxjs';
 
+import { AuthService } from 'serendipity-auth-lib';
+import { LoggerService } from 'serendipity-utils-lib';
 import { DialogService } from '../../../services/dialogs/dialog';
 
 const noop = (): any => undefined;
@@ -20,6 +20,7 @@ export abstract class Item<T> implements OnInit, AfterViewInit, OnDestroy {
 
   public isLoading: boolean = true;
 
+  protected authService: AuthService = inject(AuthService);
   protected breakpointObserver: BreakpointObserver  = inject(BreakpointObserver);
   protected changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   protected dialogService: DialogService = inject(DialogService);

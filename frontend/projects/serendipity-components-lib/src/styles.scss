@@ -4,25 +4,12 @@
 
 // Using var() stops the floating footer from working ???
 
+
 .md-content-container {
   background: whitesmoke;
   // $navigation-bar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop
   height: calc(100vh - (64px + 50px + 64px));
   width: 100%;
-}
-
-.md-lookup-list-container {
-  column-gap: 0;
-  display: grid;
-  grid-template-columns: variables.$lookup-list-width-desktop auto;
-  height: variables.$lookup-list-height-desktop;
-  margin: 0;
-  padding-top: variables.$padding-desktop;
-  padding-bottom: variables.$padding-desktop;
-}
-
-.md-tab-group-container {
-  margin: 0 variables.$component-margin-desktop variables.$component-margin-desktop;
 }
 
 .md-grid-2-column-layout-container {
@@ -41,6 +28,30 @@
   row-gap: 1em;
 
   margin-top: variables.$component-margin-desktop;
+}
+
+.md-lookup-list-container {
+  column-gap: 0;
+  display: grid;
+  grid-template-columns: variables.$lookup-list-width-desktop auto;
+  height: variables.$lookup-list-height-desktop;
+  margin: 0;
+  padding-top: variables.$padding-desktop;
+  padding-bottom: variables.$padding-desktop;
+}
+
+.md-tab-group-container {
+  margin: 0 variables.$component-margin-desktop variables.$component-margin-desktop;
+}
+
+.md-tasks-container {
+  column-gap: variables.$column-gap-desktop;
+  display: grid;
+  grid-template-columns: variables.$task-list-width-desktop auto;
+  margin-top: 0;
+  margin-left: variables.$margin-desktop;
+  margin-bottom: variables.$margin-desktop;
+  margin-right: variables.$margin-desktop;
 }
 
 // Leaflet use this class and doesn't seem to like var() ???

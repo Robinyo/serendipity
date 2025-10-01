@@ -26,7 +26,7 @@ import { ProcessListModel, ProcessModel } from '../../models/process-list';
              [activated]="item.id === selectedItem.id"
              (click)="onSelect(item)">
 
-            <mat-icon matListItemIcon> assignment </mat-icon>
+            <mat-icon matListItemIcon class="material-icons"> assignment </mat-icon>
 
             <p>
               {{item.name}}
@@ -40,6 +40,7 @@ import { ProcessListModel, ProcessModel } from '../../models/process-list';
 
     </div>
   `,
+  standalone: true,
   styleUrls: ['./process-list.scss']
 })
 export class ProcessList extends List<ProcessModel> {
@@ -53,7 +54,7 @@ export class ProcessList extends List<ProcessModel> {
 
     super();
 
-    this.logger.info('Process List Component');
+    this.logger.info('Process List Component: constructor()');
 
   }
 

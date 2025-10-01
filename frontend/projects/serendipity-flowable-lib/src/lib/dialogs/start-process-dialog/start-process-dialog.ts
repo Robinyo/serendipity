@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AuthService } from 'serendipity-auth-lib';
 import { DialogService, SnackBar } from 'serendipity-components-lib';
@@ -17,6 +17,7 @@ import { ProcessesService } from '../../services/processes/processes';
   imports: [
     MatButtonModule,
     MatDialogModule,
+    MatSnackBarModule,
     ProcessList
   ],
   template: `

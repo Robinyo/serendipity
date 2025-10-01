@@ -1,9 +1,11 @@
 import { AfterViewInit, Directive, OnDestroy, inject } from '@angular/core';
 
+// import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { Subscription } from 'rxjs';
 
+import { AuthService } from 'serendipity-auth-lib';
 import { LoggerService } from 'serendipity-utils-lib';
-
 import { DialogService } from '../../../services/dialogs/dialog';
 
 @Directive()
@@ -12,6 +14,7 @@ export abstract class List<T> implements AfterViewInit, OnDestroy {
   public items!: Array<T>;
   public selectedItem!: T;
 
+  protected authService: AuthService = inject(AuthService);
   protected dialogService: DialogService = inject(DialogService);
   protected logger = inject(LoggerService);
   protected subscription: Subscription | undefined;

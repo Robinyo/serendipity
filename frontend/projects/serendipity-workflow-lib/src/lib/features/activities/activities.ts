@@ -1,4 +1,3 @@
-import { HttpParams } from '@angular/common/http';
 import { inject, Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
@@ -9,7 +8,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 
-import { AuthService } from 'serendipity-auth-lib';
 import { FilterRepresentationModel, StartProcessDialog } from 'serendipity-flowable-lib';
 import { ActivityBar, CommandBar, Collection, CollectionFooter, SnackBar } from 'serendipity-components-lib';
 
@@ -42,7 +40,6 @@ export class Activities extends Collection<ActivityModel> {
 
   public currentUser: any;
 
-  private authService: AuthService = inject(AuthService);
   private entityAdapter: ActivitiesAdapter = inject(ActivitiesAdapter);
   private entityService: ActivitiesService = inject(ActivitiesService);
   private route: ActivatedRoute = inject(ActivatedRoute);
@@ -243,17 +240,20 @@ export class Activities extends Collection<ActivityModel> {
 
     this.logger.info('Activities Component: startSimpleTask()');
 
-    const dueDate = addDays(new Date(), 2);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+    // @ts-ignore
+    const dueDate = addDays(new Date(), 2).toLocaleString('en-GB', options);
 
     const taskModel = {
-      'name': name,
-      'description': description,
-      'dueDate': dueDate.toISOString(),
-      'variables': [
+      name: name,
+      description: description,
+      dueDate: dueDate,
+      variables: [
         {
           'name': 'initiator',
           'type' : 'string',
-          'value': 'flowable',
+           value: this.currentUser.username,
           'scope' : 'local'
         }
       ]
@@ -266,7 +266,7 @@ export class Activities extends Collection<ActivityModel> {
       this.openSnackBar('Task started');
 
       const taskAction = {
-        assignee: 'flowable',
+        assignee: this.currentUser.username,
         assignment: 'involved'
       };
 

@@ -7,3 +7,8 @@ export const ActivitiesRoute: Route = {
   loadComponent: () => import('./features/activities/activities').then(m => m.Activities),
   resolve: { columnDefs: ActivitiesResolver }
 };
+
+export const TasksRoute: Route = {
+  path: 'workflow/activities/:id',
+  loadComponent: () => import('./features/tasks/tasks').then(m => m.Tasks)
+};

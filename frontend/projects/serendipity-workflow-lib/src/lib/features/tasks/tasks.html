@@ -1,0 +1,95 @@
+<command-bar>
+
+  @if (isHandsetPortrait()) {
+
+    <ng-container>
+
+      <button matIconButton
+              aria-label="Task button"
+              class="md-command-bar-button"
+              (click)="onTask()">
+        <mat-icon class="material-icons"> assignment </mat-icon>
+      </button>
+
+      <button matIconButton
+              aria-label="Email button"
+              class="md-command-bar-button"
+              (click)="onEmail()"
+              [disabled]="true">
+        <mat-icon class="material-icons"> email </mat-icon>
+      </button>
+
+      <button matIconButton
+              aria-label="Appointment button"
+              class="md-command-bar-button"
+              (click)="onAppointment()"
+              [disabled]="true">
+        <mat-icon class="material-icons"> today </mat-icon>
+      </button>
+
+      <button matIconButton
+              aria-label="Phone button"
+              class="md-command-bar-button"
+              (click)="onPhone()"
+              [disabled]="true">
+        <mat-icon class="material-icons"> phone </mat-icon>
+      </button>
+
+    </ng-container>
+
+  } @else {
+
+    <ng-container>
+
+      <button matButton="filled"
+              aria-label="Task button"
+              class="md-command-bar-button"
+              (click)="onTask()">
+        <mat-icon class="material-icons"> assignment </mat-icon>
+        TASKS
+      </button>
+
+      <button matButton="filled"
+              aria-label="Email button"
+              class="md-command-bar-button"
+              (click)="onEmail()"
+              [disabled]="true">
+        <mat-icon class="material-icons"> email </mat-icon>
+        EMAIL
+      </button>
+
+      <button matButton="filled"
+              aria-label="Appointment button"
+              class="md-command-bar-button"
+              (click)="onAppointment()"
+              [disabled]="true">
+        <mat-icon class="material-icons"> today </mat-icon>
+        APPOINTMENT
+      </button>
+
+      <button matButton="filled"
+              aria-label="Phone button"
+              class="md-command-bar-button"
+              (click)="onPhone()"
+              [disabled]="true">
+        <mat-icon class="material-icons"> phone </mat-icon>
+        PHONE CALL
+      </button>
+
+    </ng-container>
+
+  }
+
+  <span class="md-command-bar-spacer"></span>
+
+  <button matIconButton
+          aria-label="Close button"
+          (click)="onClose()">
+    <mat-icon class="material-icons"> clear </mat-icon>
+  </button>
+
+</command-bar>
+
+<workflow-task-list>
+
+</workflow-task-list>

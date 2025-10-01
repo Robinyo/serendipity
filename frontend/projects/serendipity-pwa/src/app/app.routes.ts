@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 import { Placeholder } from 'serendipity-components-lib';
 import { ContactRoute, ContactsRoute } from 'serendipity-party-lib';
-import { ActivitiesRoute } from 'serendipity-workflow-lib';
+import { ActivitiesRoute, TasksRoute } from 'serendipity-workflow-lib';
 
 import { Home } from './features/home/home';
 
@@ -22,6 +22,8 @@ export const routes: Routes = [
 
   ContactRoute,
   ContactsRoute,
+
+  TasksRoute,
 
   //
   // The Wildcard route

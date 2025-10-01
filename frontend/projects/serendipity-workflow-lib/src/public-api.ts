@@ -3,5 +3,6 @@
  */
 
 export * from './lib/features/activities/activities';
+export * from './lib/features/tasks/tasks';
 
 export * from './lib/lib.routes';

@@ -9,8 +9,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+import { AuthService } from 'serendipity-auth-lib';
 import { ConfigService, LoggerService } from 'serendipity-utils-lib';
-
 import { DialogService } from '../../../services/dialogs/dialog';
 // import { SidenavService } from '../../../services/sidenav/sidenav.service';
 
@@ -57,6 +57,7 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
   public pageNumber = 1;
   public selectedFooterItemId = ALL;
 
+  protected authService: AuthService = inject(AuthService);
   protected breakpointObserver: BreakpointObserver  = inject(BreakpointObserver);
   protected changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   protected count = 0;

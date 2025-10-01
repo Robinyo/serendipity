@@ -9,6 +9,9 @@ $margin-mobile: 0;
 $padding-desktop: 16px;
 $padding-mobile: 0;
 
+$column-gap-desktop: 16px;
+$column-gap-mobile: 8px;
+
 $margin-top-desktop: 32px;
 $margin-top-mobile: 16px;
 
@@ -65,6 +68,10 @@ $tab-height-desktop: 64px !default;
 $tab-height-mobile: 64px !default;
 $component-margin-desktop: $margin-desktop !default;
 $component-margin-mobile: $margin-desktop !default;
+
+// Task List
+$task-list-width-desktop: 320px !default;
+$task-list-width-mobile: 320px !default;
 
 // Collection
 $footer-button-min-width: 24px !default;
