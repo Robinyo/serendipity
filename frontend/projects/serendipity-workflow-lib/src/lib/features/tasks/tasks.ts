@@ -8,13 +8,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { CommandBar, SnackBar } from 'serendipity-components-lib';
 import { TaskList } from 'serendipity-flowable-lib';
 import { LoggerService } from 'serendipity-utils-lib';
 
 import { ACTIVITIES } from './constants';
-import {takeUntil} from 'rxjs/operators';
+
 
 const noop = (): any => undefined;
 

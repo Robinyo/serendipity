@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { AuthService } from 'serendipity-auth-lib';
 import { LoggerService } from 'serendipity-utils-lib';
@@ -30,6 +31,8 @@ export abstract class Item<T> implements OnInit, AfterViewInit, OnDestroy {
   protected router: Router = inject(Router);
   protected snackBar: MatSnackBar = inject(MatSnackBar);
   protected subscriptions: Subscription[] = [];
+
+  private destroyed: Subject<void> = new Subject<void>();
 
   protected constructor() {}
 
@@ -88,11 +91,18 @@ export abstract class Item<T> implements OnInit, AfterViewInit, OnDestroy {
 
     this.subscribe();
 
-    // React to changes to the viewport
+    // A layout breakpoint is viewport size threshold at which a layout shift can occur.
+    // The viewport size ranges between breakpoints correspond to different standard screen sizes.
+    // See: https://material.angular.dev/cdk/layout/overview
 
-    this.breakpointObserver.observe([ Breakpoints.HandsetPortrait ]).subscribe(result => {
-      this.handsetPortrait = result.matches;
-    });
+    this.breakpointObserver.observe([ Breakpoints.HandsetPortrait ])
+      .pipe(takeUntil(this.destroyed))
+      .subscribe(result => {
+
+        this.handsetPortrait = result.matches;
+        this.detectChanges();
+
+      });
 
   }
 
@@ -109,6 +119,9 @@ export abstract class Item<T> implements OnInit, AfterViewInit, OnDestroy {
     this.logger.info('Item Component: ngOnDestroy()');
 
     this.unsubscribe();
+
+    this.destroyed.next();
+    this.destroyed.complete();
   }
 
   //
