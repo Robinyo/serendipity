@@ -1,1 +1,100 @@
-<p>task works!</p>
+<!-- Task Header -->
+
+@if (task) {
+
+  <span class="md-font-headline-lg" aria-label="Task Name">
+    {{ task.name }}
+  </span>
+
+  @if (process) {
+
+    <ng-container>
+      <mat-icon class="material-symbols-outlined"> arrow_forward </mat-icon>
+      <span class="md-font-headline-lg" aria-label="Process Name">
+        {{ process.name }}
+      </span>
+    </ng-container>
+
+  }
+
+}
+
+<!-- Action Bar -->
+
+<action-bar>
+
+  <span class="md-bar-spacer"></span>
+
+  <button matButton="filled"
+          aria-label="Claim button"
+          class="md-command-bar-button"
+          (click)="onClaim()"
+          [disabled]="true">
+    CLAIM
+  </button>
+
+  <button matButton="filled"
+          aria-label="Claim button"
+          class="md-command-bar-button"
+          (click)="onComplete()"
+          [disabled]="true">
+    COMPLETE
+  </button>
+
+</action-bar>
+
+<!-- Task Content -->
+
+<div class="md-tab-group-container">
+
+  <mat-tab-group (selectedTabChange)="onTabChanged($event)">
+
+    <mat-tab>
+
+      <ng-template mat-tab-label>
+        <mat-icon class="material-symbols-outlined"> assignment_ind </mat-icon>
+        <span>
+          Task
+        </span>
+      </ng-template>
+
+      @if (formGroup) {
+
+        <dynamic-form autocomplete="off"
+                      className="md-grid-3-column-layout-container"
+                      [formGroup]="formGroup"
+                      [model]="formModel">
+        </dynamic-form>
+
+        <!--
+        <p>
+          Form Value: {{ generalInformationGroup.value | json }}
+        </p>
+        -->
+
+      }
+
+    </mat-tab>
+
+    <mat-tab>
+
+      <ng-template mat-tab-label>
+        <mat-icon class="material-symbols-outlined"> people_outline </mat-icon>
+        <span>
+          People
+        </span>
+      </ng-template>
+
+    </mat-tab>
+
+
+
+
+  </mat-tab-group>
+
+</div>
+
+
+
+
+

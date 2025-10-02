@@ -2,21 +2,25 @@ import { Component } from '@angular/core';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 
 @Component({
-  selector: 'command-bar',
+  selector: 'action-bar',
   imports: [
     MatToolbar,
     MatToolbarRow
   ],
   template: `
-    <mat-toolbar class="command-bar">
+    <mat-toolbar class="action-bar">
 
-      <ng-content> </ng-content>
+      <mat-toolbar-row>
+
+        <ng-content> </ng-content>
+
+      </mat-toolbar-row>
 
     </mat-toolbar>
   `,
   standalone: true,
-  styleUrl: './command-bar.scss'
+  styleUrl: './action-bar.scss'
 })
-export class CommandBar {
+export class ActionBar {
 
 }

@@ -90,7 +90,7 @@
 
 // Button
 
-.md-button, .md-command-bar-button, .md-sidenav, .md-nav-list, .md-nav-list-item {
+.md-button, .md-action-bar-button, .md-command-bar-button, .md-sidenav, .md-nav-list, .md-nav-list-item {
   border-radius: 3px !important;
   // border-radius: var(--mat-list-active-indicator-shape, var(--mat-sys-corner-full));
   // --mat-focus-indicator-border-radius: var(--mat-list-active-indicator-shape, var(--mat-sys-corner-full));
@@ -102,10 +102,19 @@
   margin-top: variables.$card-content-margin-top-desktop
 }
 
+// Action Bar
+
+.md-bar-spacer {
+  flex: 1 1 auto;
+}
+
+.md-action-bar-button {
+  margin-right: variables.$component-margin-desktop;
+}
+
 // Command Bar
 
 .md-command-bar-button {
-  // border-radius: 3px !important;
   margin-right: variables.$component-margin-desktop;
 }
 

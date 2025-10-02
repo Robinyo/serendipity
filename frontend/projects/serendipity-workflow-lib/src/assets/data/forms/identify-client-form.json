@@ -4,7 +4,7 @@
     "type": "input",
     "id": "givenName",
     "label": "Given Name",
-    "appearance": "fill",
+    "appearance": "outline",
     "autocomplete": "given-name",
 
     "validators": [
@@ -24,7 +24,7 @@
     "type": "input",
     "id": "middleName",
     "label": "Middle Name",
-    "appearance": "fill",
+    "appearance": "outline",
     "autocomplete": "additional-name",
 
     "gridItemClass": "grid-column-2",
@@ -35,7 +35,7 @@
     "type": "input",
     "id": "familyName",
     "label": "Family Name",
-    "appearance": "fill",
+    "appearance": "outline",
     "autocomplete": "family-name",
 
     "validators": [
@@ -55,7 +55,7 @@
     "type": "date",
     "id": "dateOfBirth",
     "label": "Date of Birth",
-    "appearance": "fill",
+    "appearance": "outline",
 
     "validators": [
       {
@@ -74,7 +74,7 @@
     "type": "input",
     "id": "placeOfBirth",
     "label": "Place of Birth",
-    "appearance": "fill",
+    "appearance": "outline",
 
     "validators": [
       {
@@ -93,7 +93,7 @@
     "type": "input",
     "id": "countryOfBirth",
     "label": "Country of Birth",
-    "appearance": "fill",
+    "appearance": "outline",
 
     "validators": [
       {

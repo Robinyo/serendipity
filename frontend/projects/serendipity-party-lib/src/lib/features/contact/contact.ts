@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { Observable, Subscription } from 'rxjs';
 
@@ -52,7 +52,6 @@ const ELECTORAL_DIVISION_TAB_INDEX = 3;
     MatCardModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatTabGroup,
     MatTabsModule
   ],
   templateUrl: './contact.html',
@@ -81,6 +80,8 @@ export class Contact extends Item<ContactModel> {
   constructor() {
 
     super();
+
+    this.logger.info('Contact Component: constructor()');
 
     // this.route = inject(ActivatedRoute);
 

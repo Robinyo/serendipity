@@ -1,0 +1,7 @@
+@use '../../../variables';
+
+.action-bar {
+  background: whitesmoke;
+  height: variables.$action-bar-height-desktop !important;
+  min-height: variables.$action-bar-height-desktop !important;
+}

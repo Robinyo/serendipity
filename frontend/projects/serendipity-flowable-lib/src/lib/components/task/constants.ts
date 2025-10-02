@@ -1,0 +1,7 @@
+export enum TABS {
+  TASK ,
+  PEOPLE,
+  SUBTASKS,
+  DOCUMENTS,
+  HISTORY
+}

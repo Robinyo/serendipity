@@ -62,7 +62,7 @@ export class ProcessList extends List<ProcessModel> {
 
     this.logger.info('Process List Component: subscribe()');
 
-    // this.isLoading = true;
+    this.isLoading = true;
 
     this.subscription = this.processesService.find().subscribe(
 
@@ -94,6 +94,8 @@ export class ProcessList extends List<ProcessModel> {
 
       },
       (error) => {
+
+        this.isLoading = false;
 
         this.logger.error('Process List Component: subscribe() error handler');
 

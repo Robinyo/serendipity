@@ -7,6 +7,7 @@ import { MatListModule } from '@angular/material/list';
 import { ActivityBar, List } from 'serendipity-components-lib';
 
 import { FilterRepresentationModel } from '../../models/filter';
+import { Task } from '../task/task';
 import { TasksService } from '../../services/tasks/tasks';
 import { TaskListFilter } from '../task-list-filter/task-list-filter';
 import { TaskCompleteEvent, TaskListModel, TaskModel } from '../../models/task-list';
@@ -17,6 +18,7 @@ import { TaskCompleteEvent, TaskListModel, TaskModel } from '../../models/task-l
     ActivityBar,
     MatIconModule,
     MatListModule,
+    Task,
     TaskListFilter
   ],
   template: `
@@ -52,6 +54,8 @@ import { TaskCompleteEvent, TaskListModel, TaskModel } from '../../models/task-l
       </div>
 
       <div class="task-container">
+
+        <workflow-task (completeEvent)="onCompleteEvent($event)" [task]="selectedItem"></workflow-task>
 
       </div>
 
@@ -91,7 +95,7 @@ export class TaskList extends List<TaskModel> {
 
     this.logger.info('Task List Component: subscribe()');
 
-    // this.isLoading = true;
+    this.isLoading = true;
 
     this.subscription = this.tasksService.find(this.getParams()).subscribe(
 
@@ -120,8 +124,14 @@ export class TaskList extends List<TaskModel> {
 
         // this.logger.info('items: ' + JSON.stringify(this.items, null, 2))
 
+        this.isLoading = false;
+
+        this.detectChanges();
+
       },
       (error) => {
+
+        this.isLoading = false;
 
         this.logger.error('Task List Component: subscribe() error handler');
 

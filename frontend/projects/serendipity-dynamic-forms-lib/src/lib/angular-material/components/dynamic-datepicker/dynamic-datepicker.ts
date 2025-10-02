@@ -1,6 +1,7 @@
 import { Component, HostBinding, inject, Input, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,6 +15,7 @@ import { DynamicFormControlModel } from '../../models/dynamic-form-control.model
   selector: 'dynamic-datepicker',
   imports: [
     MatDatepickerModule,
+    MatNativeDateModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
