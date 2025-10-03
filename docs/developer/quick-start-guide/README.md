@@ -90,5 +90,6 @@ docker compose down
 To remove the data volumes:
 
 ```
-docker volume rm backend_postgres_data
+docker volume rm backend_postgres_data && \
+docker volume rm backend_openldap_data
 ```
