@@ -1,0 +1,13 @@
+@use './variables';
+
+.task-name {
+  padding-left: variables.$padding-desktop;
+}
+
+.process-name {
+  // padding-left: variables.$padding-desktop;
+}
+
+.process-name-icon {
+  padding-left: variables.$padding-desktop;
+}

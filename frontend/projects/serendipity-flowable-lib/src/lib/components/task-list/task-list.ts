@@ -31,7 +31,7 @@ import {Subscription} from 'rxjs';
 
       <div class="task-list-container">
 
-        <mat-nav-list style="padding-top: 0">
+        <mat-nav-list class="task-list">
 
           @for (item of items; track item.id) {
 

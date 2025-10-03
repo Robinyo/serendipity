@@ -2,15 +2,15 @@
 
 @if (task) {
 
-  <span class="md-font-headline-lg" aria-label="Task Name">
-    {{ task.name }}
+  <span class="md-font-headline-md md-font-bold-weight task-name" aria-label="Task Name">
+    {{ task.name }} <br>
   </span>
 
   @if (process) {
 
     <ng-container>
-      <mat-icon class="material-symbols-outlined"> arrow_forward </mat-icon>
-      <span class="md-font-headline-lg" aria-label="Process Name">
+      <mat-icon class="material-symbols-outlined process-name-icon"> arrow_forward </mat-icon>
+      <span class="md-font-headline-sm process-name" aria-label="Process Name">
         {{ process.name }}
       </span>
     </ng-container>
@@ -27,15 +27,15 @@
 
   <button matButton="filled"
           aria-label="Claim button"
-          class="md-command-bar-button"
+          class="md-action-bar-button"
           (click)="onClaim()"
           [disabled]="true">
     CLAIM
   </button>
 
   <button matButton="filled"
-          aria-label="Claim button"
-          class="md-command-bar-button"
+          aria-label="Complete button"
+          class="md-action-bar-button"
           (click)="onComplete()"
           [disabled]="true">
     COMPLETE
@@ -45,7 +45,7 @@
 
 <!-- Task Content -->
 
-<div class="md-tab-group-container">
+<div>
 
   <mat-tab-group (selectedTabChange)="onTabChanged($event)">
 
@@ -60,17 +60,21 @@
 
       @if (formGroup) {
 
-        <dynamic-form autocomplete="off"
-                      className="md-grid-3-column-layout-container"
-                      [formGroup]="formGroup"
-                      [model]="formModel">
-        </dynamic-form>
+        <div class="md-task-container">
 
-        <!--
-        <p>
-          Form Value: {{ generalInformationGroup.value | json }}
-        </p>
-        -->
+          <dynamic-form autocomplete="off"
+                        className="md-grid-3-column-layout-container"
+                        [formGroup]="formGroup"
+                        [model]="formModel">
+          </dynamic-form>
+
+          <!--
+          <p>
+            Form Value: {{ formGroup.value | json }}
+          </p>
+          -->
+
+        </div>
 
       }
 

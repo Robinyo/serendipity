@@ -17,7 +17,7 @@
   column-gap: 32px;
   row-gap: 1em;
 
-  margin-top: variables.$component-margin-desktop;
+  // margin-top: variables.$component-margin-desktop;
 }
 
 .md-grid-3-column-layout-container {
@@ -40,6 +40,7 @@
 }
 
 .md-tab-group-container {
+  // top, right, bottom, left
   margin: 0 variables.$component-margin-desktop variables.$component-margin-desktop;
 }
 
@@ -47,10 +48,15 @@
   column-gap: variables.$column-gap-desktop;
   display: grid;
   grid-template-columns: variables.$task-list-width-desktop auto;
+
   margin-top: 0;
-  margin-left: variables.$margin-desktop;
-  margin-bottom: variables.$margin-desktop;
   margin-right: variables.$margin-desktop;
+  margin-bottom: variables.$margin-desktop;
+  margin-left: variables.$margin-desktop;
+}
+
+.md-task-container {
+  margin: variables.$component-margin-desktop variables.$component-margin-desktop variables.$component-margin-desktop variables.$component-margin-desktop;
 }
 
 // Leaflet use this class and doesn't seem to like var() ???
@@ -91,7 +97,7 @@
 }
 
 .md-action-bar-button {
-  margin-right: variables.$component-margin-desktop;
+  margin-left: variables.$component-margin-desktop;
 }
 
 // Button
@@ -115,7 +121,7 @@
 // Card
 
 .md-card-content {
-  margin-top: variables.$card-content-margin-top-desktop
+  // margin-top: variables.$card-content-margin-top-desktop
 }
 
 // Dialog
