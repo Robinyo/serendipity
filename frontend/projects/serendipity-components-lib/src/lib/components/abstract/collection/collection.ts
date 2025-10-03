@@ -18,6 +18,8 @@ import { ColumnDef } from '../../../models/column';
 
 import { ALL, ALPHABET, DEFAULT_FOOTER_COL_SPAN } from './constants';
 
+import { AbstractComponent } from '../component/component';
+
 const noop = (): any => undefined;
 
 export interface CollectionComponentConfig {
@@ -37,7 +39,7 @@ export interface CollectionComponentConfig {
 }
 
 @Directive()
-export abstract class Collection<T> implements AfterViewInit, OnDestroy {
+export abstract class Collection<T> extends AbstractComponent {
 
   @ViewChild(MatSort, {static: false})
   public sort: MatSort | undefined;
@@ -53,21 +55,16 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
   public displayedColumns: string[];
   public footerAllLabel = ALL;
   public footerColSpan = DEFAULT_FOOTER_COL_SPAN;
-  public isLoading: boolean = true;
   public pageNumber = 1;
   public selectedFooterItemId = ALL;
 
   protected authService: AuthService = inject(AuthService);
-  protected breakpointObserver: BreakpointObserver  = inject(BreakpointObserver);
-  protected changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   protected count = 0;
   protected configService = inject(ConfigService);
   protected dialogService: DialogService = inject(DialogService);
-  protected logger = inject(LoggerService);
   protected router = inject(Router);
   protected snackBar: MatSnackBar = inject(MatSnackBar);
   // protected sidenavService: SidenavService;
-  protected subscription: Subscription | undefined;
 
   protected filter = '';
   protected limit = 100;
@@ -77,9 +74,9 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
   protected desktopDeviceColumns: string[];
   protected mobileDeviceColumns: string[];
 
-  private destroyed: Subject<void> = new Subject<void>();
-
   protected constructor(config: CollectionComponentConfig) {
+
+    super();
 
     this.columnDefsFilename = config.columnDefsFilename;
     this.desktopDeviceColumns = config.desktopDeviceColumns;
@@ -102,7 +99,7 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
 
   }
 
-  public ngAfterViewInit(): void {
+  override ngAfterViewInit(): void {
 
     this.logger.info('Collection Component: ngAfterViewInit()');
 
@@ -116,62 +113,23 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
       .pipe(takeUntil(this.destroyed))
       .subscribe(result => {
 
-      if (result.matches) {
-        this.displayedColumns = this.mobileDeviceColumns;
-      } else {
-        this.displayedColumns = this.desktopDeviceColumns;
-      }
+        if (result.matches) {
+          this.displayedColumns = this.mobileDeviceColumns;
+        } else {
+          this.displayedColumns = this.desktopDeviceColumns;
+        }
 
-      if (this.footerColSpan != this.displayedColumns.length) {
-        this.footerColSpan = this.displayedColumns.length;
+        if (this.footerColSpan != this.displayedColumns.length) {
+          this.footerColSpan = this.displayedColumns.length;
+          // this.detectChanges();
+        }
+
+        this.handsetPortrait = result.matches;
         this.detectChanges();
-      }
 
-      this.logger.info('footerColSpan: ' + this.footerColSpan);
+        this.logger.info('footerColSpan: ' + this.footerColSpan);
 
     });
-
-  }
-
-  protected abstract subscribe(): void;
-
-  protected detectChanges() {
-
-    // The error "Expression has changed after it was checked" in Angular, specifically with an Angular Material
-    // table's dataSource, indicates that a binding expression's value changed during or immediately after
-    // Angular's change detection cycle, but before the view could be re-rendered to reflect this change.
-    // This error typically occurs in development mode, where Angular performs an extra check to ensure view stability.
-
-    if (isDevMode()) {
-      return this.changeDetector.detectChanges();
-    } else {
-      return noop;
-    }
-
-  }
-
-  protected unsubscribe(): void {
-
-    // this.logger.info('Collection Component: unsubscribe()');
-
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-
-  }
-
-  public refresh(): void {
-
-    this.logger.info('Collection Component: refresh()');
-
-    this.unsubscribe();
-    this.subscribe();
-  }
-
-  public ngOnDestroy(): void {
-
-    this.destroyed.next();
-    this.destroyed.complete();
 
   }
 
@@ -284,10 +242,6 @@ export abstract class Collection<T> implements AfterViewInit, OnDestroy {
   //
   // Misc
   //
-
-  public isHandsetPortrait() {
-    return this.displayedColumns === this.mobileDeviceColumns;
-  }
 
   public getFormattedCellValue(row: any, column: any) {
 

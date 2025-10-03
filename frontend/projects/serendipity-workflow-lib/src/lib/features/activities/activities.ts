@@ -8,6 +8,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 
+import { Subscription } from 'rxjs';
+
 import { FilterRepresentationModel, StartProcessDialog } from 'serendipity-flowable-lib';
 import { ActivityBar, CommandBar, Collection, CollectionFooter, SnackBar } from 'serendipity-components-lib';
 
@@ -56,7 +58,7 @@ export class Activities extends Collection<ActivityModel> {
       limit: 10
     });
 
-    this.logger.info('Activities Component');
+    this.logger.info('Activities Component: constructor()');
 
     this.columnDefs = this.route.snapshot.data['columnDefs'];
 
@@ -82,7 +84,10 @@ export class Activities extends Collection<ActivityModel> {
 
     this.isLoading = true;
 
-    this.subscription = this.entityService.find(this.getParams()).subscribe(
+    let subscription: Subscription = new Subscription();
+    this.subscriptions.push(subscription);
+
+    subscription = this.entityService.find(this.getParams()).subscribe(
 
       (response: any) => {
 

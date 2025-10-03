@@ -16,6 +16,7 @@ import { ContactsService } from '../../services/contacts/contacts';
 import { ContactModel } from '../../models/contact';
 
 import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'contacts',
@@ -65,7 +66,10 @@ export class Contacts extends Collection<ContactModel> {
 
     this.isLoading = true;
 
-    this.subscription = this.entityService.find(this.filter, this.offset, this.limit).subscribe(
+    let subscription: Subscription = new Subscription();
+    this.subscriptions.push(subscription);
+
+    subscription = this.entityService.find(this.filter, this.offset, this.limit).subscribe(
 
       (response: any) => {
 

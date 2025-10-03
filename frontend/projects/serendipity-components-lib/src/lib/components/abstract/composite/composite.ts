@@ -8,10 +8,7 @@ import { AbstractComponent } from '../component/component';
 const noop = (): any => undefined;
 
 @Directive()
-export abstract class List<T> extends AbstractComponent {
-
-  public items!: Array<T>;
-  public selectedItem!: T;
+export abstract class Composite extends AbstractComponent {
 
   protected authService: AuthService = inject(AuthService);
   protected dialogService: DialogService = inject(DialogService);
@@ -19,12 +16,6 @@ export abstract class List<T> extends AbstractComponent {
   // protected router: Router = inject(Router);
   // protected snackBar: MatSnackBar = inject(MatSnackBar);
 
-  //
-  // Command events
-  //
-
-  public onSelect(item: T): void {
-    this.selectedItem = item;
-  }
+  protected subscribe() {}
 
 }

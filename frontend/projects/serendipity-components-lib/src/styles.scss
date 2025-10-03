@@ -4,7 +4,6 @@
 
 // Using var() stops the floating footer from working ???
 
-
 .md-content-container {
   background: whitesmoke;
   // $navigation-bar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop
@@ -81,26 +80,9 @@
   }
 }
 
-// Table
-
-.md-table-header-id-column {
-  float: right;
-  margin: 0 12px 0 12px;
-}
-
-// Button
-
-.md-button, .md-action-bar-button, .md-command-bar-button, .md-sidenav, .md-nav-list, .md-nav-list-item {
-  border-radius: 3px !important;
-  // border-radius: var(--mat-list-active-indicator-shape, var(--mat-sys-corner-full));
-  // --mat-focus-indicator-border-radius: var(--mat-list-active-indicator-shape, var(--mat-sys-corner-full));
-}
-
-// Card
-
-.md-card-content {
-  margin-top: variables.$card-content-margin-top-desktop
-}
+//
+//
+//
 
 // Action Bar
 
@@ -110,6 +92,14 @@
 
 .md-action-bar-button {
   margin-right: variables.$component-margin-desktop;
+}
+
+// Button
+
+.md-button, .md-action-bar-button, .md-command-bar-button, .md-sidenav, .md-nav-list, .md-nav-list-item {
+  border-radius: 3px !important;
+  // border-radius: var(--mat-list-active-indicator-shape, var(--mat-sys-corner-full));
+  // --mat-focus-indicator-border-radius: var(--mat-list-active-indicator-shape, var(--mat-sys-corner-full));
 }
 
 // Command Bar
@@ -122,6 +112,12 @@
   flex: 1 1 auto;
 }
 
+// Card
+
+.md-card-content {
+  margin-top: variables.$card-content-margin-top-desktop
+}
+
 // Dialog
 
 /*
@@ -131,7 +127,6 @@
   }
 }
 */
-
 
 // Sidenav
 
@@ -149,6 +144,19 @@
 
 .md-snack-bar {
   text-align: center;
+}
+
+// Tab
+
+.md-tab-icon {
+  margin-right: 8px;
+}
+
+// Table
+
+.md-table-header-id-column {
+  float: right;
+  margin: 0 12px 0 12px;
 }
 
 //

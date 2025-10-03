@@ -7,6 +7,7 @@ import { List } from 'serendipity-components-lib';
 
 import { ProcessesService } from '../../services/processes/processes';
 import { ProcessListModel, ProcessModel } from '../../models/process-list';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'workflow-process-list',
@@ -64,7 +65,10 @@ export class ProcessList extends List<ProcessModel> {
 
     this.isLoading = true;
 
-    this.subscription = this.processesService.find().subscribe(
+    let subscription: Subscription = new Subscription();
+    this.subscriptions.push(subscription);
+
+    subscription = this.processesService.find().subscribe(
 
       (response: ProcessListModel) => {
 
@@ -90,7 +94,11 @@ export class ProcessList extends List<ProcessModel> {
 
         }
 
-        this.logger.info('items: ' + JSON.stringify(this.items, null, 2))
+        // this.logger.info('items: ' + JSON.stringify(this.items, null, 2))
+
+        this.isLoading = false;
+
+        this.detectChanges();
 
       },
       (error) => {

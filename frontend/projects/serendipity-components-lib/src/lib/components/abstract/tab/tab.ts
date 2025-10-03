@@ -17,6 +17,9 @@ export abstract class Tab<T> {
   protected logger: LoggerService = inject(LoggerService);
   protected snackBar: MatSnackBar = inject(MatSnackBar);
 
+  // protected route: ActivatedRoute = inject(ActivatedRoute);
+  // protected router: Router = inject(Router);
+
   protected constructor() {}
 
 }

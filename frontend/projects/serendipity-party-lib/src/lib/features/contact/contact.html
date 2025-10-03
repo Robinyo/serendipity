@@ -125,7 +125,12 @@
 
       <mat-tab-group (selectedTabChange)="onTabChanged($event)">
 
-        <mat-tab label="Summary">
+        <mat-tab>
+
+          <ng-template mat-tab-label>
+            <mat-icon class="material-symbols-outlined md-tab-icon"> person </mat-icon>
+            <span> Summary </span>
+          </ng-template>
 
           <div class="md-grid-2-column-layout-container">
 
@@ -180,7 +185,12 @@
 
         </mat-tab>
 
-        <mat-tab label="Details">
+        <mat-tab>
+
+          <ng-template mat-tab-label>
+            <mat-icon class="material-symbols-outlined md-tab-icon"> list </mat-icon>
+            <span> Details </span>
+          </ng-template>
 
           <ng-template matTabContent>
 
@@ -192,7 +202,12 @@
 
         </mat-tab>
 
-        <mat-tab label="Related">
+        <mat-tab>
+
+          <ng-template mat-tab-label>
+            <mat-icon class="material-symbols-outlined md-tab-icon"> flowchart </mat-icon>
+            <span> Related </span>
+          </ng-template>
 
           <ng-template matTabContent>
 
@@ -209,7 +224,12 @@
 
         @if (item && item.electorate) {
 
-          <mat-tab label="Electoral Division">
+          <mat-tab>
+
+            <ng-template mat-tab-label>
+              <mat-icon class="material-symbols-outlined md-tab-icon"> location_on </mat-icon>
+              <span> Electoral Division </span>
+            </ng-template>
 
             <ng-template matTabContent>
 
@@ -222,7 +242,6 @@
             </ng-template>
 
           </mat-tab>
-
 
         }
 

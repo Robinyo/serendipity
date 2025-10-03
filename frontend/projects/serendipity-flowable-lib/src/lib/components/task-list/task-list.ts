@@ -11,6 +11,7 @@ import { Task } from '../task/task';
 import { TasksService } from '../../services/tasks/tasks';
 import { TaskListFilter } from '../task-list-filter/task-list-filter';
 import { TaskCompleteEvent, TaskListModel, TaskModel } from '../../models/task-list';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'workflow-task-list',
@@ -97,7 +98,10 @@ export class TaskList extends List<TaskModel> {
 
     this.isLoading = true;
 
-    this.subscription = this.tasksService.find(this.getParams()).subscribe(
+    let subscription: Subscription = new Subscription();
+    this.subscriptions.push(subscription);
+
+    subscription = this.tasksService.find(this.getParams()).subscribe(
 
       (response: TaskListModel) => {
 

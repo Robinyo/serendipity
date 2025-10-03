@@ -4,6 +4,7 @@
 
 export * from './lib/components/abstract/collection/collection';
 export * from './lib/components/abstract/collection/footer';
+export * from './lib/components/abstract/composite/composite';
 export * from './lib/components/abstract/form/form';
 export * from './lib/components/abstract/list/list';
 export * from './lib/components/abstract/collection/paginated-footer';
