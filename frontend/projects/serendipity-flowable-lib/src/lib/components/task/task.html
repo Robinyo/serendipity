@@ -2,7 +2,7 @@
 
 @if (task) {
 
-  <span class="md-font-headline-md md-font-bold-weight task-name" aria-label="Task Name">
+  <span class="md-font-headline-md task-name" aria-label="Task Name">
     {{ task.name }} <br>
   </span>
 
@@ -28,8 +28,7 @@
   <button matButton="filled"
           aria-label="Claim button"
           class="md-action-bar-button"
-          (click)="onClaim()"
-          [disabled]="true">
+          (click)="onClaim()">
     CLAIM
   </button>
 
@@ -37,7 +36,7 @@
           aria-label="Complete button"
           class="md-action-bar-button"
           (click)="onComplete()"
-          [disabled]="true">
+          [disabled]="canClaim() || !isValid()">
     COMPLETE
   </button>
 
@@ -58,7 +57,7 @@
         </span>
       </ng-template>
 
-      @if (formGroup) {
+      @if (formModel && formGroup) {
 
         <div class="md-task-container">
 
@@ -89,6 +88,34 @@
         </span>
       </ng-template>
 
+      <ng-container>
+        <div>
+
+          <mat-list class="list">
+
+              @for (role of roles; track $index) {
+
+                <mat-list-item>
+
+                  <mat-icon class="material-symbols-outlined"> person </mat-icon>
+
+                  <p>
+                    {{role.user}}
+                  </p>
+
+                  <p>
+                    {{role.type}}
+                  </p>
+
+                </mat-list-item>
+
+              }
+
+          </mat-list>
+
+        </div>
+      </ng-container>
+
     </mat-tab>
 
     <mat-tab>
@@ -99,6 +126,24 @@
           Subtasks
         </span>
       </ng-template>
+
+      <ng-container>
+        <div>
+
+          <mat-list class="list">
+
+            <mat-list-item>
+
+              <p>
+                No subtasks found
+              </p>
+
+            </mat-list-item>
+
+          </mat-list>
+
+        </div>
+      </ng-container>
 
     </mat-tab>
 
@@ -111,6 +156,24 @@
         </span>
       </ng-template>
 
+      <ng-container>
+        <div>
+
+          <mat-list class="list">
+
+            <mat-list-item>
+
+              <p>
+                No attachments found
+              </p>
+
+            </mat-list-item>
+
+          </mat-list>
+
+        </div>
+      </ng-container>
+
     </mat-tab>
 
     <mat-tab>
@@ -122,8 +185,11 @@
         </span>
       </ng-template>
 
-    </mat-tab>
+      <div class="diagram-container">
+        <img #processDiagram class="diagram" alt="Process Diagram">
+      </div>
 
+    </mat-tab>
 
   </mat-tab-group>
 

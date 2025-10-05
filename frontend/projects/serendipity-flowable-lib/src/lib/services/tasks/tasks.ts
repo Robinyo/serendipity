@@ -7,7 +7,7 @@ import { tap } from 'rxjs/operators';
 import { CollectionService } from '../collection/collection';
 
 import { TaskListModel } from '../../models/task-list';
-import { TaskActionRequest } from '../../models/task-action';
+import { TaskActionRequestModel } from '../../models/task-action';
 
 import { HTTP_SERVER_ERROR_CONNECTION_REFUSED, TASKS, TASKS_WITHOUT_A_TRAILING_SLASH } from './constants';
 
@@ -52,7 +52,7 @@ export class TasksService extends CollectionService {
 
   }
 
-  public async completeSimpleTask(id: string, request: TaskActionRequest): Promise<any> {
+  public async completeSimpleTask(id: string, request: TaskActionRequestModel): Promise<any> {
 
     this.logger.info('TasksService: completeSimpleTask()');
 
@@ -78,7 +78,7 @@ export class TasksService extends CollectionService {
 
   }
 
-  public async completeTask(id: string, request: TaskActionRequest): Promise<any> {
+  public async completeTask(id: string, request: TaskActionRequestModel): Promise<any> {
 
     this.logger.info('TasksService: completeTask()');
 

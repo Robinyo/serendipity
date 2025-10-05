@@ -1,5 +1,5 @@
-export enum TABS {
-  TASK ,
+export enum Tab {
+  TASK,
   PEOPLE,
   SUBTASKS,
   DOCUMENTS,

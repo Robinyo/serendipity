@@ -1,16 +1,13 @@
-// tslint:disable-next-line:max-line-length
-// https://github.com/flowable/flowable-engine/blob/master/modules/flowable-rest/src/main/java/org/flowable/rest/service/api/runtime/task/TaskActionRequest.java
+export enum TaskAction {
 
-export enum Action {
-
-  complete = 'complete',
-  claim = 'claim',
-  delegate = 'delegate',
-  resolve = 'resolve'
+  COMPLETE = 'complete',
+  CLAIM = 'claim',
+  DELEGATE = 'delegate',
+  RESOLVE = 'resolve'
 
 }
 
-export interface TaskActionRequest {
+export interface TaskActionRequestModel {
 
   action?: string;
   assignee?: string;
@@ -20,3 +17,5 @@ export interface TaskActionRequest {
   transientVariables?: any[];
 
 }
+
+// https://github.com/flowable/flowable-engine/blob/master/modules/flowable-rest/src/main/java/org/flowable/rest/service/api/runtime/task/TaskActionRequest.java

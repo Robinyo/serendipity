@@ -56,7 +56,10 @@
 }
 
 .md-task-container {
-  margin: variables.$component-margin-desktop variables.$component-margin-desktop variables.$component-margin-desktop variables.$component-margin-desktop;
+  margin-top: variables.$margin-top-desktop;
+  margin-right: variables.$margin-desktop;
+  margin-bottom: variables.$margin-desktop;
+  margin-left: variables.$margin-desktop;
 }
 
 // Leaflet use this class and doesn't seem to like var() ???

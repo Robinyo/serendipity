@@ -4,6 +4,8 @@ import { HttpParams } from '@angular/common/http';
 import { Observable} from 'rxjs';
 import { tap } from 'rxjs/operators';
 
+import { HttpOptions } from 'serendipity-utils-lib';
+
 import { CollectionService } from '../collection/collection';
 
 import {
@@ -72,12 +74,18 @@ export class ProcessesService extends CollectionService {
 
     this.logger.info('url: ' + url);
 
-    return this.httpClient.get(url, { responseType: 'blob' }).pipe(
+    const defaultOptions: HttpOptions = this.getDefaultHttpGetOptions();
+
+    return this.httpClient.get(url, {
+      headers: defaultOptions.headers,
+      params: defaultOptions.params,
+      responseType: 'blob'
+    }).pipe(
 
       tap((response: any) => {
         // tap(() => {
 
-        this.logger.info('ProcessesService: getDiagram() completed');
+        this.logger.info('Processes Service: getDiagram() completed');
 
       })).toPromise().catch(error => {
 
@@ -93,7 +101,7 @@ export class ProcessesService extends CollectionService {
 
   public startProcess(request: any): Promise<any> {
 
-    this.logger.info('ProcessesService: startProcess()');
+    this.logger.info('Processes Service: startProcess()');
 
     // this.url = this.getUrlPrefix() + '/process-api/runtime/process-instances';
     const url = this.getUrlPrefix() + PROCESS_INSTANCES_WITHOUT_A_TRAILING_SLASH;
@@ -107,7 +115,7 @@ export class ProcessesService extends CollectionService {
 
         this.logger.info('Process Instance: ' + JSON.stringify(response, null, 2) + '\n');
 
-        this.logger.info('ProcessesService: startProcess() completed');
+        this.logger.info('Processes Service: startProcess() completed');
 
       })).toPromise().catch(error => {
 

@@ -29,7 +29,7 @@ export class CollectionService extends AbstractCollectionService {
         .set('Accept', 'application/json')
         .set('Authorization', 'Basic ' + btoa('flowable:Password12'));
 
-      this.logger.info('baseHeaders: ' + JSON.stringify(baseHeaders, null, 2));
+      // this.logger.info('baseHeaders: ' + JSON.stringify(baseHeaders, null, 2));
 
       this.httpOptions = {
         headers: baseHeaders,
@@ -64,7 +64,7 @@ export class CollectionService extends AbstractCollectionService {
         .set('Content-Type', 'application/json')
         .set('Authorization', 'Basic ' + btoa('flowable:Password12'));
 
-      this.logger.info('baseHeaders: ' + JSON.stringify(baseHeaders, null, 2));
+      // this.logger.info('baseHeaders: ' + JSON.stringify(baseHeaders, null, 2));
 
       this.httpOptions = {
         headers: baseHeaders,

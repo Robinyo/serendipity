@@ -4,7 +4,7 @@ export interface StartProcessModel {
   processDefinitionId?: string;
   processDefinitionKey?: string;
   businessKey?: string;
-  variables?: any;
+  variables?: any[];
 
 }
 
@@ -45,7 +45,7 @@ export interface ProcessModel {
   processInstanceUrl?: string;
   processDefinitionId?: string;
   processDefinitionUrl?: string;
-  variables?: any;
+  variables?: any[];
 
 }
 
