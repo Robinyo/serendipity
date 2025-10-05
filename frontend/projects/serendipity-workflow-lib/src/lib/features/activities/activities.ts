@@ -1,4 +1,5 @@
 import { inject, Component } from '@angular/core';
+import { HttpParams } from '@angular/common/http';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -70,7 +71,8 @@ export class Activities extends Collection<ActivityModel> {
       name : 'I am one of the candidates',
       filter : {
         // name: 'candidateUser',
-        name: 'candidate',
+        // name: 'candidate',
+        name: 'initiator',
         assignment: this.currentUser.username
       },
       icon : 'assignment_ind'
@@ -91,7 +93,7 @@ export class Activities extends Collection<ActivityModel> {
 
       (response: any) => {
 
-        this.logger.info('ActivitiesComponent: subscribe() success handler');
+        this.logger.info('Activities Component: subscribe() success handler');
 
         if (response.data && response.data.length) {
           this.count = response.data.length;
@@ -127,17 +129,8 @@ export class Activities extends Collection<ActivityModel> {
   }
 
   private getParams() {
-    // return new HttpParams();
-    return undefined;
-  }
-
-  /*
-
-  private getParams() {
 
     this.logger.info('Activities Component: getParams()');
-
-    // this.logger.info('filter: ' +  JSON.stringify(this.filter, null, 2));
 
     const excludeSubTasks = 'true';
     const order = 'desc';            // 'asc | desc
@@ -164,12 +157,11 @@ export class Activities extends Collection<ActivityModel> {
 
     }
 
-    // this.logger.info('params: ' +  JSON.stringify(params, null, 2));
+    this.logger.info('params: ' +  JSON.stringify(params, null, 2));
 
     return params;
-  }
 
-  */
+  }
 
   //
   // Command Bar events

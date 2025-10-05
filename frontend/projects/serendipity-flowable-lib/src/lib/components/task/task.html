@@ -46,7 +46,9 @@
 
 <div>
 
-  <mat-tab-group (selectedTabChange)="onTabChanged($event)">
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start"
+                 [(selectedIndex)]="selectedTabIndex"
+                 (selectedTabChange)="onTabChanged($event)">
 
     <mat-tab>
 

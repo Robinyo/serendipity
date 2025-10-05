@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { forkJoin, Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, forkJoin } from 'rxjs';
 
 import { ActionBar, Form } from 'serendipity-components-lib';
 import { DynamicForm, DynamicFormModel, DynamicFormService } from 'serendipity-dynamic-forms-lib';
@@ -80,8 +80,9 @@ export class Task extends Form implements OnChanges {
     this.unsubscribe();
 
     // @ts-ignore
+    this.process = null;
+    // @ts-ignore
     this.formModel = null;
-
     // @ts-ignore
     this.formGroup = null;
 
@@ -95,26 +96,31 @@ export class Task extends Form implements OnChanges {
 
     this.isLoading = true;
 
-    if (this.task && this.task.formKey) {
+    if (this.task && this.task.processInstanceId && this.task.formKey) {
 
-      this.logger.info('formKey: ' + this.task.formKey);
+      // @ts-ignore
+      const processModel = this.processesService.findById(this.task.processInstanceId);
 
-      let formModelSubscription: Subscription = new Subscription();
-      this.subscriptions.push(formModelSubscription);
+      // @ts-ignore
+      const formModel = this.dynamicFormService.getFormMetadata(this.task.formKey);
 
-      formModelSubscription = this.dynamicFormService.getFormMetadata(this.task.formKey).subscribe(response => {
+      forkJoin({
+        processModel: processModel,
+        formModel: formModel
+      }).subscribe((response: any) => {
 
-        this.formModel = response;
+        this.process = response.processModel;
+        this.formModel = response.formModel;
 
-        // this.logger.info('formModel: ' + JSON.stringify(this.formModel, null, 2))
-
+        // @ts-ignore
         this.formGroup = this.dynamicFormService.createGroup(this.formModel);
 
+        // this.logger.info('process: ' + JSON.stringify(this.process, null, 2))
         // this.logger.info('formModel: ' + JSON.stringify(this.formModel, null, 2))
 
-        this.isLoading = true;
+        this.isLoading = false;
 
-        this.detectChanges()
+        this.detectChanges();
 
       });
 
@@ -285,11 +291,11 @@ export class Task extends Form implements OnChanges {
 
     this.logger.info('Task Component: onTabChanged()');
 
-    const clickedIndex = $event.index;
+    this.selectedTabIndex = $event.index;
 
-    this.logger.info('clickedIndex: ' + clickedIndex);
+    this.logger.info('selectedTabIndex: ' + this.selectedTabIndex);
 
-    switch (clickedIndex) {
+    switch (this.selectedTabIndex) {
 
       case Tab.PEOPLE:
 
@@ -388,6 +394,39 @@ export class Task extends Form implements OnChanges {
         this.isLoading = false;
 
         this.detectChanges();
+
+      });
+
+    }
+
+  }
+
+  override subscribe(): void {
+
+    this.logger.info('Task Component: subscribe()');
+
+    this.isLoading = true;
+
+    if (this.task && this.task.formKey) {
+
+      this.logger.info('formKey: ' + this.task.formKey);
+
+      let formModelSubscription: Subscription = new Subscription();
+      this.subscriptions.push(formModelSubscription);
+
+      formModelSubscription = this.dynamicFormService.getFormMetadata(this.task.formKey).subscribe(response => {
+
+        this.formModel = response;
+
+        // this.logger.info('formModel: ' + JSON.stringify(this.formModel, null, 2))
+
+        this.formGroup = this.dynamicFormService.createGroup(this.formModel);
+
+        // this.logger.info('formGroup: ' + JSON.stringify(this.formGroup, null, 2))
+
+        this.isLoading = false;
+
+        this.detectChanges()
 
       });
 

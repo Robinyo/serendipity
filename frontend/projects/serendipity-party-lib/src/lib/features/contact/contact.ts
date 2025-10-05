@@ -26,7 +26,7 @@ import { DialogResult } from "../../models/dialog";
 import { ElectoralDivisionModel } from '../../models/electoral-division';
 import { RoleModel } from '../../models/role';
 
-import { CONTACT_WIZARD, CONTACTS } from './constants';
+import { CONTACT_WIZARD, CONTACTS, Tab } from './constants';
 
 class LeafletControlLayersConfig {
   baseLayers: { [name: string]: Layer } = {};
@@ -38,7 +38,6 @@ class MapLayersControl extends LeafletControlLayersConfig {}
 const DEFAULT_ZOOM = 13;
 const DEFAULT_LATITUDE = -32.841;
 const DEFAULT_LONGITUDE = 151.753;
-const ELECTORAL_DIVISION_TAB_INDEX = 3;
 
 @Component({
   selector: 'party-contact',
@@ -59,6 +58,8 @@ const ELECTORAL_DIVISION_TAB_INDEX = 3;
   styleUrls: ['./contact.scss']
 })
 export class Contact extends Item<ContactModel> {
+
+  public selectedTabIndex = 0;
 
   public generalInformationModel!: DynamicFormModel;
   public generalInformationGroup!: FormGroup;
@@ -546,11 +547,11 @@ export class Contact extends Item<ContactModel> {
 
     this.logger.info('ContactComponent: onTabChanged()');
 
-    const clickedIndex = $event.index;
+    this.selectedTabIndex = $event.index;
 
-    this.logger.info('clickedIndex: ' + clickedIndex);
+    this.logger.info('selectedTabIndex: ' + this.selectedTabIndex);
 
-    if (clickedIndex === ELECTORAL_DIVISION_TAB_INDEX && this.item !== undefined && this.item.electorate) {
+    if (this.selectedTabIndex === Tab.ELECTORAL_DIVISION && this.item !== undefined && this.item.electorate) {
 
       let electoralDivisionSubscription: Subscription = new Subscription();
       this.subscriptions.push(electoralDivisionSubscription);

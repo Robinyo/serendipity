@@ -7,7 +7,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { CommandBar, Composite, SnackBar } from 'serendipity-components-lib';
-import { TaskList } from 'serendipity-flowable-lib';
+import { TaskList, StartProcessDialog } from 'serendipity-flowable-lib';
 
 import { ACTIVITIES } from './constants';
 
@@ -70,7 +70,17 @@ export class Tasks extends Composite {
 
   public onTask() {
 
-    this.logger.info('Tasks Component: onTask()');
+    // this.logger.info('Activities Component: onTask()');
+
+    const dialogRef =  this.dialogService.open(StartProcessDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      if (result) {
+        super.refresh();
+      }
+
+    });
 
   }
 
