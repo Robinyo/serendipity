@@ -105,7 +105,7 @@ Accounts
   <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/accounts.png">
 </p>
 
-Contacts - Desktop
+Contacts
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/contacts.png">
@@ -122,6 +122,12 @@ Contact
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/contact.png">
+</p>
+
+Activities (My Work Items)
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/activities.png">
 </p>
 
 ### Workflow (BPMN), Decision Management (DMN) and Case Management (CMMN)
