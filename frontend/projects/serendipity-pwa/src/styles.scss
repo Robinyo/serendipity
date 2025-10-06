@@ -1,0 +1,166 @@
+@use '@angular/material' as mat;
+
+html {
+
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Open Sans,
+    density: 0,
+  ));
+
+}
+
+body {
+
+  font-family: 'Open Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+
+  margin: 0;
+
+  // https://material.angular.dev/guide/theming#typography
+  // You can use the following styles to apply the theme’s surface background and on-surface text colors as a default
+  // across your application.
+
+  // background: var(--mat-sys-surface);
+  // color: var(--mat-sys-on-surface);
+
+}
+
+// Typography
+// There are five categories of font types defined by Material Design: body, display, headline, label, and title.
+// Each category has three sizes: small, medium, and large.
+// See: https://m3.material.io/styles/typography/applying-type
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* You can add global styles to this file, and also import other style files. */
+
+// Rules for working with Material Icons.
+
+// Rules for sizing the icon.
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+// Rules for using icons as black on a light background.
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+// Rules for using icons as white on a dark background.
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+:root {
+
+  @include mat.button-overrides((
+    filled-container-color: black
+  ));
+
+  @include mat.card-overrides((
+    filled-container-color: white
+  ));
+
+  @include mat.dialog-overrides((
+    container-shape: rectangle,
+  ));
+
+  @include mat.fab-overrides((
+    container-color: orange,
+    foreground-color: white
+  ));
+
+}
+
+/*
+
+  // https://material.angular.dev/components/table/styling
+  @include mat.table-overrides((
+    background-color: rgba(0, 0, 0, 0.02)
+  ));
+
+  // --mat-table-background-color: rgba(0, 0, 0, 0.02);
+
+  // --mat-table-header-background-color: rgba(0, 0, 0, 0.04);
+
+ */
+
+
+
+
+
+
+/*
+
+// The Material 3 type scale organizes styles into five roles that are named to describe their purposes: display,
+// headline, title, label, body. Each role has three sizes: large, medium, and small.
+// These roles and sizes create clear page hierarchy and work across many devices.
+
+h1 {
+  font: var(--mat-sys-headline-large);
+}
+
+h2 {
+  font: var(--mat-sys-headline-medium);
+}
+
+h3 {
+  font: var(--mat-sys-headline-small);
+}
+
+*/
+
+// @import "./projects/utils-lib/src/lib/angular-material/mat-variables";
+// @import "./projects/utils-lib/src/lib/angular-material/variables";
+
+// @import "./fonts";
+// @import "./icons";
+
+/*
+
+html {
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+body {
+  color-scheme: light;
+
+  // Set a default background, font and text colors for the application using
+  // Angular Material's system-level CSS variables. Learn more about these
+  // variables at https://material.angular.dev/guide/system-variables
+
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+
+  margin: 0;
+  height: 100%;
+}
+
+*/
+
+/* You can add global styles to this file, and also import other style files */
+
+/*
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+*/

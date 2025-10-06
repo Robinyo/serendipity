@@ -1,0 +1,6 @@
+@use '../../../variables';
+
+.command-bar {
+  height: variables.$command-bar-height-desktop !important;
+  min-height: variables.$command-bar-height-desktop !important;
+}

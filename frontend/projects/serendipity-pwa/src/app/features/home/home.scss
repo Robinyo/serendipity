@@ -1,0 +1,39 @@
+@use './variables';
+
+.container {
+  background: whitesmoke;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  // $toolbar-height-desktop + 2 x variables.$container-margin
+  height: calc(100vh - (64px + 32px));
+  margin: variables.$container-margin;
+}
+
+.column-1 {
+  align-content: center;
+  grid-column: 1;
+}
+
+.column-2 {
+  align-content: center;
+  grid-column: 2;
+  padding-right: variables.$container-padding;
+}
+
+.logo {
+  height: variables.$icon-size;
+  padding: variables.$icon-padding;
+  width: variables.$icon-size;
+}
+
+
+
+/*
+
+  background: var(--mat-sys-inverse-on-surface);
+
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+  background: rgba(0, 0, 0, 0.04);
+
+*/

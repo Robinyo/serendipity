@@ -1,0 +1,81 @@
+// See: https://github.com/angular/components/blob/main/src/material/core/style/_variables.scss
+
+$xsmall: 'max-width: 599px';
+$small: 'max-width: 959px';
+
+$margin-desktop: 16px;
+$margin-mobile: 0;
+
+$padding-desktop: 16px;
+$padding-mobile: 0;
+
+$column-gap-desktop: 16px;
+$column-gap-mobile: 8px;
+
+$margin-top-desktop: 32px;
+$margin-top-mobile: 16px;
+
+$button-margin-right-desktop: 8px !default;
+$button-margin-right-mobile: 8px !default;
+
+// See: https://github.com/angular/components/blob/main/src/material/toolbar/_toolbar-variables.scss
+
+// Minimum height for toolbar's in the highest density is difficult to determine because
+// developers can project arbitrary content. We use a minimum value that ensures that most
+// common content (e.g. icon buttons) does not exceed the row boundaries in highest density.
+
+$minimum-height: 44px !default;
+
+$height-desktop: 64px !default;
+$maximum-height-desktop: $height-desktop !default;
+$minimum-height-desktop: $minimum-height !default;
+
+$height-mobile: 56px !default;
+$maximum-height-mobile: $height-mobile !default;
+$minimum-height-mobile: $minimum-height !default;
+
+// Navigation Bar
+$navigation-bar-height-desktop: $height-desktop;
+$navigation-bar-height-mobile: $height-mobile;
+
+// Command Bar
+$command-bar-height-desktop: 50px !default;
+$command-bar-height-mobile: 50px !default;
+
+$command-bar-button-margin-right-desktop: $button-margin-right-desktop !default;
+$command-bar-button-margin-right-mobile: $button-margin-right-desktop !default;
+
+// Action Bar
+$action-bar-height-desktop: 50px !default;
+$action-bar-height-mobile: 50px !default;
+
+// Activity Bar
+$activity-bar-height-desktop: $height-desktop;;
+$activity-bar-height-mobile: $height-mobile;
+
+// Card
+$card-content-margin-top-desktop: 16px !default;
+$card-content-margin-top-mobile: 8px !default;
+
+// Lookup List
+$lookup-list-height-desktop: calc(56px * 4);
+$lookup-list-height-mobile: calc(56px * 4);
+$lookup-list-width-desktop: 400;
+$lookup-list-width-mobile: 400;
+
+// Table
+$table-margin-desktop: $margin-desktop !default;
+$table-margin-mobile: $margin-mobile !default;
+
+// Tab
+$tab-height-desktop: 64px !default;
+$tab-height-mobile: 64px !default;
+$component-margin-desktop: $margin-desktop !default;
+$component-margin-mobile: $margin-desktop !default;
+
+// Task List
+$task-list-width-desktop: 320px !default;
+$task-list-width-mobile: 320px !default;
+
+// Collection
+$footer-button-min-width: 24px !default;

@@ -3,9 +3,10 @@ package org.serendipity.party.repository;
 import org.serendipity.party.entity.Organisation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface OrganisationRepository extends PagingAndSortingRepository<Organisation, Long> {
+public interface OrganisationRepository extends CrudRepository<Organisation, Long>, PagingAndSortingRepository<Organisation, Long> {
 
   Page<Organisation> findAll(Pageable pageable);
 

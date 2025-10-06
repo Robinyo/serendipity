@@ -1,0 +1,7 @@
+@use '@angular/material' as mat;
+
+@use "./classes" as md;
+
+@include md.system-classes();
+
+// https://github.com/angular/components/blob/main/src/dev-app/theme.scss

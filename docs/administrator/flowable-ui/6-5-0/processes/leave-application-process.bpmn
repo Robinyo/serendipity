@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef">
+  <process id="leave-application-process" name="Leave Application Process" isExecutable="true">
+    <documentation>An employee wants to take some time off.</documentation>
+    <startEvent id="startEvent1" flowable:initiator="initiator"></startEvent>
+    <userTask id="sid-3BA1F4D1-500F-4766-89BF-519166929F2D" name="Fill in a Leave Application Form" flowable:assignee="${initiator}" flowable:formKey="leave-application-form">
+      <extensionElements>
+        <modeler:activiti-idm-initiator xmlns:modeler="http://flowable.org/modeler"><![CDATA[true]]></modeler:activiti-idm-initiator>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sid-B6C92A83-EFEE-4148-9D69-56D0D774A95A" sourceRef="startEvent1" targetRef="sid-3BA1F4D1-500F-4766-89BF-519166929F2D"></sequenceFlow>
+    <endEvent id="sid-8E55FDB1-E283-42B5-BE6E-6DE8CC1C018E"></endEvent>
+    <sequenceFlow id="sid-F3685122-5348-45B8-A23C-C779264F20F1" sourceRef="sid-3BA1F4D1-500F-4766-89BF-519166929F2D" targetRef="sid-8E55FDB1-E283-42B5-BE6E-6DE8CC1C018E"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_leave-application-process">
+    <bpmndi:BPMNPlane bpmnElement="leave-application-process" id="BPMNPlane_leave-application-process">
+      <bpmndi:BPMNShape bpmnElement="startEvent1" id="BPMNShape_startEvent1">
+        <omgdc:Bounds height="30.0" width="30.0" x="100.0" y="163.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-3BA1F4D1-500F-4766-89BF-519166929F2D" id="BPMNShape_sid-3BA1F4D1-500F-4766-89BF-519166929F2D">
+        <omgdc:Bounds height="73.0" width="122.0" x="180.0" y="141.5"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-8E55FDB1-E283-42B5-BE6E-6DE8CC1C018E" id="BPMNShape_sid-8E55FDB1-E283-42B5-BE6E-6DE8CC1C018E">
+        <omgdc:Bounds height="28.0" width="28.0" x="347.0" y="164.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-B6C92A83-EFEE-4148-9D69-56D0D774A95A" id="BPMNEdge_sid-B6C92A83-EFEE-4148-9D69-56D0D774A95A">
+        <omgdi:waypoint x="129.94999884897553" y="178.0"></omgdi:waypoint>
+        <omgdi:waypoint x="179.99999999992957" y="178.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-F3685122-5348-45B8-A23C-C779264F20F1" id="BPMNEdge_sid-F3685122-5348-45B8-A23C-C779264F20F1">
+        <omgdi:waypoint x="301.94999999996924" y="178.0"></omgdi:waypoint>
+        <omgdi:waypoint x="347.0" y="178.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

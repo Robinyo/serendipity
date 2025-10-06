@@ -1,0 +1,39 @@
+@use './variables';
+
+// Columns
+
+.mat-column-party-displayName, .mat-column-email, .mat-column-organisation-displayName,
+  .mat-column-organisation-phoneNumber {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mat-column-party-displayName {
+  min-width: variables.$display-name-column-width;
+  width: variables.$display-name-column-width;
+}
+
+.mat-column-email {
+  // max-width: variables.$email-column-width;
+  min-width: variables.$email-column-width;
+  width: variables.$email-column-width;
+}
+
+.mat-column-organisation-displayName {
+  min-width: variables.$display-name-column-width;
+  width: variables.$display-name-column-width;
+}
+
+.mat-column-organisation-phoneNumber {
+  min-width: variables.$phone-number-column-width;
+  width: variables.$phone-number-column-width;
+}
+
+// To clip text with an ellipsis when it overflows a table cell, you need to set the following CSS properties:
+//   width: variables.$email-column-width;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+
+// See: https://css-tricks.com/snippets/css/truncate-string-with-ellipsis/

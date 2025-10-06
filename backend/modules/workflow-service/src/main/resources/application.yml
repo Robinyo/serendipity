@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    org.flowable: INFO
+    org.hibernate.SQL: INFO
+    org.springframework.web: INFO
+
+spring:
+  datasource:
+    username: admin
+    password: secret
+  main:
+    banner-mode: off
+  profiles:
+    active: @spring.profiles.active@
+
+flowable:
+  process:
+    servlet:
+      path: '/api/workflow-service/process-api'
+  cmmn:
+    servlet:
+      path: '/api/workflow-service/cmmn-api'
+  dmn:
+    servlet:
+      path: '/api/workflow-service/dmn-api'
+  idm:
+    servlet:
+      path: '/api/workflow-service/idm-api'
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: beans, env, health, info, metrics, flowable
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: always

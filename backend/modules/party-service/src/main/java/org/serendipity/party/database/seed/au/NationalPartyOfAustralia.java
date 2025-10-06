@@ -51,16 +51,16 @@ public class NationalPartyOfAustralia implements CommandLineRunner {
 
       Location location = Location.builder()
         .type(LocationType.ADDRESS)
-        .displayName("7 National Circuit Barton ACT 2600")
+        .displayName("1/6 Geils Court Deakin ACT 2600")
         // .fromDate(currentTime)
         .build();
 
       Address headOffice = Address.builder()
         .location(location)
-        .name("John McEwen House")
-        .line1("7 National Circuit")
+        .name("")
+        .line1("1/6 Geils Court")
         .line2("")
-        .city("Barton")
+        .city("Deakin")
         .state("ACT")
         .postalCode("2600")
         .country("Australia")
@@ -72,8 +72,8 @@ public class NationalPartyOfAustralia implements CommandLineRunner {
       // Create the Primary Contact (Individual)
 
       Name name = Name.builder()
-        .givenName("Larry")
-        .familyName("Anthony")
+        .givenName("Kay")
+        .familyName("Hull")
         .build();
 
       Party individualParty = Party.builder()
@@ -86,8 +86,8 @@ public class NationalPartyOfAustralia implements CommandLineRunner {
       Individual individual = Individual.builder()
         .party(individualParty)
         .name(name)
-        .sex(Sex.MALE.toString())
-        .email("larry.anthony@nationals.org.au")
+        .sex(Sex.FEMALE.toString())
+        .email("kay.hull@nationals.org.au")
         .phoneNumber("(02) 6273 3822")
         .build();
 
@@ -113,12 +113,6 @@ public class NationalPartyOfAustralia implements CommandLineRunner {
         .build();
 
       organisationRepository.save(organisation);
-
-      // | Party             | Role            | Relationship   | Role            | Party             |
-      // | ----------------- | --------------- | -------------- | --------------- | ----------------- |
-      // | Australian Greens | Political Party | Office Holder  | Primary Contact | Jordan Hull       |
-      // | Jordan Hull       | Member          | Membership     | Political Party | Australian Greens |
-      // | Jordan Hull       | Public Officer  | Office Holder  | Political Party | Australian Greens |
 
       Role politicalParty = Role.builder()
         .partyId(organisation.getParty().getId())

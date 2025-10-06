@@ -34,8 +34,6 @@ public class IndividualController extends Controller<Individual, IndividualRepos
   protected final RoleRepository roleRepository;
   protected final RoleModelAssembler roleModelAssembler;
 
-  // Suppress IntelliJ IDEA Error: Could not autowire. No beans of 'PagedResourcesAssembler<Individual>' type found.
-  @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
   public IndividualController(IndividualRepository repository,
                               IndividualModelAssembler assembler,
                               PagedResourcesAssembler<Individual> pagedResourcesAssembler,

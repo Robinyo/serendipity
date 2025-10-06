@@ -1,0 +1,105 @@
+// Utility classes that are used to style elements with the most commonly used system tokens in Material Design.
+// Includes color, typography, elevation, state, and shape.
+
+// Typography
+// There are five categories of font types defined by Material Design: display, headline, title, body and label.
+// Each category has three sizes: small, medium and large.
+
+@mixin system-classes() {
+
+  // https://m3.material.io/styles/typography/applying-type
+  // https://material.angular.dev/guide/system-variables
+  // https://github.com/angular/components/blob/main/src/material/core/tokens/_classes.scss
+
+  // Display
+  // There are three display styles in the default type scale: small, medium and large.
+  // As the largest text on the screen, display styles are reserved for short, important text or numerals.
+  // They work best on large screens.
+
+  .md-font-display-sm {
+    font: var(--mat-sys-display-small);
+    letter-spacing: var(--mat-sys-display-small-tracking);
+  }
+
+  .md-font-display-md {
+    font: var(--mat-sys-display-medium);
+    letter-spacing: var(--mat-sys-display-medium-tracking);
+  }
+
+  .md-font-display-lg {
+    font: var(--mat-sys-display-large);
+    letter-spacing: var(--mat-sys-display-large-tracking);
+  }
+
+  // Headline
+  // Headlines are best-suited for short, high-emphasis text on smaller screens.
+  // These styles can be good for marking primary passages of text or important regions of content.
+
+  .md-font-headline-sm {
+    font: var(--mat-sys-headline-small);
+    letter-spacing: var(--mat-sys-headline-small-tracking);
+  }
+
+  .md-font-headline-md {
+    font: var(--mat-sys-headline-medium);
+    letter-spacing: var(--mat-sys-headline-medium-tracking);
+  }
+
+  .md-font-headline-lg {
+    font: var(--mat-sys-headline-large);
+    letter-spacing: var(--mat-sys-headline-large-tracking);
+  }
+
+  // Title
+  // Titles are smaller than headline styles, and should be used for medium-emphasis text that remains relatively short.
+  // For example, consider using title styles to divide secondary passages of text or secondary regions of content.
+
+  .md-font-title-sm {
+    font: var(--mat-sys-title-small);
+    letter-spacing: var(--mat-sys-title-small-tracking);
+  }
+
+  .md-font-title-md {
+    font: var(--mat-sys-title-medium);
+    letter-spacing: var(--mat-sys-title-medium-tracking);
+  }
+
+  .md-font-title-lg {
+    font: var(--mat-sys-title-large);
+    letter-spacing: var(--mat-sys-title-large-tracking);
+  }
+
+  // Body
+  // Body styles are used for longer passages of text in your app.
+  // Use typefaces intended for body styles, which are readable at smaller sizes and can be comfortably read in longer passages.
+
+  .md-font-body-sm {
+    font: var(--mat-sys-body-small);
+    letter-spacing: var(--mat-sys-body-small-tracking);
+  }
+
+  .md-font-body-md {
+    font: var(--mat-sys-body-medium);
+    letter-spacing: var(--mat-sys-body-medium-tracking);
+  }
+
+  .md-font-body-lg {
+    font: var(--mat-sys-body-large);
+    letter-spacing: var(--mat-sys-body-large-tracking);
+  }
+
+  // Font weight
+
+  .md-font-bold-weight {
+    font-weight: 700;
+  }
+
+  .md-font-medium-weight {
+    font-weight: 500;
+  }
+
+  .md-font-regular-weight {
+    font-weight: lighter;
+  }
+
+}

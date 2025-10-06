@@ -5,7 +5,7 @@
 
 	<groupId>org.serendipity</groupId>
 	<artifactId>serendipity-parent</artifactId>
-	<version>1.0.0</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>Serendipity Parent POM</name>
@@ -19,56 +19,65 @@
 				<role>Software Engineer</role>
 			</roles>
 			<timezone>+10</timezone>
-			<url>https://robferguson/blog</url>
-			<email>rob.ferguson (at) robferguson.org</email>
+			<url>https://rob-ferguson.me</url>
+			<email>hey (at) rob-ferguson.me</email>
 		</contributor>
 	</contributors>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<!--
-	    <version>2.3.0.RELEASE</version>
-		<version>2.5.5</version>
-		 -->
-		<version>2.5.5</version>
+		<version>3.5.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<modules>
 		<module>modules/web-bff</module>
-		<module>modules/party-service</module>
-		<module>modules/work-service</module>
+    <module>modules/party-service</module>
+    <!-- <module>modules/workflow-service</module> -->
 	</modules>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>21</java.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 
 	<dependencies>
 
-		<!-- Note: Adding both spring-boot-starter-web and spring-boot-starter-webflux modules in your application
-		     results in Spring Boot auto-configuring Spring MVC, not WebFlux. -->
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId>
-		</dependency>
+    <!-- Misc -->
 
-		<!-- Misc -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+    </dependency>
 
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
-		</dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Add Test dependencies -->
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
 
 	</dependencies>
 
@@ -85,18 +94,6 @@
 			</properties>
 			<dependencies>
 
-				<dependency>
-					<groupId>org.postgresql</groupId>
-					<artifactId>postgresql</artifactId>
-					<scope>runtime</scope>
-				</dependency>
-
-				<dependency>
-					<groupId>com.h2database</groupId>
-					<artifactId>h2</artifactId>
-					<scope>test</scope>
-				</dependency>
-
 			</dependencies>
 		</profile>
 
@@ -110,12 +107,6 @@
 			</properties>
 			<dependencies>
 
-				<dependency>
-					<groupId>com.h2database</groupId>
-					<artifactId>h2</artifactId>
-					<scope>runtime</scope>
-				</dependency>
-
 			</dependencies>
 		</profile>
 
@@ -124,17 +115,31 @@
 	<build>
 		<plugins>
 
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </path>
+          </annotationProcessorPaths>
+        </configuration>
+      </plugin>
 
-			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<useSystemClassLoader>false</useSystemClassLoader>
-				</configuration>
-			</plugin>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </exclude>
+          </excludes>
+        </configuration>
+      </plugin>
 
 		</plugins>
 	</build>

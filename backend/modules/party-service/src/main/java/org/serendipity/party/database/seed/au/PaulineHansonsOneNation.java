@@ -48,20 +48,20 @@ public class PaulineHansonsOneNation implements CommandLineRunner {
       // Head Office Address
       //
 
-      Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+      // Timestamp currentTime = new Timestamp(System.currentTimeMillis());
 
       Location location = Location.builder()
         .type(LocationType.ADDRESS)
-        .displayName("PO Box 136 Pinkenba QLD 4008")
-        .fromDate(currentTime)
+        .displayName("2/6-12 Boronia Rd Brisbane Airport QLD 4008")
+        // .fromDate(currentTime)
         .build();
 
       Address headOffice = Address.builder()
         .location(location)
         .name("")
-        .line1("PO Box 136")
+        .line1("2/6-12 Boronia Rd")
         .line2("")
-        .city("Pinkenba")
+        .city("Brisbane Airport")
         .state("QLD")
         .postalCode("4008")
         .country("Australia")
@@ -73,8 +73,8 @@ public class PaulineHansonsOneNation implements CommandLineRunner {
       // Create the Primary Contact (Individual)
 
       Name name = Name.builder()
-        .givenName("Rod")
-        .familyName("Miles")
+        .givenName("Pauline")
+        .familyName("Hanson")
         .build();
 
       Party individualParty = Party.builder()
@@ -88,7 +88,7 @@ public class PaulineHansonsOneNation implements CommandLineRunner {
         .party(individualParty)
         .name(name)
         .sex(Sex.MALE.toString())
-        .email("rod.mills@onenation.org.au")
+        .email("pauline.hanson@onenation.org.au")
         .phoneNumber("1300 857 466")
         .build();
 
@@ -114,12 +114,6 @@ public class PaulineHansonsOneNation implements CommandLineRunner {
         .build();
 
       organisationRepository.save(organisation);
-
-      // | Party             | Role            | Relationship   | Role            | Party             |
-      // | ----------------- | --------------- | -------------- | --------------- | ----------------- |
-      // | Australian Greens | Political Party | Office Holder  | Primary Contact | Jordan Hull       |
-      // | Jordan Hull       | Member          | Membership     | Political Party | Australian Greens |
-      // | Jordan Hull       | Public Officer  | Office Holder  | Political Party | Australian Greens |
 
       Role politicalParty = Role.builder()
         .partyId(organisation.getParty().getId())

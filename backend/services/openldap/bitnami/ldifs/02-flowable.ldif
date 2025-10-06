@@ -1,0 +1,15 @@
+# Users
+
+# Flowable (UI Applications) User
+
+dn: uid=flowable, ou=users,dc=serendipity,dc=org
+changetype: add
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Flowable
+sn: Admin
+mail: flowable.admin@serendipity.org
+uid: flowable
+userPassword: Password12

@@ -1,0 +1,19 @@
+@use '../../../variables';
+
+.activity-bar {
+  background: whitesmoke;
+  height: variables.$activity-bar-height-desktop !important;
+  min-height: variables.$activity-bar-height-desktop !important;
+}
+
+.activity-bar-row {
+  justify-content: center;
+}
+
+/*
+
+  // background: var(--mat-sys-surface);
+  // color: var(--mat-sys-on-surface);
+  // background-color: rgba(0, 0, 0, 0.02);
+
+ */

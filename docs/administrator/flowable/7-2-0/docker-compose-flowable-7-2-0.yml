@@ -1,0 +1,205 @@
+services:
+
+  # Make sure your certificates and keys (the *.pem files in the ./certs directory) have the correct permissions -> i.e., sudo chmod 600 *.pem
+
+  # backend Network
+
+  openldap:
+    container_name: openldap
+    build:
+      context: ./services/openldap/bitnami
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "389:1389"
+      - "636:1636"
+    environment:
+      LDAP_ROOT: 'dc=serendipity,dc=org'
+      LDAP_ADMIN_USERNAME: '${LDAP_ADMIN_USERNAME}'
+      LDAP_ADMIN_PASSWORD: '${LDAP_ADMIN_PASSWORD}'
+      LDAP_ADMIN_DN: 'cn=admin,dc=serendipity,dc=org'
+      LDAP_CUSTOM_LDIF_DIR: '/ldifs'
+    env_file:
+      - '${PWD}/.env'
+    volumes:
+      - openldap_data:/var/lib/openldap/data
+    networks:
+      - backend
+
+  postgres:
+    container_name: postgres
+    # image: postgres:17.5-alpine
+    image: percona/percona-distribution-postgresql:17.5
+    restart: unless-stopped
+    # ports:
+    #   - "5432:5432"
+    command: >
+      -c ssl=on 
+      -c ssl_cert_file=/var/lib/postgresql/server.crt 
+      -c ssl_key_file=/var/lib/postgresql/server.key
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${SERENDIPITY_DB} -U $${POSTGRES_USER}"]
+      start_period: 10s
+      interval: 30s
+      retries: 5
+      timeout: 5s
+    environment:
+      POSTGRES_DB: ${SERENDIPITY_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGSSLMODE: require
+      ENABLE_PG_TDE: 1
+    env_file:
+      - '${PWD}/.env'
+    volumes:
+      - '${PWD}/certs/cert.pem:/var/lib/postgresql/server.crt'
+      - '${PWD}/certs/key.pem:/var/lib/postgresql/server.key'
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  workflow-service-postgres:
+    container_name: workflow-service-postgres
+    # image: postgres:17.5-alpine
+    image: percona/percona-distribution-postgresql:17.5
+    restart: unless-stopped
+    # ports:
+    #   - "5432:5432"
+    command: >
+      -c ssl=on 
+      -c ssl_cert_file=/var/lib/postgresql/server.crt 
+      -c ssl_key_file=/var/lib/postgresql/server.key
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${FLOWABLE_DB} -U $${POSTGRES_USER}"]
+      start_period: 10s
+      interval: 30s
+      retries: 5
+      timeout: 5s
+    environment:
+      POSTGRES_DB: ${FLOWABLE_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGSSLMODE: require
+      ENABLE_PG_TDE: 1
+    env_file:
+      - '${PWD}/.env'
+    volumes:
+      - '${PWD}/certs/cert.pem:/var/lib/postgresql/server.crt'
+      - '${PWD}/certs/key.pem:/var/lib/postgresql/server.key'
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:9.8.0
+    restart: unless-stopped
+    ports:
+      - "5443:443"
+    volumes:
+      - '${PWD}/certs/cert.pem:/certs/server.cert'
+      - '${PWD}/certs/key.pem:/certs/server.key'
+      - '${PWD}/pgadmin_data:/var/lib/pgadmin'
+    environment:
+      PGADMIN_ENABLE_TLS: true
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
+  serendipity-workflow-service:
+    container_name: serendipity-workflow-service
+    build:
+      context: ./modules/workflow-service
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "30102:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://workflow-service-postgres:5432/${FLOWABLE_DB}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_JPA_PROPERTIES_SEARCH_ENABLED: false
+    env_file:
+      - '${PWD}/flowable-ldap-config-6-5-0.env'
+    volumes:
+      - '${PWD}/certs/keystore.p12:/keystore/keystore.p12'
+    depends_on:
+      # - openldap
+      - workflow-service-postgres
+    networks:
+      - backend
+
+  serendipity-party-service:
+    container_name: serendipity-party-service
+    build:
+      context: ./modules/party-service
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "30101:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${SERENDIPITY_DB}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_JPA_PROPERTIES_SEARCH_ENABLED: false
+    volumes:
+      - '${PWD}/certs/keystore.p12:/keystore/keystore.p12'
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
+  serendipity-bff:
+    container_name: serendipity-bff
+    environment:
+      PARTY_SERVICE_URI: http://serendipity-party-service:8080/api/party-service
+      WORKFLOW_SERVICE_URI: http://serendipity-workflow-service:8080/api/workflow-service
+    build:
+      context: ./modules/web-bff
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    # depends_on:
+    #   serendipity-identity-service.localhost:
+    #     condition: service_healthy
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
+  # frontend Network
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./services/nginx
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    volumes:
+      - '${PWD}/services/nginx/conf/ssl.conf:/etc/nginx/conf/ssl.conf'
+      - '${PWD}/services/nginx/conf/nginx-default.conf.template:/etc/nginx/templates/default.conf.template'
+      - '${PWD}/certs:/etc/nginx/certs'
+    networks:
+      - frontend
+      - backend
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+
+volumes:
+  openldap_data:
+    driver: local
+  postgres_data:
+    driver: local

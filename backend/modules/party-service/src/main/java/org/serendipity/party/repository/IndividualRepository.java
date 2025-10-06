@@ -3,11 +3,12 @@ package org.serendipity.party.repository;
 import org.serendipity.party.entity.Individual;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.Optional;
 
-public interface IndividualRepository extends PagingAndSortingRepository<Individual, Long> {
+public interface IndividualRepository extends CrudRepository<Individual, Long>, PagingAndSortingRepository<Individual, Long> {
 
   Page<Individual> findByNameFamilyNameStartsWith(String name, Pageable pageable);
 

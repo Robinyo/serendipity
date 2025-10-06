@@ -1,0 +1,17 @@
+[
+
+  {
+    "id":    "ACTIVITIES_LIST_ITEM",
+    "label": "Activities",
+    "icon":  "assignment",
+    "route": "workflow/activities"
+
+  },
+  {
+    "id":    "DASHBOARDS_LIST_ITEM",
+    "label": "Dashboard",
+    "icon":  "dashboard",
+    "route": "customers/dashboards"
+  }
+
+]

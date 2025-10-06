@@ -1,14 +1,12 @@
 <h1 align="center">Documentation</h1>
 
-* [Quick Start Guide](./quick-start-guide.md)
-  
-* Administrator Documentation
-  * [Working with Docker](../backend/docs/administrator/docker.md)
-  * [Working with Kubernetes](../backend/docs/administrator/kubernetes.md)
-  * [Working with PostgreSQL](../backend/docs/administrator/postgres.md)
-  * [Working with Serendipity Identity Server](../backend/docs/administrator/serendipity-identity-server.md)
 * Developer Documentation
-  * Frontend
-    * [Build Management](../frontend/docs/developer/build-management.md)
-  * Backend
-    * [Build Management](../backend/docs/developer/build-management.md)
+  * [Quick Start Guide](./developer/quick-start-guide/README.md)
+  * [Build Management](./developer/build-management/README.md)
+  * [mkcert](./docs/developer/mkcert/README.md)
+* Administrator Documentation
+  * [Working with Docker and Docker Compose](./administrator/docker/README.md)
+  * [Working with Keycloak](./administrator/keycloak/README.md)
+  * [Working with PostgreSQL](./administrator/postgres/README.md)
+  * [Working with pgAdmin](./administrator/pgadmin/README.md)
+  * [Working with the Percona Distribution for PostgreSQL](./administrator/percona-distribution-for-postgresql/README.md)

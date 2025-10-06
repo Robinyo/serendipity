@@ -1,0 +1,29 @@
+@use './variables';
+
+.task-name {
+  padding-left: variables.$padding-desktop;
+}
+
+.process-name {
+  // padding-left: variables.$padding-desktop;
+}
+
+.process-name-icon {
+  padding-left: variables.$padding-desktop;
+}
+
+.diagram-container {
+  // display: grid;
+  // justify-items: left;
+  height: calc(100vh - 350px);
+}
+
+.diagram {
+  // place-self: center;
+  // height: 50%;
+  // width: 50%;
+}
+
+.list {
+  padding-top: 0;
+}

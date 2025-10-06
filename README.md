@@ -2,205 +2,147 @@
   <img src="./serendipity-logo.svg" alt="Serendipity" width="400"/>
 </p>
 
-<h1 align="center">Serendipity 2.0</h1>
+<h1 align="center">Serendipity 3.0</h1>
 
 <p align="center">
-  Serendipity is an open-source Customer Engagement Platform.</br>
-  You can use it to transform your organisation by connecting your customers, products, people and operations.</br>
+  Serendipity is an open-source Customer Engagement Platform. </br>
+  You can use it to transform your organisation by connecting your customers, products, people and operations. </br>
 </p>
 
 <p align="center">
-  <b>Take a look at the Serendipity 3.0 feature branch.</b></br>
+  <b>OpenID Connect</b> is used for authentication and <b>OAuth 2.0</b> for authorisation. <br>
 </p>
 
-![divider](./divider.png)
-
-## ❯ Components
-
-- **Progressive Web App (PWA)**
-- **Backend for Frontend (BFF)**
-- **Identity Server (Keycloak)**
+<p align="center">
+  TLS is used to encrypt <b>data in transit</b> and AES to encrypt <b>data at rest</b>.
+</p>
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/context-diagram.png">
+  Built using <b>Angular v20</b>, <b>Angular Material (M3) v20.2.1</b> and <b>Spring Boot v3.5.5</b>.
+>>>>>>> serendipity-3.0
 </p>
 
 ![divider](./divider.png)
 
-## ❯ Features
+## ❯ Architecture
 
-- **Spring Security 5 OAuth 2.0 Login**
+Serendipity is composed of the following components:
 
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/sequence-diagram.png">
-</p>
-
-![divider](./divider.png)
-
-## ❯ Quick Start
-
-Clone the project by running the following command:
-
-```
-git clone https://github.com/Robinyo/serendipity
-``` 
-
-### Docker
-
-To serve the applications (from the /backend directory):
-
-```
-docker-compose up -d
-```
-
-The containers may take a minute or two to startup.
-
-Navigate to: http://127.0.0.1:30001
-
-### Kubernetes
-
-To serve the applications (from the /backend directory):
-
-```
-# Create a dedicated namespace for our deployments
-kubectl create ns serendipity
-
-# Deploy the Serendipty Identity Service
-kubectl apply -n serendipity -f serendipity-identity-server.yaml
-
-# Deploy the Serendipty PWA and BFF
-kubectl apply -n serendipity -f serendipity.yaml
-```
-
-The containers may take a minute or two to startup.
-
-Navigate to: http://127.0.0.1:30001
-
-### Kubernetes Dashboard
-
-Follow these [steps](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) to deploy the 
-Kubernetes Dashboard:
+- [Progressive Web App](./docs/architecture/pwa/README.md)
+- [Backend for Frontend](./docs/architecture/bff/README.md)
+- Identity Service
+- Microservices
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/kubernetes-dashboard.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/context-diagram.png">
 </p>
 
-![divider](./divider.png)
+## ❯ Getting Started
 
-## ❯ Links
+Follow the steps in the [Quick Start Guide](./docs/developer/quick-start-guide/README.md).
 
-[Documentation, demos, and guides](./docs/README.md)
+## ❯ Documentation
+
+* Developer Documentation
+  * [Quick Start Guide](./docs/developer/quick-start-guide/README.md)
+  * [Build Management](./docs/developer/build-management/README.md)
+* Administrator Documentation
+  * [Working with Docker and Docker Compose](./docs/administrator/docker/README.md)
+  * [Working with Flowable](./docs/administrator/flowable/7-2-0/README.md)
+  * [Working with Flowable's Web Applications](./docs/administrator/flowable-ui/6-5-0/README.md)
+  * [Working with Keycloak](./docs/administrator/keycloak/README.md)
+  * [Working with OpenLDAP](./docs/administrator/openldap/README.md)
+  * [Working with PostgreSQL](./docs/administrator/postgres/README.md)
+  * [Working with the Percona Distribution for PostgreSQL](./docs/administrator/percona-distribution-for-postgresql/README.md)
+  * [Working with pgAdmin](./docs/administrator/pgadmin/README.md)
+* Architecture Documentation
+  * [Backend for Frontend](./docs/architecture/bff/README.md)
+  * [Database Seeds](./docs/architecture/database-seeds/parliament-of-australia/README.md)
+  * [Progressive Web App](./docs/architecture/pwa/README.md)
+  * [Static Content](./docs/architecture/static-content/README.md)
+  * [Spring Data](./docs/architecture/spring-data/README.md)
+
+## ❯ Resources
+
+* [Cyber Security Resources](./docs/developer/resources/cyber-security-resources/README.md)
+* [DevSecOps Resources](./docs/developer/resources/devsecops/README.md)
+* [Secure Software Development Resources](./docs/developer/resources/secure-software-development/README.md)
 
 ![divider](./divider.png)
 
 ## ❯ Screen Shots
 
-Welcome Page:
+Home (Welcome) Page
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/welcome-page.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/home.png">
 </p>
 
 ### Navigation
 
-Navigation Bar:
+Navigation Bar
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/navigation-bar.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/navigation-bar.png">
 </p>
 
-Command Bar:
+Command Bar
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/command-bar.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/command-bar.png">
 </p>
 
-Sidenav:
+Sidenav
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/sidenav.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/sidenav.png">
 </p>
 
 ### Customer Engagement
 
-Contacts:
+Contacts - Desktop
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/contacts.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/contacts.png">
 </p>
 
-Contact Wizard:
+Contacts - Mobile
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/contact-wizard.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/contacts-mobile.png" 
+   width="50%" height="auto">
 </p>
 
-Contact:
+Contact
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/contact.png">
-</p>
-
-Contact - Lookup Account:
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/lookup-account.png">
-</p>
-
-Contact - Related Tab:
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/contact-related-tab.png">
-</p>
-
-Contact - Add Relationship:
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/contact-add-relationship.png">
-</p>
-
-Accounts:
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/accounts.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/contact.png">
 </p>
 
 ### Workflow (BPMN), Decision Management (DMN) and Case Management (CMMN)
 
-New Work Item:
+New Work Item
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/new-work-item.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/new-work-item.png">
+</p>
+
+Tasks - Task Tab
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/tasks-tab.png">
+</p>
+
+Tasks - History Tab
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/tasks-history-tab.png">
 </p>
 
 ### Interactive Maps
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/electoral-division.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/electoral-division.png">
 </p>
 
-### Identity and Access Management
 
-#### OpenID Connect (OIDC)
-
-Register page:
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/register.png">
-</p>
-
-Login page:
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity-2.0/blob/main/docs/screen-shots/signin.png">
-</p>
-
-![divider](./divider.png)
-
-## ❯ Resources
-
-### Blog Posts
-
-* Rob Ferguson's blog: [Serendipity 2.0](https://robferguson.org/blog/2021/11/11/serendipity-2-0/)
-
-![divider](./divider.png)

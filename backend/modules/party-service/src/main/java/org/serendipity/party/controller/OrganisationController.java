@@ -25,8 +25,6 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @Slf4j
 public class OrganisationController extends Controller<Organisation, OrganisationRepository, OrganisationModelAssembler>{
 
-  // Suppress IntelliJ IDEA Error: Could not autowire. No beans of 'PagedResourcesAssembler<Organisation>' type found.
-  @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
   public OrganisationController(OrganisationRepository repository,
                                 OrganisationModelAssembler assembler,
                                 PagedResourcesAssembler<Organisation> pagedResourcesAssembler) {

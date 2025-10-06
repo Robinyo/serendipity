@@ -1,0 +1,203 @@
+<!-- Task Header -->
+
+@if (task) {
+
+  <span class="md-font-headline-md task-name" aria-label="Task Name">
+    {{ task.name }} <br>
+  </span>
+
+  @if (process) {
+
+    <ng-container>
+      <mat-icon class="material-symbols-outlined process-name-icon"> arrow_forward </mat-icon>
+      <span class="md-font-headline-sm process-name" aria-label="Process Name">
+        {{ process.name }}
+      </span>
+    </ng-container>
+
+  }
+
+}
+
+<!-- Action Bar -->
+
+<action-bar>
+
+  <span class="md-bar-spacer"></span>
+
+  <button matButton="filled"
+          aria-label="Claim button"
+          class="md-action-bar-button"
+          (click)="onClaim()">
+    CLAIM
+  </button>
+
+  <button matButton="filled"
+          aria-label="Complete button"
+          class="md-action-bar-button"
+          (click)="onComplete()"
+          [disabled]="canClaim() || !isValid()">
+    COMPLETE
+  </button>
+
+</action-bar>
+
+<!-- Task Content -->
+
+<div>
+
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start"
+                 [(selectedIndex)]="selectedTabIndex"
+                 (selectedTabChange)="onTabChanged($event)">
+
+    <mat-tab>
+
+      <ng-template mat-tab-label>
+        <mat-icon class="material-symbols-outlined md-tab-icon"> assignment_ind </mat-icon>
+        <span>
+          Task
+        </span>
+      </ng-template>
+
+      @if (formModel && formGroup) {
+
+        <div class="md-task-container">
+
+          <dynamic-form autocomplete="off"
+                        className="md-grid-3-column-layout-container"
+                        [formGroup]="formGroup"
+                        [model]="formModel">
+          </dynamic-form>
+
+          <!--
+          <p>
+            Form Value: {{ formGroup.value | json }}
+          </p>
+          -->
+
+        </div>
+
+      }
+
+    </mat-tab>
+
+    <mat-tab>
+
+      <ng-template mat-tab-label>
+        <mat-icon class="material-symbols-outlined md-tab-icon"> people_outline </mat-icon>
+        <span>
+          People
+        </span>
+      </ng-template>
+
+      <ng-container>
+        <div>
+
+          <mat-list class="list">
+
+              @for (role of roles; track $index) {
+
+                <mat-list-item>
+
+                  <mat-icon class="material-symbols-outlined"> person </mat-icon>
+
+                  <p>
+                    {{role.user}}
+                  </p>
+
+                  <p>
+                    {{role.type}}
+                  </p>
+
+                </mat-list-item>
+
+              }
+
+          </mat-list>
+
+        </div>
+      </ng-container>
+
+    </mat-tab>
+
+    <mat-tab>
+
+      <ng-template mat-tab-label>
+        <mat-icon class="material-symbols-outlined md-tab-icon"> list </mat-icon>
+        <span>
+          Subtasks
+        </span>
+      </ng-template>
+
+      <ng-container>
+        <div>
+
+          <mat-list class="list">
+
+            <mat-list-item>
+
+              <p>
+                No subtasks found
+              </p>
+
+            </mat-list-item>
+
+          </mat-list>
+
+        </div>
+      </ng-container>
+
+    </mat-tab>
+
+    <mat-tab>
+
+      <ng-template mat-tab-label>
+        <mat-icon class="material-symbols-outlined md-tab-icon"> attachment </mat-icon>
+        <span>
+          Documents
+        </span>
+      </ng-template>
+
+      <ng-container>
+        <div>
+
+          <mat-list class="list">
+
+            <mat-list-item>
+
+              <p>
+                No attachments found
+              </p>
+
+            </mat-list-item>
+
+          </mat-list>
+
+        </div>
+      </ng-container>
+
+    </mat-tab>
+
+    <mat-tab>
+
+      <ng-template mat-tab-label>
+        <mat-icon class="material-symbols-outlined md-tab-icon"> history </mat-icon>
+        <span>
+          History
+        </span>
+      </ng-template>
+
+      <div class="diagram-container">
+        <img #processDiagram class="diagram" alt="Process Diagram">
+      </div>
+
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>
+
+
+
+
+

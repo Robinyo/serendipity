@@ -1,6 +1,10 @@
 package org.serendipity.party.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 //
 // A surrogate key is any column or set of columns that can be declared as the primary key instead of a "real" or

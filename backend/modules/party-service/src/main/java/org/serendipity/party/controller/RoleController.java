@@ -21,8 +21,6 @@ import org.springframework.web.server.ResponseStatusException;
 @Slf4j
 public class RoleController extends Controller<Role, RoleRepository, RoleModelAssembler> {
 
-  // Suppress IntelliJ IDEA Error: Could not autowire. No beans of 'PagedResourcesAssembler<Individual>' type found.
-  @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
   RoleController(RoleRepository repository,
                  RoleModelAssembler assembler,
                  PagedResourcesAssembler<Role> pagedResourcesAssembler) {

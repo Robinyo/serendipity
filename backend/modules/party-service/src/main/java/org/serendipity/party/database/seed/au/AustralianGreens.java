@@ -55,18 +55,18 @@ public class AustralianGreens implements CommandLineRunner {
 
       Location location = Location.builder()
         .type(LocationType.ADDRESS)
-        .displayName("23/85 Northbourne Ave Turner ACT 2612")
+        .displayName("PO Box 1108, Canberra ACT 2601")
         // .fromDate(currentTime)
         .build();
 
       Address headOffice = Address.builder()
         .location(location)
         .name("")
-        .line1("23/85 Northbourne Ave")
+        .line1("PO Box 1108")
         .line2("")
-        .city("Turner")
+        .city("Canberra")
         .state("ACT")
-        .postalCode("2612")
+        .postalCode("2601")
         .country("Australia")
         .addressType("Principle Place of Business")
         .build();
@@ -76,8 +76,8 @@ public class AustralianGreens implements CommandLineRunner {
       // Create the Primary Contact (Individual)
 
       Name name = Name.builder()
-        .givenName("Jordan")
-        .familyName("Hull")
+        .givenName("Larissa")
+        .familyName("Waters")
         .build();
 
       Party individualParty = Party.builder()
@@ -91,8 +91,8 @@ public class AustralianGreens implements CommandLineRunner {
         .party(individualParty)
         .name(name)
         // .names(new HashSet<>())
-        .sex(Sex.MALE.toString())
-        .email("jordan.hull@greens.org.au")
+        .sex(Sex.FEMALE.toString())
+        .email("larissa.waters@greens.org.au")
         .phoneNumber("(02) 6140 3220")
         .build();
 
@@ -113,18 +113,11 @@ public class AustralianGreens implements CommandLineRunner {
       Organisation organisation = Organisation.builder()
         .party(organisationParty)
         .name(PoliticalParty.AUSTRALIAN_GREENS.toString())
-        .email("greens@greens.org.au")
+        .email("hey@greens.org.au")
         .phoneNumber("(02) 6140 3220")
         .build();
 
       organisationRepository.save(organisation);
-
-      // | Party             | Role            | Relationship   | Role            | Party             |
-      // | ----------------- | --------------- | -------------- | --------------- | ----------------- |
-      // | Australian Greens | Political Party | Office Holder  | Primary Contact | Jordan Hull       |
-      // | Jordan Hull       | Member          | Membership     | Political Party | Australian Greens |
-      // | Jordan Hull       | Public Officer  | Office Holder  | Political Party | Australian Greens |
-      // | Jordan Hull       | Contact         | Association    | Account         | Australian Greens |
 
       Role politicalParty = Role.builder()
         .partyId(organisation.getParty().getId())
@@ -170,22 +163,6 @@ public class AustralianGreens implements CommandLineRunner {
       individualParty.getAddresses().add(headOffice);
       individualParty.getRoles().add(member);
 
-      try {
-
-        ObjectMapper mapper = new ObjectMapper();
-
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
-
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
-
-        log.info("individual:  {}", "\n" + mapper.writeValueAsString(individual));
-
-      } catch (JsonProcessingException jpe) {
-
-        log.error("Json Processing Exception: {}", jpe.getLocalizedMessage());
-      }
-
       individualRepository.save(individual);
 
       log.info("Create {} complete", PoliticalParty.AUSTRALIAN_GREENS.toString());
@@ -210,11 +187,15 @@ public class AustralianGreens implements CommandLineRunner {
 
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        log.info("identifier:  {}", "\n" + mapper.writeValueAsString(identifier));
+        // log.info("individual:  {}", "\n" + mapper.writeValueAsString(individual));
 
       } catch (JsonProcessingException jpe) {
 
-        log.error("House of Representatives - JSON Processing Exception");
+        log.error("Json Processing Exception: {}", jpe.getLocalizedMessage());
       }
+
+      individualRepository.save(individual);
+
+      log.info("Create {} complete", PoliticalParty.AUSTRALIAN_GREENS.toString());
 
 */

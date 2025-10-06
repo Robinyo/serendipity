@@ -1,0 +1,25 @@
+$text-padding: 16px !default;
+
+.navigation-bar {
+  background-color: black;
+  color: white;
+}
+
+.navigation-bar-title-text {
+  margin: 0 $text-padding 0 $text-padding;
+}
+
+.navigation-bar-spacer {
+  flex: 1 1 auto;
+}
+
+/*
+
+.navigation-items {
+  cursor: pointer;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+*/

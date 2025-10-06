@@ -12,7 +12,6 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-// import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
@@ -22,8 +21,6 @@ import org.springframework.web.server.ResponseStatusException;
 public class ElectoralDivisionController extends Controller<ElectoralDivision, ElectoralDivisionRepository,
     ElectoralDivisionAssembler> {
 
-  // Suppress IntelliJ IDEA Error: Could not autowire. No beans of 'PagedResourcesAssembler<ElectoralDivision>' type found.
-  @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
   public ElectoralDivisionController(ElectoralDivisionRepository repository,
                                      ElectoralDivisionAssembler assembler,
                                      PagedResourcesAssembler<ElectoralDivision> pagedResourcesAssembler) {
@@ -32,7 +29,6 @@ public class ElectoralDivisionController extends Controller<ElectoralDivision, E
   }
 
   @GetMapping("/electoral-divisions")
-  // @PreAuthorize("hasAuthority('SCOPE_individual:read')")
   public ResponseEntity<PagedModel<ElectoralDivisionModel>> findAll(
     Pageable pageable) throws ResponseStatusException {
 
@@ -57,7 +53,6 @@ public class ElectoralDivisionController extends Controller<ElectoralDivision, E
   }
 
   @GetMapping("/electoral-divisions/search/findByName")
-  // @PreAuthorize("hasAuthority('SCOPE_individual:read')")
   public ResponseEntity<ElectoralDivisionModel> findByName(
     @RequestParam("name") final String name) throws ResponseStatusException {
 

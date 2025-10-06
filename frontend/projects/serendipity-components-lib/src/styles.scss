@@ -1,0 +1,252 @@
+@use './variables';
+
+// Content Containers
+
+// Using var() stops the floating footer from working ???
+
+.md-content-container {
+  background: whitesmoke;
+  // $navigation-bar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop
+  height: calc(100vh - (64px + 50px + 64px));
+  width: 100%;
+}
+
+.md-grid-2-column-layout-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 32px;
+  row-gap: 1em;
+
+  // margin-top: variables.$component-margin-desktop;
+}
+
+.md-grid-3-column-layout-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 16px;
+  row-gap: 1em;
+
+  margin-top: variables.$component-margin-desktop;
+}
+
+.md-lookup-list-container {
+  column-gap: 0;
+  display: grid;
+  grid-template-columns: variables.$lookup-list-width-desktop auto;
+  height: variables.$lookup-list-height-desktop;
+  margin: 0;
+  padding-top: variables.$padding-desktop;
+  padding-bottom: variables.$padding-desktop;
+}
+
+.md-tab-group-container {
+  // top, right, bottom, left
+  margin: 0 variables.$component-margin-desktop variables.$component-margin-desktop;
+}
+
+.md-tasks-container {
+  column-gap: variables.$column-gap-desktop;
+  display: grid;
+  grid-template-columns: variables.$task-list-width-desktop auto;
+
+  margin-top: 0;
+  margin-right: variables.$margin-desktop;
+  margin-bottom: variables.$margin-desktop;
+  margin-left: variables.$margin-desktop;
+}
+
+.md-task-container {
+  margin-top: variables.$margin-top-desktop;
+  margin-right: variables.$margin-desktop;
+  margin-bottom: variables.$margin-desktop;
+  margin-left: variables.$margin-desktop;
+}
+
+// Leaflet use this class and doesn't seem to like var() ???
+
+.md-tab-component-container {
+  // $navigation-bar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop + $tab-height-desktop + $component-margin-desktop
+  height: calc(100vh - (64px + 50px + 64px + 48px + 32px));
+  margin-top: variables.$component-margin-desktop;
+  margin-bottom: variables.$component-margin-desktop;
+
+  @media (variables.$xsmall) {
+    height: calc(100vh - (56px + 50px + 56px + 48px + 16px));
+  }
+}
+
+.md-table-container {
+  // $navigation-bar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop + $table-margin-desktop
+  height: calc(100vh - (64px + 50px + 64px + 16px));
+  margin-left: variables.$table-margin-desktop;
+  margin-right: variables.$table-margin-desktop;
+
+  overflow: auto;
+
+  @media (variables.$xsmall) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+//
+//
+//
+
+// Action Bar
+
+.md-bar-spacer {
+  flex: 1 1 auto;
+}
+
+.md-action-bar-button {
+  margin-left: variables.$component-margin-desktop;
+}
+
+// Button
+
+.md-button, .md-action-bar-button, .md-command-bar-button, .md-sidenav, .md-nav-list, .md-nav-list-item {
+  border-radius: 3px !important;
+  // border-radius: var(--mat-list-active-indicator-shape, var(--mat-sys-corner-full));
+  // --mat-focus-indicator-border-radius: var(--mat-list-active-indicator-shape, var(--mat-sys-corner-full));
+}
+
+// Command Bar
+
+.md-command-bar-button {
+  margin-right: variables.$component-margin-desktop;
+}
+
+.md-command-bar-spacer {
+  flex: 1 1 auto;
+}
+
+// Card
+
+.md-card-content {
+  // margin-top: variables.$card-content-margin-top-desktop
+}
+
+// Dialog
+
+/*
+.md-dialog-container {
+  .mat-mdc-dialog-container {
+    border-radius: 3px !important;
+  }
+}
+*/
+
+// Sidenav
+
+.md-sidenav-nav-list-item {
+  border-radius: 3px !important;
+}
+
+.mdc-list-item--with-leading-radio.mdc-list-item, .mdc-list-item--with-leading-checkbox.mdc-list-item,
+.mdc-list-item--with-leading-icon.mdc-list-item, .mdc-list-item--with-leading-avatar.mdc-list-item {
+  padding-left: 16px !important;
+  // padding-right: 16px;
+}
+
+// Snack Bar
+
+.md-snack-bar {
+  text-align: center;
+}
+
+// Tab
+
+.md-tab-icon {
+  margin-right: 8px;
+}
+
+// Table
+
+.md-table-header-id-column {
+  float: right;
+  margin: 0 12px 0 12px;
+}
+
+//
+// Dynamic Reactive Forms
+//
+
+.md-prefix-icon {
+  cursor: pointer;
+}
+
+.md-suffix-icon {
+  cursor: pointer;
+}
+
+.md-grid-column-1 {
+  grid-column: 1;
+}
+
+.md-grid-column-1-span-2 {
+  grid-column: 1 / span 2;
+}
+
+.md-grid-column-2 {
+  grid-column: 2;
+}
+
+.md-grid-column-2-span-2 {
+  grid-column: 2 / span 2;
+}
+
+.md-grid-column-3 {
+  grid-column: 3;
+}
+
+.md-grid-column-3-row-1-span-2 {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+}
+
+.md-grid-column-3-row-1-span-3 {
+  grid-column: 3;
+  grid-row: 1 / span 3;
+}
+
+.md-grid-column-4 {
+  grid-column: 4;
+}
+
+.md-grid-row-2 {
+  grid-row: 2;
+}
+
+/*
+
+  height: calc( 100vh - (var(variables.$navigation-bar-height-desktop) +
+                         var(variables.$command-bar-height-desktop) +
+                         var(variables.$activity-bar-height-desktop)) );
+*/
+
+
+/*
+
+  height: calc( 100vh - (var(variables.$navigation-bar-height-desktop) +
+                         var(variables.$command-bar-height-desktop) +
+                         var(variables.$activity-bar-height-desktop) +
+                         var(variables.$tab-height-desktop)) );
+
+  @media (variables.$xsmall) {
+    height: calc( 100vh - (var(variables.$navigation-bar-height-mobile) +
+                           var(variables.$command-bar-height-mobile) +
+                           var(variables.$activity-bar-height-mobile) +
+                           var(variables.$tab-height-mobile)) );
+  }
+
+*/
+
+/*
+
+  height: calc( 100vh - (var(variables.$navigation-bar-height-desktop) +
+                         var(variables.$command-bar-height-desktop) +
+                         var(variables.$activity-bar-height-desktop) +
+                         var(variables.$table-margin-desktop)) );
+
+*/

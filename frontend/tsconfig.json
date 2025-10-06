@@ -1,69 +1,40 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "sourceMap": true,
-    "declaration": false,
-    "downlevelIteration": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2017",
-    "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "target": "ES2022",
+    "module": "preserve",
     "paths": {
-      "@app/*": [
-        "projects/serendipity-web-app/src/app/*"
-      ],
-      "@env/*": [
-        "projects/serendipity-web-app/src/environments/*"
-      ],
-      "auth-bff-lib": [
-        "dist/auth-bff-lib/auth-bff-lib",
-        "dist/auth-bff-lib"
-      ],
-      "auth-lib": [
-        "dist/auth-lib/auth-lib",
-        "dist/auth-lib"
-      ],
-      "dynamic-forms-lib": [
-        "dist/dynamic-forms-lib/dynamic-forms-lib",
-        "dist/dynamic-forms-lib"
-      ],
-      "flowable-lib": [
-        "dist/flowable-lib/flowable-lib",
-        "dist/flowable-lib"
-      ],
-      "party-lib": [
-        "dist/party-lib"
-      ],
-      "party-lib/*": [
-        "dist/party-lib/*"
+      "serendipity-auth-lib": [
+        "./dist/serendipity-auth-lib"
       ],
       "serendipity-components-lib": [
-        "dist/serendipity-components-lib"
+        "./dist/serendipity-components-lib"
       ],
-      "serendipity-components-lib/*": [
-        "dist/serendipity-components-lib/*"
+      "serendipity-dynamic-forms-lib": [
+        "./dist/serendipity-dynamic-forms-lib"
       ],
-      "utils-lib": [
-        "dist/utils-lib"
+      "serendipity-flowable-lib": [
+        "./dist/serendipity-flowable-lib"
       ],
-      "utils-lib/*": [
-        "dist/utils-lib/*"
+      "serendipity-party-lib": [
+        "./dist/serendipity-party-lib"
       ],
-      "work-lib": [
-        "dist/work-lib/work-lib",
-        "dist/work-lib"
+      "serendipity-utils-lib": [
+        "./dist/serendipity-utils-lib"
+      ],
+      "serendipity-workflow-lib": [
+        "./dist/serendipity-workflow-lib"
       ]
     }
   },
@@ -71,6 +42,58 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
+    "typeCheckHostBindings": true,
     "strictTemplates": true
-  }
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/serendipity-pwa/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/serendipity-pwa/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/serendipity-utils-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/serendipity-utils-lib/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/serendipity-components-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/serendipity-components-lib/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/serendipity-party-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/serendipity-party-lib/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/serendipity-flowable-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/serendipity-flowable-lib/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/serendipity-workflow-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/serendipity-workflow-lib/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/serendipity-dynamic-forms-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/serendipity-dynamic-forms-lib/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/serendipity-auth-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/serendipity-auth-lib/tsconfig.spec.json"
+    }
+  ]
 }
