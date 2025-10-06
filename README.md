@@ -126,6 +126,18 @@ New Work Item
   <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/new-work-item.png">
 </p>
 
+Tasks - Task Tab
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/tasks-tab.png">
+</p>
+
+Tasks - History Tab
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/tasks-history-tab.png">
+</p>
+
 ### Interactive Maps
 
 <p align="center">

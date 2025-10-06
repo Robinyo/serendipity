@@ -293,11 +293,3 @@ function pathDataAccessor(item: any, path: string): any {
       return accumulator ? accumulator[key] : undefined;
     }, item);
 }
-
-/*
-
-    const dialogRef =  this.dialogService.open(StartProcessDialog, {
-      panelClass: 'md-dialog-container'
-    });
-
-*/
