@@ -109,7 +109,7 @@ Contacts - Mobile
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/contacts-mobile.png" 
-   width="50%" height="auto">
+   width="40%" height="auto">
 </p>
 
 Contact
