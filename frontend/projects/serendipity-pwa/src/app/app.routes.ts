@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { Placeholder } from 'serendipity-components-lib';
-import { ContactRoute, ContactsRoute } from 'serendipity-party-lib';
+import { AccountsRoute, ContactRoute, ContactsRoute } from 'serendipity-party-lib';
 import { ActivitiesRoute, TasksRoute } from 'serendipity-workflow-lib';
 
 import { Home } from './features/home/home';
@@ -19,7 +19,7 @@ export const routes: Routes = [
     component: Placeholder
   },
 
-
+  AccountsRoute,
   ContactRoute,
   ContactsRoute,
 
@@ -37,15 +37,3 @@ export const routes: Routes = [
   }
 
 ];
-
-/*
-
-  import { ContactsResolver } from 'serendipity-party-lib';
-
-  {
-    path: 'customers/contacts',
-    loadComponent: () => import('../../../serendipity-party-lib/src/lib/features/contacts/contacts').then(m => m.Contacts),
-    resolve: { columnDefs: ContactsResolver }
-  },
-
-*/

@@ -99,6 +99,12 @@ Sidenav
 
 ### Customer Engagement
 
+Accounts
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/accounts.png">
+</p>
+
 Contacts - Desktop
 
 <p align="center">

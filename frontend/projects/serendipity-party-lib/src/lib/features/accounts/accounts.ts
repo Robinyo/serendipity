@@ -12,15 +12,15 @@ import { Subscription } from 'rxjs';
 
 import { ActivityBar, CommandBar, Collection, CollectionFooter } from 'serendipity-components-lib';
 
-import { ContactAdapter } from '../../adapters/contact';
-import { ContactsService } from '../../services/contacts/contacts';
+import { AccountAdapter } from '../../adapters/account';
+import { AccountsService } from '../../services/accounts/accounts';
 
-import { ContactModel } from '../../models/contact';
+import { AccountModel } from '../../models/account';
 
 import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs';
 
 @Component({
-  selector: 'contacts',
+  selector: 'accounts',
   imports: [
     ActivityBar,
     CommandBar,
@@ -33,14 +33,14 @@ import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs';
     CollectionFooter,
     RouterLink
   ],
-  templateUrl: './contacts.html',
+  templateUrl: './accounts.html',
   standalone: true,
-  styleUrl: './contacts.scss'
+  styleUrl: './accounts.scss'
 })
-export class Contacts extends Collection<ContactModel> {
+export class Accounts extends Collection<AccountModel> {
 
-  private entityAdapter: ContactAdapter = inject(ContactAdapter);
-  private entityService: ContactsService = inject(ContactsService);
+  private entityAdapter: AccountAdapter = inject(AccountAdapter);
+  private entityService: AccountsService = inject(AccountsService);
   private route: ActivatedRoute = inject(ActivatedRoute);
 
   constructor() {
@@ -53,7 +53,7 @@ export class Contacts extends Collection<ContactModel> {
       limit: 10
     });
 
-    this.logger.info('Contacts Component');
+    this.logger.info('Accounts Component');
 
     this.columnDefs = this.route.snapshot.data['columnDefs'];
 
@@ -63,7 +63,7 @@ export class Contacts extends Collection<ContactModel> {
 
   protected subscribe() {
 
-    this.logger.info('Contacts Component: subscribe()');
+    this.logger.info('Accounts Component: subscribe()');
 
     this.isLoading = true;
 
@@ -74,21 +74,21 @@ export class Contacts extends Collection<ContactModel> {
 
       (response: any) => {
 
-        this.logger.info('Contacts Component: subscribe() success handler');
+        this.logger.info('Accounts Component: subscribe() success handler');
 
         this.count = response.body.page.totalElements;
 
-        this.logger.info('count: ' + this.count + ' Contacts');
+        this.logger.info('count: ' + this.count + ' Accounts');
 
         if (this.count > 0) {
 
-          this.items = response.body._embedded.individualModels.map(
+          this.items = response.body._embedded.organisationModels.map(
             ((item: any) => this.entityAdapter.adapt(item)));
 
         } else {
 
           this.items = [];
-          this.items.push(new ContactModel());
+          this.items.push(new AccountModel());
 
         }
 
@@ -115,9 +115,9 @@ export class Contacts extends Collection<ContactModel> {
 
   public onNew() {
 
-    this.logger.info('Contacts Component: onNew()');
+    this.logger.info('Accounts Component: onNew()');
 
-    // this.router.navigate([CONTACT_WIZARD]);
+    // this.router.navigate([ACCOUNT_WIZARD]);
   }
 
 }

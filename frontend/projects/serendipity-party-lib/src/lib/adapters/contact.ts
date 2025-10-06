@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Adapter } from 'serendipity-utils-lib';
 
-import { PartyAdapter } from "./party";
+import { PartyAdapter } from './party';
 
 import { ContactModel } from '../models/contact';
 
@@ -16,6 +16,7 @@ export class ContactAdapter extends PartyAdapter implements Adapter<ContactModel
     super();
 
     // this.logger.info('Contact Adapter initialised');
+
   }
 
   adapt(item: any): ContactModel {

@@ -1,7 +1,15 @@
 import { Route } from '@angular/router';
 
+import { AccountsResolver } from './resolvers/accounts';
+
 import { ContactResolver } from './resolvers/contact';
 import { ContactsResolver } from './resolvers/contacts';
+
+export const AccountsRoute: Route = {
+  path: 'customers/accounts',
+  loadComponent: () => import('./features/accounts/accounts').then(m => m.Accounts),
+  resolve: { columnDefs: AccountsResolver }
+};
 
 export const ContactRoute: Route = {
   path: 'customers/contacts/:id',
@@ -14,41 +22,3 @@ export const ContactsRoute: Route = {
   loadComponent: () => import('./features/contacts/contacts').then(m => m.Contacts),
   resolve: { columnDefs: ContactsResolver }
 };
-
-
-
-/*
-
-import { Route } from '@angular/router';
-
-import { Contacts } from './features/contacts/contacts';
-
-export default [
-  {
-    path: 'customers/contacts',
-    component: Contacts,
-    resolve: { columnDefs: ContactsResolver }
-  }
-] satisfies Route[];
-
-import { Routes } from '@angular/router';
-
-export const SerendipityPartyLibRoutes: Routes = [
-
-  {
-    path: 'customers/contacts',
-    loadComponent: () => import('./features/contacts/contacts').then(m => m.Contacts),
-    resolve: { columnDefs: ContactsResolver }
-  }
-
-];
-
-import { Route } from '@angular/router';
-
-export const ContactsRoute: Route = {
-  path: 'customers/contacts',
-  loadComponent: () => import('./features/contacts/contacts').then(m => m.Contacts),
-  resolve: { columnDefs: ContactsResolver }
-};
-
-*/

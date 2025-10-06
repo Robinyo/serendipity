@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpResponse} from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -26,6 +26,7 @@ export class ContactsService extends AbstractCollectionService {
     this.url = this.getUrlPrefix() + INDIVIDUALS;
 
     // this.logger.info('Contacts Service: constructor()');
+
   }
 
   public find(filter: string, offset: number = 0, limit: number = 100): Observable<any> {
@@ -57,6 +58,7 @@ export class ContactsService extends AbstractCollectionService {
         this.logger.info('Contacts Service: find() completed');
 
         // this.logger.info('response: ' + JSON.stringify(response.body, null, 2) + '\n');
+
       })
     );
 
@@ -91,7 +93,7 @@ export class ContactsService extends AbstractCollectionService {
 
   public update(id: string, contact: ContactModel): Observable<HttpResponse<ContactModel>> {
 
-    return this.httpClient.patch<HttpResponse<ContactModel>>(this.url + id, contact).pipe(
+    return this.httpClient.patch<HttpResponse<ContactModel>>(this.url + id, contact, this.getDefaultHttpPostOptions()).pipe(
       tap(() => {
         this.logger.info('Contacts Service: update() completed');
       })
@@ -101,7 +103,7 @@ export class ContactsService extends AbstractCollectionService {
 
   public delete(id: string): Observable<ContactModel> {
 
-    return this.httpClient.delete<ContactModel>(this.url + id).pipe(
+    return this.httpClient.delete<ContactModel>(this.url + id, this.getDefaultHttpPostOptions()).pipe(
       tap(() => {
         this.logger.info('Contacts Service: delete() completed');
       })
@@ -121,7 +123,7 @@ export class ContactsService extends AbstractCollectionService {
 
   public deleteRole(id: string, roleId: string): Observable<ContactModel> {
 
-    return this.httpClient.delete<ContactModel>(this.url + id + '/roles/' + roleId).pipe(
+    return this.httpClient.delete<ContactModel>(this.url + id + '/roles/' + roleId, this.getDefaultHttpPostOptions()).pipe(
       tap(() => {
         this.logger.info('Contacts Service: deleteRole() completed');
       })
