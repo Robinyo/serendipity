@@ -19,7 +19,6 @@
 
 <p align="center">
   Built using <b>Angular v20</b>, <b>Angular Material (M3) v20.2.1</b> and <b>Spring Boot v3.5.5</b>.
->>>>>>> serendipity-3.0
 </p>
 
 ![divider](./divider.png)
@@ -83,19 +82,19 @@ Home (Welcome) Page
 Navigation Bar
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/navigation-bar.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/navigation-bar.png">
 </p>
 
 Command Bar
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/command-bar.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/command-bar.png">
 </p>
 
 Sidenav
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/sidenav.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/sidenav.png">
 </p>
 
 ### Customer Engagement
@@ -103,20 +102,20 @@ Sidenav
 Contacts - Desktop
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/contacts.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/contacts.png">
 </p>
 
 Contacts - Mobile
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/contacts-mobile.png" 
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/contacts-mobile.png" 
    width="50%" height="auto">
 </p>
 
 Contact
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/contact.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/contact.png">
 </p>
 
 ### Workflow (BPMN), Decision Management (DMN) and Case Management (CMMN)
@@ -124,25 +123,23 @@ Contact
 New Work Item
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/new-work-item.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/new-work-item.png">
 </p>
 
 Tasks - Task Tab
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/tasks-tab.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/tasks-tab.png">
 </p>
 
 Tasks - History Tab
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/tasks-history-tab.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/tasks-history-tab.png">
 </p>
 
 ### Interactive Maps
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/electoral-division.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/electoral-division.png">
 </p>
-
-
