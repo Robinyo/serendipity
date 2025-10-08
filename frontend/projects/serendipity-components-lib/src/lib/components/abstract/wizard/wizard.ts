@@ -1,20 +1,25 @@
 import { Directive, inject } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Breakpoints } from '@angular/cdk/layout';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { takeUntil } from 'rxjs/operators';
 
-import { DialogService } from '../../../services/dialogs/dialog';
+import { AuthService } from 'serendipity-auth-lib';
 
 import { AbstractComponent } from '../component/component';
+import { DialogService } from '../../../services/dialogs/dialog';
 
 @Directive()
 export abstract class WizardComponent<T> extends AbstractComponent {
 
   public item!: T;
 
+  protected authService: AuthService = inject(AuthService);
   protected dialogService: DialogService = inject(DialogService);
+  protected route: ActivatedRoute = inject(ActivatedRoute);
+  protected router: Router = inject(Router);
   protected snackBar: MatSnackBar = inject(MatSnackBar);
 
   protected abstract createSteps(): void;

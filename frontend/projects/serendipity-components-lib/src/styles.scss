@@ -89,6 +89,20 @@
   }
 }
 
+.md-vertical-stepper-container {
+  // $navigation-bar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop + $table-margin-desktop
+  height: calc(100vh - (64px + 50px + 64px + 16px));
+  margin-left: variables.$table-margin-desktop;
+  margin-right: variables.$table-margin-desktop;
+
+  overflow: auto;
+
+  @media (variables.$xsmall) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 //
 //
 //

@@ -84,10 +84,6 @@ export class Contact extends Item<ContactModel> {
 
     this.logger.info('Contact Component: constructor()');
 
-    // this.route = inject(ActivatedRoute);
-
-    this.logger.info('Contact Component');
-
     this.generalInformationModel = this.route.snapshot.data['metaData'].generalInformationFormDefs;
     this.addressInformationModel = this.route.snapshot.data['metaData'].addressInformationFormDefs;
 
@@ -328,7 +324,7 @@ export class Contact extends Item<ContactModel> {
   // Dynamic Form events
   //
 
-  public onCustomEvent(event: DynamicFormControlCustomEvent) {
+  public onCustomEvent(event: any) {
 
     this.logger.info('ContactComponent: onCustomEvent()');
 

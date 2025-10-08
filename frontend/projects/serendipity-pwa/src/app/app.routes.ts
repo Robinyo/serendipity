@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { Placeholder } from 'serendipity-components-lib';
-import { AccountsRoute, ContactRoute, ContactsRoute } from 'serendipity-party-lib';
+import { AccountsRoute, ContactRoute, ContactsRoute, NewContactRoute } from 'serendipity-party-lib';
 import { ActivitiesRoute, TasksRoute } from 'serendipity-workflow-lib';
 
 import { Home } from './features/home/home';
@@ -20,8 +20,10 @@ export const routes: Routes = [
   },
 
   AccountsRoute,
+
   ContactRoute,
   ContactsRoute,
+  NewContactRoute,
 
   TasksRoute,
 

@@ -1,0 +1,107 @@
+<command-bar>
+
+  @if (isHandsetPortrait()) {
+
+    <ng-container>
+
+      <button matIconButton
+              aria-label="Save Contact button"
+              class="md-command-bar-button"
+              (click)="onSave()"
+              [disabled]="!isDirty() || !isValid()">
+        <mat-icon class="material-icons"> save </mat-icon>
+      </button>
+
+      <button matIconButton
+              aria-label="Save and Close Contact button"
+              class="md-command-bar-button"
+              (click)="onSaveAndClose()"
+              [disabled]="!isDirty() || !isValid()">
+        <mat-icon class="material-icons"> arrow_back </mat-icon>
+      </button>
+
+    </ng-container>
+
+  } @else {
+
+    <ng-container>
+
+      <button matButton="filled"
+              aria-label="Save Contact button"
+              class="md-command-bar-button"
+              (click)="onSave()"
+              [disabled]="!isDirty() || !isValid()">
+        <mat-icon class="material-icons"> save </mat-icon>
+        SAVE
+      </button>
+
+      <button matButton="filled"
+              aria-label="Save and Close Contact button"
+              class="md-command-bar-button"
+              (click)="onSaveAndClose()"
+              [disabled]="!isDirty() || !isValid()">
+        <mat-icon class="material-icons"> arrow_back </mat-icon>
+        SAVE & CLOSE
+      </button>
+
+    </ng-container>
+
+  }
+
+  <span class="md-command-bar-spacer"></span>
+
+  <button matIconButton
+          aria-label="Close button"
+          (click)="onClose()">
+    <mat-icon class="material-icons"> clear </mat-icon>
+  </button>
+
+</command-bar>
+
+<activity-bar>
+
+  @if (item) {
+
+    <span class="md-font-headline-lg" aria-label="Activity Bar Title">
+      Contact Wizard
+    </span>
+
+  }
+
+</activity-bar>
+
+<div class="md-content-container">
+
+  @if (generalInformationGroup && addressInformationGroup) {
+
+    <div class="md-vertical-stepper-container">
+
+      <mat-stepper orientation="horizontal" linear="true">
+
+        <mat-step [stepControl]="generalInformationGroup">
+          <ng-template matStepLabel>General Information</ng-template>
+          <dynamic-form autocomplete="off"
+                        className="md-grid-3-column-layout-container"
+                        [formGroup]="generalInformationGroup"
+                        [model]="generalInformationModel"
+                        (customEvent)="onCustomEvent($event)">
+          </dynamic-form>
+        </mat-step>
+
+        <mat-step [stepControl]="generalInformationGroup">
+          <ng-template matStepLabel>Address Information</ng-template>
+          <dynamic-form autocomplete="off"
+                        className="md-grid-3-column-layout-container"
+                        [formGroup]="addressInformationGroup"
+                        [model]="addressInformationModel"
+                        (customEvent)="onCustomEvent($event)">
+          </dynamic-form>
+        </mat-step>
+
+      </mat-stepper>
+
+    </div>
+
+  }
+
+</div>

@@ -1,7 +1,7 @@
-import { Address } from './address';
+import { AddressModel } from './address';
 import { RoleModel } from './role';
 
-export class Party {
+export class PartyModel {
 
   public id?: string;
 
@@ -10,7 +10,7 @@ export class Party {
   constructor(
     public type: string = 'PARTY',
     public displayName: string = '',
-    public addresses: Address[] = [],
+    public addresses: AddressModel[] = [],
     public roles: RoleModel[] = []
   ) {
     this.legalType = '';

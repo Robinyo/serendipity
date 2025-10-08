@@ -4,11 +4,18 @@ import { AccountsResolver } from './resolvers/accounts';
 
 import { ContactResolver } from './resolvers/contact';
 import { ContactsResolver } from './resolvers/contacts';
+import { ContactWizardResolver } from './resolvers/contact-wizard';
 
 export const AccountsRoute: Route = {
   path: 'customers/accounts',
   loadComponent: () => import('./features/accounts/accounts').then(m => m.Accounts),
   resolve: { columnDefs: AccountsResolver }
+};
+
+export const NewContactRoute: Route = {
+  path: 'customers/new-contact',
+  loadComponent: () => import('./features/contact-wizard/contact-wizard').then(m => m.ContactWizard),
+  resolve: { metaData: ContactWizardResolver }
 };
 
 export const ContactRoute: Route = {

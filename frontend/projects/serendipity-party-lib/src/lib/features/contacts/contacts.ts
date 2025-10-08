@@ -19,6 +19,8 @@ import { ContactModel } from '../../models/contact';
 
 import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs';
 
+import { CONTACT_WIZARD } from  './constants';
+
 @Component({
   selector: 'contacts',
   imports: [
@@ -117,7 +119,7 @@ export class Contacts extends Collection<ContactModel> {
 
     this.logger.info('Contacts Component: onNew()');
 
-    // this.router.navigate([CONTACT_WIZARD]);
+    this.router.navigate([CONTACT_WIZARD]);
   }
 
 }

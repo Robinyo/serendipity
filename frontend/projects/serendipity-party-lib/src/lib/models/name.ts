@@ -1,4 +1,4 @@
-export class Name {
+export class NameModel {
 
   constructor(
     public title: string = '',

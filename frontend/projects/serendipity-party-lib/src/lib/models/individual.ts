@@ -1,10 +1,10 @@
-import { Name } from './name';
+import { NameModel } from './name';
 import { OrganisationRef } from './organisation-ref';
-import { Party } from './party';
+import { PartyModel } from './party';
 
 import { PartyType } from '../types/party-type';
 
-const defaultName: Name = new Name(
+const defaultName: NameModel = new NameModel(
   '',
   '',
   '',
@@ -15,13 +15,13 @@ const defaultName: Name = new Name(
   ''
 );
 
-export class Individual {
+export class IndividualModel {
 
   public id?: string;
 
   constructor(
-    public party: Party = new Party(PartyType.INDIVIDUAL),
-    public name: Name = defaultName,
+    public party: PartyModel = new PartyModel(PartyType.INDIVIDUAL),
+    public name: NameModel = defaultName,
     public sex: string = '',
     public email: string = '',
     public phoneNumber: string = '',
