@@ -117,14 +117,6 @@
   margin-left: variables.$component-margin-desktop;
 }
 
-// Button
-
-.md-button, .md-action-bar-button, .md-command-bar-button, .md-sidenav, .md-nav-list, .md-nav-list-item {
-  border-radius: 3px !important;
-  // border-radius: var(--mat-list-active-indicator-shape, var(--mat-sys-corner-full));
-  // --mat-focus-indicator-border-radius: var(--mat-list-active-indicator-shape, var(--mat-sys-corner-full));
-}
-
 // Command Bar
 
 .md-command-bar-button {
@@ -141,19 +133,18 @@
   // margin-top: variables.$card-content-margin-top-desktop
 }
 
-// Dialog
 
-/*
-.md-dialog-container {
-  .mat-mdc-dialog-container {
-    border-radius: 3px !important;
-  }
-}
-*/
 
 // Sidenav
 
-.md-sidenav-nav-list-item {
+// container-shape: rectangle
+// border-radius: 3px !important;
+
+.md-sidenav, .md-sidenav-nav-list, .md-sidenav-nav-list-item {
+  border-radius: 3px !important;
+}
+
+.md-nav-list, .md-nav-list-item {
   border-radius: 3px !important;
 }
 
@@ -183,7 +174,7 @@
 }
 
 //
-// Dynamic Reactive Forms
+// Dynamic Forms
 //
 
 .md-prefix-icon {
@@ -231,6 +222,28 @@
 .md-grid-row-2 {
   grid-row: 2;
 }
+
+
+
+// Dialog
+
+/*
+
+.md-dialog-container {
+  .mat-mdc-dialog-container {
+    border-radius: 3px !important;
+  }
+}
+
+// Button
+
+.md-button, .md-action-bar-button, .md-command-bar-button, .md-sidenav, .md-nav-list, .md-nav-list-item {
+  border-radius: 3px !important;
+  // border-radius: var(--mat-list-active-indicator-shape, var(--mat-sys-corner-full));
+  // --mat-focus-indicator-border-radius: var(--mat-list-active-indicator-shape, var(--mat-sys-corner-full));
+}
+
+*/
 
 /*
 

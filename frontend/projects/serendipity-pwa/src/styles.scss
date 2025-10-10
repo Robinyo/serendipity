@@ -63,24 +63,100 @@ html, body {
 
 :root {
 
+  // Buttons
+
   @include mat.button-overrides((
+    filled-container-shape: rectangle,
+    outlined-container-shape: rectangle,
+    protected-container-shape: rectangle,
+    text-container-shape: rectangle,
+    tonal-container-shape: rectangle,
+
     filled-container-color: black
   ));
 
-  @include mat.card-overrides((
-    filled-container-color: white
-  ));
-
-  @include mat.dialog-overrides((
-    container-shape: rectangle,
-  ));
-
   @include mat.fab-overrides((
+    container-shape: rectangle,
+    extended-container-shape: rectangle,
+    small-container-shape: rectangle,
+
     container-color: orange,
     foreground-color: white
   ));
 
+  @include mat.icon-button-overrides((
+    container-shape: rectangle
+
+  ));
+
+  @include mat.button-toggle-overrides((
+    shape: rectangle,
+    legacy-shape: rectangle
+
+  ));
+
+  //
+
+  @include mat.card-overrides((
+    elevated-container-shape: rectangle,
+    filled-container-shape: rectangle,
+    outlined-container-shape: rectangle,
+
+    filled-container-color: white
+  ));
+
+  @include mat.datepicker-overrides((
+    calendar-container-shape: rectangle,
+    calendar-container-touch-shape: rectangle
+
+  ));
+
+  @include mat.dialog-overrides((
+    container-shape: rectangle
+
+  ));
+
+  @include mat.expansion-overrides((
+    container-shape: rectangle
+
+  ));
+
+  @include mat.list-overrides((
+    list-item-container-shape: rectangle
+
+  ));
+
+  @include mat.sidenav-overrides((
+    container-shape: rectangle
+
+  ));
+
+  @include mat.snack-bar-overrides((
+    container-shape: rectangle
+
+  ));
+
+  @include mat.timepicker-overrides((
+    container-shape: rectangle
+
+  ));
+
+  @include mat.tooltip-overrides((
+    container-shape: rectangle
+
+  ));
+
 }
+
+/*
+
+  @include mat.form-field-overrides((
+    filled-container-shape: rectangle,
+    outlined-container-shape: rectangle
+
+  ));
+
+*/
 
 /*
 

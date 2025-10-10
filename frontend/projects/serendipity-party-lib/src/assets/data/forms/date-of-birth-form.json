@@ -1,0 +1,38 @@
+[
+
+  {
+    "type": "date",
+    "id": "dateOfBirth",
+    "label": "Date of Birth",
+    "appearance": "fill",
+
+    "gridItemClass": "md-grid-column-1"
+  },
+
+  {
+    "type": "input",
+    "id": "placeOfBirth",
+    "label": "Place of Birth",
+    "appearance": "fill",
+
+    "gridItemClass": "md-grid-column-1"
+  },
+
+  {
+    "type": "input",
+    "id": "countryOfBirth",
+    "label": "Country of Birth",
+    "appearance": "fill",
+
+    "gridItemClass": "md-grid-column-1"
+  },
+
+  {
+    "type": "input",
+    "id": "sex",
+    "label": "Sex",
+    "appearance": "fill",
+
+    "gridItemClass": "md-grid-column-1"
+  }
+]

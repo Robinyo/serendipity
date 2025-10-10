@@ -72,28 +72,38 @@
 
 <div class="md-content-container">
 
-  @if (generalInformationGroup && addressInformationGroup) {
+  @if (nameFormGroup && addressFormGroup && contactDetailsFormGroup) {
 
     <div class="md-vertical-stepper-container">
 
       <mat-stepper orientation="horizontal" linear="true">
 
-        <mat-step [stepControl]="generalInformationGroup">
-          <ng-template matStepLabel>General Information</ng-template>
+        <mat-step [stepControl]="nameFormGroup">
+          <ng-template matStepLabel>Name</ng-template>
           <dynamic-form autocomplete="off"
                         className="md-grid-3-column-layout-container"
-                        [formGroup]="generalInformationGroup"
-                        [model]="generalInformationModel"
+                        [formGroup]="nameFormGroup"
+                        [model]="nameFormModel"
                         (customEvent)="onCustomEvent($event)">
           </dynamic-form>
         </mat-step>
 
-        <mat-step [stepControl]="generalInformationGroup">
-          <ng-template matStepLabel>Address Information</ng-template>
+        <mat-step [stepControl]="addressFormGroup">
+          <ng-template matStepLabel>Address</ng-template>
           <dynamic-form autocomplete="off"
                         className="md-grid-3-column-layout-container"
-                        [formGroup]="addressInformationGroup"
-                        [model]="addressInformationModel"
+                        [formGroup]="addressFormGroup"
+                        [model]="addressFormModel"
+                        (customEvent)="onCustomEvent($event)">
+          </dynamic-form>
+        </mat-step>
+
+        <mat-step [stepControl]="contactDetailsFormGroup">
+          <ng-template matStepLabel>Contact Details</ng-template>
+          <dynamic-form autocomplete="off"
+                        className="md-grid-3-column-layout-container"
+                        [formGroup]="contactDetailsFormGroup"
+                        [model]="contactDetailsFormModel"
                         (customEvent)="onCustomEvent($event)">
           </dynamic-form>
         </mat-step>

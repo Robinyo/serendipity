@@ -1,0 +1,85 @@
+[
+
+  {
+    "type": "input",
+    "id": "name.title",
+    "label": "Title",
+    "appearance": "outline",
+    "autocomplete": "organization-title",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a title"
+      }
+    ],
+
+    "gridItemClass": "md-grid-column-1",
+    "required": true
+  },
+
+  {
+    "type": "input",
+    "id": "name.givenName",
+    "label": "Given Name",
+    "appearance": "outline",
+    "autocomplete": "given-name",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a given name"
+      }
+    ],
+
+    "gridItemClass": "md-grid-column-1",
+    "required": true
+  },
+
+  {
+    "type": "input",
+    "id": "name.middleName",
+    "label": "Middle Name",
+    "appearance": "outline",
+    "autocomplete": "additional-name",
+
+    "gridItemClass": "md-grid-column-2",
+    "required": false
+  },
+
+  {
+    "type": "input",
+    "id": "name.familyName",
+    "label": "Family Name",
+    "appearance": "outline",
+    "autocomplete": "family-name",
+
+    "validators": [
+      {
+        "name": "required",
+        "args": null,
+        "propertyName": "required",
+        "message": "You must enter a family name"
+      }
+    ],
+
+    "gridItemClass": "md-grid-column-1-span-2",
+    "required": true
+  },
+
+  {
+    "type": "input",
+    "id": "party.displayName",
+    "label": "Full Name",
+    "appearance": "outline",
+    "autocomplete": "name",
+
+    "gridItemClass": "md-grid-column-1-span-2",
+    "readonly": true
+  }
+
+]

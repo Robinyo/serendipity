@@ -50,11 +50,14 @@ import { CONTACTS } from  './constants';
 })
 export class ContactWizard extends WizardComponent<ContactModel> {
 
-  public generalInformationModel!: DynamicFormModel;
-  public generalInformationGroup!: FormGroup;
+  public nameFormModel!: DynamicFormModel;
+  public nameFormGroup!: FormGroup;
 
-  public addressInformationModel!: DynamicFormModel;
-  public addressInformationGroup!: FormGroup;
+  public addressFormModel!: DynamicFormModel;
+  public addressFormGroup!: FormGroup;
+
+  public contactDetailsFormModel!: DynamicFormModel;
+  public contactDetailsFormGroup!: FormGroup;
 
   private isNew = true;
 
@@ -67,17 +70,19 @@ export class ContactWizard extends WizardComponent<ContactModel> {
 
     this.logger.info('Contact Wizard Component: constructor()');
 
-    this.generalInformationModel = this.route.snapshot.data['metaData'].generalInformationFormDefs;
-    this.addressInformationModel = this.route.snapshot.data['metaData'].addressInformationFormDefs;
+    this.nameFormModel = this.route.snapshot.data['metaData'].nameFormModel;
+    this.addressFormModel = this.route.snapshot.data['metaData'].addressFormModel;
+    this.contactDetailsFormModel = this.route.snapshot.data['metaData'].contactDetailsFormModel;
 
-    // this.logger.info('generalInformationModel: ' + JSON.stringify(this.generalInformationModel, null, 2));
-    // this.logger.info('addressInformationModel: ' + JSON.stringify(this.addressInformationModel, null, 2));
+    // this.logger.info('nameFormModel: ' + JSON.stringify(this.nameFormModel, null, 2));
+    // this.logger.info('addressFormModel: ' + JSON.stringify(this.addressFormModel, null, 2));
+    // this.logger.info('contactDetailsFormModel: ' + JSON.stringify(this.contactDetailsFormModel, null, 2));
 
   }
 
   override createSteps(): void {
 
-    this.logger.info('Contact Wizard Component: createWizardSteps()');
+    this.logger.info('Contact Wizard Component: createSteps()');
 
     //
     // To save me some typing ...
@@ -85,11 +90,12 @@ export class ContactWizard extends WizardComponent<ContactModel> {
 
     this.createSampleContact();
 
-    this.generalInformationGroup = this.dynamicFormService.createGroup(this.generalInformationModel);
-    this.addressInformationGroup = this.dynamicFormService.createGroup(this.addressInformationModel);
+    this.nameFormGroup = this.dynamicFormService.createGroup(this.nameFormModel);
+    this.addressFormGroup = this.dynamicFormService.createGroup(this.addressFormModel);
+    this.contactDetailsFormGroup = this.dynamicFormService.createGroup(this.contactDetailsFormModel);
 
-    this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
-    this.dynamicFormService.initGroup(this.addressInformationGroup, this.item.party.addresses[0]);
+    this.dynamicFormService.initGroup(this.nameFormGroup, this.item);
+    this.dynamicFormService.initGroup(this.addressFormGroup, this.item.party.addresses[0]);
 
   }
 
@@ -116,8 +122,8 @@ export class ContactWizard extends WizardComponent<ContactModel> {
 
     let dirty = false;
 
-    if ((this.generalInformationGroup && this.generalInformationGroup.dirty) ||
-      (this.addressInformationGroup && this.addressInformationGroup.dirty)) {
+    if ((this.nameFormGroup && this.nameFormGroup.dirty) ||
+      (this.addressFormGroup && this.addressFormGroup.dirty)) {
       dirty = true;
     }
 
@@ -130,11 +136,11 @@ export class ContactWizard extends WizardComponent<ContactModel> {
 
     let valid = false;
 
-    if (this.generalInformationGroup) {
+    if (this.nameFormGroup) {
 
       valid = true;
 
-      const controls = this.generalInformationGroup.controls;
+      const controls = this.nameFormGroup.controls;
       for (const name in controls) {
         if (controls[name].invalid) {
           this.logger.info('generalInformationGroup ' + name + ' is invalid');
@@ -144,11 +150,11 @@ export class ContactWizard extends WizardComponent<ContactModel> {
 
     }
 
-    if (valid && this.addressInformationGroup) {
+    if (valid && this.addressFormGroup) {
 
       valid = true;
 
-      const controls = this.addressInformationGroup.controls;
+      const controls = this.addressFormGroup.controls;
       for (const name in controls) {
         if (controls[name].invalid) {
           this.logger.info('addressInformationGroup ' + name + ' is invalid');
@@ -184,12 +190,12 @@ export class ContactWizard extends WizardComponent<ContactModel> {
 
     // this.logger.info('ContactWizardComponent - markAsPristine()');
 
-    if (this.generalInformationGroup) {
-      this.generalInformationGroup.markAsPristine();
+    if (this.nameFormGroup) {
+      this.nameFormGroup.markAsPristine();
     }
 
-    if (this.addressInformationGroup) {
-      this.addressInformationGroup.markAsPristine();
+    if (this.addressFormGroup) {
+      this.addressFormGroup.markAsPristine();
     }
 
   }
@@ -223,8 +229,8 @@ export class ContactWizard extends WizardComponent<ContactModel> {
 
     this.logger.info('Contact Wizard Component: onSave()');
 
-    this.dynamicFormService.value(this.generalInformationGroup, this.item);
-    this.dynamicFormService.value(this.addressInformationGroup, this.item.party.addresses[0]);
+    this.dynamicFormService.value(this.nameFormGroup, this.item);
+    this.dynamicFormService.value(this.addressFormGroup, this.item.party.addresses[0]);
 
     this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
 
@@ -325,14 +331,14 @@ export class ContactWizard extends WizardComponent<ContactModel> {
       'Male',
       'hey@rob-ferguson.me',
       '(02) 9999 9999',
-      'assets/images/photos/male-avatar.svg',
+      'assets/images/male-avatar.svg',
       'Sydney',
       dateOfBirth,
       'Sydney',
       'Australia'
     );
 
-    this.item.party.displayName = 'Ferguson, Rob';
+    this.item.party.displayName = 'Rob Ferguson';
 
     const address = new AddressModel(
       new LocationModel(LocationType.ADDRESS),

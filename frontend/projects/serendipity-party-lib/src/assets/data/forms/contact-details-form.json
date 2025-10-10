@@ -1,0 +1,33 @@
+[
+
+  {
+    "type": "input",
+    "id": "email",
+    "label": "Email",
+    "appearance": "outline",
+    "autocomplete": "email",
+
+    "validators": [
+      {
+        "name": "email",
+        "args": null,
+        "propertyName": "email",
+        "message": "Please enter a valid email address"
+      }
+    ],
+
+    "gridItemClass": "md-grid-column-1",
+    "required": false
+  },
+
+  {
+    "type": "input",
+    "id": "phoneNumber",
+    "label": "Phone Number",
+    "appearance": "outline",
+    "autocomplete": "tel",
+
+    "gridItemClass": "md-grid-column-1"
+  }
+
+]
