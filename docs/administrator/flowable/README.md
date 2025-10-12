@@ -129,4 +129,4 @@ You should see something like:
   <img src="./flowable-task-landing-page.png" alt="Flowable Task landing page"/>
 </p>
 
-**Note**: The latest version of Flowable's Web Applications all-in-one image is 6.5.0.
+**Note**: The latest version of Flowable's `all-in-one` image is 6.5.0.
