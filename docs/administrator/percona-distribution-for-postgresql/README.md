@@ -6,7 +6,7 @@
 
 Using Docker Compose to launch your PostgreSQL database and supporting services is a straightforward process.
 
-You need to specify a PostgreSQL image, define environment variables for database credentials, volumes for persistent 
+You need to specify a PostgreSQL image, define environment variables for your database credentials, volumes for persistent 
 storage, and port mapping for external access.
 
 For example:

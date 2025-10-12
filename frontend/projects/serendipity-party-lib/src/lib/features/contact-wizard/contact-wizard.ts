@@ -314,10 +314,10 @@ export class ContactWizard extends WizardComponent<ContactModel> {
     const name: NameModel = new NameModel(
       'Mr',
       'Robert',
-      '',
+      'James',
       'Ferguson',
       'Rob',
-      'R',
+      'RJF',
       '',
       'Mr Ferguson'
     );
