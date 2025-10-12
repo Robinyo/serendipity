@@ -109,10 +109,10 @@ The `flowable/all-in-one` image includes Flowable's web applications:
 
 To launch a Flowable web application:
 
-Flowable Modeler: http://localhost:8080/flowable-modeler
-Flowable Task: http://localhost:8080/flowable-task
-Flowable Admin: http://localhost:8080/flowable-admin
-Flowable Identity Management: http://localhost:8080/flowable-idm
+- Flowable Modeler: http://localhost:8080/flowable-modeler
+- Flowable Task: http://localhost:8080/flowable-task
+- Flowable Admin: http://localhost:8080/flowable-admin
+- Flowable Identity Management: http://localhost:8080/flowable-idm
 
 Navigate to the Flowable Task application: http://localhost:8080/flowable-task and you will be redirected to Flowable's 
 Identity Management application:
