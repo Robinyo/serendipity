@@ -47,8 +47,7 @@ Follow the steps in the [Quick Start Guide](./docs/developer/quick-start-guide/R
   * [Build Management](./docs/developer/build-management/README.md)
 * Administrator Documentation
   * [Working with Docker and Docker Compose](./docs/administrator/docker/README.md)
-  * [Working with Flowable](./docs/administrator/flowable/7-2-0/README.md)
-  * [Working with Flowable's Web Applications](./docs/administrator/flowable-ui/6-5-0/README.md)
+  * [Working with Flowable](./docs/administrator/flowable/README.md)
   * [Working with Keycloak](./docs/administrator/keycloak/README.md)
   * [Working with OpenLDAP](./docs/administrator/openldap/README.md)
   * [Working with PostgreSQL](./docs/administrator/postgres/README.md)
