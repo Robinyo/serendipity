@@ -114,7 +114,7 @@ To launch a Flowable web application:
 - Flowable Admin: http://localhost:8080/flowable-admin
 - Flowable Identity Management: http://localhost:8080/flowable-idm
 
-Navigate to the Flowable Task application: http://localhost:8080/flowable-task and you will be redirected to Flowable's 
+For example, launch the Flowable Task application: http://localhost:8080/flowable-task and you will be redirected to Flowable's 
 Identity Management application:
 
 <p align="center">
