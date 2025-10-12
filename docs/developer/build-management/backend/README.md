@@ -124,13 +124,6 @@ Navigate to:
 https://serendipity.localhost
 ```
 
-Or launch a Flowable web application:
-
-Flowable Modeler: http://localhost:8080/flowable-modeler
-Flowable Task: http://localhost:8080/flowable-task
-Flowable Admin: http://localhost:8080/flowable-admin
-Flowable Identity Management: http://localhost:8080/flowable-idm
-
 To stop the services:
 
 ```

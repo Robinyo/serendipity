@@ -44,4 +44,4 @@ You can remove the container using the following command:
 docker container rm flowable-all-in-one
 ```
 
-**Note**: The latest version of Flowable's Web Applications all-in-one im age is 6.5.0.
+**Note**: The latest version of Flowable's Web Applications all-in-one image is 6.5.0.

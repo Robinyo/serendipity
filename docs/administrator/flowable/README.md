@@ -98,30 +98,21 @@ flowable.idm.ldap.attribute.group-name=cn
 flowable.idm.ldap.cache.group-size=10000
 ```
 
-
-
-
-
-
-
-
-
 ## ❯ Flowable's Web Applications
 
-The [flowable/all-in-one](https://hub.docker.com/r/flowable/all-in-one) image includes Flowable's web applications:
+The `flowable/all-in-one` image includes Flowable's web applications:
+
 - Flowable Identity Management
 - Flowable Modeler
 - Flowable Task
 - Flowable Admin
 
-With a single command, you can launch Flowable's web applications:
+To launch a Flowable web application:
 
-```
-docker run --name flowable-all-in-one \
-  -p 8080:8080 \
-  --env-file ./flowable-all-in-one-6-5-0.env \
-  flowable/all-in-one:6.5.0
-```
+Flowable Modeler: http://localhost:8080/flowable-modeler
+Flowable Task: http://localhost:8080/flowable-task
+Flowable Admin: http://localhost:8080/flowable-admin
+Flowable Identity Management: http://localhost:8080/flowable-idm
 
 Navigate to the Flowable Task application: http://localhost:8080/flowable-task and you will be redirected to Flowable's 
 Identity Management application:
@@ -138,16 +129,4 @@ You should see something like:
   <img src="./flowable-task-landing-page.png" alt="Flowable Task landing page"/>
 </p>
 
-You can stop the container using the following command:
-
-```
-docker container stop flowable-all-in-one
-```
-
-You can remove the container using the following command:
-
-```
-docker container rm flowable-all-in-one
-```
-
-**Note**: The latest version of Flowable's Web Applications all-in-one im age is 6.5.0.
+**Note**: The latest version of Flowable's Web Applications all-in-one image is 6.5.0.
