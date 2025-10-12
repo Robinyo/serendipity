@@ -118,7 +118,7 @@ Navigate to the Flowable Task application: http://localhost:8080/flowable-task a
 Identity Management application:
 
 <p align="center">
-  <img src="./login.png" alt="Authentication Settings"/>
+  <img src="./login.png" alt="Authentication Settings" width="40%" height="auto" />
 </p>
 
 Login using the default user-id: `flowable` and password: `Password12`
