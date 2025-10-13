@@ -76,10 +76,15 @@
 
     <div class="md-vertical-stepper-container">
 
-      <mat-stepper orientation="horizontal" linear="true">
+      <mat-stepper #stepper orientation="horizontal" linear="true">
+
+        <ng-template matStepperIcon="edit" let-index="index"> {{index + 1}} </ng-template>
+        <ng-template matStepperIcon="done" let-index="index"> {{index + 1}} </ng-template>
 
         <mat-step [stepControl]="nameFormGroup">
-          <ng-template matStepLabel>Name</ng-template>
+          <ng-template matStepLabel>
+            Name
+          </ng-template>
           <dynamic-form autocomplete="off"
                         className="md-grid-3-column-layout-container"
                         [formGroup]="nameFormGroup"
@@ -89,7 +94,9 @@
         </mat-step>
 
         <mat-step [stepControl]="addressFormGroup">
-          <ng-template matStepLabel>Address</ng-template>
+          <ng-template matStepLabel>
+            Address
+          </ng-template>
           <dynamic-form autocomplete="off"
                         className="md-grid-3-column-layout-container"
                         [formGroup]="addressFormGroup"
@@ -99,7 +106,9 @@
         </mat-step>
 
         <mat-step [stepControl]="contactDetailsFormGroup">
-          <ng-template matStepLabel>Contact Details</ng-template>
+          <ng-template matStepLabel>
+            Contact Details
+          </ng-template>
           <dynamic-form autocomplete="off"
                         className="md-grid-3-column-layout-container"
                         [formGroup]="contactDetailsFormGroup"

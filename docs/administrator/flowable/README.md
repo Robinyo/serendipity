@@ -130,3 +130,15 @@ You should see something like:
 </p>
 
 **Note**: The latest version of Flowable's `all-in-one` image is 6.5.0.
+
+## ❯ References
+
+### Flowable
+
+* GitHub: [Flowable 6.5.5 - User's Guide ](https://github.com/flowable/flowable-engine/tree/flowable-release-6.5.0/docs/userguide)
+* Rob Ferguson's blog: [Getting started with Flowable](https://rob-ferguson.me/getting-started-with-flowable/)
+* Rob Ferguson's blog: [Flowable's REST API - Part 1](https://rob-ferguson.me/flowable-rest-api-part-1/)
+* Rob Ferguson's blog: [Flowable's REST API - Part 2](https://rob-ferguson.me/flowable-rest-api-part-2/)
+* Rob Ferguson's blog: [Flowable's REST API - Part 3](https://rob-ferguson.me/flowable-rest-api-part-3/)
+* Rob Ferguson's blog: [How To: Flowable and LDAP](https://rob-ferguson.me/how-to-flowable-and-ldap/)
+* Rob Ferguson's blog: [Keycloak, Flowable and OpenLDAP](https://rob-ferguson.me/keycloak-flowable-and-openldap/)
