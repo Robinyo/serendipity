@@ -2,7 +2,7 @@
 
 ## ❯ Introduction
 
-Spring Data JPA, part of the larger [Spring Data](https://spring.io/projects/spring-data)] family, makes it easy to 
+Spring Data JPA, part of the larger [Spring Data](https://spring.io/projects/spring-data) family, makes it easy to 
 implement JPA-based repositories.
 
 ## ❯ Application Architecture
