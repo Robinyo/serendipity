@@ -123,6 +123,12 @@ Contact
   <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/contact.png">
 </p>
 
+Contact Wizard (New Contact)
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/contact-wizard.png">
+</p>
+
 Activities (My Work Items)
 
 <p align="center">
