@@ -18,6 +18,7 @@ public class IndividualModel extends RepresentationModel<IndividualModel> {
   private NameModel name;
   private Set<IndividualNameModel> names;
   private String sex;
+  // private String gender;
   private String email;
   private String phoneNumber;
   private String photoUrl;

@@ -92,7 +92,7 @@ services:
 
   pgadmin:
     container_name: pgadmin
-    image: dpage/pgadmin4:9.8.0
+    image: dpage/pgadmin4:9.9.0
     restart: unless-stopped
     ports:
       - "5443:443"

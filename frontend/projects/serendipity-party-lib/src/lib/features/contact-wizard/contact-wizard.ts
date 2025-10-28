@@ -152,7 +152,7 @@ export class ContactWizard extends WizardComponent<ContactModel> {
 
     if (valid && this.addressFormGroup) {
 
-      valid = true;
+      // valid = true;
 
       const controls = this.addressFormGroup.controls;
       for (const name in controls) {

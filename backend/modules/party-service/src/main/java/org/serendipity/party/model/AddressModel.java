@@ -21,6 +21,9 @@ public class AddressModel extends RepresentationModel<AddressModel> {
   private String country;
   private String addressType;
 
+  // private double latitude;
+  // private double longitude;
+
   @Override
   public boolean equals(Object o) {
 

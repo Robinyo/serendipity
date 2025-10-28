@@ -5,7 +5,7 @@ logging:
   level:
     root: INFO
     org.springframework.cloud.gateway.server.mvc: INFO
-    org.springframework.security: DEBUG
+    org.springframework.security: INFO
     org.springframework.web: INFO
 
 spring:

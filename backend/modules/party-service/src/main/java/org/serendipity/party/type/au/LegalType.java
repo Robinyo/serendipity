@@ -1,6 +1,7 @@
 package org.serendipity.party.type.au;
 
 // Australian Standard 4590.1:2017
+// https://rob-ferguson.me/data-model-patterns/
 
 import lombok.Getter;
 

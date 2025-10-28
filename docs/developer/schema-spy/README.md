@@ -44,7 +44,7 @@ java -jar schemaspy-app.jar -vizjs
 Sample diagram:
 
 <p align="center">
-  <img src="./er-diagram.png" alt="Eclipse Marketplace"/>
+  <img src="./er-diagram.png" alt="ER Diagram"/>
 </p>
 
 ## ❯ References
