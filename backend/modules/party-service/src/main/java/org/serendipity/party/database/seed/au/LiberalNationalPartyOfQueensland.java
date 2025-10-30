@@ -73,22 +73,39 @@ public class LiberalNationalPartyOfQueensland implements CommandLineRunner {
       // Create the Primary Contact (Individual)
 
       Name name = Name.builder()
+        .title("Mr")
         .givenName("David")
         .familyName("Hutchinson")
         .build();
 
+      String displayName = name.getTitle();
+
+      if (name.getTitle().isEmpty()) {
+        displayName += name.getGivenName();
+      } else {
+        displayName += " " + name.getGivenName();
+      }
+
+      if (name.getGivenName().isEmpty()) {
+        displayName += name.getFamilyName();
+      } else {
+        displayName += " " + name.getFamilyName();
+      }
+
       Party individualParty = Party.builder()
         .type(PartyType.INDIVIDUAL)
-        .displayName(name.getFamilyName() + ", " + name.getGivenName())
+        .displayName(displayName)
         .addresses(new HashSet<>())
         .roles(new HashSet<>())
         .build();
+
+      String email = name.getGivenName().toLowerCase() + "." + name.getFamilyName().toLowerCase() + "@lnp.org.au";
 
       Individual individual = Individual.builder()
         .party(individualParty)
         .name(name)
         .sex(Sex.MALE.toString())
-        .email("david.hutchinson@lnp.org.au")
+        .email(email)
         .phoneNumber("(07) 3844 0666")
         .build();
 

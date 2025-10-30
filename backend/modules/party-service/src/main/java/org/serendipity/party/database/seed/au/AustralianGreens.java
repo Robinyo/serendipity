@@ -76,23 +76,39 @@ public class AustralianGreens implements CommandLineRunner {
       // Create the Primary Contact (Individual)
 
       Name name = Name.builder()
+        .title("Ms")
         .givenName("Larissa")
         .familyName("Waters")
         .build();
 
+      String displayName = name.getTitle();
+
+      if (name.getTitle().isEmpty()) {
+        displayName += name.getGivenName();
+      } else {
+        displayName += " " + name.getGivenName();
+      }
+
+      if (name.getGivenName().isEmpty()) {
+        displayName += name.getFamilyName();
+      } else {
+        displayName += " " + name.getFamilyName();
+      }
+
       Party individualParty = Party.builder()
         .type(PartyType.INDIVIDUAL)
-        .displayName(name.getFamilyName() + ", " + name.getGivenName())
+        .displayName(displayName)
         .addresses(new HashSet<>())
         .roles(new HashSet<>())
         .build();
 
+      String email = name.getGivenName().toLowerCase() + "." + name.getFamilyName().toLowerCase() + "@greens.org.au";
+
       Individual individual = Individual.builder()
         .party(individualParty)
         .name(name)
-        // .names(new HashSet<>())
         .sex(Sex.FEMALE.toString())
-        .email("larissa.waters@greens.org.au")
+        .email(email)
         .phoneNumber("(02) 6140 3220")
         .build();
 
