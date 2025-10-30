@@ -2,6 +2,27 @@
 
   {
     "type": "input",
+    "id": "name.preferredName",
+    "label": "Preferred Name",
+    "appearance": "outline",
+
+    "gridItemClass": "md-grid-column-1",
+    "required": false
+  },
+
+
+  {
+    "type": "input",
+    "id": "name.title",
+    "label": "Title",
+    "appearance": "outline",
+    "autocomplete": "organization-title",
+
+    "gridItemClass": "md-grid-column-2"
+  },
+
+  {
+    "type": "input",
     "id": "name.givenName",
     "label": "Given Name",
     "appearance": "outline",
@@ -60,26 +81,6 @@
 
   {
     "type": "input",
-    "id": "party.displayName",
-    "label": "Full Name",
-    "appearance": "outline",
-    "autocomplete": "name",
-
-    "gridItemClass": "md-grid-column-1-span-2"
-  },
-
-  {
-    "type": "input",
-    "id": "name.title",
-    "label": "Title",
-    "appearance": "outline",
-    "autocomplete": "organization-title",
-
-    "gridItemClass": "md-grid-column-1"
-  },
-
-  {
-    "type": "input",
     "id": "email",
     "label": "Email",
     "appearance": "outline",
@@ -94,14 +95,14 @@
       }
     ],
 
-    "gridItemClass": "md-grid-column-2",
+    "gridItemClass": "md-grid-column-1-span-2",
     "required": false
   },
 
   {
     "type": "input",
-    "id": "organisation.phoneNumber",
-    "label": "Business Phone",
+    "id": "phoneNumber",
+    "label": "Phone Number",
     "appearance": "outline",
     "autocomplete": "tel",
 
@@ -118,6 +119,15 @@
     "gridItemClass": "md-grid-column-1-span-2",
 
     "suffixIconName": "search"
-  }
+  },
 
+  {
+    "type": "input",
+    "id": "organisation.phoneNumber",
+    "label": "Business Phone",
+    "appearance": "outline",
+    "autocomplete": "tel",
+
+    "gridItemClass": "md-grid-column-3"
+  }
 ]
