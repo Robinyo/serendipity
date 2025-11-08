@@ -102,20 +102,12 @@ flowable.idm.ldap.cache.group-size=10000
 
 The `flowable/all-in-one` image includes Flowable's web applications:
 
-- Flowable Identity Management
-- Flowable Modeler
-- Flowable Task
-- Flowable Admin
-
-To launch a Flowable web application:
-
 - Flowable Modeler: http://localhost:8080/flowable-modeler
 - Flowable Task: http://localhost:8080/flowable-task
 - Flowable Admin: http://localhost:8080/flowable-admin
 - Flowable Identity Management: http://localhost:8080/flowable-idm
 
-For example, launch the Flowable Task application: http://localhost:8080/flowable-task and you will be redirected to Flowable's 
-Identity Management application:
+Launch a Flowable web application:
 
 <p align="center">
   <img src="./login.png" alt="Authentication Settings" width="40%" height="auto" />
