@@ -45,6 +45,7 @@ Follow the steps in the [Quick Start Guide](./docs/developer/quick-start-guide/R
 * Developer Documentation
   * [Quick Start Guide](./docs/developer/quick-start-guide/README.md)
   * [Build Management](./docs/developer/build-management/README.md)
+  * [Build with AI](./docs/developer/build-with-ai/claude-code/README.md)
 * Administrator Documentation
   * [Working with Docker and Docker Compose](./docs/administrator/docker/README.md)
   * [Working with Flowable](./docs/administrator/flowable/README.md)

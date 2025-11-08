@@ -1,9 +1,10 @@
 <h1 align="center">Developer Documentation</h1>
 
-* [Quick Start Guide](./developer/quick-start-guide/README.md)
-* [Build Management](./build-management/README.md)
-* [Build with AI](./build-with-ai/claude-code/README.md)
-* [mkcert](./mkcert/README.md)
+* Developer Documentation
+  * [Quick Start Guide](./developer/quick-start-guide/README.md)
+  * [Build Management](./build-management/README.md)
+  * [Build with AI](./build-with-ai/claude-code/README.md)
+  * [mkcert](./mkcert/README.md)
 
 ### Resources
 
