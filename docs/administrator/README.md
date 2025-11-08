@@ -1,4 +1,4 @@
-<h1 align="center">Documentation</h1>
+<h1 align="center">Administrator Documentation</h1>
 
 * Administrator Documentation
   * [Working with Docker and Docker Compose](./administrator/docker/README.md)
