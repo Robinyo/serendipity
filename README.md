@@ -43,7 +43,6 @@ Follow the steps in the [Quick Start Guide](./docs/developer/quick-start-guide/R
 ## ❯ Documentation
 
 * Developer Documentation
-  * [Quick Start Guide](./docs/developer/quick-start-guide/README.md)
   * [Build Management](./docs/developer/build-management/README.md)
   * [Build with AI](./docs/developer/build-with-ai/claude-code/README.md)
   * [mkcert](./docs/developer/mkcert/README.md)
