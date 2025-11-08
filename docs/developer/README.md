@@ -2,6 +2,7 @@
 
 * [Quick Start Guide](./developer/quick-start-guide/README.md)
 * [Build Management](./developer/build-management/README.md)
+* [Build with AI](./developer/build-with-ai/claude-code/README.md)
 * [mkcert](./developer/mkcert/README.md)
 
 ### Resources
