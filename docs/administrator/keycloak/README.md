@@ -107,3 +107,5 @@ For example:
 ### Keycloak
 
 * Keycloak docs: [Server Administration Guide - Importing and Exporting Realms](https://www.keycloak.org/server/importExport)
+* Keycloak docs: [Keycloak Extensions](https://www.keycloak.org/extensions.html)
+* GitHub: [More Keycloak Extensions](https://github.com/dasniko/keycloak-extensions-demo)

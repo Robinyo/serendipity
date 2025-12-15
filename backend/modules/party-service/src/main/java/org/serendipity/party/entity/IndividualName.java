@@ -56,6 +56,25 @@ public class IndividualName {
   @Temporal(TemporalType.TIMESTAMP)
   private Date toDate;
 
+  @Override
+  public boolean equals(Object o) {
+
+    if (this == o)
+      return true;
+
+    if (!(o instanceof IndividualName))
+      return false;
+
+    IndividualName other = (IndividualName) o;
+
+    return id != null && id.equals(other.getId());
+  }
+
+  @Override
+  public int hashCode() {
+    return getClass().hashCode();
+  }
+
 }
 
 /*

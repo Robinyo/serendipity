@@ -1,20 +1,12 @@
-<h1 align="center">Spring Data</h1>
+<h1 align="center">How to Build a REST API with Spring Boot</h1>
 
 ## ❯ Introduction
 
-Spring Data JPA, part of the larger [Spring Data](https://spring.io/projects/spring-data) family, makes it easy to 
-implement JPA-based repositories.
-
-## ❯ Application Architecture
-
-Spring Data JPA helps you create and retrieve objects stored in a database by using [Spring Data REST](https://spring.io/projects/spring-data-rest).
-
-Spring Data REST takes the features of [Spring HATEOAS](https://spring.io/projects/spring-hateoas) and [Spring Data JPA](https://spring.io/projects/spring-data-jpa)
-and automatically combines them together.
+This document provides a step-by-step guide to building a RESTful API using Spring Boot.
 
 ### Spring Initializr
 
-We'll use [Spring Initializr](https://start.spring.io/) to bootstrap an application.
+We'll use [Spring Initializr](https://start.spring.io/) to create the scaffolding for a new project.
 
 For example:
 
@@ -25,16 +17,13 @@ Spring Boot: 3.5.5
 Group: org.serendipity
 Artifact: party
 Name: Serendipity Party Service
-Description: Use Spring Data REST to implement Serendipity's REST API.
+Description: Use Spring Boot to build a RESTful API.
 Package name: org.serendipity.party
 Packaging: Jar
 Java: 21
 ```
 
 **Dependencies**
-
-Spring Data JPA (SQL): Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.
-Rest Repositories (Web): Exposing Spring Data repositories over REST via Spring Data REST.
 
 ```
 <dependency>

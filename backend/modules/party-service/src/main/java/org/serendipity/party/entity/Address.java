@@ -55,13 +55,12 @@ public class Address {
 
     Address other = (Address) o;
 
-    // return id != 0L && id == other.getId();
-    return id != 0L && id.equals(other.getId());
+    return id != null && id.equals(other.getId());
   }
 
   @Override
   public int hashCode() {
-    return 31;
+    return getClass().hashCode();
   }  
 
 }

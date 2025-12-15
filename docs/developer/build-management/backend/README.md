@@ -51,9 +51,9 @@ java -version
 You should see something like:
 
 ```
-openjdk version "21.0.8" 2025-07-15 LTS
-OpenJDK Runtime Environment Temurin-21.0.8+9 (build 21.0.8+9-LTS)
-OpenJDK 64-Bit Server VM Temurin-21.0.8+9 (build 21.0.8+9-LTS, mixed mode, sharing)
+openjdk version "21.0.9" 2025-10-21 LTS
+OpenJDK Runtime Environment Temurin-21.0.9+10 (build 21.0.9+10-LTS)
+OpenJDK 64-Bit Server VM Temurin-21.0.9+10 (build 21.0.9+10-LTS, mixed mode, sharing)
 ```
 
 To check for installed Java SDKs:
@@ -65,11 +65,12 @@ To check for installed Java SDKs:
 You should see something like:
 
 ```
-Matching Java Virtual Machines (4):
-24.0.2 (arm64) "Eclipse Adoptium" - "OpenJDK 24.0.2" /Library/Java/JavaVirtualMachines/temurin-24.jdk/Contents/Home
-21.0.8 (arm64) "Eclipse Adoptium" - "OpenJDK 21.0.8" /Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home
-17.0.16 (arm64) "Eclipse Adoptium" - "OpenJDK 17.0.16" /Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
-11.0.28 (arm64) "Eclipse Adoptium" - "OpenJDK 11.0.28" /Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home
+Matching Java Virtual Machines (5):
+25.0.1 (arm64) "Oracle Corporation" - "Java SE 25.0.1" /Library/Java/JavaVirtualMachines/jdk-25.jdk/Contents/Home
+25.0.1 (arm64) "Eclipse Adoptium" - "OpenJDK 25.0.1" /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home
+21.0.9 (arm64) "Eclipse Adoptium" - "OpenJDK 21.0.9" /Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home
+17.0.17 (arm64) "Eclipse Adoptium" - "OpenJDK 17.0.17" /Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
+11.0.29 (arm64) "Eclipse Adoptium" - "OpenJDK 11.0.29" /Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home
 ```
 
 ## ❯ Development

@@ -55,4 +55,23 @@ public class ElectoralDivision {
 
   private String longitude;
 
+  @Override
+  public boolean equals(Object o) {
+
+    if (this == o)
+      return true;
+
+    if (!(o instanceof ElectoralDivision))
+      return false;
+
+    ElectoralDivision other = (ElectoralDivision) o;
+
+    return id != null && id.equals(other.getId());
+  }
+
+  @Override
+  public int hashCode() {
+    return getClass().hashCode();
+  }
+
 }

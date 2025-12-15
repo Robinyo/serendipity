@@ -91,12 +91,12 @@ public class Individual {
 
     Individual other = (Individual) o;
 
-    return id != 0L && id.equals(other.getId());
+    return id != null && id.equals(other.getId());
   }
 
   @Override
   public int hashCode() {
-    return 31;
+    return getClass().hashCode();
   }
 
 }
