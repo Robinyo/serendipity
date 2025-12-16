@@ -8,6 +8,41 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.data.web.PagedResourcesAssembler;
 
+/*
+
+@Slf4j
+public class Controller {
+
+  protected void logInfo(Object entity, Object model) {
+
+    try {
+
+      ObjectMapper mapper = new ObjectMapper();
+
+      mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+      mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+
+      mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+      if (entity != null) {
+        log.info("entity: {}", "\n" + mapper.writeValueAsString(entity));
+      }
+
+      if (model != null) {
+        log.info("model: {}", "\n" + mapper.writeValueAsString(model));
+      }
+
+    } catch (JsonProcessingException jpe) {
+
+      log.error("Json Processing Exception: {}", jpe.getLocalizedMessage());
+    }
+
+  }
+
+}
+
+*/
+
 @Slf4j
 public class Controller<Entity, Repository, Assembler> {
 

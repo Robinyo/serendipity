@@ -128,13 +128,11 @@ public class Party {
 
     Party other = (Party) o;
 
-    // return id != 0L && id.equals(other.getId());
     return id != null && id.equals(other.getId());
   }
 
   @Override
   public int hashCode() {
-    // return 31;
     return getClass().hashCode();
   }
 
