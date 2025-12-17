@@ -86,7 +86,7 @@ For example:
                 ├── pom.xml
 ```
 
-### Application Properties
+#### Application Properties
 
 Convert the application's `application.properties` to yaml.
 
@@ -151,7 +151,6 @@ package org.serendipity.party.entity;
 
 ...
 
-
 @Entity
 @Builder
 @AllArgsConstructor
@@ -197,43 +196,8 @@ public class Party {
   )
   private Set<Role> roles;
 
-  //
-  // Spring Data audit annotations in nested (embeddable) classes isn't supported yet.
-  // See: https://jira.spring.io/browse/DATACMNS-1274
-  //
-  // @Embedded
-  // private Auditable auditable;
-  //
-  
-  @CreatedBy
-  private String createdBy;
-
-  @CreatedDate
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date createdAt;
-
-  @LastModifiedBy
-  private String updatedBy;
-  
-  @LastModifiedDate
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date updatedAt;
-
-  // An entity must be equal to itself across all JPA object states: transient, attached, detached, removed (as long as
-  // the object is marked to be removed, and it is still living on the Heap).
-  //
-  // Therefore, we can conclude that:
-  // - We can’t use an auto-incrementing database id in the hashCode method since the transient and the attached object
-  //   versions will no longer be located in the same hashed bucket.
-  // - We can’t rely on the default Object equals and hashCode implementations since two entities loaded in two
-  //   different persistence contexts will end up as two different Java objects, therefore breaking the all-states
-  //   equality rule.
-  //
-  // So, if Hibernate uses the equality to uniquely identify an Object, for its whole lifetime, we need to find the
-  // right combination of properties satisfying this requirement.
-  //
-  // See: https://vladmihalcea.com/hibernate-facts-equals-and-hashcode/
-  // See: https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+  @Embedded
+  private Auditable audit;
 
   @Override
   public boolean equals(Object o) {
@@ -257,7 +221,101 @@ public class Party {
 }
 ```
 
-### JPA Repositories
+#### @SequenceGenerator
+
+Using a database sequence is the most efficient Hibernate identifier generation strategy, it also allows you to take 
+advantage of the automatic JDBC batching mechanism.
+
+See: [How to generate JPA entity identifier values using a database sequence](https://vladmihalcea.com/jpa-entity-identifier-sequence/)
+See: [How to batch INSERT and UPDATE statements with Hibernate](https://vladmihalcea.com/how-to-batch-insert-and-update-statements-with-hibernate/)
+
+#### Auditing in Spring Data JPA
+
+You can keep track of changes made to JPA entities using Spring Data JPA auditing annotations: @EntityListeners, 
+@Embedded, and @Embeddable.
+
+See: [How to audit entity modifications using JPA annotations](https://vladmihalcea.com/how-to-audit-entity-modifications-using-the-jpa-entitylisteners-embedded-and-embeddable-annotations/)
+
+#### equals() and hashCode()
+
+An entity must be equal to itself across all JPA object states: transient, attached, detached, removed (as long as the 
+object is marked to be removed, and it is still living on the Heap).
+
+- We can’t use an auto-incrementing database id in the hashCode method since the transient and the attached object
+  versions will no longer be located in the same hashed bucket.
+- We can’t rely on the default Object equals and hashCode implementations since two entities loaded in two
+  different persistence contexts will end up as two different Java objects, therefore breaking the all-states
+  equality rule.
+
+So, if Hibernate uses the equality to uniquely identify an Object, for its whole lifetime, we need to find the
+right combination of properties satisfying this requirement.
+
+See: [How to implement Equals and HashCode for JPA entities](https://vladmihalcea.com/hibernate-facts-equals-and-hashcode/)
+See: [How to implement equals and hashCode using the JPA entity identifier](https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/)
+
+### Service Layer
+
+This layer (@Service) contains core business logic and orchestrates data access via repositories.
+
+For example:
+
+```
+package org.serendipity.party.service;
+
+...
+
+@Service
+public class IndividualService {
+
+  private final IndividualRepository repository;
+
+  public IndividualService(IndividualRepository repository) {
+    this.repository = repository;
+  }
+
+  public Page<Individual> findAll(Pageable pageable) {
+    return repository.findAll(pageable);
+  }
+
+  public Individual findById(final Long id) throws ResponseStatusException {
+    return repository.findById(id).orElseThrow(() ->
+        new ResponseStatusException(HttpStatus.NOT_FOUND));
+  }
+
+  public Page<Individual> findByNameFamilyNameStartsWith(String name, Pageable pageable) {
+    return repository.findByNameFamilyNameStartsWith(name, pageable);
+  }
+
+  public Individual save(Individual individual) {
+    return repository.save(individual);
+  }
+
+  public void deleteById(final Long id) {
+    repository.deleteById(id);
+  }
+
+}
+```
+
+#### Exception Handling
+
+A `@ControllerAdvice` class with an `@ExceptionHandler` method can be used to handle `ResponseStatusException` globally, 
+although Spring Boot typically handles `ResponseStatusException` out-of-the-box. 
+
+The main purpose of a global handler for this specific exception type is often to customise the error response format to 
+meet specific API requirements.
+
+##### How Spring Handles ResponseStatusException
+Spring's default mechanisms (specifically the `ResponseStatusExceptionResolver`) are designed to automatically process 
+`ResponseStatusException` instances and translate them into appropriate HTTP responses with the correct status code and 
+message. If you throw a `ResponseStatusException` in your controller or service layer, Spring will automatically use its 
+properties to return a proper error response. 
+
+While Spring handles `ResponseStatusException` automatically, you can implement a global exception handler using 
+`@ControllerAdvice` and `@ExceptionHandler(ResponseStatusException.class)` to customise the error response format. 
+This allows for a consistent, structured response across your application.
+
+#### JPA Repositories
 
 The primary interface in the Spring Data repository abstraction is `Repository`. 
 
@@ -274,6 +332,11 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface PartyRepository extends PagingAndSortingRepository<Party, Long> {}
 ```
+
+### Controller Layer
+
+This layer (@RestController) handles HTTP requests. It calls the service layer and is responsible for transforming the 
+plain data into HATEOAS-compliant representations (EntityModel, CollectionModel) by adding relevant links.
 
 ### REST API Endpoints
 

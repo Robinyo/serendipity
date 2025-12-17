@@ -60,14 +60,10 @@ public class Individual {
 
   private String electorate;
 
-  // @Temporal(TemporalType.DATE)
-  // private Date dateOfBirth;
   private LocalDateTime dateOfBirth;
   private String placeOfBirth;
   private String countryOfBirth;
 
-  // @Temporal(TemporalType.DATE)
-  // private Date dateOfDeath;
   private LocalDateTime dateOfDeath;
   private String placeOfDeath;
   private String countryOfDeath;
