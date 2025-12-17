@@ -8,15 +8,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Builder
@@ -48,8 +46,9 @@ public class ElectoralDivision {
 
   private String locationDescription;
 
-  @Temporal(TemporalType.DATE)
-  private Date dateGazetted;
+  // @Temporal(TemporalType.DATE)
+  // private Date dateGazetted;
+  private LocalDateTime dateGazetted;
 
   private String latitude;
 

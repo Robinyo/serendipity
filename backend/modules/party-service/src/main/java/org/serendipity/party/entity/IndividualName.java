@@ -11,15 +11,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Builder
@@ -50,11 +48,9 @@ public class IndividualName {
   @Embedded
   private Name name;
 
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date fromDate;
+  private LocalDateTime fromDate;
 
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date toDate;
+  private LocalDateTime toDate;
 
   @Override
   public boolean equals(Object o) {
@@ -76,6 +72,12 @@ public class IndividualName {
   }
 
 }
+
+// @Temporal(TemporalType.TIMESTAMP)
+// private Date fromDate;
+
+// @Temporal(TemporalType.TIMESTAMP)
+// private Date toDate;
 
 /*
 

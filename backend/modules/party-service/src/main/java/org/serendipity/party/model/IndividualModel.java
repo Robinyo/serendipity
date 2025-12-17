@@ -1,9 +1,13 @@
 package org.serendipity.party.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Builder
@@ -24,11 +28,11 @@ public class IndividualModel extends RepresentationModel<IndividualModel> {
   private String photoUrl;
   private String electorate;
 
-  private Date dateOfBirth;
+  private LocalDateTime dateOfBirth;
   private String placeOfBirth;
   private String countryOfBirth;
 
-  private Date dateOfDeath;
+  private LocalDateTime dateOfDeath;
   private String placeOfDeath;
   private String countryOfDeath;
 
@@ -43,12 +47,12 @@ public class IndividualModel extends RepresentationModel<IndividualModel> {
 
     IndividualModel other = (IndividualModel) o;
 
-    return id != 0L && id.equals(other.getId());
+    return id != null && id.equals(other.getId());
   }
 
   @Override
   public int hashCode() {
-    return 31;
+    return getClass().hashCode();
   }
 
 }

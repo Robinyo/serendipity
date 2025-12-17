@@ -8,16 +8,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
-;
+import java.time.LocalDateTime;
 
 @Entity
 @Builder
@@ -47,8 +44,7 @@ public class Organisation {
 
   private String phoneNumber;
 
-  @Temporal(TemporalType.DATE)
-  private Date establishmentDate;
+  private LocalDateTime establishmentDate;
 
   @Override
   public boolean equals(Object o) {
@@ -70,3 +66,6 @@ public class Organisation {
   }
 
 }
+
+// @Temporal(TemporalType.DATE)
+// private Date establishmentDate;

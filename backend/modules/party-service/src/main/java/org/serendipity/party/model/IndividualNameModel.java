@@ -1,9 +1,13 @@
 package org.serendipity.party.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Builder
 @AllArgsConstructor
@@ -22,8 +26,8 @@ public class IndividualNameModel extends RepresentationModel<IndividualNameModel
   private String salutation;
   private String preferredName;
   private String initials;
-  private Date fromDate;
-  private Date toDate;
+  private LocalDateTime fromDate;
+  private LocalDateTime toDate;
 
   @Override
   public boolean equals(Object o) {
@@ -36,12 +40,12 @@ public class IndividualNameModel extends RepresentationModel<IndividualNameModel
 
     IndividualNameModel other = (IndividualNameModel) o;
 
-    return id != 0L && id.equals(other.getId());
+    return id != null && id.equals(other.getId());
   }
 
   @Override
   public int hashCode() {
-    return 31;
+    return getClass().hashCode();
   }
 
 }

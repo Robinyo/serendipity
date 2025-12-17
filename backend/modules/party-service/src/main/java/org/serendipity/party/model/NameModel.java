@@ -1,6 +1,10 @@
 package org.serendipity.party.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
 
 @Builder
@@ -33,12 +37,12 @@ public class NameModel extends RepresentationModel<NameModel> {
 
     NameModel other = (NameModel) o;
 
-    return id != 0L && id.equals(other.getId());
+    return id != null && id.equals(other.getId());
   }
 
   @Override
   public int hashCode() {
-    return 31;
+    return getClass().hashCode();
   }
 
 }

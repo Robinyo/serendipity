@@ -1,5 +1,6 @@
 package org.serendipity.party.entity;
 
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
@@ -8,21 +9,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.serendipity.party.type.LocationType;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Builder
@@ -49,31 +44,13 @@ public class Location {
 
   @Builder.Default
   private String displayName = "";
-  
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date fromDate;
-  
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date toDate;
 
-  //
-  // @Embedded
-  // private Auditable audit;
-  //
-  
-  @CreatedBy
-  private String createdBy;
+  private LocalDateTime fromDate;
 
-  @CreatedDate
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date createdAt;
+  private LocalDateTime toDate;
 
-  @LastModifiedBy
-  private String updatedBy;
-  
-  @LastModifiedDate
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date updatedAt;
+  @Embedded
+  private Auditable audit;
   
   @Override
   public boolean equals(Object o) {
@@ -98,3 +75,10 @@ public class Location {
 
 // https://github.com/GeoscienceAustralia/AS4590-codelists
 // https://toolkit.data.gov.au/Publishing_your_data.html
+
+
+// @Temporal(TemporalType.TIMESTAMP)
+// private Date fromDate;
+
+// @Temporal(TemporalType.TIMESTAMP)
+// private Date toDate;

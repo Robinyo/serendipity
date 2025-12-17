@@ -21,7 +21,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 
 @Component
@@ -72,7 +72,7 @@ public class HouseOfRepresentatives implements CommandLineRunner {
 
     try {
 
-      Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+      LocalDateTime currentDateTime = LocalDateTime.now();
 
       //
       // Example Identifier
@@ -83,7 +83,7 @@ public class HouseOfRepresentatives implements CommandLineRunner {
         .value("85 087 326 690")
         .register(IdentifierType.ABN.getRegister())
         .lifecycleStatus(IdentifierLifecycleStatus.ACTIVE.toString())
-        .fromDate(currentTime)
+        .fromDate(currentDateTime)
         .build();
 
       identifierRepository.save(identifier);
@@ -269,6 +269,8 @@ public class HouseOfRepresentatives implements CommandLineRunner {
   }
 
 }
+
+// Timestamp currentTime = new Timestamp(System.currentTimeMillis());
 
 /*
 

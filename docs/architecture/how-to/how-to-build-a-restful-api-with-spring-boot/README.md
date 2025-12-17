@@ -1,4 +1,4 @@
-<h1 align="center">How to Build a REST API with Spring Boot</h1>
+<h1 align="center">How to build a RESTful API with Spring Boot</h1>
 
 ## ❯ Introduction
 
@@ -70,10 +70,10 @@ For example:
                             └── /org.serendipity.party
                                 └── /assembler
                                 └── /controller
-                                └── /database
                                 └── /entity
                                 └── /model
                                 └── /repository
+                                └── /service                                
                                 └── /type
                                 ├── PartyServiceApplication.java   
                         └── /resources
@@ -142,6 +142,8 @@ spring:
 
 We'll use Serendipity's Common Data Model to create our entities.
 
+The domain model uses standard JPA entities and [Lombok](https://projectlombok.org/features/).
+
 For example:
 
 ```
@@ -149,7 +151,14 @@ package org.serendipity.party.entity;
 
 ...
 
+
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
+@EntityListeners(AuditingEntityListener.class)
 public class Party {
 
   @Id
@@ -210,8 +219,21 @@ public class Party {
   @Temporal(TemporalType.TIMESTAMP)
   private Date updatedAt;
 
-  // Equals and hashCode must behave consistently across all entity state transitions
-  // See: https://vladmihalcea.com/the-best-way-to-implement-equals-hashcode-and-tostring-with-jpa-and-hibernate/
+  // An entity must be equal to itself across all JPA object states: transient, attached, detached, removed (as long as
+  // the object is marked to be removed, and it is still living on the Heap).
+  //
+  // Therefore, we can conclude that:
+  // - We can’t use an auto-incrementing database id in the hashCode method since the transient and the attached object
+  //   versions will no longer be located in the same hashed bucket.
+  // - We can’t rely on the default Object equals and hashCode implementations since two entities loaded in two
+  //   different persistence contexts will end up as two different Java objects, therefore breaking the all-states
+  //   equality rule.
+  //
+  // So, if Hibernate uses the equality to uniquely identify an Object, for its whole lifetime, we need to find the
+  // right combination of properties satisfying this requirement.
+  //
+  // See: https://vladmihalcea.com/hibernate-facts-equals-and-hashcode/
+  // See: https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
 
   @Override
   public boolean equals(Object o) {
@@ -224,11 +246,13 @@ public class Party {
 
     Party other = (Party) o;
 
-    return id != 0L && id.equals(other.getId());
+    return id != null && id.equals(other.getId());
   }
 
   @Override
-  public int hashCode() { return 31; }
+  public int hashCode() {
+    return getClass().hashCode();
+  }
 
 }
 ```

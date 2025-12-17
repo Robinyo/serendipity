@@ -10,15 +10,13 @@ import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -62,13 +60,15 @@ public class Individual {
 
   private String electorate;
 
-  @Temporal(TemporalType.DATE)
-  private Date dateOfBirth;
+  // @Temporal(TemporalType.DATE)
+  // private Date dateOfBirth;
+  private LocalDateTime dateOfBirth;
   private String placeOfBirth;
   private String countryOfBirth;
 
-  @Temporal(TemporalType.DATE)
-  private Date dateOfDeath;
+  // @Temporal(TemporalType.DATE)
+  // private Date dateOfDeath;
+  private LocalDateTime dateOfDeath;
   private String placeOfDeath;
   private String countryOfDeath;
 

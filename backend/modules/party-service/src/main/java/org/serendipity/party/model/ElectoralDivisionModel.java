@@ -3,7 +3,7 @@ package org.serendipity.party.model;
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Builder
 @AllArgsConstructor
@@ -18,7 +18,7 @@ public class ElectoralDivisionModel extends RepresentationModel<ElectoralDivisio
   private String state;
   private String area;
   private String locationDescription;
-  private Date dateGazetted;
+  private LocalDateTime dateGazetted;
   private String latitude;
   private String longitude;
 
@@ -33,12 +33,12 @@ public class ElectoralDivisionModel extends RepresentationModel<ElectoralDivisio
 
     ElectoralDivisionModel other = (ElectoralDivisionModel) o;
 
-    return id != 0L && id.equals(other.getId());
+    return id != null && id.equals(other.getId());
   }
 
   @Override
   public int hashCode() {
-    return 31;
+    return getClass().hashCode();
   }
 
 }
