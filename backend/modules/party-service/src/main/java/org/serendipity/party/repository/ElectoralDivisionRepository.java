@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface ElectoralDivisionRepository extends CrudRepository<ElectoralDivision, Long>, PagingAndSortingRepository<ElectoralDivision, Long> {
 
-  Page<ElectoralDivision> findAll(Pageable pageable);
+  // Page<ElectoralDivision> findAll(Pageable pageable);
 
   Optional<ElectoralDivision> findByName(String name);
 

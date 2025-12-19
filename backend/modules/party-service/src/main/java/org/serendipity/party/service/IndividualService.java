@@ -8,16 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-// How Spring Handles ResponseStatusException
-// Spring's default mechanisms (specifically the ResponseStatusExceptionResolver) are designed to automatically
-// process ResponseStatusException instances and translate them into appropriate HTTP responses with the correct
-// status code and message.
-// If you throw a ResponseStatusException in your controller or service layer, Spring will automatically use its
-// properties to return a proper error response.
-
-// While Spring handles ResponseStatusException automatically, you can implement a global exception handler using
-// @ControllerAdvice and @ExceptionHandler(ResponseStatusException.class) to customize the error response format.
-// This allows for a consistent, structured response across your application.
+import java.util.Optional;
 
 @Service
 public class IndividualService {
@@ -37,7 +28,15 @@ public class IndividualService {
         new ResponseStatusException(HttpStatus.NOT_FOUND));
   }
 
-  public Page<Individual> findByNameFamilyNameStartsWith(String name, Pageable pageable) {
+  /*
+
+  public Optional<Individual> findById(final Long id) {
+    return repository.findById(id);
+  }
+
+  */
+
+  public Page<Individual> findByNameFamilyNameStartsWith(final String name, Pageable pageable) {
     return repository.findByNameFamilyNameStartsWith(name, pageable);
   }
 
@@ -51,5 +50,9 @@ public class IndividualService {
 
 }
 
-
-
+// How Spring Handles ResponseStatusException
+// Spring's default mechanisms (specifically the ResponseStatusExceptionResolver) are designed to automatically
+// process ResponseStatusException instances and translate them into appropriate HTTP responses with the correct
+// status code and message.
+// If you throw a ResponseStatusException in your controller or service layer, Spring will automatically use its
+// properties to return a proper error response.

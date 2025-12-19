@@ -15,5 +15,3 @@ public interface IndividualRepository extends CrudRepository<Individual, Long>, 
 }
 
 // https://docs.spring.io/spring-data/rest/docs/current/reference/html/#paging-and-sorting
-
-// Page<Individual> findAll(Pageable pageable);

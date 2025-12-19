@@ -8,8 +8,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface OrganisationRepository extends CrudRepository<Organisation, Long>, PagingAndSortingRepository<Organisation, Long> {
 
-  Page<Organisation> findAll(Pageable pageable);
-
   Page<Organisation> findByName(String name, Pageable pageable);
   Page<Organisation> findByNameStartsWith(String name, Pageable pageable);
 
