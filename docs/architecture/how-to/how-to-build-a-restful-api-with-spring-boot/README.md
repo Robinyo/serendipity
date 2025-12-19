@@ -338,6 +338,12 @@ public interface PartyRepository extends PagingAndSortingRepository<Party, Long>
 This layer (@RestController) handles HTTP requests. It calls the service layer and is responsible for transforming the 
 plain data into HATEOAS-compliant representations (EntityModel, CollectionModel) by adding relevant links.
 
+### Representation model assembler
+
+Code you write to instantiate a Model object should only set attributes and not populate links.
+
+See: [Spring HATEOS Reference - Representation model assembler](https://docs.spring.io/spring-hateoas/docs/current/reference/html/#server.representation-model-assembler)
+
 ### REST API Endpoints
 
 Spring Data REST will automatically expose the `PartyRepository` as a RESTful endpoint. By default, it will provide 

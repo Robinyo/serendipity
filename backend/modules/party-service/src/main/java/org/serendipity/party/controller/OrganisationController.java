@@ -10,17 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.BasePathAwareController;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.IanaLinkRelations;
-import org.springframework.hateoas.Link;
 import org.springframework.hateoas.PagedModel;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.net.URI;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @BasePathAwareController
 @Slf4j
@@ -28,7 +20,7 @@ public class OrganisationController {
 
   private final OrganisationService service;
   private final OrganisationModelAssembler assembler;
-  PagedResourcesAssembler<Organisation> pagedResourcesAssembler;
+  private final PagedResourcesAssembler<Organisation> pagedResourcesAssembler;
 
   public OrganisationController(OrganisationService service,
                                 OrganisationModelAssembler assembler,

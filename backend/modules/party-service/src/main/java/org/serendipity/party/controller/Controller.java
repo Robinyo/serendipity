@@ -8,8 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.data.web.PagedResourcesAssembler;
 
-/*
-
 @Slf4j
 public class Controller {
 
@@ -41,7 +39,7 @@ public class Controller {
 
 }
 
-*/
+/*
 
 @Slf4j
 public class Controller<Entity, Repository, Assembler> {
@@ -85,3 +83,5 @@ public class Controller<Entity, Repository, Assembler> {
   }
 
 }
+
+*/
