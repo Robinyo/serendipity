@@ -10,19 +10,17 @@ import org.serendipity.party.model.IndividualModel;
 import org.serendipity.party.service.IndividualService;
 import org.serendipity.party.model.RoleModel;
 import org.serendipity.party.service.RoleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.BasePathAwareController;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.IanaLinkRelations;
-import org.springframework.hateoas.Link;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @BasePathAwareController
 @Slf4j
@@ -57,10 +55,6 @@ public class IndividualController {
 
     // logInfo(entities, models);
 
-    // Add a "self" link to the collection
-    Link selfLink = linkTo(methodOn(IndividualController.class).findAll(pageable)).withSelfRel();
-    models.add(selfLink);
-
     return ResponseEntity.ok(models);
 
   }
@@ -75,9 +69,6 @@ public class IndividualController {
 
     // logInfo(entity, model);
 
-    // Add a "self" link
-    Link selfLink = linkTo(methodOn(IndividualController.class).findById(id)).withSelfRel();
-    model.add(selfLink);
 
     return ResponseEntity.ok(model);
 
@@ -127,8 +118,9 @@ public class IndividualController {
 
     // logInfo(entity, model);
 
-    // return ResponseEntity.created(linkTo(methodOn(IndividualController.class).findById(entity.getId())).toUri()).body(model);
-    return ResponseEntity.created(model.getRequiredLink(IanaLinkRelations.SELF).toUri()).body(model);
+    return ResponseEntity
+        .created(model.getRequiredLink(IanaLinkRelations.SELF).toUri())
+        .body(model);
 
   }
 
@@ -151,8 +143,9 @@ public class IndividualController {
     // logInfo(individual, null);
     // logInfo(entity, model);
 
-    // return ResponseEntity.created(linkTo(methodOn(RoleController.class).findById(entity.getId())).toUri()).body(model);
-    return ResponseEntity.created(model.getRequiredLink(IanaLinkRelations.SELF).toUri()).body(model);
+    return ResponseEntity
+        .created(model.getRequiredLink(IanaLinkRelations.SELF).toUri())
+        .body(model);
 
   }
 

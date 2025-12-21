@@ -85,8 +85,9 @@ public class OrganisationController {
 
     // logInfo(entity, model);
 
-    // return ResponseEntity.created(linkTo(methodOn(OrganisationController.class).findById(entity.getId())).toUri()).body(model);
-    return ResponseEntity.created(model.getRequiredLink(IanaLinkRelations.SELF).toUri()).body(model);
+    return ResponseEntity
+        .created(model.getRequiredLink(IanaLinkRelations.SELF).toUri())
+        .body(model);
   }
 
   @PatchMapping("/organisations/{id}")
@@ -120,34 +121,3 @@ public class OrganisationController {
   }
 
 }
-
-/*
-
-  @PatchMapping("/organisations/{id}")
-  public ResponseEntity<OrganisationModel> update(
-    @PathVariable("id") final Long id, @RequestBody Organisation organisation) throws ResponseStatusException {
-
-    log.info("OrganisationController PATCH /organisations/{id}");
-
-    // logInfo(organisation, null);
-
-    try {
-
-      organisation.setId(id);
-
-      repository.save(organisation);
-
-      Link link = linkTo(methodOn(OrganisationController.class).findById(id)).withSelfRel();
-
-      return ResponseEntity.noContent().location(new URI(link.getHref())).build();
-
-    } catch (Exception e) {
-
-      log.error("{}", e.getLocalizedMessage());
-
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-    }
-
-  }
-
-*/

@@ -32,13 +32,15 @@ export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
 export JAVA_17_HOME=$(/usr/libexec/java_home -v17)
 export JAVA_21_HOME=$(/usr/libexec/java_home -v21)
 export JAVA_24_HOME=$(/usr/libexec/java_home -v24)
+export JAVA_25_HOME=$(/usr/libexec/java_home -v25)
 
 alias java11='export JAVA_HOME=$JAVA_11_HOME'
 alias java17='export JAVA_HOME=$JAVA_17_HOME'
 alias java21='export JAVA_HOME=$JAVA_21_HOME'
 alias java24='export JAVA_HOME=$JAVA_24_HOME'
+alias java25='export JAVA_HOME=$JAVA_25_HOME'
 
-java21
+java25
 ```
 
 To check your Java version:

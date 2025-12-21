@@ -1,0 +1,33 @@
+# Ignore common version control and environment files
+**/.git
+**/.gitignore
+**/.svn
+**/.hg
+**/.vscode
+**/.env
+.aws
+.ssh
+
+# Ignore common build output directories
+**/node_modules
+**/venv
+**/env
+**/build
+**/dist
+**/coverage
+**/logs
+temp*
+
+# Ignore specific development files
+Dockerfile
+docker-compose*.yml
+README.md
+*.md
+*.swp
+*.log
+
+# Exception: Re-include a specific file that might have been excluded by a
+# broader pattern above (e.g., if a .log file is needed)
+# !important.log
+
+# docker build . --no-cache --progress=plain

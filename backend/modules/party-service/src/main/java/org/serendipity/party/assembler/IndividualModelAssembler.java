@@ -113,3 +113,11 @@ public class IndividualModelAssembler extends RepresentationModelAssemblerSuppor
   }
 
 }
+
+// Add a "self" link to the collection
+// Link selfLink = linkTo(methodOn(IndividualController.class).findAll(pageable)).withSelfRel();
+// models.add(selfLink);
+
+// Add a "self" link
+// Link selfLink = linkTo(methodOn(IndividualController.class).findById(id)).withSelfRel();
+// model.add(selfLink);
