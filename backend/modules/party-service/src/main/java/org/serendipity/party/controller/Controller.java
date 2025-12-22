@@ -1,41 +1,35 @@
 package org.serendipity.party.controller;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+// import com.fasterxml.jackson.annotation.JsonInclude;
+// import tools.jackson.databind.SerializationFeature;
+// import tools.jackson.databind.json.JsonMapper;
+// import tools.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.data.web.PagedResourcesAssembler;
 
 @Slf4j
 public class Controller {
 
+  /*
+
   protected void logInfo(Object entity, Object model) {
 
-    try {
+    ObjectMapper mapper = JsonMapper.builder()
+        .defaultPropertyInclusion(JsonInclude.Value.construct(JsonInclude.Include.NON_NULL, JsonInclude.Include.NON_EMPTY))
+        .build();
 
-      ObjectMapper mapper = new ObjectMapper();
+    // mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-      mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-      mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+    if (entity != null) {
+      log.info("entity: {}", "\n" + mapper.writeValueAsString(entity));
+    }
 
-      mapper.enable(SerializationFeature.INDENT_OUTPUT);
-
-      if (entity != null) {
-        log.info("entity: {}", "\n" + mapper.writeValueAsString(entity));
-      }
-
-      if (model != null) {
-        log.info("model: {}", "\n" + mapper.writeValueAsString(model));
-      }
-
-    } catch (JsonProcessingException jpe) {
-
-      log.error("Json Processing Exception: {}", jpe.getLocalizedMessage());
+    if (model != null) {
+      log.info("model: {}", "\n" + mapper.writeValueAsString(model));
     }
 
   }
+
+  */
 
 }
 

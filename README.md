@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <b>OpenID Connect</b> is used for authentication and <b>OAuth 2.0</b> for authorisation. <br>
+  <b>OpenID Connect</b> is used for authentication and <b>OAuth 2.0</b> for authorisation. </br>
 </p>
 
 <p align="center">
@@ -18,7 +18,8 @@
 </p>
 
 <p align="center">
-  Built using <b>Angular v20</b>, <b>Angular Material (M3) v20.2.1</b> and <b>Spring Boot v3.5.5</b>.
+  Built using <b>Angular v20</b>, <b>Angular Material (M3) v20.2.1</b> and </br>
+  <b>Spring Boot v4.0.1, Spring Cloud 25.0.1 and Java 25.</b>.
 </p>
 
 ![divider](./divider.png)
