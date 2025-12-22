@@ -40,6 +40,3 @@ management:
 
 serendipity-bff:
   uri: https://serendipity.localhost
-
-# uri: http://serendipity-workflow-service:8080/api/workflow-service
-# - Path=/api/workflow-service/**

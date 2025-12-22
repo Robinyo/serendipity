@@ -7,8 +7,8 @@ You need to set up your development environment before you can do anything.
 What you need:
 
 * git
-* Java JDK 21 or later
-* Maven 3.9.11 or later
+* Java JDK 25 or later
+* Maven 3.9.12 or later
 
 ### Java JDK
 
@@ -73,6 +73,24 @@ Matching Java Virtual Machines (5):
 21.0.9 (arm64) "Eclipse Adoptium" - "OpenJDK 21.0.9" /Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home
 17.0.17 (arm64) "Eclipse Adoptium" - "OpenJDK 17.0.17" /Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
 11.0.29 (arm64) "Eclipse Adoptium" - "OpenJDK 11.0.29" /Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home
+```
+
+### Maven
+
+#### macOS
+
+To install Node.js using Homebrew on macOS, follow these steps:
+
+```
+brew update
+brew upgrade
+brew install maven
+```
+
+After the installation completes, you can verify that Maven is installed correctly by checking the version:
+
+```
+mvn -v
 ```
 
 ## ❯ Development
