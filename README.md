@@ -19,7 +19,7 @@
 
 <p align="center">
   Built using <b>Angular v20</b>, <b>Angular Material (M3) v20.2.1</b> and </br>
-  <b>Spring Boot v4.0.1, Spring Cloud 25.0.1 and Java 25.</b>.
+  <b>Spring Boot v4.0.1</b>, <b>Spring Cloud 25.0.1</b> and <b>Java 25</b>.
 </p>
 
 ![divider](./divider.png)
