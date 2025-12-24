@@ -16,10 +16,10 @@ You should see something like:
   <img src="./keycloak-welcome-page.png" alt="Keycloak Admin Console Welcome page"/>
 </p>
 
-**Note:** I followed the steps in Keycloak's [Getting Started with Docker](https://www.keycloak.org/getting-started/getting-started-docker) 
+I followed the steps in Keycloak's [Getting Started with Docker](https://www.keycloak.org/getting-started/getting-started-docker) 
 guide to create: a realm; a user; and a client. 
 
-Keycloak will import the `serendipity-dev` realm (i.e., development-realm.json) when it starts up.
+**Note:**  Keycloak will import the `serendipity-dev` realm (i.e., development-realm.json) when it starts up.
 
 ### Permanent Admin Account
 
