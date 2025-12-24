@@ -125,4 +125,6 @@ For example:
 
 ## ❯ References
 
+* Sam Newman's blog: [Pattern: Backends For Frontends](https://samnewman.io/patterns/architectural/bff/)
 * Spring Cloud Gateway docs: [Spring Cloud Gateway Server MVC](https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway-server-mvc.html)
+* Spring Authorization Server docs: [Backend for SPA client](https://github.com/spring-projects/spring-authorization-server/tree/main/samples)

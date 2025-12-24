@@ -58,6 +58,36 @@ services:
     networks:
       - backend
 
+  identity-service-postgres:
+    container_name: identity-service-postgres
+    # image: postgres:17.5-alpine
+    image: percona/percona-distribution-postgresql:17.5
+    restart: unless-stopped
+    command: >
+      -c ssl=on 
+      -c ssl_cert_file=/var/lib/postgresql/server.crt 
+      -c ssl_key_file=/var/lib/postgresql/server.key
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${KEYCLOAK_DB} -U $${POSTGRES_USER}"]
+      start_period: 10s
+      interval: 30s
+      retries: 5
+      timeout: 5s
+    environment:
+      POSTGRES_DB: ${KEYCLOAK_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGSSLMODE: require
+      ENABLE_PG_TDE: 1
+    env_file:
+      - '${PWD}/.env'
+    volumes:
+      - '${PWD}/certs/cert.pem:/var/lib/postgresql/server.crt'
+      - '${PWD}/certs/key.pem:/var/lib/postgresql/server.key'
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend
+
   workflow-service-postgres:
     container_name: workflow-service-postgres
     # image: postgres:17.5-alpine
@@ -106,6 +136,57 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     depends_on:
       - postgres
+    networks:
+      - backend
+
+  serendipity-identity-service.localhost:
+    container_name: serendipity-identity-service
+    build:
+      context: ./services/keycloak
+      dockerfile: Dockerfile
+    command:
+      [
+        'start-dev'
+      ]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/keycloak/health-check.sh"]
+      start_period: 10s
+      interval: 30s
+      retries: 5
+      timeout: 5s
+    ports:
+      - "8443:8443"
+      - "9000:9000"
+    environment:
+      KC_HOSTNAME: ${KEYCLOAK_HOSTNAME}
+
+      KC_HTTPS_CERTIFICATE_FILE: /etc/keycloak/certs/cert.pem
+      KC_HTTPS_CERTIFICATE_KEY_FILE: /etc/keycloak/certs/key.pem
+
+      KC_PROXY_HEADERS: forwarded
+
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KEYCLOAK_ADMIN_USERNAME}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://identity-service-postgres:5432/${KEYCLOAK_DB}
+      KC_DB_USERNAME: ${POSTGRES_USER}
+      KC_DB_PASSWORD: ${POSTGRES_PASSWORD}
+
+      KC_HEALTH_ENABLED: true
+    env_file:
+      - ./.env
+    volumes:
+      - '${PWD}/services/keycloak/scripts/health-check.sh:/opt/keycloak/health-check.sh'
+      - '${PWD}/certs/serendipity-identity-service-cert.pem:/etc/keycloak/certs/cert.pem'
+      - '${PWD}/certs/serendipity-identity-service-key.pem:/etc/keycloak/certs/key.pem'
+      - '${PWD}/certs:/opt/keycloak/conf/truststores'
+      - '${PWD}:/import'
+      - '${PWD}:/export'
+    depends_on:
+      identity-service-postgres:
+        condition: service_healthy
     networks:
       - backend
 
@@ -165,7 +246,7 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     # depends_on:
-    #   serendipity-identity-service.localhost:
+    #   serendipity-identity-service:
     #     condition: service_healthy
     depends_on:
       - postgres
