@@ -16,6 +16,11 @@ You should see something like:
   <img src="./keycloak-welcome-page.png" alt="Keycloak Admin Console Welcome page"/>
 </p>
 
+**Note:** I followed the steps in Keycloak's [Getting Started with Docker](https://www.keycloak.org/getting-started/getting-started-docker) 
+guide to create: a realm; a user; and a client. 
+
+Keycloak will import the `serendipity-dev` realm (i.e., development-realm.json) when it starts up.
+
 ### Permanent Admin Account
 
 When you first start Keycloak you log in using the Keycloak bootstrap username and password.
@@ -58,7 +63,7 @@ For example:
         'start-dev',
         '-Dkeycloak.migration.action=import',
         '-Dkeycloak.migration.provider=singleFile',
-        '-Dkeycloak.migration.realmName=hapi-fhir-dev',
+        '-Dkeycloak.migration.realmName=serendipity-dev',
         '-Dkeycloak.migration.strategy=OVERWRITE_EXISTING',
         '-Dkeycloak.migration.file=/import/development-realm.json',
       ]
@@ -85,7 +90,7 @@ For example:
         'start-dev',
         '-Dkeycloak.migration.action=export',
         '-Dkeycloak.migration.provider=singleFile',
-        '-Dkeycloak.migration.realmName=hapi-fhir-dev',
+        '-Dkeycloak.migration.realmName=serendipity-dev',
         '-Dkeycloak.migration.usersExportStrategy=REALM_FILE',
         '-Dkeycloak.migration.file=/export/development-realm.json',
       ]
