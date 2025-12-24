@@ -2,29 +2,23 @@
 
 ## ❯ Keycloak
 
-### Keycloak Authorization Services
+#### Admin Console
 
-#### Fine-grained Authorization
+Navigate to the Keycloak Admin Console (username: temp-admin and password: secret):
 
-You must allow the 'Authorization' capability config setting in order to enable support for fine-grained authorisation.
+```
+https://serendipity-identity-service.localhost:8443
+```
 
-<p align="center">
-  <img src="./keycloak-capability-config-authorization.png" alt="Allow the 'Authorization' capability config setting"/>
-</p>
-
-When you enable the 'Authorization' capability config setting, Keycloak will create a Default Policy:
+You should see something like:
 
 <p align="center">
-  <img src="./keycloak-authorization-server-default-policy.png" alt="Authorization Server Default policy"/>
+  <img src="./keycloak-welcome-page.png" alt="Keycloak Admin Console Welcome page"/>
 </p>
-
-You need to **delete** the Default Policy if you want to 'export' then 'import' your realm settings.
-
-See: [Keycloak Issues - ERROR: Script upload is disabled](https://github.com/keycloak/keycloak/discussions/28019)
 
 ### Permanent Admin Account
 
-When you first start Keycloak you login using the Keycloak bootstrap username and password.
+When you first start Keycloak you log in using the Keycloak bootstrap username and password.
 
 You should create a permanent admin account in the master realm and delete the temporary one.
 
@@ -107,5 +101,3 @@ For example:
 ### Keycloak
 
 * Keycloak docs: [Server Administration Guide - Importing and Exporting Realms](https://www.keycloak.org/server/importExport)
-* Keycloak docs: [Keycloak Extensions](https://www.keycloak.org/extensions.html)
-* GitHub: [More Keycloak Extensions](https://github.com/dasniko/keycloak-extensions-demo)
