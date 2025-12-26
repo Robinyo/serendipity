@@ -71,12 +71,7 @@ update the password the first time they sign in) and then click the 'Save' butto
 
 #### Create a Client
 
-
-
-
-
-
-
+...
 
 ### Permanent Admin Account
 
