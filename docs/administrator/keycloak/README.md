@@ -10,11 +10,11 @@ Navigate to the Keycloak Admin Console:
 https://serendipity-identity-service.localhost:8443
 ```
 
+And sign in using the `KEYCLOAK_USER` (temp-admin) and `KEYCLOAK_PASSWORD` (secret) credentials.
+
 <p align="center">
   <img src="./keycloak-sign-in.png" alt="Keycloak Admin Console Sign In"/>
 </p>
-
-And sign in using the `KEYCLOAK_USER` (temp-admin) and `KEYCLOAK_PASSWORD` (secret) credentials.
 
 You should see something like:
 
@@ -29,7 +29,7 @@ You should see something like:
 A realm in Keycloak is analogous to a tenant. Each realm allows an administrator to create (isolated) groups of 
 applications and users. Initially, Keycloak includes a single realm, the `master` realm. 
 
-The 'master' realm should only be used to manage Keycloak. 
+The `master` realm should only be used to manage Keycloak. 
 
 To create a new realm, select 'Manage realms' in the sidemenu and then click the 'Create realm' button:
 
