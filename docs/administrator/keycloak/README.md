@@ -2,7 +2,58 @@
 
 ## ❯ Keycloak
 
-#### Admin Console
+### Getting Started
+
+Navigate to the Keycloak Admin Console:
+
+```
+https://serendipity-identity-service.localhost:8443
+```
+
+<p align="center">
+  <img src="./keycloak-sign-in.png" alt="Keycloak Admin Console Sign In"/>
+</p>
+
+And sign in using the `KEYCLOAK_USER` (admin) and `KEYCLOAK_PASSWORD` (secret) credentials.
+
+You should see something like:
+
+<p align="center">
+  <img src="./keycloak-welcome-page.png" alt="Keycloak Admin Console Welcome page"/>
+</p>
+
+**Note:** Keycloak will import the `serendipity-dev` realm (i.e., development-realm.json) when it starts up.
+
+#### Create a Realm
+
+A realm in Keycloak is analogous to a tenant. Each realm allows an administrator to create (isolated) groups of 
+applications and users. Initially, Keycloak includes a single realm, the `master` realm. 
+
+The 'master' realm should only be used to manage Keycloak. 
+
+To create a new realm, select 'Manage realms' in the sidemenu and then click the 'Create realm' button:
+
+<p align="center">
+  <img src="./keycloak-create-realm.png" alt="Keycloak Admin Console Create Realm"/>
+</p>
+
+Enter 'serendipity-dev' in the 'Realm name' field and then click the 'Create' button:
+
+#### Create a User
+
+
+
+
+
+
+#### Create a Client
+
+
+
+
+
+
+### Admin Console
 
 Navigate to the Keycloak Admin Console (username: temp-admin and password: secret):
 
