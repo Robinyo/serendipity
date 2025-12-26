@@ -10,7 +10,7 @@ Navigate to the Keycloak Admin Console:
 https://serendipity-identity-service.localhost:8443
 ```
 
-And sign in using the `KEYCLOAK_USER` (temp-admin) and `KEYCLOAK_PASSWORD` (secret) credentials.
+And sign in using the `KEYCLOAK_USER` (temp-admin) and `KEYCLOAK_PASSWORD` (secret) credentials:
 
 <p align="center">
   <img src="./keycloak-sign-in.png" alt="Keycloak Admin Console Sign In"/>
@@ -37,7 +37,7 @@ To create a new realm, select 'Manage realms' in the sidemenu and then click the
   <img src="./keycloak-create-realm.png" alt="Keycloak Admin Console Create Realm"/>
 </p>
 
-Enter 'serendipity-dev' in the 'Realm name' field and then click the 'Create' button:
+Enter `serendipity-dev` in the 'Realm name' field and then click the 'Create' button:
 
 To update a realm's settings, select 'Realm settings' in the sidemenu:
 
@@ -47,10 +47,16 @@ To update a realm's settings, select 'Realm settings' in the sidemenu:
 
 #### Create a User
 
+Verify that you are in the correct realm (e.g., the `serendipity-dev` realm).
 
+To create a new user, select 'Users' in the sidemenu and then click the 'Create user' button:
 
+Enable the 'Email verified' slide toggle and enter an email address, a first name (i.e., given name), a last name 
+(i.e., family name) then click the 'Create' button:
 
-
+<p align="center">
+  <img src="./keycloak-create-user.png" alt="Keycloak Admin Console Create User"/>
+</p>
 
 #### Create a Client
 
