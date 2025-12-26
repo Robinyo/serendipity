@@ -14,7 +14,7 @@ https://serendipity-identity-service.localhost:8443
   <img src="./keycloak-sign-in.png" alt="Keycloak Admin Console Sign In"/>
 </p>
 
-And sign in using the `KEYCLOAK_USER` (admin) and `KEYCLOAK_PASSWORD` (secret) credentials.
+And sign in using the `KEYCLOAK_USER` (temp-admin) and `KEYCLOAK_PASSWORD` (secret) credentials.
 
 You should see something like:
 
