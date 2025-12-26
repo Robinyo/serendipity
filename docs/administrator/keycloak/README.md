@@ -39,6 +39,12 @@ To create a new realm, select 'Manage realms' in the sidemenu and then click the
 
 Enter 'serendipity-dev' in the 'Realm name' field and then click the 'Create' button:
 
+To update a realm's settings, select 'Realm settings' in the sidemenu:
+
+<p align="center">
+  <img src="./keycloak-realm-settings.png" alt="Keycloak Admin Console Realm Settings"/>
+</p>
+
 #### Create a User
 
 
@@ -53,24 +59,7 @@ Enter 'serendipity-dev' in the 'Realm name' field and then click the 'Create' bu
 
 
 
-### Admin Console
 
-Navigate to the Keycloak Admin Console (username: temp-admin and password: secret):
-
-```
-https://serendipity-identity-service.localhost:8443
-```
-
-You should see something like:
-
-<p align="center">
-  <img src="./keycloak-welcome-page.png" alt="Keycloak Admin Console Welcome page"/>
-</p>
-
-I followed the steps in Keycloak's [Getting Started with Docker](https://www.keycloak.org/getting-started/getting-started-docker) 
-guide to create: a realm; a user; and a client. 
-
-**Note:**  Keycloak will import the `serendipity-dev` realm (i.e., development-realm.json) when it starts up.
 
 ### Permanent Admin Account
 
