@@ -58,6 +58,17 @@ To create a new user, select 'Users' in the sidemenu and then click the 'Create 
 Enable the 'Email' verified slide toggle and enter an email address, a first name (i.e., given name), a last name
 (i.e., family name) and then click the 'Create' button.
 
+A user needs a password to sign in. 
+
+To create a password, select the 'Credentials' tab and then click the 'Set password' button:
+
+<p align="center">
+  <img src="./keycloak-set-password.png" alt="Keycloak Admin Console Set Password"/>
+</p>
+
+Enter a password and confirm the password, enable the 'Temporary' slide toggle (so that the user does not need to 
+update the password the first time they sign in) and then click the 'Save' button.
+
 #### Create a Client
 
 
