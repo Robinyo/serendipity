@@ -37,7 +37,7 @@ To create a new realm, select 'Manage realms' in the sidemenu and then click the
   <img src="./keycloak-create-realm.png" alt="Keycloak Admin Console Create Realm"/>
 </p>
 
-Enter `serendipity-dev` in the 'Realm name' field and then click the 'Create' button:
+Enter `serendipity-dev` in the 'Realm name' field and then click the 'Create' button.
 
 To update a realm's settings, select 'Realm settings' in the sidemenu:
 
@@ -51,12 +51,12 @@ Verify that you are in the correct realm (e.g., the `serendipity-dev` realm).
 
 To create a new user, select 'Users' in the sidemenu and then click the 'Create user' button:
 
-Enable the 'Email verified' slide toggle and enter an email address, a first name (i.e., given name), a last name 
-(i.e., family name) then click the 'Create' button:
-
 <p align="center">
   <img src="./keycloak-create-user.png" alt="Keycloak Admin Console Create User"/>
 </p>
+
+Enable the 'Email' verified slide toggle and enter an email address, a first name (i.e., given name), a last name
+(i.e., family name) and then click the 'Create' button.
 
 #### Create a Client
 
