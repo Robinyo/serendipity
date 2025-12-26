@@ -37,7 +37,7 @@ To create a new realm, select 'Manage realms' in the sidemenu and then click the
   <img src="./keycloak-create-realm.png" alt="Keycloak Admin Console Create Realm"/>
 </p>
 
-Enter `serendipity-dev` in the 'Realm name' field and then click the 'Create' button.
+Enter a 'Realm name' (e.g., `serendipity-dev`) and then click the 'Create' button.
 
 To update a realm's settings, select 'Realm settings' in the sidemenu:
 
