@@ -2,7 +2,7 @@
 
 ## ❯ Keycloak
 
-### Getting Started
+### Keycloak Admin Console
 
 Navigate to the Keycloak Admin Console:
 
@@ -66,12 +66,42 @@ To create a password, select the 'Credentials' tab and then click the 'Set passw
   <img src="./keycloak-set-password.png" alt="Keycloak Admin Console Set Password"/>
 </p>
 
-Enter a password and confirm the password, enable the 'Temporary' slide toggle (so that the user does not need to 
+Enter a password, confirm the password and disable the 'Temporary' slide toggle (so that the user does not need to 
 update the password the first time they sign in) and then click the 'Save' button.
+
+Navigate to the Keycloak Account Console:
+
+```
+https://serendipity-identity-service.localhost:8443/realms/serendipity-dev/account
+```
+
+And sign in using the credentials you created:
+
+<p align="center">
+  <img src="./keycloak-account-console-sign-in.png" alt="Keycloak Account Console Sign In"/>
+</p>
+
+You should see something like:
+
+<p align="center">
+  <img src="./keycloak-account-console-personal-info.png" alt="Keycloak Account Console Personal Info"/>
+</p>
 
 #### Create a Client
 
-...
+Verify that you are in the correct realm (e.g., the `serendipity-dev` realm).
+
+To create a new client, select 'Clients' in the sidemenu and then click the 'Create client' button:
+
+<p align="center">
+  <img src="./keycloak-create-user.png" alt="Keycloak Admin Console Create User"/>
+</p>
+
+
+
+
+
+
 
 ### Permanent Admin Account
 
