@@ -94,10 +94,16 @@ Verify that you are in the correct realm (e.g., the `serendipity-dev` realm).
 To create a new client, select 'Clients' in the sidemenu and then click the 'Create client' button:
 
 <p align="center">
-  <img src="./keycloak-create-user.png" alt="Keycloak Admin Console Create User"/>
+  <img src="./keycloak-create-client-1.png" alt="Keycloak Admin Console Create Client 1"/>
 </p>
 
+<p align="center">
+  <img src="./keycloak-create-client-2.png" alt="Keycloak Admin Console Create Client 2"/>
+</p>
 
+<p align="center">
+  <img src="./keycloak-create-client-3.png" alt="Keycloak Admin Console Create Client 3"/>
+</p>
 
 
 
