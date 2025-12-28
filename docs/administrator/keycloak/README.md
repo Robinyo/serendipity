@@ -55,7 +55,7 @@ To create a new user, select 'Users' in the sidemenu and then click the 'Create 
   <img src="./keycloak-create-user.png" alt="Keycloak Admin Console Create User"/>
 </p>
 
-Enable the 'Email' verified slide toggle and enter an email address, a first name (i.e., given name), a last name
+Enable the 'Email verified' slide toggle and enter an email address, a first name (i.e., given name), a last name
 (i.e., family name) and then click the 'Create' button.
 
 A user needs a password to sign in. 
@@ -97,17 +97,20 @@ To create a new client, select 'Clients' in the sidemenu and then click the 'Cre
   <img src="./keycloak-create-client-1.png" alt="Keycloak Admin Console Create Client 1"/>
 </p>
 
+Enter a 'Client ID' (e.g., `serendipity-web-bff`) and a 'Name' (e.g., `Serendipty Web BFF`) and then click the 'Next' button:
+
 <p align="center">
   <img src="./keycloak-create-client-2.png" alt="Keycloak Admin Console Create Client 2"/>
 </p>
+
+Enable the 'Client authentication' (i.e., OAuth 2.0 Confidential Client) slide toggle and the 'Standard flow' (i.e., 
+OAuth 2.0 Authorization Code Flow) checkbox and then click the 'Next' button:
 
 <p align="center">
   <img src="./keycloak-create-client-3.png" alt="Keycloak Admin Console Create Client 3"/>
 </p>
 
-
-
-
+Enter a 'Valid redirect URI' (e.g., https://serendipity.localhost/*), a valid 'Web origins' (e.g., *) and then click the 'Save' button.
 
 ### Permanent Admin Account
 
