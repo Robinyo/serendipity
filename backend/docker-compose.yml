@@ -2,6 +2,27 @@ services:
 
   # Make sure your certificates and keys (the *.pem files in the ./certs directory) have the correct permissions -> i.e., sudo chmod 600 *.pem
 
+  # frontend Network
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./services/nginx
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    volumes:
+      - '${PWD}/services/nginx/conf/ssl.conf:/etc/nginx/conf/ssl.conf'
+      - '${PWD}/services/nginx/conf/nginx-default.conf.template:/etc/nginx/templates/default.conf.template'
+      - '${PWD}/certs:/etc/nginx/certs'
+    networks:
+      - frontend
+      - backend
+
   # backend Network
 
   openldap:
@@ -146,7 +167,12 @@ services:
       dockerfile: Dockerfile
     command:
       [
-        'start-dev'
+        'start-dev',
+        '-Dkeycloak.migration.action=import',
+        '-Dkeycloak.migration.provider=singleFile',
+        '-Dkeycloak.migration.realmName=serendipity-dev',
+        '-Dkeycloak.migration.strategy=OVERWRITE_EXISTING',
+        '-Dkeycloak.migration.file=/import/development-realm.json'
       ]
     restart: unless-stopped
     healthcheck:
@@ -251,27 +277,6 @@ services:
     depends_on:
       - postgres
     networks:
-      - backend
-
-  # frontend Network
-
-  nginx:
-    container_name: nginx
-    build:
-      context: ./services/nginx
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    extra_hosts:
-      - 'host.docker.internal:host-gateway'
-    volumes:
-      - '${PWD}/services/nginx/conf/ssl.conf:/etc/nginx/conf/ssl.conf'
-      - '${PWD}/services/nginx/conf/nginx-default.conf.template:/etc/nginx/templates/default.conf.template'
-      - '${PWD}/certs:/etc/nginx/certs'
-    networks:
-      - frontend
       - backend
 
 networks:
