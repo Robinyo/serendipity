@@ -10,7 +10,7 @@
 
 	<name>Serendipity Parent POM</name>
 
-	<inceptionYear>2021</inceptionYear>
+	<inceptionYear>2026</inceptionYear>
 
 	<contributors>
 		<contributor>
@@ -34,12 +34,12 @@
 	<modules>
 		<module>modules/web-bff</module>
     <module>modules/party-service</module>
-    <!-- <module>modules/workflow-service</module> -->
 	</modules>
 
 	<properties>
 		<java.version>25</java.version>
 		<spring-cloud.version>2025.1.0</spring-cloud.version>
+    <logback.version>1.5.25</logback.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
@@ -97,19 +97,25 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <executions>
-          <execution>
-            <goals>
-              <goal>properties</goal>
-            </goals>
-          </execution>
-        </executions>
+        <execution>
+          <id>getClasspathFilenames</id>
+          <goals>
+            <goal>properties</goal>
+          </goals>
+        </execution>
+      </executions>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
+        <!--
         <configuration>
-          <argLine>-javaagent:${org.mockito:mockito-core:jar}</argLine>
+          <argLine>@{argLine} -javaagent:${org.mockito:mockito-core:jar}</argLine>
+        </configuration>
+         -->
+        <configuration>
+          <argLine>-javaagent:${settings.localRepository}/org/mockito/mockito-core/${mockito.version}/mockito-core-${mockito.version}.jar</argLine>
         </configuration>
       </plugin>
 
