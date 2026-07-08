@@ -104,7 +104,7 @@ Convert the BFF's `application.properties` to yaml.
 
 ### CORS
 
-During development, we allow connections from `localhost:4200`.
+During development, we allow connections from `http://localhost:4200`.
 
 For example:
 
