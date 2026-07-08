@@ -1,0 +1,31 @@
+management.endpoints.configprops.show-values: always
+camunda:
+  backup:
+    webapps:
+      enabled: false
+  system:
+    cpu-thread-count: "3"
+    io-thread-count: "3"
+  security:
+    authentication:
+      method: "basic"
+      unprotectedApi: true
+    authorizations:
+      enabled: false
+    initialization:
+      users:
+        - username: "demo"
+          password: "demo"
+          name: "Demo User"
+          email: "demo@demo.com"
+      defaultRoles.admin.users:
+        - "demo"
+  data:
+    secondary-storage:
+      type: rdbms
+      rdbms:
+        url: jdbc:sqlserver://localhost:1433;databaseName=camunda_secondary;encrypt=false
+        username: camunda
+        password: Camunda123!
+  mcp:
+    enabled: true

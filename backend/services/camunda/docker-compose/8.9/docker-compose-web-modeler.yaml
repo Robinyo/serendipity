@@ -1,0 +1,233 @@
+# Docker Compose file for Web Modeler Self-Managed. This file can be used stand-alone. It will install Web Modeler Dependencies:
+# 1. identity
+# 2. keycloak
+# Note: this file is using Mailpit to simulate a mail server
+
+services:
+
+  web-modeler-db:
+    container_name: web-modeler-db
+    image: postgres:${POSTGRES_VERSION}
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "pg_isready", "-d", "${WEBMODELER_DB_NAME}", "-U", "${WEBMODELER_DB_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    environment:
+      POSTGRES_DB: ${WEBMODELER_DB_NAME}
+      POSTGRES_USER: ${WEBMODELER_DB_USER}
+      POSTGRES_PASSWORD: ${WEBMODELER_DB_PASSWORD}
+    networks:
+      - web-modeler
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - postgres-web:/var/lib/postgresql/data
+
+  web-modeler-websockets:
+    container_name: web-modeler-websockets
+    image: camunda/web-modeler-websockets:${CAMUNDA_WEB_MODELER_VERSION}
+    ports:
+      - "8060:8060"
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--tries=1", "--spider", "http://127.0.0.1:8060/up"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    environment:
+      APP_NAME: "Web Modeler Self-Managed WebSockets"
+      APP_DEBUG: "true"
+      PUSHER_APP_ID: ${WEBMODELER_PUSHER_APP_ID}
+      PUSHER_APP_KEY: ${WEBMODELER_PUSHER_KEY}
+      PUSHER_APP_SECRET: ${WEBMODELER_PUSHER_SECRET}
+    networks:
+      - web-modeler
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  mailpit:
+    # If you want to use your own SMTP server, you can remove this container
+    # and configure RESTAPI_MAIL_HOST, RESTAPI_MAIL_PORT, REST_API_MAIL_USER,
+    # REST_API_MAIL_PASSWORD and RESTAPI_MAIL_ENABLE_TLS in web-modeler-restapi
+    container_name: mailpit
+    image: axllent/mailpit:${MAILPIT_VERSION}
+    ports:
+      - "1025:1025"
+      - "8075:8025"
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "/usr/bin/nc", "-z", "localhost", "1025"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - web-modeler
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  web-modeler-restapi:
+    container_name: web-modeler-restapi
+    image: camunda/web-modeler-restapi:${CAMUNDA_WEB_MODELER_VERSION}
+    ports:
+      - "8070:8081"
+    restart: on-failure
+    depends_on:
+      web-modeler-db:
+        condition: service_healthy
+      mailpit:
+        condition: service_healthy
+      identity:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "wget", "-O-", "--no-verbose", "--tries=1", "http://localhost:8091/health/readiness" ]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    environment:
+      JAVA_OPTIONS: -Xmx512m
+      LOGGING_LEVEL_IO_CAMUNDA_MODELER: DEBUG
+      CAMUNDA_IDENTITY_BASEURL: http://identity:8084/
+      SPRING_DATASOURCE_URL: jdbc:postgresql://web-modeler-db:5432/${WEBMODELER_DB_NAME}
+      SPRING_DATASOURCE_USERNAME: ${WEBMODELER_DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${WEBMODELER_DB_PASSWORD}
+      SPRING_PROFILES_INCLUDE: default-logging
+      RESTAPI_PUSHER_HOST: web-modeler-websockets
+      RESTAPI_PUSHER_PORT: "8060"
+      RESTAPI_PUSHER_APP_ID: ${WEBMODELER_PUSHER_APP_ID}
+      RESTAPI_PUSHER_KEY: ${WEBMODELER_PUSHER_KEY}
+      RESTAPI_PUSHER_SECRET: ${WEBMODELER_PUSHER_SECRET}
+      RESTAPI_OAUTH2_TOKEN_ISSUER: http://${HOST}:18080/auth/realms/camunda-platform
+      RESTAPI_OAUTH2_TOKEN_ISSUER_BACKEND_URL: http://${KEYCLOAK_HOST}:18080/auth/realms/camunda-platform
+      RESTAPI_SERVER_URL: http://localhost:8070
+      RESTAPI_MAIL_HOST: mailpit
+      RESTAPI_MAIL_PORT: 1025
+      RESTAPI_MAIL_ENABLE_TLS: "false"
+      RESTAPI_MAIL_FROM_ADDRESS: ${WEBMODELER_MAIL_FROM_ADDRESS}
+      management.endpoints.web.exposure.include: health,configprops,info
+      management.endpoint.health.probes.enabled: true
+      MANAGEMENT_ENDPOINT_CONFIGPROPS_SHOW_VALUES: ALWAYS
+      CAMUNDA_MODELER_SECURITY_JWT_AUDIENCE_INTERNAL_API: web-modeler-api
+      SERVER_HTTPS_ONLY: "false"
+      CLIENT_PUSHER_HOST: localhost
+      CLIENT_PUSHER_PORT: "8060"
+      CLIENT_PUSHER_FORCE_TLS: "false"
+      OAUTH2_CLIENT_ID: web-modeler
+      PLAY_ENABLED: "true"
+    networks:
+      - web-modeler
+      - camunda-platform
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  identity: # https://docs.camunda.io/docs/self-managed/setup/deploy/other/docker/#identity
+    container_name: identity
+    image: camunda/identity:${CAMUNDA_IDENTITY_VERSION}
+    ports:
+      - "8084:8084"
+    environment: # https://docs.camunda.io/docs/self-managed/identity/miscellaneous/configuration-variables/
+      IDENTITY_DATABASE_HOST: postgres
+      IDENTITY_DATABASE_PORT: 5432
+      IDENTITY_DATABASE_NAME: ${POSTGRES_DB}
+      IDENTITY_DATABASE_USERNAME: ${POSTGRES_USER}
+      IDENTITY_DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+      KEYCLOAK_ADMIN_USER: ${KEYCLOAK_ADMIN_USER}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+      HOST: ${HOST}
+      KEYCLOAK_HOST: ${KEYCLOAK_HOST}
+      # Orchestration client (for Web Modeler to deploy to orchestration if available)
+      KEYCLOAK_CLIENTS_0_NAME: "orchestration"
+      KEYCLOAK_CLIENTS_0_ID: ${ORCHESTRATION_CLIENT_ID}
+      KEYCLOAK_CLIENTS_0_SECRET: ${ORCHESTRATION_CLIENT_SECRET}
+      KEYCLOAK_CLIENTS_0_TYPE: "M2M"
+      RESOURCE_PERMISSIONS_ENABLED: ${RESOURCE_AUTHORIZATIONS_ENABLED}
+      management.endpoints.web.exposure.include: health,configprops
+      management.endpoint.health.probes.enabled: true
+      MANAGEMENT_ENDPOINT_CONFIGPROPS_SHOW_VALUES: ALWAYS
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--tries=1", "--spider", "http://localhost:8082/actuator/health"]
+      interval: 5s
+      timeout: 15s
+      retries: 30
+      start_period: 60s
+    restart: on-failure
+    volumes:
+      - keycloak-theme:/app/keycloak-theme
+      - "./.identity/application.yaml:/app/application.yaml"
+    networks:
+      - camunda-platform
+      - identity-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      keycloak:
+        condition: service_healthy
+
+  postgres: # https://hub.docker.com/_/postgres
+    container_name: postgres
+    image: postgres:${POSTGRES_VERSION}
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    restart: on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - identity-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  keycloak: # https://hub.docker.com/r/bitnamilegacy/keycloak
+    container_name: keycloak
+    image: bitnamilegacy/keycloak:${KEYCLOAK_SERVER_VERSION}
+    volumes:
+      - keycloak-theme:/opt/bitnami/keycloak/themes/identity
+    ports:
+      - "18080:18080"
+    environment:
+      KEYCLOAK_HTTP_PORT: 18080
+      KEYCLOAK_HTTP_RELATIVE_PATH: /auth
+      KEYCLOAK_DATABASE_HOST: postgres
+      KEYCLOAK_DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+      KEYCLOAK_ADMIN_USER: ${KEYCLOAK_ADMIN_USER}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:18080/auth"]
+      interval: 30s
+      timeout: 15s
+      retries: 5
+      start_period: 30s
+    networks:
+      - camunda-platform
+      - identity-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+networks:
+  camunda-platform:
+    name: camunda-platform
+  identity-network:
+    name: identity-network
+  web-modeler:
+    name: web-modeler
+
+volumes:
+  postgres:
+  postgres-web:
+  keycloak-theme:

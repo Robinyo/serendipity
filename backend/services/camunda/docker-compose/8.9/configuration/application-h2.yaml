@@ -1,0 +1,33 @@
+management.endpoints.configprops.show-values: always
+camunda:
+  backup:
+    webapps:
+      enabled: false
+  system:
+    cpu-thread-count: "3"
+    io-thread-count: "3"
+  security:
+    authentication:
+      method: "basic"
+      unprotectedApi: true
+    authorizations:
+      enabled: false
+    initialization:
+      users:
+        - username: "demo"
+          password: "demo"
+          name: "Demo User"
+          email: "demo@demo.com"
+      defaultRoles.admin.users:
+        - "demo"
+  data:
+    secondary-storage:
+      type: rdbms
+      rdbms:
+        url: jdbc:h2:file:./camunda-data/h2db
+        username: sa
+        password:
+        flushInterval: PT0.5S
+        queueSize: 1000
+  mcp:
+    enabled: true

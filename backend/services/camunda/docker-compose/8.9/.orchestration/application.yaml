@@ -1,0 +1,194 @@
+spring:
+  profiles:
+    active: "admin,operate,tasklist,broker,consolidated-auth"
+
+management:
+  server:
+    port: 9600
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus,configprops
+  endpoint:
+    configprops:
+      show-values: ALWAYS
+
+server:
+  forward-headers-strategy: none
+  address: 0.0.0.0
+
+zeebe:
+  host: 0.0.0.0
+  log:
+    level: "info"
+
+  broker:
+    # zeebe.broker.gateway
+    gateway:
+      enable: true
+      network:
+        host: 0.0.0.0
+        port: 26500
+
+    # zeebe.broker.network
+    network:
+      host: 0.0.0.0
+      commandApi:
+        port: 26501
+      internalApi:
+        port: 26502
+
+    # zeebe.broker.data
+    data:
+      snapshotPeriod: 5m
+      # Allow running with low disk space (for local development)
+      diskUsageCommandWatermark: 0.998
+      diskUsageReplicationWatermark: 0.999
+      freeSpace:
+        processing: 2GB
+        replication: 3GB
+
+    # zeebe.broker.threads
+    threads:
+      cpuThreadCount: "3"
+      ioThreadCount: "3"
+
+    # zeebe.broker.exporters
+    exporters:
+      elasticsearch:
+        className: "io.camunda.zeebe.exporter.ElasticsearchExporter"
+        args:
+          url: "http://elasticsearch:9200"
+          # Default is 1000, reduced to 1 for faster local development feedback
+          bulk:
+            size: 1
+          index:
+            prefix: "zeebe-record"
+
+camunda:
+  database:
+    type: rdbms
+  backup:
+    webapps:
+      enabled: false
+  persistent:
+    sessions:
+      enabled: false
+
+  rest:
+    query:
+      enabled: true
+
+  mcp:
+    enabled: true
+
+  security:
+    authentication:
+      method: "oidc"
+      unprotectedApi: false
+    authorizations:
+      enabled: true
+    initialization:
+      defaultRoles:
+        admin:
+          users:
+            - demo
+          clients:
+            - orchestration
+        connectors:
+          users:
+            - connectors
+          clients:
+            - connectors
+
+  #
+  # Camunda Data Configuration.
+  #
+  data:
+    secondary-storage:
+      type: rdbms
+      rdbms:
+        url: jdbc:h2:file:./camunda-data/h2db
+        username: sa
+        password:
+        flushInterval: PT0.5S
+        queueSize: 1000
+
+  #
+  # Camunda Operate Configuration.
+  #
+  operate:
+    database: rdbms
+    persistentSessionsEnabled: false
+    identity:
+      redirectRootUrl: "http://localhost:8080/operate"
+
+    # ELS instance to store Operate data
+    elasticsearch:
+      # Operate index prefix.
+      # Cluster name
+      clusterName: elasticsearch
+      # Host
+      host: elasticsearch
+      # Transport port
+      port: 9200
+      # Elasticsearch full url
+      url: "http://elasticsearch:9200"
+    # ELS instance to export Zeebe data to
+    zeebeElasticsearch:
+      # Cluster name
+      clusterName: elasticsearch
+      # Host
+      host: elasticsearch
+      # Transport port
+      port: 9200
+      # Index prefix, configured in Zeebe Elasticsearch exporter
+      prefix: "zeebe-record"
+      # Elasticsearch full url
+      url: "http://elasticsearch:9200"
+    # Zeebe instance
+    zeebe:
+      # Gateway address
+      gatewayAddress: "zeebe:26500"
+
+  #
+  # Camunda Tasklist Configuration.
+  #
+  tasklist:
+    database: rdbms
+    identity:
+      redirectRootUrl: "http://localhost:8080/tasklist"
+
+    # Set Tasklist username and password.
+    # If user with <username> does not exists it will be created.
+    # Default: demo/demo
+    #username:
+    #password:
+    # ELS instance to store Tasklist data
+    elasticsearch:
+      # Tasklist index prefix.
+      # Cluster name
+      clusterName: elasticsearch
+      # Host
+      host: elasticsearch
+      # Transport port
+      port: 9200
+      # Elasticsearch full url
+      url: "http://elasticsearch:9200"
+    # ELS instance to export Zeebe data to
+    zeebeElasticsearch:
+      # Cluster name
+      clusterName: elasticsearch
+      # Host
+      host: elasticsearch
+      # Transport port
+      port: 9200
+      # Index prefix, configured in Zeebe Elasticsearch exporter
+      prefix: "zeebe-record"
+      # Elasticsearch full url
+      url: "http://elasticsearch:9200"
+    # Zeebe instance
+    zeebe:
+      # Gateway address
+      gatewayAddress: zeebe:26500
+      restAddress: "http://zeebe:8080"

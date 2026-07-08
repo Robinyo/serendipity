@@ -2,24 +2,11 @@
   <img src="./serendipity-logo.svg" alt="Serendipity" width="400"/>
 </p>
 
-<h1 align="center">Serendipity 3.0</h1>
+<h1 align="center">Serendipity 4.0</h1>
 
 <p align="center">
   Serendipity is an open-source Customer Engagement Platform. </br>
   You can use it to transform your organisation by connecting your customers, products, people and operations. </br>
-</p>
-
-<p align="center">
-  <b>OpenID Connect</b> is used for authentication and <b>OAuth 2.0</b> for authorisation. </br>
-</p>
-
-<p align="center">
-  TLS is used to encrypt <b>data in transit</b> and AES to encrypt <b>data at rest</b>.
-</p>
-
-<p align="center">
-  Built using <b>Angular v20</b>, <b>Angular Material (M3) v20.2.1</b> and </br>
-  <b>Spring Boot v4.0.1</b>, <b>Spring Cloud 25.0.1</b> and <b>Java 25</b>.
 </p>
 
 ![divider](./divider.png)

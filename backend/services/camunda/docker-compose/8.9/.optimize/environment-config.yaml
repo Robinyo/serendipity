@@ -1,0 +1,19 @@
+es:
+  settings:
+    index:
+      number_of_replicas: 0
+
+zeebe:
+  enabled: true
+
+enterprise: false
+
+security:
+  auth:
+    cookie:
+      same-site:
+        enabled: false
+
+ui:
+  logoutHidden: true
+

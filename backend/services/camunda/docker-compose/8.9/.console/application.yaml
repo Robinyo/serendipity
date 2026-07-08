@@ -1,0 +1,77 @@
+camunda:
+  console:
+    customerId: "camunda-platform"
+    installationId: "camunda-platform"
+    telemetry: "disabled"
+    managed:
+      method: "plain"
+      releases:
+        - name: "camunda-platform"
+          namespace: "camunda-platform"
+          # renovate: datasource=docker depName=camunda/camunda
+          version: "8.9.0"
+          tags:
+            - "dev"
+            - "local"
+          components:
+            - name: "Console"
+              id: "console"
+              # renovate: datasource=docker depName=camunda/console
+              version: "8.9.0"
+              url: "http://localhost:8087"
+              readiness: "http://console:8080/health/readiness"
+              metrics: "http://console:9100/prometheus"
+            - name: "Orchestration"
+              id: "orchestration"
+              # renovate: datasource=docker depName=camunda/camunda
+              version: "8.9.0"
+              urls:
+                grpc: "grpc://orchestration:26500"
+                http: "http://orchestration:8080"
+              readiness: "http://orchestration:9600/health"
+              metrics: "http://orchestration:9600/prometheus"
+            - name: "Operate"
+              id: "operate"
+              # renovate: datasource=docker depName=camunda/operate
+              version: "8.9.0"
+              url: "http://localhost:8080/operate"
+              readiness: "http://orchestration:9600/actuator/health/readiness"
+              metrics: "http://orchestration:9600/actuator/prometheus"
+            - name: "Tasklist"
+              id: "tasklist"
+              # renovate: datasource=docker depName=camunda/tasklist
+              version: "8.9.0"
+              url: "http://localhost:8080/tasklist"
+              readiness: "http://orchestration:9600/actuator/health/readiness"
+              metrics: "http://orchestration:9600/actuator/prometheus"
+            - name: "Optimize"
+              id: "optimize"
+              # renovate: datasource=docker depName=camunda/optimize
+              version: "8.9.0"
+              url: "http://localhost:8083"
+              readiness: "http://optimize:8090/api/readyz"
+              metrics: "http://optimize:8090/actuator/prometheus"
+            - name: "Identity"
+              id: "identity"
+              # renovate: datasource=docker depName=camunda/identity
+              version: "8.9.0"
+              url: "http://localhost:8084"
+              readiness: "http://identity:8082/actuator/health"
+            - name: "Keycloak"
+              id: "keycloak"
+              version: "24.0.5"
+              url: "http://localhost:18080/auth"
+              readiness: "http://keycloak:18080/auth"
+            - name: "WebModeler"
+              id: "webModelerWebApp"
+              # renovate: datasource=docker depName=camunda/web-modeler-restapi
+              version: "8.9.0"
+              url: "http://localhost:8070"
+              readiness: "http://web-modeler-restapi:8091/health/readiness"
+            - name: "Connectors"
+              id: "connectors"
+              # renovate: datasource=docker depName=camunda/connectors-bundle
+              version: "8.9.0"
+              url: "http://connectors:8080"
+              readiness: "http://connectors:8080/actuator/health/readiness"
+              metrics: "http://connectors:8080/actuator/prometheus"

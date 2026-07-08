@@ -1,0 +1,26 @@
+# Camunda Connectors Configuration
+# Static configuration for connectors runtime
+
+camunda:
+  client:
+    mode: self-managed
+    auth:
+      method: oidc
+      credentialsCachePath: /tmp/orchestration_auth_cache
+      audience: orchestration-api
+  connector:
+    secretprovider:
+      environment:
+        prefix: "CONNECTORS_SECRET"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus,configprops
+  endpoint:
+    configprops:
+      show-values: ALWAYS
+    health:
+      probes:
+        enabled: true
