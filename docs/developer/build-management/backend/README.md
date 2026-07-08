@@ -151,18 +151,13 @@ To stop the services:
 docker compose stop
 ```
 
-To remove the services:
+To remove the services and the associated data, run:
 
 ```
-docker compose down
+docker compose down -v
 ```
 
-To remove the data volumes:
-
-```
-docker volume rm backend_postgres_data && \
-docker volume rm backend_openldap_data
-```
+Note: The `-v` flag deletes all volumes, including process data, users, and other persisted state. Omit `-v` if you want to keep your data.
 
 To check the environment variables inside your container:
 
@@ -175,13 +170,9 @@ docker inspect -f \
 To check the logs inside your container:
 
 ```
-docker container logs openldap
 docker container logs postgres
-docker container logs workflow-service-postgres
 docker container logs pgadmin
-docker container logs serendipity-workflow-service
 docker container logs serendipity-party-service
-docker container logs serendipity-identity-server
 docker container logs serendipity-bff
 ```
 
