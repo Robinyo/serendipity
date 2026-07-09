@@ -63,7 +63,7 @@ To check for installed Java SDKs:
 ```
 /usr/libexec/java_home -V
 ```
-[case-evaluation-and-outcomes.json](../../../../../archive/serendipity/serendipity-api/projects/spring-boot/server/apps/flowable/apps/case-management-v1.4/bpmn-models/case-evaluation-and-outcomes.json)
+
 You should see something like:
 
 ```

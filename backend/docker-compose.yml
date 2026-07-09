@@ -96,8 +96,8 @@ services:
     networks:
       - backend
 
-  serendipity-bff:
-    container_name: serendipity-bff
+  serendipity-web-bff:
+    container_name: serendipity-web-bff
     environment:
       PARTY_SERVICE_URI: http://serendipity-party-service:8080/api/party-service
       WORKFLOW_SERVICE_URI: http://serendipity-workflow-service:8080/api/workflow-service
