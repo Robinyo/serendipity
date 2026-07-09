@@ -1,8 +1,10 @@
+include:
+  - path :
+      - services/camunda/docker-compose/8.9/docker-compose.yaml
+
 services:
 
   # Make sure your certificates and keys (the *.pem files in the ./certs directory) have the correct permissions -> i.e., sudo chmod 600 *.pem
-
-  # frontend Network
 
   nginx:
     container_name: nginx
@@ -20,10 +22,7 @@ services:
       - '${PWD}/services/nginx/conf/nginx-default.conf.template:/etc/nginx/templates/default.conf.template'
       - '${PWD}/certs:/etc/nginx/certs'
     networks:
-      - frontend
-      - backend
-
-  # backend Network
+      - serendipity
 
   postgres:
     container_name: postgres
@@ -55,7 +54,7 @@ services:
       - '${PWD}/certs/key.pem:/var/lib/postgresql/server.key'
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - backend
+      - serendipity
 
   pgadmin:
     container_name: pgadmin
@@ -74,7 +73,7 @@ services:
     depends_on:
       - postgres
     networks:
-      - backend
+      - serendipity
 
   serendipity-party-service:
     container_name: serendipity-party-service
@@ -94,7 +93,7 @@ services:
     depends_on:
       - postgres
     networks:
-      - backend
+      - serendipity
 
   serendipity-web-bff:
     container_name: serendipity-web-bff
@@ -108,14 +107,11 @@ services:
     depends_on:
       - postgres
     networks:
-      - backend
-
-networks:
-  frontend:
-    driver: bridge
-  backend:
-    driver: bridge
+      - serendipity
 
 volumes:
   postgres_data:
-    driver: local
+
+networks:
+  serendipity:
+    name: serendipity
