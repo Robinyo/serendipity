@@ -20,6 +20,6 @@ cosign verify-blob docker-compose-8.9.zip \
 
 ## ❯ References
 
-### Flowable
+### Camunda
 
-* GitHub: [Developer quickstart with Docker Compose](https://docs.camunda.io/docs/next/self-managed/quickstart/developer-quickstart/docker-compose/)
+* Camunda docs: [Developer quickstart with Docker Compose](https://docs.camunda.io/docs/next/self-managed/quickstart/developer-quickstart/docker-compose/)
