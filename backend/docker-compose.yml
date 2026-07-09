@@ -11,36 +11,34 @@ services:
     build:
       context: ./services/nginx
       dockerfile: Dockerfile
-    restart: unless-stopped
     ports:
       - "80:80"
       - "443:443"
-    extra_hosts:
-      - 'host.docker.internal:host-gateway'
-    volumes:
-      - '${PWD}/services/nginx/conf/ssl.conf:/etc/nginx/conf/ssl.conf'
-      - '${PWD}/services/nginx/conf/nginx-default.conf.template:/etc/nginx/templates/default.conf.template'
-      - '${PWD}/certs:/etc/nginx/certs'
+    restart: unless-stopped
     networks:
       - serendipity
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - "${PWD}/services/nginx/conf/ssl.conf:/etc/nginx/conf/ssl.conf"
+      - "${PWD}/services/nginx/conf/nginx-default.conf.template:/etc/nginx/templates/default.conf.template"
+      - "${PWD}/certs:/etc/nginx/certs"
 
   postgres:
     container_name: postgres
-    # image: postgres:17.5-alpine
-    image: percona/percona-distribution-postgresql:17.5
+    # image: postgres:${POSTGRES_VERSION}
+    image: percona/percona-distribution-postgresql:${PERCONA_POSTGRES_VERSION}
     restart: unless-stopped
-    # ports:
-    #   - "5432:5432"
     command: >
       -c ssl=on 
       -c ssl_cert_file=/var/lib/postgresql/server.crt 
       -c ssl_key_file=/var/lib/postgresql/server.key
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -d $${SERENDIPITY_DB} -U $${POSTGRES_USER}"]
-      start_period: 10s
-      interval: 30s
-      retries: 5
+      interval: 10s
       timeout: 5s
+      retries: 5
+      start_period: 10s
     environment:
       POSTGRES_DB: ${SERENDIPITY_DB}
       POSTGRES_USER: ${POSTGRES_USER}
@@ -48,24 +46,22 @@ services:
       PGSSLMODE: require
       ENABLE_PG_TDE: 1
     env_file:
-      - '${PWD}/.env'
-    volumes:
-      - '${PWD}/certs/cert.pem:/var/lib/postgresql/server.crt'
-      - '${PWD}/certs/key.pem:/var/lib/postgresql/server.key'
-      - postgres_data:/var/lib/postgresql/data
+      - "${PWD}/.env"
     networks:
       - serendipity
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - "${PWD}/certs/cert.pem:/var/lib/postgresql/server.crt"
+      - "${PWD}/certs/key.pem:/var/lib/postgresql/server.key"
+      - postgres_data:/var/lib/postgresql/data
 
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4:9.9.0
-    restart: unless-stopped
     ports:
       - "5443:443"
-    volumes:
-      - '${PWD}/certs/cert.pem:/certs/server.cert'
-      - '${PWD}/certs/key.pem:/certs/server.key'
-      - '${PWD}/pgadmin_data:/var/lib/pgadmin'
+    restart: unless-stopped
     environment:
       PGADMIN_ENABLE_TLS: true
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
@@ -74,40 +70,50 @@ services:
       - postgres
     networks:
       - serendipity
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - "${PWD}/certs/cert.pem:/certs/server.cert"
+      - "${PWD}/certs/key.pem:/certs/server.key"
+      - "${PWD}/pgadmin_data:/var/lib/pgadmin"
 
   serendipity-party-service:
     container_name: serendipity-party-service
     build:
       context: ./modules/party-service
       dockerfile: Dockerfile
-    restart: unless-stopped
     ports:
       - "30101:8080"
+    restart: unless-stopped
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${SERENDIPITY_DB}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
-    volumes:
-      - '${PWD}/certs/keystore.p12:/keystore/keystore.p12'
-    depends_on:
-      - postgres
     networks:
       - serendipity
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - "${PWD}/certs/keystore.p12:/keystore/keystore.p12"
+    depends_on:
+      - postgres
 
   serendipity-web-bff:
     container_name: serendipity-web-bff
-    environment:
-      PARTY_SERVICE_URI: http://serendipity-party-service:8080/api/party-service
-      WORKFLOW_SERVICE_URI: http://serendipity-workflow-service:8080/api/workflow-service
     build:
       context: ./modules/web-bff
       dockerfile: Dockerfile
+    environment:
+      PARTY_SERVICE_URI: http://serendipity-party-service:8080/api/party-service
+      WORKFLOW_SERVICE_URI: http://serendipity-workflow-service:8080/api/workflow-service
     restart: unless-stopped
-    depends_on:
-      - postgres
     networks:
       - serendipity
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - postgres
 
 volumes:
   postgres_data:
