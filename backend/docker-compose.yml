@@ -1,6 +1,6 @@
 include:
   - path :
-      - services/camunda/docker-compose/8.9/docker-compose.yaml
+      - services/camunda/docker-compose/8.9/docker-compose-full.yaml
 
 services:
 
@@ -24,25 +24,25 @@ services:
       - "${PWD}/services/nginx/conf/nginx-default.conf.template:/etc/nginx/templates/default.conf.template"
       - "${PWD}/certs:/etc/nginx/certs"
 
-  postgres:
-    container_name: postgres
-    # image: postgres:${POSTGRES_VERSION}
-    image: percona/percona-distribution-postgresql:${PERCONA_POSTGRES_VERSION}
+  serendipity-storage-service:
+    container_name: serendipity-storage-service
+    # image: postgres:${SERENDIPITY_STORAGE_SERVICE_VERSION}
+    image: percona/percona-distribution-postgresql:${SERENDIPITY_STORAGE_SERVICE_VERSION}
     restart: unless-stopped
     command: >
       -c ssl=on 
       -c ssl_cert_file=/var/lib/postgresql/server.crt 
       -c ssl_key_file=/var/lib/postgresql/server.key
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -d $${SERENDIPITY_DB} -U $${POSTGRES_USER}"]
+      test: ["CMD-SHELL", "pg_isready -d $${SERENDIPITY_DB} -U $${SERENDIPITY_STORAGE_SERVICE_USER}"]
       interval: 10s
       timeout: 5s
       retries: 5
       start_period: 10s
     environment:
       POSTGRES_DB: ${SERENDIPITY_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${SERENDIPITY_STORAGE_SERVICE_USER}
+      POSTGRES_PASSWORD: ${SERENDIPITY_STORAGE_SERVICE_PASSWORD}
       PGSSLMODE: require
       ENABLE_PG_TDE: 1
     env_file:
@@ -66,8 +66,6 @@ services:
       PGADMIN_ENABLE_TLS: true
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
-    depends_on:
-      - postgres
     networks:
       - serendipity
     extra_hosts:
@@ -76,6 +74,8 @@ services:
       - "${PWD}/certs/cert.pem:/certs/server.cert"
       - "${PWD}/certs/key.pem:/certs/server.key"
       - "${PWD}/pgadmin_data:/var/lib/pgadmin"
+    depends_on:
+      - serendipity-storage-service
 
   serendipity-party-service:
     container_name: serendipity-party-service
@@ -86,9 +86,9 @@ services:
       - "30101:8080"
     restart: unless-stopped
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${SERENDIPITY_DB}
-      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
-      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://serendipity-storage-service:5432/${SERENDIPITY_DB}
+      SPRING_DATASOURCE_USERNAME: ${SERENDIPITY_STORAGE_SERVICE_USER}
+      SPRING_DATASOURCE_PASSWORD: ${SERENDIPITY_STORAGE_SERVICE_PASSWORD}
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
     networks:
       - serendipity
@@ -97,7 +97,7 @@ services:
     volumes:
       - "${PWD}/certs/keystore.p12:/keystore/keystore.p12"
     depends_on:
-      - postgres
+      - serendipity-storage-service
 
   serendipity-web-bff:
     container_name: serendipity-web-bff
@@ -113,7 +113,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     depends_on:
-      - postgres
+      - serendipity-storage-service
 
 volumes:
   postgres_data:
