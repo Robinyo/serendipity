@@ -81,7 +81,7 @@ given community. Then the case manager catalyzes efforts to create that service 
 
 #### Processes
 
-Process: Client Identification and eligibility determination
+Process: Client Identification and Eligibility Determination
 
 ```
 Model name: Client Identification and Eligibility Determination

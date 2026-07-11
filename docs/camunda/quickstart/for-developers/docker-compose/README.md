@@ -39,7 +39,7 @@ services:
 
 ```
 
-3. In the project's /backend directory, run:
+3. In the project's `/backend` directory, run:
 
 ```
 docker compose up
@@ -60,3 +60,5 @@ https://serendipity.localhost
 ### Camunda
 * GitHub: [Camunda distributions](https://github.com/camunda/camunda-distributions/releases)
 * Camunda docs: [Developer quickstart with Docker Compose](https://docs.camunda.io/docs/next/self-managed/quickstart/developer-quickstart/docker-compose/)
+* Camunda docs: [Configure Docker Compose environments](https://docs.camunda.io/docs/next/self-managed/quickstart/developer-quickstart/docker-compose/configuration/)
+
