@@ -1,4 +1,4 @@
-<h1 align="center">Working with Camunda</h1>
+<h1 align="center">Developer quickstart with Docker Compose</h1>
 
 ## ❯ Camunda 8 Self-Managed
 
@@ -11,6 +11,7 @@ For example:
 ```
 # In the project's /backend directory
 
+mkdir /services/camunda/docker-compose/8.9
 cd /services/camunda/docker-compose/8.9
 
 # Download Docker Compose artifacts
@@ -27,6 +28,24 @@ cosign verify-blob docker-compose-8.9.zip \
 
 unzip docker-compose-8.9.zip
 ```
+
+2. Use Docker Compose's include feature to import the Camunda services:
+
+```
+include:
+  - path: ./services/camunda/docker-compose/8.9/docker-compose-full.yaml
+    env_file: ./services/camunda/docker-compose/8.9/.env
+
+services:
+  ...
+
+```
+
+In the extracted directory, run:
+
+docker compose up -d
+
+Wait for the environment to initialize. This can take several minutes. If you use the full configuration, monitor the logs, especially the Keycloak container log, to ensure all components start.
 
 ## ❯ References
 

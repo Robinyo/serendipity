@@ -1,6 +1,6 @@
 include:
-  - path :
-      - services/camunda/docker-compose/8.9/docker-compose-full.yaml
+  - path: ./services/camunda/docker-compose/8.9/docker-compose-full.yaml
+    env_file: ./services/camunda/docker-compose/8.9/.env
 
 services:
 
