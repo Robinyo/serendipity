@@ -6,8 +6,6 @@
 
 1. Download the latest Camunda 8 Docker Compose [distribution](https://github.com/camunda/camunda-distributions/releases), then extract it.
 
-For example:
-
 ```
 # In the project's /backend directory
 
@@ -41,11 +39,21 @@ services:
 
 ```
 
-In the extracted directory, run:
+In the project's /backend directory, run:
 
-docker compose up -d
+```
+docker compose up
+```
 
-Wait for the environment to initialize. This can take several minutes. If you use the full configuration, monitor the logs, especially the Keycloak container log, to ensure all components start.
+The containers may take a minute or two to startup.
+
+**Note:** Docker Compose will look for an `.env` file in the current working directory.
+
+Navigate to:
+
+```
+https://serendipity.localhost
+```
 
 ## ❯ References
 
