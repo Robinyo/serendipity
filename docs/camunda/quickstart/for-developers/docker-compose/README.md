@@ -27,7 +27,7 @@ cosign verify-blob docker-compose-8.9.zip \
 unzip docker-compose-8.9.zip
 ```
 
-2. Use Docker Compose's include feature to import the Camunda services:
+2. Use Docker Compose's `include` element to import the Camunda services.
 
 ```
 include:
@@ -39,7 +39,7 @@ services:
 
 ```
 
-In the project's /backend directory, run:
+3. In the project's /backend directory, run:
 
 ```
 docker compose up
