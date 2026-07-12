@@ -15,9 +15,10 @@
 
 Serendipity is composed of the following components:
 
-- [Progressive Web App](./docs/architecture/pwa/README.md)
-- [Backend for Frontend](./docs/architecture/bff/README.md)
-- Identity Service
+- [Progressive Web App](./docs/serendipity/architecture/pwa/README.md)
+- [Backend for Frontend](./docs/serendipity/architecture/bff/README.md)
+- [Process Orchestration](./docs/camunda/guides/orchestrate-human-tasks/README.md)
+- [Identity Service](./docs/serendipity/for-administrators/keycloak/README.md)
 - Microservices
 
 <p align="center">
@@ -26,34 +27,32 @@ Serendipity is composed of the following components:
 
 ## ❯ Getting Started
 
-Follow the steps in the [Quick Start Guide](./docs/developer/quick-start-guide/README.md).
+Follow the steps in the [Quick Start Guide](./docs/serendipity/for-developers/quick-start-guide/README.md).
 
 ## ❯ Documentation
 
 * Developer Documentation
-  * [Build Management](./docs/developer/build-management/README.md)
-  * [Build with AI](./docs/developer/build-with-ai/claude-code/README.md)
-  * [mkcert](./docs/developer/mkcert/README.md)
+  * [Build Management](./docs/serendipity/for-developers/build-management/README.md)
+  * [Build with AI](./docs/serendipity/for-developers/build-with-ai/claude-code/README.md)
+  * [mkcert](./docs/serendipity/for-developers/mkcert/README.md)
 * Administrator Documentation
-  * [Working with Docker and Docker Compose](./docs/administrator/docker/README.md)
-  * [Working with Flowable](./docs/administrator/flowable/README.md)
-  * [Working with Keycloak](./docs/administrator/keycloak/README.md)
-  * [Working with OpenLDAP](./docs/administrator/openldap/README.md)
-  * [Working with PostgreSQL](./docs/administrator/postgres/README.md)
-  * [Working with the Percona Distribution for PostgreSQL](./docs/administrator/percona-distribution-for-postgresql/README.md)
-  * [Working with pgAdmin](./docs/administrator/pgadmin/README.md)
+  * [Working with Docker and Docker Compose](./docs/serendipity/for-administrators/docker/README.md)
+  * [Working with Keycloak](./docs/serendipity/for-administrators/keycloak/README.md)
+  * [Working with PostgreSQL](./docs/serendipity/for-administrators/postgres/README.md)
+  * [Working with the Percona Distribution for PostgreSQL](./docs/serendipity/for-administrators/percona-distribution-for-postgresql/README.md)
+  * [Working with pgAdmin](./docs/serendipity/for-administrators/pgadmin/README.md)
 * Architecture Documentation
-  * [Backend for Frontend](./docs/architecture/bff/README.md)
-  * [Database Seeds](./docs/architecture/database-seeds/parliament-of-australia/README.md)
-  * [Progressive Web App](./docs/architecture/pwa/README.md)
-  * [Static Content](./docs/architecture/static-content/README.md)
-  * [Spring Data](./docs/architecture/spring-data/README.md)
+  * [Backend for Frontend](./docs/serendipity/architecture/bff/README.md)
+  * [Database Seeds](./docs/serendipity/architecture/database-seeds/parliament-of-australia/README.md)
+  * [Progressive Web App](./docs/serendipity/architecture/pwa/README.md)
+  * [Static Content](./docs/serendipity/architecture/static-content/README.md)
+  * [Spring Data](./docs/serendipity/architecture/spring-data/README.md)
 
 ## ❯ Resources
 
-* [Cyber Security Resources](./docs/developer/resources/cyber-security-resources/README.md)
-* [DevSecOps Resources](./docs/developer/resources/devsecops/README.md)
-* [Secure Software Development Resources](./docs/developer/resources/secure-software-development/README.md)
+* [Cyber Security Resources](./docs/serendipity/for-developers/resources/cyber-security-resources/README.md)
+* [DevSecOps Resources](./docs/serendipity/for-developers/resources/devsecops/README.md)
+* [Secure Software Development Resources](./docs/serendipity/for-developers/resources/secure-software-development/README.md)
 
 ![divider](./divider.png)
 
