@@ -29,7 +29,7 @@ case manager and the patient/client.
 Assessment refers to construct a detailed, comprehensive understanding of the patient/client which includes, their 
 healthcare and social needs, their capabilities, and the resources they have access to in their family and community.
 
-### Care Planning Along With Goal Setting
+### Care Planning along with Goal Setting
 Planning encompasses the steps necessary to build a care plan that defines treatment goals, tasks and actions needed to 
 move towards those goals, access to specific services and supports required to achieve the stated goals and final the 
 identification of targeted outcomes that are specific to that the patient/client. 
@@ -78,7 +78,7 @@ collection must strictly balance client-centricity with compliance, privacy, and
 When designing or operating a case management system within this context, the following information should be 
 systematically captured during each of the six core business processes.
 
-### Client Identification & Eligibility Determination
+### Client Identification and Eligibility Determination
 The focus of this initial entry gate is establishing the identity of the individual, identifying immediate crisis 
 indicators, and verifying statutory or program thresholds while ensuring informed consent.
 - Core Identity Data: Full legal name, preferred name, alias, date of birth, gender identity, and physical address. 
