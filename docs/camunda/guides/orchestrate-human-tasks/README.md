@@ -38,10 +38,7 @@ For enterprise-level modeling, you should enforce a centralised data dictionary 
 
 ## ❯ Get started with human task orchestration
 
-### Step 1: Create a new process
-
-
-
+See: [Get started with human task orchestration](https://docs.camunda.io/docs/guides/orchestrate-human-tasks/?install=sm)
 
 ## ❯ References
 

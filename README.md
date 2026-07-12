@@ -29,6 +29,10 @@ Serendipity is composed of the following components:
 
 Follow the steps in the [Quick Start Guide](./docs/serendipity/for-developers/quick-start-guide/README.md).
 
+## ❯ Tutorials
+
+Follow the steps in the [Case Management Guide](./docs/serendipity/tutorials/case-management/README.md).
+
 ## ❯ Documentation
 
 * Developer Documentation

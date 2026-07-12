@@ -20,32 +20,32 @@ Case management typically include six core elements:
 - Plan monitoring
 - Transition and discharge
 
-Client identification and eligibility determination
+### Client Identification and Eligibility Determination
 Case finding describes a process involving activities focused upon the identification of patients/clients not currently 
 receiving case management services. Establishing rapport consists of building an interpersonal connection between the 
 case manager and the patient/client.
 
-Client Assessment
-Assessment refers to construct a detailed, comprehensive understanding of the patient/client which includes, 
-their healthcare and social needs, their capabilities, and the resources they have access to in their family and community.
+### Client Assessment
+Assessment refers to construct a detailed, comprehensive understanding of the patient/client which includes, their 
+healthcare and social needs, their capabilities, and the resources they have access to in their family and community.
 
-Care planning along with goal setting
-Planning encompasses the steps necessary to build a care plan that defines 
-treatment goals, tasks and actions needed to move towards those goals, access to specific services and supports required 
-to achieve the stated goals and final the identification of targeted outcomes that are specific to that the patient/client. 
+### Care Planning Along With Goal Setting
+Planning encompasses the steps necessary to build a care plan that defines treatment goals, tasks and actions needed to 
+move towards those goals, access to specific services and supports required to achieve the stated goals and final the 
+identification of targeted outcomes that are specific to that the patient/client. 
 Navigation encompasses the part of the case management process where the case manager helps guide the patient/client to 
 services and supports recognizing and working to remove barriers that can either be anticipated or those that 
 unexpectedly arise. Provision of care occurs when the case manager is also part of the treatment team as might happen 
 in the mental health setting. For example, where the patient' s/client's case manager might also be part of the therapy 
 team providing counseling and skills training.
 
-Plan implementation
-Implementation, is the part of the case management program where the plan of care with its varied 
-activities and tasks, is set in motion. Coordination is related to navigation but is broader and refers to the myriad 
-of facilitations that must occur between and among care providers, service settings, organizations, and institutions 
-with the patient/client also being the focus and at the center of this component of the case management process.
+### Plan Implementation
+Implementation, is the part of the case management program where the plan of care with its varied activities and tasks, 
+is set in motion. Coordination is related to navigation but is broader and refers to the myriad of facilitations that 
+must occur between and among care providers, service settings, organizations, and institutions with the patient/client 
+also being the focus and at the center of this component of the case management process.
 
-Plan monitoring
+### Plan Monitoring
 Monitoring occurs throughout the entire process and is related to seeking ongoing feedback and conducting follow-up as 
 necessary to how the plan of care is being implemented and producing results. Evaluation is closely related to 
 monitoring but occurs at specific milestones during the case management process to formally determine if the care plan 
@@ -59,7 +59,7 @@ manager's effort to consistently provide encouragement and emotional support as 
 Administration encompasses the paperwork, report writing, and data gathering and analysis that are part and parcel of 
 the modern health care system.
 
-Transition and discharge
+### Transition and Discharge
 Transition describes the process when a client is prepared to move across the healthcare continuum, depending on the 
 patient's health and the need for services. The client can be moved home or transferred to another facility for 
 further care. Discharge represents the case management process component in which the patient's/client's case reaches 
@@ -67,6 +67,35 @@ the point of closure, goals are met, and the patient's needs warrant disengageme
 
 Finally, community service development occurs when the case management process uncovers a need or service gap within a 
 given community. Then the case manager catalyzes efforts to create that service or support to fill that gap.
+
+## Information Management
+
+In the Australian human services ecosystem—governed by frameworks such as the Information Security Manual (ISM), 
+Protective Security Policy Framework (PSPF), the ACSC Essential Eight, and specific sector standards like MARAM (Family 
+Violence Multi-Agency Risk Assessment and Management) or the National Standards for Mental Health Services—data 
+collection must strictly balance client-centricity with compliance, privacy, and security.
+
+When designing or operating a case management system within this context, the following information should be 
+systematically captured during each of the six core business processes.
+
+Client Identification & Eligibility Determination
+The focus of this initial entry gate is establishing the identity of the individual, identifying immediate crisis 
+indicators, and verifying statutory or program thresholds while ensuring informed consent.
+
+Core Identity Data: Full legal name, preferred name, alias, date of birth, gender identity, and physical address. Unique identifiers such as the Individual Healthcare Identifier (IHI) or specific agency case numbers.
+
+Cultural & Diversity Identifiers: Aboriginal and/or Torres Strait Islander status (crucial for culturally safe care pathways under Closing the Gap targets), preferred language, interpreter requirements, and country of birth.
+
+Consent & Information Sharing Control: Explicit flags indicating informed consent status, signed release of information (ROI) boundaries, and privacy disclosure acknowledgments.
+
+Initial Triage & Eligibility Matrix: Documented criteria met for program entry (e.g., geographic boundary, age bracket, specific income/statutory thresholds).
+
+Immediate Safety / Red Flags: Initial safety status indicators (e.g., active domestic violence threat, self-harm indicators, urgent medical requirements).
+
+
+
+
+
 
 ### Business Process Models
 
