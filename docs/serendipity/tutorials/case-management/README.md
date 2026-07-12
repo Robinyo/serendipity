@@ -70,9 +70,9 @@ given community. Then the case manager catalyzes efforts to create that service 
 
 ## Information Management
 
-In the Australian human services ecosystem—governed by frameworks such as the Information Security Manual (ISM), 
+In the Australian human services ecosystem — governed by frameworks such as the Information Security Manual (ISM), 
 Protective Security Policy Framework (PSPF), the ACSC Essential Eight, and specific sector standards like MARAM (Family 
-Violence Multi-Agency Risk Assessment and Management) or the National Standards for Mental Health Services—data 
+Violence Multi-Agency Risk Assessment and Management) or the National Standards for Mental Health Services — data 
 collection must strictly balance client-centricity with compliance, privacy, and security.
 
 When designing or operating a case management system within this context, the following information should be 
