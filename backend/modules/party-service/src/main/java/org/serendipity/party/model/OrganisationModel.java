@@ -40,3 +40,5 @@ public class OrganisationModel extends RepresentationModel<OrganisationModel> {
   }
 
 }
+
+// https://docs.spring.io/spring-hateoas/docs/current/reference/html/#fundamentals.representation-models

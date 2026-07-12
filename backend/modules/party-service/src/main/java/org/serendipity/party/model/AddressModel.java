@@ -19,9 +19,9 @@ public class AddressModel extends RepresentationModel<AddressModel> {
   private String name;
   private String line1;
   private String line2;
-  private String city;
-  private String state;
-  private String postalCode;
+  private String city;              // Suburb / Locality
+  private String state;             // State / Territory
+  private String postalCode;        // Postcode
   private String country;
   private String addressType;
 
@@ -39,12 +39,12 @@ public class AddressModel extends RepresentationModel<AddressModel> {
 
     AddressModel other = (AddressModel) o;
 
-    return id != 0L && id.equals(other.getId());
+    return id != null && id.equals(other.getId());
   }
 
   @Override
   public int hashCode() {
-    return 31;
+    return getClass().hashCode();
   }
 
 }
