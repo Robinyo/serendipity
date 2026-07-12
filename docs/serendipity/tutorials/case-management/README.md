@@ -78,160 +78,89 @@ collection must strictly balance client-centricity with compliance, privacy, and
 When designing or operating a case management system within this context, the following information should be 
 systematically captured during each of the six core business processes.
 
-Client Identification & Eligibility Determination
+### Client Identification & Eligibility Determination
 The focus of this initial entry gate is establishing the identity of the individual, identifying immediate crisis 
 indicators, and verifying statutory or program thresholds while ensuring informed consent.
+- Core Identity Data: Full legal name, preferred name, alias, date of birth, gender identity, and physical address. 
+  Unique identifiers such as the Individual Healthcare Identifier (IHI) or specific agency case numbers.
+- Cultural & Diversity Identifiers: Aboriginal and/or Torres Strait Islander status (crucial for culturally safe care 
+  pathways under Closing the Gap targets), preferred language, interpreter requirements, and country of birth.
+- Consent & Information Sharing Control: Explicit flags indicating informed consent status, signed release of 
+  information (ROI) boundaries, and privacy disclosure acknowledgments.
+- Initial Triage & Eligibility Matrix: Documented criteria met for program entry (e.g., geographic boundary, 
+  age bracket, specific income/statutory thresholds).
+- Immediate Safety / Red Flags: Initial safety status indicators (e.g., active domestic violence threat, self-harm 
+  indicators, urgent medical requirements).
 
-Core Identity Data: Full legal name, preferred name, alias, date of birth, gender identity, and physical address. Unique identifiers such as the Individual Healthcare Identifier (IHI) or specific agency case numbers.
+### Assessment
+This phase forms the baseline clinical or psychosocial record. In Australia, this increasingly relies on holistic, 
+multi-agency risk models (such as the MARAM framework) that assess the individual within their complete social ecosystem.
+- Holistic Biopsychosocial Data: Documentation covering physical and mental health status, housing stability, financial 
+  security, and legal/justice involvements.
+- Formal Risk Assessment Diagnostics: Labeled risk ratings (Low/Medium/High) derived from validated instruments, such 
+  as the HoNOS (Health of the Nation Outcome Scales) in mental health or child safety risk assessment matrices.
+- Client Strengths & Protective Factors: Personal capabilities, independent coping mechanisms, stable family 
+  relationships, and existing community connections.
+- System Interoperability Records: Existing external agency involvement notes (e.g., active NDIS plans, Centrelink 
+  status, Child Protection orders, or correctional system mandates).
+- Multi-Agency Consultation Notes: Secondary consultations with cultural advisors, medical specialists, or 
+  multidisciplinary panels.
 
-Cultural & Diversity Identifiers: Aboriginal and/or Torres Strait Islander status (crucial for culturally safe care pathways under Closing the Gap targets), preferred language, interpreter requirements, and country of birth.
+### Care Planning along with Goal Setting
+This phase translates the assessment into an actionable, transparent roadmap. Under Australian client-centred 
+guidelines, this must be co-designed with the client and clearly track legal/budgetary guardrails.
+- Co-Designed Goals: Specific, Measurable, Achievable, Relevant, and Time-bound (SMART) recovery or support goals 
+  authored in collaboration with the client.
+- Actionable Interventions: Clearly delegated responsibilities detailing who (case manager, client, or external service 
+  provider) will perform what task.
+- Crisis & Safety Plans: Explicit, step-by-step safety actions, emergency contacts, and safe environments, particularly 
+  critical in family violence or acute mental health scenarios.
+- Resource & Funding Allocations: Allocated budgets, approved packages (e.g., My Aged Care packages or NDIS support 
+  line items), and brokerage fund approvals.
+- Target Review Schedule: Mandatory milestone check-in intervals and designated review dates.
 
-Consent & Information Sharing Control: Explicit flags indicating informed consent status, signed release of information (ROI) boundaries, and privacy disclosure acknowledgments.
+### Plan Implementation
+This represents the active coordination and service delivery phase, tracking how resources are mobilized and ensuring 
+external vendor accountability.
+- Referral Tracking Logs: Date, destination, and status of external referrals (e.g., submitted to a community housing 
+  provider or specialist clinician) along with formal acceptance notices.
+- Case Notes & Service Touchpoints: Chronological, objective event logs detailing client interactions, phone calls, 
+  home visits, and multi-agency case conferences.
+- Brokerage & Expenditure Tracking: Real-time financial ledgers capturing service purchases, voucher distributions, and 
+  provider invoices charged against the client's allocated package.
+- Cross-Agency Information Exchanges: Records of secure data sharing executed under legislative provisions (e.g., Child 
+  Information Sharing Schemes or Family Violence Information Sharing Schemes).
 
-Initial Triage & Eligibility Matrix: Documented criteria met for program entry (e.g., geographic boundary, age bracket, specific income/statutory thresholds).
+### Plan Monitoring
+This phase involves checking the trajectory of the care plan against real-world outcomes and managing systemic variances 
+or unexpected crises.
+- Goal Progress Indicators: Standardized milestone metrics tracking whether goals are Not Started, In Progress, 
+  Achieved, or Deferred.
+- Risk Re-Assessments: Re-evaluated risk scores to identify whether vulnerabilities have escalated, stabilized, or 
+  decreased over time.
+- Variance & Barrier Logs: Documented reasons for plan deviations (e.g., lack of regional service availability, 
+  waitlist delays, or changes in client medical status).
+- Client & Carer Feedback: Qualitative feedback capturing the client’s and their support network's satisfaction with 
+  current service delivery and their perceived sense of safety and wellbeing.
 
-Immediate Safety / Red Flags: Initial safety status indicators (e.g., active domestic violence threat, self-harm indicators, urgent medical requirements).
-
-
-
-
-
-
-### Business Process Models
-
-#### Case Management
-
-- Client Identification and Eligibility Determination
-- Client Assessment
-- Care Planning
-- Plan Implementation
-- Plan Monitoring
-- Plan Evaluation and Outcomes
-
-#### Processes
-
-Process: Client Identification and Eligibility Determination
-
-```
-Model name: Client Identification and Eligibility Determination
-Model key: client-identification-and-eligibility-determination
-```
-
-Process: Client Assessment
-
-```
-Model name: Client Assessment
-Model key: client-assessment
-```
-
-Process: Care Planning
-
-```
-Model name: Care Planning
-Model key: care-planning
-```
-
-Process: Plan Implementation
-
-```
-Model name: Plan Implementation
-Model key: plan-implementation
-```
-
-Process: Care Monitoring
-
-```
-Model name: Care Monitoring
-Model key: plan-monitoring
-```
-
-Process: Plan Evaluation and Outcomes
-
-```
-Model name: Plan Evaluation and Outcomes
-Model key: plan-evaluation-and-outcomes
-```
-
-#### Human Tasks
-
-Human Task: Identify Client
-
-```
-Name: Identify Client
-Assignments:
-Form reference: Identify Client
-```
-
-Human Task: Goal Setting
-
-```
-Name: Goal Setting
-Assignments:
-Form reference: Goal
-```
-
-Human Task: Goal Verification
-
-```
-Name: Goal Verification
-Assignments:
-Form reference: Goal
-```
-
-#### Forms
-
-Form: Identify Client
-
-```
-Name name: Identify Client
-Form key: identify-client
-```
-
-```
-Label: Given Name Key: givenName Required: true
-Label: Middle Name Key: middleName Required: false
-Label: Family Name Key: familyName Required: true
-Label: Date of Birth dateOfBirth Required: true
-Label: Place of Birth placeOfBirth Required: true
-Label: Country of Birth countryOfBirth Required: true Placeholder: Australia
-```
-
-Form: Goal
-
-```
-Label: Goal Name Key: goalName Required: true
-Label: Goal Description Key: goalDescription Required: true
-```
-
-Form: Outcomes
-
-```
-Label: Outcome Name Key: outcomeName Required: true
-Label: Outcome Description Key: outcomeDescription Required: true
-```
-
-Create App
-
-```
-App definition name: Case Management
-App definition key: case-management
-```
-
-Publish
-
-You should see something like:
-
-```
-AppDeployer  : Processing app resource case-management.app
-BpmnDeployer : BpmnDeployer: processing resource assessment.bpmn
-BpmnDeployer : BpmnDeployer: processing resource identification-and-eligibility-determination.bpmn
-FormDeployer : FormDeployer: processing resource form-identify-client.form
-```
+### Transition & Discharge
+The final phase manages the safe exit of the client from the program, ensuring continuity of care and long-term stability.
+- Discharge Reason: Explicit categorization of the closure (e.g., Goals Achieved, Program Expiry, Relocation Out of 
+  Area, or Transition to a Higher/Lower Intensity Service Framework).
+- Outcome Evaluation Summary: A comparison comparing baseline entry assessment metrics against exit status data to 
+  measure systemic program efficacy.
+- Warm Referral & Handover Records: Standardized handover packets transmitted securely to the receiving agency, 
+  accompanied by documented client consent for the transfer.
+- Relapse Prevention & Contingency Plans: Documented self-management strategies and community contact points provided 
+  directly to the client to support long-term independence.
+- Statutory & Data Retention Metadata: System metadata defining the mandatory archive duration (e.g., specific state 
+  records acts requiring retention periods such as 7 years for adults or until a child turns 25 in child protection 
+  contexts) and disposal schedules.
 
 ## ❯ References
 
 ### Case Management
 
-* NIH website: [Case Management](https://www.ncbi.nlm.nih.gov/books/NBK562214/)
-* CMSA website: [Case Management - Definitions](https://www.cmsa.org.au/about-us/definitions-of-case-management)
+* The US National Institute of Health: [Case Management](https://www.ncbi.nlm.nih.gov/books/NBK562214/)
+* Case Management Society of Australia: [Case Management - Definitions](https://www.cmsa.org.au/about-us/definitions-of-case-management)
 * ISCRR website: [Best Practices for Person-Centred Case Management](https://research.iscrr.com.au/__data/assets/pdf_file/0010/2652715/298_Person_centred-case-management_FINAL.pdf)
