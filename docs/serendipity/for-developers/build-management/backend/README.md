@@ -22,7 +22,7 @@ For example:
 ```
 brew update
 brew upgrade
-brew install --cask temurin@21
+brew install --cask temurin@25
 ```
 
 Update your .zshrc:
@@ -125,6 +125,8 @@ To build the project:
 ```
 docker system prune && \
 docker container prune && docker volume prune && docker network prune
+
+export DOCKER_DEFAULT_PLATFORM=linux/arm64
 
 docker compose build
 ```

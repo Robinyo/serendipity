@@ -33,6 +33,8 @@ To build the **frontend**:
 ```
 # In the project's /frontend directory
 
+npm install
+
 ng build --configuration="development" serendipity-auth-lib && \
 ng build --configuration="development" serendipity-utils-lib && \
 ng build --configuration="development" serendipity-components-lib && \

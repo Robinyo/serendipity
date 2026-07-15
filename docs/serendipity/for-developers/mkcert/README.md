@@ -47,7 +47,16 @@ Move the files into the `\backend\certs` directory and set the file permissions:
 sudo chmod 600 *.pem
 ```
 
-**Note:** On Unix and MacOS systems the cert and key file permissions must disallow any access to world or group.
+**Note:** On Unix and macOS systems the cert and key file permissions must disallow any access to world or group.
+
+I also had an issue with Docker Compose mounting the *.pem files if they have extended attributes.
+On macOS, the `@` symbol at the end of a file's permissions means the file has extended attributes.
+
+To remove them, run:
+
+```
+xattr -c *.pem
+```
 
 ### Create a PKCS12 Keystore
 
@@ -57,7 +66,7 @@ You can use `openssl` to create a PKCS12 keystore:
 openssl pkcs12 -export -in cert.pem -inkey key.pem -out keystore.p12 -name tomcat -password pass:secret
 ```
 
-**Note:** On Unix and MacOS systems the cert and key file permissions must disallow any access to world or group.
+**Note:** On Unix and macOS systems the cert and key file permissions must disallow any access to world or group.
 
 ### /etc/hosts
 

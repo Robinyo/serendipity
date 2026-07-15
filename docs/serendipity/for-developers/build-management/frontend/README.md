@@ -7,27 +7,66 @@ You need to set up your development environment before you can do anything.
 What you need:
 
 * git
-* Node.js
+* NVM
 * Angular CLI
 
-### Node.js
+### NVW
 
 #### macOS
 
-To install Node.js using Homebrew on macOS, follow these steps:
+To install NVW using Homebrew on macOS, follow these steps:
 
 ```
 brew update
 brew upgrade
-brew install node
+brew install nvm
+```
+Create the NVM Directory:
+```
+mkdir ~/.nvm
 ```
 
-After the installation completes, you can verify that Node.js and npm (Node Package Manager, which comes bundled with 
-Node.js) are installed correctly by checking their versions:
+Add the following to your shell profile e.g. `~/.zshrc`:
+```
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+```
+
+Apply the changes to your current terminal session:
 
 ```
-node -v
-npm -v
+source ~/.zshrc
+```
+
+Confirm NVM is installed correctly by checking its version:
+
+```
+nvm --version
+```
+
+Install the latest Node version:
+
+```
+nvm install node
+```
+
+Install a specific version (e.g., version 20):
+
+```
+nvm install 20
+```
+
+Switch to a specific version:
+
+```
+nvm use 20
+```
+
+List your installed versions:
+
+```
+nvm ls
 ```
 
 ### Angular CLI
@@ -57,6 +96,8 @@ In another terminal:
 
 ```
 # In the project's /frontend directory
+
+npm install
 
 ng build --configuration="development" serendipity-auth-lib && \
 ng build --configuration="development" serendipity-utils-lib && \

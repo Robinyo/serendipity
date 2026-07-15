@@ -1,10 +1,7 @@
-include:
-  - path: ./services/camunda/docker-compose/8.9/docker-compose-full.yaml
-    env_file: ./services/camunda/docker-compose/8.9/.env
-
 services:
 
-  # Make sure your certificates and keys (the *.pem files in the ./certs directory) have the correct permissions -> i.e., sudo chmod 600 *.pem
+  # Make sure your certificates and keys (the *.pem files in the ./certs directory) have the correct permissions
+  # i.e., chmod 600 *.pem && xattr -c *.pem
 
   nginx:
     container_name: nginx
@@ -23,6 +20,8 @@ services:
       - "${PWD}/services/nginx/conf/ssl.conf:/etc/nginx/conf/ssl.conf"
       - "${PWD}/services/nginx/conf/nginx-default.conf.template:/etc/nginx/templates/default.conf.template"
       - "${PWD}/certs:/etc/nginx/certs"
+    depends_on:
+      - serendipity-web-bff
 
   serendipity-storage-service:
     container_name: serendipity-storage-service
