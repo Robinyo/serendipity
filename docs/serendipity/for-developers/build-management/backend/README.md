@@ -10,6 +10,24 @@ What you need:
 * Java JDK 25 or later
 * Maven 3.9.12 or later
 
+### git
+
+#### macOS
+
+To install git, run
+
+```
+brew update
+brew upgrade
+brew install git
+```
+
+TO configure git so that it uses `nano`, run:
+
+```
+git config --global core.editor "nano"
+```
+
 ### Java JDK
 
 #### macOS
@@ -20,8 +38,6 @@ Homebrew is the best way to manage and work with different Java versions.
 For example:
 
 ```
-brew update
-brew upgrade
 brew install --cask temurin@25
 ```
 
