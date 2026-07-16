@@ -192,6 +192,19 @@ docker container logs postgres
 docker container logs pgadmin
 docker container logs serendipity-party-service
 docker container logs serendipity-bff
+
+docker container logs orchestration
+docker container logs connectors
+docker container logs optimize
+docker container logs identity
+docker container logs postgres
+docker container logs keycloak
+docker container logs elasticsearch
+docker container logs web-modeler-db
+docker container logs mailpit
+docker container logs web-modeler-restapi
+docker container logs web-modeler-websockets
+docker container logs console
 ```
 
 ## ❯ References
