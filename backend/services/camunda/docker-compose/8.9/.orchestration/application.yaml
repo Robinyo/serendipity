@@ -84,10 +84,9 @@ camunda:
 
   security:
     authentication:
-      method: "oidc"
-      unprotectedApi: false
+      unprotectedApi: true
     authorizations:
-      enabled: true
+      enabled: false
     initialization:
       defaultRoles:
         admin:

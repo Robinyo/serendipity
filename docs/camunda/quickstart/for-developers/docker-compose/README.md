@@ -55,6 +55,22 @@ Navigate to:
 https://serendipity.localhost
 ```
 
+### Authentication
+
+### Orchestration API
+
+To disable REST API authentication in Docker Compose, you need to enable 'unprotected API mode', in the Orchestration 
+`application.yaml`:
+
+```
+camunda:
+  security:
+    authentication:
+      unprotectedApi: true
+    authorizations:
+      enabled: false
+```
+
 ## ❯ References
 
 ### Camunda
