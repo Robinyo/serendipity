@@ -19,9 +19,9 @@ spring:
               predicates:
                 - Path=/api/party-service/**
             - id: workflow-service-route
-              uri: http://serendipity-workflow-service:8080/flowable-task/process-api
+              uri: http://orchestration:8080/v2/user-tasks
               predicates:
-                - Path=/flowable-task/process-api/**
+                - Path=/v2/user-tasks/**
   main:
     banner-mode: off
   profiles:
