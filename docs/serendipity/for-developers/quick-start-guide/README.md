@@ -145,4 +145,5 @@ The following components are available in the full configuration only:
 #### Authentication
 
 - Web UI: Log in to Operate, Tasklist, Console, Optimize, and Web Modeler with `demo / demo`.
-- APIs: Authentication for the Orchestration Cluster REST API has been disabled.
+- APIs: Authentication for the Orchestration Cluster REST API has been disabled (i.e., set to 'unprotected API mode' in 
+  the Orchestration cluster's `application.yaml`).
