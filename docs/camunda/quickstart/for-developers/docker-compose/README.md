@@ -66,9 +66,17 @@ To disable REST API authentication in Docker Compose, you need to enable 'unprot
 camunda:
   security:
     authentication:
+      method: "oidc"
       unprotectedApi: true
     authorizations:
       enabled: false
+```
+
+To check that REST API authentication has been disabled, run:
+
+```
+curl -s GET 'http://localhost:8080/v2/topology' \
+  -H "Accept: application/json"  | jq .
 ```
 
 ## ❯ References

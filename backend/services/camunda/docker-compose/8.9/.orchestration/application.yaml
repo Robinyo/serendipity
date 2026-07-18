@@ -84,6 +84,7 @@ camunda:
 
   security:
     authentication:
+      method: "oidc"
       unprotectedApi: true
     authorizations:
       enabled: false
