@@ -18,6 +18,9 @@
       "serendipity-auth-lib": [
         "./dist/serendipity-auth-lib"
       ],
+      "serendipity-camunda-lib": [
+        "./dist/serendipity-camunda-lib"
+      ],
       "serendipity-components-lib": [
         "./dist/serendipity-components-lib"
       ],
@@ -94,6 +97,12 @@
     },
     {
       "path": "./projects/serendipity-auth-lib/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/serendipity-camunda-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/serendipity-camunda-lib/tsconfig.spec.json"
     }
   ]
 }

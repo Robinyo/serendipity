@@ -336,6 +336,37 @@
           }
         }
       }
+    },
+    "serendipity-camunda-lib": {
+      "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/serendipity-camunda-lib",
+      "sourceRoot": "projects/serendipity-camunda-lib/src",
+      "prefix": "camunda",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/serendipity-camunda-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/serendipity-camunda-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/serendipity-camunda-lib/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {

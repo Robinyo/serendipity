@@ -103,7 +103,7 @@ ng build --configuration="development" serendipity-auth-lib && \
 ng build --configuration="development" serendipity-utils-lib && \
 ng build --configuration="development" serendipity-components-lib && \
 ng build --configuration="development" serendipity-dynamic-forms-lib && \
-ng build --configuration="development" serendipity-flowable-lib && \
+ng build --configuration="development" serendipity-camunda-lib && \
 ng build --configuration="development" serendipity-party-lib && \
 ng build --configuration="development" serendipity-workflow-lib && \
 ng build --configuration="development" serendipity-pwa && \
@@ -127,7 +127,7 @@ npm run watch-lib:serendipity-auth-lib
 npm run watch-lib:serendipity-utils-lib
 npm run watch-lib:serendipity-components-lib
 npm run watch-lib:serendipity-dynamic-forms-lib
-npm run watch-lib:serendipity-flowable-lib
+npm run watch-lib:serendipity-camunda-lib
 npm run watch-lib:serendipity-party-lib
 npm run watch-lib:serendipity-workflow-lib
 ```
