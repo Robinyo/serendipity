@@ -18,12 +18,12 @@ export class ActivitiesAdapter implements Adapter<ActivityModel> {
 
     this.logger.info('item: ' + JSON.stringify(item, null, 2));
 
-    // A value between 0 and 100
-    const priority = 'Normal';
+    const type = 'Task';
+    const priority = 'Medium';  // A value between 0 and 100
 
     const activity = new ActivityModel(
       item.userTaskKey,
-      'Task',
+      type,
       item.name,
       item.description,
       priority,

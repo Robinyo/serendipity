@@ -1,0 +1,15 @@
+// @use './variables';
+
+.task-list-container {
+  border: 1px solid lightgray;
+  height: calc(100vh - 200px);
+}
+
+.task-container {
+  border: 1px solid lightgray;
+  height: calc(100vh - 200px);
+}
+
+.task-list {
+  padding-top: 0;
+}
