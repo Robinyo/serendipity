@@ -1,7 +1,7 @@
 import { Injectable} from '@angular/core';
-import { HttpHeaders } from '@angular/common/http';
+// import { HttpHeaders } from '@angular/common/http';
 
-import { AbstractCollectionService, HttpOptions } from 'serendipity-utils-lib';
+import { AbstractCollectionService, environment, HttpOptions } from 'serendipity-utils-lib';
 
 import { USER_TASKS } from './constants';
 

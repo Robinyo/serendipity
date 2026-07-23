@@ -109,10 +109,13 @@ services:
       dockerfile: Dockerfile
     environment:
       PARTY_SERVICE_URI: http://serendipity-party-service:8080/api/party-service
-      WORKFLOW_SERVICE_URI: http://serendipity-workflow-service:8080/api/workflow-service
+      WORKFLOW_SERVICE_URI: http://orchestration:8080/v2/user-tasks
     restart: unless-stopped
     networks:
       - serendipity
+      - camunda-platform
+      # - identity-network
+      # - web-modeler
     extra_hosts:
       - "host.docker.internal:host-gateway"
     depends_on:

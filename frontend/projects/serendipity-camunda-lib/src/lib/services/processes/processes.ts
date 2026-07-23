@@ -13,8 +13,5 @@ import { CollectionService } from '../collection/collection';
 })
 export class ProcessesService extends CollectionService {
 
-  constructor() {
-    super();
-  }
 
 }

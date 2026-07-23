@@ -11,7 +11,7 @@ import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 
 import { Subscription } from 'rxjs';
 
-import { FilterRepresentationModel, StartProcessDialog } from 'serendipity-flowable-lib';
+// import { FilterRepresentationModel, StartProcessDialog } from 'serendipity-flowable-lib';
 import { ActivityBar, CommandBar, Collection, CollectionFooter, SnackBar } from 'serendipity-components-lib';
 
 import { ActivitiesAdapter } from '../../adapters/activities';
@@ -20,6 +20,189 @@ import { ActivitiesService } from '../../services/activities/activities';
 import { ActivityModel } from '../../models/activity';
 
 import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs';
+
+@Component({
+  selector: 'activities',
+  imports: [
+    ActivityBar,
+    CommandBar,
+    MatButtonModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    CollectionFooter,
+    RouterLink
+  ],
+  templateUrl: './activities.html',
+  standalone: true,
+  styleUrl: './activities.scss'
+})
+export class Activities extends Collection<ActivityModel> {
+
+  public currentUser: any;
+
+  private entityAdapter: ActivitiesAdapter = inject(ActivitiesAdapter);
+  private entityService: ActivitiesService = inject(ActivitiesService);
+  private route: ActivatedRoute = inject(ActivatedRoute);
+
+  constructor() {
+
+    super({
+      // columnDefsFilename: COLUMN_DEFS,
+      columnDefsFilename: "",
+      desktopDeviceColumns: COLUMNS_DESKTOP,
+      mobileDeviceColumns: COLUMNS_MOBILE,
+      limit: 10
+    });
+
+    this.logger.info('Activities Component: constructor()');
+
+    this.columnDefs = this.route.snapshot.data['columnDefs'];
+
+    // this.logger.info('columnDefs: ' + JSON.stringify(this.columnDefs, null, 2));
+
+  }
+
+  protected subscribe() {
+
+    this.logger.info('Activities Component: subscribe()');
+
+    this.isLoading = true;
+
+    let subscription: Subscription = new Subscription();
+    this.subscriptions.push(subscription);
+
+    subscription = this.entityService.find(this.getParams()).subscribe(
+
+      (response: any) => {
+
+        this.logger.info('Activities Component: subscribe() success handler');
+
+        if (response.data && response.data.length) {
+          this.count = response.data.length;
+        }
+
+        this.logger.info('count: ' + this.count + ' Activities');
+
+        if (this.count > 0) {
+
+          this.items = response.data.map(
+            ((item: any) => this.entityAdapter.adapt(item)));
+
+        } else {
+
+          this.items = [];
+          this.items.push(new ActivityModel());
+
+        }
+
+        this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
+
+        this.dataSource = new MatTableDataSource(this.items);
+        this.dataSource.data = this.items;
+        this.dataSource.sortingDataAccessor = pathDataAccessor;
+        this.dataSource.sort = this.sort;
+
+        this.isLoading = false;
+
+        this.detectChanges();
+
+      });
+
+  }
+
+  private getParams() {
+
+    this.logger.info('Activities Component: getParams()');
+
+    const params = new HttpParams();
+
+    this.logger.info('params: ' +  JSON.stringify(params, null, 2));
+
+    return params;
+
+  }
+
+  //
+  // Command Bar events
+  //
+
+  public onAppointment() {
+
+    this.logger.info('Activities Component: onAppointment()');
+
+    // this.startSimpleTask('Appointment');
+  }
+
+  public onEmail() {
+
+    this.logger.info('Activities Component: onEmail()');
+
+    // this.startSimpleTask('Email');
+
+    // this.router.navigate(['work/email']);
+  }
+
+  public onPhone() {
+
+    this.logger.info('Activities Component: onPhone()');
+
+    // this.startSimpleTask('Phone Call');
+  }
+
+  public onRefresh() {
+
+    // this.logger.info('Activities Component: onRefresh()');
+
+    super.refresh();
+
+    this.openSnackBar('Refresh...');
+
+  }
+
+  public onTask() {
+
+    this.logger.info('Activities Component: onTask()');
+
+  }
+
+  //
+  // Misc
+  //
+
+  private openSnackBar(message: string) {
+
+    this.snackBar.openFromComponent(SnackBar, {
+      data: {
+        message: message
+      },
+      duration: 500,
+      panelClass: 'md-snack-bar'
+    });
+
+  }
+
+}
+
+function addDays(date: Date, days: number) {
+  const copy = new Date(Number(date));
+  copy.setDate(date.getDate() + days);
+  return copy;
+}
+
+// https://stackoverflow.com/questions/48891174/angular-material-2-datatable-sorting-with-nested-objects
+
+function pathDataAccessor(item: any, path: string): any {
+  return path.split('.')
+    .reduce((accumulator: any, key: string) => {
+      return accumulator ? accumulator[key] : undefined;
+    }, item);
+}
+
+/*
+
 
 @Component({
   selector: 'activities',
@@ -293,3 +476,5 @@ function pathDataAccessor(item: any, path: string): any {
       return accumulator ? accumulator[key] : undefined;
     }, item);
 }
+
+*/
