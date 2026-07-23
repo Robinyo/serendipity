@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 
+import { Subscription } from 'rxjs';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 
@@ -11,7 +13,6 @@ import { Task } from '../task/task';
 import { TasksService } from '../../services/tasks/tasks';
 import { TaskListFilter } from '../task-list-filter/task-list-filter';
 import { TaskCompleteEvent, TaskListModel, TaskModel } from '../../models/task-list';
-import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'workflow-task-list',
