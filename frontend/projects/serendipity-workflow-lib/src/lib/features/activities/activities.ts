@@ -80,15 +80,17 @@ export class Activities extends Collection<ActivityModel> {
 
         this.logger.info('Activities Component: subscribe() success handler');
 
-        if (response.data && response.data.length) {
-          this.count = response.data.length;
+        this.logger.info('response: ' + JSON.stringify(response, null, 2));
+
+        if (response.page && response.page.totalItems) {
+          this.count = response.page.totalItems;
         }
 
         this.logger.info('count: ' + this.count + ' Activities');
 
         if (this.count > 0) {
 
-          this.items = response.data.map(
+          this.items = response.items.map(
             ((item: any) => this.entityAdapter.adapt(item)));
 
         } else {

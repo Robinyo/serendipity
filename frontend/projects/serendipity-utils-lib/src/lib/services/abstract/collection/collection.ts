@@ -88,6 +88,7 @@ export abstract class AbstractCollectionService {
 
     return this.httpOptions;
   }
+
 }
 
 // https://angular.dev/guide/http/making-requests
