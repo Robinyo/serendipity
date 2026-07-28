@@ -45,6 +45,26 @@ html, body {
 
 /* You can add global styles to this file, and also import other style files. */
 
+// Form JS
+
+.cds--grid {
+  padding-inline: 0!important;
+}
+@media (min-width: 42rem) {
+  .cds--grid {
+    padding-inline: 0!important;
+  }
+}
+@media (min-width: 99rem) {
+  .cds--grid {
+    padding-inline: 0!important;
+  }
+}
+
+.fjs-container .fjs-powered-by {
+  display: none!important;
+}
+
 // Rules for working with Material Icons.
 
 // Rules for sizing the icon.

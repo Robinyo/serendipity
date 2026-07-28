@@ -1,15 +1,44 @@
 // @use './variables';
 
-.task-list-container {
-  border: 1px solid lightgray;
-  height: calc(100vh - 200px);
+/*
+
+See: styles.scss in serendipity-components-lib
+
+.md-tasks-container {
+  column-gap: variables.$column-gap-desktop;
+  display: grid;
+  grid-template-columns: variables.$task-list-width-desktop auto;
+
+  margin-top: 0;
+  margin-right: variables.$margin-desktop;
+  margin-bottom: variables.$margin-desktop;
+  margin-left: variables.$margin-desktop;
 }
 
-.task-container {
+*/
+
+.task-list-container {
   border: 1px solid lightgray;
   height: calc(100vh - 200px);
 }
 
 .task-list {
   padding-top: 0;
+}
+
+.form-container {
+  // padding-top: var(--cds-spacing-05);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  // gap: var(--cds-spacing-03);
+  overflow-y: auto;
+  padding: 0 4px;
+}
+
+.embedded-form {
+  border: 1px solid lightgray;
+  height: calc(100vh - 200px);
+  width: 100%
 }

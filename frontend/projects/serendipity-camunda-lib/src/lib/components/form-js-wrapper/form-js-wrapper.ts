@@ -12,12 +12,12 @@ import {Subscription} from 'rxjs';
 @Component({
   selector: 'form-js-wrapper',
   standalone: true,
-  template: `<div #formContainer class="form-container"></div>`,
+  template: `<div #formWrapper class="form-wrapper"></div>`,
   styleUrl: './form-js-wrapper.scss'
 })
 export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit, OnChanges, OnDestroy {
 
-  @ViewChild('formContainer', { static: true }) formContainer!: ElementRef;
+  @ViewChild('formWrapper', { static: true }) formWrapper!: ElementRef;
 
   @Input() task!: any;
 
@@ -40,7 +40,7 @@ export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit, OnChange
 
     // Initialize the vanilla form-js instance
     this.formInstance = new Form({
-      container: this.formContainer.nativeElement
+      container: this.formWrapper.nativeElement
     });
 
     // Listen for form submissions and emit up to parent component

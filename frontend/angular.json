@@ -49,6 +49,7 @@
               "projects/serendipity-pwa/src/theme.scss",
               "projects/serendipity-components-lib/src/styles.scss",
               "projects/serendipity-flowable-lib/src/styles.scss",
+              "./node_modules/@bpmn-io/form-js-viewer/dist/assets/form-js.css",
               "./node_modules/leaflet/dist/leaflet.css"
             ]
           },

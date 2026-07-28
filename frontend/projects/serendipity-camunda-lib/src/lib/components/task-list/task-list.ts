@@ -53,9 +53,11 @@ import { TasksService } from '../../services/tasks/tasks';
 
       </div>
 
-      <div class="task-container">
+      <div class="form-container">
 
-        <form-js-wrapper [task]="selectedItem" (completeEvent)="onCompleteEvent($event)"></form-js-wrapper>
+        <div class="embedded-form">
+          <form-js-wrapper [task]="selectedItem" (completeEvent)="onCompleteEvent($event)"></form-js-wrapper>
+        </div>
 
       </div>
 
