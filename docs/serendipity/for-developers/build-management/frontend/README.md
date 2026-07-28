@@ -184,8 +184,35 @@ your project:
   "styles": [
     "projects/serendipity-pwa/src/styles.scss",
     "projects/serendipity-pwa/src/theme.scss",
-    "projects/serendipity-components-lib/src/styles.scss"
+    "projects/serendipity-components-lib/src/styles.scss",
+    "projects/serendipity-flowable-lib/src/styles.scss",
+    "./node_modules/@bpmn-io/form-js-viewer/dist/assets/form-js.css",
+    "./node_modules/leaflet/dist/leaflet.css"
   ]
+```
+
+You can override global styles in the Serendipity PWA's `styles.css`, for example:
+
+```
+// form-js
+
+.cds--grid {
+  padding-inline: 0!important;
+}
+@media (min-width: 42rem) {
+  .cds--grid {
+    padding-inline: 0!important;
+  }
+}
+@media (min-width: 99rem) {
+  .cds--grid {
+    padding-inline: 0!important;
+  }
+}
+
+.fjs-container .fjs-powered-by {
+  display: none!important;
+}
 ```
 
 ### Angular Schematics

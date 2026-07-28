@@ -5,7 +5,7 @@
 * [Frontend Build Management](../build-management/frontend/README.md)
 * [Backend Build Management](../build-management/backend/README.md)
 
-## ❯ Clone the project
+## Clone the project
 
 Change the current working directory to the location where you want the cloned project to be:
 
@@ -19,7 +19,7 @@ Clone the project by running the following command:
 git clone git@github.com:Robinyo/serendipity.git
 ``` 
 
-## ❯ Enable TLS
+## Enable TLS
 
 ### Local Development
 
@@ -110,7 +110,7 @@ Username: demo
 Password: demo
 ```
 
-#### Orchestration Cluster
+#### Orchestration cluster
 
 The Orchestration Cluster is the core of Camunda 8 and provides process automation capabilities.
 
@@ -122,7 +122,7 @@ The Orchestration Cluster is the core of Camunda 8 and provides process automati
 | Orchestration Cluster REST API | http://localhost:8080/v2       | REST API for process automation.                               |
 | Swagger UI                     | http://localhost:8080/swagger  | Swagger UI.                                                    |
 
-#### Management and modeling components
+#### Management and modelling components
 
 The following components are available in the full configuration only:
 
