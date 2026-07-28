@@ -90,7 +90,7 @@ export class Task extends Form implements OnChanges {
 
   }
 
-  override subscribe(): void {
+  protected subscribe(): void {
 
     this.logger.info('Task Component: subscribe()');
 
@@ -188,7 +188,6 @@ export class Task extends Form implements OnChanges {
     }
 
   }
-
 
   public onComplete() {
 

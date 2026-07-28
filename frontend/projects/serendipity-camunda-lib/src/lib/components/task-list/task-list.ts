@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { HttpParams } from '@angular/common/http';
 
 import { Subscription } from 'rxjs';
 
@@ -8,20 +7,17 @@ import { MatListModule } from '@angular/material/list';
 
 import { ActivityBar, List } from 'serendipity-components-lib';
 
-// import { FilterRepresentationModel } from '../../models/filter';
-// import { Task } from '../task/task';
+import { FormJsWrapper } from '../form-js-wrapper/form-js-wrapper';
+
 import { TasksService } from '../../services/tasks/tasks';
-// import { TaskListFilter } from '../task-list-filter/task-list-filter';
-// import { TaskCompleteEvent, TaskListModel, TaskModel } from '../../models/task-list';
 
 @Component({
-  selector: 'workflow-task-list',
+  selector: 'task-list',
   imports: [
     ActivityBar,
     MatIconModule,
-    MatListModule
-    // Task,
-    // TaskListFilter
+    MatListModule,
+    FormJsWrapper
   ],
   template: `
     <activity-bar>
@@ -36,7 +32,7 @@ import { TasksService } from '../../services/tasks/tasks';
 
         <mat-nav-list class="task-list">
 
-          @for (item of items; track item.id) {
+          @for (item of items; track item.userTaskKey) {
 
             <a mat-list-item
                class="md-nav-list-item"
@@ -59,7 +55,7 @@ import { TasksService } from '../../services/tasks/tasks';
 
       <div class="task-container">
 
-        <!-- <workflow-task (completeEvent)="onCompleteEvent($event)" [task]="selectedItem"></workflow-task> -->
+        <form-js-wrapper [task]="selectedItem" (completeEvent)="onCompleteEvent($event)"></form-js-wrapper>
 
       </div>
 
@@ -70,9 +66,8 @@ import { TasksService } from '../../services/tasks/tasks';
 })
 export class TaskList extends List<any> {
 
-  // private currentUser;
-
   private count = 0;
+
   private tasksService: TasksService = inject(TasksService);
 
   constructor() {
@@ -80,8 +75,6 @@ export class TaskList extends List<any> {
     super();
 
     this.logger.info('Task List Component: constructor()');
-
-    // this.currentUser = this.authService.getCurrentUser();
 
   }
 
@@ -94,7 +87,7 @@ export class TaskList extends List<any> {
     let subscription: Subscription = new Subscription();
     this.subscriptions.push(subscription);
 
-    subscription = this.tasksService.search(this.getParams()).subscribe(
+    subscription = this.tasksService.search(this.getBody()).subscribe(
 
       (response: any) => {
 
@@ -115,7 +108,6 @@ export class TaskList extends List<any> {
         } else {
 
           this.items = [];
-          // this.items.push(new TaskModel());
 
         }
 
@@ -129,15 +121,19 @@ export class TaskList extends List<any> {
 
   }
 
-  private getParams(): HttpParams {
+  private getBody(): any {
 
-    this.logger.info('Task List Component: getParams()');
+    this.logger.info('Task List Component: getBody()');
 
-    const params = new HttpParams();
+    const queryObject = {
+      filter: {
+        state: { $eq: "CREATED" }
+      }
+    };
 
-    this.logger.info('params: ' +  JSON.stringify(params, null, 2));
+    // this.logger.info('params: ' +  JSON.stringify(queryObject, null, 2));
 
-    return params;
+    return queryObject;
   }
 
   //

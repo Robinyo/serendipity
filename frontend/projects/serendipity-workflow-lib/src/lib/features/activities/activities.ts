@@ -1,5 +1,4 @@
 import { inject, Component } from '@angular/core';
-import { HttpParams } from '@angular/common/http';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -74,7 +73,7 @@ export class Activities extends Collection<ActivityModel> {
     let subscription: Subscription = new Subscription();
     this.subscriptions.push(subscription);
 
-    subscription = this.entityService.find(this.getParams()).subscribe(
+    subscription = this.entityService.find(this.getBody()).subscribe(
 
       (response: any) => {
 
@@ -115,16 +114,19 @@ export class Activities extends Collection<ActivityModel> {
 
   }
 
-  private getParams() {
+  private getBody(): any {
 
-    this.logger.info('Activities Component: getParams()');
+    this.logger.info('Task List Component: getBody()');
 
-    const params = new HttpParams();
+    const queryObject = {
+      filter: {
+        state: { $eq: "CREATED" }
+      }
+    };
 
-    this.logger.info('params: ' +  JSON.stringify(params, null, 2));
+    // this.logger.info('params: ' +  JSON.stringify(queryObject, null, 2));
 
-    return params;
-
+    return queryObject;
   }
 
   //

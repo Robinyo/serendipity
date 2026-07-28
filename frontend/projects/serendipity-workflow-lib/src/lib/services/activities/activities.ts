@@ -36,11 +36,11 @@ export class ActivitiesService {
     this.logger.info('Activities Service: constructor()');
   }
 
-  public find(params: HttpParams): Observable<any> {
+  public find(body: any): Observable<any> {
 
     this.logger.info('Activities Service: find(params: HttpParams)');
 
-    return this.tasksService.search(params);
+    return this.tasksService.search(body);
   }
 
 }
