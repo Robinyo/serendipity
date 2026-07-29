@@ -1,0 +1,149 @@
+<!-- Task Header -->
+
+@if (task) {
+
+  <span class="md-font-headline-sm task-name" aria-label="Task Name">
+    {{ task.name }} <br>
+  </span>
+
+  <span class="md-font-body-lg md-font-regular-weight process-name" aria-label="Process Name">
+    {{ task.processName }}
+  </span>
+
+}
+
+<!-- Action Bar -->
+
+<action-bar>
+
+  <span class="md-bar-spacer"></span>
+
+  <button matButton="filled"
+          aria-label="Claim button"
+          class="md-action-bar-button"
+          (click)="onClaim()">
+    CLAIM
+  </button>
+
+  <button matButton="filled"
+          aria-label="Complete button"
+          class="md-action-bar-button"
+          (click)="onComplete()"
+          [disabled]="canClaim() || !isValid()">
+    COMPLETE
+  </button>
+
+</action-bar>
+
+<!-- Task Content -->
+
+<div>
+
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start"
+                 [(selectedIndex)]="selectedTabIndex"
+                 (selectedTabChange)="onTabChanged($event)">
+
+    <mat-tab>
+
+      <ng-template mat-tab-label>
+        <mat-icon class="material-symbols-outlined md-tab-icon"> assignment_ind </mat-icon>
+        <span>
+          Task
+        </span>
+      </ng-template>
+
+      `<div #formWrapper class="form-wrapper"></div>
+
+    </mat-tab>
+
+    <mat-tab>
+
+      <ng-template mat-tab-label>
+        <mat-icon class="material-symbols-outlined md-tab-icon"> people_outline </mat-icon>
+        <span>
+          People
+        </span>
+      </ng-template>
+
+      <ng-container>
+      </ng-container>
+
+    </mat-tab>
+
+    <mat-tab>
+
+      <ng-template mat-tab-label>
+        <mat-icon class="material-symbols-outlined md-tab-icon"> list </mat-icon>
+        <span>
+          Subtasks
+        </span>
+      </ng-template>
+
+      <ng-container>
+        <div>
+
+          <mat-list class="list">
+
+            <mat-list-item>
+
+              <p>
+                No subtasks found
+              </p>
+
+            </mat-list-item>
+
+          </mat-list>
+
+        </div>
+      </ng-container>
+
+    </mat-tab>
+
+    <mat-tab>
+
+      <ng-template mat-tab-label>
+        <mat-icon class="material-symbols-outlined md-tab-icon"> attachment </mat-icon>
+        <span>
+          Documents
+        </span>
+      </ng-template>
+
+      <ng-container>
+        <div>
+
+          <mat-list class="list">
+
+            <mat-list-item>
+
+              <p>
+                No attachments found
+              </p>
+
+            </mat-list-item>
+
+          </mat-list>
+
+        </div>
+      </ng-container>
+
+    </mat-tab>
+
+    <mat-tab>
+
+      <ng-template mat-tab-label>
+        <mat-icon class="material-symbols-outlined md-tab-icon"> history </mat-icon>
+        <span>
+          History
+        </span>
+      </ng-template>
+
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>
+
+
+
+
+

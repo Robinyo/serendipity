@@ -7,7 +7,7 @@ import { MatListModule } from '@angular/material/list';
 
 import { ActivityBar, List } from 'serendipity-components-lib';
 
-import { FormJsWrapper } from '../form-js-wrapper/form-js-wrapper';
+import { Task } from '../task/task';
 
 import { TasksService } from '../../services/tasks/tasks';
 
@@ -17,7 +17,7 @@ import { TasksService } from '../../services/tasks/tasks';
     ActivityBar,
     MatIconModule,
     MatListModule,
-    FormJsWrapper
+    Task
   ],
   template: `
     <activity-bar>
@@ -56,7 +56,7 @@ import { TasksService } from '../../services/tasks/tasks';
       <div class="form-container">
 
         <div class="embedded-form">
-          <form-js-wrapper [task]="selectedItem" (completeEvent)="onCompleteEvent($event)"></form-js-wrapper>
+          <task [task]="selectedItem" (completeEvent)="onCompleteEvent($event)"></task>
         </div>
 
       </div>

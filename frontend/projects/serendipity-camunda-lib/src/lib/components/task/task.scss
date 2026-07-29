@@ -1,0 +1,30 @@
+@use './variables';
+
+.task-name {
+  padding-left: variables.$padding-desktop;
+}
+
+.process-name {
+  padding-left: variables.$padding-desktop;
+}
+
+.form-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.diagram-container {
+  // display: grid;
+  // justify-items: left;
+  height: calc(100vh - 350px);
+}
+
+.diagram {
+  // place-self: center;
+  // height: 50%;
+  // width: 50%;
+}
+
+.list {
+  padding-top: 0;
+}
