@@ -147,7 +147,7 @@ The following components are available in the full configuration only:
 - APIs: Authentication for the Orchestration Cluster REST API has been disabled (i.e., set to 'unprotected API mode' in 
   the Orchestration cluster's `application.yaml`).
 
-#### Importing a ZIP File into Web Modeler
+#### Importing a ZIP File into the Web Modeler
 
 There are two ways to load a packaged process application (`.zip` file) into the Web Modeler:
 
@@ -169,7 +169,7 @@ http://localhost:8070/import/resources?source=https://github.com/Robinyo/serendi
 ```
 
 Open that URL in your browser — Web Modeler will present the resources for import.
-If the .zip contains at least one BPMN file, Web Modeler will automatically treat the contents as a **process application** 
+If the `.zip` contains at least one BPMN file, Web Modeler will automatically treat the contents as a **process application** 
 and group them accordingly.
 
 Limits to keep in mind:
@@ -181,9 +181,9 @@ Option 2: Upload Files Manually
 
 If you already have the .zip downloaded and extracted locally:
 
-Create a new **Process Application** in Web Modeler.
-Inside the process application, click **Create new > Upload files**.
-Select the extracted files from your computer and click **Upload**.
-Delete the auto-generated empty BPMN diagram if it's not needed.
+Create a new **Process Application** in Web Modeler. </br>
+Inside the process application, click **Create new > Upload files**. </br>
+Select the extracted files from your computer and click **Upload**. </br>
+Delete the auto-generated empty BPMN diagram if it's not needed. </br>
 
 **Note**: The "Upload files" method does not accept .zip files directly — you need to extract the contents first and upload the individual files.
