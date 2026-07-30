@@ -31,7 +31,7 @@ Follow the steps in the [Quick Start Guide](./docs/serendipity/for-developers/qu
 
 ## ❯ Tutorials
 
-- Learn about Case Management in the [Case Management Guide](./docs/serendipity/tutorials/case-management/README.md).
+- Learn about business processes in the [Case Management Guide](./docs/serendipity/tutorials/case-management/README.md).
 - Learn how to [Orchestrate Human Tasks](./docs/camunda/guides/orchestrate-human-tasks/README.md).
 
 ## ❯ Documentation
