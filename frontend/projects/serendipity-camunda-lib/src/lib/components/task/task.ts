@@ -149,7 +149,13 @@ export class Task implements AfterViewInit, OnDestroy, OnInit, OnChanges, OnDest
     if (this.schema) {
 
       try {
+
         await this.formInstance.importSchema(this.schema, this.data);
+
+        if (this.task && this.task.assignee === null) {
+          this.formInstance.setProperty('readOnly', true);
+        }
+
       } catch (err) {
         this.logger.error(err);
       }
@@ -244,6 +250,8 @@ export class Task implements AfterViewInit, OnDestroy, OnInit, OnChanges, OnDest
           // this.logger.info('response: ' + JSON.stringify(response, null, 2))
 
           this.task.assignee = taskAction.assignee;
+
+          this.formInstance.setProperty('readOnly', false);
 
         });
 
