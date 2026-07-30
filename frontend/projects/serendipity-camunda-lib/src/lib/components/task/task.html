@@ -21,7 +21,8 @@
   <button matButton="filled"
           aria-label="Claim button"
           class="md-action-bar-button"
-          (click)="onClaim()">
+          (click)="onClaim()"
+          [disabled]="!canClaim()">
     CLAIM
   </button>
 

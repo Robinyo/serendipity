@@ -13,6 +13,7 @@ import { Observable, Subscription } from 'rxjs';
 
 import { Form } from '@bpmn-io/form-js-viewer';
 
+import { AuthService } from 'serendipity-auth-lib';
 import { ActionBar } from 'serendipity-components-lib';
 import { LoggerService } from 'serendipity-utils-lib';
 
@@ -46,17 +47,23 @@ export class Task implements AfterViewInit, OnDestroy, OnInit, OnChanges, OnDest
 
   public selectedTabIndex = 0;
 
+  protected authService: AuthService = inject(AuthService);
   protected logger = inject(LoggerService);
-  protected subscriptions: Subscription[] = [];
+  protected tasksService: TasksService = inject(TasksService);
 
-  private tasksService: TasksService = inject(TasksService);
+  protected subscriptions: Subscription[] = [];
 
   private formInstance!: Form;
   private schema: any;
   private data: any = {};
 
+  private currentUser: any;
+
   constructor() {
+
     this.logger.info('Task Component: constructor()');
+
+    this.currentUser = this.authService.getCurrentUser();
   }
 
   ngOnInit(): void {
@@ -87,7 +94,7 @@ export class Task implements AfterViewInit, OnDestroy, OnInit, OnChanges, OnDest
     this.logger.info('Task Component: ngOnChanges()');
 
     // If the task changes then select the first (Tasks) tab
-    // this.selectedTabIndex = 0;
+    this.selectedTabIndex = 0;
 
     this.unsubscribe();
     this.subscribe();
@@ -140,11 +147,13 @@ export class Task implements AfterViewInit, OnDestroy, OnInit, OnChanges, OnDest
     this.logger.info('Task Component: loadForm()');
 
     if (this.schema) {
+
       try {
         await this.formInstance.importSchema(this.schema, this.data);
       } catch (err) {
         this.logger.error(err);
       }
+
     }
 
   }
@@ -191,7 +200,16 @@ export class Task implements AfterViewInit, OnDestroy, OnInit, OnChanges, OnDest
 
   public isValid() {
 
+    this.logger.info('Task Component: isValid()');
+
     let valid = true;
+
+    const errors = this.formInstance.validate();
+
+    if (Object.keys(errors).length) {
+      valid = false;
+      this.logger.error(errors);
+    }
 
     return valid;
 
@@ -205,6 +223,31 @@ export class Task implements AfterViewInit, OnDestroy, OnInit, OnChanges, OnDest
   public onClaim() {
 
     this.logger.info('Task Component: onClaim()');
+
+    const taskAction = {
+      assignee: this.currentUser.username,
+      allowOverride: true,
+      action: 'assign'
+    };
+
+    this.logger.info('taskAction: ' + JSON.stringify(taskAction, null, 2));
+
+    if (this.task) {
+
+      let subscription: Subscription = new Subscription();
+      this.subscriptions.push(subscription);
+
+      subscription = this.tasksService.assignment(this.task.userTaskKey, taskAction).subscribe(
+
+        (response: any) => {
+
+          // this.logger.info('response: ' + JSON.stringify(response, null, 2))
+
+          this.task.assignee = taskAction.assignee;
+
+        });
+
+    }
 
   }
 

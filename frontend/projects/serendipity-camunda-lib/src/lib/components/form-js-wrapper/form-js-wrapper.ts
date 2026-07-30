@@ -88,7 +88,7 @@ export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit, OnChange
 
           this.schema = JSON.parse(response.schema);
 
-          this.logger.info('schema: ' + JSON.stringify(this.schema, null, 2))
+          // this.logger.info('schema: ' + JSON.stringify(this.schema, null, 2))
 
           this.loadForm();
 

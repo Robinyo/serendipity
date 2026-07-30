@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpParams } from '@angular/common/http';
+// import { HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import {map, tap} from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { CollectionService } from '../collection/collection';
 
-import { FORM, SEARCH } from './constants';
+import { ASSIGNMENT, FORM, SEARCH } from './constants';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class TasksService extends CollectionService {
 
     this.logger.info('Tasks Service: search()');
 
-    const url = this.getUrlPrefix() + SEARCH;
+    const url = this.getUrlPrefix() + '/' + SEARCH;
 
     this.logger.info('url: ' + url);
     this.logger.info('body: ' + body);
@@ -34,12 +34,11 @@ export class TasksService extends CollectionService {
 
     this.logger.info('Tasks Service: form()');
 
-    const url = this.getUrlPrefix() + '/' +  userTaskKey + FORM;
+    const url = this.getUrlPrefix() + '/' +  userTaskKey + '/' + FORM;
 
     this.logger.info('url: ' + url);
 
     return this.httpClient.get(url, this.getDefaultHttpGetOptions()).pipe(
-
       tap(() => {
         this.logger.info('Tasks Service: form() completed');
       })
@@ -47,8 +46,29 @@ export class TasksService extends CollectionService {
 
   }
 
+  public assignment(userTaskKey: string, body: any): Observable<any> {
+
+    this.logger.info('Tasks Service: assignment()');
+
+    const url = this.getUrlPrefix() + '/' +  userTaskKey + '/' + ASSIGNMENT;
+
+    this.logger.info('url: ' + url);
+    this.logger.info('body: ' + body);
+
+    return this.httpClient.post(url, body, this.getDefaultHttpPostOptions()).pipe(
+      tap(() => {
+        this.logger.info('Tasks Service: assignment() completed');
+      })
+    );
+
+  }
+
+
+
+
 }
 
+// https://docs.camunda.io/docs/apis-tools/frontend-development/task-applications/user-task-lifecycle/
 
 
 

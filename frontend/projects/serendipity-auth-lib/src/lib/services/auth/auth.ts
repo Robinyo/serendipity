@@ -34,8 +34,8 @@ export class AuthService extends Auth {
     return {
       id: '',
       sub: '',
-      username: 'flowable',
-      name: 'Flowable',
+      username: 'demo',
+      name: 'Demo',
       givenName: '',
       middleName: '',
       familyName: '',

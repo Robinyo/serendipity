@@ -1,2 +1,3 @@
-export const FORM = '/form';
-export const SEARCH = '/search';
+export const ASSIGNMENT = 'assignment';
+export const FORM = 'form';
+export const SEARCH = 'search';
