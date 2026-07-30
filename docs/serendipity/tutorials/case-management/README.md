@@ -14,8 +14,8 @@ within their broader social context.
 
 Case management typically include six core elements:
 - Client identification and eligibility determination
-- Assessment
-- Care planning along with goal setting
+- Client Assessment
+- Care planning and goal setting
 - Plan implementation
 - Plan monitoring
 - Transition and discharge
@@ -29,7 +29,7 @@ case manager and the patient/client.
 Assessment refers to construct a detailed, comprehensive understanding of the patient/client which includes, their 
 healthcare and social needs, their capabilities, and the resources they have access to in their family and community.
 
-### Care Planning along with Goal Setting
+### Care Planning and Goal Setting
 Planning encompasses the steps necessary to build a care plan that defines treatment goals, tasks and actions needed to 
 move towards those goals, access to specific services and supports required to achieve the stated goals and final the 
 identification of targeted outcomes that are specific to that the patient/client. 
@@ -92,7 +92,7 @@ indicators, and verifying statutory or program thresholds while ensuring informe
 - Immediate Safety / Red Flags: Initial safety status indicators (e.g., active domestic violence threat, self-harm 
   indicators, urgent medical requirements).
 
-### Assessment
+### Client Assessment
 This phase forms the baseline clinical or psychosocial record. In Australia, this increasingly relies on holistic, 
 multi-agency risk models (such as the MARAM framework) that assess the individual within their complete social ecosystem.
 - Holistic Biopsychosocial Data: Documentation covering physical and mental health status, housing stability, financial 
@@ -106,7 +106,7 @@ multi-agency risk models (such as the MARAM framework) that assess the individua
 - Multi-Agency Consultation Notes: Secondary consultations with cultural advisors, medical specialists, or 
   multidisciplinary panels.
 
-### Care Planning along with Goal Setting
+### Care Planning and Goal Setting
 This phase translates the assessment into an actionable, transparent roadmap. Under Australian client-centred 
 guidelines, this must be co-designed with the client and clearly track legal/budgetary guardrails.
 - Co-Designed Goals: Specific, Measurable, Achievable, Relevant, and Time-bound (SMART) recovery or support goals 
@@ -143,7 +143,7 @@ or unexpected crises.
 - Client & Carer Feedback: Qualitative feedback capturing the client’s and their support network's satisfaction with 
   current service delivery and their perceived sense of safety and wellbeing.
 
-### Transition & Discharge
+### Transition and Discharge
 The final phase manages the safe exit of the client from the program, ensuring continuity of care and long-term stability.
 - Discharge Reason: Explicit categorization of the closure (e.g., Goals Achieved, Program Expiry, Relocation Out of 
   Area, or Transition to a Higher/Lower Intensity Service Framework).
