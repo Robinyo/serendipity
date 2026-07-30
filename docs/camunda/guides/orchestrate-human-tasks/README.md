@@ -1,4 +1,4 @@
-<h1 align="center">Orchestrate human tasks</h1>
+<h1 align="center">Orchestrate Human Tasks</h1>
 
 There is a well known joke about the two most difficult problems in computer science, it goes something like this:
 

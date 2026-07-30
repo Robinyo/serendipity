@@ -112,7 +112,7 @@ Password: demo
 
 #### Orchestration cluster
 
-The Orchestration Cluster is the core of Camunda 8 and provides process automation capabilities.
+The Orchestration cluster is the core of Camunda 8 and provides process automation capabilities.
 
 | Component                      | URL                            | Description                                                    |
 |:-------------------------------|:-------------------------------|:---------------------------------------------------------------|
@@ -125,7 +125,6 @@ The Orchestration Cluster is the core of Camunda 8 and provides process automati
 #### Management and modelling components
 
 The following components are available in the full configuration only:
-
 
 | Component           | URL                   | Description                                          |
 |:--------------------|:----------------------|:-----------------------------------------------------|
@@ -147,3 +146,44 @@ The following components are available in the full configuration only:
 - Web UI: Log in to Operate, Tasklist, Console, Optimize, and Web Modeler with `demo / demo`.
 - APIs: Authentication for the Orchestration Cluster REST API has been disabled (i.e., set to 'unprotected API mode' in 
   the Orchestration cluster's `application.yaml`).
+
+#### Importing a ZIP File into Web Modeler
+
+There are two ways to load a packaged process application (`.zip` file) into the Web Modeler:
+
+Option 1: Import via URL
+
+This method lets you import directly from a publicly hosted `.zip` file.
+
+Host your .zip file at a **publicly accessible URL** (e.g., on GitHub).
+Form the import URL like this:
+
+```
+<Web Modeler host>/import/resources?source=<raw zip file URL>
+```
+
+For example:
+
+```
+http://localhost:8070/import/resources?source=https://github.com/Robinyo/serendipity/blob/serendipity-4.0/backend/services/camunda/case-management/case-management.zip
+```
+
+Open that URL in your browser — Web Modeler will present the resources for import.
+If the .zip contains at least one BPMN file, Web Modeler will automatically treat the contents as a **process application** 
+and group them accordingly.
+
+Limits to keep in mind:
+- Max .zip size: **10 MB**
+- Max files in the archive: **100**
+- Max size per individual file: **3 MB**
+
+Option 2: Upload Files Manually
+
+If you already have the .zip downloaded and extracted locally:
+
+Create a new **Process Application** in Web Modeler.
+Inside the process application, click **Create new > Upload files**.
+Select the extracted files from your computer and click **Upload**.
+Delete the auto-generated empty BPMN diagram if it's not needed.
+
+**Note**: The "Upload files" method does not accept .zip files directly — you need to extract the contents first and upload the individual files.
