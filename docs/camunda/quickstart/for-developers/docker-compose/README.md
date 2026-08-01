@@ -81,19 +81,23 @@ curl -s GET 'http://localhost:8080/v2/topology' \
 
 ## ❯ form-js
 
-### Styles
+### Include the Library
+
+```
+npm install @bpmn-io/form-js-viewer
+```
+
+### Add Stylesheets
 
 You use the `styles` array inside the build target in `angular.json` to list files you want to include when building
 your project:
 
 ```
   "styles": [
-    "projects/serendipity-pwa/src/styles.scss",
-    "projects/serendipity-pwa/src/theme.scss",
-    "projects/serendipity-components-lib/src/styles.scss",
-    "projects/serendipity-flowable-lib/src/styles.scss",
-    "./node_modules/@bpmn-io/form-js-viewer/dist/assets/form-js.css",
-    "./node_modules/leaflet/dist/leaflet.css"
+  
+    ...
+    
+    "./node_modules/@bpmn-io/form-js-viewer/dist/assets/form-js.css"
   ]
 ```
 
@@ -119,6 +123,14 @@ You can override global styles in the Serendipity PWA's `styles.css`, for exampl
 .fjs-container .fjs-powered-by {
   display: none!important;
 }
+```
+
+## ❯ bpmn-js
+
+### Include the Library
+
+```
+npm install bpmn-js
 ```
 
 ## ❯ References

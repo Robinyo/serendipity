@@ -1,6 +1,5 @@
 import {
-  AfterViewInit,
-  Component, ElementRef, EventEmitter, inject, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild
+  Component, ElementRef, EventEmitter, inject, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild
 } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -13,9 +12,9 @@ import { Observable, Subscription } from 'rxjs';
 
 import { Form } from '@bpmn-io/form-js-viewer';
 
-import { AuthService } from 'serendipity-auth-lib';
-import { ActionBar } from 'serendipity-components-lib';
-import { LoggerService } from 'serendipity-utils-lib';
+import { ActionBar, Composite } from 'serendipity-components-lib';
+
+import { BpmnJsWrapper } from '../bpmn-js-wrapper/bpmn-js-wrapper';
 
 import { TasksService } from '../../services/tasks/tasks';
 
@@ -25,6 +24,7 @@ import { Tab } from './constants';
   selector: 'task',
   imports: [
     ActionBar,
+    BpmnJsWrapper,
     MatButtonModule,
     MatCardModule,
     MatIconModule,
@@ -35,23 +35,17 @@ import { Tab } from './constants';
   templateUrl: './task.html',
   styleUrl: './task.scss'
 })
-export class Task implements AfterViewInit, OnDestroy, OnInit, OnChanges, OnDestroy {
+export class Task extends Composite implements OnInit, OnChanges {
 
   @Input() task!: any;
 
   @Output() completeEvent: EventEmitter<any> = new EventEmitter<any>();
 
   @ViewChild('formWrapper', { static: true }) formWrapper!: ElementRef;
-  // @ViewChild('processDiagram', {static: false})
-  // image!: ElementRef;
 
   public selectedTabIndex = 0;
 
-  protected authService: AuthService = inject(AuthService);
-  protected logger = inject(LoggerService);
   protected tasksService: TasksService = inject(TasksService);
-
-  protected subscriptions: Subscription[] = [];
 
   private formInstance!: Form;
   private schema: any;
@@ -60,6 +54,8 @@ export class Task implements AfterViewInit, OnDestroy, OnInit, OnChanges, OnDest
   private currentUser: any;
 
   constructor() {
+
+    super();
 
     this.logger.info('Task Component: constructor()');
 
@@ -78,15 +74,6 @@ export class Task implements AfterViewInit, OnDestroy, OnInit, OnChanges, OnDest
       this.completeEvent.emit(event);
     });
 
-    // this.loadForm();
-  }
-
-  public ngAfterViewInit() {
-
-    this.logger.info('Task Component: ngAfterViewInit()');
-
-    this.subscribe();
-
   }
 
   public ngOnChanges(changes: SimpleChanges)  {
@@ -97,15 +84,22 @@ export class Task implements AfterViewInit, OnDestroy, OnInit, OnChanges, OnDest
     this.selectedTabIndex = 0;
 
     this.unsubscribe();
+
+    // this.formInstance = null;
+    this.schema = null;
+    this.data = {};
+
     this.subscribe();
 
   }
 
-  protected subscribe(): void {
+  protected override subscribe(): void {
 
     this.logger.info('Task Component: subscribe()');
 
     if (this.task) {
+
+      this.isLoading = true;
 
       let subscription: Subscription = new Subscription();
       this.subscriptions.push(subscription);
@@ -122,23 +116,25 @@ export class Task implements AfterViewInit, OnDestroy, OnInit, OnChanges, OnDest
 
           this.loadForm();
 
+          this.isLoading = false;
+
+          this.detectChanges();
+
         });
 
     }
 
   }
 
-  protected unsubscribe(): void {
+  public override ngOnDestroy() {
 
-    this.logger.info('Task Component: unsubscribe()');
+    this.logger.info('Task Component: ngOnDestroy()');
 
-    // this.formInstance = null;
-    this.schema = null;
-    this.data = {};
+    super.ngOnDestroy();
 
-    this.subscriptions.forEach(subscription => {
-      subscription.unsubscribe();
-    });
+    if (this.formInstance) {
+      this.formInstance.destroy();
+    }
 
   }
 
@@ -160,18 +156,6 @@ export class Task implements AfterViewInit, OnDestroy, OnInit, OnChanges, OnDest
         this.logger.error(err);
       }
 
-    }
-
-  }
-
-  public ngOnDestroy() {
-
-    this.logger.info('Task Component: ngOnDestroy()');
-
-    this.unsubscribe();
-
-    if (this.formInstance) {
-      this.formInstance.destroy();
     }
 
   }
@@ -208,19 +192,29 @@ export class Task implements AfterViewInit, OnDestroy, OnInit, OnChanges, OnDest
 
     this.logger.info('Task Component: isValid()');
 
-    let valid = true;
+    let valid = false;
 
-    const errors = this.formInstance.validate();
+    if (this.schema) {
 
-    if (Object.keys(errors).length) {
-      valid = false;
-      this.logger.error(errors);
+      const errors = this.formInstance.validate();
+
+      if (Object.keys(errors).length === 0) {
+
+        valid = true;
+
+        this.logger.info('Task Component: isValid() === true');
+
+        this.detectChanges();
+
+      } // else {
+        //   this.logger.error(errors);
+        // }
+
     }
 
     return valid;
 
   }
-
 
   //
   // Command events
@@ -253,6 +247,8 @@ export class Task implements AfterViewInit, OnDestroy, OnInit, OnChanges, OnDest
 
           this.formInstance.setProperty('readOnly', false);
 
+          this.detectChanges();
+
         });
 
     }
@@ -275,10 +271,7 @@ export class Task implements AfterViewInit, OnDestroy, OnInit, OnChanges, OnDest
 
     switch (this.selectedTabIndex) {
 
-      case Tab.PEOPLE:
-        break;
-
-      case Tab.HISTORY:
+      case Tab.PROCESS:
         break;
 
       default:

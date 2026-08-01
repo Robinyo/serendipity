@@ -26,6 +26,45 @@ export abstract class AbstractComponent implements AfterViewInit, OnDestroy {
   // protected snackBar: MatSnackBar = inject(MatSnackBar);
   protected subscriptions: Subscription[] = [];
 
+  public ngAfterViewInit() {
+
+    this.logger.info('Abstract Component: ngAfterViewInit()');
+
+    this.subscribe();
+
+    // A layout breakpoint is viewport size threshold at which a layout shift can occur.
+    // The viewport size ranges between breakpoints correspond to different standard screen sizes.
+    // See: https://material.angular.dev/cdk/layout/overview
+
+    this.breakpointObserver.observe([ Breakpoints.HandsetPortrait ])
+      .pipe(takeUntil(this.destroyed))
+      .subscribe(result => {
+
+        this.handsetPortrait = result.matches;
+        this.detectChanges();
+
+      });
+
+  }
+
+  public refresh(): void {
+
+    this.logger.info('Abstract Component: refresh()');
+
+    this.unsubscribe();
+    this.subscribe();
+  }
+
+  public ngOnDestroy() {
+
+    this.logger.info('Abstract Component: ngOnDestroy()');
+
+    this.unsubscribe();
+
+    this.destroyed.next();
+    this.destroyed.complete();
+  }
+
   protected constructor() {}
 
   protected abstract subscribe(): void;
@@ -47,51 +86,12 @@ export abstract class AbstractComponent implements AfterViewInit, OnDestroy {
 
   protected unsubscribe(): void {
 
-    this.logger.info('Item Component: unsubscribe()');
+    this.logger.info('Abstract Component: unsubscribe()');
 
     this.subscriptions.forEach(subscription => {
       subscription.unsubscribe();
     });
 
-  }
-
-  public ngAfterViewInit() {
-
-    this.logger.info('Item Component: ngAfterViewInit()');
-
-    this.subscribe();
-
-    // A layout breakpoint is viewport size threshold at which a layout shift can occur.
-    // The viewport size ranges between breakpoints correspond to different standard screen sizes.
-    // See: https://material.angular.dev/cdk/layout/overview
-
-    this.breakpointObserver.observe([ Breakpoints.HandsetPortrait ])
-      .pipe(takeUntil(this.destroyed))
-      .subscribe(result => {
-
-        this.handsetPortrait = result.matches;
-        this.detectChanges();
-
-      });
-
-  }
-
-  public refresh(): void {
-
-    this.logger.info('ItemComponent: refresh()');
-
-    this.unsubscribe();
-    this.subscribe();
-  }
-
-  public ngOnDestroy() {
-
-    this.logger.info('Item Component: ngOnDestroy()');
-
-    this.unsubscribe();
-
-    this.destroyed.next();
-    this.destroyed.complete();
   }
 
   //

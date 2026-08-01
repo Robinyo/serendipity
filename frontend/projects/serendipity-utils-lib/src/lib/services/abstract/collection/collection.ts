@@ -29,8 +29,6 @@ export abstract class AbstractCollectionService {
 
       this.logger.info('Abstract Collection Service: getDefaultHttpGetOptions()');
 
-      // https://www.flowable.com/open-source/docs/bpmn/ch14-REST#usage-in-tomcat
-
       const baseHeaders = new HttpHeaders().set('Accept', 'application/json');
 
       // this.logger.info('baseHeaders: ' + JSON.stringify(baseHeaders, null, 2));
@@ -61,8 +59,6 @@ export abstract class AbstractCollectionService {
     if (!this.httpOptions) {
 
       this.logger.info('Abstract Collection Service: getDefaultHttpPostOptions()');
-
-      // https://www.flowable.com/open-source/docs/bpmn/ch14-REST#usage-in-tomcat
 
       const baseHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 

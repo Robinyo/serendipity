@@ -7,7 +7,7 @@ import { Form } from '@bpmn-io/form-js-viewer';
 import { LoggerService } from 'serendipity-utils-lib';
 
 import { TasksService } from '../../services/tasks/tasks';
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'form-js-wrapper',
@@ -15,7 +15,7 @@ import {Subscription} from 'rxjs';
   template: `<div #formWrapper class="form-wrapper"></div>`,
   styleUrl: './form-js-wrapper.scss'
 })
-export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit, OnChanges, OnDestroy {
+export class FormJsWrapper implements AfterViewInit, OnChanges, OnDestroy, OnInit {
 
   @ViewChild('formWrapper', { static: true }) formWrapper!: ElementRef;
 
@@ -24,6 +24,7 @@ export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit, OnChange
   @Output() completeEvent: EventEmitter<any> = new EventEmitter<any>();
 
   protected logger = inject(LoggerService);
+
   protected subscriptions: Subscription[] = [];
 
   private tasksService: TasksService = inject(TasksService);
@@ -38,17 +39,14 @@ export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit, OnChange
 
   ngOnInit(): void {
 
-    // Initialize the vanilla form-js instance
     this.formInstance = new Form({
       container: this.formWrapper.nativeElement
     });
 
-    // Listen for form submissions and emit up to parent component
     this.formInstance.on('submit', (event: any) => {
       this.completeEvent.emit(event);
     });
 
-    // this.loadForm();
   }
 
   public ngAfterViewInit() {
@@ -62,9 +60,6 @@ export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit, OnChange
   public ngOnChanges(changes: SimpleChanges)  {
 
     this.logger.info('FormJsWrapper Component: ngOnChanges()');
-
-    // If the task changes then select the first (Tasks) tab
-    // this.selectedTabIndex = 0;
 
     this.unsubscribe();
     this.subscribe();

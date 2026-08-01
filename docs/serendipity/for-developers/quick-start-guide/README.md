@@ -165,7 +165,7 @@ Form the import URL like this:
 For example:
 
 ```
-http://localhost:8070/import/resources?source=https://github.com/Robinyo/serendipity/blob/serendipity-4.0/backend/services/camunda/case-management/case-management.zip
+http://localhost:8070/import/resources?source=https://raw.githubusercontent.com/Robinyo/serendipity/refs/heads/serendipity-4.0/backend/services/camunda/case-management/case-management.zip
 ```
 
 Open that URL in your browser — Web Modeler will present the resources for import.
@@ -187,3 +187,9 @@ Select the extracted files from your computer and click **Upload**. </br>
 Delete the auto-generated empty BPMN diagram if it's not needed. </br>
 
 **Note**: The "Upload files" method does not accept .zip files directly — you need to extract the contents first and upload the individual files.
+
+## ❯ References
+
+### Camunda
+
+* Camunda docs: [Modeler - Prepare Resources](https://docs.camunda.io/docs/next/components/hub/workspace/modeler/modeling/prepare-resources/)

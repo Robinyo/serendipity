@@ -30,7 +30,7 @@
           aria-label="Complete button"
           class="md-action-bar-button"
           (click)="onComplete()"
-          [disabled]="canClaim() || !isValid()">
+          [disabled]="canClaim()">
     COMPLETE
   </button>
 
@@ -53,50 +53,20 @@
         </span>
       </ng-template>
 
-      `<div #formWrapper class="form-wrapper"></div>
+      <div #formWrapper class="form-wrapper"></div>
 
     </mat-tab>
 
     <mat-tab>
 
       <ng-template mat-tab-label>
-        <mat-icon class="material-symbols-outlined md-tab-icon"> people_outline </mat-icon>
+        <mat-icon class="material-symbols-outlined md-tab-icon"> history </mat-icon>
         <span>
-          People
+          Process
         </span>
       </ng-template>
 
-      <ng-container>
-      </ng-container>
-
-    </mat-tab>
-
-    <mat-tab>
-
-      <ng-template mat-tab-label>
-        <mat-icon class="material-symbols-outlined md-tab-icon"> list </mat-icon>
-        <span>
-          Subtasks
-        </span>
-      </ng-template>
-
-      <ng-container>
-        <div>
-
-          <mat-list class="list">
-
-            <mat-list-item>
-
-              <p>
-                No subtasks found
-              </p>
-
-            </mat-list-item>
-
-          </mat-list>
-
-        </div>
-      </ng-container>
+      <bpmn-js-wrapper [task]="task"></bpmn-js-wrapper>
 
     </mat-tab>
 
@@ -126,17 +96,6 @@
 
         </div>
       </ng-container>
-
-    </mat-tab>
-
-    <mat-tab>
-
-      <ng-template mat-tab-label>
-        <mat-icon class="material-symbols-outlined md-tab-icon"> history </mat-icon>
-        <span>
-          History
-        </span>
-      </ng-template>
 
     </mat-tab>
 
