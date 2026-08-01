@@ -24,7 +24,7 @@ Serendipity is composed of the following components:
   - [Human Tasks Service](./docs/camunda/guides/orchestrate-human-tasks/README.md)
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/context-diagram.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/context-diagram.png">
 </p>
 
 ## ❯ Getting Started
