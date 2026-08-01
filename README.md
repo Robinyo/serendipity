@@ -68,7 +68,7 @@ Follow the steps in the [Quick Start Guide](./docs/serendipity/for-developers/qu
 Home (Welcome) Page
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/home.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/home.png">
 </p>
 
 ### Navigation
