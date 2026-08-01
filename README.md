@@ -13,6 +13,10 @@
 
 ## ❯ Architecture
 
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/context-diagram.png">
+</p>
+
 Serendipity is composed of the following components:
 
 - [Progressive Web App](./docs/serendipity/architecture/pwa/README.md)
@@ -23,9 +27,6 @@ Serendipity is composed of the following components:
 - Orchestration Services
   - [Human Tasks Service](./docs/camunda/guides/orchestrate-human-tasks/README.md)
 
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/context-diagram.png">
-</p>
 
 ## ❯ Getting Started
 
