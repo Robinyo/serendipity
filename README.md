@@ -139,13 +139,13 @@ New Work Item
 Tasks - Task Tab
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/tasks-tab.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/tasks-task-tab.png">
 </p>
 
-Tasks - History Tab
+Tasks - Process Tab
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/tasks-history-tab.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/tasks-process-tab.png">
 </p>
 
 ### Interactive Maps
