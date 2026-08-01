@@ -27,7 +27,6 @@ Serendipity is composed of the following components:
 - Orchestration Services
   - [Human Tasks Service](./docs/camunda/guides/orchestrate-human-tasks/README.md)
 
-
 ## ❯ Getting Started
 
 Follow the steps in the [Quick Start Guide](./docs/serendipity/for-developers/quick-start-guide/README.md).
