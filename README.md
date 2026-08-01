@@ -17,9 +17,10 @@ Serendipity is composed of the following components:
 
 - [Progressive Web App](./docs/serendipity/architecture/pwa/README.md)
 - [Backend for Frontend](./docs/serendipity/architecture/bff/README.md)
-- [Process Orchestration](./docs/camunda/guides/orchestrate-human-tasks/README.md)
-- [Identity Service](./docs/serendipity/for-administrators/keycloak/README.md)
-- Microservices
+- Services
+  - [Identity Service](./docs/serendipity/for-administrators/keycloak/README.md)
+  - [Party Service](./docs/serendipity/architecture/spring-data/README.md)
+  - [Human Tasks Service](./docs/camunda/guides/orchestrate-human-tasks/README.md)
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/screen-shots/context-diagram.png">
