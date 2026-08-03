@@ -22,7 +22,7 @@ brew upgrade
 brew install git
 ```
 
-TO configure git so that it uses `nano`, run:
+To configure git so that it uses `nano`, run:
 
 ```
 git config --global core.editor "nano"
@@ -176,7 +176,7 @@ To remove the services and the associated data, run:
 docker compose down -v
 ```
 
-Note: The `-v` flag deletes all volumes, including process data, users, and other persisted state. Omit `-v` if you want to keep your data.
+**Note:** The `-v` flag deletes all volumes, including process data, users, and other persisted state. Omit `-v` if you want to keep your data.
 
 To check the environment variables inside your container:
 
