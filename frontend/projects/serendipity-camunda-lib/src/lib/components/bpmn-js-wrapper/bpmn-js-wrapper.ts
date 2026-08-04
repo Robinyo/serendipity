@@ -78,7 +78,7 @@ export class BpmnJsWrapper implements AfterViewInit, OnChanges, OnDestroy, OnIni
 
         (response: any) => {
 
-          this.logger.info('response: ' + JSON.stringify(response, null, 2))
+          // this.logger.info('response: ' + JSON.stringify(response, null, 2))
 
           this.xml = response;
 
@@ -117,7 +117,8 @@ export class BpmnJsWrapper implements AfterViewInit, OnChanges, OnDestroy, OnIni
         canvas.zoom('fit-viewport');
 
       } catch (err) {
-        this.logger.error(err);
+        //  Failed to execute 'scale' on 'SVGMatrix': The provided float value is non-finite.
+        // this.logger.error(err);
       }
 
     }

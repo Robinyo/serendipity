@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
 
 import { CollectionService } from '../collection/collection';
 
-import { ASSIGNMENT, FORM, SEARCH, USER_TASKS } from './constants';
+import {ASSIGNMENT, COMPLETION, FORM, SEARCH, USER_TASKS} from './constants';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,7 @@ export class TasksService extends CollectionService {
     const url = this.getUrlPrefix() + '/' + SEARCH;
 
     this.logger.info('url: ' + url);
-    this.logger.info('body: ' + body);
+    this.logger.info('body: ' + JSON.stringify(body, null, 2));
 
     return this.httpClient.post(url, body, this.getDefaultHttpPostOptions()).pipe(
       tap(() => {
@@ -62,6 +62,23 @@ export class TasksService extends CollectionService {
     return this.httpClient.post(url, body, this.getDefaultHttpPostOptions()).pipe(
       tap(() => {
         this.logger.info('Tasks Service: assignment() completed');
+      })
+    );
+
+  }
+
+  public completion(userTaskKey: string, variables: any): Observable<any> {
+
+    this.logger.info('Tasks Service: assignment()');
+
+    const url = this.getUrlPrefix() + '/' +  userTaskKey + '/' + COMPLETION;
+
+    this.logger.info('url: ' + url);
+    this.logger.info('variables: ' + JSON.stringify(variables, null, 2));
+
+    return this.httpClient.post(url, { variables: variables }, this.getDefaultHttpPostOptions()).pipe(
+      tap(() => {
+        this.logger.info('Tasks Service: completion() completed');
       })
     );
 

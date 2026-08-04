@@ -69,11 +69,6 @@ export class Task extends Composite implements OnInit, OnChanges {
       container: this.formWrapper.nativeElement
     });
 
-    // Listen for form submissions and emit up to parent component
-    this.formInstance.on('submit', (event: any) => {
-      this.completeEvent.emit(event);
-    });
-
   }
 
   public ngOnChanges(changes: SimpleChanges)  {
@@ -112,7 +107,7 @@ export class Task extends Composite implements OnInit, OnChanges {
 
           this.schema = JSON.parse(response.schema);
 
-          this.logger.info('schema: ' + JSON.stringify(this.schema, null, 2))
+          // this.logger.info('schema: ' + JSON.stringify(this.schema, null, 2))
 
           this.loadForm();
 
@@ -152,8 +147,8 @@ export class Task extends Composite implements OnInit, OnChanges {
           this.formInstance.setProperty('readOnly', true);
         }
 
-      } catch (err) {
-        this.logger.error(err);
+      } catch (error) {
+        this.logger.error(error);
       }
 
     }
@@ -185,34 +180,6 @@ export class Task extends Composite implements OnInit, OnChanges {
     }
 
     return claim;
-
-  }
-
-  public isValid() {
-
-    this.logger.info('Task Component: isValid()');
-
-    let valid = false;
-
-    if (this.schema) {
-
-      const errors = this.formInstance.validate();
-
-      if (Object.keys(errors).length === 0) {
-
-        valid = true;
-
-        this.logger.info('Task Component: isValid() === true');
-
-        this.detectChanges();
-
-      } // else {
-        //   this.logger.error(errors);
-        // }
-
-    }
-
-    return valid;
 
   }
 
@@ -255,9 +222,35 @@ export class Task extends Composite implements OnInit, OnChanges {
 
   }
 
+  // If you are handling the submit action programmatically, form.submit() automatically runs validation and returns
+  // both the form data and the errors object.
+
   public onComplete() {
 
     this.logger.info('Task Component: onComplete()');
+
+    const { data, errors } = this.formInstance.submit();
+
+    if (Object.keys(errors).length === 0) {
+
+      this.logger.info('Task Component: All required fields are complete');
+
+      // this.logger.info('data: ' + JSON.stringify(data, null, 2))
+
+      let subscription: Subscription = new Subscription();
+      this.subscriptions.push(subscription);
+
+      subscription = this.tasksService.completion(this.task.userTaskKey, data).subscribe(
+
+        (response: any) => {
+          this.completeEvent.emit({ userTaskKey: this.task.userTaskKey });
+        });
+
+    } else {
+
+      this.logger.error(errors);
+
+    }
 
   }
 
@@ -269,16 +262,38 @@ export class Task extends Composite implements OnInit, OnChanges {
 
     this.logger.info('selectedTabIndex: ' + this.selectedTabIndex);
 
-    switch (this.selectedTabIndex) {
-
-      case Tab.PROCESS:
-        break;
-
-      default:
-        break;
-
-    }
-
   }
 
 }
+
+/*
+
+  public isValid() {
+
+    this.logger.info('Task Component: isValid()');
+
+    let valid = false;
+
+    if (this.schema) {
+
+      const errors = this.formInstance.validate();
+
+      if (Object.keys(errors).length === 0) {
+
+        valid = true;
+
+        this.logger.info('Task Component: isValid() === true');
+
+        this.detectChanges();
+
+      } else {
+          this.logger.error(errors);
+        }
+
+    }
+
+    return valid;
+
+  }
+
+*/

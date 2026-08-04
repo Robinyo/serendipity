@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 
-import { Subscription } from 'rxjs';
+import { Subscription, timer } from 'rxjs';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -36,7 +36,7 @@ import { TasksService } from '../../services/tasks/tasks';
 
             <a mat-list-item
                class="md-nav-list-item"
-               [activated]="item.id === selectedItem.id"
+               [activated]="item.userTaskKey === selectedItem.userTaskKey"
                (click)="onSelect(item)">
 
               <mat-icon matListItemIcon class="material-symbols-outlined"> assignment_ind </mat-icon>
@@ -113,7 +113,8 @@ export class TaskList extends List<any> {
 
         }
 
-        // this.logger.info('items: ' + JSON.stringify(this.items, null, 2))
+        this.logger.info('items: ' + JSON.stringify(this.items, null, 2))
+        // this.logger.info('selectedItem: ' + JSON.stringify(this.selectedItem, null, 2))
 
         this.isLoading = false;
 
@@ -142,19 +143,28 @@ export class TaskList extends List<any> {
   // Command events
   //
 
+  // The POST /v2/user-tasks/:userTaskKey/completion endpoint is strongly consistent, meaning it reflects the real-time
+  // state of the system immediately. However, POST /v2/user-tasks/search is eventually consistent — it returns data
+  // exported by the Camunda Exporter, which may lag behind the real-time state.
+
   public onCompleteEvent(event: any) {
 
-    this.logger.info('TaskListComponent: onCompleteEvent()');
+    this.logger.info('Task List Component: onCompleteEvent()');
 
-    this.logger.info('taskId: ' +  event.id);
+    this.logger.info('userTaskKey: ' +  event.userTaskKey);
+
+    timer(10000).subscribe(() => {
+      this.logger.info('Executed after 10 seconds');
+      this.refresh();
+    });
 
     // this.selectedItem = null;
-    this.refresh();
+    // this.refresh();
   }
 
   public onFilterClickEvent(event: any) {
 
-    this.logger.info('TaskListComponent: onFilterClickEvent()');
+    this.logger.info('Task List Component: onFilterClickEvent()');
 
     this.logger.info('filter: ' +  JSON.stringify(event, null, 2));
 

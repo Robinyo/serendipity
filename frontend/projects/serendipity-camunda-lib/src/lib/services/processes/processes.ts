@@ -37,7 +37,7 @@ export class ProcessesService extends CollectionService {
     };
 
     this.logger.info('url: ' + url);
-    this.logger.info('httpOptions: ' + JSON.stringify(httpOptions, null, 2));
+    // this.logger.info('httpOptions: ' + JSON.stringify(httpOptions, null, 2));
 
     return this.httpClient.get(url, httpOptions).pipe(
       tap(() => {
