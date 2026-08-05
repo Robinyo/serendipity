@@ -70,10 +70,7 @@ export class Activities extends Collection<ActivityModel> {
 
     this.isLoading = true;
 
-    let subscription: Subscription = new Subscription();
-    this.subscriptions.push(subscription);
-
-    subscription = this.entityService.find(this.getBody()).subscribe(
+    const subscription: Subscription =  this.entityService.find(this.getBody()).subscribe(
 
       (response: any) => {
 
@@ -111,6 +108,8 @@ export class Activities extends Collection<ActivityModel> {
         this.detectChanges();
 
       });
+
+    this.subscriptions.push(subscription);
 
   }
 

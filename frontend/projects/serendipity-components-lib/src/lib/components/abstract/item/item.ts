@@ -26,10 +26,7 @@ export abstract class Item<T> extends AbstractComponent {
 
     this.logger.info('Item Component: ngOnInit()');
 
-    let paramSubscription: Subscription = new Subscription();
-    this.subscriptions.push(paramSubscription);
-
-    paramSubscription = this.route.paramMap.subscribe(params =>  {
+    const subscription: Subscription = this.route.paramMap.subscribe(params =>  {
 
       const identity = params.get('id');
 
@@ -40,6 +37,8 @@ export abstract class Item<T> extends AbstractComponent {
       this.logger.info('id: ' + this.id);
 
     });
+
+    this.subscriptions.push(subscription);
 
   }
 

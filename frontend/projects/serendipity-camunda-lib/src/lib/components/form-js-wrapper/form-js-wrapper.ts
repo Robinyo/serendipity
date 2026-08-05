@@ -72,10 +72,7 @@ export class FormJsWrapper implements AfterViewInit, OnChanges, OnDestroy, OnIni
 
     if (this.task) {
 
-      let subscription: Subscription = new Subscription();
-      this.subscriptions.push(subscription);
-
-      subscription = this.tasksService.form(this.task.userTaskKey).subscribe(
+      const subscription: Subscription = this.tasksService.form(this.task.userTaskKey).subscribe(
 
         (response: any) => {
 
@@ -89,7 +86,10 @@ export class FormJsWrapper implements AfterViewInit, OnChanges, OnDestroy, OnIni
 
         });
 
+      this.subscriptions.push(subscription);
+
     }
+
 
   }
 

@@ -67,10 +67,7 @@ export class Accounts extends Collection<AccountModel> {
 
     this.isLoading = true;
 
-    let subscription: Subscription = new Subscription();
-    this.subscriptions.push(subscription);
-
-    subscription = this.entityService.find(this.filter, this.offset, this.limit).subscribe(
+    const subscription: Subscription = this.entityService.find(this.filter, this.offset, this.limit).subscribe(
 
       (response: any) => {
 
@@ -106,6 +103,8 @@ export class Accounts extends Collection<AccountModel> {
       }
 
     );
+
+    this.subscriptions.push(subscription);
 
   }
 

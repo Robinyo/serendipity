@@ -268,7 +268,7 @@ export class Task extends Composite implements OnInit, OnChanges {
 
       // this.logger.info('data: ' + JSON.stringify(data, null, 2))
 
-      const subscription = this.tasksService.completion(this.task.userTaskKey, data).pipe(
+      const subscription: Subscription = this.tasksService.completion(this.task.userTaskKey, data).pipe(
         concatMap((response) => {
           // Option 1: Use the return value from completion if needed
           // Option 2: Run pollTask with backoff/interval logic

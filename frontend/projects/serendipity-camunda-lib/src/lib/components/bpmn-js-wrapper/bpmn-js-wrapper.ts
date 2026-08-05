@@ -71,10 +71,7 @@ export class BpmnJsWrapper implements AfterViewInit, OnChanges, OnDestroy, OnIni
 
     if (this.task) {
 
-      let subscription: Subscription = new Subscription();
-      this.subscriptions.push(subscription);
-
-      subscription = this.processesService.getProcessDiagram(this.task.processDefinitionKey).subscribe(
+      const subscription: Subscription = this.processesService.getProcessDiagram(this.task.processDefinitionKey).subscribe(
 
         (response: any) => {
 
@@ -85,6 +82,8 @@ export class BpmnJsWrapper implements AfterViewInit, OnChanges, OnDestroy, OnIni
           this.renderDiagram();
 
         });
+
+      this.subscriptions.push(subscription);
 
     }
 
