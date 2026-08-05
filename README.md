@@ -40,8 +40,6 @@ Follow the steps in the [Quick Start Guide](./docs/serendipity/for-developers/qu
 
 * Developer Documentation
   * [Build Management](./docs/serendipity/for-developers/build-management/README.md)
-  * [Build with AI](./docs/serendipity/for-developers/build-with-ai/claude-code/README.md)
-  * [mkcert](./docs/serendipity/for-developers/mkcert/README.md)
 * Administrator Documentation
   * [Working with Docker and Docker Compose](./docs/serendipity/for-administrators/docker/README.md)
   * [Working with Keycloak](./docs/serendipity/for-administrators/keycloak/README.md)
@@ -54,6 +52,10 @@ Follow the steps in the [Quick Start Guide](./docs/serendipity/for-developers/qu
   * [Progressive Web App](./docs/serendipity/architecture/pwa/README.md)
   * [Static Content](./docs/serendipity/architecture/static-content/README.md)
   * [Spring Data](./docs/serendipity/architecture/spring-data/README.md)
+* Tools
+  * [Build with AI](./docs/serendipity/for-developers/build-with-ai/claude-code/README.md)
+  * [mkcert](./docs/serendipity/for-developers/mkcert/README.md)
+  * [SchemaSpy](./docs/serendipity/for-developers/schema-spy/README.md)
 
 ## ❯ Resources
 
