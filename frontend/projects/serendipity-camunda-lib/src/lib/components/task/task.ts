@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { Observable, Subscription } from 'rxjs';
+import { concatMap, Observable, Subscription } from 'rxjs';
 
 import { Form } from '@bpmn-io/form-js-viewer';
 
@@ -225,6 +225,37 @@ export class Task extends Composite implements OnInit, OnChanges {
   // If you are handling the submit action programmatically, form.submit() automatically runs validation and returns
   // both the form data and the errors object.
 
+  public onCompleteIt() {
+
+    this.logger.info('Task Component: onComplete()');
+
+    const {data, errors} = this.formInstance.submit();
+
+    if (Object.keys(errors).length === 0) {
+
+      this.logger.info('Task Component: All required fields are complete');
+
+      // this.logger.info('data: ' + JSON.stringify(data, null, 2))
+
+      let subscription: Subscription = new Subscription();
+      this.subscriptions.push(subscription);
+
+      // The POST /v2/user-tasks/:userTaskKey/completion endpoint is strongly consistent, meaning it reflects the
+      // real-time state of the system immediately. However, POST /v2/user-tasks/search is eventually consistent — it
+      // returns data exported by the Camunda Exporter, which may lag behind the real-time state.
+
+      subscription = this.tasksService.completion(this.task.userTaskKey, data).pipe(
+        concatMap(user => {
+          return this.tasksService.pollTask(this.task.userTaskKey);
+        })
+      ).subscribe(() => {
+        this.completeEvent.emit({ userTaskKey: this.task.userTaskKey });
+      });
+
+    }
+
+  }
+
   public onComplete() {
 
     this.logger.info('Task Component: onComplete()');
@@ -237,21 +268,28 @@ export class Task extends Composite implements OnInit, OnChanges {
 
       // this.logger.info('data: ' + JSON.stringify(data, null, 2))
 
-      let subscription: Subscription = new Subscription();
-      this.subscriptions.push(subscription);
-
-      subscription = this.tasksService.completion(this.task.userTaskKey, data).subscribe(
-
-        (response: any) => {
+      const subscription = this.tasksService.completion(this.task.userTaskKey, data).pipe(
+        concatMap((response) => {
+          // Option 1: Use the return value from completion if needed
+          // Option 2: Run pollTask with backoff/interval logic
+          return this.tasksService.pollTask(this.task.userTaskKey);
+        })
+      ).subscribe({
+        next: (completedTask) => {
+          // Optional: you can inspect the final completed task object here
+          this.logger.info('Task successfully completed & confirmed via polling', JSON.stringify(completedTask, null, 2));
+        },
+        complete: () => {
+          // Triggers after both completion AND pollTask complete
           this.completeEvent.emit({ userTaskKey: this.task.userTaskKey });
-        });
+        },
+        error: (error) => {
+          this.logger.error('Error during task completion or polling', error);
+        }
+      });
 
-    } else {
-
-      this.logger.error(errors);
-
+      this.subscriptions.push(subscription);
     }
-
   }
 
   public async onTabChanged($event: any) {
@@ -267,6 +305,74 @@ export class Task extends Composite implements OnInit, OnChanges {
 }
 
 /*
+
+  public onComplete() {
+
+    this.logger.info('Task Component: onComplete()');
+
+    const {data, errors} = this.formInstance.submit();
+
+    if (Object.keys(errors).length === 0) {
+
+      this.logger.info('Task Component: All required fields are complete');
+
+      // this.logger.info('data: ' + JSON.stringify(data, null, 2))
+
+      let subscription: Subscription = new Subscription();
+      this.subscriptions.push(subscription);
+
+      // The POST /v2/user-tasks/:userTaskKey/completion endpoint is strongly consistent, meaning it reflects the
+      // real-time state of the system immediately. However, POST /v2/user-tasks/search is eventually consistent — it
+      // returns data exported by the Camunda Exporter, which may lag behind the real-time state.
+
+      subscription = this.tasksService.completion(this.task.userTaskKey, data).pipe(
+        concatMap(user => {
+          return this.tasksService.pollTask(this.task.userTaskKey);
+        })
+      ).subscribe(() => {
+        this.completeEvent.emit({ userTaskKey: this.task.userTaskKey });
+      });
+
+    }
+
+  }
+
+  public onComplete() {
+
+    this.logger.info('Task Component: onComplete()');
+
+    const { data, errors } = this.formInstance.submit();
+
+    if (Object.keys(errors).length === 0) {
+
+      this.logger.info('Task Component: All required fields are complete');
+
+      // this.logger.info('data: ' + JSON.stringify(data, null, 2))
+
+      let subscription: Subscription = new Subscription();
+      this.subscriptions.push(subscription);
+
+      // The POST /v2/user-tasks/:userTaskKey/completion endpoint is strongly consistent, meaning it reflects the
+      // real-time state of the system immediately. However, POST /v2/user-tasks/search is eventually consistent — it
+      // returns data exported by the Camunda Exporter, which may lag behind the real-time state.
+
+      subscription = this.tasksService.completion(this.task.userTaskKey, data).subscribe(
+
+        // For eventually consistent operations that might take anywhere from 2 seconds to several minutes, polling
+        // fixed every 2 seconds can place unnecessary load on your server.
+        // Exponential backoff gradually increases the delay between requests.
+
+        (response: any) => {
+          this.completeEvent.emit({ userTaskKey: this.task.userTaskKey });
+        });
+
+    } else {
+
+      this.logger.error(errors);
+
+    }
+
+  }
 
   public isValid() {
 

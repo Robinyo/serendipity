@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 
-import { Subscription, timer } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -143,23 +143,14 @@ export class TaskList extends List<any> {
   // Command events
   //
 
-  // The POST /v2/user-tasks/:userTaskKey/completion endpoint is strongly consistent, meaning it reflects the real-time
-  // state of the system immediately. However, POST /v2/user-tasks/search is eventually consistent — it returns data
-  // exported by the Camunda Exporter, which may lag behind the real-time state.
-
   public onCompleteEvent(event: any) {
 
     this.logger.info('Task List Component: onCompleteEvent()');
 
     this.logger.info('userTaskKey: ' +  event.userTaskKey);
 
-    timer(10000).subscribe(() => {
-      this.logger.info('Executed after 10 seconds');
-      this.refresh();
-    });
-
     // this.selectedItem = null;
-    // this.refresh();
+    this.refresh();
   }
 
   public onFilterClickEvent(event: any) {
