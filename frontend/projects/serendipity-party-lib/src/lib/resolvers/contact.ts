@@ -46,5 +46,4 @@ export class ContactResolver implements Resolve<any> {
       })
     );
 
-
 */

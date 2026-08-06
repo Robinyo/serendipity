@@ -1,13 +1,12 @@
 import {
   AfterViewInit,
-  Component, ElementRef, EventEmitter, inject, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild
+  Component, ElementRef, inject, Input, OnChanges, OnDestroy, OnInit, ViewChild
 } from '@angular/core';
 import { Form } from '@bpmn-io/form-js-viewer';
 
-import { LoggerService } from 'serendipity-utils-lib';
-
-import { TasksService } from '../../services/tasks/tasks';
 import { Subscription } from 'rxjs';
+
+import { LoggerService } from 'serendipity-utils-lib';
 
 @Component({
   selector: 'form-js-wrapper',
@@ -15,25 +14,17 @@ import { Subscription } from 'rxjs';
   template: `<div #formWrapper class="form-wrapper"></div>`,
   styleUrl: './form-js-wrapper.scss'
 })
-export class FormJsWrapper implements AfterViewInit, OnChanges, OnDestroy, OnInit {
+export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit {
 
   @ViewChild('formWrapper', { static: true }) formWrapper!: ElementRef;
 
-  @Input() task!: any;
+  @Input() schema!: any;
+  @Input() data!: any;
 
-  @Output() completeEvent: EventEmitter<any> = new EventEmitter<any>();
-
-  protected logger = inject(LoggerService);
-
+  protected formInstance!: Form;
   protected subscriptions: Subscription[] = [];
 
-  private tasksService: TasksService = inject(TasksService);
-
-  private formInstance!: Form;
-  private schema: any;
-  private data: any = {};
-
-  private buttonClickListener?: () => void;
+  protected logger = inject(LoggerService);
 
   constructor() {
     this.logger.info('FormJsWrapper Component: constructor()');
@@ -41,12 +32,10 @@ export class FormJsWrapper implements AfterViewInit, OnChanges, OnDestroy, OnIni
 
   ngOnInit(): void {
 
+    this.logger.info('FormJsWrapper Component: ngOnInit()');
+
     this.formInstance = new Form({
       container: this.formWrapper.nativeElement
-    });
-
-    this.formInstance.on('submit', (event: any) => {
-      this.completeEvent.emit(event);
     });
 
   }
@@ -59,12 +48,15 @@ export class FormJsWrapper implements AfterViewInit, OnChanges, OnDestroy, OnIni
 
   }
 
-  public ngOnChanges(changes: SimpleChanges)  {
+  public ngOnDestroy() {
 
-    this.logger.info('FormJsWrapper Component: ngOnChanges()');
+    this.logger.info('FormJsWrapper Component: ngOnDestroy()');
 
     this.unsubscribe();
-    this.subscribe();
+
+    if (this.formInstance) {
+      this.formInstance.destroy();
+    }
 
   }
 
@@ -72,26 +64,7 @@ export class FormJsWrapper implements AfterViewInit, OnChanges, OnDestroy, OnIni
 
     this.logger.info('FormJsWrapper Component: subscribe()');
 
-    if (this.task) {
-
-      const subscription: Subscription = this.tasksService.form(this.task.userTaskKey).subscribe(
-
-        (response: any) => {
-
-          // this.logger.info('response: ' + JSON.stringify(response, null, 2))
-
-          this.schema = JSON.parse(response.schema);
-
-          // this.logger.info('schema: ' + JSON.stringify(this.schema, null, 2))
-
-          this.loadForm();
-
-        });
-
-      this.subscriptions.push(subscription);
-
-    }
-
+    this.loadForm();
 
   }
 
@@ -123,16 +96,18 @@ export class FormJsWrapper implements AfterViewInit, OnChanges, OnDestroy, OnIni
 
   }
 
-  public ngOnDestroy() {
+}
 
-    this.logger.info('FormJsWrapper Component: ngOnDestroy()');
+/*
+
+
+  public ngOnChanges(changes: SimpleChanges)  {
+
+    this.logger.info('FormJsWrapper Component: ngOnChanges()');
 
     this.unsubscribe();
-
-    if (this.formInstance) {
-      this.formInstance.destroy();
-    }
+    this.subscribe();
 
   }
 
-}
+*/

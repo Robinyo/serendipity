@@ -26,6 +26,8 @@ Serendipity is composed of the following components:
   - [Party Service](./docs/serendipity/architecture/spring-data/README.md)
 - Orchestration Services
   - [Human Tasks Service](./docs/camunda/guides/orchestrate-human-tasks/README.md)
+- Reporting Services
+  - [Report Service](https://github.com/Robinyo/js-docker)
 
 ## ❯ Web-based tooling for BPMN, DMN and Forms
 
