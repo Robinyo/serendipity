@@ -27,6 +27,14 @@ Serendipity is composed of the following components:
 - Orchestration Services
   - [Human Tasks Service](./docs/camunda/guides/orchestrate-human-tasks/README.md)
 
+## ❯ Web-based tooling for BPMN, DMN and Forms
+
+Serendipity uses bpmn-js to display BPMN 2.0 diagrams:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/bpmn-js.gif">
+</p>
+
 ## ❯ Getting Started
 
 Follow the steps in the [Quick Start Guide](./docs/serendipity/for-developers/quick-start-guide/README.md).
