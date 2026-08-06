@@ -29,13 +29,13 @@ Serendipity is composed of the following components:
 
 ## ❯ Web-based tooling for BPMN, DMN and Forms
 
-Serendipity uses [bpmn-js](https://bpmn.io/) to display BPMN 2.0 diagrams:
+Serendipity uses [bpmn-js](https://bpmn.io/) to visually build and display BPMN 2.0 diagrams:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/bpmn-js.gif">
 </p>
 
-Serendipity uses [form-js](https://bpmn.io/) to build and display forms:
+Serendipity uses [form-js](https://bpmn.io/) to visually build and display forms:
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/form-js.gif">
