@@ -14,7 +14,7 @@ within their broader social context.
 
 Case management typically include six core elements:
 - Client identification and eligibility determination
-- Client Assessment
+- Client assessment
 - Care planning and goal setting
 - Plan implementation
 - Plan monitoring
