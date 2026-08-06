@@ -33,6 +33,8 @@ export class FormJsWrapper implements AfterViewInit, OnChanges, OnDestroy, OnIni
   private schema: any;
   private data: any = {};
 
+  private buttonClickListener?: () => void;
+
   constructor() {
     this.logger.info('FormJsWrapper Component: constructor()');
   }

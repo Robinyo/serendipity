@@ -1,5 +1,6 @@
 import {
-  Component, ElementRef, EventEmitter, inject, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild
+  AfterViewInit, Component, ElementRef, EventEmitter, inject, Input, OnChanges, OnDestroy, OnInit, Output,
+  SimpleChanges, ViewChild
 } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -18,7 +19,7 @@ import { BpmnJsWrapper } from '../bpmn-js-wrapper/bpmn-js-wrapper';
 
 import { TasksService } from '../../services/tasks/tasks';
 
-import { Tab } from './constants';
+// import { Tab } from './constants';
 
 @Component({
   selector: 'task',
@@ -35,13 +36,13 @@ import { Tab } from './constants';
   templateUrl: './task.html',
   styleUrl: './task.scss'
 })
-export class Task extends Composite implements OnInit, OnChanges {
+export class Task extends Composite implements AfterViewInit, OnInit, OnChanges, OnDestroy {
 
   @Input() task!: any;
 
   @Output() completeEvent: EventEmitter<any> = new EventEmitter<any>();
 
-  @ViewChild('formWrapper', { static: true }) formWrapper!: ElementRef;
+  @ViewChild('formWrapper', { static: true }) formWrapper!: ElementRef<HTMLDivElement>;
 
   public selectedTabIndex = 0;
 
@@ -50,6 +51,8 @@ export class Task extends Composite implements OnInit, OnChanges {
   private formInstance!: Form;
   private schema: any;
   private data: any = {};
+
+  private buttonClickListener?: (event: Event) => void;
 
   private currentUser: any;
 
@@ -68,6 +71,14 @@ export class Task extends Composite implements OnInit, OnChanges {
     this.formInstance = new Form({
       container: this.formWrapper.nativeElement
     });
+
+  }
+
+  public override ngAfterViewInit() {
+
+    this.logger.info('FormJsWrapper Component: ngAfterViewInit()');
+
+    super.ngAfterViewInit();
 
   }
 
@@ -96,10 +107,7 @@ export class Task extends Composite implements OnInit, OnChanges {
 
       this.isLoading = true;
 
-      let subscription: Subscription = new Subscription();
-      this.subscriptions.push(subscription);
-
-      subscription = this.tasksService.form(this.task.userTaskKey).subscribe(
+      const subscription: Subscription = this.tasksService.form(this.task.userTaskKey).subscribe(
 
         (response: any) => {
 
@@ -117,6 +125,8 @@ export class Task extends Composite implements OnInit, OnChanges {
 
         });
 
+      this.subscriptions.push(subscription);
+
     }
 
   }
@@ -126,6 +136,11 @@ export class Task extends Composite implements OnInit, OnChanges {
     this.logger.info('Task Component: ngOnDestroy()');
 
     super.ngOnDestroy();
+
+    if (this.formWrapper && this.formWrapper.nativeElement && this.buttonClickListener) {
+      const nativeContainer = this.formWrapper.nativeElement;
+      nativeContainer.removeEventListener('click', this.buttonClickListener);
+    }
 
     if (this.formInstance) {
       this.formInstance.destroy();
@@ -143,9 +158,70 @@ export class Task extends Composite implements OnInit, OnChanges {
 
         await this.formInstance.importSchema(this.schema, this.data);
 
+        const nativeContainer = this.formWrapper.nativeElement;
+
+        // Grab all button elements rendered inside the form container
+        const allButtons = nativeContainer.querySelectorAll('button');
+
         if (this.task && this.task.assignee === null) {
+
           this.formInstance.setProperty('readOnly', true);
+
+          // Iterate through each button and apply the disabled properties
+          allButtons.forEach((btn: HTMLButtonElement) => {
+            btn.setAttribute('disabled', 'true');    // Blocks native HTML click actions
+            btn.style.opacity = '0.5';                                  // Visual indicator (gray out)
+            btn.style.cursor = 'not-allowed';                           // Changes cursor on hover
+          });
+
+        } else {
+
+          this.formInstance.setProperty('readOnly', false);
+
+          allButtons.forEach((btn: HTMLButtonElement) => {
+            btn.removeAttribute('disabled');     // Re-enables native HTML click actions
+            btn.style.opacity = '1';                          // Restores full visibility
+            btn.style.cursor = 'pointer';                     // Restores standard pointer cursor
+          });
+
         }
+
+
+        if (this.buttonClickListener) {
+          nativeContainer.removeEventListener('click', this.buttonClickListener);
+        }
+
+        // Set up Event Delegation on the parent container
+        this.buttonClickListener = (event: Event) => {
+
+          // Cast target to HTMLElement so TypeScript understands it
+          const target = event.target as HTMLElement;
+
+          // Check if the clicked element (or its parent wrapper) matches the Lookup button
+          if (target && target.tagName === 'BUTTON' && target.textContent?.trim() === 'Lookup') {
+
+            // 1. Query form-js to see if the form is currently globally set to readOnly
+            // form-js stores its configuration state under the internal properties context
+            const isFormReadOnly = this.formInstance._getState()?.properties?.["readOnly"] === true;
+
+            if (isFormReadOnly) {
+              // Prevent both the default form reset AND the custom lookup logic
+              event.preventDefault();
+              event.stopPropagation();
+              this.logger.info("Task Component: Form is in 'readOnly' mode");
+              return;
+            }
+
+            // CRITICAL: Block form-js from running its built-in 'reset' action
+            event.preventDefault();
+            // Stop the event from hitting the parent containers multiple times
+            event.stopPropagation();
+
+            this.logger.info("Task Component: 'Lookup' button clicked");
+          }
+        };
+
+        nativeContainer.addEventListener('click', this.buttonClickListener);
 
       } catch (error) {
         this.logger.error(error);
@@ -201,12 +277,9 @@ export class Task extends Composite implements OnInit, OnChanges {
 
     if (this.task) {
 
-      let subscription: Subscription = new Subscription();
-      this.subscriptions.push(subscription);
+      const subscription: Subscription = this.tasksService.assignment(this.task.userTaskKey, taskAction).subscribe(
 
-      subscription = this.tasksService.assignment(this.task.userTaskKey, taskAction).subscribe(
-
-        (response: any) => {
+        () => {
 
           // this.logger.info('response: ' + JSON.stringify(response, null, 2))
 
@@ -214,9 +287,20 @@ export class Task extends Composite implements OnInit, OnChanges {
 
           this.formInstance.setProperty('readOnly', false);
 
+          const nativeContainer = this.formWrapper.nativeElement;
+          const allButtons = nativeContainer.querySelectorAll('button');
+
+          allButtons.forEach((btn: HTMLButtonElement) => {
+            btn.removeAttribute('disabled');     // Re-enables native HTML click actions
+            btn.style.opacity = '1';                          // Restores full visibility
+            btn.style.cursor = 'pointer';                     // Restores standard pointer cursor
+          });
+
           this.detectChanges();
 
         });
+
+      this.subscriptions.push(subscription);
 
     }
 
@@ -224,37 +308,6 @@ export class Task extends Composite implements OnInit, OnChanges {
 
   // If you are handling the submit action programmatically, form.submit() automatically runs validation and returns
   // both the form data and the errors object.
-
-  public onCompleteIt() {
-
-    this.logger.info('Task Component: onComplete()');
-
-    const {data, errors} = this.formInstance.submit();
-
-    if (Object.keys(errors).length === 0) {
-
-      this.logger.info('Task Component: All required fields are complete');
-
-      // this.logger.info('data: ' + JSON.stringify(data, null, 2))
-
-      let subscription: Subscription = new Subscription();
-      this.subscriptions.push(subscription);
-
-      // The POST /v2/user-tasks/:userTaskKey/completion endpoint is strongly consistent, meaning it reflects the
-      // real-time state of the system immediately. However, POST /v2/user-tasks/search is eventually consistent — it
-      // returns data exported by the Camunda Exporter, which may lag behind the real-time state.
-
-      subscription = this.tasksService.completion(this.task.userTaskKey, data).pipe(
-        concatMap(user => {
-          return this.tasksService.pollTask(this.task.userTaskKey);
-        })
-      ).subscribe(() => {
-        this.completeEvent.emit({ userTaskKey: this.task.userTaskKey });
-      });
-
-    }
-
-  }
 
   public onComplete() {
 
@@ -269,7 +322,7 @@ export class Task extends Composite implements OnInit, OnChanges {
       // this.logger.info('data: ' + JSON.stringify(data, null, 2))
 
       const subscription: Subscription = this.tasksService.completion(this.task.userTaskKey, data).pipe(
-        concatMap((response) => {
+        concatMap(() => {
           // Option 1: Use the return value from completion if needed
           // Option 2: Run pollTask with backoff/interval logic
           return this.tasksService.pollTask(this.task.userTaskKey);
@@ -303,3 +356,86 @@ export class Task extends Composite implements OnInit, OnChanges {
   }
 
 }
+
+/*
+
+  private async loadForm(): Promise<void> {
+
+    this.logger.info('Task Component: loadForm()');
+
+    if (this.schema) {
+
+      try {
+
+        await this.formInstance.importSchema(this.schema, this.data);
+
+        if (this.task && this.task.assignee === null) {
+          this.formInstance.setProperty('readOnly', true);
+        }
+
+        const nativeContainer = this.formWrapper.nativeElement;
+
+        // Query all elements matching the rendered button layout structure
+        const resetButtons = nativeContainer.querySelectorAll('button[data-action="reset"]');
+
+        // Find the 'Lookup' button
+        const lookupBtn = Array.from(resetButtons).find(
+          // @ts-ignore
+          (btn) => btn.textContent?.trim() === 'Lookup'
+        ) as HTMLElement | undefined;
+
+        // Bind your custom Angular logic
+        if (lookupBtn) {
+
+          this.buttonClickListener = (event: Event) => {
+
+            // CRITICAL: Prevents form-js from executing its default clear/reset pipeline
+            event.preventDefault();
+
+            this.logger.info('Task Component: Lookup button logic initiated...');
+
+          };
+
+          lookupBtn.addEventListener('click', this.buttonClickListener);
+
+        } else {
+          this.logger.info('Task Component: Could not locate a Lookup button in the DOM structure.');
+        }
+
+      } catch (error) {
+        this.logger.error(error);
+      }
+
+    }
+
+  }
+
+  public override ngOnDestroy() {
+
+    this.logger.info('Task Component: ngOnDestroy()');
+
+    super.ngOnDestroy();
+
+    const nativeContainer = this.formWrapper.nativeElement;
+
+    // Query all elements matching the rendered button layout structure
+    const resetButtons = nativeContainer.querySelectorAll('button[data-action="reset"]');
+
+    // Find the 'Lookup' button
+    const lookupBtn = Array.from(resetButtons).find(
+      // @ts-ignore
+      (btn) => btn.textContent?.trim() === 'Lookup'
+    ) as HTMLElement | undefined;
+
+    // Pass the exact same reference to remove it cleanly
+    if (lookupBtn && this.buttonClickListener) {
+      lookupBtn.removeEventListener('click', this.buttonClickListener);
+    }
+
+    if (this.formInstance) {
+      this.formInstance.destroy();
+    }
+
+  }
+
+*/
