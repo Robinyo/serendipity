@@ -139,7 +139,7 @@
       "type": "textfield",
       "layout": {
         "row": "Row_14lds1z",
-        "columns": 7
+        "columns": 6
       },
       "id": "Field_0puu0v9",
       "key": "address.line1"
@@ -149,7 +149,7 @@
       "type": "textfield",
       "layout": {
         "row": "Row_17txljs",
-        "columns": 7
+        "columns": 6
       },
       "id": "Field_0ds8hfl",
       "key": "address.line2"
@@ -159,7 +159,7 @@
       "type": "textfield",
       "layout": {
         "row": "Row_1adb5al",
-        "columns": 3
+        "columns": 6
       },
       "id": "Field_1djhnbr",
       "key": "address.city"
@@ -189,7 +189,7 @@
       "type": "textfield",
       "layout": {
         "row": "Row_08898gt",
-        "columns": 16
+        "columns": 6
       },
       "id": "Field_1wd8nrl",
       "key": "address.addressType"

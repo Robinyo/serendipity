@@ -134,9 +134,52 @@
             <span> Summary </span>
           </ng-template>
 
-          <form-js-wrapper [schema]="schema" [data]="item"></form-js-wrapper>
+          <ng-template matTabContent>
+
+            <mat-accordion multi>
+
+              <!-- Contact Information -->
+
+              <mat-expansion-panel expanded>
+
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Contact Information
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <ng-template matExpansionPanelContent>
+                  <div>
+                    <form-js-wrapper [schema]="schema" [data]="item"></form-js-wrapper>
+                  </div>
+                </ng-template>
+
+              </mat-expansion-panel>
+
+              <!-- Related -->
+
+              <mat-expansion-panel expanded>
+
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Related
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <ng-template matExpansionPanelContent>
+                  <contact-related-tab [item]="item">
+                  </contact-related-tab>
+                </ng-template>
+
+              </mat-expansion-panel>
+
+            </mat-accordion>
+
+          </ng-template>
 
         </mat-tab>
+
+        <!--
 
         <mat-tab>
 
@@ -165,15 +208,15 @@
           <ng-template matTabContent>
 
             <div class="md-tab-component-container">
-
               <contact-related-tab [item]="item">
               </contact-related-tab>
-
             </div>
 
           </ng-template>
 
         </mat-tab>
+
+        -->
 
         @if (item && item.electorate) {
 

@@ -26,6 +26,13 @@ import { ElectoralDivisionModel } from '../../models/electoral-division';
 import { RoleModel } from '../../models/role';
 
 import { CONTACT_WIZARD, CONTACTS, Tab } from './constants';
+import {ContactRelationshipList} from '../../components/contact/contact-relationship-list/contact-relationship-list';
+import {
+  MatAccordion,
+  MatExpansionPanel,
+  MatExpansionPanelActionRow,
+  MatExpansionPanelContent, MatExpansionPanelHeader, MatExpansionPanelTitle
+} from '@angular/material/expansion';
 
 class LeafletControlLayersConfig {
   baseLayers: { [name: string]: Layer } = {};
@@ -50,7 +57,14 @@ const DEFAULT_LONGITUDE = 151.753;
     MatCardModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatTabsModule
+    MatTabsModule,
+    ContactRelationshipList,
+    MatAccordion,
+    MatExpansionPanel,
+    MatExpansionPanelActionRow,
+    MatExpansionPanelContent,
+    MatExpansionPanelHeader,
+    MatExpansionPanelTitle
   ],
   templateUrl: './contact.html',
   standalone: true,
