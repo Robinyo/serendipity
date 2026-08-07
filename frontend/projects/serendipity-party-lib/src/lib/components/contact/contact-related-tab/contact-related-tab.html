@@ -1,55 +1,37 @@
-<mat-accordion multi>
+<mat-expansion-panel expanded>
 
-  <!-- Relationships -->
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Relationships
+    </mat-panel-title>
+  </mat-expansion-panel-header>
 
-  <mat-expansion-panel expanded>
+  <ng-template matExpansionPanelContent>
 
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Relationships
-      </mat-panel-title>
-    </mat-expansion-panel-header>
+    <contact-relationship-list [item]="item" (selectEvent)="onSelectEvent($event)">
+    </contact-relationship-list>
 
-    <ng-template matExpansionPanelContent>
+    <mat-action-row>
 
-      <contact-relationship-list [item]="item" (selectEvent)="onSelectEvent($event)">
-      </contact-relationship-list>
+      <button #addButton matButton="filled"
+              aria-label="Add Relationship button"
+              class="md-button"
+              [disabled]="disableAddButton"
+              (keydown.arrowright)="removeButton.focus()"
+              (click)="onAdd()">
+        {{ addButtonLabel }}
+      </button>
 
-      <mat-action-row>
+      <button #removeButton matButton="filled"
+              aria-label="Remove Relationship button"
+              class="md-button"
+              [disabled]="disableRemoveButton"
+              (click)="onRemove()">
+        {{ removeButtonLabel }}
+      </button>
 
-        <button #addButton matButton="filled"
-                aria-label="Add Relationship button"
-                class="md-button"
-                [disabled]="disableAddButton"
-                (keydown.arrowright)="removeButton.focus()"
-                (click)="onAdd()">
-          {{ addButtonLabel }}
-        </button>
+    </mat-action-row>
 
-        <button #removeButton matButton="filled"
-                aria-label="Remove Relationship button"
-                class="md-button"
-                [disabled]="disableRemoveButton"
-                (click)="onRemove()">
-          {{ removeButtonLabel }}
-        </button>
+  </ng-template>
 
-      </mat-action-row>
-
-    </ng-template>
-
-  </mat-expansion-panel>
-
-  <!-- Connections -->
-
-  <mat-expansion-panel disabled>
-
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Connections
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-
-  </mat-expansion-panel>
-
-</mat-accordion>
+</mat-expansion-panel>

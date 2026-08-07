@@ -156,22 +156,10 @@
 
               </mat-expansion-panel>
 
-              <!-- Related -->
+              <!-- Relationships -->
 
-              <mat-expansion-panel expanded>
-
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Related
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-
-                <ng-template matExpansionPanelContent>
-                  <contact-related-tab [item]="item">
-                  </contact-related-tab>
-                </ng-template>
-
-              </mat-expansion-panel>
+              <contact-related-tab [item]="item">
+              </contact-related-tab>
 
             </mat-accordion>
 
