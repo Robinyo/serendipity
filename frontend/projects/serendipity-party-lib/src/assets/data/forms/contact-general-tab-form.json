@@ -29,20 +29,11 @@
       "key": "name.title"
     },
     {
-      "height": 60,
-      "type": "spacer",
-      "layout": {
-        "row": "Row_0d4fi4g",
-        "columns": 6
-      },
-      "id": "Field_14mcwqn"
-    },
-    {
-      "content": "<div style=\"position: relative;\">\n  <img src=\"https://serendipity.localhost/assets/images/male-avatar.svg\" style=\"position: absolute; margin: 16px; height: 200px;\" alt=\"Photo\" />\n</div>",
+      "content": "<style>\n  /* 1. Force the container to stretch full width so right alignment works */\n  .avatar-container {\n    position: relative;\n    display: block;\n    width: 100%;\n  }\n\n  /* 2. Position the image to the right side */\n  .avatar {\n    position: absolute;\n    top: 0;\n    right: 16px; /* Positions it 16px away from the right edge */\n    margin-top: 16px;\n    margin-bottom: 16px;\n    width: auto;\n    \n    /* 3. Your responsive hiding formula */\n    height: 200px;\n    max-height: clamp(0px, (100vw - 1056px) * 1000, 200px);\n  }\n</style>\n\n<div class=\"avatar-container\">\n  <img src=\"/assets/images/male-avatar.svg\" class=\"avatar\" alt=\"Avatar\">\n</div>",
       "type": "html",
       "layout": {
         "row": "Row_0d4fi4g",
-        "columns": 4
+        "columns": 10
       },
       "id": "Field_0kn19b9"
     },
@@ -77,15 +68,6 @@
       "key": "name.familyName"
     },
     {
-      "height": 60,
-      "type": "spacer",
-      "layout": {
-        "row": "Row_06ewd42",
-        "columns": 4
-      },
-      "id": "Field_1e7h9h4"
-    },
-    {
       "label": "Email",
       "type": "textfield",
       "layout": {
@@ -114,15 +96,6 @@
       },
       "id": "Field_0wepvtl",
       "key": "organisation.phoneNumber"
-    },
-    {
-      "height": 60,
-      "type": "spacer",
-      "layout": {
-        "row": "Row_148faxz",
-        "columns": 4
-      },
-      "id": "Field_124htdb"
     },
     {
       "label": "Account Name",
