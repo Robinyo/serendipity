@@ -25,12 +25,12 @@ export class ContactResolver implements Resolve<any> {
     const relationshipListColumnDefs= this.configService.get(RELATIONSHIP_LIST_COLUMN_DEFS);
 
     const generalInformationFormDefs = this.dynamicFormService.getFormMetadata(CONTACT_GENERAL_INFORMATION_GROUP);
-    const addressInformationFormDefs = this.dynamicFormService.getFormMetadata(CONTACT_ADDRESS_INFORMATION_GROUP);
+    // const addressInformationFormDefs = this.dynamicFormService.getFormMetadata(CONTACT_ADDRESS_INFORMATION_GROUP);
 
     return forkJoin({
       relationshipListColumDefs: relationshipListColumnDefs,
-      generalInformationFormDefs: generalInformationFormDefs,
-      addressInformationFormDefs: addressInformationFormDefs
+      generalInformationFormDefs: generalInformationFormDefs
+      // addressInformationFormDefs: addressInformationFormDefs
     });
   }
 

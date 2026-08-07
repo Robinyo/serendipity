@@ -35,6 +35,8 @@ export class ContactAdapter extends PartyAdapter implements Adapter<ContactModel
       item.placeOfBirth
     );
 
+    contact.address = item.party.addresses[0];
+
     // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
 
     contact.id = btoa(item.id);

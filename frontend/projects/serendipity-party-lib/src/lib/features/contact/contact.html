@@ -134,56 +134,7 @@
             <span> Summary </span>
           </ng-template>
 
-          <div class="md-grid-2-column-layout-container">
-
-            <mat-card>
-
-              <!-- General Information -->
-
-              <mat-card-content class="md-card-content">
-
-                <!-- Chrome ignores autocomplete="off" so go to chrome://settings/autofill and turn 'Auto-fill forms' off -->
-
-                <dynamic-form autocomplete="off"
-                              className="md-grid-3-column-layout-container"
-                              [formGroup]="generalInformationGroup"
-                              [model]="generalInformationModel"
-                              (customEvent)="onCustomEvent($event)">
-                </dynamic-form>
-
-                <!--
-                <p>
-                  Form Value: {{ generalInformationGroup.value | json }}
-                </p>
-                -->
-
-              </mat-card-content>
-
-            </mat-card>
-
-            <mat-card>
-
-              <!-- Address Information -->
-
-              <mat-card-content class="md-card-content">
-
-                <dynamic-form autocomplete="off"
-                              className="md-grid-3-column-layout-container"
-                              [formGroup]="addressInformationGroup"
-                              [model]="addressInformationModel">
-                </dynamic-form>
-
-                <!--
-                <p>
-                  Form Value: {{ addressInformationGroup.value | json }}
-                </p>
-                -->
-
-              </mat-card-content>
-
-            </mat-card>
-
-          </div>
+          <form-js-wrapper [schema]="schema" [data]="item"></form-js-wrapper>
 
         </mat-tab>
 

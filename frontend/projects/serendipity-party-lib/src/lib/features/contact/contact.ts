@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -10,7 +9,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { Observable, Subscription } from 'rxjs';
 
 import { ActivityBar, CommandBar, Item } from 'serendipity-components-lib';
-import { DynamicForm, DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'serendipity-dynamic-forms-lib';
+import { FormJsWrapper } from 'serendipity-camunda-lib';
 
 import { latLng, LatLng, LatLngBounds, Layer, LeafletEvent, LeafletMouseEvent, Map, MapOptions, tileLayer } from 'leaflet';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
@@ -45,7 +44,7 @@ const DEFAULT_LONGITUDE = 151.753;
     ActivityBar,
     CommandBar,
     ContactRelatedTab,
-    DynamicForm,
+    FormJsWrapper,
     LeafletModule,
     MatButtonModule,
     MatCardModule,
@@ -61,18 +60,13 @@ export class Contact extends Item<ContactModel> {
 
   public selectedTabIndex = 0;
 
-  public generalInformationModel!: DynamicFormModel;
-  public generalInformationGroup!: FormGroup;
-
-  public addressInformationModel!: DynamicFormModel;
-  public addressInformationGroup!: FormGroup;
-
-  private electoralDivision!: ElectoralDivisionModel;
+  public schema!: any;
 
   public mapLayersControl!: MapLayersControl;
   public mapOptions: MapOptions;
 
-  private dynamicFormService: DynamicFormService = inject(DynamicFormService);
+  private electoralDivision!: ElectoralDivisionModel;
+
   private electoralDivisionsService: ElectoralDivisionsService = inject(ElectoralDivisionsService);
   private entityService: ContactsService = inject(ContactsService);
 
@@ -84,14 +78,9 @@ export class Contact extends Item<ContactModel> {
 
     this.logger.info('Contact Component: constructor()');
 
-    this.generalInformationModel = this.route.snapshot.data['metaData'].generalInformationFormDefs;
-    this.addressInformationModel = this.route.snapshot.data['metaData'].addressInformationFormDefs;
+    this.schema = this.route.snapshot.data['metaData'].generalInformationFormDefs;
 
-    // this.logger.info('generalInformationModel: ' + JSON.stringify(this.generalInformationModel, null, 2));
-    // this.logger.info('addressInformationModel: ' + JSON.stringify(this.addressInformationModel, null, 2));
-
-    this.generalInformationGroup = this.dynamicFormService.createGroup(this.generalInformationModel);
-    this.addressInformationGroup = this.dynamicFormService.createGroup(this.addressInformationModel);
+    this.logger.info('schema: ' + JSON.stringify(this.schema, null, 2));
 
     this.mapOptions = {
       layers: [
@@ -112,10 +101,7 @@ export class Contact extends Item<ContactModel> {
 
     this.isLoading = true;
 
-    let entitySubscription: Subscription = new Subscription();
-    this.subscriptions.push(entitySubscription);
-
-    entitySubscription = this.entityService.findById(this.id).subscribe(
+    const entitySubscription: Subscription = this.entityService.findById(this.id).subscribe(
 
       (response: any) => {
 
@@ -123,16 +109,15 @@ export class Contact extends Item<ContactModel> {
 
         this.item = response;
 
-        // this.logger.info('item: ' + JSON.stringify(this.item, null, 2));
-
-        this.dynamicFormService.initGroup(this.generalInformationGroup, this.item);
-        this.dynamicFormService.initGroup(this.addressInformationGroup, this.item.party.addresses[0]);
+        this.logger.info('item: ' + JSON.stringify(this.item, null, 2));
 
         this.isLoading = false;
 
         this.detectChanges();
 
     });
+
+    this.subscriptions.push(entitySubscription);
 
   }
 
@@ -161,10 +146,10 @@ export class Contact extends Item<ContactModel> {
 
     let dirty = false;
 
-    if ((this.generalInformationGroup && this.generalInformationGroup.dirty) ||
-      (this.addressInformationGroup && this.addressInformationGroup.dirty)) {
-      dirty = true;
-    }
+    // if ((this.generalInformationGroup && this.generalInformationGroup.dirty) ||
+    //   (this.addressInformationGroup && this.addressInformationGroup.dirty)) {
+    //   dirty = true;
+    // }
 
     // this.logger.info('Contact Component - isDirty(): ' + dirty);
 
@@ -174,6 +159,8 @@ export class Contact extends Item<ContactModel> {
   public isValid() {
 
     let valid = false;
+
+    /*
 
     if (this.generalInformationGroup) {
 
@@ -203,24 +190,9 @@ export class Contact extends Item<ContactModel> {
 
     }
 
-    /*
-
-    if (this.generalInformationGroup && this.generalInformationGroup.valid) {
-
-      this.logger.info('ContactComponent - generalInformationGroup.valid');
-
-      if (this.addressInformationGroup && this.addressInformationGroup.valid) {
-
-        this.logger.info('ContactComponent - addressInformationGroup.valid');
-
-        valid = true;
-      }
-
-    }
+    // this.logger.info('ContactComponent - isValid(): ' + valid);
 
     */
-
-    // this.logger.info('ContactComponent - isValid(): ' + valid);
 
     return valid;
   }
@@ -228,6 +200,8 @@ export class Contact extends Item<ContactModel> {
   public markAsDirty() {
 
     // this.logger.info('Contact Component: markAsDirty()');
+
+    /*
 
     if (this.generalInformationGroup) {
       this.generalInformationGroup.markAsDirty();
@@ -237,11 +211,15 @@ export class Contact extends Item<ContactModel> {
       this.addressInformationGroup.markAsDirty();
     }
 
+    */
+
   }
 
   public markAsPristine() {
 
     // this.logger.info('Contact Component: markAsPristine()');
+
+    /*
 
     if (this.generalInformationGroup) {
       this.generalInformationGroup.markAsPristine();
@@ -250,6 +228,8 @@ export class Contact extends Item<ContactModel> {
     if (this.addressInformationGroup) {
       this.addressInformationGroup.markAsPristine();
     }
+
+    */
 
   }
 
@@ -304,8 +284,8 @@ export class Contact extends Item<ContactModel> {
 
     this.logger.info('ContactComponent: onSave()');
 
-    this.dynamicFormService.value(this.generalInformationGroup, this.item);
-    this.dynamicFormService.value(this.addressInformationGroup, this.item.party.addresses[0]);
+    // this.dynamicFormService.value(this.generalInformationGroup, this.item);
+    // this.dynamicFormService.value(this.addressInformationGroup, this.item.party.addresses[0]);
 
     // this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
 
@@ -459,7 +439,7 @@ export class Contact extends Item<ContactModel> {
         this.item.organisation.phoneNumber = data.body.reciprocalPartyPhoneNumber;
 
         // contact-general-information-form-with-avatar.json
-        this.generalInformationGroup.controls['organisation.displayName'].setValue(this.item.organisation.displayName);
+        // this.generalInformationGroup.controls['organisation.displayName'].setValue(this.item.organisation.displayName);
 
       }
 
@@ -492,7 +472,7 @@ export class Contact extends Item<ContactModel> {
           this.item.organisation.phoneNumber = '';
 
           // contact-general-information-form-with-avatar.json
-          this.generalInformationGroup.controls['organisation.displayName'].setValue('');
+          // this.generalInformationGroup.controls['organisation.displayName'].setValue('');
 
           subscription.unsubscribe();
 

@@ -1,102 +1,139 @@
-[
-
-  {
-    "type": "input",
-    "id": "line1",
-    "label": "Address Line 1",
-    "appearance": "outline",
-    "autocomplete": "address-line1",
-
-    "validators": [
-      {
-        "name": "required",
-        "args": null,
-        "propertyName": "required",
-        "message": "You must enter an Address Line 1"
-      }
-    ],
-
-    "gridItemClass": "md-grid-column-1-span-2"
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.9.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "8efc50f"
   },
-  {
-    "type": "input",
-    "id": "line2",
-    "label": "Address Line 2",
-    "appearance": "outline",
-    "autocomplete": "address-line2",
-
-    "gridItemClass": "md-grid-column-1-span-2"
-  },
-  {
-    "type": "input",
-    "id": "city",
-    "label": "City",
-    "appearance": "outline",
-    "autocomplete": "address-level2",
-
-    "validators": [
-      {
-        "name": "required",
-        "args": null,
-        "propertyName": "required",
-        "message": "You must enter a City"
+  "schemaVersion": 19,
+  "id": "addressForm",
+  "components": [
+    {
+      "label": "Address Line 1",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0agtstn",
+        "columns": null
+      },
+      "id": "Field_138lr83",
+      "key": "line1",
+      "validate": {
+        "required": true
       }
-    ],
-
-    "gridItemClass": "md-grid-column-1"
-  },
-  {
-    "type": "input",
-    "id": "state",
-    "label": "State",
-    "appearance": "outline",
-    "autocomplete": "address-level1",
-
-    "validators": [
-      {
-        "name": "required",
-        "args": null,
-        "propertyName": "required",
-        "message": "You must enter a State"
+    },
+    {
+      "label": "Address Line 2",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0hb7qqs",
+        "columns": null
+      },
+      "id": "Field_1ke3tmo",
+      "key": "line2"
+    },
+    {
+      "label": "Suburb / Locality",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0c5ns7p",
+        "columns": 8
+      },
+      "id": "Field_0y5ofkq",
+      "key": "suburb",
+      "validate": {
+        "required": true
       }
-    ],
-
-    "gridItemClass": "md-grid-column-2"
-  },
-  {
-    "type": "input",
-    "id": "postalCode",
-    "label": "Postal Code",
-    "appearance": "outline",
-    "autocomplete": "postal-code",
-
-    "validators": [
-      {
-        "name": "required",
-        "args": null,
-        "propertyName": "required",
-        "message": "You must enter a Postal Code"
+    },
+    {
+      "label": "State / Territory",
+      "values": [
+        {
+          "label": "ACT (Australian Capital Territory)",
+          "value": "ACT"
+        },
+        {
+          "label": "NSW (New South Wales)",
+          "value": "NSW"
+        },
+        {
+          "label": "NT (Northern Territory)",
+          "value": "NT"
+        },
+        {
+          "label": "QLD (Queensland)",
+          "value": "QLD"
+        },
+        {
+          "label": "SA (South Australia)",
+          "value": "SA"
+        },
+        {
+          "label": "TAS (Tasmania)",
+          "value": "TAS"
+        },
+        {
+          "label": "VIC (Victoria)",
+          "value": "VIC"
+        },
+        {
+          "label": "WA (Western Australia)",
+          "value": "WA"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "Row_0c5ns7p",
+        "columns": 6
+      },
+      "id": "Field_0a505rl",
+      "key": "state",
+      "defaultValue": "NSW",
+      "validate": {
+        "required": true
       }
-    ],
-
-    "gridItemClass": "md-grid-column-3"
-  },
-  {
-    "type": "input",
-    "id": "addressType",
-    "label": "Address Type",
-    "appearance": "outline",
-
-    "validators": [
-      {
-        "name": "required",
-        "args": null,
-        "propertyName": "required",
-        "message": "You must enter an Address Type"
+    },
+    {
+      "label": "Postcode",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0c5ns7p",
+        "columns": 2
+      },
+      "id": "Field_0kkgd1t",
+      "key": "postcode",
+      "validate": {
+        "pattern": "^[0-9]{4}$",
+        "required": false
       }
-    ],
-
-    "gridItemClass": "md-grid-column-1"
-  }
-
-]
+    },
+    {
+      "label": "Address Type",
+      "values": [
+        {
+          "label": "Mailing Address",
+          "value": "Mailing Address"
+        },
+        {
+          "label": "Principal Place of Residence",
+          "value": "Principal Place of Residence"
+        },
+        {
+          "label": "Residential Address",
+          "value": "Residential Address"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "Row_0eify7b",
+        "columns": null
+      },
+      "id": "Field_1t8o2q5",
+      "key": "addressType",
+      "defaultValue": "Principal Place of Residence",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default"
+}

@@ -1,133 +1,199 @@
-[
-
-  {
-    "type": "input",
-    "id": "name.preferredName",
-    "label": "Preferred Name",
-    "appearance": "outline",
-
-    "gridItemClass": "md-grid-column-1",
-    "required": false
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.9.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "8efc50f"
   },
-
-
-  {
-    "type": "input",
-    "id": "name.title",
-    "label": "Title",
-    "appearance": "outline",
-    "autocomplete": "organization-title",
-
-    "gridItemClass": "md-grid-column-2"
-  },
-
-  {
-    "type": "input",
-    "id": "name.givenName",
-    "label": "Given Name",
-    "appearance": "outline",
-    "autocomplete": "given-name",
-
-    "validators": [
-      {
-        "name": "required",
-        "args": null,
-        "propertyName": "required",
-        "message": "You must enter a given name"
-      }
-    ],
-
-    "gridItemClass": "md-grid-column-1",
-    "required": true
-  },
-
-  {
-    "type": "input",
-    "id": "name.middleName",
-    "label": "Middle Name",
-    "appearance": "outline",
-    "autocomplete": "additional-name",
-
-    "gridItemClass": "md-grid-column-2",
-    "required": false
-  },
-
-  {
-    "type": "image",
-    "id": "photoUrl",
-    "label": "Avatar",
-    "gridItemClass": "md-grid-column-3-row-1-span-3"
-  },
-
-  {
-    "type": "input",
-    "id": "name.familyName",
-    "label": "Family Name",
-    "appearance": "outline",
-    "autocomplete": "family-name",
-
-    "validators": [
-      {
-        "name": "required",
-        "args": null,
-        "propertyName": "required",
-        "message": "You must enter a family name"
-      }
-    ],
-
-    "gridItemClass": "md-grid-column-1-span-2",
-    "required": true
-  },
-
-  {
-    "type": "input",
-    "id": "email",
-    "label": "Email",
-    "appearance": "outline",
-    "autocomplete": "email",
-
-    "validators": [
-      {
-        "name": "email",
-        "args": null,
-        "propertyName": "email",
-        "message": "Please enter a valid email address"
-      }
-    ],
-
-    "gridItemClass": "md-grid-column-1-span-2",
-    "required": false
-  },
-
-  {
-    "type": "input",
-    "id": "phoneNumber",
-    "label": "Phone Number",
-    "appearance": "outline",
-    "autocomplete": "tel",
-
-    "gridItemClass": "md-grid-column-3"
-  },
-
-  {
-    "type": "input",
-    "id": "organisation.displayName",
-    "label": "Account Name",
-    "appearance": "outline",
-    "autocomplete": "organization",
-
-    "gridItemClass": "md-grid-column-1-span-2",
-
-    "suffixIconName": "search"
-  },
-
-  {
-    "type": "input",
-    "id": "organisation.phoneNumber",
-    "label": "Business Phone",
-    "appearance": "outline",
-    "autocomplete": "tel",
-
-    "gridItemClass": "md-grid-column-3"
-  }
-]
+  "schemaVersion": 19,
+  "id": "Contact-General-Information-Form",
+  "components": [
+    {
+      "label": "Preferred Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0d4fi4g",
+        "columns": 3
+      },
+      "id": "Field_0skvsus",
+      "key": "name.preferredName"
+    },
+    {
+      "label": "Title",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0d4fi4g",
+        "columns": 3
+      },
+      "id": "Field_07h32hm",
+      "key": "name.title"
+    },
+    {
+      "height": 60,
+      "type": "spacer",
+      "layout": {
+        "row": "Row_0d4fi4g",
+        "columns": 6
+      },
+      "id": "Field_14mcwqn"
+    },
+    {
+      "content": "<div style=\"position: relative;\">\n  <img src=\"https://serendipity.localhost/assets/images/male-avatar.svg\" style=\"position: absolute; margin: 16px; height: 200px;\" alt=\"Photo\" />\n</div>",
+      "type": "html",
+      "layout": {
+        "row": "Row_0d4fi4g",
+        "columns": 4
+      },
+      "id": "Field_0kn19b9"
+    },
+    {
+      "label": "Given Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_06ewd42",
+        "columns": 3
+      },
+      "id": "Field_08bafoi",
+      "key": "name.givenName"
+    },
+    {
+      "label": "Middle Name(s)",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_06ewd42",
+        "columns": 3
+      },
+      "id": "Field_0gk1g5z",
+      "key": "name.middleName"
+    },
+    {
+      "label": "Family Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_06ewd42",
+        "columns": 6
+      },
+      "id": "Field_11iw73s",
+      "key": "name.familyName"
+    },
+    {
+      "height": 60,
+      "type": "spacer",
+      "layout": {
+        "row": "Row_06ewd42",
+        "columns": 4
+      },
+      "id": "Field_1e7h9h4"
+    },
+    {
+      "label": "Email",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_148faxz",
+        "columns": 6
+      },
+      "id": "Field_1vv0wkw",
+      "key": "email"
+    },
+    {
+      "label": "Phone Number",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_148faxz",
+        "columns": 3
+      },
+      "id": "Field_1aqlhcp",
+      "key": "phoneNumber"
+    },
+    {
+      "label": "Business Phone",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_148faxz",
+        "columns": 3
+      },
+      "id": "Field_0wepvtl",
+      "key": "organisation.phoneNumber"
+    },
+    {
+      "height": 60,
+      "type": "spacer",
+      "layout": {
+        "row": "Row_148faxz",
+        "columns": 4
+      },
+      "id": "Field_124htdb"
+    },
+    {
+      "label": "Account Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0alseas",
+        "columns": 6
+      },
+      "id": "Field_1j4p40b",
+      "key": "organisation.displayName"
+    },
+    {
+      "label": "Address Line 1",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_14lds1z",
+        "columns": 7
+      },
+      "id": "Field_0puu0v9",
+      "key": "address.line1"
+    },
+    {
+      "label": "Address Line 2",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_17txljs",
+        "columns": 7
+      },
+      "id": "Field_0ds8hfl",
+      "key": "address.line2"
+    },
+    {
+      "label": "Suburb / Locality",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1adb5al",
+        "columns": 3
+      },
+      "id": "Field_1djhnbr",
+      "key": "address.city"
+    },
+    {
+      "label": "State / Territory",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1adb5al",
+        "columns": 6
+      },
+      "id": "Field_0lqei5t",
+      "key": "address.state"
+    },
+    {
+      "label": "Postcode",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1adb5al",
+        "columns": 2
+      },
+      "id": "Field_0okr75g",
+      "key": "address.postalCode"
+    },
+    {
+      "label": "Address Type",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_08898gt",
+        "columns": 16
+      },
+      "id": "Field_1wd8nrl",
+      "key": "address.addressType"
+    }
+  ],
+  "type": "default"
+}
