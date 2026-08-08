@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatAccordion, MatExpansionPanel, MatExpansionPanelContent, MatExpansionPanelHeader, MatExpansionPanelTitle } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -26,13 +27,6 @@ import { ElectoralDivisionModel } from '../../models/electoral-division';
 import { RoleModel } from '../../models/role';
 
 import { CONTACT_WIZARD, CONTACTS, Tab } from './constants';
-import {ContactRelationshipList} from '../../components/contact/contact-relationship-list/contact-relationship-list';
-import {
-  MatAccordion,
-  MatExpansionPanel,
-  MatExpansionPanelActionRow,
-  MatExpansionPanelContent, MatExpansionPanelHeader, MatExpansionPanelTitle
-} from '@angular/material/expansion';
 
 class LeafletControlLayersConfig {
   baseLayers: { [name: string]: Layer } = {};
@@ -58,10 +52,8 @@ const DEFAULT_LONGITUDE = 151.753;
     MatIconModule,
     MatProgressSpinnerModule,
     MatTabsModule,
-    ContactRelationshipList,
     MatAccordion,
     MatExpansionPanel,
-    MatExpansionPanelActionRow,
     MatExpansionPanelContent,
     MatExpansionPanelHeader,
     MatExpansionPanelTitle
@@ -72,8 +64,9 @@ const DEFAULT_LONGITUDE = 151.753;
 })
 export class Contact extends Item<ContactModel> {
 
-  public selectedTabIndex = 0;
+  @ViewChild('formRef') form!: FormJsWrapper;
 
+  public selectedTabIndex = 0;
   public schema!: any;
 
   public mapLayersControl!: MapLayersControl;
@@ -156,94 +149,35 @@ export class Contact extends Item<ContactModel> {
 
   }
 
-  public isDirty() {
+  public isDirty(): boolean {
+
+    this.logger.info('Contact Component: isDirty()');
 
     let dirty = false;
 
-    // if ((this.generalInformationGroup && this.generalInformationGroup.dirty) ||
-    //   (this.addressInformationGroup && this.addressInformationGroup.dirty)) {
-    //   dirty = true;
-    // }
+    if (this.form) {
+      dirty = this.form.isDirty();
+    }
 
-    // this.logger.info('Contact Component - isDirty(): ' + dirty);
+    this.logger.info('dirty === ' + dirty);
 
     return dirty;
+
   }
 
   public isValid() {
 
+    this.logger.info('Contact Component: isValid()');
+
     let valid = false;
 
-    /*
-
-    if (this.generalInformationGroup) {
-
-      valid = true;
-
-      const controls = this.generalInformationGroup.controls;
-      for (const name in controls) {
-        if (controls[name].invalid) {
-          this.logger.info('generalInformationGroup ' + name + ' is invalid');
-          valid = false;
-        }
-      }
-
+    if (this.form) {
+      valid = this.form.isValid();
     }
 
-    if (valid && this.addressInformationGroup) {
-
-      valid = true;
-
-      const controls = this.addressInformationGroup.controls;
-      for (const name in controls) {
-        if (controls[name].invalid) {
-          this.logger.info('addressInformationGroup ' + name + ' is invalid');
-          valid = false;
-        }
-      }
-
-    }
-
-    // this.logger.info('ContactComponent - isValid(): ' + valid);
-
-    */
+    this.logger.info('valid === ' + valid);
 
     return valid;
-  }
-
-  public markAsDirty() {
-
-    // this.logger.info('Contact Component: markAsDirty()');
-
-    /*
-
-    if (this.generalInformationGroup) {
-      this.generalInformationGroup.markAsDirty();
-    }
-
-    if (this.addressInformationGroup) {
-      this.addressInformationGroup.markAsDirty();
-    }
-
-    */
-
-  }
-
-  public markAsPristine() {
-
-    // this.logger.info('Contact Component: markAsPristine()');
-
-    /*
-
-    if (this.generalInformationGroup) {
-      this.generalInformationGroup.markAsPristine();
-    }
-
-    if (this.addressInformationGroup) {
-      this.addressInformationGroup.markAsPristine();
-    }
-
-    */
 
   }
 
@@ -513,7 +447,6 @@ export class Contact extends Item<ContactModel> {
 
     const subscription: Subscription = this.entityService.update(this.id, this.item).subscribe(() => {
 
-      this.markAsPristine();
       // this.openSnackBar();
 
       subscription.unsubscribe();
@@ -543,12 +476,9 @@ export class Contact extends Item<ContactModel> {
 
     if (this.selectedTabIndex === Tab.ELECTORAL_DIVISION && this.item !== undefined && this.item.electorate) {
 
-      let electoralDivisionSubscription: Subscription = new Subscription();
-      this.subscriptions.push(electoralDivisionSubscription);
-
       // this.isLoading = true;
 
-      electoralDivisionSubscription = this.electoralDivisionsService.findByName(this.item.electorate).subscribe(
+      const electoralDivisionSubscription: Subscription = this.electoralDivisionsService.findByName(this.item.electorate).subscribe(
 
         (response: any) => {
 
@@ -582,6 +512,8 @@ export class Contact extends Item<ContactModel> {
           // this.detectChanges();
 
         });
+
+      this.subscriptions.push(electoralDivisionSubscription);
 
     }
 
