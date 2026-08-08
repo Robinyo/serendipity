@@ -166,4 +166,16 @@ export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit {
     return this.valid;
   }
 
+  public getData(): any {
+
+    if (this.formInstance) {
+      // .submit() safely generates the data object and handles final validation
+      const { data } = this.formInstance.submit();
+      return data;
+    }
+
+    return {};
+
+  }
+
 }

@@ -21,6 +21,7 @@ import { ContactRelatedTab } from '../../components/contact/contact-related-tab/
 // import { LookupAccountDialogComponent } from "../dialogs/lookup-account-dialog/lookup-account-dialog.component";
 
 import { AccountModel } from '../../models/account';
+import { AddressModel } from '../../models/address';
 import { ContactModel } from '../../models/contact';
 import { DialogResult } from "../../models/dialog";
 import { ElectoralDivisionModel } from '../../models/electoral-division';
@@ -116,6 +117,7 @@ export class Contact extends Item<ContactModel> {
 
         this.item = response;
 
+        this.logger.info('id: ' + this.id + ' item id: ' + this.item.id);
         this.logger.info('item: ' + JSON.stringify(this.item, null, 2));
 
         this.isLoading = false;
@@ -187,7 +189,7 @@ export class Contact extends Item<ContactModel> {
 
   public onClose() {
 
-    this.logger.info('ContactComponent: onClose()');
+    this.logger.info('Contact Component: onClose()');
 
     this.router.navigate([CONTACTS]);
   }
@@ -213,6 +215,7 @@ export class Contact extends Item<ContactModel> {
 
           subscription.unsubscribe();
           this.router.navigate([CONTACTS]);
+
         });
 
       }
@@ -223,26 +226,38 @@ export class Contact extends Item<ContactModel> {
 
   public onNew() {
 
-    this.logger.info('ContactComponent: onNew()');
+    this.logger.info('Contact Component: onNew()');
 
     this.router.navigate([CONTACT_WIZARD]);
   }
 
   public onSave() {
 
-    this.logger.info('ContactComponent: onSave()');
+    this.logger.info('Contact Component: onSave()');
 
-    // this.dynamicFormService.value(this.generalInformationGroup, this.item);
-    // this.dynamicFormService.value(this.addressInformationGroup, this.item.party.addresses[0]);
+    const rawFormData = this.form.getData();
 
-    // this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
+    this.logger.info('rawFormData: ' + JSON.stringify(rawFormData, null, 2) + '\n');
 
-    this.update();
+    this.logger.info('dto: ' + JSON.stringify(this.item, null, 2) + '\n');
+
+    // Copy your original DTO reference so you don't mutate state unexpectedly
+    const updatedDto = JSON.parse(JSON.stringify(this.item));
+
+    // Patch the DTO using the recursive mapper
+    this.patchDtoWithFormData(updatedDto, rawFormData);
+
+    // Safely deletes the address property, since it is optional
+    delete updatedDto.address;
+
+    // this.logger.info('updatedDto: ' + JSON.stringify(updatedDto, null, 2) + '\n');
+
+    this.update(updatedDto);
   }
 
   public onSaveAndClose() {
 
-    this.logger.info('ContactComponent: onSaveAndClose()');
+    this.logger.info('Contact Component: onSaveAndClose()');
 
     this.onSave();
     this.onClose();
@@ -254,7 +269,7 @@ export class Contact extends Item<ContactModel> {
 
   public onCustomEvent(event: any) {
 
-    this.logger.info('ContactComponent: onCustomEvent()');
+    this.logger.info('Contact Component: onCustomEvent()');
 
   }
 
@@ -262,7 +277,7 @@ export class Contact extends Item<ContactModel> {
 
   public onCustomEvent(event: DynamicFormControlCustomEvent) {
 
-    this.logger.info('ContactComponent: onCustomEvent()');
+    this.logger.info('Contact Component: onCustomEvent()');
 
     if (event.id === 'organisation.displayName' && event.name === 'search') {
 
@@ -286,7 +301,7 @@ export class Contact extends Item<ContactModel> {
 
   private openLookupAccountDialog() {
 
-    this.logger.info('ContactComponent: openLookupAccountDialog()');
+    this.logger.info('Contact Component: openLookupAccountDialog()');
 
     let config = {
       disableRemoveButton: true,
@@ -348,7 +363,7 @@ export class Contact extends Item<ContactModel> {
 
   private addAccount(response: DialogResult): void {
 
-    this.logger.info('addAccount()');
+    this.logger.info('Contact Component: addAccount()');
 
     const contact: ContactModel = this.item;
     const account: AccountModel = response.record;
@@ -399,7 +414,7 @@ export class Contact extends Item<ContactModel> {
 
   private removeAccount(): void {
 
-    this.logger.info('removeAccount()');
+    this.logger.info('Contact Component: removeAccount()');
 
     this.item.party.roles.every((role, index) => {
 
@@ -435,14 +450,23 @@ export class Contact extends Item<ContactModel> {
 
   }
 
-  private update(): void {
+  private update(dto: any): void {
 
     this.logger.info('Contact Component: update()');
 
+    // adapter: contact.ts
+    // Encode the id, for example http://localhost:4200/customers/contacts/MTYy
     // contact.id = btoa(item.id);
-    // this.id = atob(this.id);
+
+    // item.ts
+    // Decode the identity, MTYy -> 162
+    // this.id = atob(identity);
+
+    // id: 162 item id: MTYy
+    this.item = dto;
     this.item.id = this.id;
 
+    this.logger.info('id: ' + this.id + ' item id: ' + this.item.id);
     this.logger.info('item: ' + JSON.stringify(this.item, null, 2) + '\n');
 
     const subscription: Subscription = this.entityService.update(this.id, this.item).subscribe(() => {
@@ -523,6 +547,65 @@ export class Contact extends Item<ContactModel> {
   // Misc
   //
 
+  /**
+   * Recursively updates fields in the target DTO with matching values from the form data.
+   * Explicitly maps a flat form 'address' object to a matching entry in the DTO's 'party.addresses' array.
+   *
+   * @param dto The original target DTO object
+   * @param formData The data snapshot extracted from the form
+   * @returns The patched DTO object
+   */
+  public patchDtoWithFormData(dto: any, formData: any): any {
+
+    this.logger.info('Contact Component: patchDtoWithFormData()');
+
+    if (!dto || !formData || typeof dto !== 'object' || typeof formData !== 'object') {
+      return dto;
+    }
+
+    // 1. Explicitly handle the 'address' mapping to 'party.addresses' array
+    if (formData.address && dto.party && Array.isArray(dto.party.addresses)) {
+      const formAddress = formData.address;
+
+      // Find the existing address entry in the DTO matching the form's address type
+      const matchingDtoAddress = dto.party.addresses.find(
+        (addr: any) => addr.addressType === formAddress.addressType
+      );
+
+      if (matchingDtoAddress) {
+        // Recursively patch the found address so we don't drop fields like 'id' or 'location'
+        this.patchDtoWithFormData(matchingDtoAddress, formAddress);
+      } else {
+        // Optional fallback: If the type wasn't found in the array, add it as a new entry
+        // dto.party.addresses.push({ ...formAddress });
+        this.logger.error('Contact Component: addressType not found');
+      }
+    }
+
+    // 2. Fall back to standard recursive key matching for the rest of the object graph
+    Object.keys(formData).forEach(key => {
+
+      // Skip manual processing of the 'address' key here since we handled it above
+      if (key === 'address') return;
+
+      if (key in dto) {
+        const formValue = formData[key];
+        const dtoValue = dto[key];
+
+        if (
+          formValue && typeof formValue === 'object' && !Array.isArray(formValue) &&
+          dtoValue && typeof dtoValue === 'object' && !Array.isArray(dtoValue)
+        ) {
+          this.patchDtoWithFormData(dtoValue, formValue);
+        } else {
+          dto[key] = formValue;
+        }
+      }
+    });
+
+    return dto;
+  }
+
   /*
 
   private openSnackBar(): void {
@@ -540,3 +623,38 @@ export class Contact extends Item<ContactModel> {
   */
 
 }
+
+/*
+
+  public patchDtoWithFormData(dto: any, formData: any): any {
+
+    // If either input is invalid or not an object, stop processing
+    if (!dto || !formData || typeof dto !== 'object' || typeof formData !== 'object') {
+      return dto;
+    }
+
+    // Iterate over every field returned by the form
+    Object.keys(formData).forEach(key => {
+      // 1. Check if the key exists in the DTO
+      if (key in dto) {
+        const formValue = formData[key];
+        const dtoValue = dto[key];
+
+        // 2. Handle nested objects recursively (ignoring arrays or nulls)
+        if (
+          formValue && typeof formValue === 'object' && !Array.isArray(formValue) &&
+          dtoValue && typeof dtoValue === 'object' && !Array.isArray(dtoValue)
+        ) {
+          this.patchDtoWithFormData(dtoValue, formValue);
+        }
+        // 3. Directly assign primitive values
+        else {
+          dto[key] = formValue;
+        }
+      }
+    });
+
+    return dto;
+  }
+
+*/

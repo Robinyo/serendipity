@@ -30,6 +30,30 @@ public class WebBffApplication {
     return new WebMvcConfigurer() {
       @Override
       public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+            .allowedOrigins(
+                "http://localhost:4200",
+                serendipityBffUri
+            )
+            // Explicitly allow PATCH along with other standard methods
+            .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
+            // If your Angular app passes Auth headers (like Bearer tokens or Cookies),
+            // you should also allow headers and credentials:
+            .allowedHeaders("*")
+            .allowCredentials(true);
+      }
+    };
+  }
+
+}
+
+/*
+
+  @Bean
+  public WebMvcConfigurer corsConfigurer() {
+    return new WebMvcConfigurer() {
+      @Override
+      public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**").allowedOrigins(
             "http://localhost:4200",
             serendipityBffUri
@@ -38,4 +62,5 @@ public class WebBffApplication {
     };
   }
 
-}
+*/
+
