@@ -40,6 +40,9 @@ const DEFAULT_ZOOM = 13;
 const DEFAULT_LATITUDE = -32.841;
 const DEFAULT_LONGITUDE = 151.753;
 
+const ACCORDION = 'accordion';
+const CARD = 'card';
+
 @Component({
   selector: 'party-contact',
   imports: [
@@ -66,6 +69,9 @@ const DEFAULT_LONGITUDE = 151.753;
 export class Contact extends Item<ContactModel> {
 
   @ViewChild('formRef') form!: FormJsWrapper;
+
+  // public viewMode = ACCORDION;
+  public viewMode = CARD;
 
   public selectedTabIndex = 0;
   public schema!: any;

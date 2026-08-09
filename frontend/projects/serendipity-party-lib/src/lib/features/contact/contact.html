@@ -136,32 +136,70 @@
 
           <ng-template matTabContent>
 
-            <mat-accordion multi>
+            @if (viewMode === 'accordion') {
 
-              <!-- Contact Information -->
+              <mat-accordion multi>
 
-              <mat-expansion-panel expanded>
+                <!-- Contact Information -->
 
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Contact Information
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
+                <mat-expansion-panel expanded>
 
-                <ng-template matExpansionPanelContent>
-                  <div>
-                    <form-js-wrapper #formRef [schema]="schema" [data]="item"></form-js-wrapper>
-                  </div>
-                </ng-template>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Contact Information
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
 
-              </mat-expansion-panel>
+                  <ng-template matExpansionPanelContent>
+                    <div>
+                      <form-js-wrapper #formRef [schema]="schema" [data]="item"></form-js-wrapper>
+                    </div>
+                  </ng-template>
 
-              <!-- Relationships -->
+                </mat-expansion-panel>
 
-              <contact-related-tab [item]="item">
-              </contact-related-tab>
+                <!-- Relationships -->
 
-            </mat-accordion>
+                <contact-related-tab [item]="item">
+                </contact-related-tab>
+
+              </mat-accordion>
+
+            }
+
+            @if (viewMode === 'card') {
+
+              <div class="md-grid-3-column-layout-container">
+
+                <mat-card>
+
+                  <!-- Contact Information -->
+
+                  <mat-card-content class="md-card-content">
+                    <div>
+                      <form-js-wrapper #formRef [schema]="schema" [data]="item"></form-js-wrapper>
+                    </div>
+                  </mat-card-content>
+
+                </mat-card>
+
+                <mat-card>
+
+                  <mat-card-content class="md-card-content">
+                  </mat-card-content>
+
+                </mat-card>
+
+                <mat-card>
+
+                  <mat-card-content class="md-card-content">
+                  </mat-card-content>
+
+                </mat-card>
+
+              </div>
+
+            }
 
           </ng-template>
 
@@ -206,7 +244,7 @@
 
         -->
 
-        @if (item && item.electorate) {
+        @if (item.electorate) {
 
           <mat-tab>
 
@@ -233,6 +271,6 @@
 
     </div>
 
-  }
+  } <!-- @if (item) -->
 
 </div>

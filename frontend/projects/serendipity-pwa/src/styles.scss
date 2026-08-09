@@ -47,6 +47,8 @@ html, body {
 
 // form-js
 
+// /*
+
 .cds--grid {
   padding-inline: 0!important;
 }
@@ -61,17 +63,18 @@ html, body {
   }
 }
 
-.fjs-container .fjs-powered-by {
-  display: none!important;
-}
-
 .fjs-container .fjs-form {
   padding-left: 0!important;;
   padding-right: 0!important;;
 }
 
+// */
 
-// bpmn-js
+// bpmn-js and form-js branding
+
+.fjs-container .fjs-powered-by {
+  display: none!important;
+}
 
 .bjs-container .bjs-powered-by {
   display: none!important;

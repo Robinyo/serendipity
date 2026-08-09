@@ -7,7 +7,7 @@ import { DynamicFormService } from 'serendipity-dynamic-forms-lib';
 import { ConfigService, LoggerService } from 'serendipity-utils-lib';
 
 import { RELATIONSHIP_LIST_COLUMN_DEFS } from './constants';
-import { CONTACT_GENERAL_TAB_FORM } from './form-ids';
+import { CONTACT_INFORMATION_FORM, CONTACT_SUMMARY_TAB_FORM } from './form-ids';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,10 @@ export class ContactResolver implements Resolve<any> {
 
     const relationshipListColumnDefs= this.configService.get(RELATIONSHIP_LIST_COLUMN_DEFS);
 
-    const generalInformationFormDefs = this.dynamicFormService.getFormMetadata(CONTACT_GENERAL_TAB_FORM);
+    //  @if (viewMode === 'card')
+    const generalInformationFormDefs = this.dynamicFormService.getFormMetadata(CONTACT_INFORMATION_FORM);
+
+    // const generalInformationFormDefs = this.dynamicFormService.getFormMetadata(CONTACT_SUMMARY_TAB_FORM);
     // const addressInformationFormDefs = this.dynamicFormService.getFormMetadata(CONTACT_ADDRESS_INFORMATION_GROUP);
 
     return forkJoin({

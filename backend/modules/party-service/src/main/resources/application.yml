@@ -16,6 +16,9 @@ spring:
   datasource:
     username: admin
     password: secret
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
   main:
     banner-mode: off
   profiles:

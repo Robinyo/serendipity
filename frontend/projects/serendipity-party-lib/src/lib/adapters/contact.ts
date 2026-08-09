@@ -42,7 +42,7 @@ export class ContactAdapter extends PartyAdapter implements Adapter<ContactModel
     // Encode the id, for example http://localhost:4200/customers/contacts/MTYy
     contact.id = btoa(item.id);
 
-    this.logger.info('item id: ' + item.id + ' Base64 encoded contact id: ' + contact.id );
+    // this.logger.info('item id: ' + item.id + ' Base64 encoded contact id: ' + contact.id );
 
     // contact.photoUrl = this.getUrlPrefix() + item.photoUrl;
 
