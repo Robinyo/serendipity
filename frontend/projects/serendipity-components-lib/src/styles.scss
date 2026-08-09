@@ -7,7 +7,10 @@
 .md-content-container {
   background: whitesmoke;
   // $navigation-bar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop
-  height: calc(100vh - (64px + 50px + 64px));
+  // height: calc(100vh - (64px + 50px + 64px));
+  // $navigation-bar-height-desktop + $command-bar-height-desktop + $activity-bar-height-desktop + $tab-height-desktop
+  // height: calc(100vh);
+  // height: calc(100vh + (64px + 50px + 64px));
   width: 100%;
 }
 

@@ -94,7 +94,7 @@ export class Contact extends Item<ContactModel> {
 
     this.schema = this.route.snapshot.data['metaData'].generalInformationFormDefs;
 
-    this.logger.info('schema: ' + JSON.stringify(this.schema, null, 2));
+    // this.logger.info('schema: ' + JSON.stringify(this.schema, null, 2));
 
     this.mapOptions = {
       layers: [
@@ -252,6 +252,10 @@ export class Contact extends Item<ContactModel> {
 
     // Patch the DTO using the recursive mapper
     this.patchDtoWithFormData(updatedDto, rawFormData);
+
+    // TODO
+    delete updatedDto.jobTitle;
+    delete updatedDto.preferredContactMethod;
 
     // Safely deletes the address property, since it is optional
     delete updatedDto.address;

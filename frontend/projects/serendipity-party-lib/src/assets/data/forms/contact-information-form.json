@@ -188,16 +188,24 @@
       "label": "",
       "values": [
         {
-          "label": "Business Phone",
-          "value": "Business Phone"
+          "label": "Any",
+          "value": "Any"
         },
         {
           "label": "Email",
           "value": "Email"
         },
         {
-          "label": "Mobile Phone",
-          "value": "Mobile Phone"
+          "label": "Phone",
+          "value": "Phone"
+        },
+        {
+          "label": "Fax",
+          "value": "Fax"
+        },
+        {
+          "label": "Mail",
+          "value": "Mail"
         }
       ],
       "type": "select",
@@ -207,7 +215,7 @@
       },
       "id": "Field_0jac2fj",
       "key": "preferredContactMethod",
-      "defaultValue": "Business Phone"
+      "defaultValue": "Any"
     },
     {
       "text": "Line 1",
@@ -226,7 +234,7 @@
         "columns": 8
       },
       "id": "Field_1z107f0",
-      "key": "line1"
+      "key": "address.line1"
     },
     {
       "text": "Line 2",
@@ -245,7 +253,7 @@
         "columns": null
       },
       "id": "Field_1fua7jl",
-      "key": "line2"
+      "key": "address.line2"
     }
   ],
   "type": "default"

@@ -73,6 +73,11 @@ export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit {
         const isDirty = JSON.stringify(this.initialData) !== JSON.stringify(currentData);
         const isValid = Object.keys(currentErrors).length === 0;
 
+        if (isDirty) {
+          this.logger.info('this.initialData: ' + JSON.stringify(this.initialData, null, 2) + '\n');
+          this.logger.info('currentData: ' + JSON.stringify(currentData, null, 2) + '\n');
+        }
+
         // Return a combined payload of the raw data and the boolean states
         return { event, isDirty, isValid, stateKey: `${isDirty}-${isValid}` };
       }),
