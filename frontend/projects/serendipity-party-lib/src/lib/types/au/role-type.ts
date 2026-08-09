@@ -6,7 +6,8 @@ export enum IndividualRoleType {
 }
 
 export enum OrganisationRoleType {
-  EMPLOYER = 'Employer'
+  EMPLOYER = 'Employer',
+  DIRECTOR = 'Director'
 }
 
 // From the ATO website
