@@ -255,6 +255,7 @@ export class Contact extends Item<ContactModel> {
 
     // TODO
     delete updatedDto.jobTitle;
+    delete updatedDto.faxNumber;
     delete updatedDto.preferredContactMethod;
 
     // Safely deletes the address property, since it is optional
