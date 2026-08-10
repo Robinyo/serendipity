@@ -208,12 +208,21 @@ mat-sidenav-content {
   .fjs-form-field-select {
     position: relative;
 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // display: block;
+
     .fjs-select-anchor {
       position: absolute;
       left: var(--fjs-input-offset); // Dynamically aligned with input edge
       right: 0;
       top: 100%;
       z-index: 1000;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
@@ -250,6 +259,9 @@ mat-sidenav-content {
   .fjs-layout-row,
   .fjs-layout-column {
     padding: 0 !important;
+
+    // flex: 1 1 260px; // Grow, shrink, but aim for at least 260px
+    // min-width: 240px; // Absolute floor before wrapping
   }
 
   // 7. Grid column spacing
@@ -257,6 +269,9 @@ mat-sidenav-content {
     margin-left: 0 !important;
     margin-right: 0 !important;
     gap: 8px;
+
+    // display: flex;
+    // flex-wrap: wrap; // Allows columns to wrap to the next line on smaller screens
   }
 }
 
