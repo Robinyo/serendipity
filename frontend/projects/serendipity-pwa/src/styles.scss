@@ -208,9 +208,12 @@ mat-sidenav-content {
   .fjs-form-field-select {
     position: relative;
 
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    // Breaks the 'selects'
+    // white-space: nowrap;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+
+    // Breaks the 'selects'
     // display: block;
 
     .fjs-select-anchor {
@@ -220,9 +223,10 @@ mat-sidenav-content {
       top: 100%;
       z-index: 1000;
 
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      // Breaks the 'selects'
+      // white-space: nowrap;
+      // overflow: hidden;
+      // text-overflow: ellipsis;
     }
   }
 
@@ -262,6 +266,7 @@ mat-sidenav-content {
 
     // flex: 1 1 260px; // Grow, shrink, but aim for at least 260px
     // min-width: 240px; // Absolute floor before wrapping
+    min-width: 480px;
   }
 
   // 7. Grid column spacing
