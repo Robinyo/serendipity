@@ -54,13 +54,16 @@ nvm install node
 Install a specific version (e.g., version 20):
 
 ```
-nvm install 20
+nvm install 24
 ```
 
 Switch to a specific version:
 
 ```
-nvm use 20
+nvm use 24
+nvm alias default 24
+# npm install -g @angular/cli@20.2.2
+# ng version
 ```
 
 List your installed versions:
@@ -235,20 +238,21 @@ Check in:
 ```
 git add .
 git commit -m "Updated the README.md file"
-git push -u origin serendipity-3.0
-# git push -u origin main
+git push -u origin main
 ```
 
 Tag Format:
 
 ```
-1.0.0-beta.1
+v4.0.0-beta.1
+v4.0.0-rc.1
 ```
 
 To create a local tag on your current branch, run this:
 
 ```
 git tag <tagname>
+git tag -a v20.2.2 -m "Angular 20.2.2"
 ```
 
 To push the local tags to GitHub:
