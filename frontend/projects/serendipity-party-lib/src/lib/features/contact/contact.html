@@ -255,7 +255,9 @@
 
             <ng-template matTabContent>
 
-              <div class="md-tab-component-container"
+              <!-- class="md-tab-component-container" -->
+
+              <div id="map"
                    leaflet
                    [leafletOptions]="mapOptions"
                    (leafletMapReady)="onMapReady($event)">

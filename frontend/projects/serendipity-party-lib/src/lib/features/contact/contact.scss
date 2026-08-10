@@ -1,5 +1,66 @@
+/* Target the host element (<contact>) directly */
+:host {
 
-.mat-mdc-card {
-  // background-color: white !important;
-  border-radius: 3px !important;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0; /* Allows flex children to shrink below content size */
+  overflow: hidden;
+
+  /* Keep header command/activity bars pinned */
+  command-bar,
+  activity-bar {
+    flex-shrink: 0;
+  }
+
+  /* Flex containers within contact component template */
+  .md-content-container,
+  .md-tab-group-container,
+  mat-tab-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* Use ::ng-deep to pierce Angular encapsulation and reach MatTab internal DOM */
+  ::ng-deep {
+    .mat-mdc-tab-body-wrapper {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+    }
+
+    mat-tab-body.mat-mdc-tab-body {
+      display: flex;
+      flex: 1;
+      height: 100%;
+      min-height: 0;
+    }
+
+    /* THE SCROLL BOX: Force scrollbar on the actual scroll wrapper */
+    .mat-mdc-tab-body-content {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+      overflow-y: auto !important; /* Enables vertical scrolling for form cards */
+      box-sizing: border-box;
+
+      // Generous bottom padding so floating select dropdowns have room to expand
+      // padding: 16px 16px 120px 16px;
+      // padding: 16px 16px 80px 16px;
+      padding: 16px;
+    }
+
+    /* Force Leaflet container to take 100% width and remaining height */
+    #map,
+    .leaflet-container {
+      width: 100% !important;
+      height: 100% !important;
+      flex: 1;
+      min-height: 400px; /* Fallback height */
+    }
+  }
+
 }

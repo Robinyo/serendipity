@@ -44,7 +44,7 @@ const ACCORDION = 'accordion';
 const CARD = 'card';
 
 @Component({
-  selector: 'party-contact',
+  selector: 'contact',
   imports: [
     ActivityBar,
     CommandBar,
@@ -499,6 +499,12 @@ export class Contact extends Item<ContactModel> {
     this.logger.info('Contact Component: onMapReady()');
 
     this.map = map;
+
+    // In case the page loads with the map tab active by default
+    setTimeout(() => {
+      this.map.invalidateSize();
+    }, 200);
+
   }
 
   public onTabChanged($event: any) {

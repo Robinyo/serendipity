@@ -133,8 +133,7 @@
         "columns": 16
       },
       "id": "Field_1gbrlr1",
-      "key": "preferredContactMethod",
-      "defaultValue": "Any"
+      "key": "preferredContactMethod"
     },
     {
       "label": "Address Line 1",
@@ -155,6 +154,90 @@
       },
       "id": "Field_0epdjdx",
       "key": "address.line2"
+    },
+    {
+      "label": "Suburb / Locality",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1ea84sz",
+        "columns": null
+      },
+      "id": "Field_19iq48q",
+      "key": "address.city"
+    },
+    {
+      "label": "State / Territory",
+      "values": [
+        {
+          "label": "ACT (Australian Capital Territory)",
+          "value": "ACT"
+        },
+        {
+          "label": "QLD (Queensland)",
+          "value": "QLD"
+        },
+        {
+          "label": "NSW (New South Wales)",
+          "value": "NSW"
+        },
+        {
+          "label": "NT (Northern Territory)",
+          "value": "NT"
+        },
+        {
+          "label": "SA (South Australia)",
+          "value": "SA"
+        },
+        {
+          "label": "TAS (Tasmania)",
+          "value": "TAS"
+        },
+        {
+          "label": "WA (Western Australia)",
+          "value": "WA"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "Row_1l4ll3s",
+        "columns": null
+      },
+      "id": "Field_04zm8jt",
+      "key": "address.state"
+    },
+    {
+      "label": "Postcode",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0hp38e4",
+        "columns": null
+      },
+      "id": "Field_0freq3q",
+      "key": "address.postalCode"
+    },
+    {
+      "label": "Address Type",
+      "values": [
+        {
+          "label": "Mailing",
+          "value": "Mailing"
+        },
+        {
+          "label": "Principal Place of Residence",
+          "value": "Principal Place of Residence"
+        },
+        {
+          "label": "Residential Address",
+          "value": "Residential Address"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "Row_0joaswn",
+        "columns": null
+      },
+      "id": "Field_0heb2v4",
+      "key": "address.addressType"
     }
   ],
   "type": "default"

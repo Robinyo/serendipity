@@ -1,4 +1,4 @@
-$text-padding: 16px !default;
+@use './variables';
 
 .navigation-bar {
   background-color: black;
@@ -6,12 +6,14 @@ $text-padding: 16px !default;
 }
 
 .navigation-bar-title-text {
-  margin: 0 $text-padding 0 $text-padding;
+  margin: 0 variables.$text-padding 0 variables.$text-padding;
 }
 
 .navigation-bar-spacer {
   flex: 1 1 auto;
 }
+
+
 
 /*
 

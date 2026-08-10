@@ -11,9 +11,9 @@ export class AddressModel {
     public line2: string = '',
     public city: string = '',
     public state: string = '',
-    public postalCode: string = '',
+    public postalCode: string | null  = '',
     public country: string = '',
-    public addressType: string = ''
+    public addressType: string | null = ''
   ) {
   }
 

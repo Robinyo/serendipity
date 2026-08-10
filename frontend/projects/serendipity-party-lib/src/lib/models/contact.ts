@@ -6,6 +6,6 @@ import { IndividualModel } from './individual';
 export class ContactModel extends IndividualModel {
   jobTitle?: string;
   faxNumber?: string;
-  preferredContactMethod?: string;
+  preferredContactMethod?: string | null;
   address?: AddressModel;
 }

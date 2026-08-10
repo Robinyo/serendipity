@@ -38,7 +38,8 @@ export class ContactAdapter extends PartyAdapter implements Adapter<ContactModel
     // TODO
     contact.jobTitle = ''
     contact.faxNumber = '';
-    contact.preferredContactMethod = 'Any';
+    // contact.preferredContactMethod = '';
+    contact.preferredContactMethod = null;
 
     contact.address = item.party.addresses[0];
 
