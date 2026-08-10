@@ -1,0 +1,19 @@
+version: 2
+updates:
+  # Angular Frontend Configuration
+  - package-ecosystem: "npm"
+    directory: "/frontend"
+    schedule:
+      interval: "daily"
+    groups:
+      angular-packages:
+        patterns:
+          - "@angular/*"
+          - "@ngtools/*"
+          - "typescript"
+
+  # Spring Boot Backend Configuration
+  - package-ecosystem: "maven"
+    directory: "/backend"
+    schedule:
+      interval: "daily"
