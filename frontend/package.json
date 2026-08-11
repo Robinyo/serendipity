@@ -34,7 +34,7 @@
     "@angular/material": "^21.2.14",
     "@angular/platform-browser": "^21.2.19",
     "@angular/router": "^21.2.19",
-    "@bluehalo/ngx-leaflet": "^21.2.1",
+    "@bluehalo/ngx-leaflet": "^22.0.0",
     "@bpmn-io/form-js-viewer": "^1.24.0",
     "bpmn-js": "^18.22.1",
     "leaflet": "^1.9.4",
