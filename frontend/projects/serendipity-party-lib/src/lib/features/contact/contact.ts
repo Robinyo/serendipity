@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -64,6 +64,7 @@ const CARD = 'card';
   ],
   templateUrl: './contact.html',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./contact.scss']
 })
 export class Contact extends Item<ContactModel> {

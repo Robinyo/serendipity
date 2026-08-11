@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -26,6 +26,7 @@ import { RoleModel } from '../../../models/role';
   ],
   templateUrl: 'contact-related-tab.html',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['contact-related-tab.scss']
 })
 export class ContactRelatedTab extends Tab<ContactModel> implements AfterViewInit {

@@ -6,6 +6,7 @@ export * from './lib/adapters/adapter';
 
 export * from './lib/services/abstract/collection/collection';
 export * from './lib/services/config/config.service';
+export * from './lib/services/forms/forms';
 export * from './lib/services/logger/logger.service';
 
 export * from './lib/svg-icons';

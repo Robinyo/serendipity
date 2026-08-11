@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -52,6 +52,7 @@ import { DynamicFormControlModel, DynamicFormControlCustomEvent } from '../../mo
 
     </mat-form-field>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: []
 })
 export class DynamicInput implements OnInit {

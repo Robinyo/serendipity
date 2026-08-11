@@ -1,4 +1,4 @@
-import { Component, HostBinding, inject, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, inject, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { LoggerService } from 'serendipity-utils-lib';
@@ -10,6 +10,7 @@ import { DynamicFormControlModel } from '../../models/dynamic-form-control.model
   imports: [
     ReactiveFormsModule
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <img [src]="formGroup.controls[model.id].value" [alt]="model.label">
   `,

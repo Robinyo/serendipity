@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
-  Component, ElementRef, inject, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild
+  Component, ElementRef, inject, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import { Subscription } from 'rxjs';
@@ -19,6 +20,7 @@ import { ProcessesService } from '../../services/processes/processes';
       <div #canvas class="canvas-element"></div>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './bpmn-js-wrapper.scss'
 })
 export class BpmnJsWrapper implements AfterViewInit, OnChanges, OnDestroy, OnInit {

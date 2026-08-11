@@ -1,4 +1,4 @@
-import { inject, Component } from '@angular/core';
+import { inject, Component, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -36,6 +36,7 @@ import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs';
   ],
   templateUrl: './activities.html',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './activities.scss'
 })
 export class Activities extends Collection<ActivityModel> {

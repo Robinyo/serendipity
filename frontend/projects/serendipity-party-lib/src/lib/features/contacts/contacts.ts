@@ -1,4 +1,4 @@
-import { inject, Component } from '@angular/core';
+import { inject, Component, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -37,6 +37,7 @@ import { CONTACT_WIZARD } from  './constants';
   ],
   templateUrl: './contacts.html',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './contacts.scss'
 })
 export class Contacts extends Collection<ContactModel> {

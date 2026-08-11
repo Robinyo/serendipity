@@ -1,4 +1,4 @@
-import { inject, Component } from '@angular/core';
+import { inject, Component, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -35,6 +35,7 @@ import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs';
   ],
   templateUrl: './accounts.html',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './accounts.scss'
 })
 export class Accounts extends Collection<AccountModel> {

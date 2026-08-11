@@ -3,11 +3,10 @@ import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 
 import { Observable, forkJoin } from 'rxjs';
 
-import { DynamicFormService } from 'serendipity-dynamic-forms-lib';
-import { ConfigService, LoggerService } from 'serendipity-utils-lib';
+import { ConfigService, FormsService, LoggerService } from 'serendipity-utils-lib';
 
 import { RELATIONSHIP_LIST_COLUMN_DEFS } from './constants';
-import { CONTACT_INFORMATION_FORM, CONTACT_SUMMARY_TAB_FORM } from './form-ids';
+import { CONTACT_INFORMATION_FORM } from './form-ids';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,7 @@ import { CONTACT_INFORMATION_FORM, CONTACT_SUMMARY_TAB_FORM } from './form-ids';
 export class ContactResolver implements Resolve<any> {
 
   protected configService = inject(ConfigService);
-  protected dynamicFormService: DynamicFormService = inject(DynamicFormService);
+  protected dynamicFormService: FormsService = inject(FormsService);
   protected logger = inject(LoggerService);
 
   resolve(route: ActivatedRouteSnapshot): Observable<any> {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 // import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
@@ -15,6 +15,7 @@ import { DynamicFormControlCustomEvent } from '../../models/dynamic-form-control
     ReactiveFormsModule,
     DynamicControlDirective
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <form  [autocomplete]="autocomplete"
            [className]="className"

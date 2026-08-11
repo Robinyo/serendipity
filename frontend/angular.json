@@ -78,6 +78,25 @@
                   "with": "projects/serendipity-utils-lib/src/lib/environments/environment.development.ts"
                 }
               ]
+            },
+            "testing": {
+              "aot": false,
+              "optimization": false,
+              "extractLicenses": false,
+              "assets": [
+                "projects/serendipity-pwa/src/favicon.ico",
+                "projects/serendipity-pwa/src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "projects/serendipity-party-lib/src/assets",
+                  "output": "/assets"
+                }
+              ],
+              "styles": [
+                "projects/serendipity-pwa/src/styles.scss",
+                "projects/serendipity-pwa/src/theme.scss",
+                "projects/serendipity-components-lib/src/styles.scss"
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -98,24 +117,11 @@
           "builder": "@angular/build:extract-i18n"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
             "tsConfig": "projects/serendipity-pwa/tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/serendipity-pwa/src/favicon.ico",
-              "projects/serendipity-pwa/src/assets",
-              {
-                "glob": "**/*",
-                "input": "projects/serendipity-party-lib/src/assets",
-                "output": "/assets"
-              }
-            ],
-            "styles": [
-              "projects/serendipity-pwa/src/styles.scss",
-              "projects/serendipity-pwa/src/theme.scss",
-              "projects/serendipity-components-lib/src/styles.scss"
-            ]
+            "buildTarget": ":build:testing",
+            "runner": "vitest"
           }
         }
       }
@@ -240,37 +246,6 @@
           "builder": "@angular/build:karma",
           "options": {
             "tsConfig": "projects/serendipity-workflow-lib/tsconfig.spec.json"
-          }
-        }
-      }
-    },
-    "serendipity-dynamic-forms-lib": {
-      "projectType": "library",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "projects/serendipity-dynamic-forms-lib",
-      "sourceRoot": "projects/serendipity-dynamic-forms-lib/src",
-      "prefix": "form",
-      "architect": {
-        "build": {
-          "builder": "@angular/build:ng-packagr",
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/serendipity-dynamic-forms-lib/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/serendipity-dynamic-forms-lib/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "tsConfig": "projects/serendipity-dynamic-forms-lib/tsconfig.spec.json"
           }
         }
       }

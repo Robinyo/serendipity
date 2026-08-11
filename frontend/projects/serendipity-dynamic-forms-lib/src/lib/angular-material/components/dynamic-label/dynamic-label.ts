@@ -1,4 +1,4 @@
-import { Component, HostBinding, inject, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, inject, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { MatInputModule } from '@angular/material/input';
@@ -13,6 +13,7 @@ import { DynamicFormControlModel } from '../../models/dynamic-form-control.model
     MatInputModule,
     ReactiveFormsModule
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <mat-label> {{ model.label }}</mat-label>
   `,

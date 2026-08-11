@@ -1,6 +1,7 @@
 import {
   AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, Input, OnDestroy, OnInit, NgZone,
-  ViewChild
+  ViewChild,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { Form } from '@bpmn-io/form-js-viewer';
 
@@ -24,6 +25,7 @@ import { LoggerService } from 'serendipity-utils-lib';
   selector: 'form-js-wrapper',
   standalone: true,
   template: `<div #formWrapper class="form-wrapper"></div>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './form-js-wrapper.scss'
 })
 export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit {

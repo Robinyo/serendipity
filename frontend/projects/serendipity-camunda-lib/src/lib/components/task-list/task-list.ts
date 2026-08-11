@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
@@ -64,6 +64,7 @@ import { TasksService } from '../../services/tasks/tasks';
     </div>
 
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './task-list.scss'
 })
 export class TaskList extends List<any> {

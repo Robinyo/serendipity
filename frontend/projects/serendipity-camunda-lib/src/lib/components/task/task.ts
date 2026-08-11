@@ -1,6 +1,7 @@
 import {
   AfterViewInit, Component, ElementRef, EventEmitter, inject, Input, OnChanges, OnDestroy, OnInit, Output,
-  SimpleChanges, ViewChild
+  SimpleChanges, ViewChild,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -34,6 +35,7 @@ import { TasksService } from '../../services/tasks/tasks';
   ],
   standalone: true,
   templateUrl: './task.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './task.scss'
 })
 export class Task extends Composite implements AfterViewInit, OnInit, OnChanges, OnDestroy {

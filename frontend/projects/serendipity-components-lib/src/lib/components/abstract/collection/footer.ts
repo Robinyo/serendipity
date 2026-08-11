@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -67,6 +67,7 @@ import { LoggerService } from 'serendipity-utils-lib';
     </div>
   `,
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['footer.scss']
 })
 export class CollectionFooter implements OnInit {

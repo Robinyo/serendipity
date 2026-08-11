@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { DomSanitizer } from "@angular/platform-browser";
 
 import { MatButtonModule } from '@angular/material/button';
@@ -18,6 +18,7 @@ const PATH = '../assets/images/icons/misc/';
   ],
   templateUrl: './home.html',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './home.scss'
 })
 export class Home {

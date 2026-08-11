@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink, RouterOutlet } from "@angular/router";
 
 import { MatIconModule } from '@angular/material/icon';
@@ -26,6 +26,7 @@ import { CUSTOMER_ROUTES, MY_WORK_ROUTES, TOOLS_ROUTES } from './constants';
   ],
   templateUrl: './layout.html',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './layout.scss'
 })
 export class Layout  implements OnInit  {

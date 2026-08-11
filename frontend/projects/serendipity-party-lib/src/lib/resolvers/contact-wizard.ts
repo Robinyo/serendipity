@@ -3,8 +3,7 @@ import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 
 import { Observable, forkJoin } from 'rxjs';
 
-import { DynamicFormService } from 'serendipity-dynamic-forms-lib';
-import { LoggerService } from 'serendipity-utils-lib';
+import { FormsService, LoggerService } from 'serendipity-utils-lib';
 
 import {ADDRESS_FORM, CONTACT_DETAILS_FORM, NAME_FORM} from './form-ids';
 
@@ -13,7 +12,7 @@ import {ADDRESS_FORM, CONTACT_DETAILS_FORM, NAME_FORM} from './form-ids';
 })
 export class ContactWizardResolver implements Resolve<any> {
 
-  protected dynamicFormService: DynamicFormService = inject(DynamicFormService);
+  protected dynamicFormService: FormsService = inject(FormsService);
   protected logger = inject(LoggerService);
 
   resolve(route: ActivatedRouteSnapshot): Observable<any> {

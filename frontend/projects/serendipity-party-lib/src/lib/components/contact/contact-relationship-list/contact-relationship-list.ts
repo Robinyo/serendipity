@@ -1,5 +1,5 @@
 import { SelectionModel } from "@angular/cdk/collections";
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -31,6 +31,7 @@ import { RoleModel } from '../../../models/role';
   ],
   templateUrl: './contact-relationship-list.html',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./contact-relationship-list.scss']
 })
 export class ContactRelationshipList extends RelationshipList<ContactModel> {

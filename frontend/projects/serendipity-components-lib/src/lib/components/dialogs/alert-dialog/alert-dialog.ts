@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogActions, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 
@@ -34,6 +34,7 @@ import { MatDialogActions, MatDialogContent, MatDialogRef, MatDialogTitle } from
     </mat-dialog-actions>
 
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['../styles.scss' ]
 })
 export class AlertDialog {

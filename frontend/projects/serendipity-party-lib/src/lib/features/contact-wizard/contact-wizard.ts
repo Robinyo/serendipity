@@ -1,17 +1,17 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatStepper, MatStepperModule } from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import { Observable, Subscription } from 'rxjs';
 
 import { ActivityBar, CommandBar, Item, SnackBar, WizardComponent } from 'serendipity-components-lib';
-import { DynamicForm, DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'serendipity-dynamic-forms-lib';
+// import { DynamicForm, DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'serendipity-dynamic-forms-lib';
 
 import { ContactsService } from '../../services/contacts/contacts';
 // import { LookupAccountDialogComponent } from "../dialogs/lookup-account-dialog/lookup-account-dialog.component";
@@ -36,7 +36,7 @@ import { CONTACTS } from  './constants';
   imports: [
     ActivityBar,
     CommandBar,
-    DynamicForm,
+    // DynamicForm,
     MatButtonModule,
     MatCardModule,
     MatIconModule,
@@ -46,22 +46,23 @@ import { CONTACTS } from  './constants';
   ],
   templateUrl: './contact-wizard.html',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './contact-wizard.scss'
 })
 export class ContactWizard extends WizardComponent<ContactModel> {
 
-  public nameFormModel!: DynamicFormModel;
+  // public nameFormModel!: DynamicFormModel;
   public nameFormGroup!: FormGroup;
 
-  public addressFormModel!: DynamicFormModel;
+  // public addressFormModel!: DynamicFormModel;
   public addressFormGroup!: FormGroup;
 
-  public contactDetailsFormModel!: DynamicFormModel;
+  // public contactDetailsFormModel!: DynamicFormModel;
   public contactDetailsFormGroup!: FormGroup;
 
   private isNew = true;
 
-  private dynamicFormService: DynamicFormService = inject(DynamicFormService);
+  // private dynamicFormService: DynamicFormService = inject(DynamicFormService);
   private entityService: ContactsService = inject(ContactsService);
 
   constructor() {
@@ -70,9 +71,9 @@ export class ContactWizard extends WizardComponent<ContactModel> {
 
     this.logger.info('Contact Wizard Component: constructor()');
 
-    this.nameFormModel = this.route.snapshot.data['metaData'].nameFormModel;
-    this.addressFormModel = this.route.snapshot.data['metaData'].addressFormModel;
-    this.contactDetailsFormModel = this.route.snapshot.data['metaData'].contactDetailsFormModel;
+    // this.nameFormModel = this.route.snapshot.data['metaData'].nameFormModel;
+    // this.addressFormModel = this.route.snapshot.data['metaData'].addressFormModel;
+    // this.contactDetailsFormModel = this.route.snapshot.data['metaData'].contactDetailsFormModel;
 
     // this.logger.info('nameFormModel: ' + JSON.stringify(this.nameFormModel, null, 2));
     // this.logger.info('addressFormModel: ' + JSON.stringify(this.addressFormModel, null, 2));
@@ -90,12 +91,12 @@ export class ContactWizard extends WizardComponent<ContactModel> {
 
     this.createSampleContact();
 
-    this.nameFormGroup = this.dynamicFormService.createGroup(this.nameFormModel);
-    this.addressFormGroup = this.dynamicFormService.createGroup(this.addressFormModel);
-    this.contactDetailsFormGroup = this.dynamicFormService.createGroup(this.contactDetailsFormModel);
+    // this.nameFormGroup = this.dynamicFormService.createGroup(this.nameFormModel);
+    // this.addressFormGroup = this.dynamicFormService.createGroup(this.addressFormModel);
+    // this.contactDetailsFormGroup = this.dynamicFormService.createGroup(this.contactDetailsFormModel);
 
-    this.dynamicFormService.initGroup(this.nameFormGroup, this.item);
-    this.dynamicFormService.initGroup(this.addressFormGroup, this.item.party.addresses[0]);
+    // this.dynamicFormService.initGroup(this.nameFormGroup, this.item);
+    // this.dynamicFormService.initGroup(this.addressFormGroup, this.item.party.addresses[0]);
 
   }
 
@@ -229,8 +230,8 @@ export class ContactWizard extends WizardComponent<ContactModel> {
 
     this.logger.info('Contact Wizard Component: onSave()');
 
-    this.dynamicFormService.value(this.nameFormGroup, this.item);
-    this.dynamicFormService.value(this.addressFormGroup, this.item.party.addresses[0]);
+    // this.dynamicFormService.value(this.nameFormGroup, this.item);
+    // this.dynamicFormService.value(this.addressFormGroup, this.item.party.addresses[0]);
 
     this.logger.info('contact: ' + JSON.stringify(this.item, null, 2) + '\n');
 
