@@ -75,22 +75,10 @@
       "path": "./projects/serendipity-party-lib/tsconfig.spec.json"
     },
     {
-      "path": "./projects/serendipity-flowable-lib/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/serendipity-flowable-lib/tsconfig.spec.json"
-    },
-    {
       "path": "./projects/serendipity-workflow-lib/tsconfig.lib.json"
     },
     {
       "path": "./projects/serendipity-workflow-lib/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/serendipity-dynamic-forms-lib/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/serendipity-dynamic-forms-lib/tsconfig.spec.json"
     },
     {
       "path": "./projects/serendipity-auth-lib/tsconfig.lib.json"

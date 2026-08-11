@@ -119,8 +119,8 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "projects/serendipity-pwa/tsconfig.spec.json",
-            "buildTarget": ":build:testing",
+            "tsConfig": "projects/serendipity-pwa/tsconfig.json",
+            "buildTarget": "serendipity-pwa:build:development",
             "runner": "vitest"
           }
         }
@@ -150,7 +150,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
             "tsConfig": "projects/serendipity-utils-lib/tsconfig.spec.json"
           }
@@ -181,7 +181,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
             "tsConfig": "projects/serendipity-components-lib/tsconfig.spec.json"
           }
@@ -212,7 +212,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
             "tsConfig": "projects/serendipity-party-lib/tsconfig.spec.json"
           }
@@ -243,7 +243,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
             "tsConfig": "projects/serendipity-workflow-lib/tsconfig.spec.json"
           }
@@ -274,7 +274,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
             "tsConfig": "projects/serendipity-auth-lib/tsconfig.spec.json"
           }
@@ -305,7 +305,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
             "tsConfig": "projects/serendipity-camunda-lib/tsconfig.spec.json"
           }

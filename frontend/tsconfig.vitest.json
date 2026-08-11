@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["vitest/globals"]
+  },
+  "include": [
+    "projects/serendipity-pwa/src/**/*.spec.ts",
+    "projects/serendipity-pwa/src/**/*.d.ts"
+  ]
+}
