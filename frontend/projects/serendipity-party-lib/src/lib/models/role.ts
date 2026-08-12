@@ -1,6 +1,6 @@
 export class RoleModel {
 
-  public id?: string;
+  public id?: string | number;
 
   constructor(
     public role: string = '',

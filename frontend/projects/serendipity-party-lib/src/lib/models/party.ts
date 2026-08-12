@@ -3,7 +3,7 @@ import { RoleModel } from './role';
 
 export class PartyModel {
 
-  public id?: string;
+  public id?: string | number;
 
   public legalType: string;
 

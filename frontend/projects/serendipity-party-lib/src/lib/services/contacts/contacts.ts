@@ -91,7 +91,7 @@ export class ContactsService extends AbstractCollectionService {
 
   }
 
-  public update(id: string, contact: ContactModel): Observable<HttpResponse<ContactModel>> {
+  public update(id: string | number, contact: ContactModel): Observable<HttpResponse<ContactModel>> {
 
     return this.httpClient.patch<HttpResponse<ContactModel>>(this.url + id, contact, this.getDefaultHttpPostOptions()).pipe(
       tap(() => {

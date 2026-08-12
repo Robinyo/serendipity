@@ -6,7 +6,6 @@
   },
   "include": [
     "src/**/*.spec.ts",
-    "src/**/*.d.ts",
-    "test-providers.ts"
+    "src/**/*.d.ts"
   ]
 }

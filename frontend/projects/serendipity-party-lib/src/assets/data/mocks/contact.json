@@ -1,0 +1,111 @@
+{
+  "party": {
+    "id": 89,
+    "type": "INDIVIDUAL",
+    "legalType": "",
+    "displayName": "Hon Anthony Albanese",
+    "addresses": [
+      {
+        "id": 1,
+        "location": {
+          "id": 1,
+          "type": "Address",
+          "displayName": "PO Box 6100 Parliament House Canberra ACT 2600",
+          "fromDate": "",
+          "toDate": ""
+        },
+        "name": "The Senate",
+        "line1": "PO Box 6100",
+        "line2": "Parliament House",
+        "city": "Canberra",
+        "state": "ACT",
+        "postalCode": "2600",
+        "country": "Australia",
+        "addressType": "Mailing"
+      }
+    ],
+    "roles": [
+      {
+        "id": 151,
+        "role": "Member",
+        "partyId": 89,
+        "partyType": "INDIVIDUAL",
+        "partyName": "Hon Anthony Albanese",
+        "partyEmail": "anthony.albanese@aph.gov.au",
+        "partyPhoneNumber": "",
+        "relationship": "Membership",
+        "reciprocalRole": "Political Party",
+        "reciprocalPartyId": 12,
+        "reciprocalPartyType": "ORGANISATION",
+        "reciprocalPartyName": "Australian Labor Party",
+        "reciprocalPartyEmail": "hey@alp.org.au",
+        "reciprocalPartyPhoneNumber": "(02) 6120 0800"
+      },
+      {
+        "id": 152,
+        "role": "Contact",
+        "partyId": 89,
+        "partyType": "INDIVIDUAL",
+        "partyName": "Hon Anthony Albanese",
+        "partyEmail": "anthony.albanese@aph.gov.au",
+        "partyPhoneNumber": "",
+        "relationship": "Association",
+        "reciprocalRole": "Account",
+        "reciprocalPartyId": 12,
+        "reciprocalPartyType": "ORGANISATION",
+        "reciprocalPartyName": "Australian Labor Party",
+        "reciprocalPartyEmail": "hey@alp.org.au",
+        "reciprocalPartyPhoneNumber": "(02) 6120 0800"
+      }
+    ]
+  },
+  "name": {
+    "id": "",
+    "title": "Hon",
+    "givenName": "Anthony",
+    "preferredGivenName": "",
+    "middleName": "Norman",
+    "familyName": "Albanese",
+    "preferredFamilyName": "",
+    "preferredName": "Anthony",
+    "initials": "A. N.",
+    "honorific": "MP",
+    "salutation": "Mr"
+  },
+  "sex": "Male",
+  "email": "anthony.albanese@aph.gov.au",
+  "phoneNumber": "",
+  "photoUrl": "assets/images/male-avatar.svg",
+  "electorate": "Grayndler",
+  "dateOfBirth": "",
+  "placeOfBirth": "",
+  "countryOfBirth": "",
+  "id": "ODk=",
+  "organisation": {
+    "id": 12,
+    "displayName": "Australian Labor Party",
+    "email": "hey@alp.org.au",
+    "phoneNumber": "(02) 6120 0800"
+  },
+  "jobTitle": "",
+  "faxNumber": "",
+  "preferredContactMethod": "",
+  "address": {
+    "id": 1,
+    "location": {
+      "id": 1,
+      "type": "Address",
+      "displayName": "PO Box 6100 Parliament House Canberra ACT 2600",
+      "fromDate": "",
+      "toDate": ""
+    },
+    "name": "The Senate",
+    "line1": "PO Box 6100",
+    "line2": "Parliament House",
+    "city": "Canberra",
+    "state": "ACT",
+    "postalCode": "2600",
+    "country": "Australia",
+    "addressType": "Mailing"
+  }
+}

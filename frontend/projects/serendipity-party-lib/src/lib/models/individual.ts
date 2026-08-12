@@ -17,7 +17,7 @@ const defaultName: NameModel = new NameModel(
 
 export class IndividualModel {
 
-  public id?: string;
+  public id?: string | number;
 
   constructor(
     public party: PartyModel = new PartyModel(PartyType.INDIVIDUAL),

@@ -1,6 +1,6 @@
 export class ElectoralDivisionModel {
 
-  public id?: string;
+  public id?: string | number;
 
   constructor(
     public name: string = '',

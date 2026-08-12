@@ -5,7 +5,7 @@ import { PartyType } from '../types/party-type';
 
 export class OrganisationModel {
 
-  public id?: string;
+  public id?: string | number;
 
   constructor(
     public party: PartyModel = new PartyModel(PartyType.ORGANISATION),

@@ -1,6 +1,6 @@
 export class LocationModel {
 
-  public id?: string;
+  public id?: string | number;
 
   public fromDate: string;
   public toDate: string;

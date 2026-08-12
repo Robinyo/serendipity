@@ -83,7 +83,7 @@ export class Contact extends Item<ContactModel> {
   private electoralDivision!: ElectoralDivisionModel;
 
   private electoralDivisionsService: ElectoralDivisionsService = inject(ElectoralDivisionsService);
-  private entityService: ContactsService = inject(ContactsService);
+  private contactsService: ContactsService = inject(ContactsService);
 
   private map!: Map;
 
@@ -116,7 +116,7 @@ export class Contact extends Item<ContactModel> {
 
     this.isLoading = true;
 
-    const entitySubscription: Subscription = this.entityService.findById(this.id).subscribe(
+    const entitySubscription: Subscription = this.contactsService.findById(this.id).subscribe(
 
       (response: any) => {
 
@@ -218,7 +218,7 @@ export class Contact extends Item<ContactModel> {
 
         this.logger.info('Contact Component onDeactivate() response: true');
 
-        const subscription: Subscription = this.entityService.delete(this.id).subscribe(() => {
+        const subscription: Subscription = this.contactsService.delete(this.id).subscribe(() => {
 
           subscription.unsubscribe();
           this.router.navigate([CONTACTS]);
@@ -401,7 +401,7 @@ export class Contact extends Item<ContactModel> {
       reciprocalPartyPhoneNumber: account.phoneNumber
     };
 
-    const subscription: Subscription = this.entityService.createRole(this.id, role).subscribe(data => {
+    const subscription: Subscription = this.contactsService.createRole(this.id, role).subscribe(data => {
 
       if (data.body != null ) {
 
@@ -435,7 +435,7 @@ export class Contact extends Item<ContactModel> {
         this.logger.info('remove -> role === Contact && reciprocalRole === Account');
 
         // @ts-ignore
-        const subscription: Subscription = this.entityService.deleteRole(this.id, role.id).subscribe(() => {
+        const subscription: Subscription = this.contactsService.deleteRole(this.id, role.id).subscribe(() => {
 
           // remove the Role
           this.item.party.roles.splice(index, 1);
@@ -481,7 +481,7 @@ export class Contact extends Item<ContactModel> {
     this.logger.info('id: ' + this.id + ' item id: ' + this.item.id);
     this.logger.info('item: ' + JSON.stringify(this.item, null, 2) + '\n');
 
-    const subscription: Subscription = this.entityService.update(this.id, this.item).subscribe(() => {
+    const subscription: Subscription = this.contactsService.update(this.id, this.item).subscribe(() => {
 
       // this.openSnackBar();
 

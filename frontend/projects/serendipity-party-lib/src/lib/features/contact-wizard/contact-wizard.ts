@@ -289,7 +289,7 @@ export class ContactWizard extends WizardComponent<ContactModel> {
 
     this.logger.info('Contact Wizard Component: update()');
 
-    let id: string = '';
+    let id: string | number = '';
 
     if (this.item.party.id != null) {
       id = this.item.party.id;

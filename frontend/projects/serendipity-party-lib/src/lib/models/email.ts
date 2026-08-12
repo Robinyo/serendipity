@@ -1,6 +1,6 @@
 export class EmailModel {
 
-  // public id?: string;
+  // public id?: string | number;
 
   constructor(
     public from: string,

@@ -121,7 +121,8 @@
           "options": {
             "tsConfig": "projects/serendipity-pwa/tsconfig.json",
             "buildTarget": "serendipity-pwa:build:development",
-            "runner": "vitest"
+            "runner": "vitest",
+            "providersFile": "projects/serendipity-pwa/test-providers.ts"
           }
         }
       }
@@ -214,7 +215,10 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "projects/serendipity-party-lib/tsconfig.spec.json"
+            "tsConfig": "projects/serendipity-party-lib/tsconfig.json",
+            "buildTarget": "serendipity-pwa:build:development",
+            "runner": "vitest",
+            "providersFile": "projects/serendipity-pwa/test-providers.ts"
           }
         }
       }

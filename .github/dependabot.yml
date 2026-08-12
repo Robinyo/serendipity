@@ -11,7 +11,10 @@ updates:
           - "@angular/*"
           - "@ngtools/*"
           - "typescript"
-
+    # Prevent major TypeScript shifts from bypassing Angular ecosystem checks
+    ignore:
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
   # Spring Boot Backend Configuration
   - package-ecosystem: "maven"
     directory: "/backend"
