@@ -99,15 +99,21 @@ server:
 logging:
   level:
     root: INFO
-    org.flowable: INFO
     org.hibernate.SQL: INFO
     org.springframework.web: INFO
-    reactor.netty.http.client.HttpClient: INFO
 
 spring:
   data:
     rest:
-      base-path: /api
+      base-path: /api/party-service
+  # jpa:
+  #   show-sql: true
+  datasource:
+    username: admin
+    password: secret
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
   main:
     banner-mode: off
   profiles:
@@ -149,9 +155,37 @@ For example:
 ```
 package org.serendipity.party.entity;
 
-...
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Index;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.serendipity.party.type.PartyType;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.util.Set;
+import java.util.UUID;
 
 @Entity
+@Table(name = "Party", indexes = @Index(name = "party_public_id_idx", columnList = "publicId"))
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -161,26 +195,25 @@ package org.serendipity.party.entity;
 public class Party {
 
   @Id
-  @GeneratedValue(
-    strategy = GenerationType.SEQUENCE,
-    generator = "SequenceParty")
-  @SequenceGenerator(
-    name = "SequenceParty",
-    allocationSize = 1
-  )
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceParty")
+  @SequenceGenerator(name = "SequenceParty", allocationSize = 1)
   private Long id;
+
+  @Builder.Default
+  @Column(nullable = false, unique = true, updatable = false, length = 36)
+  private String publicId = UUID.randomUUID().toString();
 
   @Builder.Default
   @Enumerated(EnumType.STRING)
   private PartyType type = PartyType.INDIVIDUAL;
 
   @Builder.Default
-  private String legalType = "";
+  private String legalEntityType = "";
 
   @Builder.Default
   private String displayName = "";
 
-  @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @JoinTable(
     name = "PartyAddress",
     joinColumns = @JoinColumn(name = "partyId"),
@@ -188,7 +221,7 @@ public class Party {
   )
   private Set<Address> addresses;
 
-  @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @JoinTable(
     name = "PartyRole",
     joinColumns = @JoinColumn(name = "partyId"),
@@ -262,36 +295,104 @@ For example:
 ```
 package org.serendipity.party.service;
 
-...
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.serendipity.party.entity.Individual;
+import org.serendipity.party.exception.ResourceNotFoundException;
+import org.serendipity.party.repository.IndividualRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class IndividualService {
 
   private final IndividualRepository repository;
 
-  public IndividualService(IndividualRepository repository) {
-    this.repository = repository;
-  }
-
+  @Transactional(readOnly = true)
   public Page<Individual> findAll(Pageable pageable) {
     return repository.findAll(pageable);
   }
 
-  public Individual findById(final Long id) throws ResponseStatusException {
-    return repository.findById(id).orElseThrow(() ->
-        new ResponseStatusException(HttpStatus.NOT_FOUND));
+  @Transactional(readOnly = true)
+  public Individual findByPartyPublicId(String publicId) {
+    return repository.findByPartyPublicId(publicId)
+      .orElseThrow(() -> new ResourceNotFoundException("Individual not found with id: " + publicId));
   }
 
-  public Page<Individual> findByNameFamilyNameStartsWith(String name, Pageable pageable) {
+  @Transactional(readOnly = true)
+  public Page<Individual> findByNameFamilyNameStartsWith(final String name, Pageable pageable) {
     return repository.findByNameFamilyNameStartsWith(name, pageable);
   }
 
+  @Transactional
   public Individual save(Individual individual) {
+    log.debug("Saving Individual: {}", individual);
     return repository.save(individual);
   }
 
-  public void deleteById(final Long id) {
-    repository.deleteById(id);
+  @Transactional
+  public Individual update(String publicId, Individual updatedIndividual) {
+    log.debug("Updating Individual with publicId: {}", publicId);
+
+    Individual existing = repository.findByPartyPublicId(publicId)
+      .orElseThrow(() -> new ResourceNotFoundException("Individual not found with id: " + publicId));
+
+    // 1. Basic & Name Information
+    existing.setName(updatedIndividual.getName());
+    existing.setJobTitle(updatedIndividual.getJobTitle());
+    existing.setSex(updatedIndividual.getSex());
+    existing.setGender(updatedIndividual.getGender());
+
+    // 2. Contact Information
+    existing.setEmail(updatedIndividual.getEmail());
+    existing.setPhoneNumber(updatedIndividual.getPhoneNumber());
+    existing.setFaxNumber(updatedIndividual.getFaxNumber());
+    existing.setPreferredContactMethod(updatedIndividual.getPreferredContactMethod());
+
+    // 3. Profile & Location
+    existing.setPhotoUrl(updatedIndividual.getPhotoUrl());
+    existing.setElectorate(updatedIndividual.getElectorate());
+
+    // 4. Birth Details
+    existing.setDateOfBirth(updatedIndividual.getDateOfBirth());
+    existing.setPlaceOfBirth(updatedIndividual.getPlaceOfBirth());
+    existing.setCountryOfBirth(updatedIndividual.getCountryOfBirth());
+
+    // 5. Death Details
+    existing.setDateOfDeath(updatedIndividual.getDateOfDeath());
+    existing.setPlaceOfDeath(updatedIndividual.getPlaceOfDeath());
+    existing.setCountryOfDeath(updatedIndividual.getCountryOfDeath());
+
+    // 6. Relationship Status
+    // existing.setRelationshipLifecycleStatus(updatedIndividual.getRelationshipLifecycleStatus());
+
+    // 7. Update Party (if present)
+    if (updatedIndividual.getParty() != null && existing.getParty() != null) {
+      existing.getParty().setDisplayName(updatedIndividual.getParty().getDisplayName());
+    }
+
+    // 8. Child Collection (names): Clear and add to handle orphanRemoval properly
+    if (updatedIndividual.getNames() != null) {
+      existing.getNames().clear();
+      updatedIndividual.getNames().forEach(existing::addIndividualName);
+    }
+
+    return repository.save(existing);
+  }
+
+  @Transactional
+  public void deleteByPartyPublicId(final String id) {
+    log.debug("Deleting Individual with publicId: {}", id);
+
+    if (!repository.existsByPartyPublicId(id)) {
+      throw new ResourceNotFoundException("Individual not found with id: " + id);
+    }
+
+    repository.deleteByPartyPublicId(id);
   }
 
 }
@@ -327,10 +428,26 @@ For example:
 ```
 package org.serendipity.party.repository;
 
-import org.serendipity.party.entity.Party;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.serendipity.party.entity.Individual;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface PartyRepository extends PagingAndSortingRepository<Party, Long> {}
+import java.util.Optional;
+
+@Repository
+public interface IndividualRepository extends JpaRepository<Individual, Long> {
+
+  Optional<Individual> findByPartyPublicId(String publicId);
+
+  Page<Individual> findByNameFamilyNameStartsWith(String name, Pageable pageable);
+
+  boolean existsByPartyPublicId(String publicId);
+
+  void deleteByPartyPublicId(String publicId);
+
+}
 ```
 
 ### Controller Layer
