@@ -36,7 +36,7 @@
     "@angular/router": "^22.1.1",
     "@bluehalo/ngx-leaflet": "^22.0.0",
     "@bpmn-io/form-js-viewer": "^1.24.0",
-    "bpmn-js": "^18.22.1",
+    "bpmn-js": "^18.24.0",
     "leaflet": "^1.9.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
