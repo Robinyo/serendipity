@@ -30,6 +30,13 @@
   width: variables.$phone-number-column-width;
 }
 
+.no-data-cell {
+  text-align: center;
+  padding: 32px 16px;
+  color: rgba(0, 0, 0, 0.54);
+  font-style: italic;
+}
+
 // To clip text with an ellipsis when it overflows a table cell, you need to set the following CSS properties:
 //   width: variables.$email-column-width;
 //   overflow: hidden;
