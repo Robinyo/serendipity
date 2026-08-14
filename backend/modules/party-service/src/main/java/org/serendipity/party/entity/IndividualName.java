@@ -8,9 +8,11 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,8 +20,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
+@Table(name = "IndividualName", indexes = @Index(name = "individual_name_public_id_idx", columnList = "publicId"))
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,17 +32,16 @@ import java.time.LocalDateTime;
 public class IndividualName {
 
   @Id
-  @GeneratedValue(
-    strategy = GenerationType.SEQUENCE,
-    generator = "SequenceIndividualName")
-  @SequenceGenerator(
-    name = "SequenceIndividualName",
-    allocationSize = 1
-  )
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceIndividualName")
+  @SequenceGenerator(name = "SequenceIndividualName", allocationSize = 1)
   private Long id;
 
+  @Builder.Default
+  @Column(nullable = false, unique = true, updatable = false, length = 36)
+  private String publicId = UUID.randomUUID().toString();
+
   @JsonIgnore
-  @ManyToOne(fetch = FetchType.EAGER, optional = false)
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "individualId", nullable = false)
   private Individual individual;
 
@@ -72,61 +75,3 @@ public class IndividualName {
   }
 
 }
-
-// @Temporal(TemporalType.TIMESTAMP)
-// private Date fromDate;
-
-// @Temporal(TemporalType.TIMESTAMP)
-// private Date toDate;
-
-/*
-
-  @Column(name = "type", nullable = false)
-  private String type;
-
-  private String title;         // name prefix
-
-  private String givenName;
-
-  private String preferredGivenName;
-
-  private String middleName;    // otherNames
-
-  private String initials;
-
-  @Column(name = "familyName", nullable = false)
-  private String familyName;
-
-  private String preferredFamilyName;
-
-  private String preferredName; // informalSalutation
-
-  private String honorific;     // name suffix
-
-  private String salutation;    // formalSalutation
-
-*/
-
-/*
-
-  @Builder.Default
-  private String type = "";     // usageType: Legal Name
-
-  private String title;         // name prefix
-
-  private String givenName;
-
-  private String middleName;    // otherNames
-
-  @Column(name = "familyName", nullable = false)
-  private String familyName;
-
-  private String honorific;
-
-  private String salutation;    // formalSalutation
-
-  private String preferredName; // informalSalutation
-
-  private String initials;
-
-*/

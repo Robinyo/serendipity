@@ -1,8 +1,9 @@
 package org.serendipity.party.database.seed.au;
 
 import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
 import org.serendipity.party.entity.ElectoralDivision;
-import org.serendipity.party.repository.ElectoralDivisionRepository;
+import org.serendipity.party.service.ElectoralDivisionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
@@ -29,73 +30,44 @@ public class ElectoralDivisions implements CommandLineRunner {
   static final int LONGITUDE = 5;
 
   @Autowired
-  private ElectoralDivisionRepository electoralDivisionRepository;
+  private ElectoralDivisionService electoralDivisionService;
 
   @Override
   @Transactional
-  public void run(String... args) throws Exception {
+  public void run(String @NonNull ... args) throws Exception {
+
+    // Idempotency Check: Don't reparse CSV if electoral divisions are already seeded
+    if (electoralDivisionService.count() > 0) {
+      log.info("Electoral Divisions seed data already exists. Skipping...");
+      return;
+    }
 
     log.info("Create Electoral Divisions ...");
 
-    BufferedReader buffer = null;
+    try (InputStream resource = new ClassPathResource(PATH).getInputStream();
+         BufferedReader buffer = new BufferedReader(new InputStreamReader(resource))) {
 
-    try {
+      String line = buffer.readLine(); // Skip header line
 
-      //
-      // Process sample data file
-      //
+      while ((line = buffer.readLine()) != null && !line.trim().isEmpty()) {
 
-      InputStream resource = new ClassPathResource(PATH).getInputStream();
-
-      buffer = new BufferedReader(new InputStreamReader(resource));
-
-      String line = buffer.readLine();
-
-      // log.info("Header: {}", line);
-
-      while ((line = buffer.readLine()) != null && !line.isEmpty()) {
-
-        // Note: No support for strings with embedded commas
         String[] fields = line.split(",");
-
-        // 20 July 2018
-        // SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
 
         ElectoralDivision electoralDivision = ElectoralDivision.builder()
           .name(fields[NAME])
-          // .state(fields[STATE])
-          // .area(fields[AREA])
-          // .dateGazetted(formatter.parse(fields[DATE_GAZETTED]))
           .latitude(fields[LATITUDE])
           .longitude(fields[LONGITUDE])
           .build();
 
-        electoralDivisionRepository.save(electoralDivision);
-
+        electoralDivisionService.save(electoralDivision);
       }
 
       log.info("Create Electoral Divisions complete");
 
     } catch (Exception e) {
-
-      log.error("{}", e.getLocalizedMessage());
-
-    } finally {
-
-      if (buffer != null) {
-        buffer.close();
-      }
-
+      log.error("Failed to seed electoral divisions: {}", e.getLocalizedMessage(), e);
+      throw e; // Ensures transaction rollback
     }
-
   }
 
 }
-
-// https://www.aec.gov.au/profiles/
-
-// https://en.wikipedia.org/wiki/Divisions_of_the_Australian_House_of_Representatives
-
-// http://psephos.adam-carr.net/
-
-

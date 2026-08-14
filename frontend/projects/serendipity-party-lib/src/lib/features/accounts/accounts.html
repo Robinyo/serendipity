@@ -7,7 +7,8 @@
       <button matIconButton
               aria-label="New Account button"
               class="md-command-bar-button"
-              (click)="onNew()">
+              (click)="onNew()"
+              [disabled]="true">
         <mat-icon class="material-icons"> add </mat-icon>
       </button>
 
@@ -27,7 +28,8 @@
       <button matButton="filled"
               aria-label="New Account button"
               class="md-command-bar-button"
-              (click)="onNew()">
+              (click)="onNew()"
+              [disabled]="true">
         <mat-icon class="material-icons"> add </mat-icon>
         NEW
       </button>

@@ -1,5 +1,6 @@
 package org.serendipity.party.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -8,7 +9,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,7 +22,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+import java.util.UUID;
+
 @Entity
+@Table(name = "Location", indexes = @Index(name = "location_public_id_idx", columnList = "publicId"))
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,14 +35,13 @@ import java.time.LocalDateTime;
 public class Location {
 
   @Id
-  @GeneratedValue(
-    strategy = GenerationType.SEQUENCE,
-    generator = "SequenceLocation")
-  @SequenceGenerator(
-    name = "SequenceLocation",
-    allocationSize = 1
-  )
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceLocation")
+  @SequenceGenerator(name = "SequenceLocation", allocationSize = 1)
   private Long id;
+
+  @Builder.Default
+  @Column(nullable = false, unique = true, updatable = false, length = 36)
+  private String publicId = UUID.randomUUID().toString();
 
   @Builder.Default
   @Enumerated(EnumType.STRING)
@@ -75,10 +80,3 @@ public class Location {
 
 // https://github.com/GeoscienceAustralia/AS4590-codelists
 // https://toolkit.data.gov.au/Publishing_your_data.html
-
-
-// @Temporal(TemporalType.TIMESTAMP)
-// private Date fromDate;
-
-// @Temporal(TemporalType.TIMESTAMP)
-// private Date toDate;

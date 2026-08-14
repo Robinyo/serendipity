@@ -1,8 +1,12 @@
 package org.serendipity.party.repository;
 
 import org.serendipity.party.entity.Location;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface LocationRepository extends PagingAndSortingRepository<Location, Long> {
+import java.util.Optional;
+
+public interface LocationRepository extends JpaRepository<Location, Long> {
+
+  Optional<Location> findByPublicId(String publicId);
 
 }

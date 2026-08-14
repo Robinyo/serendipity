@@ -1,7 +1,7 @@
 package org.serendipity.party.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.serendipity.party.assembler.RoleModelAssembler;
+import org.serendipity.party.assembler.RoleAssembler;
 import org.serendipity.party.entity.Role;
 import org.serendipity.party.model.RoleModel;
 import org.serendipity.party.service.RoleService;
@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class RoleController {
 
   private final RoleService service;
-  private final RoleModelAssembler assembler;
+  private final RoleAssembler assembler;
   private final PagedResourcesAssembler<Role> pagedResourcesAssembler;
 
   RoleController(RoleService service,
-                 RoleModelAssembler assembler,
+                 RoleAssembler assembler,
                  PagedResourcesAssembler<Role> pagedResourcesAssembler) {
 
     this.service = service;
@@ -33,13 +33,18 @@ public class RoleController {
 
   }
 
+
+}
+
+/*
+
   @GetMapping("/roles/search/findByPartyId")
-  public ResponseEntity<PagedModel<RoleModel>> findByPartyId(@RequestParam("partyId") final Long partyId,
+  public ResponseEntity<PagedModel<RoleModel>> findByPartyId(@RequestParam("partyId") final String partyId,
                                                              Pageable pageable) {
 
     log.info("RoleController GET /roles/search/findByPartyId");
 
-    Page<Role> entities = service.findByPartyId(partyId, pageable);
+    Page<Role> entities = service.findByPublicId(partyId, pageable);
     PagedModel<RoleModel> models = pagedResourcesAssembler.toModel(entities, assembler);
 
     // logInfo(entities, models);
@@ -49,11 +54,11 @@ public class RoleController {
   }
 
   @GetMapping("/roles/{id}")
-  public ResponseEntity<RoleModel> findById(@PathVariable("id") final Long id) {
+  public ResponseEntity<RoleModel> findById(@PathVariable("id") final String id) {
 
     log.info("RoleController GET /roles/{id}");
 
-    Role entity = service.findById(id);
+    Role entity = service.findByPublicId(id);
     RoleModel model = assembler.toModel(entity);
 
     // logInfo(entity, model);
@@ -62,4 +67,5 @@ public class RoleController {
 
   }
 
-}
+*/
+

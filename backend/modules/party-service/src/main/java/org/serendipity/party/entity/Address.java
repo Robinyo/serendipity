@@ -3,9 +3,11 @@ package org.serendipity.party.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,13 +15,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Table(name = "Address",
+    indexes = { @Index(name = "address_name_idx", columnList = "name", unique = false) })
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
 public class Address {
-  
+
+  // Shared Primary Key pattern (@MapsId) between Address and Location.
+  // No generator needed because @MapsId derives the ID straight from Location.
   @Id
   private Long id;
   

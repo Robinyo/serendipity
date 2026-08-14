@@ -1,190 +1,33 @@
 package org.serendipity.party.database.seed.au;
 
-import lombok.extern.slf4j.Slf4j;
-import org.serendipity.party.entity.*;
-import org.serendipity.party.repository.AddressRepository;
-import org.serendipity.party.repository.IndividualRepository;
-import org.serendipity.party.repository.OrganisationRepository;
-import org.serendipity.party.repository.RoleRepository;
-import org.serendipity.party.type.LocationType;
-import org.serendipity.party.type.PartyType;
-import org.serendipity.party.type.au.LegalType;
+import org.serendipity.party.entity.Name;
 import org.serendipity.party.type.au.Sex;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.sql.Timestamp;
-import java.util.HashSet;
 
 @Component
-@Slf4j
 @Order(2)
-public class PaulineHansonsOneNation implements CommandLineRunner {
-
-  @Autowired
-  private AddressRepository addressRepository;
-
-  @Autowired
-  private IndividualRepository individualRepository;
-
-  @Autowired
-  private OrganisationRepository organisationRepository;
-
-  @Autowired
-  private RoleRepository roleRepository;
+public class PaulineHansonsOneNation extends AbstractPoliticalPartySeed {
 
   @Override
-  @Transactional
-  public void run(String... args) throws Exception {
-
-    log.info("Create {} ...", PoliticalParty.PAULINE_HANSONS_ONE_NATION.toString());
-
-    try {
-
-      //
-      // Head Office Address
-      //
-
-      // Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-
-      Location location = Location.builder()
-        .type(LocationType.ADDRESS)
-        .displayName("2/6-12 Boronia Rd Brisbane Airport QLD 4008")
-        // .fromDate(currentTime)
-        .build();
-
-      Address headOffice = Address.builder()
-        .location(location)
-        .name("")
-        .line1("2/6-12 Boronia Rd")
-        .line2("")
-        .city("Brisbane Airport")
-        .state("QLD")
-        .postalCode("4008")
-        .country("Australia")
-        .addressType("Principle Place of Business")
-        .build();
-
-      addressRepository.save(headOffice);
-
-      // Create the Primary Contact (Individual)
-
-      Name name = Name.builder()
+  protected PoliticalPartyData getPartyData() {
+    return PoliticalPartyData.builder()
+      .politicalParty(PoliticalParty.PAULINE_HANSONS_ONE_NATION)
+      .headOfficeDisplayName("2/6-12 Boronia Rd Brisbane Airport QLD 4008")
+      .addressLine1("2/6-12 Boronia Rd")
+      .city("Brisbane Airport")
+      .state("QLD")
+      .postalCode("4008")
+      .primaryContactName(Name.builder()
         .title("Ms")
         .givenName("Pauline")
         .familyName("Hanson")
-        .build();
-
-      String displayName = name.getTitle();
-
-      if (name.getTitle().isEmpty()) {
-        displayName += name.getGivenName();
-      } else {
-        displayName += " " + name.getGivenName();
-      }
-
-      if (name.getGivenName().isEmpty()) {
-        displayName += name.getFamilyName();
-      } else {
-        displayName += " " + name.getFamilyName();
-      }
-
-      Party individualParty = Party.builder()
-        .type(PartyType.INDIVIDUAL)
-        .displayName(displayName)
-        .addresses(new HashSet<>())
-        .roles(new HashSet<>())
-        .build();
-
-      String email = name.getGivenName().toLowerCase() + "." + name.getFamilyName().toLowerCase() + "@onenation.org.au";
-
-      Individual individual = Individual.builder()
-        .party(individualParty)
-        .name(name)
-        .sex(Sex.MALE.toString())
-        .email(email)
-        .phoneNumber("1300 857 466")
-        .build();
-
-      // Save the Primary Contact (Individual)
-
-      individualRepository.save(individual);
-
-      // Organisation
-
-      Party organisationParty = Party.builder()
-        .type(PartyType.ORGANISATION)
-        .legalType(LegalType.OTHER_INCORPORATED_ENTITY.toString())
-        .displayName(PoliticalParty.PAULINE_HANSONS_ONE_NATION.toString())
-        .addresses(new HashSet<Address>())
-        .roles(new HashSet<Role>())
-        .build();
-
-      Organisation organisation = Organisation.builder()
-        .party(organisationParty)
-        .name(PoliticalParty.PAULINE_HANSONS_ONE_NATION.toString())
-        .email("hey@onenation.org.au")
-        .phoneNumber("1300 857 466")
-        .build();
-
-      organisationRepository.save(organisation);
-
-      Role politicalParty = Role.builder()
-        .partyId(organisation.getParty().getId())
-        .partyType(organisation.getParty().getType())
-        .partyName(organisation.getParty().getDisplayName())
-        .partyEmail(organisation.getEmail())
-        .partyPhoneNumber(organisation.getPhoneNumber())
-        .role("Political Party")
-        .relationship("Office Holder")
-        .reciprocalRole("Primary Contact")
-        .reciprocalPartyId(individual.getParty().getId())
-        .reciprocalPartyType(individual.getParty().getType())
-        .reciprocalPartyName(individual.getParty().getDisplayName())
-        .reciprocalPartyEmail(individual.getEmail())
-        .reciprocalPartyPhoneNumber(individual.getPhoneNumber())
-        .build();
-
-      roleRepository.save(politicalParty);
-
-      organisationParty.getAddresses().add(headOffice);
-      organisationParty.getRoles().add(politicalParty);
-
-      organisationRepository.save(organisation);
-
-      Role member = Role.builder()
-        .partyId(individual.getParty().getId())
-        .partyType(individual.getParty().getType())
-        .partyName(individual.getParty().getDisplayName())
-        .partyEmail(individual.getEmail())
-        .partyPhoneNumber(individual.getPhoneNumber())
-        .role("Member")
-        .relationship("Membership")
-        .reciprocalRole("Political Party")
-        .reciprocalPartyId(organisation.getParty().getId())
-        .reciprocalPartyType(organisation.getParty().getType())
-        .reciprocalPartyName(organisation.getParty().getDisplayName())
-        .reciprocalPartyEmail(organisation.getEmail())
-        .reciprocalPartyPhoneNumber(organisation.getPhoneNumber())
-        .build();
-
-      roleRepository.save(member);
-
-      individualParty.getAddresses().add(headOffice);
-      individualParty.getRoles().add(member);
-
-      individualRepository.save(individual);
-
-      log.info("Create {} complete", PoliticalParty.PAULINE_HANSONS_ONE_NATION.toString());
-
-    } catch (Exception e) {
-
-      log.error("{}", e.getLocalizedMessage());
-    }
-
+        .build())
+      .sex(Sex.FEMALE)
+      .individualEmail("pauline.hanson@onenation.org.au")
+      .organisationEmail("hey@onenation.org.au")
+      .phoneNumber("1300 857 466")
+      .build();
   }
 
 }

@@ -3,14 +3,21 @@ package org.serendipity.party.repository;
 import org.serendipity.party.entity.Individual;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-public interface IndividualRepository extends CrudRepository<Individual, Long>, PagingAndSortingRepository<Individual, Long> {
+@Repository
+public interface IndividualRepository extends JpaRepository<Individual, Long> {
+
+  Optional<Individual> findByPartyPublicId(String publicId);
 
   Page<Individual> findByNameFamilyNameStartsWith(String name, Pageable pageable);
+
+  boolean existsByPartyPublicId(String publicId);
+
+  void deleteByPartyPublicId(String publicId);
 
 }
 

@@ -16,28 +16,27 @@ import lombok.Setter;
 @Getter
 public class Name {
 
-  private String title;         // name prefix
+  private String title;
 
   private String givenName;
 
-  private String preferredGivenName;
+  private String preferredName;
 
-  private String middleName;    // otherNames
-
-  private String initials;
+  private String middleName;
 
   @Column(name = "familyName", nullable = false)
   private String familyName;
 
-  private String preferredFamilyName;
+  private String initials;
 
-  private String preferredName; // informalSalutation
+  private String honorific;
 
-  private String honorific;     // name suffix
-
-  private String salutation;    // formalSalutation
+  private String salutation;
 
 }
 
-// @EmbeddedId
-// public class Name implements Serializable {
+// name prefix
+// informalSalutation
+// otherNames
+// name suffix
+// formalSalutation

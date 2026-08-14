@@ -7,25 +7,25 @@ import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSuppor
 import org.springframework.stereotype.Component;
 
 @Component
-public class RoleModelAssembler extends RepresentationModelAssemblerSupport<Role, RoleModel> {
+public class RoleAssembler extends RepresentationModelAssemblerSupport<Role, RoleModel> {
 
-  RoleModelAssembler() { super(RoleController.class, RoleModel.class); }
+  RoleAssembler() { super(RoleController.class, RoleModel.class); }
 
   @Override
   public RoleModel toModel(Role entity) {
 
     RoleModel model = instantiateModel(entity);
 
-    model.setId(entity.getId());
+    model.setPublicId(entity.getPublicId());
     model.setRole(entity.getRole());
-    model.setPartyId(entity.getPartyId());
+    model.setPartyPublicId(entity.getPartyPublicId());
     model.setPartyType(entity.getPartyType());
     model.setPartyName(entity.getPartyName());
     model.setPartyEmail(entity.getPartyEmail());
     model.setPartyPhoneNumber(entity.getPartyPhoneNumber());
     model.setRelationship(entity.getRelationship());
     model.setReciprocalRole(entity.getReciprocalRole());
-    model.setReciprocalPartyId(entity.getReciprocalPartyId());
+    model.setReciprocalPartyPublicId(entity.getReciprocalPartyPublicId());
     model.setReciprocalPartyType(entity.getReciprocalPartyType());
     model.setReciprocalPartyName(entity.getReciprocalPartyName());
     model.setReciprocalPartyEmail(entity.getReciprocalPartyEmail());

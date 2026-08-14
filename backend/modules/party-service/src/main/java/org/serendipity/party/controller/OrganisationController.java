@@ -1,7 +1,7 @@
 package org.serendipity.party.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.serendipity.party.assembler.OrganisationModelAssembler;
+import org.serendipity.party.assembler.OrganisationAssembler;
 import org.serendipity.party.entity.Organisation;
 import org.serendipity.party.model.OrganisationModel;
 import org.serendipity.party.service.OrganisationService;
@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.*;
 public class OrganisationController {
 
   private final OrganisationService service;
-  private final OrganisationModelAssembler assembler;
+  private final OrganisationAssembler assembler;
   private final PagedResourcesAssembler<Organisation> pagedResourcesAssembler;
 
   public OrganisationController(OrganisationService service,
-                                OrganisationModelAssembler assembler,
+                                OrganisationAssembler assembler,
                                 PagedResourcesAssembler<Organisation> pagedResourcesAssembler) {
 
     this.service = service;
@@ -47,11 +47,11 @@ public class OrganisationController {
   }
 
   @GetMapping("/organisations/{id}")
-  public ResponseEntity<OrganisationModel> findById(@PathVariable("id") final Long id) {
+  public ResponseEntity<OrganisationModel> findById(@PathVariable("id") final String id) {
 
     log.info("OrganisationController GET /organisations/{id}");
 
-    Organisation entity = service.findById(id);
+    Organisation entity = service.findByPartyPublicId(id);
     OrganisationModel model = assembler.toModel(entity);
 
     // logInfo(entity, model);
@@ -90,8 +90,10 @@ public class OrganisationController {
         .body(model);
   }
 
+  /*
+
   @PatchMapping("/organisations/{id}")
-  public ResponseEntity<OrganisationModel> update(@PathVariable("id") final Long id,
+  public ResponseEntity<OrganisationModel> update(@PathVariable final String id,
                                                   @RequestBody Organisation organisation) {
 
     log.info("OrganisationController PATCH /organisations/{id}");
@@ -110,7 +112,7 @@ public class OrganisationController {
   }
 
   @DeleteMapping("/organisations/{id}")
-  public ResponseEntity<OrganisationModel> delete(@PathVariable("id") final Long id) {
+  public ResponseEntity<OrganisationModel> delete(@PathVariable final String id) {
 
     log.info("OrganisationController DELETE /organisations/{id}");
 
@@ -119,5 +121,7 @@ public class OrganisationController {
     return ResponseEntity.noContent().build();
 
   }
+
+  */
 
 }

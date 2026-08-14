@@ -2,6 +2,8 @@ package org.serendipity.party.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,32 +17,36 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.serendipity.party.type.PartyType;
 
+import java.util.UUID;
+
 @Entity
+@Table(name = "Role",
+    indexes = { @Index(name = "role_public_id_idx", columnList = "publicId"),
+                @Index(name = "role_party_public_id_idx", columnList = "partyPublicId", unique = false) })
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-@Table(indexes = { @Index(name = "PARTY_ID_INDEX", columnList = "partyId", unique = false) })
 public class Role {
 
   @Id
-  @GeneratedValue(
-    strategy = GenerationType.SEQUENCE,
-    generator = "SequenceRole")
-  @SequenceGenerator(
-    name = "SequenceRole",
-    allocationSize = 1
-  )
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceRole")
+  @SequenceGenerator(name = "SequenceRole", allocationSize = 1)
   private Long id;
+
+  @Builder.Default
+  @Column(nullable = false, unique = true, updatable = false, length = 36)
+  private String publicId = UUID.randomUUID().toString();
 
   @Builder.Default
   private String role = "Member";
 
-  @Column(nullable = false)
-  private Long partyId;
+  @Column(nullable = false, length = 36)
+  private String partyPublicId;
 
   @Column(nullable = false)
+  @Enumerated(EnumType.STRING)
   private PartyType partyType;
 
   @Column(nullable = false)
@@ -58,8 +64,8 @@ public class Role {
   @Builder.Default
   private String reciprocalRole = "Organisation";
 
-  @Column(nullable = false)
-  private Long reciprocalPartyId;
+  @Column(nullable = false, length = 36)
+  private String reciprocalPartyPublicId;
 
   @Column(nullable = false)
   private PartyType reciprocalPartyType;

@@ -7,9 +7,9 @@ import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSuppor
 import org.springframework.stereotype.Component;
 
 @Component
-public class ElectoralDivisionModelAssembler extends RepresentationModelAssemblerSupport<ElectoralDivision, ElectoralDivisionModel> {
+public class ElectoralDivisionAssembler extends RepresentationModelAssemblerSupport<ElectoralDivision, ElectoralDivisionModel> {
 
-  public ElectoralDivisionModelAssembler() {
+  public ElectoralDivisionAssembler() {
     super(ElectoralDivisionController.class, ElectoralDivisionModel.class);
   }
 
@@ -18,7 +18,7 @@ public class ElectoralDivisionModelAssembler extends RepresentationModelAssemble
 
     ElectoralDivisionModel model = instantiateModel(entity);
 
-    model.setId(entity.getId());
+    model.setPublicId(entity.getPublicId());
     model.setName(entity.getName());
     model.setNameDerivation(entity.getNameDerivation());
     model.setState(entity.getState());

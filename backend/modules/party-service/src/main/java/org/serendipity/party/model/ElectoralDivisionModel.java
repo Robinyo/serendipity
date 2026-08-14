@@ -5,14 +5,14 @@ import org.springframework.hateoas.RepresentationModel;
 
 import java.time.LocalDateTime;
 
+@Data
+@EqualsAndHashCode(callSuper = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
-@Getter
 public class ElectoralDivisionModel extends RepresentationModel<ElectoralDivisionModel> {
 
-  private Long id;
+  private String publicId;
   private String name;
   private String nameDerivation;
   private String state;
@@ -21,24 +21,5 @@ public class ElectoralDivisionModel extends RepresentationModel<ElectoralDivisio
   private LocalDateTime dateGazetted;
   private String latitude;
   private String longitude;
-
-  @Override
-  public boolean equals(Object o) {
-
-    if (this == o)
-      return true;
-
-    if (!(o instanceof ElectoralDivisionModel))
-      return false;
-
-    ElectoralDivisionModel other = (ElectoralDivisionModel) o;
-
-    return id != null && id.equals(other.getId());
-  }
-
-  @Override
-  public int hashCode() {
-    return getClass().hashCode();
-  }
 
 }

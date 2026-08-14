@@ -15,25 +15,27 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
+@Table(name = "ElectoralDivision",
+    indexes = { @Index(name = "electoral_division_public_id_idx", columnList = "publicId"),
+                @Index(name = "electoral_division_name_idx", columnList = "name") })
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-@Table(indexes = { @Index(name = "ELECTORAL_DIVISION_NAME_INDEX", columnList = "name", unique = true) })
 public class ElectoralDivision {
 
   @Id
-  @GeneratedValue(
-    strategy = GenerationType.SEQUENCE,
-    generator = "SequenceElectoralDivision")
-  @SequenceGenerator(
-    name = "SequenceElectoralDivision",
-    allocationSize = 1
-  )
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceElectoralDivision")
+  @SequenceGenerator(name = "SequenceElectoralDivision", allocationSize = 1)
   private Long id;
+
+  @Builder.Default
+  @Column(nullable = false, unique = true, updatable = false, length = 36)
+  private String publicId = UUID.randomUUID().toString();
 
   @Column(name = "name", nullable = false)
   private String name;
@@ -46,8 +48,6 @@ public class ElectoralDivision {
 
   private String locationDescription;
 
-  // @Temporal(TemporalType.DATE)
-  // private Date dateGazetted;
   private LocalDateTime dateGazetted;
 
   private String latitude;

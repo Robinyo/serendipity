@@ -2,20 +2,21 @@ package org.serendipity.party.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
 
+@Data
+@EqualsAndHashCode(callSuper = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
-@Getter
 public class AddressModel extends RepresentationModel<AddressModel> {
 
-  private Long id;
-  private LocationModel location;
+  private String locationPublicId;
   private String name;
   private String line1;
   private String line2;
@@ -27,24 +28,5 @@ public class AddressModel extends RepresentationModel<AddressModel> {
 
   // private double latitude;
   // private double longitude;
-
-  @Override
-  public boolean equals(Object o) {
-
-    if (this == o)
-      return true;
-
-    if (!(o instanceof AddressModel))
-      return false;
-
-    AddressModel other = (AddressModel) o;
-
-    return id != null && id.equals(other.getId());
-  }
-
-  @Override
-  public int hashCode() {
-    return getClass().hashCode();
-  }
 
 }

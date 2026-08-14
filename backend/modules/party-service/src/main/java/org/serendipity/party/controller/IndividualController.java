@@ -1,16 +1,12 @@
 package org.serendipity.party.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.serendipity.party.assembler.IndividualModelAssembler;
-import org.serendipity.party.assembler.RoleModelAssembler;
+import org.serendipity.party.assembler.IndividualAssembler;
+import org.serendipity.party.assembler.RoleAssembler;
 import org.serendipity.party.entity.Individual;
-import org.serendipity.party.entity.Party;
-import org.serendipity.party.entity.Role;
 import org.serendipity.party.model.IndividualModel;
 import org.serendipity.party.service.IndividualService;
-import org.serendipity.party.model.RoleModel;
 import org.serendipity.party.service.RoleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.BasePathAwareController;
@@ -18,25 +14,125 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 @BasePathAwareController
 @Slf4j
 public class IndividualController {
 
   private final IndividualService individualService;
-  private final IndividualModelAssembler individualModelAssembler;
+  private final IndividualAssembler individualModelAssembler;
   private final PagedResourcesAssembler<Individual> individualPagedResourcesAssembler;
   private final RoleService roleService;
-  private final RoleModelAssembler roleModelAssembler;
+  private final RoleAssembler roleModelAssembler;
 
   public IndividualController(IndividualService individualService,
-                              IndividualModelAssembler individualModelAssembler,
+                              IndividualAssembler individualModelAssembler,
                               PagedResourcesAssembler<Individual> individualPagedResourcesAssembler,
                               RoleService roleService,
-                              RoleModelAssembler roleModelAssembler) {
+                              RoleAssembler roleModelAssembler) {
+    this.individualService = individualService;
+    this.individualModelAssembler = individualModelAssembler;
+    this.individualPagedResourcesAssembler = individualPagedResourcesAssembler;
+    this.roleService = roleService;
+    this.roleModelAssembler = roleModelAssembler;
+  }
+
+  // --- READ ALL ---
+  @GetMapping("/individuals")
+  public ResponseEntity<PagedModel<IndividualModel>> findAll(Pageable pageable) {
+
+    log.info("Individual Controller GET /individuals - page: {}", pageable);
+
+    Page<Individual> entities = individualService.findAll(pageable);
+    PagedModel<IndividualModel> models = individualPagedResourcesAssembler.toModel(entities, individualModelAssembler);
+
+    return ResponseEntity.ok(models);
+  }
+
+  // --- READ ONE BY PUBLIC ID ---
+  @GetMapping("/individuals/{publicId}")
+  public ResponseEntity<IndividualModel> findById(@PathVariable("publicId") final String publicId) {
+
+    log.info("IndividualController GET /individuals/{}", publicId);
+
+    Individual entity = individualService.findByPartyPublicId(publicId);
+    IndividualModel model = individualModelAssembler.toModel(entity);
+
+    return ResponseEntity.ok(model);
+  }
+
+  // --- SEARCH BY FAMILY NAME ---
+  @GetMapping("/individuals/search/findByFamilyNameStartsWith")
+  public ResponseEntity<PagedModel<IndividualModel>> findByFamilyNameStartsWith(
+    @RequestParam("name") final String name,
+    Pageable pageable) {
+
+    log.info("Individual Controller GET /individuals/search/findByFamilyNameStartsWith - name: {}", name);
+
+    Page<Individual> entities = individualService.findByNameFamilyNameStartsWith(name, pageable);
+    PagedModel<IndividualModel> models = individualPagedResourcesAssembler.toModel(entities, individualModelAssembler);
+
+    return ResponseEntity.ok(models);
+  }
+
+  // --- CREATE ---
+  @PostMapping("/individuals")
+  public ResponseEntity<IndividualModel> create(@RequestBody Individual individual) {
+
+    log.info("Individual Controller POST /individuals");
+
+    Individual entity = individualService.save(individual);
+    IndividualModel model = individualModelAssembler.toModel(entity);
+
+    return ResponseEntity
+      .created(model.getRequiredLink(IanaLinkRelations.SELF).toUri())
+      .body(model);
+  }
+
+  // --- UPDATE BY PUBLIC ID ---
+  @PutMapping("/individuals/{publicId}")
+  public ResponseEntity<IndividualModel> update(
+    @PathVariable("publicId") final String publicId,
+    @RequestBody Individual individual) {
+
+    log.info("Individual Controller PUT /individuals/{}", publicId);
+
+    Individual updatedEntity = individualService.update(publicId, individual);
+    IndividualModel model = individualModelAssembler.toModel(updatedEntity);
+
+    return ResponseEntity.ok(model);
+  }
+
+  // --- DELETE BY PUBLIC ID ---
+  @DeleteMapping("/individuals/{publicId}")
+  public ResponseEntity<Void> delete(@PathVariable("publicId") final String publicId) {
+
+    log.info("Individual Controller DELETE /individuals/{}", publicId);
+
+    individualService.deleteByPartyPublicId(publicId);
+
+    return ResponseEntity.noContent().build();
+  }
+
+}
+
+/*
+@BasePathAwareController
+@Slf4j
+public class IndividualController {
+
+  private final IndividualService individualService;
+  private final IndividualAssembler individualModelAssembler;
+  private final PagedResourcesAssembler<Individual> individualPagedResourcesAssembler;
+  private final RoleService roleService;
+  private final RoleAssembler roleModelAssembler;
+
+  public IndividualController(IndividualService individualService,
+                              IndividualAssembler individualModelAssembler,
+                              PagedResourcesAssembler<Individual> individualPagedResourcesAssembler,
+                              RoleService roleService,
+                              RoleAssembler roleModelAssembler) {
 
     this.individualService = individualService;
     this.individualModelAssembler = individualModelAssembler;
@@ -60,11 +156,11 @@ public class IndividualController {
   }
 
   @GetMapping("/individuals/{id}")
-  public ResponseEntity<IndividualModel> findById(@PathVariable("id") final Long id) {
+  public ResponseEntity<IndividualModel> findById(@PathVariable("id") final String id) {
 
     log.info("IndividualController GET /individuals/{id}");
 
-    Individual entity = individualService.findById(id);
+    Individual entity = individualService.findByPartyPublicId(id);
     IndividualModel model = individualModelAssembler.toModel(entity);
 
     // logInfo(entity, model);
@@ -74,24 +170,6 @@ public class IndividualController {
 
   }
 
-  /*
-
-  @GetMapping("/individuals/{id}")
-  public ResponseEntity<IndividualModel> findById(@PathVariable("id") final Long id) throws ResponseStatusException {
-
-    log.info("IndividualController GET /individuals/{id}");
-
-    Individual entity = individualService.findById(id).orElseThrow(() ->
-        new ResponseStatusException(HttpStatus.NOT_FOUND));
-    IndividualModel model = individualModelAssembler.toModel(entity);
-
-    // logInfo(entity, model);
-
-    return ResponseEntity.ok(model);
-
-  }
-
-  */
 
   @GetMapping("/individuals/search/findByFamilyNameStartsWith")
   public ResponseEntity<PagedModel<IndividualModel>> findByFamilyNameStartsWith(@RequestParam("name") final String name,
@@ -123,6 +201,19 @@ public class IndividualController {
         .body(model);
 
   }
+
+
+}
+
+*/
+
+
+
+
+
+
+
+  /*
 
   @PostMapping("/individuals/{id}/roles")
   @Transactional
@@ -181,14 +272,14 @@ public class IndividualController {
   @DeleteMapping("/individuals/{id}/roles/{roleId}")
   @Transactional
   public ResponseEntity<IndividualModel> deleteRole(
-      @PathVariable("id") final Long id,
+      @PathVariable("id") final String id,
       @PathVariable("roleId") final Long roleId) throws ResponseStatusException {
 
     log.info("IndividualController DELETE /individuals/{id}/roles/{roleId}");
 
     Individual entity = individualService.findById(id);
 
-    Role role = roleService.findById(roleId);
+    Role role = roleService.findByPublicId(roleId);
 
     Party party = entity.getParty();
 
@@ -208,7 +299,26 @@ public class IndividualController {
 
   }
 
-}
+  */
+
+  /*
+
+  @GetMapping("/individuals/{id}")
+  public ResponseEntity<IndividualModel> findById(@PathVariable("id") final Long id) throws ResponseStatusException {
+
+    log.info("IndividualController GET /individuals/{id}");
+
+    Individual entity = individualService.findById(id).orElseThrow(() ->
+        new ResponseStatusException(HttpStatus.NOT_FOUND));
+    IndividualModel model = individualModelAssembler.toModel(entity);
+
+    // logInfo(entity, model);
+
+    return ResponseEntity.ok(model);
+
+  }
+
+  */
 
 /*
 

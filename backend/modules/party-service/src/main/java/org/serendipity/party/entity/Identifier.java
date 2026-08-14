@@ -7,7 +7,9 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,8 +19,10 @@ import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
+@Table(name = "Identifier", indexes = @Index(name = "identifier_public_id_idx", columnList = "publicId"))
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,14 +32,13 @@ import java.time.LocalDateTime;
 public class Identifier {
 
   @Id
-  @GeneratedValue(
-    strategy = GenerationType.SEQUENCE,
-    generator = "SequenceIdentifier")
-  @SequenceGenerator(
-    name = "SequenceIdentifier",
-    allocationSize = 1
-  )
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceIdentifier")
+  @SequenceGenerator(name = "SequenceIdentifier", allocationSize = 1)
   private Long id;
+
+  @Builder.Default
+  @Column(nullable = false, unique = true, updatable = false, length = 36)
+  private String publicId = UUID.randomUUID().toString();
 
   @Column(name = "type", nullable = false)
   private String type; // name: ABN
@@ -48,18 +51,11 @@ public class Identifier {
 
   private String lifecycleStatus;  // status: Active
 
-  // @Temporal(TemporalType.TIMESTAMP)
-  // private Date fromDate; // start date: YYYYMMDD
   private LocalDateTime fromDate;
 
-  // @Temporal(TemporalType.TIMESTAMP)
-  // private Date toDate; // end date: YYYYMMDD
   private LocalDateTime toDate;
 
   @Embedded
   private Auditable audit;
 
 }
-
-// import jakarta.persistence.Temporal;
-// import jakarta.persistence.TemporalType;

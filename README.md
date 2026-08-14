@@ -56,6 +56,11 @@ Follow the steps in the [Quick Start Guide](./docs/serendipity/for-developers/qu
 
 * Developer Documentation
   * [Build Management](./docs/serendipity/for-developers/build-management/README.md)
+  * Angular
+    * [Best Practices](./docs/serendipity/architecture/angular/README.md)
+  * Spring Boot
+    * [How to build a RESTful API with Spring Boot](./docs/serendipity/architecture/spring-boot/how-to/how-to-build-a-restful-api-with-spring-boot/README.md)
+    * [Lombok](./docs/serendipity/architecture/spring-boot/how-to/lombok/README.md)
 * Administrator Documentation
   * [Working with Docker and Docker Compose](./docs/serendipity/for-administrators/docker/README.md)
   * [Working with Keycloak](./docs/serendipity/for-administrators/keycloak/README.md)

@@ -1,15 +1,21 @@
 package org.serendipity.party.repository;
 
+import org.serendipity.party.entity.Individual;
 import org.serendipity.party.entity.Organisation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OrganisationRepository extends CrudRepository<Organisation, Long>, PagingAndSortingRepository<Organisation, Long> {
+import java.util.Optional;
+
+public interface OrganisationRepository extends JpaRepository<Organisation, Long> {
+
+  Optional<Organisation> findByPartyPublicId(String publicId);
 
   Page<Organisation> findByName(String name, Pageable pageable);
   Page<Organisation> findByNameStartsWith(String name, Pageable pageable);
+
+  boolean existsByName(String name);
 
 }
 

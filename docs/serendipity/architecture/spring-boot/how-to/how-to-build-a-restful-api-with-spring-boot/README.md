@@ -381,6 +381,94 @@ spring:
         globally_quoted_identifiers: true
 ```
 
+### How do you guarantee runtime consistency across layers
+
+A successful build is a great milestone—especially in a multi-module project! 
+However, Java compilation only guarantees syntax and typing correctness. It doesn't guarantee runtime consistency 
+across your layers (e.g., matching controller endpoints, assembler logic, repository property traversals, and exception
+handling). 
+
+Here is a practical checklist and a set of verification techniques to ensure total consistency across your 
+Controller -> Assembler -> Service -> Repository chain:
+
+| Component                | URL                                                                                                                          | Description                                                                                                             |
+|:-------------------------|:-----------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------|
+| Controller <-> Assembler | Check that path variables in `@GetMapping("/individuals/{id}")` match the parameters expected in `createModelWithId(...)`.   | Self-links generated in HAL responses will point to broken or mismatched URLs.                                          |
+| Service <-> Repository   | Ensure custom repository lookup methods (e.g., `findByPartyPublicId`) match what the Service layer calls.                    | Runtime `QueryCreationException` or `PropertyReferenceException` if property names don't map to entity fields.          |
+| Entity Relationships     | Check bidirectional associations (`@OneToOne`, `@OneToMany`) and cascading options.                                          | `LazyInitializationException`, missing foreign keys, or cascading deletes dropping child records unexpectedly.          |
+| Exception Handling       | Confirm that custom exceptions (like `ResourceNotFoundException`) thrown by services are handled by `@RestControllerAdvice`. | Unhandled exceptions will return default Spring `500 Internal Server Error` instead of clean `404 Not Found` responses. |
+
+#### High-Yield Automated Testing Strategy
+
+To catch hidden runtime issues automatically without manual testing, implement the following key test layers.
+
+#### Architecture & Consistency Tests (ArchUnit)
+
+If you want to enforce architectural rules (e.g., "Controllers should only talk to Services, Services should only talk 
+to Repositories"), [ArchUnit](https://www.archunit.org/) checks this at test-time.
+
+```
+@AnalyzeClasses(packages = "org.serendipity.party")
+public class ArchitectureTest {
+
+  @ArchTest
+  public static final ArchRule controllers_should_only_call_services =
+      noClasses().that().resideInAPackage("..controller..")
+          .should().accessClassesThat().resideInAPackage("..repository..");
+}
+```
+
+#### Repository Unit Tests (@DataJpaTest)
+
+Verify that Spring Data JPA can derive your queries (like `findByPartyPublicId`) against an in-memory database (H2) or 
+test container.
+
+```
+@DataJpaTest
+class IndividualRepositoryTest {
+
+  @Autowired
+  private IndividualRepository repository;
+
+  @Test
+  void shouldFindByPartyPublicId() {
+    // Verifies entity mappings and Spring Data query derivation at startup
+  }
+}
+```
+
+#### Slice & Integration Tests (@WebMvcTest / @SpringBootTest)
+
+Test that HATEOAS links are generated correctly in your JSON responses.
+
+```
+@WebMvcTest(IndividualController.class)
+class IndividualControllerTest {
+
+  @Autowired
+  private MockMvc mockMvc;
+
+  @Test
+  void findById_ShouldReturnHalJsonWithSelfLink() throws Exception {
+    mockMvc.perform(get("/individuals/{id}", "party-123")
+            .accept(MediaTypes.HAL_JSON_VALUE))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$._links.self.href").exists());
+  }
+}
+```
+
+#### Run Spring Integration Tests with Maven
+
+To execute tests every time you build, run:
+
+```
+mvn clean verify
+```
+
+If you have integration tests configured with the `maven-failsafe-plugin`, `mvn verify` will spin up the Spring context, 
+run all integration checks, and confirm complete runtime consistency before packaging!
+
 ## ❯ References
 
 ### Build Tools

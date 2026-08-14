@@ -1,5 +1,6 @@
 package org.serendipity.party.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -17,20 +18,24 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "Individual",
+    indexes = { @Index(name = "individual_family_name_idx", columnList = "familyName", unique = false) })
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-@Table(indexes = { @Index(name = "INDIVIDUAL_FAMILY_NAME_INDEX", columnList = "familyName", unique = false) })
 public class Individual {
 
   // An Individual is a person.
   // The Individual concept represents people about which an Enterprise wishes to maintain information.
 
+  // Shared Primary Key pattern (@MapsId) between Address and Location.
+  // No generator needed because @MapsId derives the ID straight from Location.
   @Id
   private Long id;
 
@@ -45,8 +50,14 @@ public class Individual {
   // You cannot limit the size of a @OneToMany collection
   // See: https://vladmihalcea.com/the-best-way-to-map-a-onetomany-association-with-jpa-and-hibernate/
 
-  @OneToMany(mappedBy = "individual", fetch = FetchType.EAGER)
-  private Set<IndividualName> names;
+  // @OneToMany(mappedBy = "individual", fetch = FetchType.EAGER)
+  // private Set<IndividualName> names;
+
+  @Builder.Default
+  @OneToMany(mappedBy = "individual", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+  private Set<IndividualName> names = new HashSet<>();
+
+  private String jobTitle;
 
   private String sex;
 
@@ -55,6 +66,10 @@ public class Individual {
   private String email;
 
   private String phoneNumber;
+
+  private String faxNumber;
+
+  private String preferredContactMethod;
 
   private String photoUrl;
 
@@ -71,10 +86,20 @@ public class Individual {
   // citizenship
   // residences
 
-  private String relationshipLifecycleStatus;
+  // private String relationshipLifecycleStatus;
 
   // occupation
   // positions
+
+  public void addIndividualName(IndividualName individualName) {
+    this.names.add(individualName);
+    individualName.setIndividual(this);
+  }
+
+  public void removeIndividualName(IndividualName individualName) {
+    this.names.remove(individualName);
+    individualName.setIndividual(null);
+  }
   
   @Override
   public boolean equals(Object o) {
@@ -96,9 +121,3 @@ public class Individual {
   }
 
 }
-
-// @Table(indexes = { @Index(name = "SORT_INDEX", columnList = "sort", unique = false) })
-
-// @OrderColumn
-// @Column(name = "sort", nullable = false)
-// private String sort; // IndividualName.familyName

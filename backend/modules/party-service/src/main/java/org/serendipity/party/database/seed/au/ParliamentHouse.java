@@ -1,9 +1,10 @@
 package org.serendipity.party.database.seed.au;
 
 import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
 import org.serendipity.party.entity.Address;
 import org.serendipity.party.entity.Location;
-import org.serendipity.party.repository.AddressRepository;
+import org.serendipity.party.service.AddressService;
 import org.serendipity.party.type.LocationType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,26 +18,24 @@ import org.springframework.transaction.annotation.Transactional;
 public class ParliamentHouse implements CommandLineRunner {
 
   @Autowired
-  private AddressRepository addressRepository;
+  private AddressService addressService;
 
   @Override
   @Transactional
-  public void run(String... args) throws Exception {
+  public void run(String @NonNull ... args) throws Exception {
+
+    // Idempotency check: Skip if already loaded
+    if (addressService.existsByName("The Senate")) {
+      log.info("Parliament House address already loaded. Skipping...");
+      return;
+    }
 
     log.info("Load Parliament House address ...");
 
     try {
-
-      //
-      // Parliament House Address
-      //
-
-      // Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-
       Location location = Location.builder()
         .type(LocationType.ADDRESS)
         .displayName("PO Box 6100 Parliament House Canberra ACT 2600")
-        // .fromDate(currentTime)
         .build();
 
       Address parliamentHouse = Address.builder()
@@ -51,15 +50,14 @@ public class ParliamentHouse implements CommandLineRunner {
         .addressType("Mailing")
         .build();
 
-      addressRepository.save(parliamentHouse);
+      addressService.save(parliamentHouse);
 
       log.info("Load Parliament House address complete");
 
-    } catch (NullPointerException e) {
-
-      log.error("{}", e.getLocalizedMessage());
+    } catch (Exception e) {
+      log.error("Failed to load Parliament House address: {}", e.getLocalizedMessage(), e);
+      throw e;
     }
-
   }
 
 }

@@ -6,7 +6,7 @@ package org.serendipity.party.type.au;
 import lombok.Getter;
 
 @Getter
-public enum LegalType {
+public enum LegalEntityType {
 
   // Incorporated Private Sector Entities
 
@@ -91,7 +91,7 @@ public enum LegalType {
 
   private final Integer code;
 
-  private LegalType(Integer code) {
+  private LegalEntityType(Integer code) {
     this.code = code;
   }
 

@@ -1,6 +1,7 @@
 package org.serendipity.party.entity;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -10,10 +11,12 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,8 +27,10 @@ import org.serendipity.party.type.PartyType;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
+@Table(name = "Party", indexes = @Index(name = "party_public_id_idx", columnList = "publicId"))
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,26 +40,25 @@ import java.util.Set;
 public class Party {
 
   @Id
-  @GeneratedValue(
-    strategy = GenerationType.SEQUENCE,
-    generator = "SequenceParty")
-  @SequenceGenerator(
-    name = "SequenceParty",
-    allocationSize = 1
-  )
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceParty")
+  @SequenceGenerator(name = "SequenceParty", allocationSize = 1)
   private Long id;
+
+  @Builder.Default
+  @Column(nullable = false, unique = true, updatable = false, length = 36)
+  private String publicId = UUID.randomUUID().toString();
 
   @Builder.Default
   @Enumerated(EnumType.STRING)
   private PartyType type = PartyType.INDIVIDUAL;
 
   @Builder.Default
-  private String legalType = "";
+  private String legalEntityType = "";
 
   @Builder.Default
   private String displayName = "";
 
-  @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @JoinTable(
     name = "PartyAddress",
     joinColumns = @JoinColumn(name = "partyId"),
@@ -62,7 +66,7 @@ public class Party {
   )
   private Set<Address> addresses;
 
-  @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @JoinTable(
     name = "PartyRole",
     joinColumns = @JoinColumn(name = "partyId"),
@@ -93,6 +97,10 @@ public class Party {
   }
 
 }
+
+// What happens when you DELETE a Party?
+// When you delete a Party, Hibernate/JPA will cleanly delete only the linking rows inside the PartyAddress and
+// PartyRole join tables. The shared Address and Role entities will safely remain untouched in their respective tables.
 
 // When using Hibernate, the IDENTITY generator is not a good choice since it disables JDBC batching.
 // See: https://vladmihalcea.com/14-high-performance-java-persistence-tips/

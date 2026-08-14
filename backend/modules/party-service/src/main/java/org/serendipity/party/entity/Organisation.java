@@ -17,18 +17,20 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "Organisation", indexes = { @Index(name = "organisation_name_idx", columnList = "name", unique = false) })
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-@Table(indexes = { @Index(name = "ORGANISATION_NAME_INDEX", columnList = "name", unique = false) })
 public class Organisation {
 
   // An Organisation usually consists of a number of individuals or groups bound by a common purpose.
   // The Organisation concept represents companies and other type’s of organisations about which an Enterprise wishes
   // to maintain information.
 
+  // Shared Primary Key pattern (@MapsId) between Address and Location.
+  // No generator needed because @MapsId derives the ID straight from Location.
   @Id
   private Long id;
 
@@ -43,6 +45,10 @@ public class Organisation {
   private String email;
 
   private String phoneNumber;
+
+  private String faxNumber;
+
+  private String preferredContactMethod;
 
   private LocalDateTime establishmentDate;
 
@@ -66,6 +72,3 @@ public class Organisation {
   }
 
 }
-
-// @Temporal(TemporalType.DATE)
-// private Date establishmentDate;

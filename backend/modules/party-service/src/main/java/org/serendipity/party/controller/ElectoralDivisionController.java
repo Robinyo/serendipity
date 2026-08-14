@@ -1,7 +1,7 @@
 package org.serendipity.party.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.serendipity.party.assembler.ElectoralDivisionModelAssembler;
+import org.serendipity.party.assembler.ElectoralDivisionAssembler;
 import org.serendipity.party.entity.ElectoralDivision;
 import org.serendipity.party.model.ElectoralDivisionModel;
 import org.serendipity.party.service.ElectoralDivisionService;
@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ElectoralDivisionController {
 
   private final ElectoralDivisionService service;
-  private final ElectoralDivisionModelAssembler assembler;
+  private final ElectoralDivisionAssembler assembler;
   private final PagedResourcesAssembler<ElectoralDivision> pagedResourcesAssembler;
 
   public ElectoralDivisionController(ElectoralDivisionService service,
-                                     ElectoralDivisionModelAssembler assembler,
+                                     ElectoralDivisionAssembler assembler,
                                      PagedResourcesAssembler<ElectoralDivision> pagedResourcesAssembler) {
 
     this.service = service;

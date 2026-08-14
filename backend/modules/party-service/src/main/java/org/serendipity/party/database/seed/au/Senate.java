@@ -1,11 +1,9 @@
 package org.serendipity.party.database.seed.au;
 
 import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
 import org.serendipity.party.entity.*;
-import org.serendipity.party.repository.AddressRepository;
-import org.serendipity.party.repository.IndividualRepository;
-import org.serendipity.party.repository.OrganisationRepository;
-import org.serendipity.party.repository.RoleRepository;
+import org.serendipity.party.service.*;
 import org.serendipity.party.type.PartyType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -19,18 +17,17 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Component
 @Slf4j
 @Order(Ordered.LOWEST_PRECEDENCE)
 public class Senate implements CommandLineRunner {
-
-  // A senator is a member of the Australian Senate, elected to represent a state or territory. There are 76 senators,
-  // 12 from each state and two each from the Australian Capital Territory and the Northern Territory.
 
   static final String PATH = "sample-data/senate.csv";
 
@@ -48,265 +45,162 @@ public class Senate implements CommandLineRunner {
   static final int NUMBER_OF_REQUIRED_COLUMNS = SEX + 1;
 
   @Autowired
-  private AddressRepository addressRepository;
+  private AddressService addressService;
 
   @Autowired
-  private IndividualRepository individualRepository;
+  private IndividualService individualService;
 
   @Autowired
-  private OrganisationRepository organisationRepository;
+  private OrganisationService organisationService;
 
   @Autowired
-  private RoleRepository roleRepository;
+  private RoleService roleService;
 
   @Override
   @Transactional
-  public void run(String... args) throws Exception {
+  public void run(String @NonNull ... args) throws Exception {
 
     log.info("Loading members of the Senate ...");
 
-    BufferedReader buffer = null;
-
     try {
-
-      // Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-
-      //
-      // Parliament House Address
-      //
-
+      // Look up Parliament House Address
       Pageable pageable = PageRequest.of(0, 1);
-
-      Page<Address> addresses = addressRepository.findByName("The Senate", pageable);
-
+      Page<Address> addresses = addressService.findByName("The Senate", pageable);
       Address parliamentHouse = addresses.getContent().getFirst();
 
-      //
-      // Process sample data file
-      //
+      // Process CSV sample data
+      try (InputStream resource = new ClassPathResource(PATH).getInputStream();
+           BufferedReader buffer = new BufferedReader(new InputStreamReader(resource))) {
 
-      InputStream resource = new ClassPathResource(PATH).getInputStream();
+        String line = buffer.readLine(); // Header line
 
-      buffer = new BufferedReader(new InputStreamReader(resource));
+        while ((line = buffer.readLine()) != null && !line.trim().isEmpty()) {
 
-      String line = buffer.readLine();
+          String[] fields = line.split(",");
 
-      // log.info("Header: {}", line);
+          if (fields.length < NUMBER_OF_REQUIRED_COLUMNS) {
+            continue;
+          }
 
-      while ((line = buffer.readLine()) != null && !line.isEmpty()) {
+          Name name = Name.builder()
+            .title(fields[TITLE])
+            .givenName(fields[FIRST_NAME])
+            .preferredName(fields[PREFERRED_NAME])
+            .middleName(fields[OTHER_NAME])
+            .familyName(fields[SURNAME])
+            .honorific(fields[POST_NOMINALS])
+            .salutation(fields[SALUTATION])
+            .initials(fields[INITIALS])
+            .build();
 
-        // Note: No support for strings with embedded commas, for example: "Commonwealth Parliament Offices, Suite 8"
-        String[] fields = line.split(",");
+          String displayName = Stream.of(name.getTitle(), name.getGivenName(), name.getFamilyName())
+            .filter(Objects::nonNull)
+            .filter(s -> !s.trim().isEmpty())
+            .collect(Collectors.joining(" "));
 
-        // log.info("row: {}", line);
-        // log.info("fields.length: {}", fields.length);
+          Party individualParty = Party.builder()
+            .type(PartyType.INDIVIDUAL)
+            .displayName(displayName)
+            .addresses(new HashSet<>())
+            .roles(new HashSet<>())
+            .build();
 
-        if (fields.length < NUMBER_OF_REQUIRED_COLUMNS) {
-          continue;
+          String email = String.format("%s.%s@aph.gov.au",
+            name.getGivenName().toLowerCase(),
+            name.getFamilyName().toLowerCase());
+
+          Individual individual = Individual.builder()
+            .party(individualParty)
+            .name(name)
+            .sex(fields[SEX])
+            .email(email)
+            .phoneNumber("")
+            .photoUrl("")
+            .build();
+
+          individual = individualService.save(individual);
+
+          Role member = Role.builder()
+            .partyPublicId(individual.getParty().getPublicId())
+            .partyType(individual.getParty().getType())
+            .partyName(individual.getParty().getDisplayName())
+            .partyEmail(individual.getEmail())
+            .partyPhoneNumber(individual.getPhoneNumber())
+            .role("Member")
+            .relationship("Membership")
+            .reciprocalRole("Political Party")
+            .build();
+
+          Role contact = Role.builder()
+            .partyPublicId(individual.getParty().getPublicId())
+            .partyType(individual.getParty().getType())
+            .partyName(individual.getParty().getDisplayName())
+            .partyEmail(individual.getEmail())
+            .partyPhoneNumber(individual.getPhoneNumber())
+            .role("Contact")
+            .relationship("Association")
+            .reciprocalRole("Account")
+            .build();
+
+          boolean membership = true;
+
+          String abbreviation = fields[POLITICAL_PARTY].toUpperCase();
+          PoliticalParty politicalParty = PoliticalParty.valueOfAbbreviation(abbreviation);
+
+          switch (politicalParty) {
+            case AUSTRALIAN_GREENS:
+            case AUSTRALIAN_LABOR_PARTY:
+            case LIBERAL_NATIONAL_PARTY_OF_QUEENSLAND:
+            case LIBERAL_PARTY:
+            case LIBERAL_PARTY_OF_AUSTRALIA:
+            case NATIONAL_PARTY_OF_AUSTRALIA:
+            case PAULINE_HANSONS_ONE_NATION:
+
+              Page<Organisation> organisations = organisationService.findByName(politicalParty.toString(), pageable);
+              Organisation organisation = organisations.getContent().getFirst();
+
+              member.setReciprocalPartyPublicId(organisation.getParty().getPublicId());
+              member.setReciprocalPartyType(organisation.getParty().getType());
+              member.setReciprocalPartyName(organisation.getParty().getDisplayName());
+              member.setReciprocalPartyEmail(organisation.getEmail());
+              member.setReciprocalPartyPhoneNumber(organisation.getPhoneNumber());
+
+              contact.setReciprocalPartyPublicId(organisation.getParty().getPublicId());
+              contact.setReciprocalPartyType(organisation.getParty().getType());
+              contact.setReciprocalPartyName(organisation.getParty().getDisplayName());
+              contact.setReciprocalPartyEmail(organisation.getEmail());
+              contact.setReciprocalPartyPhoneNumber(organisation.getPhoneNumber());
+
+              break;
+
+            case INDEPENDENT:
+            default:
+              if (!abbreviation.equals("IND")) {
+                log.info("Political Party abbreviation: {}", abbreviation);
+              }
+              membership = false;
+              break;
+          }
+
+          individualParty.getAddresses().add(parliamentHouse);
+
+          if (membership) {
+            roleService.save(member);
+            roleService.save(contact);
+            individualParty.getRoles().add(member);
+            individualParty.getRoles().add(contact);
+          }
+
+          individualService.save(individual);
         }
-
-        Name name = Name.builder()
-          .title(fields[TITLE])
-          .givenName(fields[FIRST_NAME])
-          .middleName(fields[OTHER_NAME])
-          .familyName(fields[SURNAME])
-          .honorific(fields[POST_NOMINALS])
-          .salutation(fields[SALUTATION])
-          .preferredName(fields[PREFERRED_NAME])
-          .initials(fields[INITIALS])
-          .build();
-
-        // String displayName = name.getFamilyName() + ", " + name.getTitle() + " " + name.getGivenName();
-
-        String displayName = name.getTitle();
-
-        if (name.getTitle().isEmpty()) {
-          displayName += name.getGivenName();
-        } else {
-          displayName += " " + name.getGivenName();
-        }
-
-        if (name.getGivenName().isEmpty()) {
-          displayName += name.getFamilyName();
-        } else {
-          displayName += " " + name.getFamilyName();
-        }
-
-        Party individualParty = Party.builder()
-          .type(PartyType.INDIVIDUAL)
-          .displayName(displayName)
-          .addresses(new HashSet<Address>())
-          .roles(new HashSet<Role>())
-          .build();
-
-        String email = name.getGivenName().toLowerCase() + "." + name.getFamilyName().toLowerCase() + "@aph.gov.au";
-
-        Individual individual = Individual.builder()
-          .party(individualParty)
-          .name(name)
-          .sex(fields[SEX])
-          .email(email)
-          .phoneNumber("")
-          .photoUrl("")
-          .build();
-
-        individualRepository.save(individual);
-
-        Role member = Role.builder()
-          .partyId(individual.getParty().getId())
-          .partyType(individual.getParty().getType())
-          .partyName(individual.getParty().getDisplayName())
-          .partyEmail(individual.getEmail())
-          .partyPhoneNumber(individual.getPhoneNumber())
-          .role("Member")
-          .relationship("Membership")
-          .reciprocalRole("Political Party")
-          .build();
-
-        Role contact = Role.builder()
-          .partyId(individual.getParty().getId())
-          .partyType(individual.getParty().getType())
-          .partyName(individual.getParty().getDisplayName())
-          .partyEmail(individual.getEmail())
-          .partyPhoneNumber(individual.getPhoneNumber())
-          .role("Contact")
-          .relationship("Association")
-          .reciprocalRole("Account")
-          .build();
-
-        boolean membership = true;
-
-        String abbreviation = fields[POLITICAL_PARTY].toUpperCase();
-
-        PoliticalParty politicalParty = PoliticalParty.valueOfAbbreviation(abbreviation);
-
-        switch (politicalParty) {
-
-          case AUSTRALIAN_GREENS:
-          case AUSTRALIAN_LABOR_PARTY:
-          case LIBERAL_NATIONAL_PARTY_OF_QUEENSLAND:
-          case LIBERAL_PARTY:
-          case LIBERAL_PARTY_OF_AUSTRALIA:
-          case NATIONAL_PARTY_OF_AUSTRALIA:
-          case PAULINE_HANSONS_ONE_NATION:
-
-            // log.info("Political Party: {}", politicalParty.toString());
-
-            Page<Organisation> organisations = organisationRepository.findByName(politicalParty.toString(), pageable);
-
-            Organisation organisation = organisations.getContent().getFirst();
-
-            member.setReciprocalPartyId(organisation.getParty().getId());
-            member.setReciprocalPartyType(organisation.getParty().getType());
-            member.setReciprocalPartyName(organisation.getParty().getDisplayName());
-            member.setReciprocalPartyEmail(organisation.getEmail());
-            member.setReciprocalPartyPhoneNumber(organisation.getPhoneNumber());
-
-            contact.setReciprocalPartyId(organisation.getParty().getId());
-            contact.setReciprocalPartyType(organisation.getParty().getType());
-            contact.setReciprocalPartyName(organisation.getParty().getDisplayName());
-            contact.setReciprocalPartyEmail(organisation.getEmail());
-            contact.setReciprocalPartyPhoneNumber(organisation.getPhoneNumber());
-
-            break;
-
-          case INDEPENDENT:
-          default:
-
-            if (!abbreviation.equals("IND")) {
-              log.info("Political Party: {}", abbreviation);
-            }
-
-            membership = false;
-
-            break;
-        }
-
-        individualParty.getAddresses().add(parliamentHouse);
-
-        if (membership) {
-          roleRepository.save(member);
-          roleRepository.save(contact);
-          individualParty.getRoles().add(member);
-          individualParty.getRoles().add(contact);
-        }
-
-        individualRepository.save(individual);
-
       }
 
       log.info("Loading members of the Senate complete");
 
-    } catch (IOException | NullPointerException e) {
-
-      log.error("{}", e.getLocalizedMessage());
-
-    } finally {
-
-      if (buffer != null) {
-        buffer.close();
-      }
-
+    } catch (Exception e) {
+      log.error("Failed to load members of the Senate: {}", e.getLocalizedMessage(), e);
+      throw e;
     }
-
   }
 
 }
-
-// https://www.aph.gov.au/Senators_and_Members
-// https://www.aph.gov.au/Senators_and_Members/Guidelines_for_Contacting_Senators_and_Members/Address_labels_and_CSV_files
-
-// https://stackoverflow.com/questions/10387329/using-string-representations-of-enum-values-in-switch-case
-// https://www.baeldung.com/java-enum-values
-
-// static final int STATE = 8;
-// static final int ELECTORATE_TELEPHONE = 16;
-
-// Set<Address> addresses = new HashSet<Address>();
-// addresses.add(parliamentHouse);
-
-/*
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-
-            try {
-
-              ObjectMapper mapper = new ObjectMapper();
-
-              mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-              mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
-
-              mapper.enable(SerializationFeature.INDENT_OUTPUT);
-
-              log.info("{}", "\n" + mapper.writeValueAsString(organisation));
-
-            } catch (JsonProcessingException jpe) {
-
-              log.error("Senators - JSON Processing Exception");
-            }
-
-*/
-
-/*
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse("01/11/1982");
-.dateOfBirth(dateOfBirth)
-
-*/
-
-/*
-
-    // Auditable auditable = new Auditable();
-
-    Location location = new Location();
-    location.setType("Address");
-    location.setFromDate(timestamp);
-    location.setDisplayName("PO Box 6100 Parliament House Canberra ACT 2600");
-
-*/
