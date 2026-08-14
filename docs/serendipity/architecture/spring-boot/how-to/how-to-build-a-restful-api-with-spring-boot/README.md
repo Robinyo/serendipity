@@ -70,8 +70,10 @@ For example:
                             └── /org.serendipity.party
                                 └── /assembler
                                 └── /controller
+                                └── /database.seed
                                 └── /entity
-                                └── /model
+                                └── /exception
+                                └── /model                                
                                 └── /repository
                                 └── /service                                
                                 └── /type
@@ -82,6 +84,11 @@ For example:
                             ├── application-prod.yml
                             ├── application-test.yml
                     └── /test
+                        └── /java
+                            └── /org.serendipity.party  
+                                └── /architecture     
+                                    ├── ArchitectureTests.java  
+                                ├── PartyServiceApplicationTests.java              
                 ├── Dockerfile
                 ├── pom.xml
 ```
