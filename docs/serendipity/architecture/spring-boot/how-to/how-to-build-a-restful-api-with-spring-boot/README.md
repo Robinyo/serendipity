@@ -259,7 +259,7 @@ public class Party {
 Using a database sequence is the most efficient Hibernate identifier generation strategy, it also allows you to take 
 advantage of the automatic JDBC batching mechanism.
 
-See: [How to generate JPA entity identifier values using a database sequence](https://vladmihalcea.com/jpa-entity-identifier-sequence/)
+See: [How to generate JPA entity identifier values using a database sequence](https://vladmihalcea.com/jpa-entity-identifier-sequence/) </br>
 See: [How to batch INSERT and UPDATE statements with Hibernate](https://vladmihalcea.com/how-to-batch-insert-and-update-statements-with-hibernate/)
 
 #### Auditing in Spring Data JPA
@@ -283,7 +283,7 @@ object is marked to be removed, and it is still living on the Heap).
 So, if Hibernate uses the equality to uniquely identify an Object, for its whole lifetime, we need to find the
 right combination of properties satisfying this requirement.
 
-See: [How to implement Equals and HashCode for JPA entities](https://vladmihalcea.com/hibernate-facts-equals-and-hashcode/)
+See: [How to implement Equals and HashCode for JPA entities](https://vladmihalcea.com/hibernate-facts-equals-and-hashcode/) </br>
 See: [How to implement equals and hashCode using the JPA entity identifier](https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/)
 
 ### Service Layer
@@ -498,7 +498,7 @@ spring:
         globally_quoted_identifiers: true
 ```
 
-### How do you guarantee runtime consistency across layers
+### How do you guarantee runtime consistency across layers?
 
 A successful build is a great milestone—especially in a multi-module project! 
 However, Java compilation only guarantees syntax and typing correctness. It doesn't guarantee runtime consistency 
