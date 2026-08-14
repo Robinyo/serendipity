@@ -2,9 +2,11 @@ package org.serendipity.party.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.serendipity.party.assembler.IndividualAssembler;
+import org.serendipity.party.assembler.IndividualSummaryAssembler;
 import org.serendipity.party.assembler.RoleAssembler;
 import org.serendipity.party.entity.Individual;
 import org.serendipity.party.model.IndividualModel;
+import org.serendipity.party.model.IndividualSummaryModel;
 import org.serendipity.party.service.IndividualService;
 import org.serendipity.party.service.RoleService;
 import org.springframework.data.domain.Page;
@@ -22,17 +24,20 @@ public class IndividualController {
 
   private final IndividualService individualService;
   private final IndividualAssembler individualModelAssembler;
+  private final IndividualSummaryAssembler individualSummaryModelAssembler;
   private final PagedResourcesAssembler<Individual> individualPagedResourcesAssembler;
   private final RoleService roleService;
   private final RoleAssembler roleModelAssembler;
 
   public IndividualController(IndividualService individualService,
                               IndividualAssembler individualModelAssembler,
+                              IndividualSummaryAssembler individualSummaryModelAssembler,
                               PagedResourcesAssembler<Individual> individualPagedResourcesAssembler,
                               RoleService roleService,
                               RoleAssembler roleModelAssembler) {
     this.individualService = individualService;
     this.individualModelAssembler = individualModelAssembler;
+    this.individualSummaryModelAssembler = individualSummaryModelAssembler;
     this.individualPagedResourcesAssembler = individualPagedResourcesAssembler;
     this.roleService = roleService;
     this.roleModelAssembler = roleModelAssembler;
@@ -40,12 +45,26 @@ public class IndividualController {
 
   // --- READ ALL ---
   @GetMapping("/individuals")
-  public ResponseEntity<PagedModel<IndividualModel>> findAll(Pageable pageable) {
+  public ResponseEntity<PagedModel<IndividualSummaryModel>> findAll(Pageable pageable) {
 
     log.info("Individual Controller GET /individuals - page: {}", pageable);
 
     Page<Individual> entities = individualService.findAll(pageable);
-    PagedModel<IndividualModel> models = individualPagedResourcesAssembler.toModel(entities, individualModelAssembler);
+    PagedModel<IndividualSummaryModel> models = individualPagedResourcesAssembler.toModel(entities, individualSummaryModelAssembler);
+
+    return ResponseEntity.ok(models);
+  }
+
+  // --- SEARCH BY FAMILY NAME ---
+  @GetMapping("/individuals/search/findByFamilyNameStartsWith")
+  public ResponseEntity<PagedModel<IndividualSummaryModel>> findByFamilyNameStartsWith(
+    @RequestParam("name") final String name,
+    Pageable pageable) {
+
+    log.info("Individual Controller GET /individuals/search/findByFamilyNameStartsWith - name: {}", name);
+
+    Page<Individual> entities = individualService.findByNameFamilyNameStartsWith(name, pageable);
+    PagedModel<IndividualSummaryModel> models = individualPagedResourcesAssembler.toModel(entities, individualSummaryModelAssembler);
 
     return ResponseEntity.ok(models);
   }
@@ -60,20 +79,6 @@ public class IndividualController {
     IndividualModel model = individualModelAssembler.toModel(entity);
 
     return ResponseEntity.ok(model);
-  }
-
-  // --- SEARCH BY FAMILY NAME ---
-  @GetMapping("/individuals/search/findByFamilyNameStartsWith")
-  public ResponseEntity<PagedModel<IndividualModel>> findByFamilyNameStartsWith(
-    @RequestParam("name") final String name,
-    Pageable pageable) {
-
-    log.info("Individual Controller GET /individuals/search/findByFamilyNameStartsWith - name: {}", name);
-
-    Page<Individual> entities = individualService.findByNameFamilyNameStartsWith(name, pageable);
-    PagedModel<IndividualModel> models = individualPagedResourcesAssembler.toModel(entities, individualModelAssembler);
-
-    return ResponseEntity.ok(models);
   }
 
   // --- CREATE ---

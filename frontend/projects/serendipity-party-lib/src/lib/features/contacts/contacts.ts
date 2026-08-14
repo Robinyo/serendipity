@@ -76,20 +76,16 @@ export class Contacts extends Collection<ContactModel> {
 
         this.logger.info('Contacts Component: subscribe() success handler');
 
+        // this.logger.info('response: ' + JSON.stringify(response, null, 2));
+
         this.count = response.body.page.totalElements;
 
         this.logger.info('count: ' + this.count + ' Contacts');
 
         if (this.count > 0) {
-
-          this.items = response.body._embedded.individualModels.map(
-            ((item: any) => this.entityAdapter.adapt(item)));
-
+          this.items = response.body._embedded.individuals;
         } else {
-
           this.items = [];
-          this.items.push(new ContactModel());
-
         }
 
         // this.logger.info('items: ' + JSON.stringify(this.items, null, 2));

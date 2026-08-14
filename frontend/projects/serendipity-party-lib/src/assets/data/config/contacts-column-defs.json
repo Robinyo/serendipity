@@ -1,7 +1,7 @@
 [
 
   {
-    "name": "party.displayName",
+    "name": "partyDisplayName",
     "displayName": "FULL NAME",
     "routerLink": "id",
     "class": "anchor"
@@ -13,13 +13,13 @@
     "class": ""
   },
   {
-    "name":  "organisation.displayName",
+    "name":  "organisationDisplayName",
     "displayName": "COMPANY NAME",
     "routerLink": "organisation.id",
     "class": "anchor"
   },
   {
-    "name":  "organisation.phoneNumber",
+    "name":  "organisationPhoneNumber",
     "displayName": "BUSINESS PHONE",
     "routerLink": "",
     "class": ""

@@ -2,14 +2,14 @@
 
 // Columns
 
-.mat-column-party-displayName, .mat-column-email, .mat-column-organisation-displayName,
-  .mat-column-organisation-phoneNumber {
+.mat-column-partyDisplayName, .mat-column-email, .mat-column-organisationDisplayName,
+  .mat-column-organisationPhoneNumber {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.mat-column-party-displayName {
+.mat-column-partyDisplayName {
   min-width: variables.$display-name-column-width;
   width: variables.$display-name-column-width;
 }
@@ -20,12 +20,12 @@
   width: variables.$email-column-width;
 }
 
-.mat-column-organisation-displayName {
+.mat-column-organisationDisplayName {
   min-width: variables.$display-name-column-width;
   width: variables.$display-name-column-width;
 }
 
-.mat-column-organisation-phoneNumber {
+.mat-column-organisationPhoneNumber {
   min-width: variables.$phone-number-column-width;
   width: variables.$phone-number-column-width;
 }

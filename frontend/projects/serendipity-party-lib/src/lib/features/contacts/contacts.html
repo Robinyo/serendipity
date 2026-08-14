@@ -95,13 +95,13 @@
 
             } @else {
 
-              @if (column.name === 'party.displayName') {
+              @if (column.name === 'partyDisplayName') {
                 <a [routerLink]="[getProperty(row, column.routerLink)]">
                   {{ getProperty(row, column.name) }}
                 </a>
               }
 
-              @if (column.name === 'organisation.displayName') {
+              @if (column.name === 'organisationDisplayName') {
                 <a [routerLink]="['/customers/accounts', getProperty(row, column.routerLink)]">
                   {{ getProperty(row, column.name) }}
                 </a>
@@ -145,6 +145,18 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- NO DATA ROW -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell no-data-cell" [attr.colspan]="displayedColumns.length">
+          @if (isLoading) {
+            <span>Loading data...</span>
+          } @else {
+            <span>No matching records found.</span>
+          }
+        </td>
+      </tr>
+
       <tr mat-footer-row *matFooterRowDef="['footer']; sticky: true"></tr>
 
     </table>

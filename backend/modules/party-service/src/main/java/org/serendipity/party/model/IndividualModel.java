@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -17,6 +18,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Relation(collectionRelation = "individuals", itemRelation = "individual")
 public class IndividualModel extends RepresentationModel<IndividualModel> {
 
   private String partyPublicId;

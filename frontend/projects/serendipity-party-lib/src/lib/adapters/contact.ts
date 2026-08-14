@@ -26,31 +26,26 @@ export class ContactAdapter extends PartyAdapter implements Adapter<ContactModel
     const contact = new ContactModel(
       item.party,
       item.name,
+      item.jobTitle,
       item.sex,
+      item.gender,
       item.email,
       item.phoneNumber,
+      item.faxNumber,
+      item.preferredContactMethod,
       item.photoUrl,
       item.electorate,
       item.dateOfBirth,
-      item.placeOfBirth
+      item.placeOfBirth,
+      item.countryOfBirth,
+      item.dateOfDeath,
+      item.placeOfDeath,
+      item.countryOfDeath
     );
 
-    // TODO
-    contact.jobTitle = ''
-    contact.faxNumber = '';
-    // contact.preferredContactMethod = '';
-    contact.preferredContactMethod = null;
+    contact.id = item.partyPublicId;
 
     contact.address = item.party.addresses[0];
-
-    // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
-
-    // Encode the id, for example http://localhost:4200/customers/contacts/MTYy
-    contact.id = btoa(item.id);
-
-    // this.logger.info('item id: ' + item.id + ' Base64 encoded contact id: ' + contact.id );
-
-    // contact.photoUrl = this.getUrlPrefix() + item.photoUrl;
 
     if (item.photoUrl.includes('avatar.svg')) {
       contact.photoUrl = 'assets/' + item.photoUrl;

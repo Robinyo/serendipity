@@ -50,11 +50,10 @@ public class Individual {
   // You cannot limit the size of a @OneToMany collection
   // See: https://vladmihalcea.com/the-best-way-to-map-a-onetomany-association-with-jpa-and-hibernate/
 
-  // @OneToMany(mappedBy = "individual", fetch = FetchType.EAGER)
-  // private Set<IndividualName> names;
+  // names is a small collection and always required whenever an Individual is loaded, so we fetch it EAGERLY
 
   @Builder.Default
-  @OneToMany(mappedBy = "individual", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToMany(mappedBy = "individual", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
   private Set<IndividualName> names = new HashSet<>();
 
   private String jobTitle;

@@ -31,7 +31,7 @@ export abstract class Item<T> extends AbstractComponent {
       const identity = params.get('id');
 
       if (identity != null) {
-        this.id = atob(identity);
+        this.id = identity;
       }
 
       this.logger.info('id: ' + this.id);
