@@ -16,17 +16,22 @@ import org.springframework.hateoas.RepresentationModel;
 @NoArgsConstructor
 public class AddressModel extends RepresentationModel<AddressModel> {
 
-  private String locationPublicId;
+  private String id;
   private String name;
   private String line1;
   private String line2;
-  private String city;              // Suburb / Locality
-  private String state;             // State / Territory
-  private String postalCode;        // Postcode
+  private String city;
+  private String state;
+  private String postalCode;
   private String country;
   private String addressType;
 
-  // private double latitude;
-  // private double longitude;
-
 }
+
+// private double latitude;
+// private double longitude;
+
+// private String locationPublicId;
+// Suburb / Locality
+// State / Territory
+// Postcode

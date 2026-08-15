@@ -37,3 +37,33 @@ export function getDeepDiff(obj1: Record<string, any>, obj2: Record<string, any>
 
   return diff;
 }
+
+/**
+ * Recursively strips specified keys from an object or array of objects.
+ *
+ * @param obj The input object/array to process
+ * @param keysToIgnore Array of property names to remove (e.g. ['addresses', 'roles'])
+ * @returns A deep copy of the object with ignored keys removed
+ */
+export function omitKeys<T = any>(obj: any, keysToIgnore: string[] = []): T {
+  // Handle null, undefined, or primitive values directly
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
+  }
+
+  // Handle Arrays recursively
+  if (Array.isArray(obj)) {
+    return obj.map((item) => omitKeys(item, keysToIgnore)) as unknown as T;
+  }
+
+  // Handle Objects recursively
+  const keysToIgnoreSet = new Set(keysToIgnore);
+
+  return Object.keys(obj).reduce((acc: Record<string, any>, key: string) => {
+    if (!keysToIgnoreSet.has(key)) {
+      acc[key] = omitKeys(obj[key], keysToIgnore);
+    }
+    return acc;
+  }, {}) as T;
+
+}

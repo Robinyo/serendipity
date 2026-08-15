@@ -16,14 +16,18 @@ import org.springframework.hateoas.RepresentationModel;
 @NoArgsConstructor
 public class NameModel extends RepresentationModel<NameModel> {
 
-  private String publicId;
-  private String title;         // name prefix
+  private String title;
   private String givenName;
   private String preferredName;
-  private String middleName;    // otherNames
+  private String middleName;
   private String familyName;
   private String initials;
-  private String honorific;     // name suffix
-  private String salutation;    // formalSalutation
+  private String honorific;
+  private String salutation;
 
 }
+
+// name prefix
+// otherNames
+// name suffix
+// formalSalutation

@@ -3,9 +3,9 @@ import { RoleModel } from './role';
 
 export class PartyModel {
 
-  public id?: string | number;
+  public id?: string ;
 
-  public legalType: string;
+  public legalEntityType: string;
 
   constructor(
     public type: string = 'PARTY',
@@ -13,7 +13,7 @@ export class PartyModel {
     public addresses: AddressModel[] = [],
     public roles: RoleModel[] = []
   ) {
-    this.legalType = '';
+    this.legalEntityType = '';
   }
 
 }

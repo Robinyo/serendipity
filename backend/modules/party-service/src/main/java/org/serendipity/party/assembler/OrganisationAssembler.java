@@ -4,6 +4,7 @@ import org.serendipity.party.controller.OrganisationController;
 import org.serendipity.party.entity.Organisation;
 import org.serendipity.party.model.OrganisationModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,7 +19,7 @@ public class OrganisationAssembler extends RepresentationModelAssemblerSupport<O
   }
 
   @Override
-  public OrganisationModel toModel(Organisation entity) {
+  public @Nullable OrganisationModel toModel(Organisation entity) {
 
     if (entity == null) {
       return null;
@@ -32,14 +33,14 @@ public class OrganisationAssembler extends RepresentationModelAssemblerSupport<O
     String partyPublicId = party.getPublicId();
 
     // Standard Spring HATEOAS self-link construction using the secure public UUID string
+    // Generates self-link pointing to: GET /api/organisations/{partyPublicId}
     OrganisationModel model = createModelWithId(partyPublicId, entity);
 
-    // Map fields securely
-    model.setPartyPublicId(partyPublicId);
+    // Map public UUID to the 'id' field on the model
+    model.setId(partyPublicId);
     model.setParty(partyAssembler.toModel(party));
 
     // Map standard properties
-    model.setPartyPublicId(partyPublicId);
     model.setName(entity.getName());
     model.setEmail(entity.getEmail());
     model.setPhoneNumber(entity.getPhoneNumber());

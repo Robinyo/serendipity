@@ -31,11 +31,11 @@ public class AddressAssembler extends RepresentationModelAssemblerSupport<Addres
 
     String locationPublicId = location.getPublicId();
 
-    // Guaranteed safe instantiation without violating parent framework null contracts
+    // Standard Spring HATEOAS self-link construction using the locationPublicId
     AddressModel model = createModelWithId(locationPublicId, entity);
 
-    // Visual Anchor: Explicitly populate the DTO tracking property for the frontend payload
-    model.setLocationPublicId(locationPublicId);
+    // Map public location UUID to the 'id' field on the model
+    model.setId(locationPublicId);
 
     // Map values from Entity to DTO
     model.setName(entity.getName());

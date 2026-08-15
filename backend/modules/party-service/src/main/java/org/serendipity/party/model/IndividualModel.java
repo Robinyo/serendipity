@@ -21,7 +21,7 @@ import java.util.Set;
 @Relation(collectionRelation = "individuals", itemRelation = "individual")
 public class IndividualModel extends RepresentationModel<IndividualModel> {
 
-  private String partyPublicId;
+  private String id;
   private PartyModel party;
   private NameModel name;
   private Set<IndividualNameModel> names;

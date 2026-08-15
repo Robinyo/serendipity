@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ElectoralDivisionModel extends RepresentationModel<ElectoralDivisionModel> {
 
-  private String publicId;
+  private String id;
   private String name;
   private String nameDerivation;
   private String state;

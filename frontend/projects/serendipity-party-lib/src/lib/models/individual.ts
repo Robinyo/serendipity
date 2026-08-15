@@ -20,8 +20,10 @@ export class IndividualModel {
   public id?: string;
 
   constructor(
-    public party: PartyModel = new PartyModel(PartyType.INDIVIDUAL),
-    public name: NameModel = defaultName,
+    // public party: PartyModel = new PartyModel(PartyType.INDIVIDUAL),
+    public party: PartyModel,
+    // public name: NameModel = defaultName,
+    public name: NameModel,
     public jobTitle: string | null,
     public sex: string = '',
     public gender: string = '',
@@ -38,6 +40,14 @@ export class IndividualModel {
     public placeOfDeath: string = '',
     public countryOfDeath: string = ''
 
+  ) {}
+
+}
+
+// https://google.github.io/styleguide/jsoncstyleguide.xml
+
+/*
+
   ) {
     this.organisation = new OrganisationRef();
   }
@@ -46,4 +56,4 @@ export class IndividualModel {
 
 }
 
-// https://google.github.io/styleguide/jsoncstyleguide.xml
+*/

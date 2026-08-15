@@ -32,7 +32,7 @@ public class IndividualSummaryAssembler
 
     String partyPublicId = party.getPublicId();
 
-    // Create self link pointing to: GET /individuals/{partyPublicId}
+    // Generates HATEOAS model with self-link: GET /individuals/{partyPublicId}
     IndividualSummaryModel model = createModelWithId(partyPublicId, entity);
 
     // Map basic properties
@@ -40,10 +40,11 @@ public class IndividualSummaryAssembler
     model.setPartyDisplayName(party.getDisplayName());
     model.setEmail(entity.getEmail());
 
-    // Extract the Account role matching the Angular frontend logic
+    // Extract the Account role with null checks on role properties
     if (party.getRoles() != null) {
       party.getRoles().stream()
-        .filter(role -> ROLE_CONTACT.equalsIgnoreCase(role.getRole())
+        .filter(role -> role != null
+          && ROLE_CONTACT.equalsIgnoreCase(role.getRole())
           && ROLE_ACCOUNT.equalsIgnoreCase(role.getReciprocalRole()))
         .findFirst()
         .ifPresent(accountRole -> {

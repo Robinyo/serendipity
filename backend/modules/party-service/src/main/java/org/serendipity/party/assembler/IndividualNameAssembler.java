@@ -8,8 +8,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 @Component
-// Visual Anchor: Class name corrected to match its underlying data purpose
-public class IndividualNameAssembler extends RepresentationModelAssemblerSupport<IndividualName, IndividualNameModel> {
+public class IndividualNameAssembler
+  extends RepresentationModelAssemblerSupport<IndividualName, IndividualNameModel> {
 
   public IndividualNameAssembler() {
     super(IndividualNameController.class, IndividualNameModel.class);
@@ -32,16 +32,20 @@ public class IndividualNameAssembler extends RepresentationModelAssemblerSupport
 
     String partyPublicId = individual.getParty().getPublicId();
 
-    // 3. Generate HATEOAS Model mapping
+    // 3. Generate HATEOAS Model mapping and self-link
     IndividualNameModel model = createModelWithId(partyPublicId, entity);
 
-    // 4. Set top-level tracker fields
-    model.setPartyPublicId(partyPublicId);
+    // 4. Map public UUID to the 'id' field on the model
+    model.setId(partyPublicId);
 
-    // 5. Navigate into the @Embedded name object with null guards
+    // 5. Map top-level entity properties
+    model.setType(entity.getType());
+    model.setFromDate(entity.getFromDate());
+    model.setToDate(entity.getToDate());
+
+    // 6. Navigate into the @Embedded name object with null guards
     var embeddedName = entity.getName();
-    if (embeddedName != null) {
-      model.setTitle(embeddedName.getTitle());
+    if (embeddedName != null) {;
       model.setGivenName(embeddedName.getGivenName());
       model.setPreferredName(embeddedName.getPreferredName());
       model.setMiddleName(embeddedName.getMiddleName());
@@ -53,4 +57,5 @@ public class IndividualNameAssembler extends RepresentationModelAssemblerSupport
 
     return model;
   }
+
 }

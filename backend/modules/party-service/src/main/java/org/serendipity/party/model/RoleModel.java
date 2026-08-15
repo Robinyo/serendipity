@@ -17,16 +17,16 @@ import org.springframework.hateoas.RepresentationModel;
 @NoArgsConstructor
 public class RoleModel extends RepresentationModel<RoleModel> {
 
-  private String publicId;
+  private String id;
   private String role;
-  private String partyPublicId;
+  private String partyId;
   private PartyType partyType;
   private String partyName;
   private String partyEmail;
   private String partyPhoneNumber;
   private String relationship;
   private String reciprocalRole;
-  private String reciprocalPartyPublicId;
+  private String reciprocalPartyId;
   private PartyType reciprocalPartyType;
   private String reciprocalPartyName;
   private String reciprocalPartyEmail;

@@ -18,12 +18,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class IndividualNameModel extends RepresentationModel<IndividualNameModel> {
 
-  private String partyPublicId;
+  private String id;
   private String type;
-
-  // @Embedded
-  // private Name name;
-  private String title;
   private String givenName;
   private String preferredName;
   private String middleName;
@@ -31,7 +27,6 @@ public class IndividualNameModel extends RepresentationModel<IndividualNameModel
   private String initials;
   private String honorific;
   private String salutation;
-
   private LocalDateTime fromDate;
   private LocalDateTime toDate;
 

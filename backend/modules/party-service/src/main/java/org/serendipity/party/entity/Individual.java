@@ -82,13 +82,6 @@ public class Individual {
   private String placeOfDeath;
   private String countryOfDeath;
 
-  // citizenship
-  // residences
-
-  // private String relationshipLifecycleStatus;
-
-  // occupation
-  // positions
 
   public void addIndividualName(IndividualName individualName) {
     this.names.add(individualName);
@@ -120,3 +113,11 @@ public class Individual {
   }
 
 }
+
+// citizenship
+// residences
+
+// private String relationshipLifecycleStatus;
+
+// occupation
+// positions

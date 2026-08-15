@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class LocationModel {
 
-  private String publicId;
+  private String id;
   private LocationType type;
   private String displayName;
   private LocalDateTime fromDate;

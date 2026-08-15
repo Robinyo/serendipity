@@ -21,7 +21,7 @@ export class ContactAdapter extends PartyAdapter implements Adapter<ContactModel
 
   adapt(item: any): ContactModel {
 
-    // this.logger.info('item: ' + JSON.stringify(item, null, 2));
+    this.logger.info('Item: ' + JSON.stringify(item, null, 2));
 
     const contact = new ContactModel(
       item.party,
@@ -43,15 +43,25 @@ export class ContactAdapter extends PartyAdapter implements Adapter<ContactModel
       item.countryOfDeath
     );
 
-    contact.id = item.partyPublicId;
-
-    contact.address = item.party.addresses[0];
+    contact.id = item.id;
 
     if (item.photoUrl.includes('avatar.svg')) {
       contact.photoUrl = 'assets/' + item.photoUrl;
     } else {
       contact.photoUrl = this.getUrlPrefix() + item.photoUrl;
     }
+
+    // Flatten the object
+    contact.address = item.party.addresses[0];
+
+    this.logger.info('Adapted item: ' + JSON.stringify(contact, null, 2));
+
+    return contact;
+  }
+
+}
+
+/*
 
     contact.party.roles.every(item => {
 
@@ -69,9 +79,4 @@ export class ContactAdapter extends PartyAdapter implements Adapter<ContactModel
 
     });
 
-    // this.logger.info('contact: ' + JSON.stringify(contact, null, 2));
-
-    return contact;
-  }
-
-}
+*/

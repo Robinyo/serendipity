@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class OrganisationModel extends RepresentationModel<OrganisationModel> {
 
-  private String partyPublicId;
+  private String id;
   private PartyModel party;
   private String name;
   private String email;

@@ -17,7 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class PartyModel extends RepresentationModel<PartyModel> {
 
-  private String publicId;
+  private String id;
   private PartyType type;
   private String legalEntityType;
   private String displayName;

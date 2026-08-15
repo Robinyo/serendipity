@@ -10,7 +10,7 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 import { LoggerService } from 'serendipity-utils-lib';
 
-import { getDeepDiff, ObjectDiff } from '../../utils/object-diff/object-diff';
+import { getDeepDiff, ObjectDiff, omitKeys } from '../../utils/object-diff/object-diff';
 
 /**
  * FormJsWrapper
@@ -78,8 +78,14 @@ export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit {
         const isValid = Object.keys(currentErrors).length === 0;
 
         if (isDirty) {
+          // const ignoredFields = ["addresses", "roles"];
+          // const cleanedData = omitKeys(this.initialData, ignoredFields);
+          // const changes: ObjectDiff = getDeepDiff(cleanedData, currentData);
+
           const changes: ObjectDiff = getDeepDiff(this.initialData, currentData);
-          this.logger.info('Detected Differences: ' + JSON.stringify(changes, null, 2) + '\n');
+
+          this.logger.info('Detected differences: ' + JSON.stringify(changes, null, 2) + '\n');
+
           // this.logger.info('this.initialData: ' + JSON.stringify(this.initialData, null, 2) + '\n');
           // this.logger.info('currentData: ' + JSON.stringify(currentData, null, 2) + '\n');
         }
