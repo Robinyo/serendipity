@@ -74,20 +74,13 @@ export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit {
         const currentData = event.data;
         const currentErrors = event.errors || {};
 
-        const isDirty = JSON.stringify(this.initialData) !== JSON.stringify(currentData);
+        // Calculate deep diff instead of raw string comparison
+        const changes: ObjectDiff = getDeepDiff(this.initialData, currentData);
+        const isDirty = Object.keys(changes).length > 0;
         const isValid = Object.keys(currentErrors).length === 0;
 
         if (isDirty) {
-          // const ignoredFields = ["addresses", "roles"];
-          // const cleanedData = omitKeys(this.initialData, ignoredFields);
-          // const changes: ObjectDiff = getDeepDiff(cleanedData, currentData);
-
-          const changes: ObjectDiff = getDeepDiff(this.initialData, currentData);
-
           this.logger.info('Detected differences: ' + JSON.stringify(changes, null, 2) + '\n');
-
-          // this.logger.info('this.initialData: ' + JSON.stringify(this.initialData, null, 2) + '\n');
-          // this.logger.info('currentData: ' + JSON.stringify(currentData, null, 2) + '\n');
         }
 
         // Return a combined payload of the raw data and the boolean states
@@ -196,3 +189,76 @@ export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit {
   }
 
 }
+
+/*
+
+  ngOnInit(): void {
+
+    this.logger.info('FormJsWrapper Component: ngOnInit()');
+
+    this.formInstance = new Form({
+      container: this.formWrapper.nativeElement
+    });
+
+    // Handle form change processing with a 200ms debounce
+    const changeSubscription = this.formChanges$.pipe(
+      debounceTime(200),
+
+      // 1. Pre-calculate states outside the Angular zone to see if anything actually changed
+      map((event: any) => {
+        const currentData = event.data;
+        const currentErrors = event.errors || {};
+
+        const isDirty = JSON.stringify(this.initialData) !== JSON.stringify(currentData);
+        const isValid = Object.keys(currentErrors).length === 0;
+
+        if (isDirty) {
+          // const ignoredFields = ["addresses", "roles"];
+          // const cleanedData = omitKeys(this.initialData, ignoredFields);
+          // const changes: ObjectDiff = getDeepDiff(cleanedData, currentData);
+
+          const changes: ObjectDiff = getDeepDiff(this.initialData, currentData);
+
+          this.logger.info('Detected differences: ' + JSON.stringify(changes, null, 2) + '\n');
+
+          // this.logger.info('this.initialData: ' + JSON.stringify(this.initialData, null, 2) + '\n');
+          // this.logger.info('currentData: ' + JSON.stringify(currentData, null, 2) + '\n');
+        }
+
+        // Return a combined payload of the raw data and the boolean states
+        return { event, isDirty, isValid, stateKey: `${isDirty}-${isValid}` };
+      }),
+
+      // 2. Only pass the data forward if the combined dirty/valid state combination flipped
+      distinctUntilChanged((prev, curr) => prev.stateKey === curr.stateKey)
+
+    ).subscribe(({ event, isDirty, isValid }) => {
+
+      // 3. This block now runs ONLY when state changes (e.g., pristine -> dirty, or invalid -> valid)
+      this.zone.run(() => {
+        this.dirty = isDirty;
+        this.valid = isValid;
+
+        // 4. Logs will now only fire exactly when the states cross a threshold
+        if (this.dirty) {
+          this.logger.info('FormJsWrapper Component: User has modified fields');
+        } else {
+          this.logger.info('FormJsWrapper Component: Form data matches initial content');
+        }
+
+        if (this.valid) {
+          this.logger.info('Task Component: All required fields are complete');
+        } else {
+          this.logger.info('Task Component: Form has errors');
+        }
+
+        // 5. Request a UI check only on state updates
+        this.changeDetectorRef.markForCheck();
+      });
+
+    });
+
+    this.subscriptions.push(changeSubscription);
+  }
+
+*/

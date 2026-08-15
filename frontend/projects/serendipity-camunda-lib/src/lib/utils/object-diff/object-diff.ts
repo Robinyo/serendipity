@@ -13,6 +13,17 @@ export function getDeepDiff(obj1: Record<string, any>, obj2: Record<string, any>
   const isObject = (val: any): val is Record<string, any> =>
     val !== null && typeof val === 'object' && !Array.isArray(val);
 
+  // Helper for deep array comparison
+  const areArraysEqual = (arr1: any[], arr2: any[]): boolean => {
+    if (arr1.length !== arr2.length) return false;
+    return JSON.stringify(arr1) === JSON.stringify(arr2);
+  };
+
+  // Helper to treat null, undefined, and empty string as equivalent "empty" values
+  const normalizeEmpty = (val: any): any => {
+    return (val === null || val === undefined || val === '') ? null : val;
+  };
+
   const allKeys = new Set([
     ...Object.keys(obj1 || {}),
     ...Object.keys(obj2 || {})
@@ -22,15 +33,31 @@ export function getDeepDiff(obj1: Record<string, any>, obj2: Record<string, any>
     const val1 = obj1?.[key];
     const val2 = obj2?.[key];
 
+    // Normalize empty representations before comparing primitives
+    const norm1 = normalizeEmpty(val1);
+    const norm2 = normalizeEmpty(val2);
+
+    // Both are objects -> Recursively diff
     if (isObject(val1) && isObject(val2)) {
       const nestedDiff = getDeepDiff(val1, val2);
       if (Object.keys(nestedDiff).length > 0) {
         diff[key] = nestedDiff;
       }
-    } else if (val1 !== val2) {
+    }
+    // Both are arrays -> Compare contents
+    else if (Array.isArray(val1) && Array.isArray(val2)) {
+      if (!areArraysEqual(val1, val2)) {
+        diff[key] = {
+          oldValue: val1,
+          newValue: val2
+        };
+      }
+    }
+    // Primitives or mixed types -> Check normalized inequality
+    else if (norm1 !== norm2) {
       diff[key] = {
-        oldValue: val1 ?? null,
-        newValue: val2 ?? null
+        oldValue: norm1,
+        newValue: norm2
       };
     }
   }

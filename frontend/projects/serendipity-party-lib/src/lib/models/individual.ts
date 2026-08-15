@@ -1,5 +1,5 @@
 import { NameModel } from './name';
-import { OrganisationRef } from './organisation-ref';
+import { OrganisationRefModel } from './organisation-ref';
 import { PartyModel } from './party';
 
 import { PartyType } from '../types/party-type';
@@ -20,9 +20,7 @@ export class IndividualModel {
   public id?: string;
 
   constructor(
-    // public party: PartyModel = new PartyModel(PartyType.INDIVIDUAL),
     public party: PartyModel,
-    // public name: NameModel = defaultName,
     public name: NameModel,
     public jobTitle: string | null,
     public sex: string = '',
@@ -40,20 +38,14 @@ export class IndividualModel {
     public placeOfDeath: string = '',
     public countryOfDeath: string = ''
 
-  ) {}
+  ) {
+
+    // this.organisation = new OrganisationRef();
+
+  }
+
+  public organisation?: OrganisationRefModel;
 
 }
 
 // https://google.github.io/styleguide/jsoncstyleguide.xml
-
-/*
-
-  ) {
-    this.organisation = new OrganisationRef();
-  }
-
-  public organisation: OrganisationRef;
-
-}
-
-*/

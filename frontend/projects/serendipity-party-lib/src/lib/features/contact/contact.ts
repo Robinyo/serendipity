@@ -17,7 +17,7 @@ import { LeafletModule } from '@bluehalo/ngx-leaflet';
 
 import { ContactsService } from '../../services/contacts/contacts';
 import { ElectoralDivisionsService } from '../../services/electoral-divisions/electoral-divisions';
-import { ContactRelatedTab } from '../../components/contact/contact-related-tab/contact-related-tab';
+// import { ContactRelatedTab } from '../../components/contact/contact-related-tab/contact-related-tab';
 // import { LookupAccountDialogComponent } from "../dialogs/lookup-account-dialog/lookup-account-dialog.component";
 
 import { AccountModel } from '../../models/account';
@@ -48,7 +48,7 @@ const CARD = 'card';
   imports: [
     ActivityBar,
     CommandBar,
-    ContactRelatedTab,
+    // ContactRelatedTab,
     FormJsWrapper,
     LeafletModule,
     MatButtonModule,
@@ -124,8 +124,8 @@ export class Contact extends Item<ContactModel> {
 
         this.item = response;
 
-        this.logger.info('id: ' + this.id + ' item id: ' + this.item.id);
-        this.logger.info('item: ' + JSON.stringify(this.item, null, 2));
+        // this.logger.info('id: ' + this.id + ' item id: ' + this.item.id);
+        // this.logger.info('item: ' + JSON.stringify(this.item, null, 2));
 
         this.isLoading = false;
 
@@ -373,6 +373,8 @@ export class Contact extends Item<ContactModel> {
 
   */
 
+  /*
+
   private addAccount(response: DialogResult): void {
 
     this.logger.info('Contact Component: addAccount()');
@@ -461,6 +463,8 @@ export class Contact extends Item<ContactModel> {
     });
 
   }
+
+  */
 
   private update(dto: any): void {
 
