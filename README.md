@@ -9,8 +9,6 @@
   You can use it to transform your organisation by connecting your customers, products, people and operations. </br>
 </p>
 
-![divider](./divider.png)
-
 ## ❯ Documentation
 - [Welcome](./docs/serendipity/sales/overview/README.md)
 - [Get started](./docs/serendipity/sales/developer-guide/README.md)
@@ -19,10 +17,77 @@
 - [Administration guide](./docs/serendipity/sales/administration-guide/README.md)
 - [Developer Guide](./docs/serendipity/sales/developer-guide/README.md)
 
+## ❯ Architecture
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/context-diagram.png">
+</p>
+
+Serendipity is composed of the following components:
+
+- [Progressive Web App](./docs/serendipity/architecture/pwa/README.md)
+- [Backend for Frontend](./docs/serendipity/architecture/bff/README.md)
+- Core Services
+  - [Identity Service](./docs/serendipity/for-administrators/keycloak/README.md)
+  - [Party Service](./docs/serendipity/architecture/spring-data/README.md)
+- Orchestration Services
+  - [Human Tasks Service](./docs/camunda/guides/orchestrate-human-tasks/README.md)
+- Reporting Services
+  - [Report Service](https://github.com/Robinyo/js-docker)
+
+## ❯ Web-based tooling for BPMN, DMN and Forms
+
+Serendipity uses [bpmn-js](https://bpmn.io/) to visually build and display BPMN 2.0 diagrams:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/bpmn-js.gif">
+</p>
+
+Serendipity uses [form-js](https://bpmn.io/) to visually build and display forms:
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/form-js.gif">
+</p>
+
+
 ## ❯ Screen Shots
 
 Home (Welcome) Page
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/home.png">
+</p>
+
+### Navigation
+
+Navigation Bar
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/navigation-bar.png">
+</p>
+
+Command Bar
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/command-bar.png">
+</p>
+
+Sidenav
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/sidenav.png">
+</p>
+
+### Customer Engagement
+
+Accounts
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/accounts.png">
+</p>
+
+Contacts
+
+<p align="center">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/contacts.png">
 </p>
