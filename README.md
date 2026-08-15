@@ -9,6 +9,8 @@
   You can use it to transform your organisation by connecting your customers, products, people and operations. </br>
 </p>
 
+serendipity/blob/main/docs/serendipity/sales/developer-guide/README.md
+
 ![divider](./divider.png)
 
 ## ❯ Documentation
@@ -17,7 +19,7 @@
 - [What's new or changed](./docs/serendipity/sales/overview/README.md)
 - [Try, install or upgrade](./docs/serendipity/sales/overview/README.md)
 - [Administration guide](./docs/serendipity/sales/administration-guide/README.md)
-- [Developer Guide](./docs/serendipity/sales/developers-guide/README.md)
+- [Developer Guide](./docs/serendipity/sales/developer-guide/README.md)
 
 ## ❯ Screen Shots
 
