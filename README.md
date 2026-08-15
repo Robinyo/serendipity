@@ -2,7 +2,7 @@
   <img src="./serendipity-logo.svg" alt="Serendipity" width="400"/>
 </p>
 
-<h1 align="center">Serendipity 4.0</h1>
+<h1 align="center">Serendipity</h1>
 
 <p align="center">
   Serendipity is an open-source Customer Engagement Platform. </br>
@@ -12,12 +12,12 @@
 ![divider](./divider.png)
 
 ## ❯ Documentation
-- [Welcome](./docs/serendipity/for-users/sales/overview/README.md)
-- [Get started](./docs/serendipity/for-users/sales/overview/README.md)
-- [What's new or changed](./docs/serendipity/for-users/sales/overview/README.md)
-- [Try, install or upgrade](./docs/serendipity/for-users/sales/overview/README.md)
-- [Administration guide](./docs/serendipity/for-users/sales/overview/README.md)
-- [Developer Guide](./docs/serendipity/for-users/sales/overview/README.md)
+- [Welcome](./docs/serendipity/for-users/learn/sales/overview/README.md)
+- [Get started](./docs/serendipity/for-users/learn/sales/overview/README.md)
+- [What's new or changed](./docs/serendipity/for-users/learn/sales/overview/README.md)
+- [Try, install or upgrade](./docs/serendipity/for-users/learn/sales/overview/README.md)
+- [Administration guide](./docs/serendipity/for-users/learn/sales/overview/administration-guide/README.md)
+- [Developer Guide](./docs/serendipity/for-users/learn/sales/overview/developers-guide/README.md)
 
 ## ❯ Screen Shots
 

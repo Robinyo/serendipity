@@ -11,14 +11,6 @@
 
 ![divider](./divider.png)
 
-## ❯ Documentation
-- [Welcome](./docs/serendipity/for-users/sales/overview/README.md)
-- [Get started](./docs/serendipity/for-users/sales/overview/README.md)
-- [What's new or changed](./docs/serendipity/for-users/sales/overview/README.md)
-- [Try, install or upgrade](./docs/serendipity/for-users/sales/overview/README.md)
-- [Amdinistration guide](./docs/serendipity/for-users/sales/overview/README.md)
-- [Developer Guide](./docs/serendipity/for-users/sales/overview/README.md)
-
 ## ❯ Architecture
 
 <p align="center">

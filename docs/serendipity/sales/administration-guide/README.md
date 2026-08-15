@@ -1,6 +1,8 @@
 <h1 align="center">Administrator Documentation</h1>
 
-* Administrator Documentation
+## ❯ Documentation
+
+* Administration
   * [Working with Docker and Docker Compose](./docker/README.md)
   * [Working with Keycloak](./keycloak/README.md)
   * [Working with PostgreSQL](./postgres/README.md)
