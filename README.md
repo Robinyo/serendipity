@@ -14,7 +14,7 @@
 ## ❯ Documentation
 - [Welcome](./docs/serendipity/sales/overview/README.md)
 - [Get started](./docs/serendipity/sales/developer-guide/README.md)
-- [What's new or changed(./docs/serendipity/sales/developer-guide/README.md)
+- [What's new or changed](./docs/serendipity/sales/developer-guide/README.md)
 - [Try, install or upgrade](./docs/serendipity/sales/developer-guide/README.md)
 - [Administration guide](./docs/serendipity/sales/administration-guide/README.md)
 - [Developer Guide](./docs/serendipity/sales/developer-guide/README.md)
@@ -25,22 +25,4 @@ Home (Welcome) Page
 
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/home.png">
-</p>
-
-Navigation
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/sidenav.png">
-</p>
-
-Accounts
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/accounts.png">
-</p>
-
-Contacts
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/contacts.png">
 </p>

@@ -13,18 +13,6 @@
 
 ## ❯ Screen Shots
 
-Home (Welcome) Page
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/home.png">
-</p>
-
-Navigation
-
-<p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/sidenav.png">
-</p>
-
 Accounts
 
 <p align="center">
