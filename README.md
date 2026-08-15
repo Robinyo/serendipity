@@ -12,12 +12,12 @@
 ![divider](./divider.png)
 
 ## ❯ Documentation
-- [Welcome](./docs/serendipity/for-users/learn/sales/overview/README.md)
-- [Get started](./docs/serendipity/for-users/learn/sales/overview/README.md)
-- [What's new or changed](./docs/serendipity/for-users/learn/sales/overview/README.md)
-- [Try, install or upgrade](./docs/serendipity/for-users/learn/sales/overview/README.md)
-- [Administration guide](./docs/serendipity/for-users/learn/sales/overview/administration-guide/README.md)
-- [Developer Guide](./docs/serendipity/for-users/learn/sales/overview/developers-guide/README.md)
+- [Welcome](./docs/serendipity/sales/overview/README.md)
+- [Get started](./docs/serendipity/sales/overview/README.md)
+- [What's new or changed](./docs/serendipity/sales/overview/README.md)
+- [Try, install or upgrade](./docs/serendipity/sales/overview/README.md)
+- [Administration guide](./docs/serendipity/sales/overview/administration-guide/README.md)
+- [Developer Guide](./docs/serendipity/sales/overview/developers-guide/README.md)
 
 ## ❯ Screen Shots
 
