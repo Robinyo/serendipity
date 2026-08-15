@@ -9,8 +9,6 @@
   You can use it to transform your organisation by connecting your customers, products, people and operations. </br>
 </p>
 
-serendipity/blob/main/docs/serendipity/sales/developer-guide/README.md
-
 ![divider](./divider.png)
 
 ## ❯ Documentation
