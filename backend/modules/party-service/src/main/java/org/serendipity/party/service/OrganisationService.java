@@ -1,6 +1,7 @@
 package org.serendipity.party.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.serendipity.party.entity.Organisation;
 import org.serendipity.party.exception.ResourceNotFoundException;
 import org.serendipity.party.repository.OrganisationRepository;
@@ -10,27 +11,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class OrganisationService {
 
   private final OrganisationRepository repository;
 
   @Transactional(readOnly = true)
-  public Page <Organisation> findAll(Pageable pageable) {
+  public Page<Organisation> findAll(Pageable pageable) {
     return repository.findAll(pageable);
   }
 
   @Transactional(readOnly = true)
-  public Organisation findByPartyPublicId(String publicId) {
+  public Organisation findByPartyPublicId(final String publicId) {
     return repository.findByPartyPublicId(publicId)
       .orElseThrow(() -> new ResourceNotFoundException("Organisation not found with id: " + publicId));
   }
-
-  // @Transactional(readOnly = true)
-  // public Organisation findById(final Long id) throws ResponseStatusException {
-  //   return repository.findById(id).orElseThrow(() ->
-  //       new ResponseStatusException(HttpStatus.NOT_FOUND));
-  // }
 
   @Transactional(readOnly = true)
   public Page<Organisation> findByName(final String name, Pageable pageable) {
@@ -43,46 +39,56 @@ public class OrganisationService {
   }
 
   @Transactional(readOnly = true)
-  public boolean existsByName(String name) {
-    return repository.existsByName(name);
+  public boolean existsByPartyPublicId(final String publicId) {
+    return repository.existsByPartyPublicId(publicId);
   }
 
   @Transactional
-  public Organisation save(Organisation individual) {
-    return repository.save(individual);
+  public Organisation save(Organisation organisation) {
+
+    log.debug("Saving Organisation: {}", organisation);
+
+    return repository.save(organisation);
   }
 
   @Transactional
-  public void deleteById(final Long id) {
-    repository.deleteById(id);
+  public Organisation update(final String publicId, Organisation updatedOrganisation) {
+
+    log.debug("Updating Organisation with publicId: {}", publicId);
+
+    Organisation existing = repository.findByPartyPublicId(publicId)
+      .orElseThrow(() -> new ResourceNotFoundException("Organisation not found with id: " + publicId));
+
+    // 1. Basic Information
+    existing.setName(updatedOrganisation.getName());
+
+    // 2. Contact Information
+    existing.setEmail(updatedOrganisation.getEmail());
+    existing.setPhoneNumber(updatedOrganisation.getPhoneNumber());
+    existing.setFaxNumber(updatedOrganisation.getFaxNumber());
+    existing.setPreferredContactMethod(updatedOrganisation.getPreferredContactMethod());
+
+    // 3. Dates & Details
+    existing.setEstablishmentDate(updatedOrganisation.getEstablishmentDate());
+
+    // 4. Update Parent Party (if present)
+    if (updatedOrganisation.getParty() != null && existing.getParty() != null) {
+      existing.getParty().setDisplayName(updatedOrganisation.getParty().getDisplayName());
+    }
+
+    return repository.save(existing);
+  }
+
+  @Transactional
+  public void deleteByPartyPublicId(final String publicId) {
+
+    log.debug("Deleting Organisation with publicId: {}", publicId);
+
+    if (!repository.existsByPartyPublicId(publicId)) {
+      throw new ResourceNotFoundException("Organisation not found with id: " + publicId);
+    }
+
+    repository.deleteByPartyPublicId(publicId);
   }
 
 }
-
-/*
-
-  private final OrganisationRepository repository;
-
-  public OrganisationService(OrganisationRepository repository) {
-    this.repository = repository;
-  }
-
-@Service
-public class OrganisationService extends BaseService<Organisation, OrganisationRepository> {
-
-  public OrganisationService(OrganisationRepository repository) {
-    super(repository);
-  }
-
-  public Page <Organisation> findAll(Pageable pageable) {
-    return repository.findAll(pageable);
-  }
-
-  public Organisation findById(final Long id) throws ResponseStatusException {
-    return repository.findById(id).orElseThrow(() ->
-        new ResponseStatusException(HttpStatus.NOT_FOUND));
-  }
-
-}
-
-*/

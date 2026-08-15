@@ -23,7 +23,7 @@ public class IndividualService {
   }
 
   @Transactional(readOnly = true)
-  public Individual findByPartyPublicId(String publicId) {
+  public Individual findByPartyPublicId(final String publicId) {
     return repository.findByPartyPublicId(publicId)
       .orElseThrow(() -> new ResourceNotFoundException("Individual not found with id: " + publicId));
   }
@@ -33,14 +33,22 @@ public class IndividualService {
     return repository.findByNameFamilyNameStartsWith(name, pageable);
   }
 
+  @Transactional(readOnly = true)
+  public boolean existsByPartyPublicId(final String publicId) {
+    return repository.existsByPartyPublicId(publicId);
+  }
+
   @Transactional
   public Individual save(Individual individual) {
+
     log.debug("Saving Individual: {}", individual);
+
     return repository.save(individual);
   }
 
   @Transactional
-  public Individual update(String publicId, Individual updatedIndividual) {
+  public Individual update(final String publicId, Individual updatedIndividual) {
+
     log.debug("Updating Individual with publicId: {}", publicId);
 
     Individual existing = repository.findByPartyPublicId(publicId)
@@ -90,14 +98,15 @@ public class IndividualService {
   }
 
   @Transactional
-  public void deleteByPartyPublicId(final String id) {
-    log.debug("Deleting Individual with publicId: {}", id);
+  public void deleteByPartyPublicId(final String publicId) {
 
-    if (!repository.existsByPartyPublicId(id)) {
-      throw new ResourceNotFoundException("Individual not found with id: " + id);
+    log.debug("Deleting Individual with publicId: {}", publicId);
+
+    if (!repository.existsByPartyPublicId(publicId)) {
+      throw new ResourceNotFoundException("Individual not found with id: " + publicId);
     }
 
-    repository.deleteByPartyPublicId(id);
+    repository.deleteByPartyPublicId(publicId);
   }
 
 }

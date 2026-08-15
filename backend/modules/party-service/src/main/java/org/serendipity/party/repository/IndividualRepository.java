@@ -12,7 +12,6 @@ import java.util.Optional;
 public interface IndividualRepository extends JpaRepository<Individual, Long> {
 
   Optional<Individual> findByPartyPublicId(String publicId);
-
   Page<Individual> findByNameFamilyNameStartsWith(String name, Pageable pageable);
 
   boolean existsByPartyPublicId(String publicId);

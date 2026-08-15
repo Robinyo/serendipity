@@ -1,6 +1,5 @@
 package org.serendipity.party.repository;
 
-import org.serendipity.party.entity.Individual;
 import org.serendipity.party.entity.Organisation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +14,9 @@ public interface OrganisationRepository extends JpaRepository<Organisation, Long
   Page<Organisation> findByName(String name, Pageable pageable);
   Page<Organisation> findByNameStartsWith(String name, Pageable pageable);
 
-  boolean existsByName(String name);
+  boolean existsByPartyPublicId(String publicId);
+
+  void deleteByPartyPublicId(String publicId);
 
 }
 

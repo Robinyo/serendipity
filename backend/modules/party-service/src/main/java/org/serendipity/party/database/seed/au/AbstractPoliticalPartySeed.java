@@ -46,14 +46,9 @@ public abstract class AbstractPoliticalPartySeed implements CommandLineRunner {
   @Override
   @Transactional
   public void run(String @NonNull ... args) throws Exception {
+
     PoliticalPartyData data = getPartyData();
     String partyName = data.getPoliticalParty().toString();
-
-    // Prevent duplicate seed inserts on application restarts
-    if (organisationService.existsByName(partyName)) {
-      log.info("Seed data for {} already exists. Skipping...", partyName);
-      return;
-    }
 
     log.info("Create {} ...", partyName);
 
