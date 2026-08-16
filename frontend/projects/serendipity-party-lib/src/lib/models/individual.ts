@@ -2,7 +2,7 @@ import { NameModel } from './name';
 import { OrganisationRefModel } from './organisation-ref';
 import { PartyModel } from './party';
 
-import { PartyType } from '../types/party-type';
+// import { PartyType } from '../types/party-type';
 
 const defaultName: NameModel = new NameModel(
   '',
@@ -38,14 +38,12 @@ export class IndividualModel {
     public placeOfDeath: string = '',
     public countryOfDeath: string = ''
 
-  ) {
-
-    // this.organisation = new OrganisationRef();
-
-  }
+  ) {}
 
   public organisation?: OrganisationRefModel;
 
 }
+
+// this.organisation = new OrganisationRef();
 
 // https://google.github.io/styleguide/jsoncstyleguide.xml

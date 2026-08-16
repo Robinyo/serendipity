@@ -8,21 +8,23 @@ import lombok.NoArgsConstructor;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
+import java.time.LocalDateTime;
+
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Relation(collectionRelation = "individuals", itemRelation = "individual")
-public class IndividualSummaryModel extends RepresentationModel<IndividualSummaryModel> {
+@Relation(collectionRelation = "organisations", itemRelation = "organisation")
+public class OrganisationSummaryModel extends RepresentationModel<OrganisationSummaryModel>{
 
   private String id;
   private String partyDisplayName;
   private String email;
   private String phoneNumber;
-  private String organisationId;
-  private String organisationDisplayName;
-  private String organisationEmail;
-  private String organisationPhoneNumber;
+  private String individualId;
+  private String individualDisplayName;
+  private String individualEmail;
+  private String individualPhoneNumber;
 
 }

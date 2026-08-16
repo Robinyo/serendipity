@@ -2,8 +2,12 @@ package org.serendipity.party.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.serendipity.party.assembler.OrganisationAssembler;
+import org.serendipity.party.assembler.OrganisationSummaryAssembler;
+import org.serendipity.party.entity.Individual;
 import org.serendipity.party.entity.Organisation;
+import org.serendipity.party.model.IndividualModel;
 import org.serendipity.party.model.OrganisationModel;
+import org.serendipity.party.model.OrganisationSummaryModel;
 import org.serendipity.party.service.OrganisationService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,110 +22,100 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class OrganisationController {
 
-  private final OrganisationService service;
-  private final OrganisationAssembler assembler;
-  private final PagedResourcesAssembler<Organisation> pagedResourcesAssembler;
+  private final OrganisationService organisationService;
+  private final OrganisationAssembler organisationAssembler;
+  private final OrganisationSummaryAssembler organisationSummaryAssembler;
+  private final PagedResourcesAssembler<Organisation> organisationPagedResourcesAssembler;
 
-  public OrganisationController(OrganisationService service,
-                                OrganisationAssembler assembler,
-                                PagedResourcesAssembler<Organisation> pagedResourcesAssembler) {
+  public OrganisationController(OrganisationService organisationService,
+                                OrganisationAssembler organisationAssembler,
+                                OrganisationSummaryAssembler organisationSummaryAssembler,
+                                PagedResourcesAssembler<Organisation> organisationPagedResourcesAssembler) {
 
-    this.service = service;
-    this.assembler = assembler;
-    this.pagedResourcesAssembler = pagedResourcesAssembler;
+    this.organisationService = organisationService;
+    this.organisationAssembler = organisationAssembler;
+    this.organisationSummaryAssembler = organisationSummaryAssembler;
+    this.organisationPagedResourcesAssembler = organisationPagedResourcesAssembler;
 
   }
 
+  // --- READ ALL ---
   @GetMapping("/organisations")
-  public ResponseEntity<PagedModel<OrganisationModel>> findAll(Pageable pageable) {
+  public ResponseEntity<PagedModel<OrganisationSummaryModel>> findAll(Pageable pageable) {
 
-    log.info("OrganisationController GET /organisations");
+    log.info("Organisation Controller GET /organisations - page: {}", pageable);
 
-    Page<Organisation> entities = service.findAll(pageable);
-    PagedModel<OrganisationModel> models = pagedResourcesAssembler.toModel(entities, assembler);
-
-    // logInfo(entities, models);
+    Page<Organisation> entities = organisationService.findAll(pageable);
+    PagedModel<OrganisationSummaryModel> models = organisationPagedResourcesAssembler.toModel(entities, organisationSummaryAssembler);
 
     return ResponseEntity.ok(models);
 
   }
 
-  @GetMapping("/organisations/{id}")
-  public ResponseEntity<OrganisationModel> findById(@PathVariable("id") final String id) {
+  // --- SEARCH BY NAME ---
+  @GetMapping("/organisations/search/findByNameStartsWith")
+  public ResponseEntity<PagedModel<OrganisationSummaryModel>> findByNameStartsWith(@RequestParam("name") final String name,
+                                                                            Pageable pageable) {
 
-    log.info("OrganisationController GET /organisations/{id}");
+    log.info("Organisation Controller GET /individuals/search/findByFamilyNameStartsWith - name: {}", name);
 
-    Organisation entity = service.findByPartyPublicId(id);
-    OrganisationModel model = assembler.toModel(entity);
+    Page<Organisation> entities = organisationService.findByNameStartsWith(name, pageable);
+    PagedModel<OrganisationSummaryModel> models = organisationPagedResourcesAssembler.toModel(entities, organisationSummaryAssembler);
 
-    // logInfo(entity, model);
+    return ResponseEntity.ok(models);
+
+  }
+
+  // --- READ ONE BY PUBLIC ID ---
+  @GetMapping("/organisations/{publicId}")
+  public ResponseEntity<OrganisationModel> findById(@PathVariable("publicId") final String publicId) {
+
+    log.info("Organisation Controller GET /individuals/{}", publicId);
+
+    Organisation entity = organisationService.findByPartyPublicId(publicId);
+    OrganisationModel model = organisationAssembler.toModel(entity);
 
     return ResponseEntity.ok(model);
 
   }
 
-  @GetMapping("/organisations/search/findByNameStartsWith")
-  public ResponseEntity<PagedModel<OrganisationModel>> findByNameStartsWith(@RequestParam("name") final String name,
-                                                                            Pageable pageable) {
-
-    log.info("OrganisationController GET /organisations/search/findByNameStartsWith");
-
-    Page<Organisation> entities = service.findByNameStartsWith(name, pageable);
-    PagedModel<OrganisationModel> models = pagedResourcesAssembler.toModel(entities, assembler);
-
-    // logInfo(entities, models);
-
-    return ResponseEntity.ok(models);
-
-  }
-
+  // --- CREATE ---
   @PostMapping("/organisations")
   public ResponseEntity<OrganisationModel> create(@RequestBody Organisation organisation) {
 
-    log.info("OrganisationController POST /organisations");
+    log.info("Organisation Controller POST /organisations");
 
-    Organisation entity = service.save(organisation);
-    OrganisationModel model = assembler.toModel(entity);
-
-    // logInfo(entity, model);
+    Organisation entity = organisationService.save(organisation);
+    OrganisationModel model = organisationAssembler.toModel(entity);
 
     return ResponseEntity
         .created(model.getRequiredLink(IanaLinkRelations.SELF).toUri())
         .body(model);
   }
 
-  /*
+  // --- UPDATE BY PUBLIC ID ---
+  @PutMapping("/organisations/{publicId}")
+  public ResponseEntity<OrganisationModel> update(
+    @PathVariable final String publicId,
+    @RequestBody Organisation organisation) {
 
-  @PatchMapping("/organisations/{id}")
-  public ResponseEntity<OrganisationModel> update(@PathVariable final String id,
-                                                  @RequestBody Organisation organisation) {
+    log.info("Organisation Controller PUT /organisations/{}", publicId);
 
-    log.info("OrganisationController PATCH /organisations/{id}");
-
-    // logInfo(organisation, null);
-
-    organisation.setId(id);
-
-    Organisation entity = service.save(organisation);
-    OrganisationModel model = assembler.toModel(entity);
-
-    // logInfo(entity, model);
+    Organisation updatedEntity = organisationService.update(publicId, organisation);
+    OrganisationModel model = organisationAssembler.toModel(updatedEntity);
 
     return ResponseEntity.ok(model);
-
   }
 
-  @DeleteMapping("/organisations/{id}")
-  public ResponseEntity<OrganisationModel> delete(@PathVariable final String id) {
+  // --- DELETE BY PUBLIC ID ---
+  @DeleteMapping("/organisations/{publicId}")
+  public ResponseEntity<Void> delete(@PathVariable final String publicId) {
 
-    log.info("OrganisationController DELETE /organisations/{id}");
+    log.info("Organisation Controller DELETE /organisations/{}", publicId);
 
-    service.deleteById(id);
+    organisationService.deleteByPartyPublicId(publicId);
 
     return ResponseEntity.noContent().build();
-
   }
-
-  */
 
 }

@@ -5,6 +5,10 @@ import { Adapter } from 'serendipity-utils-lib';
 import { PartyAdapter } from './party';
 
 import { AccountModel } from '../models/account';
+import { IndividualRefModel } from '../models/individual-ref';
+import {OrganisationRefModel} from '../models/organisation-ref';
+
+const PRIMARY_CONTACT = "Primary Contact";
 
 @Injectable({
   providedIn: 'root'
@@ -12,37 +16,45 @@ import { AccountModel } from '../models/account';
 export class AccountAdapter extends PartyAdapter implements Adapter<AccountModel> {
 
   constructor() {
-
     super();
-
-    // this.logger.info('Account Adapter initialised');
-
   }
 
-  adapt(item: any): AccountModel {
+  adapt(item: any): any {
 
-    // this.logger.info('item: ' + JSON.stringify(item, null, 2));
+    this.logger.info('Item: ' + JSON.stringify(item, null, 2));
 
-    const account = new AccountModel(
-      item.party,
-      item.name,
-      item.email,
-      item.phoneNumber
+    // 1. Instantiate a new IndividualRefModel instance (or default to empty strings)
+    let individual = new IndividualRefModel('', '', '', '');
+
+    // 2. Extract organisation properties from roles cleanly using .find()
+    const primaryContactRole = item.party?.roles?.find(
+      (role: any) => role.reciprocalRole === PRIMARY_CONTACT
     );
 
-    // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
+    if (primaryContactRole) {
 
-    account.id = btoa(item.id);
+      this.logger.info('role.reciprocalRole === PRIMARY_CONTACT');
 
-    if (account.party.roles && account.party.roles.length) {
+      individual = new IndividualRefModel(
+        primaryContactRole.reciprocalPartyId ?? '',
+        primaryContactRole.reciprocalPartyName ?? '',
+        primaryContactRole.reciprocalPartyEmail ?? '',
+        primaryContactRole.reciprocalPartyPhoneNumber ?? ''
+      );
 
-      account.individual.id = btoa(account.party.roles[0].reciprocalPartyId);
-      account.individual.displayName = account.party.roles[0].reciprocalPartyName;
-      account.individual.email = account.party.roles[0].reciprocalPartyEmail;
-      account.individual.phoneNumber = account.party.roles[0].reciprocalPartyPhoneNumber;
     }
 
-    // this.logger.info('account: ' + JSON.stringify(account, null, 2));
+    // 3. Extract primary address with null-safety
+    const primaryAddress = item.party?.addresses?.[0] ?? null;
+
+    // 4. Build summary Account payload
+    const account: any = {
+      ...item,
+      address: primaryAddress,
+      individual
+    };
+
+    this.logger.info('Adapted item: ' + JSON.stringify(account, null, 2));
 
     return account;
   }

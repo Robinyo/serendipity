@@ -74,20 +74,16 @@ export class Accounts extends Collection<AccountModel> {
 
         this.logger.info('Accounts Component: subscribe() success handler');
 
+        // this.logger.info('response: ' + JSON.stringify(response, null, 2));
+
         this.count = response.body.page.totalElements;
 
         this.logger.info('count: ' + this.count + ' Accounts');
 
         if (this.count > 0) {
-
-          this.items = response.body._embedded.organisationModels.map(
-            ((item: any) => this.entityAdapter.adapt(item)));
-
+          this.items = response.body._embedded.organisations;
         } else {
-
           this.items = [];
-          this.items.push(new AccountModel());
-
         }
 
         // this.logger.info('items: ' + JSON.stringify(this.items, null, 2));

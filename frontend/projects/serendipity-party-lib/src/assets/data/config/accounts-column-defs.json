@@ -1,7 +1,7 @@
 [
 
   {
-    "name": "name",
+    "name": "partyDisplayName",
     "displayName": "NAME",
     "routerLink": "id",
     "class": "anchor"
@@ -13,13 +13,13 @@
     "class": ""
   },
   {
-    "name":  "individual.displayName",
+    "name":  "individualDisplayName",
     "displayName": "PRIMARY CONTACT",
-    "routerLink": "individual.id",
+    "routerLink": "individualId",
     "class": "anchor"
   },
   {
-    "name":  "individual.email",
+    "name":  "individualEmail",
     "displayName": "EMAIL (PRIMARY CONTACT)",
     "routerLink": "",
     "class": ""

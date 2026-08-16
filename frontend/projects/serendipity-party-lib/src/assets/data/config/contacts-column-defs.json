@@ -15,7 +15,7 @@
   {
     "name":  "organisationDisplayName",
     "displayName": "COMPANY NAME",
-    "routerLink": "organisation.id",
+    "routerLink": "organisationId",
     "class": "anchor"
   },
   {

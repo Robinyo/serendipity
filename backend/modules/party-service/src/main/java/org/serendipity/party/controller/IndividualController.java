@@ -23,24 +23,26 @@ import org.springframework.web.bind.annotation.*;
 public class IndividualController {
 
   private final IndividualService individualService;
-  private final IndividualAssembler individualModelAssembler;
-  private final IndividualSummaryAssembler individualSummaryModelAssembler;
+  private final IndividualAssembler individualAssembler;
+  private final IndividualSummaryAssembler individualSummaryAssembler;
   private final PagedResourcesAssembler<Individual> individualPagedResourcesAssembler;
   private final RoleService roleService;
-  private final RoleAssembler roleModelAssembler;
+  private final RoleAssembler roleAssembler;
 
   public IndividualController(IndividualService individualService,
-                              IndividualAssembler individualModelAssembler,
-                              IndividualSummaryAssembler individualSummaryModelAssembler,
+                              IndividualAssembler individualAssembler,
+                              IndividualSummaryAssembler individualSummaryAssembler,
                               PagedResourcesAssembler<Individual> individualPagedResourcesAssembler,
                               RoleService roleService,
                               RoleAssembler roleModelAssembler) {
+
     this.individualService = individualService;
-    this.individualModelAssembler = individualModelAssembler;
-    this.individualSummaryModelAssembler = individualSummaryModelAssembler;
+    this.individualAssembler = individualAssembler;
+    this.individualSummaryAssembler = individualSummaryAssembler;
     this.individualPagedResourcesAssembler = individualPagedResourcesAssembler;
     this.roleService = roleService;
-    this.roleModelAssembler = roleModelAssembler;
+    this.roleAssembler = roleModelAssembler;
+
   }
 
   // --- READ ALL ---
@@ -50,7 +52,7 @@ public class IndividualController {
     log.info("Individual Controller GET /individuals - page: {}", pageable);
 
     Page<Individual> entities = individualService.findAll(pageable);
-    PagedModel<IndividualSummaryModel> models = individualPagedResourcesAssembler.toModel(entities, individualSummaryModelAssembler);
+    PagedModel<IndividualSummaryModel> models = individualPagedResourcesAssembler.toModel(entities, individualSummaryAssembler);
 
     return ResponseEntity.ok(models);
   }
@@ -64,7 +66,7 @@ public class IndividualController {
     log.info("Individual Controller GET /individuals/search/findByFamilyNameStartsWith - name: {}", name);
 
     Page<Individual> entities = individualService.findByNameFamilyNameStartsWith(name, pageable);
-    PagedModel<IndividualSummaryModel> models = individualPagedResourcesAssembler.toModel(entities, individualSummaryModelAssembler);
+    PagedModel<IndividualSummaryModel> models = individualPagedResourcesAssembler.toModel(entities, individualSummaryAssembler);
 
     return ResponseEntity.ok(models);
   }
@@ -73,10 +75,10 @@ public class IndividualController {
   @GetMapping("/individuals/{publicId}")
   public ResponseEntity<IndividualModel> findById(@PathVariable("publicId") final String publicId) {
 
-    log.info("IndividualController GET /individuals/{}", publicId);
+    log.info("Individual Controller GET /individuals/{}", publicId);
 
     Individual entity = individualService.findByPartyPublicId(publicId);
-    IndividualModel model = individualModelAssembler.toModel(entity);
+    IndividualModel model = individualAssembler.toModel(entity);
 
     return ResponseEntity.ok(model);
   }
@@ -88,7 +90,7 @@ public class IndividualController {
     log.info("Individual Controller POST /individuals");
 
     Individual entity = individualService.save(individual);
-    IndividualModel model = individualModelAssembler.toModel(entity);
+    IndividualModel model = individualAssembler.toModel(entity);
 
     return ResponseEntity
       .created(model.getRequiredLink(IanaLinkRelations.SELF).toUri())
@@ -98,20 +100,20 @@ public class IndividualController {
   // --- UPDATE BY PUBLIC ID ---
   @PutMapping("/individuals/{publicId}")
   public ResponseEntity<IndividualModel> update(
-    @PathVariable("publicId") final String publicId,
+    @PathVariable final String publicId,
     @RequestBody Individual individual) {
 
     log.info("Individual Controller PUT /individuals/{}", publicId);
 
     Individual updatedEntity = individualService.update(publicId, individual);
-    IndividualModel model = individualModelAssembler.toModel(updatedEntity);
+    IndividualModel model = individualAssembler.toModel(updatedEntity);
 
     return ResponseEntity.ok(model);
   }
 
   // --- DELETE BY PUBLIC ID ---
   @DeleteMapping("/individuals/{publicId}")
-  public ResponseEntity<Void> delete(@PathVariable("publicId") final String publicId) {
+  public ResponseEntity<Void> delete(@PathVariable final String publicId) {
 
     log.info("Individual Controller DELETE /individuals/{}", publicId);
 

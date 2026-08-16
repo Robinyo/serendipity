@@ -15,6 +15,7 @@ import org.serendipity.party.type.au.LegalEntityType;
 import org.serendipity.party.type.au.Sex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
@@ -49,6 +50,12 @@ public abstract class AbstractPoliticalPartySeed implements CommandLineRunner {
 
     PoliticalPartyData data = getPartyData();
     String partyName = data.getPoliticalParty().toString();
+
+    // Idempotency check: Skip if already loaded
+    if (isAlreadySeeded(partyName)) {
+      log.info("Skip seeding {}: Organisation already exists.", partyName);
+      return;
+    }
 
     log.info("Create {} ...", partyName);
 
@@ -174,6 +181,13 @@ public abstract class AbstractPoliticalPartySeed implements CommandLineRunner {
     }
   }
 
+  /**
+   * Idempotency Check: Verifies whether the Organisation already exists in the database.
+   */
+  protected boolean isAlreadySeeded(String partyName) {
+    return organisationService.findByName(partyName, Pageable.unpaged()).hasContent();
+  }
+
   private String buildDisplayName(Name name) {
     return Stream.of(name.getTitle(), name.getGivenName(), name.getFamilyName())
       .filter(Objects::nonNull)
@@ -204,4 +218,5 @@ public abstract class AbstractPoliticalPartySeed implements CommandLineRunner {
     @Builder.Default
     String preferredContactMethod = "";
   }
+
 }

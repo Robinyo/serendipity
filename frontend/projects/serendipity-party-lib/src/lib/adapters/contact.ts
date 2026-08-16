@@ -52,7 +52,7 @@ export class ContactAdapter extends PartyAdapter implements Adapter<ContactModel
       ? 'assets/' + item.photoUrl
       : this.getUrlPrefix() + (item.photoUrl || '');
 
-    // 5. Build isolated ContactModel payload
+    // 5. Build summary Contact payload
     const contact: any = {
       ...item,
       photoUrl,

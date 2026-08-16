@@ -39,6 +39,7 @@ public class IndividualSummaryAssembler
     model.setId(partyPublicId);
     model.setPartyDisplayName(party.getDisplayName());
     model.setEmail(entity.getEmail());
+    model.setPhoneNumber(entity.getPhoneNumber());
 
     // Extract the Account role with null checks on role properties
     if (party.getRoles() != null) {
@@ -57,4 +58,5 @@ public class IndividualSummaryAssembler
 
     return model;
   }
+
 }

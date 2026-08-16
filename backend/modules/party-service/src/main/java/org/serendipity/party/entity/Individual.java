@@ -82,7 +82,6 @@ public class Individual {
   private String placeOfDeath;
   private String countryOfDeath;
 
-
   public void addIndividualName(IndividualName individualName) {
     this.names.add(individualName);
     individualName.setIndividual(this);

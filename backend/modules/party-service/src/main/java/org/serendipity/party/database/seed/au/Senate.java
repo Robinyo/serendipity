@@ -63,6 +63,7 @@ public class Senate implements CommandLineRunner {
     log.info("Loading members of the Senate ...");
 
     try {
+
       // Look up Parliament House Address
       Pageable pageable = PageRequest.of(0, 1);
       Page<Address> addresses = addressService.findByName("The Senate", pageable);
