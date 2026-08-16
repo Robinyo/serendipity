@@ -18,7 +18,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -60,7 +60,7 @@ public abstract class AbstractPoliticalPartySeed implements CommandLineRunner {
     log.info("Create {} ...", partyName);
 
     try {
-      LocalDateTime now = LocalDateTime.now();
+      LocalDate now = LocalDate.now();
 
       // 1. Head Office Address
       Location location = Location.builder()

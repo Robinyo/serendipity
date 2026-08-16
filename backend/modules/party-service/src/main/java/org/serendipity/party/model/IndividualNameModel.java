@@ -1,15 +1,11 @@
 package org.serendipity.party.model;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.hateoas.RepresentationModel;
 
-import java.time.LocalDateTime;
+import org.springframework.hateoas.RepresentationModel;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -27,7 +23,7 @@ public class IndividualNameModel extends RepresentationModel<IndividualNameModel
   private String initials;
   private String honorific;
   private String salutation;
-  private LocalDateTime fromDate;
-  private LocalDateTime toDate;
+  private String fromDate;
+  private String toDate;
 
 }

@@ -14,7 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -48,7 +48,7 @@ public class ElectoralDivision {
 
   private String locationDescription;
 
-  private LocalDateTime dateGazetted;
+  private LocalDate dateGazetted;
 
   private String latitude;
 

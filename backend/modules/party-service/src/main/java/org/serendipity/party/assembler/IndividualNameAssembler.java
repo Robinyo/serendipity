@@ -40,8 +40,14 @@ public class IndividualNameAssembler
 
     // 5. Map top-level entity properties
     model.setType(entity.getType());
-    model.setFromDate(entity.getFromDate());
-    model.setToDate(entity.getToDate());
+
+    if (entity.getFromDate() != null) {
+      model.setFromDate(entity.getFromDate().toString());
+    }
+
+    if (entity.getToDate() != null) {
+      model.setToDate(entity.getToDate().toString());
+    }
 
     // 6. Navigate into the @Embedded name object with null guards
     var embeddedName = entity.getName();

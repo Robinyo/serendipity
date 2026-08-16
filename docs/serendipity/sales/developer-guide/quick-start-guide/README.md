@@ -166,7 +166,6 @@ For example:
 
 ```
 http://localhost:8070/import/resources?source=https://raw.githubusercontent.com/Robinyo/serendipity/refs/heads/serendipity-4.0/backend/services/camunda/case-management/case-management.zip
-http://localhost:8070/import/resources?source=https://raw.githubusercontent.com/Robinyo/serendipity/refs/heads/serendipity-4.0/backend/services/camunda/case-management/serendipity-forms.zip
 ```
 
 Open that URL in your browser — Web Modeler will present the resources for import.

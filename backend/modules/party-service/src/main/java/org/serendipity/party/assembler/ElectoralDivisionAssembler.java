@@ -41,7 +41,11 @@ public class ElectoralDivisionAssembler
     model.setState(entity.getState());
     model.setArea(entity.getArea());
     model.setLocationDescription(entity.getLocationDescription());
-    model.setDateGazetted(entity.getDateGazetted());
+
+    if (entity.getDateGazetted() != null) {
+      model.setDateGazetted(entity.getDateGazetted().toString());
+    }
+
     model.setLatitude(entity.getLatitude());
     model.setLongitude(entity.getLongitude());
 

@@ -20,7 +20,7 @@ import lombok.Setter;
 import org.serendipity.party.type.LocationType;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import java.util.UUID;
 
@@ -50,9 +50,9 @@ public class Location {
   @Builder.Default
   private String displayName = "";
 
-  private LocalDateTime fromDate;
+  private LocalDate fromDate;
 
-  private LocalDateTime toDate;
+  private LocalDate toDate;
 
   @Embedded
   private Auditable audit;

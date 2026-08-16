@@ -18,7 +18,7 @@ import lombok.Setter;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -51,9 +51,9 @@ public class Identifier {
 
   private String lifecycleStatus;  // status: Active
 
-  private LocalDateTime fromDate;
+  private LocalDate fromDate;
 
-  private LocalDateTime toDate;
+  private LocalDate toDate;
 
   @Embedded
   private Auditable audit;

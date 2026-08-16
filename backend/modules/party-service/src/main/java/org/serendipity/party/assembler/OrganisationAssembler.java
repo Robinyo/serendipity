@@ -46,7 +46,10 @@ public class OrganisationAssembler extends RepresentationModelAssemblerSupport<O
     model.setPhoneNumber(entity.getPhoneNumber());
     model.setFaxNumber(entity.getFaxNumber());
     model.setPreferredContactMethod(entity.getPreferredContactMethod());
-    model.setEstablishmentDate(entity.getEstablishmentDate());
+
+    if (entity.getEstablishmentDate() != null) {
+      model.setEstablishmentDate(entity.getEstablishmentDate().toString());
+    }
 
     return model;
   }

@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -70,7 +70,7 @@ public class HouseOfRepresentatives implements CommandLineRunner {
     log.info("Loading members of the House of Representatives ...");
 
     try {
-      LocalDateTime now = LocalDateTime.now();
+      LocalDate now = LocalDate.now();
 
       // Example Identifier
       Identifier identifier = Identifier.builder()

@@ -4,13 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
@@ -34,10 +31,10 @@ public class IndividualModel extends RepresentationModel<IndividualModel> {
   private String preferredContactMethod;
   private String photoUrl;
   private String electorate;
-  private LocalDateTime dateOfBirth;
+  private String dateOfBirth;
   private String placeOfBirth;
   private String countryOfBirth;
-  private LocalDateTime dateOfDeath;
+  private String dateOfDeath;
   private String placeOfDeath;
   private String countryOfDeath;
 

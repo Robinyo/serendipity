@@ -14,7 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "Organisation", indexes = { @Index(name = "organisation_name_idx", columnList = "name", unique = false) })
@@ -49,7 +49,7 @@ public class Organisation {
 
   private String preferredContactMethod;
 
-  private LocalDateTime establishmentDate;
+  private LocalDate establishmentDate;
 
   @Override
   public boolean equals(Object o) {

@@ -17,7 +17,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -74,11 +74,11 @@ public class Individual {
 
   private String electorate;
 
-  private LocalDateTime dateOfBirth;
+  private LocalDate dateOfBirth;
   private String placeOfBirth;
   private String countryOfBirth;
 
-  private LocalDateTime dateOfDeath;
+  private LocalDate dateOfDeath;
   private String placeOfDeath;
   private String countryOfDeath;
 

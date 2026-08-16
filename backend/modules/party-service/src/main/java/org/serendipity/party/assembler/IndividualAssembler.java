@@ -80,10 +80,19 @@ public class IndividualAssembler extends RepresentationModelAssemblerSupport<Ind
     model.setPreferredContactMethod(entity.getPreferredContactMethod());
     model.setPhotoUrl(entity.getPhotoUrl());
     model.setElectorate(entity.getElectorate());
-    model.setDateOfBirth(entity.getDateOfBirth());
+
+    if (entity.getDateOfBirth() != null) {
+      model.setDateOfBirth(entity.getDateOfBirth().toString());
+    }
+
+
     model.setPlaceOfBirth(entity.getPlaceOfBirth());
     model.setCountryOfBirth(entity.getCountryOfBirth());
-    model.setDateOfDeath(entity.getDateOfDeath());
+
+    if (entity.getDateOfDeath() != null) {
+      model.setDateOfDeath(entity.getDateOfDeath().toString());
+    }
+
     model.setPlaceOfDeath(entity.getPlaceOfDeath());
     model.setCountryOfDeath(entity.getCountryOfDeath());
 

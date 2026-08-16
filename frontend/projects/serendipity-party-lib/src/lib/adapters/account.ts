@@ -47,9 +47,6 @@ export class AccountAdapter extends PartyAdapter implements Adapter<AccountModel
     // 3. Extract primary address with null-safety
     const primaryAddress = item.party?.addresses?.[0] ?? null;
 
-    // TODO
-    item.establishmentDate = null;
-
     // 4. Build summary Account payload
     const account: any = {
       ...item,

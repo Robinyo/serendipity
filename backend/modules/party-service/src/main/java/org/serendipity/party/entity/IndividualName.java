@@ -19,7 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -51,9 +51,9 @@ public class IndividualName {
   @Embedded
   private Name name;
 
-  private LocalDateTime fromDate;
+  private LocalDate fromDate;
 
-  private LocalDateTime toDate;
+  private LocalDate toDate;
 
   @Override
   public boolean equals(Object o) {
