@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 
+import { AccountResolver } from './resolvers/account';
 import { AccountsResolver } from './resolvers/accounts';
 
 import { ContactResolver } from './resolvers/contact';
@@ -10,6 +11,12 @@ export const AccountsRoute: Route = {
   path: 'customers/accounts',
   loadComponent: () => import('./features/accounts/accounts').then(m => m.Accounts),
   resolve: { columnDefs: AccountsResolver }
+};
+
+export const AccountRoute: Route = {
+  path: 'customers/accounts/:id',
+  loadComponent: () => import('./features/account/account').then(m => m.Account),
+  resolve: { metaData: AccountResolver }
 };
 
 export const NewContactRoute: Route = {

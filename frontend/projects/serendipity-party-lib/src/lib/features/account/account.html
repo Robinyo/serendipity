@@ -1,1 +1,216 @@
-<p>account works!</p>
+<command-bar>
+
+  @if (isHandsetPortrait()) {
+
+    <ng-container>
+
+      <button matIconButton
+              aria-label="Save Account button"
+              class="md-command-bar-button"
+              (click)="onSave()"
+              [disabled]="!isDirty() || !isValid()">
+        <mat-icon class="material-icons"> save </mat-icon>
+      </button>
+
+      <button matIconButton
+              aria-label="Save and Close Account button"
+              class="md-command-bar-button"
+              (click)="onSaveAndClose()"
+              [disabled]="!isDirty() || !isValid()">
+        <mat-icon class="material-icons"> arrow_back </mat-icon>
+      </button>
+
+      <button matIconButton
+              aria-label="New Account button"
+              class="md-command-bar-button"
+              (click)="onNew()">
+        <mat-icon class="material-icons"> add </mat-icon>
+      </button>
+
+      <button matIconButton
+              aria-label="Deactivate Account button"
+              class="md-command-bar-button"
+              (click)="onDeactivate()"
+              [disabled]="true">
+        <mat-icon class="material-icons"> visibility-off </mat-icon>
+      </button>
+
+      <button matIconButton
+              aria-label="Email a Link button"
+              class="md-command-bar-button"
+              [disabled]="true">
+        <mat-icon class="material-icons"> link </mat-icon>
+      </button>
+
+    </ng-container>
+
+  } @else {
+
+    <ng-container>
+
+      <button matButton="filled"
+              aria-label="Save Account button"
+              class="md-command-bar-button"
+              (click)="onSave()"
+              [disabled]="!isDirty() || !isValid()">
+        <mat-icon class="material-icons"> save </mat-icon>
+        SAVE
+      </button>
+
+      <button matButton="filled"
+              aria-label="Save and Close Account button"
+              class="md-command-bar-button"
+              (click)="onSaveAndClose()"
+              [disabled]="!isDirty() || !isValid()">
+        <mat-icon class="material-icons"> arrow_back </mat-icon>
+        SAVE & CLOSE
+      </button>
+
+      <button matButton="filled"
+              aria-label="New Account button"
+              class="md-command-bar-button"
+              (click)="onNew()">
+        <mat-icon class="material-icons"> add </mat-icon>
+        NEW
+      </button>
+
+      <button matButton="filled"
+              aria-label="Deactivate Account button"
+              class="md-command-bar-button"
+              (click)="onDeactivate()"
+              [disabled]="true">
+        <mat-icon class="material-icons"> visibility-off </mat-icon>
+        DEACTIVATE
+      </button>
+
+      <button matButton="filled"
+              aria-label="Email a Link button"
+              class="md-command-bar-button"
+              [disabled]="true">
+        <mat-icon class="material-icons"> link </mat-icon>
+        EMAIL A LINK
+      </button>
+
+    </ng-container>
+
+  }
+
+  <span class="md-command-bar-spacer"></span>
+
+  <button matIconButton
+          aria-label="Close button"
+          (click)="onClose()">
+    <mat-icon class="material-icons"> clear </mat-icon>
+  </button>
+
+</command-bar>
+
+<activity-bar>
+
+  @if (item) {
+
+    <span class="md-font-headline-lg" aria-label="Activity Bar Title">
+      Contact: {{ item.party.displayName }}
+    </span>
+
+  }
+
+</activity-bar>
+
+<div class="md-content-container">
+
+  @if (item) {
+
+    <div class="md-tab-group-container">
+
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start"
+                     [(selectedIndex)]="selectedTabIndex"
+                     (selectedTabChange)="onTabChanged($event)">
+
+        <mat-tab>
+
+          <ng-template mat-tab-label>
+            <mat-icon class="material-symbols-outlined md-tab-icon"> person </mat-icon>
+            <span> Summary </span>
+          </ng-template>
+
+          <ng-template matTabContent>
+
+            @if (viewMode === 'accordion') {
+
+              <mat-accordion multi>
+
+                <!-- Account Information -->
+
+                <mat-expansion-panel expanded>
+
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Account Information
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+
+                  <ng-template matExpansionPanelContent>
+                    <div>
+                      <form-js-wrapper #formRef [schema]="schema" [data]="item"></form-js-wrapper>
+                    </div>
+                  </ng-template>
+
+                </mat-expansion-panel>
+
+                <!-- Relationships -->
+
+                <!--
+                <account-related-tab [item]="item">
+                </account-related-tab>
+                -->
+
+              </mat-accordion>
+
+            }
+
+            @if (viewMode === 'card') {
+
+              <div class="md-grid-3-column-layout-container">
+
+                <mat-card>
+
+                  <!-- Account Information -->
+
+                  <mat-card-content class="md-card-content">
+                    <div>
+                      <form-js-wrapper #formRef [schema]="schema" [data]="item"></form-js-wrapper>
+                    </div>
+                  </mat-card-content>
+
+                </mat-card>
+
+                <mat-card>
+
+                  <mat-card-content class="md-card-content">
+                  </mat-card-content>
+
+                </mat-card>
+
+                <mat-card>
+
+                  <mat-card-content class="md-card-content">
+                  </mat-card-content>
+
+                </mat-card>
+
+              </div>
+
+            }
+
+          </ng-template>
+
+        </mat-tab>
+
+      </mat-tab-group>
+
+    </div>
+
+  } <!-- @if (item) -->
+
+</div>

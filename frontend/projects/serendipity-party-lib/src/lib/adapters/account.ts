@@ -47,6 +47,9 @@ export class AccountAdapter extends PartyAdapter implements Adapter<AccountModel
     // 3. Extract primary address with null-safety
     const primaryAddress = item.party?.addresses?.[0] ?? null;
 
+    // TODO
+    item.establishmentDate = null;
+
     // 4. Build summary Account payload
     const account: any = {
       ...item,
@@ -60,22 +63,3 @@ export class AccountAdapter extends PartyAdapter implements Adapter<AccountModel
   }
 
 }
-
-/*
-
-    if (item.party.addresses && item.party.addresses.length) {
-      account.party.addresses = account.party.addresses.concat(item.party.addresses);
-    }
-
-    if (item.party.roles && item.party.roles.length) {
-
-      account.party.roles = account.party.roles.concat(item.party.roles);
-
-      account.individual.id = btoa(account.party.roles[0].reciprocalPartyId);
-      account.individual.displayName = account.party.roles[0].reciprocalPartyName;
-      account.individual.email = account.party.roles[0].reciprocalPartyEmail;
-      account.individual.phoneNumber = account.party.roles[0].reciprocalPartyPhoneNumber;
-    }
-
-
-*/

@@ -1,0 +1,105 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.9.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "8efc50f"
+  },
+  "schemaVersion": 19,
+  "id": "Form_1ratd91",
+  "components": [
+    {
+      "text": "### Account Information",
+      "type": "text",
+      "layout": {
+        "row": "Row_1qrpla9",
+        "columns": null
+      },
+      "id": "Field_1pk0c6x"
+    },
+    {
+      "label": "Account Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1izgm40",
+        "columns": null
+      },
+      "id": "Field_1icb57c",
+      "key": "name"
+    },
+    {
+      "label": "Email",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0hc3tcw",
+        "columns": null
+      },
+      "id": "Field_0uvllnt",
+      "key": "email"
+    },
+    {
+      "label": "Number",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1im7h8o",
+        "columns": null
+      },
+      "id": "Field_0evop2a",
+      "key": "phoneNumber"
+    },
+    {
+      "label": "Fax",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1anapcm",
+        "columns": null
+      },
+      "id": "Field_0bw9l1a",
+      "key": "faxNumber"
+    },
+    {
+      "label": "Preferred Contact Method",
+      "values": [
+        {
+          "label": "Any",
+          "value": "Any"
+        },
+        {
+          "label": "Email",
+          "value": "Email"
+        },
+        {
+          "label": "Phone",
+          "value": "Phone"
+        },
+        {
+          "label": "Fax",
+          "value": "Fax"
+        },
+        {
+          "label": "Mail",
+          "value": "Mail"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "Row_00pqeuv",
+        "columns": null
+      },
+      "id": "Field_1vgu7o1",
+      "key": "preferredContactMethod"
+    },
+    {
+      "subtype": "date",
+      "dateLabel": "Establishment Date",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_0rggvsb",
+        "columns": null
+      },
+      "id": "Field_0zumxhp",
+      "key": "establishmentDate"
+    }
+  ],
+  "type": "default"
+}

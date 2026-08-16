@@ -26,6 +26,7 @@
 
   /* Use ::ng-deep to pierce Angular encapsulation and reach MatTab internal DOM */
   ::ng-deep {
+
     .mat-mdc-tab-body-wrapper {
       display: flex;
       flex: 1;
@@ -61,6 +62,7 @@
       flex: 1;
       min-height: 400px; /* Fallback height */
     }
+
   }
 
 }

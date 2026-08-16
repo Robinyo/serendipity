@@ -1,6 +1,6 @@
-# include:
-#   - path: ./services/camunda/docker-compose/8.9/docker-compose-full.yaml
-#     env_file: ./services/camunda/docker-compose/8.9/.env
+include:
+  - path: ./services/camunda/docker-compose/8.9/docker-compose-full.yaml
+    env_file: ./services/camunda/docker-compose/8.9/.env
 
 services:
 
@@ -113,7 +113,7 @@ services:
     restart: unless-stopped
     networks:
       - serendipity
-      # - camunda-platform
+      - camunda-platform
       # - identity-network
       # - web-modeler
     extra_hosts:

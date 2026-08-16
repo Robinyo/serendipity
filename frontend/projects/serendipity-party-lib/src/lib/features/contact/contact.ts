@@ -20,12 +20,12 @@ import { ElectoralDivisionsService } from '../../services/electoral-divisions/el
 // import { ContactRelatedTab } from '../../components/contact/contact-related-tab/contact-related-tab';
 // import { LookupAccountDialogComponent } from "../dialogs/lookup-account-dialog/lookup-account-dialog.component";
 
-import { AccountModel } from '../../models/account';
-import { AddressModel } from '../../models/address';
+// import { AccountModel } from '../../models/account';
+// import { AddressModel } from '../../models/address';
 import { ContactModel } from '../../models/contact';
-import { DialogResult } from "../../models/dialog";
+// import { DialogResult } from "../../models/dialog";
 import { ElectoralDivisionModel } from '../../models/electoral-division';
-import { RoleModel } from '../../models/role';
+// import { RoleModel } from '../../models/role';
 
 import { CONTACT_WIZARD, CONTACTS, Tab } from './constants';
 
@@ -77,7 +77,7 @@ export class Contact extends Item<ContactModel> {
   public selectedTabIndex = 0;
   public schema!: any;
 
-  public mapLayersControl!: MapLayersControl;
+  // public mapLayersControl!: MapLayersControl;
   public mapOptions: MapOptions;
 
   private electoralDivision!: ElectoralDivisionModel;
@@ -253,11 +253,6 @@ export class Contact extends Item<ContactModel> {
 
     // Patch the DTO using the recursive mapper
     this.patchDtoWithFormData(updatedDto, rawFormData);
-
-    // TODO
-    delete updatedDto.jobTitle;
-    delete updatedDto.faxNumber;
-    delete updatedDto.preferredContactMethod;
 
     // Safely deletes the address property, since it is optional
     delete updatedDto.address;
@@ -470,17 +465,8 @@ export class Contact extends Item<ContactModel> {
 
     this.logger.info('Contact Component: update()');
 
-    // adapter: contact.ts
-    // Encode the id, for example http://localhost:4200/customers/contacts/MTYy
-    // contact.id = btoa(item.id);
-
-    // item.ts
-    // Decode the identity, MTYy -> 162
-    // this.id = atob(identity);
-
-    // id: 162 item id: MTYy
     this.item = dto;
-    this.item.id = this.id;
+    // this.item.id = this.id;
 
     this.logger.info('id: ' + this.id + ' item id: ' + this.item.id);
     this.logger.info('item: ' + JSON.stringify(this.item, null, 2) + '\n');
@@ -577,7 +563,7 @@ export class Contact extends Item<ContactModel> {
    * @param formData The data snapshot extracted from the form
    * @returns The patched DTO object
    */
-  public patchDtoWithFormData(dto: any, formData: any): any {
+  private patchDtoWithFormData(dto: any, formData: any): any {
 
     this.logger.info('Contact Component: patchDtoWithFormData()');
 
@@ -645,38 +631,3 @@ export class Contact extends Item<ContactModel> {
   */
 
 }
-
-/*
-
-  public patchDtoWithFormData(dto: any, formData: any): any {
-
-    // If either input is invalid or not an object, stop processing
-    if (!dto || !formData || typeof dto !== 'object' || typeof formData !== 'object') {
-      return dto;
-    }
-
-    // Iterate over every field returned by the form
-    Object.keys(formData).forEach(key => {
-      // 1. Check if the key exists in the DTO
-      if (key in dto) {
-        const formValue = formData[key];
-        const dtoValue = dto[key];
-
-        // 2. Handle nested objects recursively (ignoring arrays or nulls)
-        if (
-          formValue && typeof formValue === 'object' && !Array.isArray(formValue) &&
-          dtoValue && typeof dtoValue === 'object' && !Array.isArray(dtoValue)
-        ) {
-          this.patchDtoWithFormData(dtoValue, formValue);
-        }
-        // 3. Directly assign primitive values
-        else {
-          dto[key] = formValue;
-        }
-      }
-    });
-
-    return dto;
-  }
-
-*/

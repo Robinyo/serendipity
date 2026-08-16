@@ -72,7 +72,7 @@ export class AccountsService extends AbstractCollectionService {
 
     return this.httpClient.get(this.url + id, this.getDefaultHttpGetOptions()).pipe(
 
-      map((response: any) => this.adapter.adapt(response)),
+      map((response: any) => this.adapter.adapt(response.body)),
 
       tap(() => {
         this.logger.info('Accounts Service: findById() completed');
