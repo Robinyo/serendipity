@@ -223,6 +223,10 @@
           "value": "Mailing"
         },
         {
+          "label": "Principal Place of Business",
+          "value": "Principal Place of Business"
+        },
+        {
           "label": "Principal Place of Residence",
           "value": "Principal Place of Residence"
         },

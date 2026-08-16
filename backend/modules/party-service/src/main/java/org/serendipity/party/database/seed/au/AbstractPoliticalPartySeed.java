@@ -39,6 +39,9 @@ public abstract class AbstractPoliticalPartySeed implements CommandLineRunner {
   @Autowired
   protected RoleService roleService;
 
+  private static final String ADDRESS_TYPE = "Principal Place of Business";
+  private static final String COUNTRY = "Australia";
+
   /**
    * Subclasses define the party-specific seed data.
    */
@@ -78,7 +81,7 @@ public abstract class AbstractPoliticalPartySeed implements CommandLineRunner {
         .state(data.getState())
         .postalCode(data.getPostalCode())
         .country(data.getCountry())
-        .addressType("Principal Place of Business")
+        .addressType(ADDRESS_TYPE)
         .build();
 
       headOffice = addressService.save(headOffice);
@@ -207,7 +210,9 @@ public abstract class AbstractPoliticalPartySeed implements CommandLineRunner {
     String state;
     String postalCode;
     @Builder.Default
-    String country = "Australia";
+    String country = COUNTRY;
+    @Builder.Default
+    String addressType = ADDRESS_TYPE;
     Name primaryContactName;
     Sex sex;
     String individualEmail;
