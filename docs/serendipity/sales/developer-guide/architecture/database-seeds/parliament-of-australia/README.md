@@ -1,16 +1,16 @@
 <h1 align="center">Parliament of Australia</h1>
 
 <p align="center">
-  <b>Database seeds for the Senate and the House of Representatives</b> </br>
+  <b>Database seeds for the Senate and the House of Representatives</b> <br />
 </p>
 
 ## ❯ Who is a Senator?
 
-A senator is a member of the Australian Senate, elected to represent a **state** or **territory**. There are 75 senators, 12 
-from each state and two each from the Australian Capital Territory and the Northern Territory.
+A senator is a member of the Australian Senate, elected to represent a **state** or **territory**. There are 75 
+senators, 12 from each state and two each from the Australian Capital Territory and the Northern Territory.
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/architecture/database-seeds/parliament-of-australia/state-map.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/architecture/database-seeds/parliament-of-australia/state-map.png" />
 </p>
 
 ### The President of the Senate
@@ -25,7 +25,7 @@ There are currently 150 members of the House of Representatives. Each member is 
 area of Australia called an **electorate**. Each electorate has approximately the same population.
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/architecture/database-seeds/parliament-of-australia/electorate-map.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/serendipity-3.0/docs/architecture/database-seeds/parliament-of-australia/electorate-map.png" />
 </p>
 
 ### The Speaker of the House of Representatives
@@ -74,7 +74,7 @@ the Senate seeder class.
 
 ### CSV files
 
-Senators: [All Senators by Name - Electorate Office](https://www.aph.gov.au/-/media/03_Senators_and_Members/Address_Labels_and_CSV_files/Senators/allsenel.csv) </br>
+Senators: [All Senators by Name - Electorate Office](https://www.aph.gov.au/-/media/03_Senators_and_Members/Address_Labels_and_CSV_files/Senators/allsenel.csv) <br />
 Members: [All Members by Name](https://www.aph.gov.au/-/media/03_Senators_and_Members/Address_Labels_and_CSV_files/FamilynameRepsCSV.csv)
 
 ## Resources

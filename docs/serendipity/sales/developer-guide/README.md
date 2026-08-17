@@ -31,7 +31,7 @@ Follow the steps in the [Quick Start Guide](./quick-start-guide/README.md).
 ## ❯ Architecture
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/context-diagram.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/context-diagram.png" />
 </p>
 
 Serendipity is composed of the following components:
@@ -51,7 +51,7 @@ Serendipity is composed of the following components:
 Home (Welcome) Page
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/home.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/home.png" />
 </p>
 
 ### Navigation
@@ -59,19 +59,19 @@ Home (Welcome) Page
 Navigation Bar
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/navigation-bar.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/navigation-bar.png" />
 </p>
 
 Command Bar
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/command-bar.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/command-bar.png" />
 </p>
 
 Sidenav
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/sidenav.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/sidenav.png" />
 </p>
 
 ### Customer Engagement
@@ -79,25 +79,25 @@ Sidenav
 Accounts
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/accounts.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/accounts.png" />
 </p>
 
 Contacts
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/contacts.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/contacts.png" />
 </p>
 
 Contact
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/contact.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/contact.png" />
 </p>
 
 Activities (My Work Items)
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/activities.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/activities.png" />
 </p>
 
 ### Workflow (BPMN), Decision Management (DMN) and Case Management (CMMN)
@@ -105,23 +105,23 @@ Activities (My Work Items)
 New Work Item
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/new-work-item.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/new-work-item.png" />
 </p>
 
 Tasks - Task Tab
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/tasks-task-tab.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/tasks-task-tab.png" />
 </p>
 
 Tasks - Process Tab
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/tasks-process-tab.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/tasks-process-tab.png" />
 </p>
 
 ### Interactive Maps
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/electoral-division.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/electoral-division.png" />
 </p>

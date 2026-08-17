@@ -16,11 +16,11 @@
 Accounts
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/accounts.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/accounts.png" />
 </p>
 
 Contacts
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/contacts.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/contacts.png" />
 </p>

@@ -266,7 +266,7 @@ public class Party {
 Using a database sequence is the most efficient Hibernate identifier generation strategy, it also allows you to take 
 advantage of the automatic JDBC batching mechanism.
 
-See: [How to generate JPA entity identifier values using a database sequence](https://vladmihalcea.com/jpa-entity-identifier-sequence/) </br>
+See: [How to generate JPA entity identifier values using a database sequence](https://vladmihalcea.com/jpa-entity-identifier-sequence/) <br />
 See: [How to batch INSERT and UPDATE statements with Hibernate](https://vladmihalcea.com/how-to-batch-insert-and-update-statements-with-hibernate/)
 
 #### Auditing in Spring Data JPA
@@ -290,7 +290,7 @@ object is marked to be removed, and it is still living on the Heap).
 So, if Hibernate uses the equality to uniquely identify an Object, for its whole lifetime, we need to find the
 right combination of properties satisfying this requirement.
 
-See: [How to implement Equals and HashCode for JPA entities](https://vladmihalcea.com/hibernate-facts-equals-and-hashcode/) </br>
+See: [How to implement Equals and HashCode for JPA entities](https://vladmihalcea.com/hibernate-facts-equals-and-hashcode/) <br />
 See: [How to implement equals and hashCode using the JPA entity identifier](https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/)
 
 ### Service Layer
@@ -515,12 +515,12 @@ handling).
 Here is a practical checklist and a set of verification techniques to ensure total consistency across your 
 Controller -> Assembler -> Service -> Repository chain:
 
-| Component                | URL                                                                                                                          | Description                                                                                                             |
-|:-------------------------|:-----------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------|
-| Controller <-> Assembler | Check that path variables in `@GetMapping("/individuals/{id}")` match the parameters expected in `createModelWithId(...)`.   | Self-links generated in HAL responses will point to broken or mismatched URLs.                                          |
-| Service <-> Repository   | Ensure custom repository lookup methods (e.g., `findByPartyPublicId`) match what the Service layer calls.                    | Runtime `QueryCreationException` or `PropertyReferenceException` if property names don't map to entity fields.          |
-| Entity Relationships     | Check bidirectional associations (`@OneToOne`, `@OneToMany`) and cascading options.                                          | `LazyInitializationException`, missing foreign keys, or cascading deletes dropping child records unexpectedly.          |
-| Exception Handling       | Confirm that custom exceptions (like `ResourceNotFoundException`) thrown by services are handled by `@RestControllerAdvice`. | Unhandled exceptions will return default Spring `500 Internal Server Error` instead of clean `404 Not Found` responses. |
+| Component                      | URL                                                                                                                          | Description                                                                                                             |
+|:-------------------------------|:-----------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------|
+| Controller &lt;-&gt; Assembler | Check that path variables in `@GetMapping("/individuals/{id}")` match the parameters expected in `createModelWithId(...)`.   | Self-links generated in HAL responses will point to broken or mismatched URLs.                                          |
+| Service &lt;-&gt; Repository   | Ensure custom repository lookup methods (e.g., `findByPartyPublicId`) match what the Service layer calls.                    | Runtime `QueryCreationException` or `PropertyReferenceException` if property names don't map to entity fields.          |
+| Entity Relationships           | Check bidirectional associations (`@OneToOne`, `@OneToMany`) and cascading options.                                          | `LazyInitializationException`, missing foreign keys, or cascading deletes dropping child records unexpectedly.          |
+| Exception Handling             | Confirm that custom exceptions (like `ResourceNotFoundException`) thrown by services are handled by `@RestControllerAdvice`. | Unhandled exceptions will return default Spring `500 Internal Server Error` instead of clean `404 Not Found` responses. |
 
 #### High-Yield Automated Testing Strategy
 

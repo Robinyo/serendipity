@@ -20,7 +20,7 @@
 ## ❯ Architecture
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/context-diagram.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/context-diagram.png" />
 </p>
 
 Serendipity is composed of the following components:
@@ -40,13 +40,13 @@ Serendipity is composed of the following components:
 Serendipity uses [bpmn-js](https://bpmn.io/) to visually build and display BPMN 2.0 diagrams:
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/bpmn-js.gif">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/bpmn-js.gif" />
 </p>
 
 Serendipity uses [form-js](https://bpmn.io/) to visually build and display forms:
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/form-js.gif">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/form-js.gif" />
 </p>
 
 
@@ -55,7 +55,7 @@ Serendipity uses [form-js](https://bpmn.io/) to visually build and display forms
 Home (Welcome) Page
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/home.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/home.png" />
 </p>
 
 ### Navigation
@@ -63,19 +63,19 @@ Home (Welcome) Page
 Navigation Bar
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/navigation-bar.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/navigation-bar.png" />
 </p>
 
 Command Bar
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/command-bar.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/command-bar.png" />
 </p>
 
 Sidenav
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/sidenav.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/sidenav.png" />
 </p>
 
 ### Customer Engagement
@@ -83,11 +83,11 @@ Sidenav
 Accounts
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/accounts.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/accounts.png" />
 </p>
 
 Contacts
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/contacts.png">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/contacts.png" />
 </p>

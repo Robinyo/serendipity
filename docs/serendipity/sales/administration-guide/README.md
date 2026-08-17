@@ -19,11 +19,11 @@
 Serendipity uses [bpmn-js](https://bpmn.io/) to visually build and display BPMN 2.0 diagrams:
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/bpmn-js.gif">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/bpmn-js.gif" />
 </p>
 
 Serendipity uses [form-js](https://bpmn.io/) to visually build and display forms:
 
 <p align="center">
-  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/form-js.gif">
+  <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/form-js.gif" />
 </p>

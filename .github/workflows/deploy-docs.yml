@@ -1,0 +1,45 @@
+name: Deploy Docusaurus to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      # Change 'website/**' to 'docs/**' if you chose Option 2
+      - 'website/**'
+      - 'docs/**'
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-cache: npm
+          # Change 'website' to 'docs' below if you chose Option 2
+          cache-dependency-path: website/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        # Change 'website' to 'docs' below if you chose Option 2
+        working-directory: website
+
+      - name: Build and Deploy to GitHub Pages
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@://github.com"
+          npm run deploy
+        # Change 'website' to 'docs' below if you chose Option 2
+        working-directory: website
+        env:
+          USE_SSH: false
+          GIT_USER: git
+          DEPLOYMENT_BRANCH: gh-pages

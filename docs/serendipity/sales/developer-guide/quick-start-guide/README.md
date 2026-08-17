@@ -181,10 +181,10 @@ Option 2: Upload Files Manually
 
 If you already have the .zip downloaded and extracted locally:
 
-Create a new **Process Application** in Web Modeler. </br>
-Inside the process application, click **Create new > Upload files**. </br>
-Select the extracted files from your computer and click **Upload**. </br>
-Delete the auto-generated empty BPMN diagram if it's not needed. </br>
+Create a new **Process Application** in Web Modeler. <br />
+Inside the process application, click **Create new > Upload files**. <br />
+Select the extracted files from your computer and click **Upload**. <br />
+Delete the auto-generated empty BPMN diagram if it's not needed. <br />
 
 **Note**: The "Upload files" method does not accept .zip files directly — you need to extract the contents first and upload the individual files.
 
