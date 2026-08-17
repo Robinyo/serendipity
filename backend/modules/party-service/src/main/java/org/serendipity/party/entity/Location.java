@@ -17,20 +17,23 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLRestriction;
+// import org.hibernate.envers.Audited;
 import org.serendipity.party.type.LocationType;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
-
 import java.util.UUID;
 
 @Entity
-@Table(name = "Location", indexes = @Index(name = "location_public_id_idx", columnList = "publicId"))
+@Table(name = "location", indexes = @Index(name = "location_public_id_idx", columnList = "publicId"))
+@SQLRestriction("to_date IS NULL OR to_date > CURRENT_DATE")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
+// @Audited
 @EntityListeners(AuditingEntityListener.class)
 public class Location {
 

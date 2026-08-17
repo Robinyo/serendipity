@@ -1,7 +1,9 @@
 package org.serendipity.party.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,19 +15,25 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLRestriction;
+// import org.hibernate.envers.Audited;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Table(name = "ElectoralDivision",
+@Table(name = "electoral_division",
     indexes = { @Index(name = "electoral_division_public_id_idx", columnList = "publicId"),
                 @Index(name = "electoral_division_name_idx", columnList = "name") })
+@SQLRestriction("to_date IS NULL OR to_date > CURRENT_DATE")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
+// @Audited
+@EntityListeners(AuditingEntityListener.class)
 public class ElectoralDivision {
 
   @Id
@@ -53,6 +61,13 @@ public class ElectoralDivision {
   private String latitude;
 
   private String longitude;
+
+  private LocalDate fromDate;
+
+  private LocalDate toDate;
+
+  @Embedded
+  private Auditable audit;
 
   @Override
   public boolean equals(Object o) {

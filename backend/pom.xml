@@ -105,70 +105,98 @@
 	</profiles>
 
 	<build>
+
+		<resources>
+
+			<!-- Filter application configuration files -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.yml</include>
+					<include>**/*.yaml</include>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+
+			<!-- Copy all other static resources (CSVs, images, data files) without filtering -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>**/*.yml</exclude>
+					<exclude>**/*.yaml</exclude>
+					<exclude>**/*.properties</exclude>
+				</excludes>
+			</resource>
+
+		</resources>
+
 		<plugins>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <executions>
-        <execution>
-          <id>getClasspathFilenames</id>
-          <goals>
-            <goal>properties</goal>
-          </goals>
-        </execution>
-      </executions>
-      </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>getClasspathFilenames</id>
+						<goals>
+							<goal>properties</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
 
-        <!--
-        In modern Spring Boot 3 / 4, you usually do not need to explicitly configure -javaagent in the
-        maven-surefire-plugin unless you have specific static mock requirements.
-        Removing the custom <argLine> allows both Maven and IntelliJ to run unit tests without syntax errors.
+				<!--
+                In modern Spring Boot 3 / 4, you usually do not need to explicitly configure -javaagent in the
+                maven-surefire-plugin unless you have specific static mock requirements.
+                Removing the custom <argLine> allows both Maven and IntelliJ to run unit tests without syntax errors.
 
-        <configuration>
-          <argLine>@{argLine} -javaagent:${org.mockito:mockito-core:jar}</argLine>
-        </configuration>
-         -->
+                <configuration>
+                  <argLine>@{argLine} -javaagent:${org.mockito:mockito-core:jar}</argLine>
+                </configuration>
+                 -->
 
-         <!--
-         <configuration>
-            <argLine>-javaagent:${settings.localRepository}/org/mockito/mockito-core/${mockito.version}/mockito-core-${mockito.version}.jar</argLine>
-         </configuration>
-         -->
+				<!--
+                <configuration>
+                   <argLine>-javaagent:${settings.localRepository}/org/mockito/mockito-core/${mockito.version}/mockito-core-${mockito.version}.jar</argLine>
+                </configuration>
+                -->
 
-      </plugin>
+			</plugin>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <annotationProcessorPaths>
-            <path>
-              <groupId>org.projectlombok</groupId>
-              <artifactId>lombok</artifactId>
-            </path>
-          </annotationProcessorPaths>
-        </configuration>
-      </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
 
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-          <excludes>
-            <exclude>
-              <groupId>org.projectlombok</groupId>
-              <artifactId>lombok</artifactId>
-            </exclude>
-          </excludes>
-        </configuration>
-      </plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
 
 		</plugins>
+
 	</build>
 
 </project>

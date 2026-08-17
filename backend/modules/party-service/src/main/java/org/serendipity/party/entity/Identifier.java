@@ -15,19 +15,22 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+import org.hibernate.annotations.SQLRestriction;
+// import org.hibernate.envers.Audited;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Identifier", indexes = @Index(name = "identifier_public_id_idx", columnList = "publicId"))
+@Table(name = "identifier", indexes = @Index(name = "identifier_public_id_idx", columnList = "publicId"))
+@SQLRestriction("to_date IS NULL OR to_date > CURRENT_DATE")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
+// @Audited
 @EntityListeners(AuditingEntityListener.class)
 public class Identifier {
 
@@ -41,13 +44,16 @@ public class Identifier {
   private String publicId = UUID.randomUUID().toString();
 
   @Column(name = "type", nullable = false)
-  private String type; // name: ABN
+  private String type;
 
-  @Column(name = "value", nullable = false)
-  private String value; // code: 85 087 326 690
+  @Column(name = "\"value\"", nullable = false)
+  private String value;
+
+  // @Column(name = "number", nullable = false)
+  // private String number; // code: 85 087 326 690
 
   @Column(name = "register", nullable = false)
-  private String register; // issuer: Australian Business Register
+  private String register;
 
   private String lifecycleStatus;  // status: Active
 
@@ -59,3 +65,7 @@ public class Identifier {
   private Auditable audit;
 
 }
+
+// type -> name: ABN
+// code: 85 087 326 690
+// issuer: Australian Business Register

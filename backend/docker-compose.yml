@@ -1,7 +1,3 @@
-include:
-  - path: ./services/camunda/docker-compose/8.9/docker-compose-full.yaml
-    env_file: ./services/camunda/docker-compose/8.9/.env
-
 services:
 
   # Make sure your certificates and keys (the *.pem files in the ./certs directory) have the correct permissions
@@ -113,7 +109,7 @@ services:
     restart: unless-stopped
     networks:
       - serendipity
-      - camunda-platform
+      # - camunda-platform
       # - identity-network
       # - web-modeler
     extra_hosts:

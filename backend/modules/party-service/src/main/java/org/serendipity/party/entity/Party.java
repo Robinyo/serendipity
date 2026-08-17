@@ -22,20 +22,24 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLRestriction;
+// import org.hibernate.envers.Audited;
 import org.serendipity.party.type.PartyType;
-
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Party", indexes = @Index(name = "party_public_id_idx", columnList = "publicId"))
+@Table(name = "party", indexes = @Index(name = "party_public_id_idx", columnList = "publicId"))
+@SQLRestriction("to_date IS NULL OR to_date > CURRENT_DATE")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
+// @Audited
 @EntityListeners(AuditingEntityListener.class)
 public class Party {
 
@@ -58,6 +62,9 @@ public class Party {
   @Builder.Default
   private String displayName = "";
 
+  // Because Party has @ManyToMany relationships, if you want Envers to track when addresses or roles are
+  // attached/detached from a party, both Address and Role entities must also be annotated with @Audited.
+
   @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @JoinTable(
     name = "PartyAddress",
@@ -73,6 +80,14 @@ public class Party {
     inverseJoinColumns = @JoinColumn(name = "roleId")
   )
   private Set<Role> roles;
+
+  private LocalDate fromDate;
+
+  private LocalDate toDate;
+
+  // Every update overwrites updatedAt and updatedBy. It only stores the latest snapshot of the record.
+  // Hibernate Envers (Point-in-Time Auditing): Tracks the entire history of every change over time by writing revision
+  // snapshots to shadow tables.
 
   @Embedded
   private Auditable audit;

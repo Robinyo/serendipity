@@ -32,6 +32,21 @@
             <artifactId>spring-boot-starter-json</artifactId>
         </dependency>
 
+        <!--
+
+        Hibernate Envers enables full point-in-time auditing alongside your existing Spring Data audit fields.
+
+        For example:
+          @Embedded
+          private Auditable audit;
+
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-envers</artifactId>
+        </dependency>
+
+        -->
+
         <!-- Misc -->
 
         <dependency>
@@ -64,6 +79,7 @@
     </dependencies>
 
 	<build>
+
 		<plugins>
 
 			<plugin>

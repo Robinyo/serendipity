@@ -22,7 +22,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Individual",
+@Table(name = "individual",
     indexes = { @Index(name = "individual_family_name_idx", columnList = "familyName", unique = false) })
 @Builder
 @AllArgsConstructor

@@ -1,7 +1,9 @@
 package org.serendipity.party.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -15,19 +17,28 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLRestriction;
+// import org.hibernate.envers.Audited;
 import org.serendipity.party.type.PartyType;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
+// @Table(name = "Role"
+
 @Entity
-@Table(name = "Role",
+@Table(name = "role",
     indexes = { @Index(name = "role_public_id_idx", columnList = "publicId"),
                 @Index(name = "role_party_public_id_idx", columnList = "partyPublicId", unique = false) })
+@SQLRestriction("to_date IS NULL OR to_date > CURRENT_DATE")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
+// @Audited
+@EntityListeners(AuditingEntityListener.class)
 public class Role {
 
   @Id
@@ -68,6 +79,7 @@ public class Role {
   private String reciprocalPartyPublicId;
 
   @Column(nullable = false)
+  @Enumerated(EnumType.STRING)
   private PartyType reciprocalPartyType;
 
   @Column(nullable = false)
@@ -78,6 +90,13 @@ public class Role {
 
   @Column(nullable = false)
   private String reciprocalPartyPhoneNumber;
+
+  private LocalDate fromDate;
+
+  private LocalDate toDate;
+
+  @Embedded
+  private Auditable audit;
 
   @Override
   public boolean equals(Object o) {

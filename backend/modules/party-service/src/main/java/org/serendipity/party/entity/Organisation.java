@@ -17,7 +17,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "Organisation", indexes = { @Index(name = "organisation_name_idx", columnList = "name", unique = false) })
+@Table(name = "organisation", indexes = { @Index(name = "organisation_name_idx", columnList = "name", unique = false) })
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -73,4 +73,4 @@ public class Organisation {
 }
 
 // NumberOfEmployees
-
+// dissolutionDate
