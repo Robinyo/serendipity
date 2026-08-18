@@ -44,3 +44,121 @@
   --ifm-menu-color-active: #ffffff;
 }
 
+/* ==========================================================================
+   SERENDIPITY SIDEPANEL NAVIGATION STYLING MATRIX
+   ========================================================================== */
+
+/* --- 1. Chevron Re-routing to the Front --- */
+
+/* Remove Docusaurus's native hardcoded end arrow pseudo-element */
+.menu__link--sublist-caret::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Construct the clean minimal chevron vector preceding the folder text label */
+.menu__link--sublist-caret::before {
+  content: " ";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-top: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  margin-right: 10px;
+  margin-left: 2px;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+/* Rotate the front chevron downward strictly when the list block is expanded */
+.menu__link--sublist-caret[aria-expanded="true"]::before {
+  transform: rotate(135deg) !important;
+  margin-top: -3px !important;
+}
+
+/* Realign layout grid boxes to manage the newly shifted icons cleanly */
+.menu__link--sublist-caret {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding-right: var(--ifm-menu-link-padding-horizontal) !important;
+}
+
+
+/* --- 2. Chevron Items Font Customization (Bold & Normal Color) --- */
+
+/*
+  Target Docusaurus's custom class directly to strip away active blue highlights,
+  forcing folder titles to remain bold and normal text colored when open.
+*/
+.categoryLink_byQd.menu__link--sublist-caret,
+.categoryLink_byQd.menu__link--sublist-caret[aria-expanded="true"],
+.categoryLink_byQd.menu__link--active {
+  font-weight: 700 !important;
+  color: var(--ifm-font-color-base) !important; /* Forces standard light-mode black text */
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Ensure dark-theme mode maps standard font text readability tokens correctly */
+[data-theme='dark'] .categoryLink_byQd.menu__link--sublist-caret,
+[data-theme='dark'] .categoryLink_byQd.menu__link--active {
+  color: var(--ifm-font-color-base) !important; /* Forces standard dark-mode white text */
+}
+
+
+/* --- 3. True Reversed Selected Item Layout Pill --- */
+
+/* Target the exact leaf item that has aria-current="page" to flip its layout */
+.menu__list-item .menu__link[aria-current="page"],
+.menu__list-item .menu__link--active[aria-current="page"] {
+  font-weight: 500 !important;
+  color: #ffffff !important;                      /* Reversed: Crisp white text */
+  background-color: var(--ifm-color-primary) !important; /* Reversed: Vibrant primary blue pill background */
+  border-radius: 4px !important;                 /* Clean, modern rounded edge boundaries */
+  padding-left: 12px !important;                 /* Balanced inner alignment spacing */
+}
+
+
+/* --- 4. Indentation Alignment Matrix --- */
+
+/* Push down internal tree lists so leaf pages align vertically below the folder text label */
+.theme-doc-sidebar-item-category > .menu__list {
+  padding-left: 18px !important;
+  margin-left: 0px !important;
+}
+
+.menu__list .menu__list-item {
+  margin: 2px 0 !important; /* Light breathing room margin between vertical pill elements */
+}
+
+.menu__list .menu__list-item-link .menu__link {
+  padding-left: 8px !important;
+}
+
+
+/* --- 5. Total Hover Invalidation Protocol --- */
+
+/* Neutralize background hover mutations across non-selected items */
+.menu__list-item .menu__link:not([aria-current="page"]):hover,
+.menu__list-item-collapsible:hover {
+  background-color: transparent !important;
+  background: transparent !important;
+  color: inherit !important;
+}
+
+/* Neutralize text color mutation overrides on chevron folder headings on hover */
+.categoryLink_byQd.menu__link--sublist-caret:hover {
+  color: var(--ifm-font-color-base) !important;
+}
+[data-theme='dark'] .categoryLink_byQd.menu__link--sublist-caret:hover {
+  color: var(--ifm-font-color-base) !important;
+}
+
+/* Maintain reversed contrast locking profile when hovering over the actively selected page item */
+.menu__list-item .menu__link[aria-current="page"]:hover {
+  color: #ffffff !important;
+  background-color: var(--ifm-color-primary) !important;
+  opacity: 1 !important;
+}
