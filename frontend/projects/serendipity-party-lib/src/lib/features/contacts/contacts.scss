@@ -3,7 +3,7 @@
 // Columns
 
 .mat-column-partyDisplayName, .mat-column-email, .mat-column-organisationDisplayName,
-  .mat-column-organisationPhoneNumber {
+.mat-column-organisationPhoneNumber {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

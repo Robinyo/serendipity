@@ -1,0 +1,47 @@
+@use './variables';
+
+// Columns
+
+.mat-column-type, .mat-column-subject, .mat-column-regarding, .mat-column-priority, .mat-column-startDate,
+.mat-column-dueDate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mat-column-type {
+  min-width: variables.$type-column-width;
+  width: variables.$type-column-width;
+}
+
+.mat-column-subject {
+  min-width: variables.$subject-column-width;
+  width: variables.$subject-column-width;
+}
+
+.mat-column-regarding {
+  min-width: variables.$regarding-column-width;
+  width: variables.$regarding-column-width;
+}
+
+.mat-column-priority {
+  min-width: variables.$priority-column-width;
+  width: variables.$priority-column-width;
+}
+
+.mat-column-startDate {
+  min-width: variables.$start-date-column-width;
+  width: variables.$start-date-column-width;
+}
+
+.mat-column-dueDate {
+  min-width: variables.$due-date-column-width;
+  width: variables.$due-date-column-width;
+}
+
+.no-data-cell {
+  text-align: center;
+  padding: 32px 16px;
+  color: rgba(0, 0, 0, 0.54);
+  font-style: italic;
+}

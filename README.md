@@ -10,8 +10,8 @@
 </p>
 
 ## ❯ Documentation
-- [Welcome](https://robinyo.github.io/serendipity/docs/getting-started/overview)
-- [Get started](https://robinyo.github.io/serendipity/docs/getting-started/environment)
+- [Welcome](https://robinyo.github.io/serendipity/docs/welcome)
+- [Get started](https://robinyo.github.io/serendipity/docs/getting-started/installation)
 - [What's new or changed](https://github.com/Robinyo/serendipity)
 - [Try, install or upgrade](https://robinyo.github.io/serendipity/docs/getting-started/installation)
 - [Administration guide](./docs/serendipity/sales/administration-guide/README.md)

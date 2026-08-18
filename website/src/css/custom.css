@@ -162,3 +162,34 @@
   background-color: var(--ifm-color-primary) !important;
   opacity: 1 !important;
 }
+
+/* --- Contemporary Cards Grid Animation Matrix (Refined for Wide Logos) --- */
+
+.serendipity-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+  cursor: pointer;
+  border: 1px solid var(--ifm-contents-border-color, #e3e3e3) !important;
+  padding: 24px !important;
+}
+
+/*
+  💡 FIX: Change from a tight square (48x48) to a landscape aspect ratio
+  that perfectly accommodates your 1250x268 viewBox vector shape!
+*/
+.serendipity-card-icon {
+  width: 140px !important;    /* Expanded width to fit the entire "docker" word comfortably */
+  height: auto !important;     /* Set height to auto so the vector proportions scale natively without squashing */
+  max-height: 40px !important; /* Cap the max height so it behaves elegantly alongside heading text */
+  margin-bottom: 20px !important;
+  display: block;
+}
+
+.serendipity-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 24px rgba(0, 84, 233, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+  border-color: var(--ifm-color-primary) !important;
+}
+
+[data-theme='dark'] .serendipity-card:hover {
+  box-shadow: 0 8px 24px rgba(26, 101, 235, 0.15), 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}

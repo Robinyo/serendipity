@@ -1,0 +1,57 @@
+name: Publish Docker Images
+
+on:
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+  push:
+    tags:
+      - 'v*.*.*' # Triggers only on version tags
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - service: nginx
+            context: ./services/nginx
+            dockerfile: ./services/nginx/Dockerfile
+            image_name: your-dockerhub-username/serendipity-nginx
+          - service: party-service
+            context: ./modules/party-service
+            dockerfile: ./modules/party-service/Dockerfile
+            image_name: your-dockerhub-username/serendipity-party-service
+          - service: web-bff
+            context: ./modules/web-bff
+            dockerfile: ./modules/web-bff/Dockerfile
+            image_name: your-dockerhub-username/serendipity-web-bff
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels)
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ matrix.image_name }}
+          tags: |
+            type=raw,value=latest
+            type=ref,event=tag
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ${{ matrix.context }}
+          file: ${{ matrix.dockerfile }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
