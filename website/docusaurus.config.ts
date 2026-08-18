@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Serendipity',
-  tagline: 'Serendipity is an open-source Customer Engagement Platform',
+  tagline: 'Serendipity is an open source toolkit for building performant, high-quality Customer Engagement applications.',
   favicon: 'img/serendipity-logo.svg',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -15,16 +15,17 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://github.com',
+  url: 'https://Robinyo.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/Robinyo/serendipity/',
+  baseUrl: '/serendipity/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'Robinyo', // Usually your GitHub org/user name.
   projectName: 'serendipity', // Usually your repo name.
 
+  trailingSlash: false,
   onBrokenLinks: 'throw',
 
   // Even if you don't use internationalization, you can use this field to set
@@ -42,10 +43,15 @@ const config: Config = {
         docs: {
           path: '../docs',
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // editUrl:
-          //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          exclude: [
+            '**/serendipity/**',
+            '**/camunda/**',
+            '**/reference-material/**',
+            '**/screen-shots/**',
+            '**/internal-folder/**',
+            '**/drafts/**',
+            '**/*.tmp',
+          ],
         },
         blog: {
           showReadingTime: true,
@@ -53,11 +59,6 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // editUrl:
-          //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -86,18 +87,27 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
-        },
+          label: 'Guide',
+        }
+
+        /*
+
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/Robinyo/serendipity',
           label: 'GitHub',
           position: 'right',
         },
+
+        */
+
       ],
     },
+
+    /*
+
     footer: {
-      style: 'dark',
+      style: 'light',
       links: [
         {
           title: 'Docs',
@@ -139,8 +149,11 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Serendipity, Inc. Built with Docusaurus.`,
     },
+
+    */
+
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,

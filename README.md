@@ -5,8 +5,9 @@
 <h1 align="center">Serendipity</h1>
 
 <p align="center">
-  Serendipity is an open-source Customer Engagement Platform. </br>
-  You can use it to transform your organisation by connecting your customers, products, people and operations. </br>
+  Serendipity is an open source toolkit for building performant, high-quality Customer Engagement applications. <br />
+  Applications that can transform your organisation by connecting your customers, products, people and operations. <br />
+  Applications that enable you to build strong relationships and to keep track of your leads, opportunities, accounts and contacts.
 </p>
 
 ## ❯ Documentation

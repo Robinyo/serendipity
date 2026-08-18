@@ -1,4 +1,4 @@
-<h1 align="center">Administrator Documentation</h1>
+# Administrator Documentation
 
 ## ❯ Documentation
 

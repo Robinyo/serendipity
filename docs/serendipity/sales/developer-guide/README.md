@@ -14,11 +14,11 @@ Follow the steps in the [Quick Start Guide](./quick-start-guide/README.md).
     * [How to build a RESTful API with Spring Boot](./architecture/spring-boot/how-to/how-to-build-a-restful-api-with-spring-boot/README.md)
     * [Lombok](./architecture/spring-boot/how-to/lombok/README.md)
 * Solution Architecture
-  * [Backend for Frontend](./docs/serendipity/architecture/bff/README.md)
-  * [Database Seeds](./docs/serendipity/architecture/database-seeds/parliament-of-australia/README.md)
-  * [Progressive Web App](./docs/serendipity/architecture/pwa/README.md)
-  * [Static Content](./docs/serendipity/architecture/static-content/README.md)
-  * [Spring Data](./docs/serendipity/architecture/spring-data/README.md)
+  * [Backend for Frontend](./architecture/bff/README.md)
+  * [Database Seeds](./architecture/database-seeds/parliament-of-australia/README.md)
+  * [Progressive Web App](./architecture/pwa/README.md)
+  * [Static Content](./architecture/static-content/README.md)
+  * [Spring Data](./architecture/spring-data/README.md)
 * Tools
   * [Build with AI](./build-with-ai/claude-code/README.md)
   * [mkcert](./mkcert/README.md)
