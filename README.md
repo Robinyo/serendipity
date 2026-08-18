@@ -5,7 +5,7 @@
 <h1 align="center">Serendipity</h1>
 
 <p>
-  Serendipity is an open source toolkit for building performant, high-quality Customer Engagement applications.
+  Serendipity is an open source toolkit for building performant, high-quality applications.
   Applications that can transform your organisation by connecting your customers, products, people and operations.
 </p>
 
