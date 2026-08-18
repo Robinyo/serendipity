@@ -10,6 +10,24 @@ What you need:
 * NVM
 * Angular CLI
 
+### git
+
+#### macOS
+
+To install git, run
+
+```
+brew update
+brew upgrade
+brew install git
+```
+
+To configure git so that it uses `nano`, run:
+
+```
+git config --global core.editor "nano"
+```
+
 ### NVW
 
 #### macOS
@@ -21,6 +39,7 @@ brew update
 brew upgrade
 brew install nvm
 ```
+
 Create the NVM Directory:
 ```
 mkdir ~/.nvm

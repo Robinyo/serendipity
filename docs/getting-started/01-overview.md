@@ -22,12 +22,12 @@ Angular applications directly from a command shell.
 
 #### Spring Boot
 
-Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can "just run".
+Spring Boot makes it easy to create standalone, production grade Spring-based services.
 
 #### Spring Initializr
 
 The Spring Initializr is a web-based bootstrapping tool designed to quickly generate the initial folder structure and 
-configuration skeleton for Spring Boot applications. It eliminates the tedious, manual setup phase of software 
+configuration skeleton for Spring Boot services. It eliminates the tedious, manual setup phase of software 
 development. Instead of manually coding build scripts and organising folder layouts, developers use this tool to create 
-a production-ready application skeleton in seconds.
+a production-ready skeleton in seconds.
 
