@@ -13,7 +13,7 @@
 - [Welcome](https://robinyo.github.io/serendipity/docs/welcome)
 - [Get started](https://robinyo.github.io/serendipity/docs/getting-started/installation)
 - [What's new or changed](https://github.com/Robinyo/serendipity)
-- [Try, install or upgrade](https://robinyo.github.io/serendipity/docs/getting-started/installation)
+- [Try, install or upgrade](https://robinyo.github.io/serendipity/docs/try-install-upgrade/try)
 - [Administration guide](./docs/serendipity/sales/administration-guide/README.md)
 - [Developer Guide](./docs/serendipity/sales/developer-guide/README.md)
 
