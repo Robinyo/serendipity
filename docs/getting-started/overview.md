@@ -1,5 +1,6 @@
 ---
 sidebar_label: Overview
+slug: /intro
 sidebar_position: 1
 ---
 
