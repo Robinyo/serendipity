@@ -1,6 +1,6 @@
 # Environment
 
-To get started with Serendipity, you need to set up your development environment.
+To get started, you need to set up your development environment.
 
 What you need:
 
