@@ -10,10 +10,10 @@
 </p>
 
 ## ❯ Documentation
-- [Welcome](./docs/serendipity/sales/overview/README.md)
-- [Get started](./docs/serendipity/sales/developer-guide/README.md)
-- [What's new or changed](./docs/serendipity/sales/developer-guide/README.md)
-- [Try, install or upgrade](./docs/serendipity/sales/developer-guide/README.md)
+- [Welcome](https://robinyo.github.io/serendipity/docs/getting-started/overview)
+- [Get started](https://robinyo.github.io/serendipity/docs/getting-started/environment)
+- [What's new or changed](https://github.com/Robinyo/serendipity)
+- [Try, install or upgrade](https://robinyo.github.io/serendipity/docs/getting-started/installation)
 - [Administration guide](./docs/serendipity/sales/administration-guide/README.md)
 - [Developer Guide](./docs/serendipity/sales/developer-guide/README.md)
 
