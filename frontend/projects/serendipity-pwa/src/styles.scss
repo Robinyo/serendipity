@@ -1,6 +1,21 @@
 @use '@angular/material' as mat;
 
-@use 'form-js-styles';
+// @use 'form-js-styles';
+@use 'form-js-styles' as formJS;
+
+contact {
+  @include formJS.styles();
+}
+
+// bpmn-js and form-js branding
+
+.fjs-container .fjs-powered-by {
+  display: none!important;
+}
+
+.bjs-container .bjs-powered-by {
+  display: none!important;
+}
 
 @include mat.theme((
   color: (

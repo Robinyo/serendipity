@@ -1,185 +1,157 @@
-// ==========================================
-// form-js Compact Layout (Adjustable Label Width)
-// ==========================================
+@mixin styles {
 
-.fjs-container {
+  .fjs-container {
 
-  // Configurable layout dimensions
-  --fjs-label-width: 180px;
-  --fjs-label-gap: 12px;
-  --fjs-input-offset: calc(var(--fjs-label-width) + var(--fjs-label-gap));
+    --fjs-label-width: 180px;
+    --fjs-label-gap: 12px;
+    --fjs-input-offset: calc(var(--fjs-label-width) + var(--fjs-label-gap));
 
-  // 1. Flex Row Container
-  .fjs-form-field {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: var(--fjs-label-gap);
-    margin-bottom: 8px !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    position: relative;
 
-    // Label styling
-    .fjs-form-field-label {
-      width: var(--fjs-label-width);
-      min-width: var(--fjs-label-width);
-      text-align: right;
-      margin-bottom: 0 !important;
-      padding-top: 6px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--mat-sys-on-surface, rgba(0, 0, 0, 0.87));
-
-      // Required indicator
-      .fjs-asterisk,
-      .fjs-asterix {
-        color: var(--mat-sys-error, #ba1a1a);
-        margin-left: 3px;
-        font-weight: bold;
-      }
-    }
-  }
-
-  // 2. Select Dropdown Anchor
-  .fjs-form-field-select {
-    position: relative;
-
-    .fjs-select-anchor {
-      position: absolute;
-      left: var(--fjs-input-offset);
-      right: 0;
-      top: 100%;
-      z-index: 1000;
-    }
-  }
-
-  // 3. Date / DateTime Structural Overrides
-  .fjs-form-field-datetime,
-  .fjs-form-field-date {
-    // Unwrap the vertical container hierarchy into horizontal flex rows
-    .fjs-vertical-group,
-    .fjs-datetime-subsection {
+    // 1. Flex Row Container
+    .fjs-form-field {
       display: flex;
       flex-direction: row;
       align-items: flex-start;
       gap: var(--fjs-label-gap);
-      flex: 1;
-      width: 100%;
-      position: relative;
-    }
-
-    // Ensure input container expands across remaining horizontal space
-    .fjs-input-group {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      min-width: 0;
-    }
-
-    // Flatpickr Calendar Popup Fix
-    .fjs-datepicker {
-      flex: 1;
+      margin-bottom: 8px !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
       position: relative;
 
-      .flatpickr-calendar {
-        position: absolute !important;
-        top: 100% !important;
-        left: 0 !important;
+      // Label styling
+      .fjs-form-field-label {
+        width: var(--fjs-label-width);
+        min-width: var(--fjs-label-width);
+        text-align: right;
+        margin-bottom: 0 !important;
+        padding-top: 6px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--mat-sys-on-surface, rgba(0, 0, 0, 0.87));
+
+        // Required indicator
+        .fjs-asterisk,
+        .fjs-asterix {
+          color: var(--mat-sys-error, #ba1a1a);
+          margin-left: 3px;
+          font-weight: bold;
+        }
+      }
+    }
+
+    // 2. Select Dropdown Anchor
+    .fjs-form-field-select {
+      position: relative;
+
+      .fjs-select-anchor {
+        position: absolute;
+        left: var(--fjs-input-offset);
+        right: 0;
+        top: 100%;
         z-index: 1000;
       }
     }
-  }
 
-  // 4. Input Group & Control Expansion
-  .fjs-form-field-control,
-  .fjs-input-group,
-  .fjs-form-field-checkbox,
-  .fjs-form-field-checklist {
-    flex: 1;
-    min-width: 0;
-    margin-bottom: 0;
-  }
+    // 3. Date / DateTime Structural Overrides
+    .fjs-form-field-datetime,
+    .fjs-form-field-date {
+      // Unwrap the vertical container hierarchy into horizontal flex rows
+      .fjs-vertical-group,
+      .fjs-datetime-subsection {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: var(--fjs-label-gap);
+        flex: 1;
+        width: 100%;
+        position: relative;
+      }
 
-  // 5. Compact Input Dimensions (Date inputs included)
-  .fjs-input,
-  .fjs-textarea,
-  .fjs-select-display {
-    padding: 6px 10px;
-    min-height: 32px;
-    font-size: 0.875rem;
-    border-radius: 4px;
-  }
+      // Ensure input container expands across remaining horizontal space
+      .fjs-input-group {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        min-width: 0;
+      }
 
-  // 6. Date Adornment (Calendar Icon) Styling
-  .fjs-input-adornment {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 8px;
-    min-height: 32px;
-    background-color: transparent;
+      // Flatpickr Calendar Popup Fix
+      .fjs-datepicker {
+        flex: 1;
+        position: relative;
 
-    svg {
-      width: 16px;
-      height: 16px;
+        .flatpickr-calendar {
+          position: absolute !important;
+          top: 100% !important;
+          left: 0 !important;
+          z-index: 1000;
+        }
+      }
     }
+
+    // 4. Input Group & Control Expansion
+    .fjs-form-field-control,
+    .fjs-input-group,
+    .fjs-form-field-checkbox,
+    .fjs-form-field-checklist {
+      flex: 1;
+      min-width: 0;
+      margin-bottom: 0;
+    }
+
+    // 5. Compact Input Dimensions (Date inputs included)
+    .fjs-input,
+    .fjs-textarea,
+    .fjs-select-display {
+      padding: 6px 10px;
+      min-height: 32px;
+      font-size: 0.875rem;
+      border-radius: 4px;
+    }
+
+    // 6. Date Adornment (Calendar Icon) Styling
+    .fjs-input-adornment {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 8px;
+      min-height: 32px;
+      background-color: transparent;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    // 7. Align Descriptions & Errors under the Input
+    .fjs-form-field-description,
+    .fjs-form-field-error {
+      margin-top: 2px;
+      font-size: 0.75rem;
+      margin-left: var(--fjs-input-offset);
+    }
+
+    // 8. Layout padding overrides
+    .fjs-vertical-layout,
+    .fjs-layout-row,
+    .fjs-layout-column {
+      padding: 0 !important;
+      min-width: 480px;
+    }
+
+    // 9. Grid column spacing
+    .fjs-layout-row {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      gap: 8px;
+    }
+
   }
 
-  // 7. Align Descriptions & Errors under the Input
-  .fjs-form-field-description,
-  .fjs-form-field-error {
-    margin-top: 2px;
-    font-size: 0.75rem;
-    margin-left: var(--fjs-input-offset);
+  .fjs-container .fjs-powered-by,
+  .bjs-container .bjs-powered-by {
+    display: none !important;
   }
 
-  // 8. Layout padding overrides
-  .fjs-vertical-layout,
-  .fjs-layout-row,
-  .fjs-layout-column {
-    padding: 0 !important;
-    min-width: 480px;
-  }
-
-  // 9. Grid column spacing
-  .fjs-layout-row {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    gap: 8px;
-  }
-
-}
-
-/*
-
-.cds--grid {
-  padding-inline: 0!important;
-}
-@media (min-width: 42rem) {
-  .cds--grid {
-    padding-inline: 0!important;
-  }
-}
-@media (min-width: 99rem) {
-  .cds--grid {
-    padding-inline: 0!important;
-  }
-}
-
-.fjs-container .fjs-form {
-  padding-left: 0!important;;
-  padding-right: 0!important;;
-}
-
-*/
-
-// bpmn-js and form-js branding
-
-.fjs-container .fjs-powered-by {
-  display: none!important;
-}
-
-.bjs-container .bjs-powered-by {
-  display: none!important;
 }
