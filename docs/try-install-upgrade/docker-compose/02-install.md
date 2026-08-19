@@ -19,6 +19,9 @@ git clone git@github.com:Robinyo/serendipity.git
 
 ```
 docker compose -f docker-compose-try.yml up -d
+
+# Or for the full configuration:
+docker compose -f docker-compose-try-full.yml up -d
 ```
 
 For available Compose files, component URLs, and authentication defaults, see [configure Docker Compose environments](./03-configure.md).

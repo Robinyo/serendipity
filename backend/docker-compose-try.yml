@@ -5,11 +5,7 @@ services:
 
   nginx:
     container_name: nginx
-    # image: robinyo/serendipity-nginx:latest
     image: nginx:1.27.3-alpine
-    # build:
-    #   context: ./services/nginx
-    #   dockerfile: Dockerfile
     ports:
       - "80:80"
       - "443:443"
@@ -81,9 +77,6 @@ services:
   serendipity-party-service:
     container_name: serendipity-party-service
     image: robinyo/serendipity-party-service:latest
-    # build:
-    #   context: ./modules/party-service
-    #   dockerfile: Dockerfile
     ports:
       - "30101:8080"
     restart: unless-stopped
@@ -104,9 +97,6 @@ services:
   serendipity-web-bff:
     container_name: serendipity-web-bff
     image: robinyo/serendipity-web-bff:latest
-    # build:
-    #   context: ./modules/web-bff
-    #   dockerfile: Dockerfile
     environment:
       PARTY_SERVICE_URI: http://serendipity-party-service:8080/api/party-service
       WORKFLOW_SERVICE_URI: http://orchestration:8080/v2/user-tasks
