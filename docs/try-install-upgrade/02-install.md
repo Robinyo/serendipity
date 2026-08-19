@@ -8,10 +8,9 @@ We provide [official Docker images](https://hub.docker.com/u/robinyo) for all ma
 
 Docker images are suitable for production deployments.
 
-The provided [Docker Compose files](./docker-compose/02-install.md) are intended only for development and testing.
+The provided [Docker Compose files](./docker-compose/02-install.md) are for development and testing.
 
-For production, we recommend using Kubernetes with Helm. Advanced users can create their own hardened Docker Compose 
-configuration, however, this requires additional effort.
+For production, we recommend using Kubernetes with Helm.
 
 ## Platform support
 
