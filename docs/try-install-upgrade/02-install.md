@@ -2,7 +2,7 @@
 
 ## Docker images
 
-We provide [official Docker images](https://hub.docker.com/repositories/robinyo) for all major components.
+We provide [official Docker images](https://hub.docker.com/u/robinyo) for all major components.
 
 ## Docker images vs Docker Compose
 
