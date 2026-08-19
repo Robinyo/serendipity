@@ -3,7 +3,7 @@
 // @use 'form-js-styles';
 @use 'form-js-styles' as formJS;
 
-contact {
+contact, account {
   @include formJS.styles();
 }
 
