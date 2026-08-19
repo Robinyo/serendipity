@@ -2,7 +2,7 @@
 
 ## Installation methods
 
-Recommended approaches to install Serendipity in the cloud or on-premise.
+Recommended approaches to install Serendipity on-premise or in the cloud.
 
 import Link from '@docusaurus/Link';
 import DockerLogo from '@site/static/img/docker-logo.svg';

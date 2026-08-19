@@ -1,3 +1,7 @@
+include:
+  - path: ./services/camunda/docker-compose/8.9/docker-compose-full.yaml
+    env_file: ./services/camunda/docker-compose/8.9/.env
+
 services:
 
   # Make sure your certificates and keys (the *.pem files in the ./certs directory) have the correct permissions
@@ -5,9 +9,11 @@ services:
 
   nginx:
     container_name: nginx
-    build:
-      context: ./services/nginx
-      dockerfile: Dockerfile
+    # image: robinyo/serendipity-nginx:latest
+    image: nginx:1.27.3-alpine
+    # build:
+    #   context: ./services/nginx
+    #   dockerfile: Dockerfile
     ports:
       - "80:80"
       - "443:443"
@@ -78,9 +84,10 @@ services:
 
   serendipity-party-service:
     container_name: serendipity-party-service
-    build:
-      context: ./modules/party-service
-      dockerfile: Dockerfile
+    image: robinyo/serendipity-party-service:latest
+    # build:
+    #   context: ./modules/party-service
+    #   dockerfile: Dockerfile
     ports:
       - "30101:8080"
     restart: unless-stopped
@@ -100,15 +107,17 @@ services:
 
   serendipity-web-bff:
     container_name: serendipity-web-bff
-    build:
-      context: ./modules/web-bff
-      dockerfile: Dockerfile
+    image: robinyo/serendipity-web-bff:latest
+    # build:
+    #   context: ./modules/web-bff
+    #   dockerfile: Dockerfile
     environment:
       PARTY_SERVICE_URI: http://serendipity-party-service:8080/api/party-service
       WORKFLOW_SERVICE_URI: http://orchestration:8080/v2/user-tasks
     restart: unless-stopped
     networks:
       - serendipity
+      - camunda-platform
     extra_hosts:
       - "host.docker.internal:host-gateway"
     depends_on:

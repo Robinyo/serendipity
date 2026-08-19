@@ -1,18 +1,21 @@
 # Environment
 
+## macOS
+
 To get started, you need to set up your development environment.
 
 What you need:
-
 * git
 * NVM
 * Node and npm
 * Java JDK 25 or later
 * Maven 3.9.12 or later
+* mkcert
 
-Of course, an editor is also required, we recommend IntelliJ IDEA.
+You also need to:
+* Update your `/etc/hosts` file
 
-## macOS
+An editor is also required, we recommend IntelliJ IDEA.
 
 ### Homebrew
 
@@ -182,4 +185,95 @@ Confirm that Maven is installed correctly by checking its version:
 
 ```
 mvn -v
+```
+
+### mkcert
+
+mkcert is a tool for making locally-trusted development certificates. It requires no configuration.
+
+#### Create a certificate authority with mkcert
+
+mkcert sets up a locally trusted Certificate Authority (CA), installed into the trust stores on your computer.
+Any certificates issued by this CA will be trusted by the client of your choice (Chrome, Firefox, curl, etc.).
+
+```
+brew install mkcert nss
+```
+
+**Note**: `nss` is only needed if you are using Firefox
+
+Create and install the certificate authority:
+
+```
+mkcert -install
+```
+
+You should see something like::
+
+```
+Created a new local CA 💥
+Sudo password:
+The local CA is now installed in the system trust store! ⚡️
+The local CA is now installed in the Firefox trust store (requires browser restart)! 🦊
+```
+
+Use `mkcert` to generate a key and a certificate for the following hostnames:
+- `serendipity.localhost`
+
+```
+mkcert -key-file key.pem -cert-file cert.pem serendipity.localhost
+```
+
+Move the files into the `\backend\certs` directory and set the file permissions:
+
+```
+sudo chmod 600 *.pem
+```
+
+**Note:** On Unix and macOS systems the cert and key file permissions must disallow any access to world or group.
+
+I also had an issue with Docker Compose mounting the `*.pem` files if they have extended attributes.
+On macOS, the `@` symbol at the end of a file's permissions means the file has extended attributes.
+
+To remove them, run:
+
+```
+xattr -c *.pem
+```
+
+#### Create a PKCS12 Keystore
+
+You can use `openssl` to create a PKCS12 keystore:
+
+```
+openssl pkcs12 -export -in cert.pem -inkey key.pem -out keystore.p12 -name tomcat -password pass:secret
+```
+
+### /etc/hosts
+
+Update your `/etc/hosts` file:
+
+```
+sudo nano /etc/hosts
+```
+
+Add the hostname, `serendipity.localhost`:
+
+```
+127.0.0.1 localhost serendipity.localhost
+```
+
+**Note**: Remember that `mkcert` is meant for development purposes, not production, so it should not be used on end
+users' machines, and you should not export or share `rootCA-key.pem`.
+
+### View and manage digital certificates
+
+You can also use command-line tools to view and manage digital certificates.
+
+For example:
+
+```
+curl -v https://serendipity.localhost
+openssl x509 -in certs/cert.pem -text -noout
+nmap --script ssl-cert -p 443 serendipity.localhost
 ```
