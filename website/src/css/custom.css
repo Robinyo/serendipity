@@ -107,7 +107,6 @@
   color: var(--ifm-font-color-base) !important; /* Forces standard dark-mode white text */
 }
 
-
 /* --- 3. True Reversed Selected Item Layout Pill --- */
 
 /* Target the exact leaf item that has aria-current="page" to flip its layout */
@@ -119,7 +118,6 @@
   border-radius: 4px !important;                 /* Clean, modern rounded edge boundaries */
   padding-left: 12px !important;                 /* Balanced inner alignment spacing */
 }
-
 
 /* --- 4. Indentation Alignment Matrix --- */
 
@@ -137,6 +135,20 @@
   padding-left: 8px !important;
 }
 
+/* Indent non-selected root level items (like Welcome) when resting */
+li.theme-doc-sidebar-item-link-level-1 .menu__link {
+  padding-left: 18px !important;
+}
+
+/*
+  💡 FIX: Combining the 'li' tag and cascading selector properties spikes the priority math!
+  This guarantees your Welcome link preserves its 18px alignment footprint
+  even when transforming into the active Section 3 pill button format.
+*/
+li.theme-doc-sidebar-item-link-level-1 .menu__link[aria-current="page"],
+li.theme-doc-sidebar-item-link-level-1 .menu__link--active[aria-current="page"] {
+  padding-left: 18px !important;
+}
 
 /* --- 5. Total Hover Invalidation Protocol --- */
 
@@ -192,4 +204,18 @@
 
 [data-theme='dark'] .serendipity-card:hover {
   box-shadow: 0 8px 24px rgba(26, 101, 235, 0.15), 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ==========================================================================
+   FINAL OVERRIDES: ROOT LINK ALIGNMENT LOCK
+   ========================================================================== */
+
+/*
+  💡 FORCED FIX: Placed at the absolute bottom of the document to ensure
+  it executes last, overriding any other conflicting padding rules.
+*/
+li.theme-doc-sidebar-item-link-level-1 .menu__link,
+li.theme-doc-sidebar-item-link-level-1 .menu__link[aria-current="page"],
+li.theme-doc-sidebar-item-link-level-1 .menu__link--active[aria-current="page"] {
+  padding-left: 32px !important;
 }
