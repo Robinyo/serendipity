@@ -17,5 +17,5 @@ For production, we recommend using Kubernetes with Helm.
 * Use the `linux/arm64` or `linux/amd64` image for production environments.
 * All images are publicly accessible.
 
-Docker images are supported for production only on Linux systems. Windows and macOS are supported for development 
-environments only.
+Docker images deployed to production environments are only supported on Linux systems.
+Images running on Windows and macOS are only supported during development and testing.

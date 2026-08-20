@@ -8,22 +8,22 @@ sidebar_label: Configure
 
 We provide the following Docker Compose configurations:
 
-| Component                    | Description                        |
-|:-----------------------------|:-----------------------------------|
-| docker-compose.yaml          | Default lightweight configuration. |
-| docker-compose-full.yaml     | Full configuration.                |
-| docker-compose-try.yaml      | Default try configuration.         |
-| docker-compose-try-full.yaml | Default try full configuration.    |
+| Component                   | Description                                        |
+|:----------------------------|:---------------------------------------------------|
+| docker-compose.yml          | Default lightweight **development** configuration. |
+| docker-compose-full.yml     | Full **development** configuration.                |
+| docker-compose-try.yml      | Default **try** configuration.                     |
+| docker-compose-try-full.yml | Full **try** configuration.                        |
 
 To start a specific configuration, run one of the following commands:
 
-* Default lightweight configuration:
+* Default lightweight development configuration:
 
 ```
 docker compose up -d
 ```
 
-* Full configuration:
+* Full development configuration:
 
 ```
 docker compose -f docker-compose-full.yaml up -d
@@ -45,7 +45,7 @@ Use the following default credentials for web interfaces:
 
 ### Orchestration cluster
 
-The Orchestration cluster is the core of Camunda 8 and provides process automation capabilities.
+The Orchestration cluster provides process automation capabilities.
 
 | Component                      | URL                            | Description                                                    |
 |:-------------------------------|:-------------------------------|:---------------------------------------------------------------|
@@ -68,11 +68,11 @@ The following components are available in the full configuration only:
 
 ### External dependencies
 
-| Component     | URL                          | Description                                                                                        |
-|:--------------|:-----------------------------|:---------------------------------------------------------------------------------------------------|
-| Elasticsearch | http://localhost:9200        | Used by the Orchestration Cluster as secondary storage, and by Optimize in the full configuration. |
-| Keycloak      | http://localhost:18080/auth/ | OIDC provider for Management Identity. Access Keycloak with admin / admin.                         |
-| PostgreSQL    | http://localhost:5432        | Database for Management Identity and Web Modeler.                                                  |
+| Component     | URL                          | Description                                                                                         |
+|:--------------|:-----------------------------|:----------------------------------------------------------------------------------------------------|
+| Elasticsearch | http://localhost:9200        | Used by the Orchestration cluster for secondary storage, and by Optimize in the full configuration. |
+| Keycloak      | http://localhost:18080/auth/ | OIDC provider for Management Identity. Access Keycloak with `admin / admin`.                        |
+| PostgreSQL    | http://localhost:5432        | Database for Management Identity and Web Modeler.                                                   |
 
 ### Authentication
 
@@ -114,11 +114,13 @@ Option 2: Upload Files Manually
 
 If you already have the .zip downloaded and extracted locally:
 
-Create a new **Process Application** in Web Modeler. <br />
-Inside the process application, click **Create new > Upload files**. <br />
-Select the extracted files from your computer and click **Upload**. <br />
-Delete the auto-generated empty BPMN diagram if it's not needed. <br />
+- Create a new **Process Application** in Web Modeler. <br />
+- Inside the process application, click **Create new > Upload files**. <br />
+- Select the extracted files from your computer and click **Upload**. <br />
+- Delete the auto-generated empty BPMN diagram if it's not needed. <br />
 
 :::tip
 
 The "Upload files" method does not accept .zip files directly — you need to extract the contents first and upload the individual files.
+
+:::

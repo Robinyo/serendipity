@@ -200,7 +200,11 @@ Any certificates issued by this CA will be trusted by the client of your choice 
 brew install mkcert nss
 ```
 
-**Note**: `nss` is only needed if you are using Firefox
+:::tip
+
+`nss` is only needed if you are using Firefox.
+
+:::
 
 Create and install the certificate authority:
 
@@ -218,10 +222,12 @@ The local CA is now installed in the Firefox trust store (requires browser resta
 ```
 
 Use `mkcert` to generate a key and a certificate for the following hostnames:
-- `serendipity.localhost`
+- serendipity.localhost
+- serendipity-identity-service.localhost
 
 ```
 mkcert -key-file key.pem -cert-file cert.pem serendipity.localhost
+mkcert -key-file serendipity-identity-service-key.pem -cert-file serendipity-identity-service-cert.pem serendipity-identity-service.localhost
 ```
 
 Move the files into the `\backend\certs` directory and set the file permissions:
@@ -230,7 +236,9 @@ Move the files into the `\backend\certs` directory and set the file permissions:
 sudo chmod 600 *.pem
 ```
 
-**Note:** On Unix and macOS systems the cert and key file permissions must disallow any access to world or group.
+:::tip
+
+On Unix and macOS systems the cert and key file permissions must disallow any access to world or group.
 
 I also had an issue with Docker Compose mounting the `*.pem` files if they have extended attributes.
 On macOS, the `@` symbol at the end of a file's permissions means the file has extended attributes.
@@ -240,6 +248,8 @@ To remove them, run:
 ```
 xattr -c *.pem
 ```
+
+:::
 
 #### Create a PKCS12 Keystore
 
@@ -257,14 +267,18 @@ Update your `/etc/hosts` file:
 sudo nano /etc/hosts
 ```
 
-Add the hostname, `serendipity.localhost`:
+Add the hostnames, `serendipity.localhost` and `serendipity-identity-service.localhost`:
 
 ```
-127.0.0.1 localhost serendipity.localhost
+127.0.0.1 localhost serendipity.localhost serendipity-identity-service.localhost
 ```
 
-**Note**: Remember that `mkcert` is meant for development purposes, not production, so it should not be used on end
+:::danger
+
+Remember that `mkcert` is meant for development purposes, not production, so it should not be used on end
 users' machines, and you should not export or share `rootCA-key.pem`.
+
+:::
 
 ### View and manage digital certificates
 

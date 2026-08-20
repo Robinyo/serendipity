@@ -40,3 +40,5 @@ docker compose -f docker-compose-try-full.yml down -v
 :::warning
 
 The `-v` flag deletes all volumes, including process data, users, and other persisted state. Omit `-v` if you want to keep your data.
+
+:::

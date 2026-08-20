@@ -1,0 +1,82 @@
+services:
+
+  identity-service-data:
+    container_name: identity-service-data
+    image: postgres:${SERENDIPITY_STORAGE_SERVICE_VERSION}
+    restart: unless-stopped
+    command: >
+      -c ssl=on 
+      -c ssl_cert_file=/var/lib/postgresql/server.crt 
+      -c ssl_key_file=/var/lib/postgresql/server.key
+    environment:
+      POSTGRES_DB: ${SERENDIPITY_IDENTITY_SERVICE_DB}
+      POSTGRES_USER: ${SERENDIPITY_IDENTITY_SERVICE_USER}
+      POSTGRES_PASSWORD: ${SERENDIPITY_IDENTITY_SERVICE_PASSWORD}
+      PGSSLMODE: require
+    env_file:
+      - "${PWD}/.env"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $${SERENDIPITY_IDENTITY_SERVICE_USER} -d $${SERENDIPITY_IDENTITY_SERVICE_DB}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - serendipity
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - "${PWD}/certs/cert.pem:/var/lib/postgresql/server.crt:ro"
+      - "${PWD}/certs/key.pem:/var/lib/postgresql/server.key:ro"
+      - identity_service_data:/var/lib/postgresql/data
+
+  serendipity-identity-service:
+    container_name: serendipity-identity-service
+    image: quay.io/keycloak/keycloak:26.1.0
+    command:
+      [
+        "start-dev",
+        "-Dkeycloak.migration.action=import",
+        "-Dkeycloak.migration.provider=singleFile",
+        "-Dkeycloak.migration.realmName=serendipity-dev",
+        "-Dkeycloak.migration.strategy=OVERWRITE_EXISTING",
+        "-Dkeycloak.migration.file=/import/development-realm.json"
+      ]
+    ports:
+      - "8443:8443"
+    restart: unless-stopped
+    environment:
+      KC_DB: postgres
+      # Enforce SSL/TLS for JDBC database connection
+      KC_DB_URL: jdbc:postgresql://identity-service-data:5432/${SERENDIPITY_IDENTITY_SERVICE_DB}?sslmode=require
+      KC_DB_USERNAME: ${SERENDIPITY_IDENTITY_SERVICE_USER}
+      KC_DB_PASSWORD: ${SERENDIPITY_IDENTITY_SERVICE_PASSWORD}
+      KEYCLOAK_ADMIN: ${SERENDIPITY_IDENTITY_SERVICE_ADMIN}
+      KEYCLOAK_ADMIN_PASSWORD: ${SERENDIPITY_IDENTITY_SERVICE_ADMIN_PASSWORD}
+      # Keycloak HTTPS configuration
+      KC_HTTPS_CERTIFICATE_FILE: /opt/keycloak/conf/server.crt
+      KC_HTTPS_CERTIFICATE_KEY_FILE: /opt/keycloak/conf/server.key
+      KC_HTTPS_PORT: "8443"
+      KC_HTTP_ENABLED: "true"
+      KC_HOSTNAME_STRICT: "false"
+    env_file:
+      - "${PWD}/.env"
+    networks:
+      - serendipity
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - "${PWD}/certs/serendipity-identity-service-cert.pem:/opt/keycloak/conf/server.crt:ro"
+      - "${PWD}/certs/serendipity-identity-service-key.pem:/opt/keycloak/conf/server.key:ro"
+      - "${PWD}:/import"
+      - "${PWD}:/export"
+    depends_on:
+      identity-service-data:
+        condition: service_healthy
+
+volumes:
+  identity_service_data:
+
+networks:
+  serendipity:
+    name: serendipity
