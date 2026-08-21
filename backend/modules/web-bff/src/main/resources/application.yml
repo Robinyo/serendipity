@@ -16,7 +16,7 @@ spring:
             scope: openid,profile,email
         provider:
           bff-client:
-            issuer-uri: https://serendipity-identity-service.localhost/realms/serendipity-dev
+            issuer-uri: https://serendipity.localhost/auth/realms/serendipity-dev
 
   cloud:
     gateway:

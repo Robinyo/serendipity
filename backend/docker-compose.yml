@@ -87,7 +87,7 @@ services:
 
   pgadmin:
     container_name: pgadmin
-    image: dpage/pgadmin4:9.9.0
+    image: dpage/pgadmin4:${PGADMIN_VERSION}
     ports:
       - "5443:443"
     restart: unless-stopped
@@ -110,7 +110,7 @@ services:
 
   serendipity-identity-service:
     container_name: serendipity-identity-service
-    image: quay.io/keycloak/keycloak:26.1.0
+    image: quay.io/keycloak/keycloak:${SERENDIPITY_IDENTITY_SERVICE_VERSION}
     command:
       [
         "start-dev",
@@ -119,23 +119,27 @@ services:
         "-Dkeycloak.migration.dir=/import",
         "-Dkeycloak.migration.strategy=OVERWRITE_EXISTING",
       ]
-    ports:
-      - "8443:8443"
+    # ports:
+    #   - "8443:8443"
     restart: unless-stopped
     environment:
+      # Proxy and Path Configuration
+      KC_PROXY_HEADERS: "xforwarded"
+      KC_HTTP_RELATIVE_PATH: "/auth"
+      KC_HOSTNAME: "serendipity.localhost"
+      KC_HOSTNAME_STRICT: "false"
+      # Database Connection
       KC_DB: postgres
-      # Enforce SSL/TLS for JDBC database connection
       KC_DB_URL: jdbc:postgresql://identity-service-data:5432/${SERENDIPITY_IDENTITY_SERVICE_DB}?sslmode=require
       KC_DB_USERNAME: ${SERENDIPITY_IDENTITY_SERVICE_USER}
       KC_DB_PASSWORD: ${SERENDIPITY_IDENTITY_SERVICE_PASSWORD}
       KC_BOOTSTRAP_ADMIN_USERNAME: ${SERENDIPITY_IDENTITY_SERVICE_ADMIN}
       KC_BOOTSTRAP_ADMIN_PASSWORD: ${SERENDIPITY_IDENTITY_SERVICE_ADMIN_PASSWORD}
-      # Keycloak HTTPS configuration
+      # Internal HTTPS / Port Settings
       KC_HTTPS_CERTIFICATE_FILE: /opt/keycloak/conf/server.crt
       KC_HTTPS_CERTIFICATE_KEY_FILE: /opt/keycloak/conf/server.key
       KC_HTTPS_PORT: "8443"
       KC_HTTP_ENABLED: "true"
-      KC_HOSTNAME_STRICT: "false"
     env_file:
       - "${PWD}/.env"
     networks:
