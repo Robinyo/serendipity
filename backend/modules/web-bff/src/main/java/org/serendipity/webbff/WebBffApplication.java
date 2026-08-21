@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebBffApplication {
 
   // @Value("${serendipity-bff.uri}")
-  @Value("${serendipity-bff.uri:http://localhost:8080}")
+  @Value("${serendipity-web-bff.uri:https://serendipity.localhost}")
   private String serendipityBffUri;
 
 	public static void main(String[] args) {

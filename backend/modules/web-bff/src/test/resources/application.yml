@@ -1,0 +1,3 @@
+serendipity-web-bff:
+  auth:
+    enabled: false
