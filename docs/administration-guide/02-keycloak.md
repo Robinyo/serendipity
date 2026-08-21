@@ -16,6 +16,25 @@ You should see something like:
 
 ![Keycloak Admin Console Welcome page](/screen-shots/keycloak/keycloak-welcome-page.png)
 
+### Create a permanent Admin account
+
+When you first start Keycloak you log in using the Keycloak bootstrap username and password. You should create a 
+permanent Admin account in the master realm and delete the temporary one.
+
+For example:
+
+![Create permanent Admin account](/screen-shots/keycloak/keycloak-create-admin-user.png)
+
+Don't forget to assign the admin role (role_admin) to the permanent admin account:
+
+![Assign Admin role to the permanent Admin account](/screen-shots/keycloak/keycloak-assign-role-to-admin.png)
+
+And to set a password:
+
+![Set a password for the permanent Admin user](/screen-shots/keycloak/keycloak-set-password-for-admin.png)
+
+Now sign out and then sign back in using your permanent Admin account credentials.
+
 ### Create a Realm
 
 A realm in Keycloak is analogous to a tenant. Each realm allows an administrator to create (isolated) groups of
@@ -23,7 +42,7 @@ applications and users. Initially, Keycloak includes a single realm, the `master
 
 The `master` realm should only be used to manage Keycloak.
 
-To create a new realm, select 'Manage realms' in the side menu and then click the 'Create realm' button:
+To create a new realm, in the side menu click the dropdown menu and then click the 'Create realm' button:
 
 ![Keycloak Admin Console Create Realm](/screen-shots/keycloak/keycloak-create-realm.png)
 
@@ -33,12 +52,25 @@ To update a realm's settings, select 'Realm settings' in the side menu:
 
 ![Keycloak Admin Console Realm Settings](/screen-shots/keycloak/keycloak-realm-settings.png)
 
+On the realm's settings 'Login' tab you can control the options for users, applications, roles, and groups in the current realm:
+
+![Keycloak Admin Console Realm Settings](/screen-shots/keycloak/keycloak-realm-settings-login-tab.png)
+
+:::info
+
+In newer versions of Keycloak (v19+ using the modern React-based Admin Console), toggles on the Login tab auto-save 
+immediately via API requests, which is why there is no main Save button.
+
+The new Admin Console heavily caches UI state. A hard refresh (Cmd + Shift + R on Mac, Ctrl + F5 on Windows) often 
+reveals that the setting did save on the backend even though the frontend UI showed it toggled back off.
+
+:::
 
 ### Create a User
 
 Verify that you are in the correct realm e.g., the Development Realm (`serendipity-dev`).
 
-To create a new user, select 'Users' in the side menu and then click the 'Create user' button:
+To create a new user, select 'Users' in the side menu and then click the 'Create new user' button:
 
 ![Keycloak Admin Console Create User](/screen-shots/keycloak/keycloak-create-user.png)
 
@@ -87,126 +119,35 @@ OAuth 2.0 Authorization Code Flow) checkbox and then click the 'Next' button:
 
 Enter a 'Valid redirect URI' (e.g., https://serendipity.localhost/*), a valid 'Web origins' (e.g., *) and then click the 'Save' button.
 
-### Create a permanent Admin account
+## Exporting Realms
 
-When you first start Keycloak you log in using the Keycloak bootstrap username and password.
+#### Docker Compose
 
-You should create a permanent Admin account in the master realm and delete the temporary one.
+We provide the following Docker Compose file that is useful during development and testing:
 
-For example:
+| Component        | Description         |
+|:-----------------|:--------------------|
+| export-realm.yml | Export the a Realm. |
 
-![Create permanent Admin account](/screen-shots/keycloak/keycloak-create-admin-user.png)
+### Export a realm
 
-Don't forget to assign the admin role (role_admin) to the permanent admin account:
-
-![Assign Admin role to the permanent Admin account](/screen-shots/keycloak/keycloak-assign-role-to-admin.png)
-
-And to set a password:
-
-![Set a password for the permanent Admin user](/screen-shots/keycloak/keycloak-set-password-for-admin.png)
-
-### Importing and Exporting Realms
-
-#### Import a Realm
-
-Keycloak can import a realm when it starts up.
-
-For example:
+To export a realm, in the project's `/backend` directory, run
 
 ```
-    ...
-    
-    command:
-      [
-        "start-dev",
-        "-Dkeycloak.migration.action=import",
-        "-Dkeycloak.migration.provider=singleFile",
-        "-Dkeycloak.migration.realmName=serendipity-dev",
-        "-Dkeycloak.migration.strategy=OVERWRITE_EXISTING",
-        "-Dkeycloak.migration.file=/import/development-realm.json"
-      ]
-      
-    ...
-      
-    volumes:
-      - "${PWD}:/import"
-      - "${PWD}:/export"
+REALM_NAME=serendipity-dev docker compose -f export-realm.yml up
 ```
-
-#### Export a Realm
-
-Keycloak can export a realm when it starts up.
-
-For example:
-
-```
-    ...
-    
-    command:
-      [
-        "start-dev",
-        "-Dkeycloak.migration.action=export",
-        "-Dkeycloak.migration.provider=singleFile",
-        "-Dkeycloak.migration.realmName=serendipity-dev",
-        "-Dkeycloak.migration.usersExportStrategy=REALM_FILE",
-        "-Dkeycloak.migration.file=/export/development-realm.json"
-      ]
-      
-    ...
-      
-    volumes:
-      - "${PWD}:/import"
-      - "${PWD}:/export"
-```
-
-## Docker Compose
-
-We provide the following Docker Compose files that are useful during development and testing:
-
-| Component                                                 | Description                                             |
-|:----------------------------------------------------------|:--------------------------------------------------------|
-| serendipity-identity-service.yml                          | Lightweight Serendipity Identity Service configuration. |
-| serendipity-identity-service-export-development-realm.yml | Export the Development Realm.                           |
-| serendipity-identity-service-import-development-realm.yml | Import the Development Realm.                           |
-
-### Start the Serendipity Identity Service
-
-To start the Serendipity Identity Service locally, in the project's `/backend` directory, run
-
-```
-docker compose -f serendipity-identity-service.yml up -d
-```
-
-### Stop the Serendipity Identity Service
 
 To stop the containers, run:
 
 ```
-docker compose -f serendipity-identity-service.yml stop
-```
-
-### Export the Development Realm
-
-To export the Development Realm, run:
-
-```
-docker compose -f serendipity-identity-service-export-development-realm.yml up -d
-docker compose -f serendipity-identity-service-export-development-realm.yml down -v
+docker compose -f export-realm.yml down -v
 ```
 
 :::info
 
-Look for a file named `development-realm.json` in the `/backend` directory.
+Look for a file named `serendipity-dev-realm.json` in the `/backend` directory.
 
 :::
-
-### Import the Development Realm
-
-To import the Development Realm, run:
-
-```
-docker compose -f serendipity-identity-service-import-development-realm.yml up -d
-```
 
 ## References
 

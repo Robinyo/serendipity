@@ -29,31 +29,49 @@ docker compose up -d
 docker compose -f docker-compose-full.yaml up -d
 ```
 
-## Access components
+To stop all containers and remove associated data, run one of the following commands:
+
+* Default lightweight development configuration:
+
+```
+docker compose down -v
+```
+
+* Full development configuration:
+
+```
+docker compose -f docker-compose-full.yaml down -v
+```
+
+## Serendipity components
+
+| Component        | URL                                                                                             | Description                                                                                            |
+|:-----------------|:------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------|
+| PWA              | https://serendipity.localhost                                                                   | Manage Accounts and Contacts. Access the PWA with `hey@rob-ferguson.me / secret`.                      |
+| Identity&nbsp;Service | <span style={{whiteSpace: 'nowrap'}}>https://serendipity-identity-service.localhost:8443</span> | Manage users, applications, roles, and groups. Access the Identity Service with `temp-admin / secret`. |
+
+## Camunda components
+
+#### Access components
 
 Once the containers are running, you can access the components in your browser.
 
-Use the following default credentials for web interfaces:
+Use the following default credentials for the web interfaces:
 
 * Username: demo
 * Password: demo
-
-| Component | URL                           | Description                   |
-|:----------|:------------------------------|:------------------------------|
-| PWA       | https://serendipity.localhost | Manage Accounts and Contacts. |
-
 
 ### Orchestration cluster
 
 The Orchestration cluster provides process automation capabilities.
 
-| Component                      | URL                            | Description                                                    |
-|:-------------------------------|:-------------------------------|:---------------------------------------------------------------|
-| Operate                        | http://localhost:8080/operate  | Monitor and troubleshoot process instances.                    |
-| Tasklist                       | http://localhost:8080/tasklist | Complete user tasks in running process instances.              |
-| Orchestration Cluster Admin    | http://localhost:8080/admin    | Manage users and permissions in the lightweight configuration. |
-| Orchestration Cluster REST API | http://localhost:8080/v2       | REST API for process automation.                               |
-| Swagger UI                     | http://localhost:8080/swagger  | Swagger UI.                                                    |
+| Component                                     | URL                            | Description                                                    |
+|:----------------------------------------------|:-------------------------------|:---------------------------------------------------------------|
+| Operate                                       | http://localhost:8080/operate  | Monitor and troubleshoot process instances.                    |
+| Tasklist                                      | http://localhost:8080/tasklist | Complete user tasks in running process instances.              |
+| Orchestration Cluster Admin                   | http://localhost:8080/admin    | Manage users and permissions in the lightweight configuration. |
+| Orchestration&nbsp;Cluster&nbsp;REST&nbsp;API | http://localhost:8080/v2       | REST API for process automation.                               |
+| Swagger UI                                    | http://localhost:8080/swagger  | Swagger UI.                                                    |
 
 ### Management and modelling components
 

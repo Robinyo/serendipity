@@ -33,7 +33,15 @@ services:
   serendipity-identity-service:
     container_name: serendipity-identity-service
     image: quay.io/keycloak/keycloak:26.1.0
-    command: start-dev
+    command:
+      [
+        "start-dev",
+        "-Dkeycloak.migration.action=export",
+        "-Dkeycloak.migration.provider=singleFile",
+        "-Dkeycloak.migration.realmName=${REALM_NAME:-serendipity-dev}",
+        "-Dkeycloak.migration.usersExportStrategy=REALM_FILE",
+        "-Dkeycloak.migration.file=/export/${REALM_NAME:-serendipity-dev}-realm.json"
+      ]
     ports:
       - "8443:8443"
     restart: unless-stopped
@@ -60,8 +68,8 @@ services:
     volumes:
       - "${PWD}/certs/serendipity-identity-service-cert.pem:/opt/keycloak/conf/server.crt:ro"
       - "${PWD}/certs/serendipity-identity-service-key.pem:/opt/keycloak/conf/server.key:ro"
-      - "${PWD}:/import"
-      - "${PWD}:/export"
+      - "${PWD}/services/identity-service/import:/import"
+      - "${PWD}/services/identity-service/export:/export"
     depends_on:
       identity-service-data:
         condition: service_healthy
