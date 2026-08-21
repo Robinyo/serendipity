@@ -119,17 +119,13 @@ OAuth 2.0 Authorization Code Flow) checkbox and then click the 'Next' button:
 
 Enter a 'Valid redirect URI' (e.g., https://serendipity.localhost/*), a valid 'Web origins' (e.g., *) and then click the 'Save' button.
 
-## Exporting Realms
-
-#### Docker Compose
+###  Export a realm
 
 We provide the following Docker Compose file that is useful during development and testing:
 
 | Component        | Description         |
 |:-----------------|:--------------------|
 | export-realm.yml | Export the a Realm. |
-
-### Export a realm
 
 To export a realm, in the project's `/backend` directory, run
 
