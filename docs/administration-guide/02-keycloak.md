@@ -5,7 +5,7 @@
 Navigate to the Keycloak Admin Console:
 
 ```
-https://serendipity-identity-service.localhost:8443
+https://serendipity.localhost/auth/admin
 ```
 
 And sign in using the `SERENDIPITY_IDENTITY_SERVICE_USER` (temp-admin) and `SERENDIPITY_IDENTITY_SERVICE_PASSWORD` (secret) credentials:

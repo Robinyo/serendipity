@@ -45,10 +45,10 @@ docker compose -f docker-compose-full.yaml down -v
 
 ## Serendipity components
 
-| Component        | URL                                                                                  | Description                                                                                            |
-|:-----------------|:-------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------|
-| PWA              | https://serendipity.localhost                                                        | Manage Accounts and Contacts. Access the PWA with `hey@rob-ferguson.me / secret`.                      |
-| Identity&nbsp;Service | <span style={{whiteSpace: 'nowrap'}}>https://serendipity.localhost/auth/admin</span> | Manage users, applications, roles, and groups. Access the Identity Service with `temp-admin / secret`. |
+| Component             | URL                                      | Description                                                                                            |
+|:----------------------|:-----------------------------------------|:-------------------------------------------------------------------------------------------------------|
+| PWA                   | https://serendipity.localhost            | Manage Accounts and Contacts. Access the PWA with `hey@rob-ferguson.me / secret`.                      |
+| Identity&nbsp;Service | https://serendipity.localhost/auth/admin | Manage users, applications, roles, and groups. Access the Identity Service with `temp-admin / secret`. |
 
 ### External dependencies
 
