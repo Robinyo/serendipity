@@ -20,7 +20,7 @@ services:
       - "${PWD}/certs:/etc/nginx/certs"
     depends_on:
       serendipity-identity-service:
-        condition: service_started
+        condition: service_healthy
       serendipity-web-bff:
         condition: service_healthy
 
@@ -198,7 +198,7 @@ services:
       - "host.docker.internal:host-gateway"
     depends_on:
       serendipity-identity-service:
-        condition: service_started
+        condition: service_healthy
       serendipity-party-service:
         condition: service_healthy
 
