@@ -1,0 +1,81 @@
+server:
+  port: 8080
+
+serendipity-web-bff:
+  auth:
+    enabled: false
+  uri: https://serendipity.localhost
+
+spring:
+  main:
+    banner-mode: off
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+            - id: party-service-route
+              uri: http://serendipity-party-service:8080/api/party-service
+              predicates:
+                - Path=/api/party-service/**
+              filters:
+                - TokenRelay=
+            - id: orchestration-cluster-user-tasks-service-route
+              uri: http://orchestration:8080/v2/user-tasks
+              predicates:
+                - Path=/v2/user-tasks/**
+              filters:
+                - TokenRelay=
+            - id: orchestration-cluster-process-definitions-service-route
+              uri: http://orchestration:8080/v2/process-definitions
+              predicates:
+                - Path=/v2/process-definitions/**
+              filters:
+                - TokenRelay=
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: beans, env, health, info, metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: always
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway.server.mvc: INFO
+    org.springframework.security: INFO
+    org.springframework.web: INFO
+
+---
+# ─── DEVELOPMENT ENVIRONMENT ONLY ───
+spring:
+  config:
+    activate:
+      on-profile: dev
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: serendipity-web-bff
+            client-secret: LPg1pb4vRmHLhYOrA60hiOASlMHNlnSI
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - openid
+              - profile
+              - email
+        provider:
+          keycloak:
+            issuer-uri: http://serendipity-identity-service:8080/auth/realms/serendipity-dev
+            authorization-uri: https://serendipity.localhost/auth/realms/serendipity-dev/protocol/openid-connect/auth
+            token-uri: http://serendipity-identity-service:8080/auth/realms/serendipity-dev/protocol/openid-connect/token
+            jwk-set-uri: http://serendipity-identity-service:8080/auth/realms/serendipity-dev/protocol/openid-connect/certs
+            user-info-uri: http://serendipity-identity-service:8080/auth/realms/serendipity-dev/protocol/openid-connect/userinfo
+            user-name-attribute: preferred_username

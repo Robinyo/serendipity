@@ -1,8 +1,5 @@
 services:
 
-  # Make sure your certificates and keys (the *.pem files in the ./certs directory) have the correct permissions
-  # i.e., chmod 600 *.pem && xattr -c *.pem
-
   nginx:
     image: nginx:${NGINX_VERSION}
     container_name: nginx
@@ -101,9 +98,9 @@ services:
     command:
       - "start-dev"
       - "--import-realm"
-    ports:
-      - "8000:8080"
-      - "9000:9000"
+    # ports:
+    #   - "8000:8080"
+    #   - "9000:9000"
     restart: unless-stopped
     environment:
       KC_HTTP_ENABLED: "true"
@@ -196,6 +193,7 @@ services:
       # - web-modeler
     extra_hosts:
       - "host.docker.internal:host-gateway"
+      - "serendipity.localhost:host-gateway"
     depends_on:
       serendipity-identity-service:
         condition: service_healthy
