@@ -1,13 +1,11 @@
 server:
   port: 8080
 
-logging:
-  level:
-    root: INFO
-    org.hibernate.SQL: INFO
-    org.springframework.web: INFO
-
 spring:
+  main:
+    banner-mode: off
+  profiles:
+    active: @spring.profiles.active@
   data:
     rest:
       base-path: /api/party-service
@@ -21,10 +19,6 @@ spring:
   jackson:
     deserialization:
       fail-on-unknown-properties: false
-  main:
-    banner-mode: off
-  profiles:
-    active: @spring.profiles.active@
 
 management:
   endpoints:
@@ -36,3 +30,9 @@ management:
       probes:
         enabled: true
       show-details: always
+
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: INFO
+    org.springframework.web: INFO

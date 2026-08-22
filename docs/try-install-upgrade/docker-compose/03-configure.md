@@ -50,6 +50,12 @@ docker compose -f docker-compose-full.yaml down -v
 | PWA              | https://serendipity.localhost                                                        | Manage Accounts and Contacts. Access the PWA with `hey@rob-ferguson.me / secret`.                      |
 | Identity&nbsp;Service | <span style={{whiteSpace: 'nowrap'}}>https://serendipity.localhost/auth/admin</span> | Manage users, applications, roles, and groups. Access the Identity Service with `temp-admin / secret`. |
 
+### External dependencies
+
+| Component  | URL                                   | Description                                                                        |
+|:-----------|:--------------------------------------|:-----------------------------------------------------------------------------------|
+| pgadmin    | https://serendipity.localhost/pgadmin | pgAdmin is a free, open-source graphical management tool for PostgreSQL databases. |
+
 ## Camunda components
 
 #### Access components

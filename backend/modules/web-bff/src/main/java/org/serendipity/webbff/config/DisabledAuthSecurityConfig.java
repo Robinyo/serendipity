@@ -13,7 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-@ConditionalOnProperty(name = "serendipity-bff.auth.enabled", havingValue = "false", matchIfMissing = true)
+@ConditionalOnProperty(name = "serendipity-web-bff.auth.enabled", havingValue = "false", matchIfMissing = true)
 @EnableAutoConfiguration(exclude = { OAuth2ClientAutoConfiguration.class })
 public class DisabledAuthSecurityConfig {
 

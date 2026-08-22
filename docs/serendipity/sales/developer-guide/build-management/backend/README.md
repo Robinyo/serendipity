@@ -145,6 +145,7 @@ docker container prune && docker volume prune && docker network prune
 export DOCKER_DEFAULT_PLATFORM=linux/arm64
 # export DOCKER_DEFAULT_PLATFORM=windows/amd64
 
+# docker compose build --no-cache
 docker compose build
 ```
 
@@ -173,7 +174,8 @@ docker compose stop
 To remove the services and the associated data, run:
 
 ```
-docker compose down -v
+docker compose down -v --remove-orphans
+# docker volume prune -f
 ```
 
 **Note:** The `-v` flag deletes all volumes, including process data, users, and other persisted state. Omit `-v` if you want to keep your data.

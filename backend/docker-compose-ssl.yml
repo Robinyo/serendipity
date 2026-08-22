@@ -1,15 +1,13 @@
-include:
-  - path: ./services/camunda/docker-compose/8.9/docker-compose-full.yaml
-    env_file: ./services/camunda/docker-compose/8.9/.env
-
 services:
 
   # Make sure your certificates and keys (the *.pem files in the ./certs directory) have the correct permissions
   # i.e., chmod 600 *.pem && xattr -c *.pem
 
   nginx:
-    image: nginx:${NGINX_VERSION}
     container_name: nginx
+    build:
+      context: ./services/nginx
+      dockerfile: Dockerfile
     ports:
       - "80:80"
       - "443:443"
@@ -32,13 +30,21 @@ services:
     container_name: identity-service-data
     image: postgres:${SERENDIPITY_STORAGE_SERVICE_VERSION}
     restart: unless-stopped
+    # FIX: Point to the new non-conflicting certificate directory
+    command: >
+      postgres
+      -c ssl=on 
+      -c ssl_cert_file=/certs/server.crt 
+      -c ssl_key_file=/certs/server.key
     environment:
       POSTGRES_DB: ${SERENDIPITY_IDENTITY_SERVICE_DB}
       POSTGRES_USER: ${SERENDIPITY_IDENTITY_SERVICE_USER}
       POSTGRES_PASSWORD: ${SERENDIPITY_IDENTITY_SERVICE_PASSWORD}
+      PGSSLMODE: require
     env_file:
       - "${PWD}/.env"
     healthcheck:
+      # test: [ "CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB" ]
       test: [ "CMD-SHELL", "pg_isready -U $${SERENDIPITY_IDENTITY_SERVICE_USER} -d $${SERENDIPITY_IDENTITY_SERVICE_DB}" ]
       interval: 5s
       timeout: 5s
@@ -49,16 +55,26 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
+      # FIX: Mount the files to an independent directory so PostgreSQL initialization bypasses them
+      - "${PWD}/certs/cert.pem:/certs/server.crt:ro"
+      - "${PWD}/certs/key.pem:/certs/server.key:ro"
       - identity_service_data:/var/lib/postgresql/data
 
   serendipity-storage-service:
     container_name: serendipity-storage-service
     image: postgres:${SERENDIPITY_STORAGE_SERVICE_VERSION}
+    # image: percona/percona-distribution-postgresql:${SERENDIPITY_STORAGE_SERVICE_VERSION}
     restart: unless-stopped
+    command: >
+      -c ssl=on 
+      -c ssl_cert_file=/var/lib/postgresql/server.crt 
+      -c ssl_key_file=/var/lib/postgresql/server.key
     environment:
       POSTGRES_DB: ${SERENDIPITY_STORAGE_SERVICE_DB}
       POSTGRES_USER: ${SERENDIPITY_STORAGE_SERVICE_USER}
       POSTGRES_PASSWORD: ${SERENDIPITY_STORAGE_SERVICE_PASSWORD}
+      PGSSLMODE: require
+      # ENABLE_PG_TDE: 1
     env_file:
       - "${PWD}/.env"
     healthcheck:
@@ -72,17 +88,18 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
+      - "${PWD}/certs/cert.pem:/var/lib/postgresql/server.crt"
+      - "${PWD}/certs/key.pem:/var/lib/postgresql/server.key"
       - storage_service_data:/var/lib/postgresql/data
 
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4:${PGADMIN_VERSION}
     ports:
-      - "8080:80"
+      - "5443:443"
     restart: unless-stopped
     environment:
-      PGADMIN_LISTEN_ADDRESS: "0.0.0.0"
-      SCRIPT_NAME: "/pgadmin"
+      PGADMIN_ENABLE_TLS: true
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     env_file:
@@ -92,6 +109,8 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
+      - "${PWD}/certs/cert.pem:/certs/server.cert:ro"
+      - "${PWD}/certs/key.pem:/certs/server.key:ro"
       - "${PWD}/pgadmin_data:/var/lib/pgadmin"
     depends_on:
       identity-service-data:
@@ -106,12 +125,15 @@ services:
       - "start-dev"
       - "--import-realm"
     ports:
-      - "8000:8080"
+      - "8443:8443"
       - "9000:9000"
     restart: unless-stopped
     environment:
-      KC_HTTP_ENABLED: "true"
+      # Enable Health Endpoints
       KC_HEALTH_ENABLED: "true"
+      KC_HTTP_MANAGEMENT_SCHEME: "https"
+      # FIX: Force management endpoints to listen at the root, ignoring the "/auth" relative path
+      KC_HTTP_MANAGEMENT_RELATIVE_PATH: "/"
 
       # Proxy and Path Configuration
       KC_PROXY_HEADERS: "xforwarded"
@@ -121,15 +143,22 @@ services:
 
       # Database Connection
       KC_DB: postgres
-      KC_DB_URL: jdbc:postgresql://identity-service-data:5432/${SERENDIPITY_IDENTITY_SERVICE_DB}
+      # KC_DB_URL: jdbc:postgresql://identity-service-data:5432/${SERENDIPITY_IDENTITY_SERVICE_DB}?sslmode=require
+      KC_DB_URL: jdbc:postgresql://identity-service-data:5432/${SERENDIPITY_IDENTITY_SERVICE_DB}?sslmode=require&sslfactory=org.postgresql.ssl.NonValidatingFactory
       KC_DB_USERNAME: ${SERENDIPITY_IDENTITY_SERVICE_USER}
       KC_DB_PASSWORD: ${SERENDIPITY_IDENTITY_SERVICE_PASSWORD}
       KC_BOOTSTRAP_ADMIN_USERNAME: ${SERENDIPITY_IDENTITY_SERVICE_ADMIN}
       KC_BOOTSTRAP_ADMIN_PASSWORD: ${SERENDIPITY_IDENTITY_SERVICE_ADMIN_PASSWORD}
+
+      # Internal HTTPS / Port Settings
+      KC_HTTPS_CERTIFICATE_FILE: /opt/keycloak/conf/server.crt
+      KC_HTTPS_CERTIFICATE_KEY_FILE: /opt/keycloak/conf/server.key
+      KC_HTTPS_PORT: "8443"
+      KC_HTTP_ENABLED: "true"
     env_file:
       - "${PWD}/.env"
     healthcheck:
-      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/9000 && echo -e 'GET /auth/health/ready HTTP/1.1\r\nHost: localhost\r\nConnection: close\r\n\r\n' >&3 && cat <&3 | grep -q '200 OK' || exit 1"]
+      test: [ "CMD-SHELL", "python3 -c 'import urllib.request, ssl; ctx = ssl.create_default_context(); ctx.check_hostname = False; ctx.verify_mode = ssl.CERT_NONE; urllib.request.urlopen(\"https://localhost:9000/health/ready\", context=ctx)' || exit 1" ]
       interval: 10s
       timeout: 5s
       retries: 6
@@ -139,6 +168,8 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
+      - "${PWD}/certs/serendipity-identity-service-cert.pem:/opt/keycloak/conf/server.crt:ro"
+      - "${PWD}/certs/serendipity-identity-service-key.pem:/opt/keycloak/conf/server.key:ro"
       - "${PWD}/services/identity-service/import:/opt/keycloak/data/import/:ro"
       - "${PWD}/services/identity-service/export:/export"
     depends_on:
@@ -170,6 +201,8 @@ services:
       - serendipity
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    volumes:
+      - "${PWD}/certs/keystore.p12:/keystore/keystore.p12"
     depends_on:
       serendipity-storage-service:
         condition: service_healthy
@@ -195,11 +228,13 @@ services:
       start_period: 25s
     networks:
       - serendipity
-      - camunda-platform
+      # - camunda-platform
       # - identity-network
       # - web-modeler
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    volumes:
+      - "${PWD}/certs/keystore.p12:/certs/keystore.p12:ro"
     depends_on:
       serendipity-identity-service:
         condition: service_started
