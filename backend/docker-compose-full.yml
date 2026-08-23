@@ -4,29 +4,32 @@ include:
 
 services:
 
-  # Make sure your certificates and keys (the *.pem files in the ./certs directory) have the correct permissions
-  # i.e., chmod 600 *.pem && xattr -c *.pem
-
   nginx:
     image: nginx:${NGINX_VERSION}
     container_name: nginx
     ports:
-      - "80:80"
-      - "443:443"
+      # - "80:80"
+      # - "443:443"
+      # Explicitly binds port 80 and 443 to your loopback interface
+      - "127.0.0.1:80:80"
+      - "127.0.0.1:443:443"
     restart: unless-stopped
     networks:
-      - serendipity
+      serendipity:
+        aliases:
+          - serendipity-identity-service.localhost
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
       - "${PWD}/services/nginx/conf/ssl.conf:/etc/nginx/conf/ssl.conf"
       - "${PWD}/services/nginx/conf/nginx-default.conf.template:/etc/nginx/templates/default.conf.template"
       - "${PWD}/certs:/etc/nginx/certs"
+      # - "${PWD}/services/nginx/html:/usr/share/nginx/html"
     depends_on:
       serendipity-identity-service:
         condition: service_started
       serendipity-web-bff:
-        condition: service_healthy
+        condition: service_started
 
   identity-service-data:
     container_name: identity-service-data
@@ -77,8 +80,6 @@ services:
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4:${PGADMIN_VERSION}
-    ports:
-      - "8080:80"
     restart: unless-stopped
     environment:
       PGADMIN_LISTEN_ADDRESS: "0.0.0.0"
@@ -105,19 +106,23 @@ services:
     command:
       - "start-dev"
       - "--import-realm"
-    ports:
-      - "8000:8080"
-      - "9000:9000"
     restart: unless-stopped
     environment:
       KC_HTTP_ENABLED: "true"
       KC_HEALTH_ENABLED: "true"
 
-      # Proxy and Path Configuration
+      # Proxy Configuration
       KC_PROXY_HEADERS: "xforwarded"
-      KC_HTTP_RELATIVE_PATH: "/auth"
-      KC_HOSTNAME: ${SERENDIPITY_HOSTNAME}
-      KC_HOSTNAME_STRICT: "false"
+
+      # Core public domain definition for user browsers
+      KC_HOSTNAME: ${SERENDIPITY_IDENTITY_SERVICE_HOSTNAME}
+
+      # Forces the token signature metadata payload to match the internal address
+      # KC_HOSTNAME_URL: ${SERENDIPITY_IDENTITY_SERVICE_HOSTNAME_URL}
+
+      KC_HOSTNAME_STRICT: "true"
+      # Ensures internal lookups use the server-to-server path formats
+      KC_HOSTNAME_STRICT_BACKCHANNEL: "true"
 
       # Database Connection
       KC_DB: postgres
@@ -129,7 +134,7 @@ services:
     env_file:
       - "${PWD}/.env"
     healthcheck:
-      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/9000 && echo -e 'GET /auth/health/ready HTTP/1.1\r\nHost: localhost\r\nConnection: close\r\n\r\n' >&3 && cat <&3 | grep -q '200 OK' || exit 1"]
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/9000 && echo -e 'GET /health/ready HTTP/1.1\r\nHost: localhost\r\nConnection: close\r\n\r\n' >&3 && cat <&3 | grep -q '200 OK' || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 6
@@ -179,10 +184,12 @@ services:
     build:
       context: ./modules/web-bff
       dockerfile: Dockerfile
-    restart: unless-stopped
+    # restart: unless-stopped
+    restart: no
     environment:
-      SPRING_PROFILES_ACTIVE: dev
-      JAVA_TOOL_OPTIONS: "-Djavax.net.ssl.trustStore=/certs/keystore.p12 -Djavax.net.ssl.trustStorePassword=changeit"
+      # JAVA_TOOL_OPTIONS: "-Djavax.net.ssl.trustStore=/certs/keystore.p12 -Djavax.net.ssl.trustStorePassword=secret"
+      # JAVA_TOOL_OPTIONS: "-Djavax.net.ssl.trustStore=/certs/rootCA.pem -Djavax.net.ssl.trustStoreType=PEM"
+      JAVA_TOOL_OPTIONS: "-Djavax.net.ssl.trustStore=/certs/truststore.p12 -Djavax.net.ssl.trustStorePassword=secret"
       PARTY_SERVICE_URI: http://serendipity-party-service:8080/api/party-service
       WORKFLOW_SERVICE_URI: http://orchestration:8080/v2/user-tasks
     env_file:
@@ -200,9 +207,14 @@ services:
       # - web-modeler
     extra_hosts:
       - "host.docker.internal:host-gateway"
+      - "serendipity.localhost:host-gateway"
+      # Routes the lookup out of the container to your host interface over port 443
+      - "serendipity-identity-service.localhost:host-gateway"
+    volumes:
+      - "${PWD}/certs:/certs"
     depends_on:
       serendipity-identity-service:
-        condition: service_started
+        condition: service_healthy
       serendipity-party-service:
         condition: service_healthy
 
