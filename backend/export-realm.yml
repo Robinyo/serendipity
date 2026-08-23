@@ -4,15 +4,10 @@ services:
     container_name: identity-service-data
     image: postgres:${SERENDIPITY_STORAGE_SERVICE_VERSION}
     restart: unless-stopped
-    command: >
-      -c ssl=on 
-      -c ssl_cert_file=/var/lib/postgresql/server.crt 
-      -c ssl_key_file=/var/lib/postgresql/server.key
     environment:
       POSTGRES_DB: ${SERENDIPITY_IDENTITY_SERVICE_DB}
       POSTGRES_USER: ${SERENDIPITY_IDENTITY_SERVICE_USER}
       POSTGRES_PASSWORD: ${SERENDIPITY_IDENTITY_SERVICE_PASSWORD}
-      PGSSLMODE: require
     env_file:
       - "${PWD}/.env"
     healthcheck:
@@ -26,8 +21,6 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
-      - "${PWD}/certs/cert.pem:/var/lib/postgresql/server.crt:ro"
-      - "${PWD}/certs/key.pem:/var/lib/postgresql/server.key:ro"
       - identity_service_data:/var/lib/postgresql/data
 
   serendipity-identity-service:
@@ -42,33 +35,38 @@ services:
         "-Dkeycloak.migration.usersExportStrategy=REALM_FILE",
         "-Dkeycloak.migration.file=/export/${REALM_NAME:-serendipity-dev}-realm.json"
       ]
-    ports:
-      - "8443:8443"
     restart: unless-stopped
     environment:
+      KC_HTTP_ENABLED: "true"
+      KC_HEALTH_ENABLED: "true"
+
+      # Proxy and Path Configuration
+      KC_PROXY_HEADERS: "xforwarded"
+      KC_HTTP_RELATIVE_PATH: "/auth"
+      KC_HOSTNAME: ${SERENDIPITY_HOSTNAME}
+      KC_HOSTNAME_STRICT: "false"
+
+      # Database Connection
       KC_DB: postgres
-      # Enforce SSL/TLS for JDBC database connection
-      KC_DB_URL: jdbc:postgresql://identity-service-data:5432/${SERENDIPITY_IDENTITY_SERVICE_DB}?sslmode=require
+      KC_DB_URL: jdbc:postgresql://identity-service-data:5432/${SERENDIPITY_IDENTITY_SERVICE_DB}
       KC_DB_USERNAME: ${SERENDIPITY_IDENTITY_SERVICE_USER}
       KC_DB_PASSWORD: ${SERENDIPITY_IDENTITY_SERVICE_PASSWORD}
-      KEYCLOAK_ADMIN: ${SERENDIPITY_IDENTITY_SERVICE_ADMIN}
-      KEYCLOAK_ADMIN_PASSWORD: ${SERENDIPITY_IDENTITY_SERVICE_ADMIN_PASSWORD}
-      # Keycloak HTTPS configuration
-      KC_HTTPS_CERTIFICATE_FILE: /opt/keycloak/conf/server.crt
-      KC_HTTPS_CERTIFICATE_KEY_FILE: /opt/keycloak/conf/server.key
-      KC_HTTPS_PORT: "8443"
-      KC_HTTP_ENABLED: "true"
-      KC_HOSTNAME_STRICT: "false"
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${SERENDIPITY_IDENTITY_SERVICE_ADMIN}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${SERENDIPITY_IDENTITY_SERVICE_ADMIN_PASSWORD}
     env_file:
       - "${PWD}/.env"
+    healthcheck:
+      test: [ "CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/9000 && echo -e 'GET /auth/health/ready HTTP/1.1\r\nHost: localhost\r\nConnection: close\r\n\r\n' >&3 && cat <&3 | grep -q '200 OK' || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 30s
     networks:
       - serendipity
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
-      - "${PWD}/certs/serendipity-identity-service-cert.pem:/opt/keycloak/conf/server.crt:ro"
-      - "${PWD}/certs/serendipity-identity-service-key.pem:/opt/keycloak/conf/server.key:ro"
-      - "${PWD}/services/identity-service/import:/import"
+      - "${PWD}/services/identity-service/import:/opt/keycloak/data/import/:ro"
       - "${PWD}/services/identity-service/export:/export"
     depends_on:
       identity-service-data:

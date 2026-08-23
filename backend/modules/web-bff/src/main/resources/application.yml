@@ -1,5 +1,6 @@
 server:
   port: 8080
+  forward-headers-strategy: framework
 
 serendipity-web-bff:
   auth:
@@ -43,11 +44,14 @@ spring:
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
         provider:
           keycloak:
-            # issuer-uri: http://serendipity-identity-service:8080/auth/realms/serendipity-dev
-            authorization-uri: https://serendipity.localhost
-            token-uri: http://serendipity-identity-service:8080/auth/realms/serendipity-dev/protocol/openid-connect/token
-            user-info-uri: http://serendipity-identity-service:8080/auth/realms/serendipity-dev/protocol/openid-connect/userinfo
-            jwk-set-uri: http://serendipity-identity-service:8080/auth/realms/serendipity-dev/protocol/openid-connect/certs
+            issuer-uri: https://serendipity-identity-service.localhost/realms/serendipity-dev
+
+            authorization-uri: https://serendipity-identity-service.localhost/realms/serendipity-dev/protocol/openid-connect/auth
+
+            token-uri: https://serendipity-identity-service.localhost/realms/serendipity-dev/protocol/openid-connect/token
+            user-info-uri: https://serendipity-identity-service.localhost/realms/serendipity-dev/protocol/openid-connect/userinfo
+            jwk-set-uri: https://serendipity-identity-service.localhost/realms/serendipity-dev/protocol/openid-connect/certs
+
             user-name-attribute: preferred_username
 
 management:

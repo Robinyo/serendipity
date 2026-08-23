@@ -145,8 +145,7 @@ docker container prune && docker volume prune && docker network prune
 export DOCKER_DEFAULT_PLATFORM=linux/arm64
 # export DOCKER_DEFAULT_PLATFORM=windows/amd64
 
-# docker compose build --no-cache
-docker compose build
+docker compose build --no-cache
 ```
 
 With a single command, you can create and start all the services:

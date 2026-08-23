@@ -256,7 +256,20 @@ xattr -c *.pem
 You can use `openssl` to create a PKCS12 keystore:
 
 ```
-openssl pkcs12 -export -in cert.pem -inkey key.pem -out keystore.p12 -name tomcat -password pass:secret
+openssl pkcs12 -export \
+  -in cert.pem \
+  -inkey key.pem \
+  -certfile ~/Library/Application\ Support/mkcert/rootCA.pem \
+  -out keystore.p12 \
+  -name tomcat \
+  -password pass:secret
+```
+
+Move the file into the `\backend\certs` directory and set the file permissions:
+
+```
+sudo chmod 600 *.p12
+xattr -c *.p12
 ```
 
 ### /etc/hosts
