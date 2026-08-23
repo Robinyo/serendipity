@@ -20,6 +20,7 @@ services:
       - "${PWD}/services/nginx/conf/ssl.conf:/etc/nginx/conf/ssl.conf"
       - "${PWD}/services/nginx/conf/nginx-default.conf.template:/etc/nginx/templates/default.conf.template"
       - "${PWD}/certs:/etc/nginx/certs"
+      # - "${PWD}/services/nginx/html:/usr/share/nginx/html"
     depends_on:
       serendipity-identity-service:
         condition: service_started

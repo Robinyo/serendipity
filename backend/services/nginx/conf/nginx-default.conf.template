@@ -7,7 +7,7 @@ server {
 
 }
 
-# 1. Front-End and BFF Gateway Domain
+# Front-End and BFF Gateway Domain
 server {
 
   server_name serendipity.localhost;
@@ -17,6 +17,8 @@ server {
   ssl_certificate_key /etc/nginx/certs/key.pem;
 
   include /etc/nginx/conf/ssl.conf;
+
+  # error_page 502 504 = @maintenance;
 
   location / {
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -34,9 +36,14 @@ server {
       proxy_pass http://pgadmin:80;
   }
 
+  # location @maintenance {
+  #     root /usr/share/nginx/html;
+  #     rewrite ^(.*)$ /error.html break;
+  # }
+
 }
 
-# 2. Dedicated Identity Service (Keycloak) Domain
+# Dedicated Identity Service (Keycloak) Domain
 server {
 
   server_name serendipity-identity-service.localhost;
