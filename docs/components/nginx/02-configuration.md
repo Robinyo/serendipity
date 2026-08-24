@@ -22,10 +22,12 @@ server {
   server_name serendipity.localhost;
   listen 443 ssl default_server;
 
-  ssl_certificate /etc/nginx/certs/cert.pem;
-  ssl_certificate_key /etc/nginx/certs/key.pem;
+  ssl_certificate /etc/nginx/certs/serendipity.localhost-cert.pem;
+  ssl_certificate_key /etc/nginx/certs/serendipity.localhost-key.pem;
 
   include /etc/nginx/conf/ssl.conf;
+
+  # error_page 502 504 = @maintenance;
 
   location / {
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -44,6 +46,11 @@ server {
       proxy_pass http://pgadmin:80;
   }
 
+  # location @maintenance {
+  #     root /usr/share/nginx/html;
+  #     rewrite ^(.*)$ /error.html break;
+  # }
+
 }
 
 # 3. Dedicated Identity Service (Keycloak) Domain
@@ -52,8 +59,8 @@ server {
   server_name serendipity-identity-service.localhost;
   listen 443 ssl;
 
-  ssl_certificate /etc/nginx/certs/serendipity-identity-service-cert.pem;
-  ssl_certificate_key /etc/nginx/certs/serendipity-identity-service-key.pem;
+  ssl_certificate /etc/nginx/certs/serendipity-identity-service.localhost-cert.pem;
+  ssl_certificate_key /etc/nginx/certs/serendipity-identity-service.localhost-key.pem;
 
   include /etc/nginx/conf/ssl.conf;
 
@@ -71,7 +78,6 @@ server {
   }
 
 }
-
 ```
 
 1. HTTP to HTTPS Global Redirector <br />

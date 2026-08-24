@@ -36,7 +36,9 @@ build/
 .vscode/
 
 /archive
-/certs
+
+certs/*
+!certs/.gitkeep
 
 /pgdata
 /pgadmin_data

@@ -1,3 +1,4 @@
+# 1. HTTP to HTTPS Global Redirector
 server {
 
   server_name serendipity.localhost;
@@ -7,14 +8,14 @@ server {
 
 }
 
-# Front-End and BFF Gateway Domain
+# 2. Front-End and BFF Gateway Domain
 server {
 
   server_name serendipity.localhost;
   listen 443 ssl default_server;
 
-  ssl_certificate /etc/nginx/certs/cert.pem;
-  ssl_certificate_key /etc/nginx/certs/key.pem;
+  ssl_certificate /etc/nginx/certs/serendipity.localhost-cert.pem;
+  ssl_certificate_key /etc/nginx/certs/serendipity.localhost-key.pem;
 
   include /etc/nginx/conf/ssl.conf;
 
@@ -29,6 +30,7 @@ server {
       proxy_redirect off;
   }
 
+  # 4. Database Administration Routing
   location /pgadmin {
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto $scheme;
@@ -43,14 +45,14 @@ server {
 
 }
 
-# Dedicated Identity Service (Keycloak) Domain
+# 3. Dedicated Identity Service (Keycloak) Domain
 server {
 
   server_name serendipity-identity-service.localhost;
   listen 443 ssl;
 
-  ssl_certificate /etc/nginx/certs/serendipity-identity-service-cert.pem;
-  ssl_certificate_key /etc/nginx/certs/serendipity-identity-service-key.pem;
+  ssl_certificate /etc/nginx/certs/serendipity-identity-service.localhost-cert.pem;
+  ssl_certificate_key /etc/nginx/certs/serendipity-identity-service.localhost-key.pem;
 
   include /etc/nginx/conf/ssl.conf;
 

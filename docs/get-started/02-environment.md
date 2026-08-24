@@ -225,15 +225,18 @@ Use `mkcert` to generate a key and a certificate for the following hostnames:
 - serendipity.localhost
 - serendipity-identity-service.localhost
 
-```
-mkcert -key-file key.pem -cert-file cert.pem serendipity.localhost
-mkcert -key-file serendipity-identity-service-key.pem -cert-file serendipity-identity-service-cert.pem serendipity-identity-service.localhost
-```
-
-Move the files into the `\backend\certs` directory and set the file permissions:
+In the `\backend\certs` directory:
 
 ```
-sudo chmod 600 *.pem
+mkcert -key-file serendipity.localhost-key.pem -cert-file serendipity.localhost-cert.pem serendipity.localhost
+mkcert -key-file serendipity-identity-service.localhost-key.pem -cert-file serendipity-identity-service.localhost-cert.pem serendipity-identity-service.localhost
+```
+
+Set the file permissions:
+
+```
+chmod 600 *.pem && \
+xattr -c *.pem
 ```
 
 :::tip
@@ -251,24 +254,24 @@ xattr -c *.pem
 
 :::
 
-#### Create a PKCS12 Keystore
+#### Create a PKCS12 Truststore
 
-You can use `openssl` to create a PKCS12 keystore:
-
-```
-openssl pkcs12 -export \
-  -in cert.pem \
-  -inkey key.pem \
-  -certfile ~/Library/Application\ Support/mkcert/rootCA.pem \
-  -out keystore.p12 \
-  -name tomcat \
-  -password pass:secret
-```
-
-Move the file into the `\backend\certs` directory and set the file permissions:
+You can use `openssl` to create a PKCS12 truststore:
 
 ```
-sudo chmod 600 *.p12
+keytool -importcert -trustcacerts \
+  -file "$(mkcert -CAROOT)/rootCA.pem" \
+  -alias mkcertCA \
+  -keystore truststore.p12 \
+  -storetype PKCS12 \
+  -storepass secret \
+  -noprompt
+```
+
+Set the file permissions:
+
+```
+chmod 600 *.p12 && \
 xattr -c *.p12
 ```
 
