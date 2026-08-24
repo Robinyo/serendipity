@@ -91,3 +91,4 @@ Contacts
 <p align="center">
   <img src="https://github.com/Robinyo/serendipity/blob/main/docs/screen-shots/contacts.png" />
 </p>
+
