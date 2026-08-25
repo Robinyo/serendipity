@@ -4,7 +4,25 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/app",
-    "types": []
+    "types": [],
+    // Force the application builder to output standard ESM targets
+    // to map dependencies cleanly across local pre-compiled libraries
+    "module": "es2022",
+    "moduleResolution": "bundler",
+    "paths": {
+      "serendipity-auth-lib": ["../../dist/serendipity-auth-lib"],
+      "serendipity-auth-lib/*": ["../../dist/serendipity-auth-lib/*"],
+      "serendipity-utils-lib": ["../../dist/serendipity-utils-lib"],
+      "serendipity-utils-lib/*": ["../../dist/serendipity-utils-lib/*"],
+      "serendipity-components-lib": ["../../dist/serendipity-components-lib"],
+      "serendipity-components-lib/*": ["../../dist/serendipity-components-lib/*"],
+      "serendipity-camunda-lib": ["../../dist/serendipity-camunda-lib"],
+      "serendipity-camunda-lib/*": ["../../dist/serendipity-camunda-lib/*"],
+      "serendipity-party-lib": ["../../dist/serendipity-party-lib"],
+      "serendipity-party-lib/*": ["../../dist/serendipity-party-lib/*"],
+      "serendipity-workflow-lib": ["../../dist/serendipity-workflow-lib"],
+      "serendipity-workflow-lib/*": ["../../dist/serendipity-workflow-lib/*"]
+    }
   },
   "include": [
     "src/**/*.ts"
@@ -13,6 +31,10 @@
     "src/**/*.spec.ts"
   ],
   "angularCompilerOptions": {
+
+    // Force the compiler to always resolve dependencies to a single unified runtime instance
+    "preserveSymlinks": true,
+
     "extendedDiagnostics": {
       "checks": {
         "nullishCoalescingNotNullable": "suppress",

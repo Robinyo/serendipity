@@ -15,19 +15,19 @@ import { FormJsWrapper } from 'serendipity-camunda-lib';
 import { latLng, LatLng, LatLngBounds, Layer, LeafletEvent, LeafletMouseEvent, Map, MapOptions, tileLayer } from 'leaflet';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 
-import { ContactsService } from '../../services/contacts/contacts';
-import { ElectoralDivisionsService } from '../../services/electoral-divisions/electoral-divisions';
+import { ContactsService } from '../../services/contacts/contacts.js';
+import { ElectoralDivisionsService } from '../../services/electoral-divisions/electoral-divisions.js';
 // import { ContactRelatedTab } from '../../components/contact/contact-related-tab/contact-related-tab';
 // import { LookupAccountDialogComponent } from "../dialogs/lookup-account-dialog/lookup-account-dialog.component";
 
 // import { AccountModel } from '../../models/account';
 // import { AddressModel } from '../../models/address';
-import { ContactModel } from '../../models/contact';
+import { ContactModel } from '../../models/contact.js';
 // import { DialogResult } from "../../models/dialog";
-import { ElectoralDivisionModel } from '../../models/electoral-division';
+import { ElectoralDivisionModel } from '../../models/electoral-division.js';
 // import { RoleModel } from '../../models/role';
 
-import { CONTACT_WIZARD, CONTACTS, Tab } from './constants';
+import { CONTACT_WIZARD, CONTACTS, Tab } from './constants.js';
 
 class LeafletControlLayersConfig {
   baseLayers: { [name: string]: Layer } = {};

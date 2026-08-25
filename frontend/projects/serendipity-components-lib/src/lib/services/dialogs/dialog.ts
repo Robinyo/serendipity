@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { ComponentType } from '@angular/cdk/portal';
 
-import { AlertDialog } from '../../components/dialogs/alert-dialog/alert-dialog';
-import { ConfirmDialog } from '../../components/dialogs/confirm-dialog/confirm-dialog';
+import { AlertDialog } from '../../components/dialogs/alert-dialog/alert-dialog.js';
+import { ConfirmDialog } from '../../components/dialogs/confirm-dialog/confirm-dialog.js';
 
 export interface DialogConfig extends MatDialogConfig {
   message: string;

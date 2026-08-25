@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 
 import { Adapter } from 'serendipity-utils-lib';
 
-import { PartyAdapter } from './party';
+import { PartyAdapter } from './party.js';
 
-import { ContactModel } from '../models/contact';
-import { OrganisationRefModel } from '../models/organisation-ref';
+import { ContactModel } from '../models/contact.js';
+import { OrganisationRefModel } from '../models/organisation-ref.js';
 
 const CONTACT = "Contact";
 const ACCOUNT = "Account";

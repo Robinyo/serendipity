@@ -119,17 +119,25 @@ In another terminal:
 ```
 # In the project's /frontend directory
 
-npm install
+# npm install
 
-ng build --configuration="development" serendipity-auth-lib && \
+# npx ng cache clean
+# rm -rf .angular/cache node_modules/.cache node_modules/.vite dist/
+
 ng build --configuration="development" serendipity-utils-lib && \
+ng build --configuration="development" serendipity-auth-lib && \
 ng build --configuration="development" serendipity-components-lib && \
 ng build --configuration="development" serendipity-camunda-lib && \
 ng build --configuration="development" serendipity-party-lib && \
 ng build --configuration="development" serendipity-workflow-lib && \
-ng build --configuration="development" serendipity-pwa && \
+ng build --configuration="development" serendipity-pwa
+
 ng serve serendipity-pwa
+# npm run start
 ```
+
+Note: You must build your libraries from the lowest-level foundation up to the highest functional feature. 
+Since `serendipity-auth-lib` relies on `serendipity-utils-lib`, the utils library must be compiled first.
 
 Navigate to:
 
@@ -137,19 +145,14 @@ Navigate to:
 http://localhost:4200/
 ```
 
-Alternatively, in a terminal:
+## ❯ Production
+
+In a terminal, create and start all the services:
 
 ```
-# In the project's /frontend directory
+# In the project's /backend directory
 
-# Watch the component you are making changes to
-
-npm run watch-lib:serendipity-auth-lib
-npm run watch-lib:serendipity-utils-lib
-npm run watch-lib:serendipity-components-lib
-npm run watch-lib:serendipity-camunda-lib
-npm run watch-lib:serendipity-party-lib
-npm run watch-lib:serendipity-workflow-lib
+docker compose up
 ```
 
 In another terminal:
@@ -157,7 +160,26 @@ In another terminal:
 ```
 # In the project's /frontend directory
 
-ng serve serendipity-pwa --open
+ng build serendipity-utils-lib && \
+ng build serendipity-auth-lib && \
+ng build serendipity-components-lib && \
+ng build serendipity-camunda-lib && \
+ng build serendipity-party-lib && \
+ng build serendipity-workflow-lib
+
+npx ng build serendipity-pwa --configuration production
+```
+
+Launch your lightweight server:
+
+```
+npx http-server -p 4200 dist/serendipity-pwa/browser -c-1
+```
+
+Navigate to:
+
+```
+http://localhost:4200/
 ```
 
 ### Aliases

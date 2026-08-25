@@ -16,9 +16,9 @@ import { Form } from '@bpmn-io/form-js-viewer';
 
 import { ActionBar, Composite } from 'serendipity-components-lib';
 
-import { BpmnJsWrapper } from '../bpmn-js-wrapper/bpmn-js-wrapper';
+import { BpmnJsWrapper } from '../bpmn-js-wrapper/bpmn-js-wrapper.js';
 
-import { TasksService } from '../../services/tasks/tasks';
+import { TasksService } from '../../services/tasks/tasks.js';
 
 // import { Tab } from './constants';
 
@@ -56,7 +56,9 @@ export class Task extends Composite implements AfterViewInit, OnInit, OnChanges,
 
   private buttonClickListener?: (event: Event) => void;
 
-  private currentUser: any;
+  // private currentUser: any;
+
+  private username: String | undefined;
 
   constructor() {
 
@@ -64,7 +66,8 @@ export class Task extends Composite implements AfterViewInit, OnInit, OnChanges,
 
     this.logger.info('Task Component: constructor()');
 
-    this.currentUser = this.authService.getCurrentUser();
+    // this.currentUser = this.authService.getCurrentUser();
+    this.username = this.authService.getUsername();
   }
 
   ngOnInit(): void {
@@ -270,7 +273,8 @@ export class Task extends Composite implements AfterViewInit, OnInit, OnChanges,
     this.logger.info('Task Component: onClaim()');
 
     const taskAction = {
-      assignee: this.currentUser.username,
+      // assignee: this.currentUser.username,
+      assignee: this.username,
       allowOverride: true,
       action: 'assign'
     };

@@ -74,8 +74,8 @@
               "sourceMap": true,
               "fileReplacements": [
                 {
-                  "replace": "projects/serendipity-utils-lib/src/lib/environments/environment.ts",
-                  "with": "projects/serendipity-utils-lib/src/lib/environments/environment.development.ts"
+                  "replace": "projects/serendipity-pwa/src/environments/environment.ts",
+                  "with": "projects/serendipity-pwa/src/environments/environment.development.ts"
                 }
               ]
             },

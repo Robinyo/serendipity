@@ -1,60 +1,28 @@
-import { inject, Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+import { inject } from '@angular/core';
+import { ResolveFn } from '@angular/router';
 
-import { Observable, forkJoin } from 'rxjs';
+import { forkJoin } from 'rxjs';
 
-import { FormsService, LoggerService } from 'serendipity-utils-lib';
+import { ConfigService, FormsService, LoggerService } from 'serendipity-utils-lib';
 
-import {ADDRESS_FORM, CONTACT_DETAILS_FORM, NAME_FORM} from './form-ids';
+import {ADDRESS_FORM, CONTACT_DETAILS_FORM, NAME_FORM} from './form-ids.js';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ContactWizardResolver implements Resolve<any> {
+export const contactWizardResolver: ResolveFn<any> = (route, state) => {
 
-  protected dynamicFormService: FormsService = inject(FormsService);
-  protected logger = inject(LoggerService);
+  const configService: ConfigService = inject(ConfigService);
+  const dynamicFormService: FormsService = inject(FormsService);
+  const logger: LoggerService = inject(LoggerService);
 
-  resolve(route: ActivatedRouteSnapshot): Observable<any> {
+  logger.info('Contact Wizard Resolver');
 
-    this.logger.info('Contact Wizard Resolver: resolve()');
+  const nameFormModel = dynamicFormService.getFormMetadata(NAME_FORM);
+  const addressFormModel = dynamicFormService.getFormMetadata(ADDRESS_FORM);
+  const contactDetailsFormModel = dynamicFormService.getFormMetadata(CONTACT_DETAILS_FORM);
 
-    const nameFormModel = this.dynamicFormService.getFormMetadata(NAME_FORM);
-    const addressFormModel = this.dynamicFormService.getFormMetadata(ADDRESS_FORM);
-    const contactDetailsFormModel = this.dynamicFormService.getFormMetadata(CONTACT_DETAILS_FORM);
+  return forkJoin({
+    nameFormModel: nameFormModel,
+    addressFormModel: addressFormModel,
+    contactDetailsFormModel: contactDetailsFormModel
+  });
 
-    return forkJoin({
-      nameFormModel: nameFormModel,
-      addressFormModel: addressFormModel,
-      contactDetailsFormModel: contactDetailsFormModel
-    });
-  }
-
-}
-
-/*
-
-@Injectable({
-  providedIn: 'root'
-})
-export class ContactWizardResolver implements Resolve<any> {
-
-  protected dynamicFormService: DynamicFormService = inject(DynamicFormService);
-  protected logger = inject(LoggerService);
-
-  resolve(route: ActivatedRouteSnapshot): Observable<any> {
-
-    this.logger.info('Contact Wizard Resolver: resolve()');
-
-    const generalInformationFormDefs = this.dynamicFormService.getFormMetadata(CONTACT_WIZARD_GENERAL_INFORMATION_GROUP);
-    const addressInformationFormDefs = this.dynamicFormService.getFormMetadata(CONTACT_WIZARD_ADDRESS_INFORMATION_GROUP);
-
-    return forkJoin({
-      generalInformationFormDefs: generalInformationFormDefs,
-      addressInformationFormDefs: addressInformationFormDefs
-    });
-  }
-
-}
-
-*/
+};

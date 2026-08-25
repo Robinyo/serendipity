@@ -1,4 +1,4 @@
-import { Environment } from './models';
+import { Environment } from 'serendipity-utils-lib';
 
 export const environment: Environment = {
 

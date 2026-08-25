@@ -8,11 +8,11 @@ import { takeUntil } from 'rxjs/operators';
 
 import { AuthService } from 'serendipity-auth-lib';
 
-import { AbstractComponent } from '../component/component';
-import { DialogService } from '../../../services/dialogs/dialog';
+import { AbstractComponent } from '../component/component.js';
+import { DialogService } from '../../../services/dialogs/dialog.js';
 
 @Directive()
-export abstract class WizardComponent<T> extends AbstractComponent {
+export abstract class Wizard<T> extends AbstractComponent {
 
   public item!: T;
 

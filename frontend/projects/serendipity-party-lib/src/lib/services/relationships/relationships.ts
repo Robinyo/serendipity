@@ -5,7 +5,7 @@ import { tap } from 'rxjs/operators';
 
 import { AbstractCollectionService } from 'serendipity-utils-lib';
 
-import { ROLES, ROLES_WITHOUT_A_TRAILING_SLASH } from './constants';
+import { ROLES, ROLES_WITHOUT_A_TRAILING_SLASH } from './constants.js';
 
 @Injectable({
   providedIn: 'root'

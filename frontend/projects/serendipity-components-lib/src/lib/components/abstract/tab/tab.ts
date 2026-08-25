@@ -4,7 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AuthService } from 'serendipity-auth-lib';
 import { LoggerService } from 'serendipity-utils-lib';
-import { DialogService } from '../../../services/dialogs/dialog';
+
+import { DialogService } from '../../../services/dialogs/dialog.js';
 
 @Directive()
 export abstract class Tab<T> {

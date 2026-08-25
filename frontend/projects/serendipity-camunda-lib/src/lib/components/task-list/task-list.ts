@@ -7,9 +7,9 @@ import { MatListModule } from '@angular/material/list';
 
 import { ActivityBar, List } from 'serendipity-components-lib';
 
-import { Task } from '../task/task';
+import { Task } from '../task/task.js';
 
-import { TasksService } from '../../services/tasks/tasks';
+import { TasksService } from '../../services/tasks/tasks.js';
 
 @Component({
   selector: 'task-list',

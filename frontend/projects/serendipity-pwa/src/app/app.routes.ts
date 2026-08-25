@@ -1,39 +1,38 @@
 import { Routes } from '@angular/router';
 
+import { authGuard } from 'serendipity-auth-lib';
 import { Placeholder } from 'serendipity-components-lib';
-import { AccountsRoute, AccountRoute, ContactRoute, ContactsRoute, NewContactRoute } from 'serendipity-party-lib';
-import { ActivitiesRoute, TasksRoute } from 'serendipity-workflow-lib';
-
 import { Home } from './features/home/home';
 
 export const routes: Routes = [
 
-  { path: '',
+  // Public Route
+  {
+    path: '',
     component: Home
   },
 
-  ActivitiesRoute,
-
+  // Protected Block (Applies guard to everything inside)
   {
-    path: 'customers/dashboards',
-    component: Placeholder
+    path: '',
+    canActivate: [authGuard],
+    children: [
+      {
+        path: 'workflow', // 🔑 Base path maps cleanly to the single unified array handle
+        loadChildren: () => import('serendipity-workflow-lib').then(m => m.workflowRoutes)
+      },
+      {
+        path: 'customers/dashboards',
+        component: Placeholder
+      },
+      {
+        path: 'customers', // 🔑 Consolidates customer management under a shared layout handle
+        loadChildren: () => import('serendipity-party-lib').then(m => m.partyRoutes)
+      }
+    ]
   },
 
-  AccountRoute,
-  AccountsRoute,
-
-  ContactRoute,
-  ContactsRoute,
-  NewContactRoute,
-
-  TasksRoute,
-
-  //
-  // The Wildcard route
-  // DO NOT insert routes after this one.
-  // { path:'**', ...} needs to be the LAST one.
-  //
-
+  // Fallback Route (the Wildcard route)
   {
     path: '**',
     component: Placeholder

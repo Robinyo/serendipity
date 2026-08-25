@@ -1,21 +1,36 @@
 import { inject, Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { environment } from '../../../environments/environment';
-import { HttpOptions } from '../../../models/http-options';
-import { LoggerService } from '../../logger/logger.service';
+import { APP_ENVIRONMENT } from '../../../models/environment.token.js';
+
+import { HttpOptions } from '../../../models/http-options.js';
+import { LoggerService } from '../../logger/logger.service.js';
+
+// Abstract parents MUST have a decorator to preserve DI metadata shapes
 
 @Injectable()
 export abstract class AbstractCollectionService {
 
-  protected httpClient = inject(HttpClient);
-  protected logger: LoggerService = inject(LoggerService);
+  // Declare properties without inline injection to stabilise cross-lib evaluation
+  protected httpClient!: HttpClient;
+  protected logger!: LoggerService;
 
   protected httpOptions: HttpOptions | undefined;
   protected url = '';
 
+  private env!: any;
+
+  protected constructor() {
+
+    this.httpClient = inject(HttpClient);
+    this.logger = inject(LoggerService);
+
+    this.env = inject(APP_ENVIRONMENT);
+
+  }
+
   protected getUrlPrefix(): string {
-    return environment.serverScheme + '://' + environment.serverHost;
+    return `${this.env.serverScheme}://${this.env.serverHost}`;
   }
 
   // In Angular, when using the HttpClient to make HTTP requests, the observe option allows you to specify how much of

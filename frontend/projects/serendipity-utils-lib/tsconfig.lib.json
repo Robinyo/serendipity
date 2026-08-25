@@ -7,7 +7,10 @@
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
-    "types": []
+    "types": [],
+    // Output standard modern ESM paths using modern module tools
+    "module": "node16",
+    "moduleResolution": "node16"
   },
   "include": [
     "src/**/*.ts"

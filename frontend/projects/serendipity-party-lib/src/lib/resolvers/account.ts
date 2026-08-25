@@ -1,37 +1,29 @@
-import { inject, Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+import { inject } from '@angular/core';
+import { ResolveFn } from '@angular/router';
 
-import { Observable, forkJoin } from 'rxjs';
+import { forkJoin } from 'rxjs';
 
 import { ConfigService, FormsService, LoggerService } from 'serendipity-utils-lib';
 
-import { RELATIONSHIP_LIST_COLUMN_DEFS } from './constants';
-import { ACCOUNT_INFORMATION_FORM } from './form-ids';
+import { RELATIONSHIP_LIST_COLUMN_DEFS } from './constants.js';
+import { ACCOUNT_INFORMATION_FORM } from './form-ids.js';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AccountResolver implements Resolve<any> {
+export const accountResolver: ResolveFn<any> = (route, state) => {
 
-  protected configService = inject(ConfigService);
-  protected dynamicFormService: FormsService = inject(FormsService);
-  protected logger = inject(LoggerService);
+  const configService: ConfigService = inject(ConfigService);
+  const dynamicFormService: FormsService = inject(FormsService);
+  const logger: LoggerService = inject(LoggerService);
 
-  resolve(route: ActivatedRouteSnapshot): Observable<any> {
+  logger.info('Account Resolver');
 
-    this.logger.info('Contact Resolver: resolve()');
+  const relationshipListColumnDefs= configService.get(RELATIONSHIP_LIST_COLUMN_DEFS);
 
-    const relationshipListColumnDefs= this.configService.get(RELATIONSHIP_LIST_COLUMN_DEFS);
+  //  @if (viewMode === 'card')
+  const generalInformationFormDefs = dynamicFormService.getFormMetadata(ACCOUNT_INFORMATION_FORM);
 
-    //  @if (viewMode === 'card')
-    const generalInformationFormDefs = this.dynamicFormService.getFormMetadata(ACCOUNT_INFORMATION_FORM);
-    // const addressInformationFormDefs = this.dynamicFormService.getFormMetadata(CONTACT_ADDRESS_INFORMATION_GROUP);
+  return forkJoin({
+    relationshipListColumDefs: relationshipListColumnDefs,
+    generalInformationFormDefs: generalInformationFormDefs
+  });
 
-    return forkJoin({
-      relationshipListColumDefs: relationshipListColumnDefs,
-      generalInformationFormDefs: generalInformationFormDefs
-      // addressInformationFormDefs: addressInformationFormDefs
-    });
-  }
-
-}
+};

@@ -1,38 +1,34 @@
-import { Route } from '@angular/router';
+import { Routes } from '@angular/router';
+import { accountResolver } from './resolvers/account.js';
+import { accountsResolver } from './resolvers/accounts.js';
+import { contactResolver } from './resolvers/contact.js';
+import { contactsResolver } from './resolvers/contacts.js';
+import { contactWizardResolver } from './resolvers/contact-wizard.js';
 
-import { AccountResolver } from './resolvers/account';
-import { AccountsResolver } from './resolvers/accounts';
-
-import { ContactResolver } from './resolvers/contact';
-import { ContactsResolver } from './resolvers/contacts';
-import { ContactWizardResolver } from './resolvers/contact-wizard';
-
-export const AccountsRoute: Route = {
-  path: 'customers/accounts',
-  loadComponent: () => import('./features/accounts/accounts').then(m => m.Accounts),
-  resolve: { columnDefs: AccountsResolver }
-};
-
-export const AccountRoute: Route = {
-  path: 'customers/accounts/:id',
-  loadComponent: () => import('./features/account/account').then(m => m.Account),
-  resolve: { metaData: AccountResolver }
-};
-
-export const NewContactRoute: Route = {
-  path: 'customers/new-contact',
-  loadComponent: () => import('./features/contact-wizard/contact-wizard').then(m => m.ContactWizard),
-  resolve: { metaData: ContactWizardResolver }
-};
-
-export const ContactRoute: Route = {
-  path: 'customers/contacts/:id',
-  loadComponent: () => import('./features/contact/contact').then(m => m.Contact),
-  resolve: { metaData: ContactResolver }
-};
-
-export const ContactsRoute: Route = {
-  path: 'customers/contacts',
-  loadComponent: () => import('./features/contacts/contacts').then(m => m.Contacts),
-  resolve: { columnDefs: ContactsResolver }
-};
+export const partyRoutes: Routes = [
+  {
+    path: 'accounts',
+    loadComponent: () => import('./features/accounts/accounts.js').then(m => m.Accounts),
+    resolve: { columnDefs: accountsResolver }
+  },
+  {
+    path: 'accounts/:id',
+    loadComponent: () => import('./features/account/account.js').then(m => m.Account),
+    resolve: { metaData: accountResolver }
+  },
+  {
+    path: 'new-contact',
+    loadComponent: () => import('./features/contact-wizard/contact-wizard.js').then(m => m.ContactWizard),
+    resolve: { metaData: contactWizardResolver }
+  },
+  {
+    path: 'contacts/:id',
+    loadComponent: () => import('./features/contact/contact.js').then(m => m.Contact),
+    resolve: { metaData: contactResolver }
+  },
+  {
+    path: 'contacts',
+    loadComponent: () => import('./features/contacts/contacts.js').then(m => m.Contacts),
+    resolve: { columnDefs: contactsResolver }
+  }
+];

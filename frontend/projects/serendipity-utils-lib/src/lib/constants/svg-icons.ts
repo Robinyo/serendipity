@@ -1,4 +1,4 @@
-import { SvgIconRegistry } from "./models/svg-icon-registry";
+import { SvgIconRegistry } from "../models/svg-icon-registry.js";
 
 export const SVG_ICONS: SvgIconRegistry[] = [
 

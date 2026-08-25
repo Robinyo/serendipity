@@ -14,31 +14,25 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "preserve",
+    "moduleResolution": "bundler",
     "paths": {
-      "serendipity-auth-lib": [
-        "./dist/serendipity-auth-lib"
-      ],
-      "serendipity-camunda-lib": [
-        "./dist/serendipity-camunda-lib"
-      ],
-      "serendipity-components-lib": [
-        "./dist/serendipity-components-lib"
-      ],
-      "serendipity-dynamic-forms-lib": [
-        "./dist/serendipity-dynamic-forms-lib"
-      ],
-      "serendipity-flowable-lib": [
-        "./dist/serendipity-flowable-lib"
-      ],
-      "serendipity-party-lib": [
-        "./dist/serendipity-party-lib"
-      ],
-      "serendipity-utils-lib": [
-        "./dist/serendipity-utils-lib"
-      ],
-      "serendipity-workflow-lib": [
-        "./dist/serendipity-workflow-lib"
-      ]
+      "serendipity-auth-lib": ["./dist/serendipity-auth-lib"],
+      "serendipity-auth-lib/*": ["./dist/serendipity-auth-lib/*"],
+
+      "serendipity-camunda-lib": ["./dist/serendipity-camunda-lib"],
+      "serendipity-camunda-lib/*": ["./dist/serendipity-camunda-lib/*"],
+
+      "serendipity-components-lib": ["./dist/serendipity-components-lib"],
+      "serendipity-components-lib/*": ["./dist/serendipity-components-lib/*"],
+
+      "serendipity-party-lib": ["./dist/serendipity-party-lib"],
+      "serendipity-party-lib/*": ["./dist/serendipity-party-lib/*"],
+
+      "serendipity-utils-lib": ["./dist/serendipity-utils-lib"],
+      "serendipity-utils-lib/*": ["./dist/serendipity-utils-lib/*"],
+
+      "serendipity-workflow-lib": ["./dist/serendipity-workflow-lib"],
+      "serendipity-workflow-lib/*": ["./dist/serendipity-workflow-lib/*"]
     }
   },
   "angularCompilerOptions": {

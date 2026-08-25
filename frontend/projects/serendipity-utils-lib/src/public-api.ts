@@ -2,16 +2,17 @@
  * Public API Surface of serendipity-utils-lib
  */
 
-export * from './lib/adapters/adapter';
+// Export runtime InjectionTokens and classes normally so Angular preserves the DI token metadata
+export { APP_ENVIRONMENT } from './lib/models/environment.token.js';
+export { SVG_ICONS } from './lib/constants/svg-icons.js';
 
-export * from './lib/services/abstract/collection/collection';
-export * from './lib/services/config/config.service';
-export * from './lib/services/forms/forms';
-export * from './lib/services/logger/logger.service';
+export { AbstractCollectionService } from './lib/services/abstract/collection/collection.js';
+export { ConfigService } from './lib/services/config/config.service.js';
+export { FormsService } from './lib/services/forms/forms.js';
+export { LoggerService } from './lib/services/logger/logger.service.js';
 
-export * from './lib/svg-icons';
-
-export * from './lib/models/http-options';
-export * from './lib/models/svg-icon-registry';
-
-export * from './lib/environments/environment';
+// Use "export type" for pure data models and interfaces to let isolatedModules compile them correctly
+export type { Adapter } from './lib/adapters/adapter.js';
+export type { Environment } from './lib/models/environment.js';
+export type { HttpOptions } from './lib/models/http-options.js';
+export type { SvgIconRegistry } from './lib/models/svg-icon-registry.js';

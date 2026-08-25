@@ -1,5 +1,5 @@
-import { AddressModel } from './address';
-import { RoleModel } from './role';
+import { AddressModel } from './address.js';
+import { RoleModel } from './role.js';
 
 export class PartyModel {
 

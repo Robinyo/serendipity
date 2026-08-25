@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
-// import { HttpParams } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-// import { HttpOptions } from 'serendipity-utils-lib';
+import { CollectionService } from '../collection/collection.js';
 
-import { CollectionService } from '../collection/collection';
+import { PROCESS_DEFINITIONS, XML} from './constants.js';
 
-import { PROCESS_DEFINITIONS, XML} from './constants';
-import {HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'

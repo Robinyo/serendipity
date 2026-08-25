@@ -2,12 +2,11 @@
  * Public API Surface of serendipity-camunda-lib
  */
 
-export * from './lib/components/bpmn-js-wrapper/bpmn-js-wrapper';
-export * from './lib/components/form-js-wrapper/form-js-wrapper';
-export * from './lib/components/task-list/task-list';
+// Export runtime classes normally so Angular preserves the DI token metadata
+export { BpmnJsWrapper } from './lib/components/bpmn-js-wrapper/bpmn-js-wrapper.js';
+export { FormJsWrapper } from './lib/components/form-js-wrapper/form-js-wrapper.js';
+export { TaskList } from './lib/components/task-list/task-list.js';
 
-// export * from './lib/dialogs/start-process-dialog/start-process-dialog';
+export { TasksService } from './lib/services/tasks/tasks.js';
 
-// export * from './lib/models/filter';
-
-export * from './lib/services/tasks/tasks';
+// Use "export type" for interfaces to let isolatedModules compile them correctly

@@ -3,40 +3,25 @@ import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  return next(req).pipe(
+
+  // Define your BFF target URL for local development environment fallback
+  const bffUrl = 'https://serendipity.localhost';
+
+  // If running locally on 4200, ensure API traffic routes to your Spring Cloud Gateway explicitly
+  let clonedReq = req;
+  if (window.location.hostname === 'localhost' && window.location.port === '4200' && !req.url.startsWith('http')) {
+    clonedReq = req.clone({ url: `${bffUrl}${req.url.startsWith('/') ? '' : '/'}${req.url}` });
+  }
+
+  return next(clonedReq).pipe(
     catchError((error: HttpErrorResponse) => {
-      // Catch the 401 and redirect the main browser window to initiate login
       if (error.status === 401) {
-        window.location.href = '/oauth2/authorization/keycloak';
+        // Break out of the dev server context and hit the real BFF login flow
+        const targetBff = window.location.hostname === 'localhost' && window.location.port === '4200' ? bffUrl : '';
+        window.location.href = `${targetBff}/oauth2/authorization/keycloak`;
       }
       return throwError(() => error);
     })
   );
+
 };
-
-
-
-/*
-
-import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
-
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-
-@Injectable()
-export class AuthInterceptor implements HttpInterceptor {
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
-          window.location.href = '/oauth2/authorization/keycloak';
-        }
-        return throwError(() => error);
-      })
-    );
-  }
-}
-
-
-*/

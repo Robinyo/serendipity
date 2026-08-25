@@ -10,26 +10,26 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 import { Observable, Subscription } from 'rxjs';
 
-import { ActivityBar, CommandBar, Item, SnackBar, WizardComponent } from 'serendipity-components-lib';
+import { ActivityBar, CommandBar, SnackBar, Wizard } from 'serendipity-components-lib';
 // import { DynamicForm, DynamicFormControlCustomEvent, DynamicFormModel, DynamicFormService } from 'serendipity-dynamic-forms-lib';
 
-import { ContactsService } from '../../services/contacts/contacts';
+import { ContactsService } from '../../services/contacts/contacts.js';
 // import { LookupAccountDialogComponent } from "../dialogs/lookup-account-dialog/lookup-account-dialog.component";
 
 // import { AccountModel } from '../../models/account';
 // import { DialogResult } from "../../models/dialog";
 // import { RoleModel } from '../../models/role';
 
-import { AddressModel } from '../../models/address';
-import { ContactModel } from '../../models/contact';
-import { LocationModel } from '../../models/location';
-import { NameModel } from '../../models/name';
-import { PartyModel } from '../../models/party';
+import { AddressModel } from '../../models/address.js';
+import { ContactModel } from '../../models/contact.js';
+import { LocationModel } from '../../models/location.js';
+import { NameModel } from '../../models/name.js';
+import { PartyModel } from '../../models/party.js';
 
-import { LocationType } from '../../types/location-type';
-import { PartyType } from '../../types/party-type';
+import { LocationType } from '../../types/location-type.js';
+import { PartyType } from '../../types/party-type.js';
 
-import { CONTACTS } from  './constants';
+import { CONTACTS } from  './constants.js';
 
 @Component({
   selector: 'contact-wizard',
@@ -49,7 +49,7 @@ import { CONTACTS } from  './constants';
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './contact-wizard.scss'
 })
-export class ContactWizard extends WizardComponent<ContactModel> {
+export class ContactWizard extends Wizard<ContactModel> {
 
   // public nameFormModel!: DynamicFormModel;
   public nameFormGroup!: FormGroup;

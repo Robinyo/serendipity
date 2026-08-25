@@ -4,9 +4,9 @@ import { Injectable } from '@angular/core';
 import { Observable, concatMap, expand, of, timer } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { CollectionService } from '../collection/collection';
+import { CollectionService } from '../collection/collection.js';
 
-import { ASSIGNMENT, COMPLETION, FORM, SEARCH, USER_TASKS } from './constants';
+import { ASSIGNMENT, COMPLETION, FORM, SEARCH, USER_TASKS } from './constants.js';
 
 export interface TaskResponse {
   state:  string;

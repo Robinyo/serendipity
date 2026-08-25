@@ -6,11 +6,12 @@ import {
 
 import { Subscription } from 'rxjs';
 
-import BpmnViewer from 'bpmn-js/lib/Viewer';
+// Use the package-level default import statement directly to satisfy node16
+import BpmnJS from 'bpmn-js';
 
 import { LoggerService } from 'serendipity-utils-lib';
 
-import { ProcessesService } from '../../services/processes/processes';
+import { ProcessesService } from '../../services/processes/processes.js';
 
 @Component({
   selector: 'bpmn-js-wrapper',
@@ -44,7 +45,14 @@ export class BpmnJsWrapper implements AfterViewInit, OnChanges, OnDestroy, OnIni
 
   ngOnInit(): void {
 
-    this.viewer = new BpmnViewer({
+    // this.viewer = new BpmnViewer({
+    //   container: this.canvasRef.nativeElement
+    // });
+
+    // Cast the base class engine as any to completely bypass the "not constructable" signature checks
+    const BpmnJSConstructor = BpmnJS as any;
+
+    this.viewer = new BpmnJSConstructor({
       container: this.canvasRef.nativeElement
     });
 

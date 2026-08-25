@@ -6,9 +6,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from 'serendipity-auth-lib';
-import { DialogService } from '../../../services/dialogs/dialog';
 
-import { AbstractComponent } from '../component/component';
+import { DialogService } from '../../../services/dialogs/dialog.js';
+
+import { AbstractComponent } from '../component/component.js';
 
 @Directive()
 export abstract class Item<T> extends AbstractComponent {

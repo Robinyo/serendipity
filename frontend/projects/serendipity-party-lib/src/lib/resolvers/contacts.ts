@@ -1,30 +1,17 @@
-import { inject, Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-
-import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { inject } from '@angular/core';
+import { ResolveFn } from '@angular/router';
 
 import { ConfigService, LoggerService } from 'serendipity-utils-lib';
 
-import { CONTACTS_COLUMN_DEFS } from './constants';
+import { CONTACTS_COLUMN_DEFS } from './constants.js';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ContactsResolver implements Resolve<any[]> {
+export const contactsResolver: ResolveFn<any> = (route, state) => {
 
-  protected configService = inject(ConfigService);
-  protected logger = inject(LoggerService);
+  const configService: ConfigService = inject(ConfigService);
+  const logger: LoggerService = inject(LoggerService);
 
-  resolve(route: ActivatedRouteSnapshot): Observable<any> {
+  logger.info('Contacts Resolver');
 
-    this.logger.info('Contacts Resolver: resolve()');
+  return configService.get(CONTACTS_COLUMN_DEFS);
 
-    return this.configService.get(CONTACTS_COLUMN_DEFS).pipe(
-      catchError(error => {
-        return of('No data');
-      })
-    );
-  }
-
-}
+};

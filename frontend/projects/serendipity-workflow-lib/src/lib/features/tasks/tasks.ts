@@ -10,7 +10,7 @@ import { CommandBar, Composite, SnackBar } from 'serendipity-components-lib';
 // import { TaskList, StartProcessDialog } from 'serendipity-camunda-lib';
 import { TaskList } from 'serendipity-camunda-lib';
 
-import { ACTIVITIES } from './constants';
+import { ACTIVITIES } from './constants.js';
 
 const noop = (): any => undefined;
 

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { LoggerService } from '../logger/logger.service';
+import { LoggerService } from '../logger/logger.service.js';
 
 @Injectable({
   providedIn: 'root'

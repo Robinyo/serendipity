@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
-import { ActivityBar } from '../activity-bar/activity-bar';
+import { ActivityBar } from '../activity-bar/activity-bar.js';
 // import { CommandBar } from '../command-bar/command-bar';
 
 @Component({

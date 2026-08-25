@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Adapter } from 'serendipity-utils-lib';
 
-import { RoleModel } from '../models/role';
+import { RoleModel } from '../models/role.js';
 
 @Injectable({
   providedIn: 'root'

@@ -2,27 +2,34 @@ package org.serendipity.webbff.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.cloud.gateway.server.mvc.filter.TokenRelayFilterFunctions;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
-import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.function.HandlerFilterFunction;
 import org.springframework.web.servlet.function.ServerResponse;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.cloud.gateway.server.mvc.filter.TokenRelayFilterFunctions;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
   @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http) {
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
+      // 1. MUST BE FIRST: Process CORS headers early in the security chain
+      .cors(Customizer.withDefaults())
       .authorizeHttpRequests(auth -> auth
-        // Allow static files to load anonymously
         .requestMatchers(
           "/",
           "/index.html",
@@ -37,7 +44,6 @@ public class SecurityConfig {
       .oauth2Login(oauth2 -> oauth2
         .loginPage("/oauth2/authorization/keycloak")
       )
-      // If an unauthenticated request targets an API path, return 401 instead of a 302 redirect
       .exceptionHandling(exceptions -> exceptions
         .defaultAuthenticationEntryPointFor(
           new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED),
@@ -46,13 +52,28 @@ public class SecurityConfig {
       )
       .csrf(csrf -> csrf
         .ignoringRequestMatchers("/actuator/**")
-        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())  // Required for Angular to read it
-        .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())     // Opt-in to standard token resolution
+        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+        .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
       );
 
     return http.build();
   }
 
+  // Define the actual CORS policy bean that Spring Security looks for
+  @Bean
+  public CorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration configuration = new CorsConfiguration();
+    // Explicitly allow your Angular Dev Server origin
+    configuration.setAllowedOrigins(List.of("http://localhost:4200"));
+    configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+    configuration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type", "X-XSRF-TOKEN"));
+    // Required to allow cookies/sessions to pass between localhost:4200 and serendipity.localhost
+    configuration.setAllowCredentials(true);
+
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration);
+    return source;
+  }
 
   // This registers TokenRelay globally across all Web MVC gateway routes
   @Bean
@@ -61,6 +82,8 @@ public class SecurityConfig {
   }
 
 }
+
+
 
 // .csrf(csrf -> csrf.ignoringRequestMatchers("/actuator/**"));
 

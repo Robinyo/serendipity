@@ -12,12 +12,12 @@ import { Subscription } from 'rxjs';
 
 import { ActivityBar, CommandBar, Collection, CollectionFooter } from 'serendipity-components-lib';
 
-import { AccountAdapter } from '../../adapters/account';
-import { AccountsService } from '../../services/accounts/accounts';
+import { AccountAdapter } from '../../adapters/account.js';
+import { AccountsService } from '../../services/accounts/accounts.js';
 
-import { AccountModel } from '../../models/account';
+import { AccountModel } from '../../models/account.js';
 
-import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs';
+import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs.js';
 
 @Component({
   selector: 'accounts',

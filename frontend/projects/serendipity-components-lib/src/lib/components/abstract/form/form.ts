@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { AuthService } from 'serendipity-auth-lib';
 
-import { AbstractComponent } from '../component/component';
+import { AbstractComponent } from '../component/component.js';
 
 const noop = (): any => undefined;
 

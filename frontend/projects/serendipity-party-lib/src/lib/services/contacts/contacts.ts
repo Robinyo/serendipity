@@ -6,22 +6,26 @@ import { map, tap } from 'rxjs/operators';
 
 import { AbstractCollectionService } from 'serendipity-utils-lib';
 
-import { ContactModel } from '../../models/contact';
-import { RoleModel } from '../../models/role';
-import { ContactAdapter } from '../../adapters/contact';
+import { ContactModel } from '../../models/contact.js';
+import { RoleModel } from '../../models/role.js';
+import { ContactAdapter } from '../../adapters/contact.js';
 
-import { INDIVIDUALS, INDIVIDUALS_WITHOUT_A_TRAILING_SLASH } from './constants';
+import { INDIVIDUALS, INDIVIDUALS_WITHOUT_A_TRAILING_SLASH } from './constants.js';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactsService extends AbstractCollectionService {
 
-  private adapter: ContactAdapter = inject(ContactAdapter);
+  // Declare properties without inline injection to stabilise cross-lib evaluation
+  private adapter!: ContactAdapter;
 
   constructor() {
 
     super();
+
+    // Safely resolve your library-specific adapters inside the execution window
+    this.adapter = inject(ContactAdapter);
 
     this.url = this.getUrlPrefix() + INDIVIDUALS;
 

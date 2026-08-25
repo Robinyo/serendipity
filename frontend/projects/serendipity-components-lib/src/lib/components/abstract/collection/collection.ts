@@ -11,14 +11,15 @@ import { takeUntil } from 'rxjs/operators';
 
 import { AuthService } from 'serendipity-auth-lib';
 import { ConfigService, LoggerService } from 'serendipity-utils-lib';
-import { DialogService } from '../../../services/dialogs/dialog';
-// import { SidenavService } from '../../../services/sidenav/sidenav.service';
 
-import { ColumnDef } from '../../../models/column';
+import { DialogService } from '../../../services/dialogs/dialog.js';
+// import { SidenavService } from '../../../services/sidenav/sidenav.service.js';
 
-import { ALL, ALPHABET, DEFAULT_FOOTER_COL_SPAN } from './constants';
+import { ColumnDef } from '../../../models/column.js';
 
-import { AbstractComponent } from '../component/component';
+import { ALL, ALPHABET, DEFAULT_FOOTER_COL_SPAN } from './constants.js';
+
+import { AbstractComponent } from '../component/component.js';
 
 const noop = (): any => undefined;
 

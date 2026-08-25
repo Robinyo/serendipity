@@ -12,14 +12,14 @@ import { Subscription } from 'rxjs';
 
 import { ActivityBar, CommandBar, Collection, CollectionFooter } from 'serendipity-components-lib';
 
-import { ContactAdapter } from '../../adapters/contact';
-import { ContactsService } from '../../services/contacts/contacts';
+import { ContactAdapter } from '../../adapters/contact.js';
+import { ContactsService } from '../../services/contacts/contacts.js';
 
-import { ContactModel } from '../../models/contact';
+import { ContactModel } from '../../models/contact.js';
 
-import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs';
+import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs.js';
 
-import { CONTACT_WIZARD } from  './constants';
+import { CONTACT_WIZARD } from  './constants.js';
 
 @Component({
   selector: 'contacts',
