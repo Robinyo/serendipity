@@ -8,8 +8,6 @@ services:
     image: nginx:${NGINX_VERSION}
     container_name: nginx
     ports:
-      # - "80:80"
-      # - "443:443"
       # Explicitly binds port 80 and 443 to your loopback interface
       - "127.0.0.1:80:80"
       - "127.0.0.1:443:443"
@@ -117,9 +115,6 @@ services:
       # Core public domain definition for user browsers
       KC_HOSTNAME: ${SERENDIPITY_IDENTITY_SERVICE_HOSTNAME}
 
-      # Forces the token signature metadata payload to match the internal address
-      # KC_HOSTNAME_URL: ${SERENDIPITY_IDENTITY_SERVICE_HOSTNAME_URL}
-
       KC_HOSTNAME_STRICT: "true"
       # Ensures internal lookups use the server-to-server path formats
       KC_HOSTNAME_STRICT_BACKCHANNEL: "true"
@@ -184,11 +179,8 @@ services:
     build:
       context: ./modules/web-bff
       dockerfile: Dockerfile
-    # restart: unless-stopped
-    restart: no
+    restart: unless-stopped
     environment:
-      # JAVA_TOOL_OPTIONS: "-Djavax.net.ssl.trustStore=/certs/keystore.p12 -Djavax.net.ssl.trustStorePassword=secret"
-      # JAVA_TOOL_OPTIONS: "-Djavax.net.ssl.trustStore=/certs/rootCA.pem -Djavax.net.ssl.trustStoreType=PEM"
       JAVA_TOOL_OPTIONS: "-Djavax.net.ssl.trustStore=/certs/truststore.p12 -Djavax.net.ssl.trustStorePassword=secret"
       PARTY_SERVICE_URI: http://serendipity-party-service:8080/api/party-service
       WORKFLOW_SERVICE_URI: http://orchestration:8080/v2/user-tasks
