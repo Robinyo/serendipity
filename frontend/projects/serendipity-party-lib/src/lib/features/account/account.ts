@@ -12,12 +12,12 @@ import { Observable, Subscription } from 'rxjs';
 import { ActivityBar, CommandBar, Item } from 'serendipity-components-lib';
 import { FormJsWrapper } from 'serendipity-camunda-lib';
 
-import { AccountsService } from '../../services/accounts/accounts.js';
+import { AccountsService } from '../../services/accounts/accounts';
 
-import { AccountModel } from '../../models/account.js';
+import { AccountModel } from '../../models/account';
 // import { AddressModel } from '../../models/address';
 
-import { ACCOUNTS, Tab } from './constants.js';
+import { ACCOUNTS, Tab } from './constants';
 
 const ACCORDION = 'accordion';
 const CARD = 'card';

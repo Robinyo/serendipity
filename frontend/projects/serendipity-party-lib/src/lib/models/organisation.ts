@@ -1,5 +1,5 @@
-import { IndividualRefModel } from './individual-ref.js';
-import { PartyModel } from './party.js';
+import { IndividualRefModel } from './individual-ref';
+import { PartyModel } from './party';
 
 // import { PartyType } from '../types/party-type';
 

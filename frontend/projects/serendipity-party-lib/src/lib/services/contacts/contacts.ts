@@ -6,11 +6,11 @@ import { map, tap } from 'rxjs/operators';
 
 import { AbstractCollectionService } from 'serendipity-utils-lib';
 
-import { ContactModel } from '../../models/contact.js';
-import { RoleModel } from '../../models/role.js';
-import { ContactAdapter } from '../../adapters/contact.js';
+import { ContactModel } from '../../models/contact';
+import { RoleModel } from '../../models/role';
+import { ContactAdapter } from '../../adapters/contact';
 
-import { INDIVIDUALS, INDIVIDUALS_WITHOUT_A_TRAILING_SLASH } from './constants.js';
+import { INDIVIDUALS, INDIVIDUALS_WITHOUT_A_TRAILING_SLASH } from './constants';
 
 @Injectable({
   providedIn: 'root'

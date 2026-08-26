@@ -6,10 +6,10 @@ import { map, tap } from 'rxjs/operators';
 
 import { AbstractCollectionService } from 'serendipity-utils-lib';
 
-import { AccountModel } from '../../models/account.js';
-import { AccountAdapter } from '../../adapters/account.js';
+import { AccountModel } from '../../models/account';
+import { AccountAdapter } from '../../adapters/account';
 
-import { ORGANISATIONS, ORGANISATIONS_WITHOUT_A_TRAILING_SLASH } from './constants.js';
+import { ORGANISATIONS, ORGANISATIONS_WITHOUT_A_TRAILING_SLASH } from './constants';
 
 @Injectable({
   providedIn: 'root'

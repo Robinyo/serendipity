@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Adapter, LoggerService } from 'serendipity-utils-lib';
 
-import { ActivityModel } from '../models/activity.js';
+import { ActivityModel } from '../models/activity';
 
 @Injectable({
   providedIn: 'root'

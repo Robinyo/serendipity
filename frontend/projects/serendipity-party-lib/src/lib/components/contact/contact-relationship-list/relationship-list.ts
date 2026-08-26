@@ -2,10 +2,10 @@ import { Directive, Input } from '@angular/core';
 
 import { Collection } from 'serendipity-components-lib';
 
-import { RoleModel } from '../../../models/role.js';
+import { RoleModel } from '../../../models/role';
 
 // import { COLUMN_DEFS } from './column-defs';
-import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './constants.js';
+import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './constants';
 
 @Directive()
 export abstract class RelationshipList<T> extends Collection<RoleModel> {

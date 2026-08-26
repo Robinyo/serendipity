@@ -1,6 +1,6 @@
-import { NameModel } from './name.js';
-import { OrganisationRefModel } from './organisation-ref.js';
-import { PartyModel } from './party.js';
+import { NameModel } from './name';
+import { OrganisationRefModel } from './organisation-ref';
+import { PartyModel } from './party';
 
 // import { PartyType } from '../types/party-type';
 

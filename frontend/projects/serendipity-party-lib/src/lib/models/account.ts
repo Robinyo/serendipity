@@ -1,4 +1,4 @@
-import { OrganisationModel } from './organisation.js';
+import { OrganisationModel } from './organisation';
 
 // tslint:disable-next-line:no-empty-interface
 // export interface Account extends Organisation {}

@@ -5,7 +5,7 @@ import { tap } from 'rxjs/operators';
 
 import { AbstractCollectionService } from 'serendipity-utils-lib';
 
-import { ELECTORIAL_DIVISIONS } from './constants.js';
+import { ELECTORIAL_DIVISIONS } from './constants';
 
 @Injectable({
   providedIn: 'root'

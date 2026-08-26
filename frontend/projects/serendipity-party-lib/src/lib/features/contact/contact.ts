@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject, input, effect, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -15,19 +15,19 @@ import { FormJsWrapper } from 'serendipity-camunda-lib';
 import { latLng, LatLng, LatLngBounds, Layer, LeafletEvent, LeafletMouseEvent, Map, MapOptions, tileLayer } from 'leaflet';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 
-import { ContactsService } from '../../services/contacts/contacts.js';
-import { ElectoralDivisionsService } from '../../services/electoral-divisions/electoral-divisions.js';
+import { ContactsService } from '../../services/contacts/contacts';
+import { ElectoralDivisionsService } from '../../services/electoral-divisions/electoral-divisions';
 // import { ContactRelatedTab } from '../../components/contact/contact-related-tab/contact-related-tab';
 // import { LookupAccountDialogComponent } from "../dialogs/lookup-account-dialog/lookup-account-dialog.component";
 
 // import { AccountModel } from '../../models/account';
 // import { AddressModel } from '../../models/address';
-import { ContactModel } from '../../models/contact.js';
+import { ContactModel } from '../../models/contact';
 // import { DialogResult } from "../../models/dialog";
-import { ElectoralDivisionModel } from '../../models/electoral-division.js';
+import { ElectoralDivisionModel } from '../../models/electoral-division';
 // import { RoleModel } from '../../models/role';
 
-import { CONTACT_WIZARD, CONTACTS, Tab } from './constants.js';
+import { CONTACT_WIZARD, CONTACTS, Tab } from './constants';
 
 class LeafletControlLayersConfig {
   baseLayers: { [name: string]: Layer } = {};
@@ -74,8 +74,10 @@ export class Contact extends Item<ContactModel> {
   // public viewMode = ACCORDION;
   public viewMode = CARD;
 
+  public metadata = input<any>();
+  public schema: any;
+
   public selectedTabIndex = 0;
-  public schema!: any;
 
   // public mapLayersControl!: MapLayersControl;
   public mapOptions: MapOptions;
@@ -93,7 +95,15 @@ export class Contact extends Item<ContactModel> {
 
     this.logger.info('Contact Component: constructor()');
 
-    this.schema = this.route.snapshot.data['metaData'].generalInformationFormDefs;
+    effect(() => {
+      const resolvedData = this.metadata();
+      if (resolvedData?.generalInformationFormDefs) {
+        this.schema = resolvedData.generalInformationFormDefs;
+        this.logger.info('Schema updated via modern functional router effect');
+      }
+    });
+
+    // this.schema = this.route.snapshot.data['metaData'].generalInformationFormDefs;
 
     // this.logger.info('schema: ' + JSON.stringify(this.schema, null, 2));
 

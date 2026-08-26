@@ -1,6 +1,6 @@
-import { LocationModel } from './location.js';
+import { LocationModel } from './location';
 
-import { LocationType } from '../types/location-type.js';
+import { LocationType } from '../types/location-type';
 
 export class AddressModel {
 

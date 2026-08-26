@@ -13,12 +13,12 @@ import { Subscription } from 'rxjs';
 // import { FilterRepresentationModel, StartProcessDialog } from 'serendipity-flowable-lib';
 import { ActivityBar, CommandBar, Collection, CollectionFooter, SnackBar } from 'serendipity-components-lib';
 
-import { ActivitiesAdapter } from '../../adapters/activities.js';
-import { ActivitiesService } from '../../services/activities/activities.js';
+import { ActivitiesAdapter } from '../../adapters/activities';
+import { ActivitiesService } from '../../services/activities/activities';
 
-import { ActivityModel } from '../../models/activity.js';
+import { ActivityModel } from '../../models/activity';
 
-import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs.js';
+import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs';
 
 @Component({
   selector: 'activities',

@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 
 import { Adapter } from 'serendipity-utils-lib';
 
-import { PartyAdapter } from './party.js';
+import { PartyAdapter } from './party';
 
-import { AccountModel } from '../models/account.js';
-import { IndividualRefModel } from '../models/individual-ref.js';
+import { AccountModel } from '../models/account';
+import { IndividualRefModel } from '../models/individual-ref';
 
 const PRIMARY_CONTACT = "Primary Contact";
 

@@ -20,16 +20,16 @@ import { ContactsService } from '../../services/contacts/contacts.js';
 // import { DialogResult } from "../../models/dialog";
 // import { RoleModel } from '../../models/role';
 
-import { AddressModel } from '../../models/address.js';
-import { ContactModel } from '../../models/contact.js';
-import { LocationModel } from '../../models/location.js';
-import { NameModel } from '../../models/name.js';
-import { PartyModel } from '../../models/party.js';
+import { AddressModel } from '../../models/address';
+import { ContactModel } from '../../models/contact';
+import { LocationModel } from '../../models/location';
+import { NameModel } from '../../models/name';
+import { PartyModel } from '../../models/party';
 
-import { LocationType } from '../../types/location-type.js';
-import { PartyType } from '../../types/party-type.js';
+import { LocationType } from '../../types/location-type';
+import { PartyType } from '../../types/party-type';
 
-import { CONTACTS } from  './constants.js';
+import { CONTACTS } from  './constants';
 
 @Component({
   selector: 'contact-wizard',
