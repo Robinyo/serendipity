@@ -29,7 +29,7 @@ export class Home {
 
   constructor() {
 
-    this.logger.info('Welcome');
+    this.logger.info('Home Component: constructor()');
 
     SVG_ICONS.forEach(svgIcon => {
 
@@ -45,6 +45,18 @@ export class Home {
       }
     });
 
+  }
+
+  public login(): void {
+
+    this.logger.info('Contact Component: login()');
+
+    // Break out of the port 4200 wrapper to launch the backend handshake loop
+    const bffUrl = window.location.hostname === 'localhost' && window.location.port === '4200'
+      ? 'https://serendipity.localhost'
+      : '';
+
+    window.location.href = `${bffUrl}/oauth2/authorization/keycloak`;
   }
 
 }

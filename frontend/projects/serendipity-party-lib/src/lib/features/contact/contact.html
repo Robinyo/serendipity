@@ -152,8 +152,8 @@
 
                   <ng-template matExpansionPanelContent>
                     <div>
-                      @if (schema) {
-                      <form-js-wrapper #formRef [schema]="schema" [data]="item"></form-js-wrapper>
+                      @if (schema()) {
+                      <form-js-wrapper #formRef [schema]="schema()" [data]="item"></form-js-wrapper>
                       }
                     </div>
                   </ng-template>

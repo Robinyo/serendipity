@@ -45,7 +45,7 @@ public class SecurityConfig {
         .loginPage("/oauth2/authorization/keycloak")
 
         //  FIXED: Redirect back to the secure proxy layout context root post-login
-        .defaultSuccessUrl("https://serendipity.localhost", true)
+        .defaultSuccessUrl("https://serendipity.localhost/customers/contacts", true)
       )
       .exceptionHandling(exceptions -> exceptions
         .defaultAuthenticationEntryPointFor(

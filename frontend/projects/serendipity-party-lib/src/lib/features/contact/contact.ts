@@ -99,13 +99,9 @@ export class Contact extends Item<ContactModel> {
       const resolvedData = this.metadata();
       if (resolvedData?.generalInformationFormDefs) {
         this.schema = resolvedData.generalInformationFormDefs;
-        this.logger.info('Schema updated via modern functional router effect');
+        this.logger.info('Schema flat object successfully written for FormJS');
       }
     });
-
-    // this.schema = this.route.snapshot.data['metaData'].generalInformationFormDefs;
-
-    // this.logger.info('schema: ' + JSON.stringify(this.schema, null, 2));
 
     this.mapOptions = {
       layers: [
@@ -290,186 +286,6 @@ export class Contact extends Item<ContactModel> {
 
   }
 
-  /*
-
-  public onCustomEvent(event: DynamicFormControlCustomEvent) {
-
-    this.logger.info('Contact Component: onCustomEvent()');
-
-    if (event.id === 'organisation.displayName' && event.name === 'search') {
-
-      this.openLookupAccountDialog();
-
-    } else {
-
-      this.dialogService.openAlert({
-        title: 'Alert',
-        message: JSON.stringify(event),
-        closeButton: 'CLOSE'
-      });
-
-    }
-
-  }
-
-  */
-
-  /*
-
-  private openLookupAccountDialog() {
-
-    this.logger.info('Contact Component: openLookupAccountDialog()');
-
-    let config = {
-      disableRemoveButton: true,
-      hideRemoveButton: false,
-      addButtonLabel: 'ADD'
-    };
-
-    this.item.party.roles.every((item, index) => {
-
-      if (item.role === 'Contact' && item.reciprocalRole === 'Account') {
-
-        config.disableRemoveButton = false;
-
-        return false;
-      }
-
-      return true;
-
-    });
-
-    this.logger.info('config: ' + JSON.stringify(config, null, 2) + '\n');
-
-    const dialogRef = this.dialogService.open(LookupAccountDialogComponent, { data: config });
-
-    dialogRef.afterClosed().subscribe((response: DialogResult) => {
-
-      this.logger.info('response: ' + JSON.stringify(response, null, 2) + '\n');
-
-      if (!response.result) { return; }
-
-      switch (response.action) {
-
-        case 'add':
-
-          this.removeAccount();
-          this.addAccount(response);
-
-          break;
-
-        case 'remove':
-
-          this.removeAccount();
-          break;
-
-        default:
-
-          this.logger.error('openLookupAccountDialog() -> default');
-          break;
-
-      }
-
-      // this.markAsDirty();
-
-    });
-
-  }
-
-  */
-
-  /*
-
-  private addAccount(response: DialogResult): void {
-
-    this.logger.info('Contact Component: addAccount()');
-
-    const contact: ContactModel = this.item;
-    const account: AccountModel = response.record;
-
-    const role: RoleModel = {
-
-      // @ts-ignore
-      partyId: contact.party.id,
-      partyType: contact.party.type,
-      partyName: contact.party.displayName,
-      partyEmail: contact.email,
-      partyPhoneNumber: contact.phoneNumber,
-
-      role: 'Contact',
-      relationship: 'Membership',
-      reciprocalRole: 'Account',
-
-      // @ts-ignore
-      reciprocalPartyId: account.party.id,
-      reciprocalPartyType: account.party.type,
-      reciprocalPartyName: account.party.displayName,
-      reciprocalPartyEmail: account.email,
-      reciprocalPartyPhoneNumber: account.phoneNumber
-    };
-
-    const subscription: Subscription = this.contactsService.createRole(this.id, role).subscribe(data => {
-
-      if (data.body != null ) {
-
-        this.item.party.roles.push(data.body);
-
-        // Organisation Ref
-        this.item.organisation.id = data.body.reciprocalPartyId;
-        this.item.organisation.displayName = data.body.reciprocalPartyName;
-        this.item.organisation.email = data.body.reciprocalPartyEmail;
-        this.item.organisation.phoneNumber = data.body.reciprocalPartyPhoneNumber;
-
-        // contact-general-information-form-with-avatar.json
-        // this.generalInformationGroup.controls['organisation.displayName'].setValue(this.item.organisation.displayName);
-
-      }
-
-      subscription.unsubscribe();
-
-    });
-
-  }
-
-  private removeAccount(): void {
-
-    this.logger.info('Contact Component: removeAccount()');
-
-    this.item.party.roles.every((role, index) => {
-
-      if (role.role === 'Contact' && role.reciprocalRole === 'Account') {
-
-        this.logger.info('remove -> role === Contact && reciprocalRole === Account');
-
-        // @ts-ignore
-        const subscription: Subscription = this.contactsService.deleteRole(this.id, role.id).subscribe(() => {
-
-          // remove the Role
-          this.item.party.roles.splice(index, 1);
-
-          // Organisation Ref
-          this.item.organisation.id = '';
-          this.item.organisation.displayName = '';
-          this.item.organisation.email = '';
-          this.item.organisation.phoneNumber = '';
-
-          // contact-general-information-form-with-avatar.json
-          // this.generalInformationGroup.controls['organisation.displayName'].setValue('');
-
-          subscription.unsubscribe();
-
-        });
-
-        return false;
-      }
-
-      return true;
-
-    });
-
-  }
-
-  */
 
   private update(dto: any): void {
 
@@ -624,20 +440,204 @@ export class Contact extends Item<ContactModel> {
     return dto;
   }
 
-  /*
+}
 
-  private openSnackBar(): void {
 
-    this.snackBar.openFromComponent(SnackBarComponent, {
-      data: {
-        message: 'Contact saved'
-      },
-      duration: 500,
-      panelClass: 'md-snack-bar'
+
+
+/*
+
+public onCustomEvent(event: DynamicFormControlCustomEvent) {
+
+  this.logger.info('Contact Component: onCustomEvent()');
+
+  if (event.id === 'organisation.displayName' && event.name === 'search') {
+
+    this.openLookupAccountDialog();
+
+  } else {
+
+    this.dialogService.openAlert({
+      title: 'Alert',
+      message: JSON.stringify(event),
+      closeButton: 'CLOSE'
     });
 
   }
 
-  */
+}
+
+*/
+
+/*
+
+private openLookupAccountDialog() {
+
+  this.logger.info('Contact Component: openLookupAccountDialog()');
+
+  let config = {
+    disableRemoveButton: true,
+    hideRemoveButton: false,
+    addButtonLabel: 'ADD'
+  };
+
+  this.item.party.roles.every((item, index) => {
+
+    if (item.role === 'Contact' && item.reciprocalRole === 'Account') {
+
+      config.disableRemoveButton = false;
+
+      return false;
+    }
+
+    return true;
+
+  });
+
+  this.logger.info('config: ' + JSON.stringify(config, null, 2) + '\n');
+
+  const dialogRef = this.dialogService.open(LookupAccountDialogComponent, { data: config });
+
+  dialogRef.afterClosed().subscribe((response: DialogResult) => {
+
+    this.logger.info('response: ' + JSON.stringify(response, null, 2) + '\n');
+
+    if (!response.result) { return; }
+
+    switch (response.action) {
+
+      case 'add':
+
+        this.removeAccount();
+        this.addAccount(response);
+
+        break;
+
+      case 'remove':
+
+        this.removeAccount();
+        break;
+
+      default:
+
+        this.logger.error('openLookupAccountDialog() -> default');
+        break;
+
+    }
+
+    // this.markAsDirty();
+
+  });
 
 }
+
+*/
+
+/*
+
+private addAccount(response: DialogResult): void {
+
+  this.logger.info('Contact Component: addAccount()');
+
+  const contact: ContactModel = this.item;
+  const account: AccountModel = response.record;
+
+  const role: RoleModel = {
+
+    // @ts-ignore
+    partyId: contact.party.id,
+    partyType: contact.party.type,
+    partyName: contact.party.displayName,
+    partyEmail: contact.email,
+    partyPhoneNumber: contact.phoneNumber,
+
+    role: 'Contact',
+    relationship: 'Membership',
+    reciprocalRole: 'Account',
+
+    // @ts-ignore
+    reciprocalPartyId: account.party.id,
+    reciprocalPartyType: account.party.type,
+    reciprocalPartyName: account.party.displayName,
+    reciprocalPartyEmail: account.email,
+    reciprocalPartyPhoneNumber: account.phoneNumber
+  };
+
+  const subscription: Subscription = this.contactsService.createRole(this.id, role).subscribe(data => {
+
+    if (data.body != null ) {
+
+      this.item.party.roles.push(data.body);
+
+      // Organisation Ref
+      this.item.organisation.id = data.body.reciprocalPartyId;
+      this.item.organisation.displayName = data.body.reciprocalPartyName;
+      this.item.organisation.email = data.body.reciprocalPartyEmail;
+      this.item.organisation.phoneNumber = data.body.reciprocalPartyPhoneNumber;
+
+      // contact-general-information-form-with-avatar.json
+      // this.generalInformationGroup.controls['organisation.displayName'].setValue(this.item.organisation.displayName);
+
+    }
+
+    subscription.unsubscribe();
+
+  });
+
+}
+
+private removeAccount(): void {
+
+  this.logger.info('Contact Component: removeAccount()');
+
+  this.item.party.roles.every((role, index) => {
+
+    if (role.role === 'Contact' && role.reciprocalRole === 'Account') {
+
+      this.logger.info('remove -> role === Contact && reciprocalRole === Account');
+
+      // @ts-ignore
+      const subscription: Subscription = this.contactsService.deleteRole(this.id, role.id).subscribe(() => {
+
+        // remove the Role
+        this.item.party.roles.splice(index, 1);
+
+        // Organisation Ref
+        this.item.organisation.id = '';
+        this.item.organisation.displayName = '';
+        this.item.organisation.email = '';
+        this.item.organisation.phoneNumber = '';
+
+        // contact-general-information-form-with-avatar.json
+        // this.generalInformationGroup.controls['organisation.displayName'].setValue('');
+
+        subscription.unsubscribe();
+
+      });
+
+      return false;
+    }
+
+    return true;
+
+  });
+
+}
+
+*/
+
+/*
+
+private openSnackBar(): void {
+
+  this.snackBar.openFromComponent(SnackBarComponent, {
+    data: {
+      message: 'Contact saved'
+    },
+    duration: 500,
+    panelClass: 'md-snack-bar'
+  });
+
+}
+
+*/
