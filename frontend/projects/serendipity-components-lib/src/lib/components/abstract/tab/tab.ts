@@ -2,10 +2,10 @@ import { Directive, inject, Input } from '@angular/core';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { AuthService } from 'serendipity-auth-lib';
+import { AUTH_SERVICE_TOKEN, AuthService } from 'serendipity-auth-lib';
 import { LoggerService } from 'serendipity-utils-lib';
 
-import { DialogService } from '../../../services/dialogs/dialog.js';
+import { DialogService } from '../../../services/dialogs/dialog';
 
 @Directive()
 export abstract class Tab<T> {
@@ -13,7 +13,7 @@ export abstract class Tab<T> {
   @Input()
   public item!: T;
 
-  protected authService: AuthService = inject(AuthService);
+  protected authService: AuthService = inject(AUTH_SERVICE_TOKEN);
   protected dialogService: DialogService = inject(DialogService);
   protected logger: LoggerService = inject(LoggerService);
   protected snackBar: MatSnackBar = inject(MatSnackBar);

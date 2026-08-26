@@ -8,9 +8,8 @@
     "declarationMap": true,
     "inlineSources": true,
     "types": [],
-    // Output standard modern ESM paths using modern module tools
-    "module": "node16",
-    "moduleResolution": "node16"
+    "module": "esnext",
+    "moduleResolution": "bundler"
   },
   "include": [
     "src/**/*.ts"

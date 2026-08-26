@@ -10,18 +10,23 @@
     "module": "es2022",
     "moduleResolution": "bundler",
     "paths": {
-      "serendipity-auth-lib": ["../../dist/serendipity-auth-lib"],
-      "serendipity-auth-lib/*": ["../../dist/serendipity-auth-lib/*"],
-      "serendipity-utils-lib": ["../../dist/serendipity-utils-lib"],
-      "serendipity-utils-lib/*": ["../../dist/serendipity-utils-lib/*"],
-      "serendipity-components-lib": ["../../dist/serendipity-components-lib"],
-      "serendipity-components-lib/*": ["../../dist/serendipity-components-lib/*"],
-      "serendipity-camunda-lib": ["../../dist/serendipity-camunda-lib"],
-      "serendipity-camunda-lib/*": ["../../dist/serendipity-camunda-lib/*"],
-      "serendipity-party-lib": ["../../dist/serendipity-party-lib"],
-      "serendipity-party-lib/*": ["../../dist/serendipity-party-lib/*"],
-      "serendipity-workflow-lib": ["../../dist/serendipity-workflow-lib"],
-      "serendipity-workflow-lib/*": ["../../dist/serendipity-workflow-lib/*"]
+      "serendipity-auth-lib": ["../../projects/serendipity-auth-lib/src/public-api.ts"],
+      "serendipity-auth-lib/*": ["../../projects/serendipity-auth-lib/src/*"],
+
+      "serendipity-camunda-lib": ["../../projects/serendipity-camunda-lib/src/public-api.ts"],
+      "serendipity-camunda-lib/*": ["../../projects/serendipity-camunda-lib/src/*"],
+
+      "serendipity-components-lib": ["../../projects/serendipity-components-lib/src/public-api.ts"],
+      "serendipity-components-lib/*": ["../../projects/serendipity-components-lib/src/*"],
+
+      "serendipity-party-lib": ["../../projects/serendipity-party-lib/src/public-api.ts"],
+      "serendipity-party-lib/*": ["../../projects/serendipity-party-lib/src/*"],
+
+      "serendipity-utils-lib": ["../../projects/serendipity-utils-lib/src/public-api.ts"],
+      "serendipity-utils-lib/*": ["../../projects/serendipity-utils-lib/src/*"],
+
+      "serendipity-workflow-lib": ["../../projects/serendipity-workflow-lib/src/public-api.ts"],
+      "serendipity-workflow-lib/*": ["../../projects/serendipity-workflow-lib/src/*"]
     }
   },
   "include": [
@@ -31,10 +36,7 @@
     "src/**/*.spec.ts"
   ],
   "angularCompilerOptions": {
-
-    // Force the compiler to always resolve dependencies to a single unified runtime instance
-    "preserveSymlinks": true,
-
+    "preserveSymlinks": false,
     "extendedDiagnostics": {
       "checks": {
         "nullishCoalescingNotNullable": "suppress",

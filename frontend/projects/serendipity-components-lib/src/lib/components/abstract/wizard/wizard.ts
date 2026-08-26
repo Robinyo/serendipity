@@ -6,17 +6,17 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { takeUntil } from 'rxjs/operators';
 
-import { AuthService } from 'serendipity-auth-lib';
+import { AUTH_SERVICE_TOKEN, AuthService } from 'serendipity-auth-lib';
 
-import { AbstractComponent } from '../component/component.js';
-import { DialogService } from '../../../services/dialogs/dialog.js';
+import { AbstractComponent } from '../component/component';
+import { DialogService } from '../../../services/dialogs/dialog';
 
 @Directive()
 export abstract class Wizard<T> extends AbstractComponent {
 
   public item!: T;
 
-  protected authService: AuthService = inject(AuthService);
+  protected authService: AuthService = inject(AUTH_SERVICE_TOKEN);
   protected dialogService: DialogService = inject(DialogService);
   protected route: ActivatedRoute = inject(ActivatedRoute);
   protected router: Router = inject(Router);

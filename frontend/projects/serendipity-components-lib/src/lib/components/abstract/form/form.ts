@@ -2,16 +2,16 @@ import { Directive, inject } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { AuthService } from 'serendipity-auth-lib';
+import { AUTH_SERVICE_TOKEN, AuthService } from 'serendipity-auth-lib';
 
-import { AbstractComponent } from '../component/component.js';
+import { AbstractComponent } from '../component/component';
 
 const noop = (): any => undefined;
 
 @Directive()
 export abstract class Form extends AbstractComponent {
 
-  protected authService: AuthService = inject(AuthService);
+  protected authService: AuthService = inject(AUTH_SERVICE_TOKEN);
   // protected dialogService: DialogService = inject(DialogService);
   // protected route: ActivatedRoute = inject(ActivatedRoute);
   // protected router: Router = inject(Router);

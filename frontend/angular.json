@@ -26,17 +26,17 @@
               {
                 "glob": "**/*",
                 "input": "projects/serendipity-party-lib/src/assets",
-                "output": "/assets"
+                "output": "assets"
               },
               {
                 "glob": "**/*",
                 "input": "projects/serendipity-workflow-lib/src/assets",
-                "output": "/assets"
+                "output": "assets"
               },
               {
                 "glob": "**/*",
                 "input": "projects/serendipity-utils-lib/src/assets",
-                "output": "/assets"
+                "output": "assets"
               },
               {
                 "glob": "**/*",
@@ -71,13 +71,7 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true,
-              "fileReplacements": [
-                {
-                  "replace": "projects/serendipity-pwa/src/environments/environment.ts",
-                  "with": "projects/serendipity-pwa/src/environments/environment.development.ts"
-                }
-              ]
+              "sourceMap": true
             },
             "testing": {
               "aot": false,
@@ -89,7 +83,7 @@
                 {
                   "glob": "**/*",
                   "input": "projects/serendipity-party-lib/src/assets",
-                  "output": "/assets"
+                  "output": "assets"
                 }
               ],
               "styles": [
@@ -215,10 +209,7 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "projects/serendipity-party-lib/tsconfig.json",
-            "buildTarget": "serendipity-pwa:build:development",
-            "runner": "vitest",
-            "providersFile": "projects/serendipity-pwa/test-providers.ts"
+            "tsConfig": "projects/serendipity-party-lib/tsconfig.spec.json"
           }
         }
       }
@@ -318,6 +309,9 @@
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "cache": {
+      "enabled": false
+    }
   }
 }

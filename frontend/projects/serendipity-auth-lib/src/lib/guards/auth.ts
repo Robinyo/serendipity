@@ -3,7 +3,7 @@ import { CanActivateFn } from '@angular/router';
 
 import { map } from 'rxjs';
 
-import { AUTH_SERVICE_TOKEN, AuthService } from '../services/auth.js';
+import { AUTH_SERVICE_TOKEN, AuthService } from '../services/auth';
 
 export const authGuard: CanActivateFn = (route, state) => {
 
@@ -19,7 +19,7 @@ export const authGuard: CanActivateFn = (route, state) => {
         return true;
       }
 
-      // 🔑 THE FIX: Force a top-level window context breakout to bypass cross-origin browser locks
+      // Force a top-level window context breakout to bypass cross-origin browser locks
       if (window.top) {
         window.top.location.href = `${bffUrl}/oauth2/authorization/keycloak`;
       } else {

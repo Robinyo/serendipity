@@ -1,23 +1,22 @@
-import { AfterViewInit, ChangeDetectorRef, Directive, inject, isDevMode, OnDestroy, ViewChild } from '@angular/core';
+import { Directive, inject, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Breakpoints } from '@angular/cdk/layout';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { AuthService } from 'serendipity-auth-lib';
-import { ConfigService, LoggerService } from 'serendipity-utils-lib';
+import { AUTH_SERVICE_TOKEN, AuthService } from 'serendipity-auth-lib';
+import { ConfigService } from 'serendipity-utils-lib';
 
-import { DialogService } from '../../../services/dialogs/dialog.js';
-// import { SidenavService } from '../../../services/sidenav/sidenav.service.js';
+import { DialogService } from '../../../services/dialogs/dialog';
+// import { SidenavService } from '../../../services/sidenav/sidenav.service';
 
-import { ColumnDef } from '../../../models/column.js';
+import { ColumnDef } from '../../../models/column';
 
-import { ALL, ALPHABET, DEFAULT_FOOTER_COL_SPAN } from './constants.js';
+import { ALL, ALPHABET, DEFAULT_FOOTER_COL_SPAN } from './constants';
 
 import { AbstractComponent } from '../component/component.js';
 
@@ -59,7 +58,7 @@ export abstract class Collection<T> extends AbstractComponent {
   public pageNumber = 1;
   public selectedFooterItemId = ALL;
 
-  protected authService: AuthService = inject(AuthService);
+  protected authService: AuthService = inject(AUTH_SERVICE_TOKEN);
   protected count = 0;
   protected configService = inject(ConfigService);
   protected dialogService: DialogService = inject(DialogService);

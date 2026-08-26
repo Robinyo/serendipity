@@ -2,7 +2,7 @@ import { inject, Injectable, InjectionToken, signal, computed, Signal } from '@a
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap, map, catchError, of } from 'rxjs';
 
-import { UserProfile } from '../models/user.js';
+import { UserProfile } from '../models/user';
 
 export const AUTH_SERVICE_TOKEN = new InjectionToken<AuthService>('AUTH_SERVICE_TOKEN');
 

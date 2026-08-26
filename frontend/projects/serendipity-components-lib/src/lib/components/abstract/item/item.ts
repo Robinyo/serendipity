@@ -5,11 +5,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Subscription } from 'rxjs';
 
-import { AuthService } from 'serendipity-auth-lib';
+import { AUTH_SERVICE_TOKEN, AuthService } from 'serendipity-auth-lib';
 
-import { DialogService } from '../../../services/dialogs/dialog.js';
+import { DialogService } from '../../../services/dialogs/dialog';
 
-import { AbstractComponent } from '../component/component.js';
+import { AbstractComponent } from '../component/component';
 
 @Directive()
 export abstract class Item<T> extends AbstractComponent {
@@ -17,7 +17,7 @@ export abstract class Item<T> extends AbstractComponent {
   public id!: string;
   public item!: T;
 
-  protected authService: AuthService = inject(AuthService);
+  protected authService: AuthService = inject(AUTH_SERVICE_TOKEN);
   protected dialogService: DialogService = inject(DialogService);
   protected route: ActivatedRoute = inject(ActivatedRoute);
   protected router: Router = inject(Router);

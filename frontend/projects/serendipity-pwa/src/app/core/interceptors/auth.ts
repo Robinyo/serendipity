@@ -4,19 +4,28 @@ import { catchError } from 'rxjs/operators';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
-  // Define your BFF target URL for local development environment fallback
-  const bffUrl = 'https://serendipity.localhost';
+  // 1. Ensure any relative path starts with a clean forward slash for proxy matching
+  let url = req.url;
+  if (!url.startsWith('http') && !url.startsWith('/')) {
+    url = `/${url}`;
+  }
 
-  // If running locally on 4200, ensure API traffic routes to your Spring Cloud Gateway explicitly
-  let clonedReq = req;
-  if (window.location.hostname === 'localhost' && window.location.port === '4200' && !req.url.startsWith('http')) {
-    clonedReq = req.clone({ url: `${bffUrl}${req.url.startsWith('/') ? '' : '/'}${req.url}` });
+  // 2. Clone the request with the formatted URL path mapping
+  let clonedReq = req.clone({ url });
+
+  // 3. If it's a real business API call, add standard AJAX tracking headers for Spring Security
+  if (url.startsWith('/api/') || url.startsWith('/v2/')) {
+    clonedReq = clonedReq.clone({
+      headers: clonedReq.headers.set('X-Requested-With', 'XMLHttpRequest')
+    });
   }
 
   return next(clonedReq).pipe(
     catchError((error: HttpErrorResponse) => {
-      if (error.status === 401) {
-        // Break out of the dev server context and hit the real BFF login flow
+      // 4. Only trigger the Keycloak window breakout if an actual API call drops a 401
+      // (Bypasses asset files, 500 internal errors, or missing configurations)
+      if (error.status === 401 && (url.startsWith('/api/') || url.startsWith('/v2/'))) {
+        const bffUrl = 'https://serendipity.localhost';
         const targetBff = window.location.hostname === 'localhost' && window.location.port === '4200' ? bffUrl : '';
         window.location.href = `${targetBff}/oauth2/authorization/keycloak`;
       }

@@ -124,6 +124,9 @@ In another terminal:
 # npx ng cache clean
 # rm -rf .angular/cache node_modules/.cache node_modules/.vite dist/
 
+# npx ng cache disable
+# npx ng cache enable
+
 ng build --configuration="development" serendipity-utils-lib && \
 ng build --configuration="development" serendipity-auth-lib && \
 ng build --configuration="development" serendipity-components-lib && \
@@ -131,18 +134,27 @@ ng build --configuration="development" serendipity-camunda-lib && \
 ng build --configuration="development" serendipity-party-lib && \
 ng build --configuration="development" serendipity-workflow-lib && \
 ng build --configuration="development" serendipity-pwa
-
-ng serve serendipity-pwa
-# npm run start
 ```
 
 Note: You must build your libraries from the lowest-level foundation up to the highest functional feature. 
 Since `serendipity-auth-lib` relies on `serendipity-utils-lib`, the utils library must be compiled first.
 
+Angular Is Bound to localhost Instead of 0.0.0.0
+By default, when you run `ng serve`, the underlying Vite/Esbuild engine binds strictly to your internal loopback 
+address (`127.0.0.1` / `localhost`). Because Docker containers run inside an isolated virtual Linux network layer, 
+requests coming from `host.docker.internal` look like external network traffi. If Angular is only listening for local 
+requests, it will silently ignore the connection from Nginx, resulting in a 502 error.
+
+To fix this, you must instruct Angular to listen on all network interfaces by adding the `--host 0.0.0.0` flag:
+
+```
+npx ng serve serendipity-pwa --host 0.0.0.0
+```
+
 Navigate to:
 
 ```
-http://localhost:4200/
+https://serendipity.localhost
 ```
 
 ## ❯ Production
