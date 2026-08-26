@@ -8,17 +8,14 @@ SSL termination, and reverse proxy routing for backend services.
 ```
 # 1. HTTP to HTTPS Global Redirector
 server {
-
   server_name serendipity.localhost;
   listen 80;
 
   return 301 https://$host$request_uri;
-
 }
 
 # 2. Front-End and BFF Gateway Domain
 server {
-
   server_name serendipity.localhost;
   listen 443 ssl default_server;
 
@@ -27,9 +24,7 @@ server {
 
   include /etc/nginx/conf/ssl.conf;
 
-  # error_page 502 504 = @maintenance;
-
-  location / {
+  location ~ ^/(api|v2|login|oauth2)/ {
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto $scheme;
       proxy_set_header Host $host;
@@ -38,24 +33,31 @@ server {
       proxy_redirect off;
   }
 
-  4. Database Administration Routing
+  location / {
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_set_header Host $host;
+
+      # Forward protocol upgrade headers cleanly to Vite
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+
+      proxy_pass http://host.docker.internal:4200;
+      proxy_redirect off;
+  }
+
+  # 4. Database Administration Routing
   location /pgadmin {
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto $scheme;
       proxy_set_header Host $host;
       proxy_pass http://pgadmin:80;
   }
-
-  # location @maintenance {
-  #     root /usr/share/nginx/html;
-  #     rewrite ^(.*)$ /error.html break;
-  # }
-
 }
 
 # 3. Dedicated Identity Service (Keycloak) Domain
 server {
-
   server_name serendipity-identity-service.localhost;
   listen 443 ssl;
 
@@ -76,7 +78,6 @@ server {
       proxy_buffers 4 256k;
       proxy_busy_buffers_size 256k;
   }
-
 }
 ```
 
