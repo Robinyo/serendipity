@@ -1,5 +1,5 @@
 import { inject, input, effect, Component, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,14 +12,13 @@ import { Subscription } from 'rxjs';
 
 import { ActivityBar, CommandBar, Collection, CollectionFooter } from 'serendipity-components-lib';
 
-import { ContactAdapter } from '../../adapters/contact';
 import { ContactsService } from '../../services/contacts/contacts';
 
 import { ContactModel } from '../../models/contact';
 
 import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs';
 
-import { CONTACT_WIZARD } from  './constants';
+// import { CONTACT_WIZARD } from  './constants';
 
 @Component({
   selector: 'contacts',
@@ -44,14 +43,11 @@ export class Contacts extends Collection<ContactModel> {
 
   public metadata = input<any>();
 
-  private entityAdapter: ContactAdapter = inject(ContactAdapter);
   private entityService: ContactsService = inject(ContactsService);
-  private route: ActivatedRoute = inject(ActivatedRoute);
 
   constructor() {
 
     super({
-      // columnDefsFilename: COLUMN_DEFS,
       columnDefsFilename: "",
       desktopDeviceColumns: COLUMNS_DESKTOP,
       mobileDeviceColumns: COLUMNS_MOBILE,
@@ -67,10 +63,6 @@ export class Contacts extends Collection<ContactModel> {
         this.logger.info('columnDefs updated via modern functional router effect');
       }
     });
-
-    // this.columnDefs = this.route.snapshot.data['columnDefs'];
-
-    // this.logger.info('columnDefs: ' + JSON.stringify(this.columnDefs, null, 2));
 
   }
 

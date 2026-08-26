@@ -1,5 +1,5 @@
-import { inject, Component, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { inject, input, effect, Component, ChangeDetectionStrategy } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,7 +12,6 @@ import { Subscription } from 'rxjs';
 
 import { ActivityBar, CommandBar, Collection, CollectionFooter } from 'serendipity-components-lib';
 
-import { AccountAdapter } from '../../adapters/account';
 import { AccountsService } from '../../services/accounts/accounts';
 
 import { AccountModel } from '../../models/account';
@@ -40,14 +39,13 @@ import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs';
 })
 export class Accounts extends Collection<AccountModel> {
 
-  private entityAdapter: AccountAdapter = inject(AccountAdapter);
+  public metadata = input<any>();
+
   private entityService: AccountsService = inject(AccountsService);
-  private route: ActivatedRoute = inject(ActivatedRoute);
 
   constructor() {
 
     super({
-      // columnDefsFilename: COLUMN_DEFS,
       columnDefsFilename: "",
       desktopDeviceColumns: COLUMNS_DESKTOP,
       mobileDeviceColumns: COLUMNS_MOBILE,
@@ -56,9 +54,13 @@ export class Accounts extends Collection<AccountModel> {
 
     this.logger.info('Accounts Component');
 
-    this.columnDefs = this.route.snapshot.data['columnDefs'];
-
-    // this.logger.info('columnDefs: ' + JSON.stringify(this.columnDefs, null, 2));
+    effect(() => {
+      const resolvedData = this.metadata();
+      if (resolvedData) {
+        this.columnDefs = resolvedData;
+        this.logger.info('columnDefs updated via modern functional router effect');
+      }
+    });
 
   }
 

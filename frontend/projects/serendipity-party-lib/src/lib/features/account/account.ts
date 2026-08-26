@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject, input, effect, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -50,8 +50,10 @@ export class Account extends Item<AccountModel> {
   // public viewMode = ACCORDION;
   public viewMode = CARD;
 
-  public selectedTabIndex = 0;
+  public metadata = input<any>();
   public schema!: any;
+
+  public selectedTabIndex = 0;
 
   private accountsService: AccountsService = inject(AccountsService);
 
@@ -61,9 +63,13 @@ export class Account extends Item<AccountModel> {
 
     this.logger.info('Account Component: constructor()');
 
-    this.schema = this.route.snapshot.data['metaData'].generalInformationFormDefs;
-
-    // this.logger.info('schema: ' + JSON.stringify(this.schema, null, 2));
+    effect(() => {
+      const resolvedData = this.metadata();
+      if (resolvedData?.generalInformationFormDefs) {
+        this.schema = resolvedData.generalInformationFormDefs;
+        this.logger.info('Schema flat object successfully written for FormJS');
+      }
+    });
 
   }
 

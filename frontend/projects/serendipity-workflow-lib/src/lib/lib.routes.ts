@@ -11,7 +11,7 @@ export const workflowRoutes: Routes = [
     path: 'activities',
     loadComponent: () => import('./features/activities/activities').then(m => m.Activities),
     resolve: {
-      columnDefs: () => {
+      metadata: () => {
         const configService: ConfigService = inject(ConfigService);
         const logger: LoggerService = inject(LoggerService);
         logger.info('Activities Resolver');

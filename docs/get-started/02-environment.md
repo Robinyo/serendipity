@@ -5,6 +5,7 @@
 To get started, you need to set up your development environment.
 
 What you need:
+* Homebrew
 * git
 * NVM
 * Node and npm
