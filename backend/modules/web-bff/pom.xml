@@ -71,6 +71,7 @@
 	<build>
 		<plugins>
 
+			<!-- Uncomment when building the 'try' images -->
 			<!--
 
 			<plugin>

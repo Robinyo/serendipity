@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
 
 import { CollectionService } from '../collection/collection.js';
 
-import { ASSIGNMENT, COMPLETION, FORM, SEARCH, USER_TASKS } from './constants.js';
+import { ASSIGNMENT, COMPLETION, FORM, SEARCH, USER_TASKS } from './constants';
 
 export interface TaskResponse {
   state:  string;

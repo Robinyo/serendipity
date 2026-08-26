@@ -11,12 +11,12 @@ import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { PaginatedFooter } from 'serendipity-components-lib';
 
 import { RoleAdapter } from '../../../adapters/role.js';
-import { RelationshipsService } from '../../../services/relationships/relationships.js';
+import { RelationshipsService } from '../../../services/relationships/relationships';
 
-import { RelationshipList } from "./relationship-list.js";
+import { RelationshipList } from "./relationship-list";
 
-import { ContactModel } from '../../../models/contact.js';
-import { RoleModel } from '../../../models/role.js';
+import { ContactModel } from '../../../models/contact';
+import { RoleModel } from '../../../models/role';
 
 
 @Component({

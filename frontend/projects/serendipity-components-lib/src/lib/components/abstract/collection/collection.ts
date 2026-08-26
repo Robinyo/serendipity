@@ -18,7 +18,7 @@ import { ColumnDef } from '../../../models/column';
 
 import { ALL, ALPHABET, DEFAULT_FOOTER_COL_SPAN } from './constants';
 
-import { AbstractComponent } from '../component/component.js';
+import { AbstractComponent } from '../component/component';
 
 const noop = (): any => undefined;
 

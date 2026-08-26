@@ -9,7 +9,7 @@ import { ActivityBar, List } from 'serendipity-components-lib';
 
 import { Task } from '../task/task.js';
 
-import { TasksService } from '../../services/tasks/tasks.js';
+import { TasksService } from '../../services/tasks/tasks';
 
 @Component({
   selector: 'task-list',

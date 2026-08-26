@@ -16,9 +16,9 @@ import { Form } from '@bpmn-io/form-js-viewer';
 
 import { ActionBar, Composite } from 'serendipity-components-lib';
 
-import { BpmnJsWrapper } from '../bpmn-js-wrapper/bpmn-js-wrapper.js';
+import { BpmnJsWrapper } from '../bpmn-js-wrapper/bpmn-js-wrapper';
 
-import { TasksService } from '../../services/tasks/tasks.js';
+import { TasksService } from '../../services/tasks/tasks';
 
 // import { Tab } from './constants';
 

@@ -10,7 +10,7 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 import { LoggerService } from 'serendipity-utils-lib';
 
-import { getDeepDiff, ObjectDiff } from '../../utils/object-diff/object-diff.js';
+import { getDeepDiff, ObjectDiff } from '../../utils/object-diff/object-diff';
 
 /**
  * FormJsWrapper

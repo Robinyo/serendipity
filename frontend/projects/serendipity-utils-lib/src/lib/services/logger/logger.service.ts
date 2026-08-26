@@ -1,6 +1,6 @@
 import { Injectable, isDevMode } from '@angular/core';
 
-import { Logger } from './logger.js';
+import { Logger } from './logger';
 
 const noop = (): any => undefined;
 

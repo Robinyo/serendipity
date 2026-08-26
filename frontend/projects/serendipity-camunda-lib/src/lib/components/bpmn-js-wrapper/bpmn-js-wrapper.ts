@@ -11,7 +11,7 @@ import BpmnJS from 'bpmn-js';
 
 import { LoggerService } from 'serendipity-utils-lib';
 
-import { ProcessesService } from '../../services/processes/processes.js';
+import { ProcessesService } from '../../services/processes/processes';
 
 @Component({
   selector: 'bpmn-js-wrapper',

@@ -1,10 +1,10 @@
 import { inject, Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { APP_ENVIRONMENT } from '../../../models/environment.token.js';
+import { APP_ENVIRONMENT } from '../../../models/environment.token';
 
-import { HttpOptions } from '../../../models/http-options.js';
-import { LoggerService } from '../../logger/logger.service.js';
+import { HttpOptions } from '../../../models/http-options';
+import { LoggerService } from '../../logger/logger.service';
 
 // Abstract parents MUST have a decorator to preserve DI metadata shapes
 
