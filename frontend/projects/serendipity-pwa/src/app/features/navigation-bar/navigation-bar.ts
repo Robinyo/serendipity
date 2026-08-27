@@ -43,15 +43,17 @@ export class NavigationBar {
     // and deliver a true physical request over the wire to Nginx.
     window.location.href = `${secureDomain}/logout`;
 
-    // Use window.location.assign with an absolute path.
-    // This explicitly tells the browser engine to bypass the SPA router history stack,
-    // clear out the active JavaScript runtime environment, and force a hard network request over the wire.
-    // window.location.assign(`${secureDomain}/logout`);
   }
 
 }
 
 /*
+
+
+    // Use window.location.assign with an absolute path.
+    // This explicitly tells the browser engine to bypass the SPA router history stack,
+    // clear out the active JavaScript runtime environment, and force a hard network request over the wire.
+    // window.location.assign(`${secureDomain}/logout`);
 
   public logout(): void {
 

@@ -85,7 +85,6 @@
 				<spring.profiles.active>dev</spring.profiles.active>
 			</properties>
 			<dependencies>
-
 			</dependencies>
 		</profile>
 
@@ -98,7 +97,18 @@
 				<spring.profiles.active>test</spring.profiles.active>
 			</properties>
 			<dependencies>
+			</dependencies>
+		</profile>
 
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profiles.active>prod</spring.profiles.active>
+			</properties>
+			<dependencies>
 			</dependencies>
 		</profile>
 

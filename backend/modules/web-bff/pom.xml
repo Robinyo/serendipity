@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>web-bff</artifactId>
@@ -14,6 +14,11 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../../pom.xml</relativePath>
 	</parent>
+
+	<properties>
+		<!-- Default to 'none' so it is completely skipped in dev and test builds -->
+		<frontend-copy.phase>none</frontend-copy.phase>
+	</properties>
 
 	<dependencies>
 
@@ -56,30 +61,28 @@
 
 	</dependencies>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-dependencies</artifactId>
-        <version>${spring-cloud.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
-
-			<!-- Uncomment when building the 'try' images -->
-			<!--
 
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
 					<execution>
 						<id>copy-resources</id>
-						<phase>validate</phase>
+						<!-- Controlled by the property variable -->
+						<phase>${frontend-copy.phase}</phase>
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
@@ -95,8 +98,6 @@
 				</executions>
 			</plugin>
 
-			-->
-
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -111,5 +112,16 @@
 
 		</plugins>
 	</build>
+
+	<profiles>
+		<!-- This merges directly with the 'prod' profile defined in your Parent POM -->
+		<profile>
+			<id>prod</id>
+			<properties>
+				<!-- Switches the execution phase ON exclusively during a prod build -->
+				<frontend-copy.phase>validate</frontend-copy.phase>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>

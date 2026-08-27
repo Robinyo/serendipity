@@ -16,6 +16,7 @@ server {
 
 # 2. Front-End and BFF Gateway Domain
 server {
+
   server_name serendipity.localhost;
   listen 443 ssl default_server;
 
@@ -24,7 +25,12 @@ server {
 
   include /etc/nginx/conf/ssl.conf;
 
-  location ~ ^/(api|v2|login|oauth2)/ {
+  # GLOBAL DEFINITIONS: These protect EVERY route block on this server!
+  # resolver 127.0.0.11 valid=30s ipv6=off;
+  # set $angular_dev_server "host.docker.internal:4200";
+
+  # Pass API & Authentication traffic to the BFF
+  location ~ ^/(api|v2|login|oauth2|logout)/? {
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto $scheme;
       proxy_set_header Host $host;
@@ -33,17 +39,22 @@ server {
       proxy_redirect off;
   }
 
+  # Pass everything else to the live, hot-reloading dev server
   location / {
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto $scheme;
       proxy_set_header Host $host;
 
-      # Forward protocol upgrade headers cleanly to Vite
+      # Forward protocol upgrade headers cleanly to Vite WebSockets
       proxy_http_version 1.1;
       proxy_set_header Upgrade $http_upgrade;
       proxy_set_header Connection "upgrade";
 
-      proxy_pass http://host.docker.internal:4200;
+      # Route directly to your Mac's virtual IPv4 gateway interface.
+      # This completely bypasses the IPv6 lookup without needing runtime resolvers.
+      # You can swap 192.168.65.254 with 172.17.0.1:4200 to achieve the same stable, IPv6-free routing behavior.
+      proxy_pass http://192.168.65.254:4200;
+      # proxy_pass http://$angular_dev_server;
       proxy_redirect off;
   }
 
