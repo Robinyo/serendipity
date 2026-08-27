@@ -1,6 +1,6 @@
 # Install and start
 
-## Install and start Serendipity with Docker Compose
+## Install and start with Docker Compose
 
 To start the default lightweight Serendipity environment locally:
 
@@ -26,7 +26,7 @@ docker compose -f docker-compose-try-full.yml up -d
 
 For available Compose files, component URLs, and authentication defaults, see [configure Docker Compose environments](./03-configure.md).
 
-## Stop Serendipity with Docker Compose
+## Stop with Docker Compose
 
 To stop all containers and remove associated data, run:
 

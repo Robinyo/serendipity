@@ -134,6 +134,7 @@ services:
       - serendipity
     extra_hosts:
       - "host.docker.internal:host-gateway"
+      - "serendipity.localhost:host-gateway"
     volumes:
       - "${PWD}/services/identity-service/import:/opt/keycloak/data/import/:ro"
       - "${PWD}/services/identity-service/export:/export"

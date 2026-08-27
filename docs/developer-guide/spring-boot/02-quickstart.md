@@ -70,11 +70,18 @@ To remove the services and the associated data, run:
 
 ```
 docker compose down -v --remove-orphans
+docker volume prune -f 
+
 # docker system df
 # docker system prune --all --volumes --force
 ```
 
-**Note:** The `-v` flag deletes all volumes, including process data, users, and other persisted state. Omit `-v` if you want to keep your data.
+:::tip
+
+The `-v` flag deletes all volumes, including process data, users, and other persisted state. Omit `-v` if you want to keep your data.
+
+:::
+
 
 To check the environment variables inside your container:
 
@@ -110,7 +117,7 @@ docker container logs console
 
 ## References
 
-### Build Tools
+### Build tools
 
 * Apache docs: [Maven](https://maven.apache.org/guides/index.html)
 
@@ -121,7 +128,7 @@ docker container logs console
 * Spring Boot docs: [OAuth2 Client](https://docs.spring.io/spring-boot/3.5.5/reference/web/spring-security.html#web.security.oauth2.client)
 * Spring Boot docs: [Spring Boot Actuator](https://docs.spring.io/spring-boot/3.5.5/reference/actuator/index.html)
 
-### System Hardening
+### System hardening
 
 * Australian Signals Directorate: [Implementing Certificates, TLS, HTTPS and Opportunistic TLS](https://www.cyber.gov.au/resources-business-and-government/maintaining-devices-and-systems/system-hardening-and-administration/web-hardening/implementing-certificates-tls-https-and-opportunistic-tls)
 * Cloudflare docs: [Cipher suites recommendations](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/cipher-suites/recommendations/)
@@ -138,7 +145,7 @@ docker container logs console
 * IETF: [OAuth 2.0 for Browser-Based Applications](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-browser-based-apps)
 * Spring docs: [Implementation Guidelines for Browser-Based Applications](https://github.com/spring-projects/spring-authorization-server/issues/297#issue-896744390)
 
-## Additional Resources
+## Additional resources
 
 * GitHub: [Checking for existing SSH keys](https://docs.github.com/en/github/authenticating-to-github/checking-for-existing-ssh-keys)
 * GitHub: [Generating a new SSH key](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)

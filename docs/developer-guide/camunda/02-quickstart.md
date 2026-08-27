@@ -1,8 +1,8 @@
-<h1 align="center">Developer quickstart with Docker Compose</h1>
+# Quickstart
 
-## ❯ Camunda 8 Self-Managed
+## Camunda 8 Self-Managed
 
-### Install and start with Docker Compose
+### Install the distribution
 
 1. Download the latest Camunda 8 Docker Compose [distribution](https://github.com/camunda/camunda-distributions/releases), then extract it.
 
@@ -39,27 +39,11 @@ services:
 
 ```
 
-3. In the project's `/backend` directory, run:
-
-```
-docker compose up
-```
-
-The containers may take a minute or two to startup.
-
-**Note:** Docker Compose will look for an `.env` file in the current working directory.
-
-Navigate to:
-
-```
-https://serendipity.localhost
-```
-
-### Authentication
+## Authentication
 
 ### Orchestration API
 
-To disable REST API authentication in Docker Compose, you need to enable 'unprotected API mode', in the Orchestration 
+To disable REST API authentication in Docker Compose, you need to enable 'unprotected API mode', in the Orchestration
 cluster's `application.yaml`:
 
 ```
@@ -79,15 +63,15 @@ curl -s GET 'http://localhost:8080/v2/topology' \
   -H "Accept: application/json"  | jq .
 ```
 
-## ❯ form-js
+## form-js
 
-### Include the Library
+### Include the library
 
 ```
 npm install @bpmn-io/form-js-viewer
 ```
 
-### Add Stylesheets
+## Add stylesheets
 
 You use the `styles` array inside the build target in `angular.json` to list files you want to include when building
 your project:
@@ -104,39 +88,24 @@ your project:
 You can override global styles in the Serendipity PWA's `styles.css`, for example:
 
 ```
-// form-js
+@use 'form-js-styles' as formJS;
 
-.cds--grid {
-  padding-inline: 0!important;
-}
-@media (min-width: 42rem) {
-  .cds--grid {
-    padding-inline: 0!important;
-  }
-}
-@media (min-width: 99rem) {
-  .cds--grid {
-    padding-inline: 0!important;
-  }
-}
-
-.fjs-container .fjs-powered-by {
-  display: none!important;
+contact, account {
+  @include formJS.styles();
 }
 ```
 
-## ❯ bpmn-js
+## bpmn-js
 
-### Include the Library
+### Include the library
 
 ```
 npm install bpmn-js
 ```
 
-## ❯ References
+## References
 
 ### Camunda
 * GitHub: [Camunda distributions](https://github.com/camunda/camunda-distributions/releases)
 * Camunda docs: [Developer quickstart with Docker Compose](https://docs.camunda.io/docs/next/self-managed/quickstart/developer-quickstart/docker-compose/)
 * Camunda docs: [Configure Docker Compose environments](https://docs.camunda.io/docs/next/self-managed/quickstart/developer-quickstart/docker-compose/configuration/)
-

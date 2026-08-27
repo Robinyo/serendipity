@@ -178,7 +178,7 @@ generating components:
       },
 ```
 
-## Source Control
+## Source control
 
 Check in:
 
@@ -228,7 +228,7 @@ git push origin <tag>
 * Material Angular dev: [Getting Started with Angular Material](https://material.angular.dev/guide/getting-started)
 * GitHub: [Teradata Covalent](https://teradata.github.io/covalent/v11/#/)
 
-### System Hardening
+### System hardening
 
 * Australian Signals Directorate: [Implementing Certificates, TLS, HTTPS and Opportunistic TLS](https://www.cyber.gov.au/resources-business-and-government/maintaining-devices-and-systems/system-hardening-and-administration/web-hardening/implementing-certificates-tls-https-and-opportunistic-tls)
 * Cloudflare docs: [Cipher suites recommendations](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/cipher-suites/recommendations/)
@@ -257,12 +257,12 @@ git push origin <tag>
 * Keycloak docs: [Upgrading Guide - 26.1.0](https://www.keycloak.org/docs/latest/upgrading/)
 * Keycloak docs: [Authorization Services Guide](https://www.keycloak.org/docs/latest/authorization_services/index.html)
 
-### Keycloak-based  Development
+### Keycloak-based  development
 
 * GitHub: [Keycloak Project Example](https://github.com/thomasdarimont/keycloak-project-example)
 * GitHub: [Awesome Keycloak](https://github.com/thomasdarimont/awesome-keycloak)
 
-### Keycloak Support
+### Keycloak support
 
 * Google Group: [Keycloak User](https://groups.google.com/g/keycloak-user)
 * Google Group: [Keycloak Dev](https://groups.google.com/g/keycloak-dev)
@@ -271,7 +271,7 @@ git push origin <tag>
 
 * Nginx docs: [NGINX SSL Termination](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/)
 
-## Additional Resources
+## Additional resources
 
 * GitHub: [Checking for existing SSH keys](https://docs.github.com/en/github/authenticating-to-github/checking-for-existing-ssh-keys)
 * GitHub: [Generating a new SSH key](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)

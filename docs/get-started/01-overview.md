@@ -7,7 +7,7 @@ Get started by following the steps in the [Installation](./03-installation.md) g
 
 ## Goals
 
-### Framework Compatibility
+### Framework compatibility
 
 #### Angular
 

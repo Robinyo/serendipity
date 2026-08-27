@@ -45,7 +45,6 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           exclude: [
             '**/serendipity/**',
-            '**/camunda/**',
             '**/reference-material/**',
             '**/screen-shots/**',
             '**/internal-folder/**',

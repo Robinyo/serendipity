@@ -16,8 +16,13 @@
     <mat-icon class="material-icons md-light">help</mat-icon>
   </button>
 
-  <button matIconButton aria-label="Profile button">
+  <button matIconButton [matMenuTriggerFor]="profileMenu" aria-label="Profile button">
     <mat-icon class="material-icons md-light">person</mat-icon>
   </button>
+  <mat-menu #profileMenu="matMenu">
+    <button mat-menu-item (click)="logout()">
+      LOGOUT
+    </button>
+  </mat-menu>
 
 </mat-toolbar>
