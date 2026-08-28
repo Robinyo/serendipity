@@ -68,7 +68,7 @@ import { LoggerService } from 'serendipity-utils-lib';
   `,
   standalone: true,
   changeDetection: ChangeDetectionStrategy.Eager,
-  styleUrls: ['footer.scss']
+  styleUrls: ['./footer.scss']
 })
 export class CollectionFooter implements OnInit {
 

@@ -1,3 +1,264 @@
+import { Component, computed, inject, input, effect, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatAccordion, MatExpansionPanel, MatExpansionPanelContent, MatExpansionPanelHeader, MatExpansionPanelTitle } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTabsModule } from '@angular/material/tabs';
+
+// import { ActivityBar, CommandBar, Item } from 'serendipity-components-lib';
+import { ActivityBar, CommandBar } from 'serendipity-components-lib';
+
+import { FormJsWrapper } from 'serendipity-camunda-lib';
+
+import { latLng, LatLng, LatLngBounds, Layer, LeafletEvent, LeafletMouseEvent, Map, MapOptions, tileLayer } from 'leaflet';
+import { LeafletModule } from '@bluehalo/ngx-leaflet';
+
+// import { ElectoralDivisionsService } from '../../services/electoral-divisions/electoral-divisions';
+
+import { CONTACTS } from './constants';
+
+class LeafletControlLayersConfig {
+  baseLayers: { [name: string]: Layer } = {};
+  overlays: { [name: string]: Layer } = {};
+}
+
+class MapLayersControl extends LeafletControlLayersConfig {}
+
+const DEFAULT_ZOOM = 13;
+const DEFAULT_LATITUDE = -32.841;
+const DEFAULT_LONGITUDE = 151.753;
+
+const ACCORDION = 'accordion';
+const CARD = 'card';
+
+// TODO
+import { AbstractItem } from './item';
+import { ContactModel } from '../../models/models';
+
+@Component({
+  selector: 'contact',
+  imports: [
+    ActivityBar,
+    CommandBar,
+    // ContactRelatedTab,
+    FormJsWrapper,
+    LeafletModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatTabsModule,
+    MatAccordion,
+    MatExpansionPanel,
+    MatExpansionPanelContent,
+    MatExpansionPanelHeader,
+    MatExpansionPanelTitle
+  ],
+  templateUrl: './contact.html',
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrls: ['./contact.scss']
+})
+export class Contact extends AbstractItem<ContactModel> {
+
+  // Capture the parent resolver payload
+  public metadata = input<any>();
+
+  public item: any;
+  public schema: any;
+
+  @ViewChild('formRef') form!: FormJsWrapper;
+
+  // public viewMode = ACCORDION;
+  public viewMode = CARD;
+
+  public selectedTabIndex = 0;
+
+  constructor() {
+
+    super();
+
+    effect(() => {
+
+      const resolvedData = this.metadata();
+
+      this.logger.info(`Switched view viewport target context to Party Id: ${this.id()}`);
+
+      if (resolvedData?.party) {
+        this.item = this.metadata()?.party;
+        this.schema = this.metadata()?.generalInformationFormSchema;
+      }
+
+    });
+
+  }
+
+  //
+  // Validation
+  //
+
+  public isDirty(): boolean {
+
+    this.logger.info('Contact Component: isDirty()');
+
+    let dirty = false;
+
+    if (this.form) {
+      dirty = this.form.isDirty();
+    }
+
+    this.logger.info('dirty === ' + dirty);
+
+    return dirty;
+
+  }
+
+  public isValid() {
+
+    this.logger.info('Contact Component: isValid()');
+
+    let valid = false;
+
+    if (this.form) {
+      valid = this.form.isValid();
+    }
+
+    this.logger.info('valid === ' + valid);
+
+    return valid;
+
+  }
+
+  //
+  // Command Bar events
+  //
+
+  public onClose() {
+
+    this.logger.info('Contact Component: onClose()');
+
+    this.router.navigate([CONTACTS]);
+  }
+
+  public onDeactivate() {
+
+    this.logger.info('Contact Component: onDeactivate()');
+
+  }
+
+  public onNew() {
+
+    this.logger.info('Contact Component: onNew()');
+
+    // this.router.navigate([CONTACT_WIZARD]);
+  }
+
+  public onSave() {
+
+    this.logger.info('Contact Component: onSave()');
+
+    const rawFormData = this.form.getData();
+
+    this.logger.info('rawFormData: ' + JSON.stringify(rawFormData, null, 2) + '\n');
+
+    this.logger.info('dto: ' + JSON.stringify(this.item, null, 2) + '\n');
+
+    // Copy your original DTO reference so you don't mutate state unexpectedly
+    const updatedDto = JSON.parse(JSON.stringify(this.item));
+
+    // Patch the DTO using the recursive mapper
+    this.patchDtoWithFormData(updatedDto, rawFormData);
+
+    // Safely deletes the address property, since it is optional
+    delete updatedDto.address;
+
+    // this.logger.info('updatedDto: ' + JSON.stringify(updatedDto, null, 2) + '\n');
+
+    // this.update(updatedDto);
+  }
+
+  public onSaveAndClose() {
+
+    this.logger.info('Contact Component: onSaveAndClose()');
+
+    this.onSave();
+    this.onClose();
+  }
+
+  //
+  // Misc events
+  //
+
+  public onTabChanged($event: any) {
+
+    this.logger.info('ContactComponent: onTabChanged()');
+
+    this.selectedTabIndex = $event.index;
+
+  }
+
+  //
+  // Misc
+  //
+
+  private patchDtoWithFormData(dto: any, formData: any): any {
+
+    this.logger.info('Contact Component: patchDtoWithFormData()');
+
+    if (!dto || !formData || typeof dto !== 'object' || typeof formData !== 'object') {
+      return dto;
+    }
+
+    // 1. Explicitly handle the 'address' mapping to 'party.addresses' array
+    if (formData.address && dto.party && Array.isArray(dto.party.addresses)) {
+      const formAddress = formData.address;
+
+      // Find the existing address entry in the DTO matching the form's address type
+      const matchingDtoAddress = dto.party.addresses.find(
+        (addr: any) => addr.addressType === formAddress.addressType
+      );
+
+      if (matchingDtoAddress) {
+        // Recursively patch the found address so we don't drop fields like 'id' or 'location'
+        this.patchDtoWithFormData(matchingDtoAddress, formAddress);
+      } else {
+        // Optional fallback: If the type wasn't found in the array, add it as a new entry
+        // dto.party.addresses.push({ ...formAddress });
+        this.logger.error('Contact Component: addressType not found');
+      }
+    }
+
+    // 2. Fall back to standard recursive key matching for the rest of the object graph
+    Object.keys(formData).forEach(key => {
+
+      // Skip manual processing of the 'address' key here since we handled it above
+      if (key === 'address') return;
+
+      if (key in dto) {
+        const formValue = formData[key];
+        const dtoValue = dto[key];
+
+        if (
+          formValue && typeof formValue === 'object' && !Array.isArray(formValue) &&
+          dtoValue && typeof dtoValue === 'object' && !Array.isArray(dtoValue)
+        ) {
+          this.patchDtoWithFormData(dtoValue, formValue);
+        } else {
+          dto[key] = formValue;
+        }
+      }
+    });
+
+    return dto;
+  }
+
+}
+
+
+/*
+
 import { Component, inject, input, effect, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -9,7 +270,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 import { Observable, Subscription } from 'rxjs';
 
-import { ActivityBar, CommandBar, Item } from 'serendipity-components-lib';
+// import { ActivityBar, CommandBar, Item } from 'serendipity-components-lib';
+import { ActivityBar, CommandBar } from 'serendipity-components-lib';
+import { AbstractItem } from './item';
+
 import { FormJsWrapper } from 'serendipity-camunda-lib';
 
 import { latLng, LatLng, LatLngBounds, Layer, LeafletEvent, LeafletMouseEvent, Map, MapOptions, tileLayer } from 'leaflet';
@@ -28,6 +292,7 @@ import { ElectoralDivisionModel } from '../../models/electoral-division';
 // import { RoleModel } from '../../models/role';
 
 import { CONTACT_WIZARD, CONTACTS, Tab } from './constants';
+
 
 class LeafletControlLayersConfig {
   baseLayers: { [name: string]: Layer } = {};
@@ -67,7 +332,7 @@ const CARD = 'card';
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./contact.scss']
 })
-export class Contact extends Item<ContactModel> {
+export class Contact extends AbstractItem<ContactModel> {
 
   @ViewChild('formRef') form!: FormJsWrapper;
 
@@ -381,14 +646,6 @@ export class Contact extends Item<ContactModel> {
   // Misc
   //
 
-  /**
-   * Recursively updates fields in the target DTO with matching values from the form data.
-   * Explicitly maps a flat form 'address' object to a matching entry in the DTO's 'party.addresses' array.
-   *
-   * @param dto The original target DTO object
-   * @param formData The data snapshot extracted from the form
-   * @returns The patched DTO object
-   */
   private patchDtoWithFormData(dto: any, formData: any): any {
 
     this.logger.info('Contact Component: patchDtoWithFormData()');
@@ -442,8 +699,18 @@ export class Contact extends Item<ContactModel> {
 
 }
 
+*/
 
 
+
+  /**
+   * Recursively updates fields in the target DTO with matching values from the form data.
+   * Explicitly maps a flat form 'address' object to a matching entry in the DTO's 'party.addresses' array.
+   *
+   * @param dto The original target DTO object
+   * @param formData The data snapshot extracted from the form
+   * @returns The patched DTO object
+   */
 
 /*
 

@@ -1,3 +1,50 @@
+import { Directive, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Router } from '@angular/router';
+
+import { map } from 'rxjs/operators';
+
+import { LoggerService } from 'serendipity-utils-lib';
+
+@Directive()
+export abstract class AbstractComponent {
+
+  // Reactive Status Flags managed as true Angular Signals
+  public isLoading = signal<boolean>(true);
+
+  protected logger: LoggerService = inject(LoggerService);
+  protected router: Router = inject(Router);
+
+  private breakpointObserver: BreakpointObserver = inject(BreakpointObserver);
+
+  // THE BREAKPOINT SIGNAL: Convert the observable query directly into a Signal!
+  // Angular automatically manages the subscription and tears it down natively on destroy.
+  public handsetPortrait = toSignal(
+    this.breakpointObserver.observe([Breakpoints.HandsetPortrait]).pipe(
+      map(result => result.matches)
+    ),
+    { initialValue: false } // Safe fallback startup baseline
+  );
+
+  protected constructor() {}
+
+  public isHandsetPortrait(): boolean {
+    return this.handsetPortrait();
+  }
+
+}
+
+
+
+/*
+
+
+
+*/
+
+/*
+
 import { AfterViewInit, ChangeDetectorRef, Directive, inject, isDevMode, OnDestroy } from '@angular/core';
 
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -99,6 +146,8 @@ export abstract class AbstractComponent implements AfterViewInit, OnDestroy {
   }
 
 }
+
+*/
 
 /*
 

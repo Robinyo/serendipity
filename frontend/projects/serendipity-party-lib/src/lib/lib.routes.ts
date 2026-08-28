@@ -5,8 +5,10 @@ import { forkJoin } from 'rxjs';
 
 import { ConfigService, FormsService, LoggerService } from 'serendipity-utils-lib';
 
-import { ACCOUNTS_COLUMN_DEFS, CONTACTS_COLUMN_DEFS, RELATIONSHIP_LIST_COLUMN_DEFS } from './constants';
-import { ACCOUNT_INFORMATION_FORM, ADDRESS_FORM, CONTACT_DETAILS_FORM, CONTACT_INFORMATION_FORM, NAME_FORM } from './form-ids';
+import { ACCOUNTS_COLUMN_DEFS, CONTACTS_COLUMN_DEFS, RELATIONSHIP_LIST_COLUMN_DEFS } from './resolvers/constants';
+import { ACCOUNT_INFORMATION_FORM, ADDRESS_FORM, CONTACT_DETAILS_FORM, CONTACT_INFORMATION_FORM, NAME_FORM } from './resolvers/form-ids';
+
+import { contactResolver, contactsResolver } from './resolvers/resolvers';
 
 export const partyRoutes: Routes = [
   {
@@ -50,6 +52,9 @@ export const partyRoutes: Routes = [
       }
     }
   },
+
+  /*
+
   {
     path: 'new-contact',
     loadComponent: () => import('./features/contact-wizard/contact-wizard').then(m => m.ContactWizard),
@@ -74,45 +79,17 @@ export const partyRoutes: Routes = [
       }
     }
   },
+
+  */
+
   {
     path: 'contacts',
     loadComponent: () => import('./features/contacts/contacts').then(m => m.Contacts),
-    resolve: {
-      metadata: () => {
-
-        const configService: ConfigService = inject(ConfigService);
-        const logger: LoggerService = inject(LoggerService);
-
-        logger.info('Contacts Resolver');
-
-        return configService.get(CONTACTS_COLUMN_DEFS);
-
-      }
-    }
+    resolve: { metadata: contactsResolver }
   },
   {
     path: 'contacts/:id',
     loadComponent: () => import('./features/contact/contact').then(m => m.Contact),
-    resolve: {
-      metadata: () => {
-
-        const configService: ConfigService = inject(ConfigService);
-        const formService: FormsService = inject(FormsService);
-        const logger: LoggerService = inject(LoggerService);
-
-        logger.info('Contact Resolver');
-
-        const relationshipListColumnDefs= configService.get(RELATIONSHIP_LIST_COLUMN_DEFS);
-
-        //  @if (viewMode === 'card')
-        const generalInformationFormDefs = formService.getFormMetadata(CONTACT_INFORMATION_FORM);
-
-        return forkJoin({
-          relationshipListColumDefs: relationshipListColumnDefs,
-          generalInformationFormDefs: generalInformationFormDefs
-        });
-
-      }
-    }
+    resolve: { metadata: contactResolver }
   }
 ];
