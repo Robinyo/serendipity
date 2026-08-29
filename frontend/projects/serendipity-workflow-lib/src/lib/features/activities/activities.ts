@@ -41,8 +41,6 @@ import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs';
 })
 export class Activities extends AbstractCollection<ActivityModel> {
 
-  public metadata = input<any>();
-
   private workflowService: WorkflowService = inject(WorkflowService);
   private authService: AuthService = inject(AUTH_SERVICE_TOKEN);
 

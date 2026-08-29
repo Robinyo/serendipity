@@ -37,6 +37,20 @@
   font-style: italic;
 }
 
+.placeholder-row {
+  pointer-events: none;                             // Complete immunity from mouse interaction events
+  background-color: transparent !important;         // Eliminates row hover block highlighting artifacts
+
+  td {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);   // Keeps your material layout grids aligned
+
+    a {
+      display: none !important;                     // Hides anchor text layout fragments if a router link renders
+    }
+  }
+}
+
+
 // To clip text with an ellipsis when it overflows a table cell, you need to set the following CSS properties:
 //   width: variables.$email-column-width;
 //   overflow: hidden;

@@ -165,7 +165,7 @@
 
       <ng-container matColumnDef="footer">
 
-        <td mat-footer-cell *matFooterCellDef [attr.colspan]="footerColSpan">
+        <td mat-footer-cell *matFooterCellDef [attr.colspan]="footerColSpan()">
           <collection-footer
             [selectedItemId]="this.selectedFooterItemId"
             [pageNumber]="this.pageNumber"
@@ -180,12 +180,12 @@
 
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns(); sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns();"></tr>
 
       <!-- NO DATA ROW -->
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell no-data-cell" [attr.colspan]="displayedColumns.length">
+        <td class="mat-cell no-data-cell" [attr.colspan]="displayedColumns().length">
           @if (isLoading()) {
             <span>Loading data...</span>
           } @else {

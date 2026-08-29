@@ -1,4 +1,4 @@
-import { Directive, inject, ViewChild } from '@angular/core';
+import { computed, Directive, inject, input, ViewChild } from '@angular/core';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
@@ -25,22 +25,37 @@ export interface CollectionComponentConfig {
 @Directive()
 export abstract class AbstractCollection<T> extends AbstractComponent {
 
+  public metadata = input<any>();
+
   @ViewChild(MatSort, {static: false})
   public sort: MatSort | undefined;
 
   public items!: Array<T>;
   public selectedItem!: T;
 
-  // public alphabet = ALPHABET;
   // @ts-ignore
   public columnDefs: ColumnDef[];
   // @ts-ignore
   public dataSource: MatTableDataSource<T>;
-  public displayedColumns: string[];
-  public footerAllLabel = ALL;
-  public footerColSpan = DEFAULT_FOOTER_COL_SPAN;
-  public pageNumber = 1;
-  public selectedFooterItemId = ALL;
+
+  public footerAllLabel: string = ALL;
+  public pageNumber: number = 1;
+  public selectedFooterItemId: string = ALL;
+
+  // Dynamically compute the active displayed columns list by reading your base class signal.
+  // When the screen shifts dimensions, this signal recalculates instantly!
+  public displayedColumns = computed<string[]>(() => {
+    return this.isHandsetPortrait()
+      ? this.mobileDeviceColumns
+      : this.desktopDeviceColumns;
+  });
+
+  // Automatically calculate your footer column span based directly on your active column count.
+  public footerColSpan = computed<number>(() => {
+    const span = this.displayedColumns().length;
+    this.logger.info(`Computed footerColSpan: ${span}`);
+    return span;
+  });
 
   protected count = 0;
 
@@ -61,8 +76,8 @@ export abstract class AbstractCollection<T> extends AbstractComponent {
     this.desktopDeviceColumns = config.desktopDeviceColumns;
     this.mobileDeviceColumns = config.mobileDeviceColumns;
 
-    this.displayedColumns = this.desktopDeviceColumns;
-    this.footerColSpan = this.displayedColumns.length;
+    // this.displayedColumns = this.desktopDeviceColumns;
+    // this.footerColSpan = this.displayedColumns.length;
 
     if (config.filter !== undefined) {
       this.filter = config.filter;
@@ -76,6 +91,26 @@ export abstract class AbstractCollection<T> extends AbstractComponent {
       this.offset = config.offset;
     }
 
+  }
+
+  protected abstract refresh(): void;
+
+  /**
+   * Inspects a collection array and returns a padded stream containing empty placeholders
+   * to guarantee the visual UI height remains locked to exactly the limit constraints.
+   */
+  protected padItems(rawItems: any[]): any[] {
+    const totalFetched = rawItems.length;
+
+    if (totalFetched > 0 && totalFetched < this.limit) {
+      const fillerCount = this.limit - totalFetched;
+      const fillerRows = Array.from({ length: fillerCount }, () => ({ isPlaceholder: true }));
+      return [...rawItems, ...fillerRows];
+    } else if (totalFetched === 0) {
+      return Array.from({ length: this.limit }, () => ({ isPlaceholder: true }));
+    }
+
+    return rawItems;
   }
 
   //
@@ -184,7 +219,5 @@ export abstract class AbstractCollection<T> extends AbstractComponent {
   public getProperty = (obj: any, path: any) => (
     path.split('.').reduce((o: any, p: any) => o && o[p], obj)
   )
-
-  protected abstract refresh(): void;
 
 }
