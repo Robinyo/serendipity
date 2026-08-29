@@ -1,45 +1,29 @@
 import { Directive, inject, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 
-import { Breakpoints } from '@angular/cdk/layout';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { takeUntil } from 'rxjs/operators';
-
-import { AUTH_SERVICE_TOKEN, AuthService } from 'serendipity-auth-lib';
-import { ConfigService } from 'serendipity-utils-lib';
-
-import { DialogService } from '../../../services/dialogs/dialog';
-// import { SidenavService } from '../../../services/sidenav/sidenav.service';
-
-import { ColumnDef } from '../../../models/column';
+import { AbstractComponent } from '../component/component';
+import { ColumnDef } from '../../../models/models';
 
 import { ALL, ALPHABET, DEFAULT_FOOTER_COL_SPAN } from './constants';
-
-import { AbstractComponent } from '../component/component';
-
-const noop = (): any => undefined;
 
 export interface CollectionComponentConfig {
 
   // Mandatory items
-
-  columnDefsFilename: string;
   desktopDeviceColumns: string[];
   mobileDeviceColumns: string[];
 
   // Optional items
-
   filter?: string;
-  limit?: number;
   offset?: number;
+  limit?: number;
 
 }
 
 @Directive()
-export abstract class Collection<T> extends AbstractComponent {
+export abstract class AbstractCollection<T> extends AbstractComponent {
 
   @ViewChild(MatSort, {static: false})
   public sort: MatSort | undefined;
@@ -47,7 +31,7 @@ export abstract class Collection<T> extends AbstractComponent {
   public items!: Array<T>;
   public selectedItem!: T;
 
-  public alphabet = ALPHABET;
+  // public alphabet = ALPHABET;
   // @ts-ignore
   public columnDefs: ColumnDef[];
   // @ts-ignore
@@ -58,19 +42,15 @@ export abstract class Collection<T> extends AbstractComponent {
   public pageNumber = 1;
   public selectedFooterItemId = ALL;
 
-  protected authService: AuthService = inject(AUTH_SERVICE_TOKEN);
   protected count = 0;
-  protected configService = inject(ConfigService);
-  protected dialogService: DialogService = inject(DialogService);
-  protected router = inject(Router);
+
   protected snackBar: MatSnackBar = inject(MatSnackBar);
   // protected sidenavService: SidenavService;
 
   protected filter = '';
-  protected limit = 100;
   protected offset = 0;
+  protected limit = 100;
 
-  protected columnDefsFilename: string;
   protected desktopDeviceColumns: string[];
   protected mobileDeviceColumns: string[];
 
@@ -78,7 +58,6 @@ export abstract class Collection<T> extends AbstractComponent {
 
     super();
 
-    this.columnDefsFilename = config.columnDefsFilename;
     this.desktopDeviceColumns = config.desktopDeviceColumns;
     this.mobileDeviceColumns = config.mobileDeviceColumns;
 
@@ -99,71 +78,46 @@ export abstract class Collection<T> extends AbstractComponent {
 
   }
 
-  override ngAfterViewInit(): void {
-
-    this.logger.info('Collection Component: ngAfterViewInit()');
-
-    this.subscribe();
-
-    // A layout breakpoint is viewport size threshold at which a layout shift can occur.
-    // The viewport size ranges between breakpoints correspond to different standard screen sizes.
-    // See: https://material.angular.dev/cdk/layout/overview
-
-    this.breakpointObserver.observe([ Breakpoints.HandsetPortrait ])
-      .pipe(takeUntil(this.destroyed))
-      .subscribe(result => {
-
-        if (result.matches) {
-          this.displayedColumns = this.mobileDeviceColumns;
-        } else {
-          this.displayedColumns = this.desktopDeviceColumns;
-        }
-
-        if (this.footerColSpan != this.displayedColumns.length) {
-          this.footerColSpan = this.displayedColumns.length;
-          // this.detectChanges();
-        }
-
-        this.handsetPortrait = result.matches;
-        this.detectChanges();
-
-        this.logger.info('footerColSpan: ' + this.footerColSpan);
-
-    });
-
-  }
-
   //
   // Pagination events
   //
 
-  public onClickFilterButton(id: string): void {
+  public onClickFilterButton(character: string): void {
 
     this.logger.info('Collection Component: onClickFilterButton()');
 
-    this.logger.info('Button Id: ' + id);
+    this.logger.info(`Filter selected: ${character}`);
 
-    this.selectedFooterItemId = id;
-
-    this.filter = this.selectedFooterItemId;
-
-    if (this.selectedFooterItemId === this.footerAllLabel) {
-      this.filter = '';
-    }
-
-    // this.logger.info('Filter value: ' + id);
-
-    this.offset = 0;
+    // 1. Immediately update local state criteria synchronously
+    this.selectedFooterItemId = character;
+    this.offset = 0; // Reset page bounds on filter changes
     this.pageNumber = 1;
+
+    this.filter = character === this.footerAllLabel ? '' : character;
+
+    // 2. Dispatch to execution microtask window
+    this.refresh();
+  }
+
+  public onClickNextPageButton(): void {
+
+    this.logger.info('Collection Component: onClickNextPageButton()');
+
+    this.offset++;
+    this.pageNumber++;
 
     this.refresh();
   }
 
-  public canClickFirstPageButton(): boolean {
+  public onClickPreviousPageButton(): void {
 
-    // this.logger.info('CollectionComponent: canClickFirstPageButton()');
+    this.logger.info('Collection Component: onClickPreviousPageButton()');
 
-    return this.pageNumber !== 1;
+    // Safe mathematical boundary clamps using standard subtraction
+    this.offset = Math.max(0, this.offset - 1);
+    this.pageNumber = Math.max(1, this.pageNumber - 1);
+
+    this.refresh();
   }
 
   public onClickFirstPageButton(): void {
@@ -172,58 +126,6 @@ export abstract class Collection<T> extends AbstractComponent {
 
     this.offset = 0;
     this.pageNumber = 1;
-
-    this.refresh();
-  }
-
-  public canClickPreviousPageButton(): boolean {
-
-    // this.logger.info('CollectionComponent: canClickPreviousPageButton()');
-
-    // return (this.offset - this.limit) >= 0;
-    return (this.offset - 1) >= 0;
-  }
-
-  public onClickPreviousPageButton(): void {
-
-    this.logger.info('Collection Component: onClickPreviousPageButton()');
-
-    // this.offset = this.offset - this.limit;
-    this.offset--;
-
-    if (this.offset < 0) {
-      this.offset = 0;
-    }
-
-    this.pageNumber--;
-
-    this.refresh();
-  }
-
-  public canClickNextPageButton(): boolean {
-
-    // this.logger.info('Collection Component: canClickNextPageButton()');
-
-    if (this.count === 0) {
-      return false;
-    }
-
-    const pages = Math.ceil(this.count / this.limit);
-
-    // this.logger.info('pages: ' + pages);
-    // this.logger.info('this.pageNumber: ' + this.pageNumber);
-
-    return (pages - this.pageNumber) > 0;
-  }
-
-  public onClickNextPageButton(): void {
-
-    this.logger.info('Collection Component: onClickNextPageButton()');
-
-    // this.offset = this.offset + this.limit;
-    this.offset++;
-
-    this.pageNumber++;
 
     this.refresh();
   }
@@ -282,5 +184,7 @@ export abstract class Collection<T> extends AbstractComponent {
   public getProperty = (obj: any, path: any) => (
     path.split('.').reduce((o: any, p: any) => o && o[p], obj)
   )
+
+  protected abstract refresh(): void;
 
 }

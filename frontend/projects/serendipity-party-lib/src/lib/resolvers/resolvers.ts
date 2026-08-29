@@ -5,7 +5,7 @@ import { forkJoin } from 'rxjs';
 
 import { ConfigService, FormsService, LoggerService } from 'serendipity-utils-lib';
 
-import { PartyService } from '../services/party/PartyService';
+import { PartyService } from '../services/party/party';
 
 import { CONTACTS_COLUMN_DEFS, RELATIONSHIP_LIST_COLUMN_DEFS } from './constants';
 import { CONTACT_INFORMATION_FORM } from './form-ids';

@@ -31,7 +31,7 @@ const noop = (): any => undefined;
 })
 export class Tasks extends Composite {
 
-  protected router: Router = inject(Router);
+  // protected router: Router = inject(Router);
 
   constructor() {
 

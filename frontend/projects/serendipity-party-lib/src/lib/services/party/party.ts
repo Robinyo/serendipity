@@ -7,7 +7,7 @@ import { map, tap } from 'rxjs/operators';
 import { AbstractCollectionService } from 'serendipity-utils-lib';
 
 import { ContactAdapter } from '../../adapters/contact';
-import { AccountModel, ContactModel } from '../../models/models';
+import { ContactModel } from '../../models/models';
 
 @Injectable({
   providedIn: 'root'

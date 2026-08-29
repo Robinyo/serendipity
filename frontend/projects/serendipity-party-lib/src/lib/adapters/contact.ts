@@ -4,8 +4,7 @@ import { Adapter } from 'serendipity-utils-lib';
 
 import { PartyAdapter } from './party';
 
-import { ContactModel } from '../models/contact';
-import { OrganisationRefModel } from '../models/organisation-ref';
+import { ContactModel, createDefaultPartyRefModel } from '../models/models';
 
 const CONTACT = "Contact";
 const ACCOUNT = "Account";
@@ -24,7 +23,7 @@ export class ContactAdapter extends PartyAdapter implements Adapter<ContactModel
     this.logger.info('Item: ' + JSON.stringify(item, null, 2));
 
     // 1. Instantiate a new OrganisationRefModel instance (or default to empty strings)
-    let organisation = new OrganisationRefModel('', '', '', '');
+    let organisation = createDefaultPartyRefModel();
 
     // 2. Extract organisation properties from roles cleanly using .find()
     const accountRole = item.party?.roles?.find(
@@ -35,12 +34,10 @@ export class ContactAdapter extends PartyAdapter implements Adapter<ContactModel
 
       this.logger.info('role.role === CONTACT && role.reciprocalRole === ACCOUNT');
 
-      organisation = new OrganisationRefModel(
-        accountRole.reciprocalPartyId ?? '',
-        accountRole.reciprocalPartyName ?? '',
-        accountRole.reciprocalPartyEmail ?? '',
-        accountRole.reciprocalPartyPhoneNumber ?? ''
-      );
+      organisation.id = accountRole.reciprocalPartyId ?? '';
+      organisation.displayName = accountRole.reciprocalPartyName ?? '';
+      organisation.email = accountRole.reciprocalPartyName ?? '';
+      organisation.phoneNumber = accountRole.reciprocalPartyPhoneNumber ?? '';
 
     }
 
@@ -66,91 +63,3 @@ export class ContactAdapter extends PartyAdapter implements Adapter<ContactModel
   }
 
 }
-
-
-/*
-
-const contact = new ContactModel(
-  item.party,
-  item.name,
-  item.jobTitle,
-  item.sex,
-  item.gender,
-  item.email,
-  item.phoneNumber,
-  item.faxNumber,
-  item.preferredContactMethod,
-  item.photoUrl,
-  item.electorate,
-  item.dateOfBirth,
-  item.placeOfBirth,
-  item.countryOfBirth,
-  item.dateOfDeath,
-  item.placeOfDeath,
-  item.countryOfDeath
-);
-
-contact.id = item.id;
-
-*/
-
-/*
-
-    contact.party.roles.every(item => {
-
-      if (item.role === 'Contact' && item.reciprocalRole === 'Account') {
-
-        contact.organisation.id = item.reciprocalPartyId;
-        contact.organisation.displayName = item.reciprocalPartyName;
-        contact.organisation.email = item.reciprocalPartyEmail;
-        contact.organisation.phoneNumber = item.reciprocalPartyPhoneNumber;
-
-        return false;
-      }
-
-      return true;
-
-    });
-
-*/
-
-/*
-
-  // adapt(item: any): ContactModel {
-  adapt(item: any): any {
-
-    this.logger.info('Item: ' + JSON.stringify(item, null, 2));
-
-    const contact = item;
-
-    if (item.photoUrl.includes('avatar.svg')) {
-      contact.photoUrl = 'assets/' + item.photoUrl;
-    } else {
-      contact.photoUrl = this.getUrlPrefix() + item.photoUrl;
-    }
-
-    contact.party.roles.every(item => {
-
-      if (item.role === CONTACT && item.reciprocalRole === ACCOUNT) {
-
-        contact.organisation.id = item.reciprocalPartyId;
-        contact.organisation.displayName = item.reciprocalPartyName;
-        contact.organisation.email = item.reciprocalPartyEmail;
-        contact.organisation.phoneNumber = item.reciprocalPartyPhoneNumber;
-
-        return false;
-      }
-
-      return true;
-
-    });
-
-    // Flatten the object
-    contact.address = item.party.addresses[0];
-
-    this.logger.info('Adapted item: ' + JSON.stringify(contact, null, 2));
-
-    return contact;
-  }
-
- */

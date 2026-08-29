@@ -38,6 +38,15 @@ export interface PartyRefModel {
   phoneNumber?: string;
 }
 
+export function createDefaultPartyRefModel(): PartyRefModel {
+  return {
+    id: '',
+    displayName: '',
+    email: '',
+    phoneNumber: ''
+  };
+}
+
 export interface IndividualSummaryModel {
   id?: string;
   partyDisplayName?: string;

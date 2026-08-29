@@ -81,18 +81,17 @@ export class TaskList extends List<any> {
 
   }
 
-  protected subscribe() {
+  protected refresh() {
 
     this.logger.info('Task List Component: subscribe()');
 
-    this.isLoading = true;
+    // Defer visibility state adjustments out of the current compilation check
+    queueMicrotask(() => {
+      this.isLoading.set(true);
+    });
 
-    let subscription: Subscription = new Subscription();
-    this.subscriptions.push(subscription);
-
-    subscription = this.tasksService.search(this.getBody()).subscribe(
-
-      (response: any) => {
+    this.tasksService.search(this.getBody()).subscribe({
+      next: (response: any) => {
 
         this.logger.info('Task List Component: subscribe() success handler');
 
@@ -103,26 +102,22 @@ export class TaskList extends List<any> {
         this.logger.info('count: ' + this.count + ' Tasks');
 
         if (this.count > 0) {
-
-          // @ts-ignore
           this.items = response.items;
           this.selectedItem = this.items[0];
-
         } else {
-
           this.items = [];
-
         }
 
         this.logger.info('items: ' + JSON.stringify(this.items, null, 2))
         // this.logger.info('selectedItem: ' + JSON.stringify(this.selectedItem, null, 2))
 
-        this.isLoading = false;
-
-        this.detectChanges();
-
-      });
-
+        this.isLoading.set(false);
+      },
+      error: (err) => {
+        this.logger.error('Contacts refresh fault intercept', err);
+        this.isLoading.set(false);
+      }
+    });
   }
 
   private getBody(): any {

@@ -166,7 +166,15 @@
       <ng-container matColumnDef="footer">
 
         <td mat-footer-cell *matFooterCellDef [attr.colspan]="footerColSpan">
-          <collection-footer [host]="this">
+          <collection-footer
+            [selectedItemId]="this.selectedFooterItemId"
+            [pageNumber]="this.pageNumber"
+            [canPagePrevious]="this.offset > 0"
+            [canPageNext]="((this.offset + 1) * this.limit) < this.count"
+            (filterSelected)="this.onClickFilterButton($event)"
+            (firstPageClicked)="this.onClickFirstPageButton()"
+            (previousPageClicked)="this.onClickPreviousPageButton()"
+            (nextPageClicked)="this.onClickNextPageButton()">
           </collection-footer>
         </td>
 
@@ -178,7 +186,7 @@
       <!-- NO DATA ROW -->
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell no-data-cell" [attr.colspan]="displayedColumns.length">
-          @if (isLoading) {
+          @if (isLoading()) {
             <span>Loading data...</span>
           } @else {
             <span>No activities found.</span>

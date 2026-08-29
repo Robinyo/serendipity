@@ -11,6 +11,9 @@ import { ACCOUNT_INFORMATION_FORM, ADDRESS_FORM, CONTACT_DETAILS_FORM, CONTACT_I
 import { contactResolver, contactsResolver } from './resolvers/resolvers';
 
 export const partyRoutes: Routes = [
+
+  /*
+
   {
     path: 'accounts',
     loadComponent: () => import('./features/accounts/accounts').then(m => m.Accounts),
@@ -53,6 +56,8 @@ export const partyRoutes: Routes = [
     }
   },
 
+  */
+
   /*
 
   {
@@ -92,4 +97,5 @@ export const partyRoutes: Routes = [
     loadComponent: () => import('./features/contact/contact').then(m => m.Contact),
     resolve: { metadata: contactResolver }
   }
+
 ];

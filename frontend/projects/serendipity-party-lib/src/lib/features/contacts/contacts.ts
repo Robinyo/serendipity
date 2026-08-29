@@ -8,22 +8,15 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 
-import { Subscription } from 'rxjs';
+import { ActivityBar, CommandBar, AbstractCollection, CollectionFooter } from 'serendipity-components-lib';
 
-// import { ActivityBar, CommandBar, Collection, CollectionFooter } from 'serendipity-components-lib';
-import { ActivityBar, CommandBar } from 'serendipity-components-lib';
+import { PartyService } from '../../services/party/party';
 
-import { PartyService } from '../../services/party/PartyService';
-
-import { ContactModel } from '../../models/contact';
+import { ContactModel } from '../../models/models';
 
 import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs';
 
 // import { CONTACT_WIZARD } from  './constants';
-
-// TODO
-import { AbstractCollection } from './collection/collection';
-import { CollectionFooter } from './collection/footer';
 
 @Component({
   selector: 'contacts',
@@ -58,7 +51,7 @@ export class Contacts extends AbstractCollection<ContactModel> {
       limit: 10
     });
 
-    this.logger.info('Contacts Component');
+    this.logger.info('Contacts Component: constructor()');
 
     effect(() => {
 

@@ -8,12 +8,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 
 // import { ActivityBar, CommandBar, Item } from 'serendipity-components-lib';
-import { ActivityBar, CommandBar } from 'serendipity-components-lib';
+import { ActivityBar, AbstractItem, CommandBar } from 'serendipity-components-lib';
 
 import { FormJsWrapper } from 'serendipity-camunda-lib';
 
 import { latLng, LatLng, LatLngBounds, Layer, LeafletEvent, LeafletMouseEvent, Map, MapOptions, tileLayer } from 'leaflet';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
+
+import { ContactModel } from '../../models/models';
 
 // import { ElectoralDivisionsService } from '../../services/electoral-divisions/electoral-divisions';
 
@@ -32,10 +34,6 @@ const DEFAULT_LONGITUDE = 151.753;
 
 const ACCORDION = 'accordion';
 const CARD = 'card';
-
-// TODO
-import { AbstractItem } from './item';
-import { ContactModel } from '../../models/models';
 
 @Component({
   selector: 'contact',

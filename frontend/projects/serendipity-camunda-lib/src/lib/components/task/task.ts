@@ -1,7 +1,6 @@
 import {
-  AfterViewInit, Component, ElementRef, EventEmitter, inject, Input, OnChanges, OnDestroy, OnInit, Output,
-  SimpleChanges, ViewChild,
-  ChangeDetectionStrategy
+  Component, ElementRef, EventEmitter, inject, Input, OnChanges, OnDestroy, OnInit, Output,
+  SimpleChanges, ViewChild, ChangeDetectionStrategy
 } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -35,10 +34,10 @@ import { TasksService } from '../../services/tasks/tasks';
   ],
   standalone: true,
   templateUrl: './task.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './task.scss'
 })
-export class Task extends Composite implements AfterViewInit, OnInit, OnChanges, OnDestroy {
+export class Task extends Composite implements OnInit, OnChanges, OnDestroy {
 
   @Input() task!: any;
 
@@ -48,15 +47,13 @@ export class Task extends Composite implements AfterViewInit, OnInit, OnChanges,
 
   public selectedTabIndex = 0;
 
-  protected tasksService: TasksService = inject(TasksService);
+  private tasksService: TasksService = inject(TasksService);
 
   private formInstance!: Form;
   private schema: any;
   private data: any = {};
 
   private buttonClickListener?: (event: Event) => void;
-
-  // private currentUser: any;
 
   private username: String | undefined;
 
@@ -66,7 +63,6 @@ export class Task extends Composite implements AfterViewInit, OnInit, OnChanges,
 
     this.logger.info('Task Component: constructor()');
 
-    // this.currentUser = this.authService.getCurrentUser();
     this.username = this.authService.getUsername();
   }
 
@@ -79,14 +75,6 @@ export class Task extends Composite implements AfterViewInit, OnInit, OnChanges,
 
   }
 
-  public override ngAfterViewInit() {
-
-    this.logger.info('FormJsWrapper Component: ngAfterViewInit()');
-
-    super.ngAfterViewInit();
-
-  }
-
   public ngOnChanges(changes: SimpleChanges)  {
 
     this.logger.info('Task Component: ngOnChanges()');
@@ -94,29 +82,28 @@ export class Task extends Composite implements AfterViewInit, OnInit, OnChanges,
     // If the task changes then select the first (Tasks) tab
     this.selectedTabIndex = 0;
 
-    this.unsubscribe();
-
     // this.formInstance = null;
     this.schema = null;
     this.data = {};
 
-    this.subscribe();
+    this.refresh();
 
   }
 
-  protected override subscribe(): void {
+  protected refresh() {
 
-    this.logger.info('Task Component: subscribe()');
+    this.logger.info('Contacts Component: refresh()');
 
-    if (this.task) {
+    // Defer visibility state adjustments out of the current compilation check
+    queueMicrotask(() => {
+      this.isLoading.set(true);
+    });
 
-      this.isLoading = true;
+    this.tasksService.form(this.task.userTaskKey)
+      .subscribe({
+        next: (response: any) => {
 
-      const subscription: Subscription = this.tasksService.form(this.task.userTaskKey).subscribe(
-
-        (response: any) => {
-
-          // this.logger.info('response: ' + JSON.stringify(response, null, 2))
+          this.logger.info('Contacts Component: refresh() success handler');
 
           this.schema = JSON.parse(response.schema);
 
@@ -124,23 +111,18 @@ export class Task extends Composite implements AfterViewInit, OnInit, OnChanges,
 
           this.loadForm();
 
-          this.isLoading = false;
-
-          this.detectChanges();
-
-        });
-
-      this.subscriptions.push(subscription);
-
-    }
-
+          this.isLoading.set(false);
+        },
+        error: (err) => {
+          this.logger.error('Contacts refresh fault intercept', err);
+          this.isLoading.set(false);
+        }
+      });
   }
 
-  public override ngOnDestroy() {
+  public ngOnDestroy() {
 
     this.logger.info('Task Component: ngOnDestroy()');
-
-    super.ngOnDestroy();
 
     if (this.formWrapper && this.formWrapper.nativeElement && this.buttonClickListener) {
       const nativeContainer = this.formWrapper.nativeElement;
@@ -302,11 +284,7 @@ export class Task extends Composite implements AfterViewInit, OnInit, OnChanges,
             btn.style.cursor = 'pointer';                     // Restores standard pointer cursor
           });
 
-          this.detectChanges();
-
         });
-
-      this.subscriptions.push(subscription);
 
     }
 
@@ -347,7 +325,6 @@ export class Task extends Composite implements AfterViewInit, OnInit, OnChanges,
         }
       });
 
-      this.subscriptions.push(subscription);
     }
   }
 
@@ -362,86 +339,3 @@ export class Task extends Composite implements AfterViewInit, OnInit, OnChanges,
   }
 
 }
-
-/*
-
-  private async loadForm(): Promise<void> {
-
-    this.logger.info('Task Component: loadForm()');
-
-    if (this.schema) {
-
-      try {
-
-        await this.formInstance.importSchema(this.schema, this.data);
-
-        if (this.task && this.task.assignee === null) {
-          this.formInstance.setProperty('readOnly', true);
-        }
-
-        const nativeContainer = this.formWrapper.nativeElement;
-
-        // Query all elements matching the rendered button layout structure
-        const resetButtons = nativeContainer.querySelectorAll('button[data-action="reset"]');
-
-        // Find the 'Lookup' button
-        const lookupBtn = Array.from(resetButtons).find(
-          // @ts-ignore
-          (btn) => btn.textContent?.trim() === 'Lookup'
-        ) as HTMLElement | undefined;
-
-        // Bind your custom Angular logic
-        if (lookupBtn) {
-
-          this.buttonClickListener = (event: Event) => {
-
-            // CRITICAL: Prevents form-js from executing its default clear/reset pipeline
-            event.preventDefault();
-
-            this.logger.info('Task Component: Lookup button logic initiated...');
-
-          };
-
-          lookupBtn.addEventListener('click', this.buttonClickListener);
-
-        } else {
-          this.logger.info('Task Component: Could not locate a Lookup button in the DOM structure.');
-        }
-
-      } catch (error) {
-        this.logger.error(error);
-      }
-
-    }
-
-  }
-
-  public override ngOnDestroy() {
-
-    this.logger.info('Task Component: ngOnDestroy()');
-
-    super.ngOnDestroy();
-
-    const nativeContainer = this.formWrapper.nativeElement;
-
-    // Query all elements matching the rendered button layout structure
-    const resetButtons = nativeContainer.querySelectorAll('button[data-action="reset"]');
-
-    // Find the 'Lookup' button
-    const lookupBtn = Array.from(resetButtons).find(
-      // @ts-ignore
-      (btn) => btn.textContent?.trim() === 'Lookup'
-    ) as HTMLElement | undefined;
-
-    // Pass the exact same reference to remove it cleanly
-    if (lookupBtn && this.buttonClickListener) {
-      lookupBtn.removeEventListener('click', this.buttonClickListener);
-    }
-
-    if (this.formInstance) {
-      this.formInstance.destroy();
-    }
-
-  }
-
-*/

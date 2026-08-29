@@ -10,13 +10,13 @@ import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 
 import { Subscription } from 'rxjs';
 
+import { AUTH_SERVICE_TOKEN, AuthService } from 'serendipity-auth-lib';
 // import { FilterRepresentationModel, StartProcessDialog } from 'serendipity-flowable-lib';
-import { ActivityBar, CommandBar, Collection, CollectionFooter, SnackBar } from 'serendipity-components-lib';
+import { ActivityBar, CommandBar, AbstractCollection, CollectionFooter, SnackBar } from 'serendipity-components-lib';
 
-import { ActivitiesAdapter } from '../../adapters/activities';
-import { ActivitiesService } from '../../services/activities/activities';
+import { WorkflowService } from '../../services/workflow/workflow';
 
-import { ActivityModel } from '../../models/activity';
+import { ActivityModel } from '../../models/models';
 
 import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs';
 
@@ -39,19 +39,16 @@ import { COLUMNS_DESKTOP, COLUMNS_MOBILE } from './column-defs';
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './activities.scss'
 })
-export class Activities extends Collection<ActivityModel> {
+export class Activities extends AbstractCollection<ActivityModel> {
 
   public metadata = input<any>();
 
-  public currentUser: any;
-
-  private entityAdapter: ActivitiesAdapter = inject(ActivitiesAdapter);
-  private entityService: ActivitiesService = inject(ActivitiesService);
+  private workflowService: WorkflowService = inject(WorkflowService);
+  private authService: AuthService = inject(AUTH_SERVICE_TOKEN);
 
   constructor() {
 
     super({
-      columnDefsFilename: "",
       desktopDeviceColumns: COLUMNS_DESKTOP,
       mobileDeviceColumns: COLUMNS_MOBILE,
       limit: 10
@@ -60,62 +57,88 @@ export class Activities extends Collection<ActivityModel> {
     this.logger.info('Activities Component: constructor()');
 
     effect(() => {
+
       const resolvedData = this.metadata();
-      if (resolvedData) {
-        this.columnDefs = resolvedData;
-        this.logger.info('columnDefs updated via modern functional router effect');
-      }
-    });
 
-  }
+      if (resolvedData?.columnDefs && resolvedData?.activtiesSummary) {
 
-  protected subscribe() {
+        this.columnDefs = resolvedData.columnDefs;
 
-    this.logger.info('Activities Component: subscribe()');
+        const envelop = resolvedData.activtiesSummary;
 
-    this.isLoading = true;
+        this.logger.info('response: ' + JSON.stringify(envelop, null, 2));
 
-    const subscription: Subscription =  this.entityService.find(this.getBody()).subscribe(
-
-      (response: any) => {
-
-        this.logger.info('Activities Component: subscribe() success handler');
-
-        this.logger.info('response: ' + JSON.stringify(response, null, 2));
-
-        if (response.page && response.page.totalItems) {
-          this.count = response.page.totalItems;
+        if (envelop.page && envelop.page.totalItems) {
+          this.count = envelop.page.totalItems;
         }
 
-        this.logger.info('count: ' + this.count + ' Activities');
+        this.logger.info('count: ' + this.count + ' Contacts');
 
         if (this.count > 0) {
-
-          this.items = response.items.map(
-            ((item: any) => this.entityAdapter.adapt(item)));
-
+          this.items = envelop.items;
         } else {
-
           this.items = [];
-          this.items.push(new ActivityModel());
-
         }
 
-        this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
+        // this.logger.info('items: ' + JSON.stringify(this.items, null, 2));
 
         this.dataSource = new MatTableDataSource(this.items);
         this.dataSource.data = this.items;
         this.dataSource.sortingDataAccessor = pathDataAccessor;
         this.dataSource.sort = this.sort;
 
-        this.isLoading = false;
+      }
 
-        this.detectChanges();
+    });
 
+  }
+
+  protected refresh() {
+
+    this.logger.info('Contacts Component: refresh()');
+
+    this.logger.info(`Refreshing Contacts with filter: ${this.filter}, offset: ${this.offset} limit: ${this.limit}`);
+
+    // Defer visibility state adjustments out of the current compilation check
+    queueMicrotask(() => {
+      this.isLoading.set(true);
+    });
+
+    this.workflowService.findAllActivities(this.getBody())
+      .subscribe({
+        next: (response: any) => {
+
+          this.logger.info('Activities Component: refresh() success handler');
+
+          this.logger.info('response: ' + JSON.stringify(response, null, 2));
+
+          if (response.page && response.page.totalItems) {
+            this.count = response.page.totalItems;
+          }
+
+          this.logger.info('count: ' + this.count + ' Activities');
+
+          if (this.count > 0) {
+            this.items = response.items;
+          } else {
+            this.items = [];
+          }
+
+          if (!this.dataSource) {
+            this.dataSource = new MatTableDataSource(this.items);
+            this.dataSource.sortingDataAccessor = pathDataAccessor;
+            this.dataSource.sort = this.sort;
+          } else {
+            this.dataSource.data = this.items;
+          }
+
+          this.isLoading.set(false);
+        },
+        error: (err) => {
+          this.logger.error('Activities refresh fault intercept', err);
+          this.isLoading.set(false);
+        }
       });
-
-    this.subscriptions.push(subscription);
-
   }
 
   private getBody(): any {
@@ -163,8 +186,6 @@ export class Activities extends Collection<ActivityModel> {
   public onRefresh() {
 
     // this.logger.info('Activities Component: onRefresh()');
-
-    super.refresh();
 
     this.openSnackBar('Refresh...');
 
