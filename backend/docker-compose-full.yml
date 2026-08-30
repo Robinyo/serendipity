@@ -4,14 +4,17 @@ include:
 
 services:
 
+  # Make sure your certificates and keys (the *.pem files in the ./certs directory) have the correct permissions
+  # i.e., chmod 600 *.pem && xattr -c *.pem
+
   nginx:
-    image: nginx:${NGINX_VERSION}
     container_name: nginx
+    image: nginx:${NGINX_VERSION}
+    restart: unless-stopped
     ports:
       # Explicitly binds port 80 and 443 to your loopback interface
       - "127.0.0.1:80:80"
       - "127.0.0.1:443:443"
-    restart: unless-stopped
     networks:
       serendipity:
         aliases:
@@ -138,6 +141,7 @@ services:
       - serendipity
     extra_hosts:
       - "host.docker.internal:host-gateway"
+      - "serendipity.localhost:host-gateway"
     volumes:
       - "${PWD}/services/identity-service/import:/opt/keycloak/data/import/:ro"
       - "${PWD}/services/identity-service/export:/export"
@@ -194,13 +198,12 @@ services:
       start_period: 25s
     networks:
       - serendipity
-      - camunda-platform
+      # - camunda-platform
       # - identity-network
       # - web-modeler
     extra_hosts:
       - "host.docker.internal:host-gateway"
       - "serendipity.localhost:host-gateway"
-      # Routes the lookup out of the container to your host interface over port 443
       - "serendipity-identity-service.localhost:host-gateway"
     volumes:
       - "${PWD}/certs:/certs"
