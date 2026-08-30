@@ -39,14 +39,10 @@ export const contactsResolver = (route: ActivatedRouteSnapshot) => {
 
   const logger = inject(LoggerService);
 
-  const filter = '';
-  const offset = 0;
-  const limit = globalConfig.defaultLimit;
-
   logger.info('Executing Contacts Resolver');
 
   return forkJoin({
-    partySummary: partyService.findAllContacts(filter, offset, limit),
+    partySummary: partyService.findAllContacts('', 0, globalConfig.defaultLimit),
     columnDefs: configService.get(CONTACTS_COLUMN_DEFS),
   });
 

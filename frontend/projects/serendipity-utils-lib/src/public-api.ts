@@ -16,5 +16,6 @@ export { LoggerService } from './lib/services/logger/logger.service.js';
 export type { Adapter } from './lib/adapters/adapter.js';
 export type { Environment } from './lib/models/environment.js';
 export type { HttpOptions } from './lib/models/http-options.js';
+export type { PagedResponse } from './lib/models/paged';
 export type { SvgIconRegistry } from './lib/models/svg-icon-registry.js';
 

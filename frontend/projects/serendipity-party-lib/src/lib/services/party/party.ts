@@ -4,10 +4,10 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { AbstractCollectionService } from 'serendipity-utils-lib';
+import { AbstractCollectionService, PagedResponse } from 'serendipity-utils-lib';
 
 import { ContactAdapter } from '../../adapters/contact';
-import { ContactModel } from '../../models/models';
+import { ContactModel, ContactSummaryModel } from '../../models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -33,32 +33,35 @@ export class PartyService extends AbstractCollectionService {
 
   }
 
-  public findAllContacts(filter: string, offset: number = 0, limit: number = 100): Observable<any> {
+  public findAllContacts(filter: string, page: number, size: number):
+    Observable<PagedResponse<ContactSummaryModel, 'individuals'>> {
 
-    this.logger.info('Party Service: findAllContacts()');
+    this.logger.info(`Party Service: findAllContacts(filter: "${filter}", page: ${page}, size: ${size})`);
 
-    let url = this.contactsApi;
-    let queryParams;
+    // Determine the correct backend endpoint based on whether a filter is present
+    // If no filter is set (empty string), hit the master collection.
+    // If a filter is present (e.g. 'A'), route it to your custom search endpoint query mapping.
 
-    if (filter.length) {
+    const url = filter
+      ? `${this.contactsApi}/search/findByFamilyNameStartsWith`
+      : this.contactsApi;
 
-      url = url + '/search/findByFamilyNameStartsWith';
-      queryParams = '?name=' + filter + '&page=' + offset + '&size=' + limit + '&sort=name.familyName&name.familyName.dir=asc';
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString())
+      .set('sort', 'name.familyName,asc');
 
-    } else {
-
-      queryParams = '?page=' + offset + '&size=' + limit + '&sort=name.familyName&name.familyName.dir=asc';
-
+    if (filter) {
+      params = params.set('name', filter);
     }
 
-    this.logger.info('url: ' + url);
-    this.logger.info('queryParams: ' + queryParams);
+    const options = {
+      ...this.getDefaultHttpGetOptions(),
+      params: params
+    };
 
-    return this.http.get(url + queryParams, this.getDefaultHttpGetOptions()).pipe(
-
-      tap(() => {
-        this.logger.info('Party Service: findAllContacts() completed');
-      })
+    return this.http.get<PagedResponse<ContactSummaryModel, 'individuals'>>(url, options).pipe(
+      tap(() => this.logger.info('Party Service: findAllContacts() completed'))
     );
 
   }
@@ -69,7 +72,7 @@ export class PartyService extends AbstractCollectionService {
 
     return this.http.get<ContactModel>(`${this.contactsApi}/${id}`, this.getDefaultHttpGetOptions()).pipe(
 
-      map((response: any) => this.adapter.adapt(response.body)),
+      map((response: any) => this.adapter.adapt(response)),
 
       tap(() => {
         this.logger.info('Party Service: findContactById() completed');
@@ -77,4 +80,68 @@ export class PartyService extends AbstractCollectionService {
     );
   }
 
+  public createContact(contact: ContactModel): Observable<ContactModel> {
+
+    this.logger.info('Party Service: createContact()');
+
+    return this.http.post<ContactModel>(`${this.contactsApi}`, contact, this.getDefaultHttpPostOptions()).pipe(
+      tap(() => {
+        this.logger.info('Party Service: createContact() completed');
+      })
+    );
+
+  }
+
+  public updateContact(id: string, contact: ContactModel): Observable<ContactModel> {
+
+    this.logger.info('Party Service: updateContact()');
+
+    return this.http.put<ContactModel>(`${this.contactsApi}/${id}`, contact, this.getDefaultHttpPutOptions()).pipe(
+      tap(() => {
+        this.logger.info('Party Service: updateContact() completed');
+      })
+    );
+
+  }
+
+  public deleteContact(id: string): Observable<void> {
+
+    this.logger.info('Party Service: deleteContact()');
+
+    return this.http.delete<void>(`${this.contactsApi}/${id}`, this.getDefaultHttpDeleteOptions()).pipe(
+      tap(() => {
+        this.logger.info('Party Service: deleteContact() completed');
+      })
+    );
+
+  }
+
 }
+
+
+
+
+
+/*
+
+  public createRole(id: string, role: RoleModel): Observable<HttpResponse<RoleModel>>  {
+
+    return this.httpClient.post<HttpResponse<RoleModel>>(this.url + id + '/roles', role, this.getDefaultHttpPostOptions()).pipe(
+      tap(() => {
+        this.logger.info('Contacts Service: createRole() completed');
+      })
+    );
+
+  }
+
+  public deleteRole(id: string, roleId: string): Observable<ContactModel> {
+
+    return this.httpClient.delete<ContactModel>(this.url + id + '/roles/' + roleId, this.getDefaultHttpPostOptions()).pipe(
+      tap(() => {
+        this.logger.info('Contacts Service: deleteRole() completed');
+      })
+    );
+
+  }
+
+*/

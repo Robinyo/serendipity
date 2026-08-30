@@ -23,7 +23,8 @@
       <button matIconButton
               aria-label="New Contact button"
               class="md-command-bar-button"
-              (click)="onNew()">
+              (click)="onNew()"
+              [disabled]="true">
         <mat-icon class="material-icons"> add </mat-icon>
       </button>
 
@@ -69,7 +70,8 @@
       <button matButton="filled"
               aria-label="New Contact button"
               class="md-command-bar-button"
-              (click)="onNew()">
+              (click)="onNew()"
+              [disabled]="true">
         <mat-icon class="material-icons"> add </mat-icon>
         NEW
       </button>
@@ -110,7 +112,7 @@
   @if (item) {
 
     <span class="md-font-headline-lg" aria-label="Activity Bar Title">
-      Contact: {{ item.party.displayName }}
+      Contact: {{ item?.party?.displayName }}
     </span>
 
   }

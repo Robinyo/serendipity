@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, effect, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject, input, effect, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -14,6 +14,252 @@ import { FormJsWrapper } from 'serendipity-camunda-lib';
 
 import { latLng, LatLng, LatLngBounds, Layer, LeafletEvent, LeafletMouseEvent, Map, MapOptions, tileLayer } from 'leaflet';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
+
+import { PartyService } from '../../services/party/party';
+
+import { ContactModel } from '../../models/models';
+
+// import { ElectoralDivisionsService } from '../../services/electoral-divisions/electoral-divisions';
+
+import { CONTACTS } from './constants';
+
+class LeafletControlLayersConfig {
+  baseLayers: { [name: string]: Layer } = {};
+  overlays: { [name: string]: Layer } = {};
+}
+
+class MapLayersControl extends LeafletControlLayersConfig {}
+
+const DEFAULT_ZOOM = 13;
+const DEFAULT_LATITUDE = -32.841;
+const DEFAULT_LONGITUDE = 151.753;
+
+const ACCORDION = 'accordion';
+const CARD = 'card';
+
+
+@Component({
+  selector: 'contact',
+  imports: [
+    ActivityBar,
+    CommandBar,
+    FormJsWrapper,
+    LeafletModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatTabsModule,
+    MatAccordion,
+    MatExpansionPanel,
+    MatExpansionPanelContent,
+    MatExpansionPanelHeader,
+    MatExpansionPanelTitle
+  ],
+  templateUrl: './contact.html',
+  styleUrls: ['./contact.scss'],
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush // ⚡ Shift to maximum rendering velocity speeds
+})
+export class Contact extends AbstractItem<ContactModel> {
+
+  public metadata = input<any>();
+
+  // Type-Safe Entity Declarations
+  public item!: ContactModel;
+  public schema: any;
+
+  @ViewChild('formRef') form!: FormJsWrapper;
+
+  public viewMode = CARD;
+  public selectedTabIndex = 0;
+
+  private partyService = inject(PartyService);
+
+  constructor() {
+    super();
+
+    effect(() => {
+      const resolvedData = this.metadata();
+
+      this.logger.info(`Switched view viewport target context to Party Id: ${this.id()}`);
+
+      if (resolvedData?.party) {
+        this.item = resolvedData.party;
+        this.schema = resolvedData.generalInformationFormSchema;
+      }
+    });
+  }
+
+  //
+  // Validation Gates
+  //
+
+  public isDirty(): boolean {
+    this.logger.info('Contact Component: isDirty()');
+    return this.form ? this.form.isDirty() : false;
+  }
+
+  public isValid(): boolean {
+    this.logger.info('Contact Component: isValid()');
+    return this.form ? this.form.isValid() : false;
+  }
+
+  //
+  // Command Bar Infrastructure Handlers
+  //
+
+  public onClose(): void {
+    this.logger.info('Contact Component: onClose()');
+    this.router.navigate([CONTACTS]);
+  }
+
+  public onDeactivate(): void {
+    this.logger.info('Contact Component: onDeactivate()');
+  }
+
+  public onNew(): void {
+    this.logger.info('Contact Component: onNew()');
+  }
+
+  public onSave(): void {
+    this.logger.info('Contact Component: onSave() execution payload compiling');
+
+    if (!this.form || !this.form.isValid()) {
+      this.logger.error('Form execution halted: Invalid structure criteria.');
+      return;
+    }
+
+    const rawFormData = this.form.getData();
+    this.logger.info('rawFormData: ' + JSON.stringify(rawFormData, null, 2));
+
+    // Deep clone the original model record instance block to prevent reference mutations
+    const targetPayload = JSON.parse(JSON.stringify(this.item));
+
+    // Patch the copied object graph recursively using form variables
+    this.patchDtoWithFormData(targetPayload, rawFormData);
+
+    // Deep clone a tracking version to pass over the wire network to your backend proxy
+    const networkPayload = JSON.parse(JSON.stringify(targetPayload));
+
+    // ⚡ FIX 2: Safely delete the address mapping property strictly on the network payload,
+    // leaving your local component state reference model intact for consecutive saves!
+    delete networkPayload.address;
+
+    this.update(targetPayload, networkPayload);
+  }
+
+  public onSaveAndClose(): void {
+    this.logger.info('Contact Component: onSaveAndClose()');
+    this.onSave();
+    this.onClose();
+  }
+
+  public onTabChanged($event: any): void {
+    this.logger.info('ContactComponent: onTabChanged()');
+    this.selectedTabIndex = $event.index;
+  }
+
+  //
+  // Data Pipeline Operations
+  //
+
+  private update(localStateDto: ContactModel, wireNetworkDto: any): void {
+
+    this.logger.info('Contact Component: update() transaction dispatching');
+
+    // Retain full structural details locally (including address parameters)
+    this.item = localStateDto;
+
+    // Invoke the route parameter identifier cleanly using standard signal syntax ()
+    this.logger.info(`Updating Id: ${this.id()} matching state entity id: ${this.item.party?.id}`);
+    this.logger.info('Dispatched Network payload: ' + JSON.stringify(wireNetworkDto, null, 2));
+
+    // Ship the network-safe payload variant off over the HTTP proxy channel
+    this.partyService.updateContact(this.id(), wireNetworkDto).subscribe({
+      next: (databaseUpdatedRecord: ContactModel) => {
+        this.logger.info('Contact Component: update() successfully resolved over network.');
+
+        // Overwrite your local model state with the absolute server source of truth
+        this.item = databaseUpdatedRecord;
+
+        // this.openSnackBar();
+
+      },
+      error: (err) => {
+        this.logger.error('Failed to submit contact entity mutations to database provider', err);
+      }
+    });
+
+  }
+
+  private patchDtoWithFormData(dto: any, formData: any): any {
+
+    if (!dto || !formData || typeof dto !== 'object' || typeof formData !== 'object') {
+      return dto;
+    }
+
+    // Array Handling: Safely align forms with nested collections arrays
+    if (formData.address && dto.party && Array.isArray(dto.party.addresses)) {
+      const formAddress = formData.address;
+
+      const matchingDtoAddress = dto.party.addresses.find(
+        (addr: any) => addr.addressType === formAddress.addressType
+      );
+
+      if (matchingDtoAddress) {
+        this.patchDtoWithFormData(matchingDtoAddress, formAddress);
+      } else {
+        this.logger.warn(`Contact Component: addressType [${formAddress.addressType}] not found in entity list payload graph.`);
+      }
+    }
+
+    // Standard recursive object key iteration routing passes
+    Object.keys(formData).forEach(key => {
+      if (key === 'address') return;
+
+      if (key in dto) {
+        const formValue = formData[key];
+        const dtoValue = dto[key];
+
+        if (
+          formValue && typeof formValue === 'object' && !Array.isArray(formValue) &&
+          dtoValue && typeof dtoValue === 'object' && !Array.isArray(dtoValue)
+        ) {
+          this.patchDtoWithFormData(dtoValue, formValue);
+        } else {
+          dto[key] = formValue;
+        }
+      }
+    });
+
+    return dto;
+  }
+
+}
+
+
+
+/*
+
+import { Component, inject, input, effect, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatAccordion, MatExpansionPanel, MatExpansionPanelContent, MatExpansionPanelHeader, MatExpansionPanelTitle } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTabsModule } from '@angular/material/tabs';
+
+// import { ActivityBar, CommandBar, Item } from 'serendipity-components-lib';
+import { ActivityBar, AbstractItem, CommandBar } from 'serendipity-components-lib';
+
+import { FormJsWrapper } from 'serendipity-camunda-lib';
+
+import { latLng, LatLng, LatLngBounds, Layer, LeafletEvent, LeafletMouseEvent, Map, MapOptions, tileLayer } from 'leaflet';
+import { LeafletModule } from '@bluehalo/ngx-leaflet';
+
+import { PartyService } from '../../services/party/party';
 
 import { ContactModel } from '../../models/models';
 
@@ -73,6 +319,8 @@ export class Contact extends AbstractItem<ContactModel> {
   public viewMode = CARD;
 
   public selectedTabIndex = 0;
+
+  private partyService = inject(PartyService);
 
   constructor() {
 
@@ -174,7 +422,7 @@ export class Contact extends AbstractItem<ContactModel> {
 
     // this.logger.info('updatedDto: ' + JSON.stringify(updatedDto, null, 2) + '\n');
 
-    // this.update(updatedDto);
+    this.update(updatedDto);
   }
 
   public onSaveAndClose() {
@@ -194,6 +442,25 @@ export class Contact extends AbstractItem<ContactModel> {
     this.logger.info('ContactComponent: onTabChanged()');
 
     this.selectedTabIndex = $event.index;
+
+  }
+
+  private update(dto: any): void {
+
+    this.logger.info('Contact Component: update()');
+
+    this.item = dto;
+
+    this.logger.info('id: ' + this.id + ' item id: ' + this.item.id);
+    this.logger.info('item: ' + JSON.stringify(this.item, null, 2) + '\n');
+
+    this.partyService.updateContact(this.id(), this.item).subscribe(() => {
+
+      // this.openSnackBar();
+
+      this.logger.info('Contact Component: update() completed');
+
+    });
 
   }
 
@@ -253,6 +520,8 @@ export class Contact extends AbstractItem<ContactModel> {
   }
 
 }
+
+*/
 
 
 /*

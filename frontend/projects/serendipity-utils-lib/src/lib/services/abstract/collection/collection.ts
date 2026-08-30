@@ -29,14 +29,11 @@ export abstract class AbstractCollectionService {
 
   }
 
+  // TODO
+
   protected getUrlPrefix(): string {
     return `${this.env.serverScheme}://${this.env.serverHost}`;
   }
-
-  // In Angular, when using the HttpClient to make HTTP requests, the observe option allows you to specify how much of
-  // the HTTP response you want to receive. By default, HttpClient methods return an Observable that emits only the
-  // response body. To receive the complete HttpResponse object, including headers, status code, and the body, you must
-  // set the observe option to 'response'.
 
   protected getDefaultHttpGetOptions(params: any = undefined): HttpOptions {
 
@@ -50,7 +47,6 @@ export abstract class AbstractCollectionService {
 
       this.httpOptions = {
         headers: baseHeaders,
-        observe: 'response' as const,
         params: undefined
       };
 
@@ -81,7 +77,6 @@ export abstract class AbstractCollectionService {
 
       this.httpOptions = {
         headers: baseHeaders,
-        observe: 'response' as const,
         params: undefined
       };
 
@@ -98,6 +93,14 @@ export abstract class AbstractCollectionService {
     // this.logger.info('httpOptions: ' + JSON.stringify(this.httpOptions, null, 2));
 
     return this.httpOptions;
+  }
+
+  protected getDefaultHttpPutOptions(params: any = undefined): HttpOptions {
+    return this.getDefaultHttpPostOptions(params);
+  }
+
+  protected getDefaultHttpDeleteOptions(params: any = undefined): HttpOptions {
+    return this.getDefaultHttpPostOptions(params);
   }
 
 }
