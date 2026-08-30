@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { fromEvent, debounceTime, takeUntil } from 'rxjs';
 
+import { CATALOG_CONFIG_TOKEN } from 'serendipity-utils-lib';
+
 import { AbstractComponent } from '../component/component';
 import { ColumnDef } from '../../../models/models';
 import { ALL } from './constants';
@@ -19,14 +21,13 @@ export interface CollectionComponentConfig {
   rowsPerPage?: number;
 }
 
-const DEFAULT_LIMIT: number = 100; // Optimal bulk network chunk default size
-const DEFAULT_ROWS_PER_PAGE: number = 10;
-
 // $navigation-bar-height-desktop + $command-bar-height-desktop
 const DEFAULT_HEADER_OFFSET: number = 64 + 50;
 
 @Directive()
 export abstract class AbstractCollection<T> extends AbstractComponent implements OnInit {
+
+  private globalConfig = inject(CATALOG_CONFIG_TOKEN);
 
   public metadata = input<any>();
 
@@ -40,7 +41,7 @@ export abstract class AbstractCollection<T> extends AbstractComponent implements
   public dataSource!: MatTableDataSource<T | { isPlaceholder: boolean }>;
 
   public pageNumber: number = 1;
-  public rowsPerPage: number = DEFAULT_ROWS_PER_PAGE;
+  public rowsPerPage: number = this.globalConfig.rowsPerPage;
 
   public footerAllLabel: string = ALL;
   public selectedFooterItemId: string = ALL;
@@ -63,7 +64,7 @@ export abstract class AbstractCollection<T> extends AbstractComponent implements
 
   protected filter = '';
   protected offset = 0;       // Serving as client-side UI page index calculation
-  protected limit = DEFAULT_LIMIT;
+  protected limit = this.globalConfig.defaultLimit;
   protected count = 0;
 
   protected desktopDeviceColumns: string[];

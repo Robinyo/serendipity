@@ -3,15 +3,12 @@ import { ActivatedRouteSnapshot } from '@angular/router';
 
 import { forkJoin } from 'rxjs';
 
-import { ConfigService, FormsService, LoggerService } from 'serendipity-utils-lib';
+import { CATALOG_CONFIG_TOKEN, ConfigService, FormsService, LoggerService } from 'serendipity-utils-lib';
 
 import { PartyService } from '../services/party/party';
 
 import { CONTACTS_COLUMN_DEFS, RELATIONSHIP_LIST_COLUMN_DEFS } from './constants';
 import { CONTACT_INFORMATION_FORM } from './form-ids';
-
-const DEFAULT_LIMIT = 100; // Optimal bulk network chunk default size
-const DEFAULT_ROWS_PER_PAGE = 10;
 
 export const contactResolver = (route: ActivatedRouteSnapshot) => {
 
@@ -35,6 +32,8 @@ export const contactResolver = (route: ActivatedRouteSnapshot) => {
 
 export const contactsResolver = (route: ActivatedRouteSnapshot) => {
 
+  const globalConfig = inject(CATALOG_CONFIG_TOKEN);
+
   const partyService = inject(PartyService);
   const configService = inject(ConfigService);
 
@@ -42,7 +41,7 @@ export const contactsResolver = (route: ActivatedRouteSnapshot) => {
 
   const filter = '';
   const offset = 0;
-  const limit = DEFAULT_LIMIT;
+  const limit = globalConfig.defaultLimit;
 
   logger.info('Executing Contacts Resolver');
 

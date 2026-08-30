@@ -3,6 +3,7 @@
  */
 
 // Export runtime InjectionTokens and classes normally so Angular preserves the DI token metadata
+export { CATALOG_CONFIG_TOKEN } from './lib/config/catalog-config';
 export { APP_ENVIRONMENT } from './lib/models/environment.token.js';
 export { SVG_ICONS } from './lib/constants/svg-icons.js';
 
@@ -16,3 +17,4 @@ export type { Adapter } from './lib/adapters/adapter.js';
 export type { Environment } from './lib/models/environment.js';
 export type { HttpOptions } from './lib/models/http-options.js';
 export type { SvgIconRegistry } from './lib/models/svg-icon-registry.js';
+

@@ -53,9 +53,7 @@ export class Contacts extends AbstractCollection<ContactModel> {
   constructor() {
     super({
       desktopDeviceColumns: COLUMNS_DESKTOP,
-      mobileDeviceColumns: COLUMNS_MOBILE,
-      limit: 100,       // Large cache fetch sizing
-      rowsPerPage: 10   // Screen visibility row clamp sizing
+      mobileDeviceColumns: COLUMNS_MOBILE
     });
 
     this.logger.info('Contacts Component: constructor()');
