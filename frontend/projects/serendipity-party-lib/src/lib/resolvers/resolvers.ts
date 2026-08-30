@@ -10,6 +10,9 @@ import { PartyService } from '../services/party/party';
 import { CONTACTS_COLUMN_DEFS, RELATIONSHIP_LIST_COLUMN_DEFS } from './constants';
 import { CONTACT_INFORMATION_FORM } from './form-ids';
 
+const DEFAULT_LIMIT = 100; // Optimal bulk network chunk default size
+const DEFAULT_ROWS_PER_PAGE = 10;
+
 export const contactResolver = (route: ActivatedRouteSnapshot) => {
 
   const partyService = inject(PartyService);
@@ -39,7 +42,7 @@ export const contactsResolver = (route: ActivatedRouteSnapshot) => {
 
   const filter = '';
   const offset = 0;
-  const limit = 10;
+  const limit = DEFAULT_LIMIT;
 
   logger.info('Executing Contacts Resolver');
 

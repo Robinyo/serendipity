@@ -127,7 +127,7 @@
             [selectedItemId]="this.selectedFooterItemId"
             [pageNumber]="this.pageNumber"
             [canPagePrevious]="this.offset > 0"
-            [canPageNext]="((this.offset + 1) * this.limit) < this.count"
+            [canPageNext]="((this.offset + 1) * this.rowsPerPage) < this.count"
             (filterSelected)="this.onClickFilterButton($event)"
             (firstPageClicked)="this.onClickFirstPageButton()"
             (previousPageClicked)="this.onClickPreviousPageButton()"
@@ -156,6 +156,14 @@
       <tr mat-footer-row *matFooterRowDef="['footer']; sticky: true"></tr>
 
     </table>
+
+    <!-- Show an overlay if the actual database count is 0 -->
+    @if (count === 0 && !isLoading()) {
+      <div class="table-empty-overlay">
+        <mat-icon>search_off</mat-icon>
+        <p>No matching records found.</p>
+      </div>
+    }
 
   </div>
 
