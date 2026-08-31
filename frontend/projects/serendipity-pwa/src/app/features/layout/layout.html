@@ -3,7 +3,7 @@
 
 <mat-sidenav-container>
 
-  <mat-sidenav #sidenav mode="over" class="md-sidenav">
+  <mat-sidenav #sidenav mode="over" class="md-sidenav" [autoFocus]="'dialog'">
 
     <mat-nav-list class="md-sidenav-nav-list">
 
@@ -16,7 +16,8 @@
           <a mat-list-item
              class="md-sidenav-nav-list-item"
              (click)="sidenav.close()"
-             [routerLink]="[item.route]">
+             [routerLink]="[item.route]"
+             routerLinkActive="active-nav-route">
             <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
             {{ item.label }}
           </a>
@@ -32,7 +33,8 @@
           <a mat-list-item
              class="md-sidenav-nav-list-item"
              (click)="sidenav.close()"
-             [routerLink]="[item.route]">
+             [routerLink]="[item.route]"
+             routerLinkActive="active-nav-route">
             <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
             {{ item.label }}
           </a>
@@ -60,7 +62,8 @@
           <a mat-list-item
              class="md-sidenav-nav-list-item"
              (click)="sidenav.close()"
-             [routerLink]="[item.route]">
+             [routerLink]="[item.route]"
+             routerLinkActive="active-nav-route">
             <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
             {{ item.label }}
           </a>

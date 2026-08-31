@@ -1,15 +1,9 @@
-// See: styles.scss
+.active-nav-route {
+  background-color: rgba(63, 81, 181, 0.12) !important; /* Soft Primary color highlight tinted wash */
+  color: #3f51b5 !important;
+  font-weight: 600;
 
-/*
-
-$sidenav-width: 320px;
-
-.mat-sidenav-container {
-  height: 100%;
+  mat-icon {
+    color: #3f51b5 !important;
+  }
 }
-
-.mat-sidenav {
-  width: $sidenav-width;
-}
-
-*/

@@ -1,6 +1,8 @@
+@use 'fonts.scss';
+
 @use '@angular/material' as mat;
 
-@use 'form-js-styles' as formJS;
+@use 'form-js' as formJS;
 
 contact, account {
   @include formJS.styles();
