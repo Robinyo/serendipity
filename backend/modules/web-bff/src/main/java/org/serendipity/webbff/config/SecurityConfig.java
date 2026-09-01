@@ -15,12 +15,20 @@ import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.function.HandlerFilterFunction;
 import org.springframework.web.servlet.function.ServerResponse;
 
 import org.springframework.cloud.gateway.server.mvc.filter.TokenRelayFilterFunctions;
 
 import java.util.List;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.security.web.csrf.CsrfToken;
 
 @Configuration
 @EnableWebSecurity
@@ -87,10 +95,24 @@ public class SecurityConfig {
           request -> request.getRequestURI().startsWith("/api/") || request.getRequestURI().startsWith("/v2/")
         )
       )
+
+      // Add your cookie synchronizer filter right after Basic Authentication rules!
+      .addFilterAfter(new CsrfCookieFilter(), org.springframework.security.web.authentication.www.BasicAuthenticationFilter.class)
+
       .csrf(csrf -> csrf
         .ignoringRequestMatchers("/actuator/**")
         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-        .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
+        // Use a standard CsrfTokenRequestAttributeHandler instead of the XOR handler.
+        // We override the execution handle method to bypass the strict XOR token generation,
+        // forcing the gateway to validate the raw, plain UUID header string natively!
+        .csrfTokenRequestHandler((request, response, csrfToken) -> {
+          CsrfTokenRequestAttributeHandler handler = new CsrfTokenRequestAttributeHandler();
+
+          // Explicitly force the handler to read raw string values instead of deferred XOR blocks
+          request.setAttribute(org.springframework.security.web.csrf.CsrfToken.class.getName(), csrfToken);
+
+          handler.handle(request, response, csrfToken);
+        })
       );
 
     return http.build();
@@ -119,6 +141,24 @@ public class SecurityConfig {
   @Bean
   public HandlerFilterFunction<ServerResponse, ServerResponse> globalTokenRelayFilter() {
     return TokenRelayFilterFunctions.tokenRelay();
+  }
+
+  private static class CsrfCookieFilter extends OncePerRequestFilter {
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+      throws ServletException, java.io.IOException {
+
+      // ⚡ THE ARCHITECTURAL SYNCHRONIZER:
+      // Force the lazy deferred Spring CsrfToken instance to resolve right now!
+      // This ensures the raw XSRF-TOKEN cookie is persistently written to the browser on every request.
+      CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
+      if (csrfToken != null) {
+        // Accessing the token string forces Spring to commit the cookie to the HTTP response instantly!
+        csrfToken.getToken();
+      }
+
+      filterChain.doFilter(request, response);
+    }
   }
 
 }

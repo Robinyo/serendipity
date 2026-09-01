@@ -140,11 +140,42 @@ export class Contact extends AbstractItem<ContactModel> {
     this.patchDtoWithFormData(targetPayload, rawFormData);
 
     // Deep clone a tracking version to pass over the wire network to your backend proxy
-    const networkPayload = JSON.parse(JSON.stringify(targetPayload));
+    let networkPayload = JSON.parse(JSON.stringify(targetPayload));
 
-    // ⚡ FIX 2: Safely delete the address mapping property strictly on the network payload,
-    // leaving your local component state reference model intact for consecutive saves!
+    // Delete presentation and structural collection keys strictly from the wire payload
+    // to prevent Hibernate verification and data validation conflicts!
     delete networkPayload.address;
+    delete networkPayload.organisation;
+
+    // Strip the string UUID out of the root ID property so Jackson doesn't try
+    // to map a string UUID into an internal database java.lang.Long primary key field!
+    if (networkPayload.id) delete networkPayload.id;
+    if (networkPayload.party && networkPayload.party.id) delete networkPayload.party.id;
+
+    // Strip out secondary arrays that Spring Data validates strictly
+    if (networkPayload.names) delete networkPayload.names;
+    if (networkPayload.party?.roles) delete networkPayload.party.roles;
+
+    // Strip read-only HATEOAS link metrics
+    if (networkPayload._links) delete networkPayload._links;
+    if (networkPayload.party?._links) delete networkPayload.party._links;
+
+    // Loop through arrays and strip their local links as well
+    if (Array.isArray(networkPayload.party?.addresses)) {
+      networkPayload.party.addresses.forEach((addr: any) => {
+        if (addr.id) delete addr.id;
+        if (addr._links) delete addr._links;
+      });
+    }
+
+    if (Array.isArray(networkPayload.party?.roles)) {
+      networkPayload.party.roles.forEach((role: any) => {
+        if (role._links) delete role._links;
+      });
+    }
+
+    // Recursively scrub the remaining graph to convert empty strings ("") into clean null values
+    networkPayload = this.deepSanitizePayload(networkPayload);
 
     this.update(targetPayload, networkPayload);
   }
@@ -219,8 +250,14 @@ export class Contact extends AbstractItem<ContactModel> {
       if (key === 'address') return;
 
       if (key in dto) {
-        const formValue = formData[key];
+        let formValue = formData[key];
         const dtoValue = dto[key];
+
+        // Convert empty layout strings ("") back to clean null pointers
+        // so Spring Boot accepts them as standard Java null variables!
+        if (formValue === '') {
+          formValue = null;
+        }
 
         if (
           formValue && typeof formValue === 'object' && !Array.isArray(formValue) &&
@@ -235,6 +272,31 @@ export class Contact extends AbstractItem<ContactModel> {
 
     return dto;
   }
+
+  // Recursively traverses arrays, objects, and root elements, converting any
+  // empty strings ("") into clean JavaScript null parameters for Jackson compatibility.
+
+  private deepSanitizePayload(obj: any): any {
+    if (obj === '') {
+      return null;
+    }
+
+    if (obj === null || typeof obj !== 'object') {
+      return obj;
+    }
+
+    if (Array.isArray(obj)) {
+      return obj.map(item => this.deepSanitizePayload(item));
+    }
+
+    const sanitizedObj: any = {};
+    Object.keys(obj).forEach(key => {
+      sanitizedObj[key] = this.deepSanitizePayload(obj[key]);
+    });
+
+    return sanitizedObj;
+  }
+
 
 }
 

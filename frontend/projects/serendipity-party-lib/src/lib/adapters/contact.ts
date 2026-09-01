@@ -4,7 +4,7 @@ import { Adapter } from 'serendipity-utils-lib';
 
 import { PartyAdapter } from './party';
 
-import { ContactModel, createDefaultPartyRefModel } from '../models/models';
+import { ContactModel, createDefaultPartyRefModel, PartyRefModel } from '../models/models';
 
 const CONTACT = "Contact";
 const ACCOUNT = "Account";
@@ -22,10 +22,9 @@ export class ContactAdapter extends PartyAdapter implements Adapter<ContactModel
 
     this.logger.info('Item: ' + JSON.stringify(item, null, 2));
 
-    // 1. Instantiate a new OrganisationRefModel instance (or default to empty strings)
-    let organisation = createDefaultPartyRefModel();
+    let organisation: PartyRefModel = createDefaultPartyRefModel();
 
-    // 2. Extract organisation properties from roles cleanly using .find()
+    // Extract Organisation properties from roles cleanly using .find()
     const accountRole = item.party?.roles?.find(
       (role: any) => role.role === CONTACT && role.reciprocalRole === ACCOUNT
     );
@@ -41,18 +40,18 @@ export class ContactAdapter extends PartyAdapter implements Adapter<ContactModel
 
     }
 
-    // 3. Extract primary address with null-safety
+    // Extract primary address with null-safety
     const primaryAddress = item.party?.addresses?.[0] ?? null;
 
-    // 4. Compute photo URL
-    const photoUrl = item.photoUrl?.includes('avatar.svg')
-      ? 'assets/' + item.photoUrl
-      : this.getUrlPrefix() + (item.photoUrl || '');
+    // Compute photo URL
+    // const photoUrl = item.photoUrl?.includes('avatar.svg')
+    //   ? 'assets/' + item.photoUrl
+    //   : this.getUrlPrefix() + (item.photoUrl || '');
 
-    // 5. Build summary Contact payload
+    // Build Contact payload
     const contact: any = {
       ...item,
-      photoUrl,
+      // photoUrl,
       address: primaryAddress,
       organisation
     };

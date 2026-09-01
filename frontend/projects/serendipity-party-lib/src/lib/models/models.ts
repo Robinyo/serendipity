@@ -135,7 +135,6 @@ export interface IndividualModel {
   dateOfDeath?: string;
   placeOfDeath?: string;
   countryOfDeath?: string;
-  organisation?: PartyRefModel;
 }
 
 export interface OrganisationModel {
@@ -146,15 +145,18 @@ export interface OrganisationModel {
   faxNumber?: string;
   preferredContactMethod?: string;
   establishmentDate?: string;
-  individual?: PartyRefModel;
 }
 
 export interface ContactModel extends IndividualModel {
   address?: AddressModel;
+  organisation?: PartyRefModel;
 }
 
 export interface ContactSummaryModel extends IndividualSummaryModel {}
 
-export interface AccountModel extends OrganisationModel {}
+export interface AccountModel extends OrganisationModel {
+  address?: AddressModel;
+  individual?: PartyRefModel;
+}
 
 export interface AccountSummaryModel extends OrganisationSummaryModel {}

@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -13,8 +13,6 @@ import { ContactModel, ContactSummaryModel } from '../../models/models';
   providedIn: 'root'
 })
 export class PartyService extends AbstractCollectionService {
-
-  private http = inject(HttpClient);
 
   // Contact is a synonym for Individual
   private readonly contactsApi = '/api/party-service/individuals';
@@ -56,7 +54,7 @@ export class PartyService extends AbstractCollectionService {
     }
 
     const options = {
-      ...this.getDefaultHttpGetOptions(),
+      // ...this.getDefaultHttpGetOptions(),
       params: params
     };
 
@@ -70,7 +68,7 @@ export class PartyService extends AbstractCollectionService {
 
     this.logger.info('Party Service: findContactById()');
 
-    return this.http.get<ContactModel>(`${this.contactsApi}/${id}`, this.getDefaultHttpGetOptions()).pipe(
+    return this.http.get<ContactModel>(`${this.contactsApi}/${id}`, this.getDefaultHttpOptions()).pipe(
 
       map((response: any) => this.adapter.adapt(response)),
 
@@ -84,7 +82,7 @@ export class PartyService extends AbstractCollectionService {
 
     this.logger.info('Party Service: createContact()');
 
-    return this.http.post<ContactModel>(`${this.contactsApi}`, contact, this.getDefaultHttpPostOptions()).pipe(
+    return this.http.post<ContactModel>(`${this.contactsApi}`, contact, this.getDefaultHttpOptions()).pipe(
       tap(() => {
         this.logger.info('Party Service: createContact() completed');
       })
@@ -96,7 +94,7 @@ export class PartyService extends AbstractCollectionService {
 
     this.logger.info('Party Service: updateContact()');
 
-    return this.http.put<ContactModel>(`${this.contactsApi}/${id}`, contact, this.getDefaultHttpPutOptions()).pipe(
+    return this.http.put<ContactModel>(`${this.contactsApi}/${id}`, contact, this.getDefaultHttpOptions()).pipe(
       tap(() => {
         this.logger.info('Party Service: updateContact() completed');
       })
@@ -108,7 +106,7 @@ export class PartyService extends AbstractCollectionService {
 
     this.logger.info('Party Service: deleteContact()');
 
-    return this.http.delete<void>(`${this.contactsApi}/${id}`, this.getDefaultHttpDeleteOptions()).pipe(
+    return this.http.delete<void>(`${this.contactsApi}/${id}`, this.getDefaultHttpOptions()).pipe(
       tap(() => {
         this.logger.info('Party Service: deleteContact() completed');
       })

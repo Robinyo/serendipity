@@ -1,4 +1,82 @@
 import { Injectable} from '@angular/core';
+
+import { AbstractCollectionService } from 'serendipity-utils-lib';
+import {HttpHeaders} from '@angular/common/http';
+
+@Injectable()
+export class CollectionService extends AbstractCollectionService {
+
+  protected override getDefaultHttpGetOptions(params: any = undefined): any {
+
+    // Manually instantiate distinct, override-safe headers
+    const xmlHeaders = new HttpHeaders({
+      'Accept': 'text/xml, text/plain'
+    });
+
+    // Set responseType cleanly to 'text' as a primitive literal type string config
+    let options = {
+      headers: xmlHeaders,
+      responseType: 'text' as const,
+      params: undefined
+    };
+
+    if (params) {
+
+      options.params = params;
+
+      this.logger.info('params: ' + JSON.stringify(params, null, 2));
+
+    }
+
+    // this.logger.info('httpOptions: ' + JSON.stringify(options, null, 2));
+
+    return options;
+  }
+
+  protected override getDefaultHttpDeleteOptions(params: any = undefined): any {
+    return this.getDefaultHttpGetOptions(params);
+  }
+
+  protected override getDefaultHttpPostOptions(params: any = undefined): any {
+
+    // Manually instantiate distinct, override-safe headers
+    const xmlHeaders = new HttpHeaders({
+      'Content-Type': 'text/xml',
+      'Accept': 'text/xml, text/plain'
+    });
+
+    // Set responseType cleanly to 'text' as a primitive literal type string config
+    let options = {
+      headers: xmlHeaders,
+      responseType: 'text' as const,
+      params: undefined
+    };
+
+    if (params) {
+
+      options.params = params;
+
+      this.logger.info('params: ' + JSON.stringify(params, null, 2));
+
+    }
+
+    // this.logger.info('httpOptions: ' + JSON.stringify(options, null, 2));
+
+    return options;
+
+  }
+
+  protected override getDefaultHttpPutOptions(params: any = undefined): any {
+    return this.getDefaultHttpPostOptions(params);
+  }
+
+}
+
+
+
+/*
+
+import { Injectable} from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 
 import { AbstractCollectionService, HttpOptions } from 'serendipity-utils-lib';
@@ -69,3 +147,5 @@ export class CollectionService extends AbstractCollectionService {
   }
 
 }
+
+*/

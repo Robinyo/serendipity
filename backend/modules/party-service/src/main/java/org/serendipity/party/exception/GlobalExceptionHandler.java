@@ -35,6 +35,55 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(Exception.class)
   public ResponseEntity<ProblemDetail> handleGlobalException(Exception ex) {
 
+    // This prints the absolute raw stack error trace to your Docker/Spring terminal logs
+    log.error("An unexpected error occurred during entity persistence processing", ex);
+
+    // Pass ex.getMessage() over the wire so it displays in your browser dev console!
+    ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
+      HttpStatus.INTERNAL_SERVER_ERROR,
+      ex.getMessage() != null ? ex.getMessage() : "An unexpected error occurred. Please try again later."
+    );
+
+    problemDetail.setTitle("Internal Server Error Fault");
+    problemDetail.setProperty("timestamp", Instant.now());
+
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(problemDetail);
+  }
+
+  // Overriding the built-in method resolves the ambiguous mapping conflict instantly!
+  @Override
+  protected ResponseEntity<Object> handleHttpMessageNotReadable(
+    org.springframework.http.converter.HttpMessageNotReadableException ex,
+    org.springframework.http.HttpHeaders headers,
+    org.springframework.http.HttpStatusCode status,
+    org.springframework.web.context.request.WebRequest request) {
+
+    log.error("Jackson was unable to parse the incoming JSON payload", ex);
+
+    java.util.Map<String, Object> errorDetails = new java.util.LinkedHashMap<>();
+    errorDetails.put("timestamp", java.time.Instant.now());
+    errorDetails.put("status", status.value());
+    errorDetails.put("error", "JSON Parsing Mismatch");
+
+    // Extract the raw nested exception root message (e.g., Unrecognized field "organisation")
+    String rootCauseMessage = ex.getRootCause() != null ? ex.getRootCause().getMessage() : ex.getMessage();
+    errorDetails.put("message", rootCauseMessage);
+
+    // Force Spring to return standard JSON universally, bypassing the media type clashing loop!
+    return ResponseEntity
+      .status(status)
+      .contentType(org.springframework.http.MediaType.APPLICATION_JSON)
+      .body(errorDetails);
+  }
+
+}
+
+/*
+
+  // Fallback for unexpected internal server errors
+  @ExceptionHandler(Exception.class)
+  public ResponseEntity<ProblemDetail> handleGlobalException(Exception ex) {
+
     log.error("An unexpected error occurred", ex);
 
     ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
@@ -47,4 +96,4 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(problemDetail);
   }
 
-}
+ */
