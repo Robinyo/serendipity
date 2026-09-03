@@ -15,7 +15,7 @@ import { FormJsWrapper } from 'serendipity-camunda-lib';
 
 import { AbstractPartyItem } from '../../components/abstract/PartyItem';
 import { AccountModel, AccountUpdateDto } from '../../models/models';
-// import { AddressModel } from '../../models/address';
+import { AccountAdapter } from '../../adapters/account';
 
 import { AccountsService } from '../../services/accounts/accounts';
 
@@ -45,6 +45,8 @@ import { ACCOUNTS, Tab } from './constants';
 export class Account extends AbstractPartyItem<AccountUpdateDto> {
 
   private accountsService: AccountsService = inject(AccountsService);
+
+  private adapter: AccountAdapter = inject(AccountAdapter);
 
   constructor() {
 
@@ -98,7 +100,6 @@ export class Account extends AbstractPartyItem<AccountUpdateDto> {
 
     const checkResult = this.canDeactivate();
 
-    // ⚡ THE ARCHITECTURAL STREAM RESOLVER:
     // If the check returned a direct primitive boolean (e.g. form is clean), wrap it in an Observable.
     // Otherwise, use the existing dialog afterClosed() stream directly!
     const closingStream$: Observable<boolean> = typeof checkResult === 'boolean'
@@ -118,7 +119,59 @@ export class Account extends AbstractPartyItem<AccountUpdateDto> {
   }
 
   public onDeactivate(): void {
+
     this.logger.info('Account Component: onDeactivate()');
+
+    this.dialogService.openConfirm({
+      title: 'Delete Account',
+      message: 'Are you sure you want to delete this account?',
+      acceptButton: 'OK',
+      cancelButton: 'CANCEL'
+    }).afterClosed().subscribe((confirmed: boolean) => {
+
+      this.logger.info(`Delete validation confirmation response resolved: ${confirmed}`);
+
+      if (confirmed) {
+
+        queueMicrotask(() => this.isLoading.set(true));
+
+        if (!this.form || !this.form.isValid()) {
+          this.logger.error('Form submission blocked: Invalid form data.');
+          return;
+        }
+
+        // Capture today's calendar date in standard ISO format (YYYY-MM-DD)
+        const todayIsoString = new Date().toISOString().split('T')[0];
+
+        const softDeleteDto = {
+
+          // type
+          // legalEntityType
+
+          name: this.item.name,
+          email: this.item.email || null,
+          phoneNumber: this.item.phoneNumber || null,
+          faxNumber: this.item.faxNumber || null,
+          preferredContactMethod: this.item.preferredContactMethod || null,
+          establishmentDate: this.item.establishmentDate || null,
+          toDate: todayIsoString
+
+        };
+
+        this.logger.info('Dispatched Network payload: ' + JSON.stringify(softDeleteDto, null, 2));
+
+        this.accountsService.update(this.id(), softDeleteDto).subscribe({
+          next: (response: AccountModel) => {
+            this.logger.info('Account Component: update() successfully resolved over network.');
+          },
+          error: (err) => {
+            this.logger.error('Account Component: update execution fault interceptor', err);
+          }
+        });
+
+      }
+
+    });
   }
 
   public onNew(): void {
@@ -140,6 +193,9 @@ export class Account extends AbstractPartyItem<AccountUpdateDto> {
 
     const updateDto = {
 
+      // type
+      // legalEntityType
+
       name: rawFormData.name,
       email: rawFormData.email || null,
       phoneNumber: rawFormData.phoneNumber || null,
@@ -147,28 +203,21 @@ export class Account extends AbstractPartyItem<AccountUpdateDto> {
       preferredContactMethod: rawFormData.preferredContactMethod || null,
       establishmentDate: rawFormData.establishmentDate || null
 
-      /*
-
-      address: rawFormData.address ? {
-        name: rawFormData.address.name,
-        line1: rawFormData.address.line1,
-        line2: rawFormData.address.line2,
-        city: rawFormData.address.city,
-        state: rawFormData.address.state,
-        postalCode: rawFormData.address.postalCode,
-        country: rawFormData.address.country,
-        addressType: rawFormData.address.addressType || 'Mailing'
-      } : undefined
-
-      */
-
     };
 
     this.logger.info('Dispatched Network payload: ' + JSON.stringify(updateDto, null, 2));
 
     this.accountsService.update(this.id(), updateDto).subscribe({
       next: (response: AccountModel) => {
+
         this.logger.info('Account Component: update() successfully resolved over network.');
+
+        this.item = this.adapter.adapt(response);
+
+        if (this.form) {
+          this.form.resetPristineState(this.item);
+        }
+
       },
       error: (err) => {
         this.logger.error('Account Component: update execution fault interceptor', err);
@@ -189,6 +238,22 @@ export class Account extends AbstractPartyItem<AccountUpdateDto> {
   }
 
 }
+
+
+/*
+
+address: rawFormData.address ? {
+  name: rawFormData.address.name,
+  line1: rawFormData.address.line1,
+  line2: rawFormData.address.line2,
+  city: rawFormData.address.city,
+  state: rawFormData.address.state,
+  postalCode: rawFormData.address.postalCode,
+  country: rawFormData.address.country,
+  addressType: rawFormData.address.addressType || 'Mailing'
+} : undefined
+
+*/
 
 
 /*

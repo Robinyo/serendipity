@@ -23,5 +23,6 @@ public class PartyModel extends RepresentationModel<PartyModel> {
   private String displayName;
   private Set<AddressModel> addresses;
   private Set<RoleModel> roles;
+  private String toDate;
 
 }

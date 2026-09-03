@@ -62,6 +62,10 @@ public class Party {
   @Builder.Default
   private String displayName = "";
 
+  private LocalDate fromDate;
+
+  private LocalDate toDate;
+
   // Because Party has @ManyToMany relationships, if you want Envers to track when addresses or roles are
   // attached/detached from a party, both Address and Role entities must also be annotated with @Audited.
 
@@ -80,10 +84,6 @@ public class Party {
     inverseJoinColumns = @JoinColumn(name = "roleId")
   )
   private Set<Role> roles;
-
-  private LocalDate fromDate;
-
-  private LocalDate toDate;
 
   // Every update overwrites updatedAt and updatedBy. It only stores the latest snapshot of the record.
   // Hibernate Envers (Point-in-Time Auditing): Tracks the entire history of every change over time by writing revision

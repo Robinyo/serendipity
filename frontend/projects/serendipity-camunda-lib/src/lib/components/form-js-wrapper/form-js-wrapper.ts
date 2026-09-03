@@ -71,10 +71,20 @@ export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit {
 
       // 1. Pre-calculate states outside the Angular zone to see if anything actually changed
       map((event: any) => {
-        const currentData = event.data;
         const currentErrors = event.errors || {};
 
-        // Calculate deep diff instead of raw string comparison
+        // 🚀 THE GENERALISED SCHEMA FILTER:
+        // Extract only the fields actively declared on screen to prevent structural pollution
+        const schemaWhitelist = this.extractEditableKeysFromSchema();
+        const currentData: any = {};
+
+        schemaWhitelist.forEach(key => {
+          if (key in event.data) {
+            currentData[key] = event.data[key];
+          }
+        });
+
+        // Calculate deep diff against a perfectly matched baseline structure
         const changes: ObjectDiff = getDeepDiff(this.initialData, currentData);
         const isDirty = Object.keys(changes).length > 0;
         const isValid = Object.keys(currentErrors).length === 0;
@@ -83,7 +93,7 @@ export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit {
           this.logger.info('Detected differences: ' + JSON.stringify(changes, null, 2) + '\n');
         }
 
-        // Return a combined payload of the raw data and the boolean states
+        // Return a combined payload of the filtered data and the boolean states
         return { event, isDirty, isValid, stateKey: `${isDirty}-${isValid}` };
       }),
 
@@ -132,6 +142,54 @@ export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit {
     }
   }
 
+  // Call this method after a successful HTTP PUT save operation.
+  // It synchronises your baseline data tracking reference to clear the dirty flag!
+
+  // Synchronises your baseline data tracking reference to clear the dirty flag cleanly!
+  // Automatically isolates fields using schema reflection to prevent structural pollution.
+
+  public resetPristineState(updatedData: any): void {
+
+    this.logger.info('FormJsWrapper Component: resetPristineState() aligning tracking baselines via schema reflection');
+
+    // 1. Dynamic Extraction: Discover exactly which fields on-screen can change
+    const schemaWhitelist = this.extractEditableKeysFromSchema();
+
+    // 2. Clone the adapted parent model state
+    const cleanAdaptedData = JSON.parse(JSON.stringify(updatedData));
+    const normalizedData: any = {};
+
+    // 3. 🚀 GENERALISED WHITE-LISTING:
+    // Only map values into our tracking baseline if they are actively rendered in the UI!
+    // This cleanly drops metadata like id, type, addresses, and individual automatically.
+    schemaWhitelist.forEach(key => {
+      if (key in cleanAdaptedData) {
+        normalizedData[key] = cleanAdaptedData[key];
+      }
+    });
+
+    // 4. THE USER-INTERACTION ALIGNER:
+    // Sync null vs undefined discrepancies between the server response and the UI state engine
+    if (this.formInstance) {
+      const activeFormState = this.formInstance.submit().data;
+
+      Object.keys(normalizedData).forEach(key => {
+        const val = normalizedData[key];
+
+        if ((val === null || val === '') && (activeFormState[key] === undefined || activeFormState[key] === '')) {
+          normalizedData[key] = activeFormState[key];
+        }
+      });
+    }
+
+    // 5. Commit the pristine baseline state values securely
+    this.initialData = normalizedData;
+    this.dirty = false;
+    this.changeDetectorRef.markForCheck();
+
+    this.logger.info('FormJsWrapper Component: Pristine state synchronized successfully.');
+  }
+
   protected subscribe(): void {
     this.logger.info('FormJsWrapper Component: subscribe()');
     this.loadForm();
@@ -142,26 +200,6 @@ export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit {
     this.schema = null;
     this.data = {};
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
-  }
-
-  private async loadForm(): Promise<void> {
-    this.logger.info('FormJsWrapper Component: loadForm()');
-
-    if (this.schema) {
-      try {
-        this.initialData = this.data;
-        await this.formInstance.importSchema(this.schema, this.data);
-
-        // This listener executes purely outside Angular's zone on every keyup.
-        // It bypasses Angular tracking entirely until debounce completes.
-        this.formInstance.on('changed', (event: any) => {
-          this.formChanges$.next(event);
-        });
-
-      } catch (err) {
-        this.logger.error(err);
-      }
-    }
   }
 
   //
@@ -188,7 +226,177 @@ export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit {
 
   }
 
+  //
+  // Misc
+  //
+
+  private async loadForm(): Promise<void> {
+
+    this.logger.info('FormJsWrapper Component: loadForm()');
+
+    if (this.schema) {
+      try {
+        // 🚀 THE INITIALISATION BALANCE:
+        // Extract the schema whitelist right away to shape initialData perfectly on page load!
+        const schemaWhitelist = this.extractEditableKeysFromSchema();
+        const cleanInitialData = JSON.parse(JSON.stringify(this.data || {}));
+        const filteredInitialData: any = {};
+
+        schemaWhitelist.forEach(key => {
+          if (key in cleanInitialData) {
+            filteredInitialData[key] = cleanInitialData[key];
+          }
+        });
+
+        this.initialData = filteredInitialData;
+
+        // Load the UI framework instance canvas
+        await this.formInstance.importSchema(this.schema, this.data);
+
+        // This listener executes purely outside Angular's zone on every keyup
+        this.formInstance.on('changed', (event: any) => {
+          this.formChanges$.next(event);
+        });
+
+      } catch (err) {
+        this.logger.error(err);
+      }
+    }
+  }
+
+  // Inspects the Camunda form-js JSON structure to compile a whitelist
+  // of keys that are explicitly bound to user-editable fields!
+
+  private extractEditableKeysFromSchema(): Set<string> {
+    const keys = new Set<string>();
+
+    if (this.schema && Array.isArray(this.schema.components)) {
+      this.schema.components.forEach((component: any) => {
+        // Only collect components that possess a valid data model binding 'key'
+        if (component.key && typeof component.key === 'string') {
+          keys.add(component.key);
+        }
+      });
+    }
+
+    return keys;
+  }
+
 }
+
+
+
+/*
+
+  ngOnInit(): void {
+
+    this.logger.info('FormJsWrapper Component: ngOnInit()');
+
+    this.formInstance = new Form({
+      container: this.formWrapper.nativeElement
+    });
+
+    // Handle form change processing with a 200ms debounce
+    const changeSubscription = this.formChanges$.pipe(
+      debounceTime(200),
+
+      // 1. Pre-calculate states outside the Angular zone to see if anything actually changed
+      map((event: any) => {
+        const currentData = event.data;
+        const currentErrors = event.errors || {};
+
+        // Calculate deep diff instead of raw string comparison
+        const changes: ObjectDiff = getDeepDiff(this.initialData, currentData);
+        const isDirty = Object.keys(changes).length > 0;
+        const isValid = Object.keys(currentErrors).length === 0;
+
+        if (isDirty) {
+          this.logger.info('Detected differences: ' + JSON.stringify(changes, null, 2) + '\n');
+        }
+
+        // Return a combined payload of the raw data and the boolean states
+        return { event, isDirty, isValid, stateKey: `${isDirty}-${isValid}` };
+      }),
+
+      // 2. Only pass the data forward if the combined dirty/valid state combination flipped
+      distinctUntilChanged((prev, curr) => prev.stateKey === curr.stateKey)
+
+    ).subscribe(({ event, isDirty, isValid }) => {
+
+      // 3. This block now runs ONLY when state changes (e.g., pristine -> dirty, or invalid -> valid)
+      this.zone.run(() => {
+        this.dirty = isDirty;
+        this.valid = isValid;
+
+        // 4. Logs will now only fire exactly when the states cross a threshold
+        if (this.dirty) {
+          this.logger.info('FormJsWrapper Component: User has modified fields');
+        } else {
+          this.logger.info('FormJsWrapper Component: Form data matches initial content');
+        }
+
+        if (this.valid) {
+          this.logger.info('Task Component: All required fields are complete');
+        } else {
+          this.logger.info('Task Component: Form has errors');
+        }
+
+        // 5. Request a UI check only on state updates
+        this.changeDetectorRef.markForCheck();
+      });
+
+    });
+
+    this.subscriptions.push(changeSubscription);
+  }
+
+
+  private async loadForm(): Promise<void> {
+
+    this.logger.info('FormJsWrapper Component: loadForm()');
+
+    if (this.schema) {
+      try {
+        this.initialData = this.data;
+        await this.formInstance.importSchema(this.schema, this.data);
+
+        // This listener executes purely outside Angular's zone on every keyup.
+        // It bypasses Angular tracking entirely until debounce completes.
+        this.formInstance.on('changed', (event: any) => {
+          this.formChanges$.next(event);
+        });
+
+      } catch (err) {
+        this.logger.error(err);
+      }
+    }
+  }
+
+  public resetPristineState(updatedData: any): void {
+
+    this.logger.info('FormJsWrapper Component: resetPristineState()');
+
+    // Establish the new baseline for future change comparison passes
+    this.initialData = JSON.parse(JSON.stringify(updatedData));
+
+    // Form-js retains empty controls as undefined/empty strings. If the form instance exists,
+    // we extract its normalized schema output directly to align our comparison baselines!
+    if (this.formInstance) {
+      const { data } = this.formInstance.submit();
+
+      // Update our initial data reference to match exactly what form-js internally resolved,
+      // smoothing over any null vs undefined vs empty string type discrepancies!
+      this.initialData = JSON.parse(JSON.stringify(data));
+    }
+
+    // Clear the dirty state flag instantly
+    this.dirty = false;
+
+    // Inform the view engine to refresh presentation elements
+    this.changeDetectorRef.markForCheck();
+  }
+
+*/
 
 /*
 

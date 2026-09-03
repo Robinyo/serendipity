@@ -97,6 +97,22 @@ export class AccountsService extends AbstractCollectionService {
 
 /*
 
+public delete(id: string): Observable<void> {
+
+  this.logger.info('Accounts Service: delete()');
+
+  return this.http.delete<void>(`${this.organisationsApi}/${id}`, this.getDefaultHttpOptions()).pipe(
+    tap(() => {
+      this.logger.info('Accounts Service: delete() completed');
+    })
+  );
+
+}
+
+*/
+
+/*
+
 export const ORGANISATIONS = '/api/party-service/organisations/';
 export const ORGANISATIONS_WITHOUT_A_TRAILING_SLASH = '/api/party-service/organisations';
 

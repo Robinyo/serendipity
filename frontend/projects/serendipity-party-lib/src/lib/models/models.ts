@@ -204,12 +204,15 @@ export interface ContactUpdateDto {
 }
 
 export interface AccountUpdateDto {
+  type?: string;
+  legalEntityType?: string;
   name?: string;
-  email?: string;
-  phoneNumber?: string;
-  faxNumber?: string;
-  preferredContactMethod?: string;
-  establishmentDate?: string;
+  email?: string | null;
+  phoneNumber?: string | null;
+  faxNumber?:string | null;
+  preferredContactMethod?: string | null;
+  establishmentDate?: string | null;
+  toDate?: string | null;
   address?: AddressUpdateDto;
   individual?: PartyRefModel;
 }

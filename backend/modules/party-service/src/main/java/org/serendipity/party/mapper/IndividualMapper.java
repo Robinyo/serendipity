@@ -6,7 +6,7 @@ import org.serendipity.party.entity.Individual;
 
 @Mapper(
   componentModel = MappingConstants.ComponentModel.SPRING,
-  nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
+  nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_NULL
 )
 public interface IndividualMapper {
 
@@ -23,3 +23,5 @@ public interface IndividualMapper {
   void updateEntityFromDto(IndividualUpdateDto dto, @MappingTarget Individual entity);
 
 }
+
+// nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE

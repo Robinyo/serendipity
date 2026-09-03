@@ -46,6 +46,7 @@ public class PartyAssembler extends RepresentationModelAssemblerSupport<Party, P
 
     // Map publicId to id on the DTO
     model.setId(publicId);
+
     model.setType(entity.getType());
     model.setLegalEntityType(entity.getLegalEntityType());
     model.setDisplayName(entity.getDisplayName());
@@ -67,6 +68,12 @@ public class PartyAssembler extends RepresentationModelAssemblerSupport<Party, P
         .collect(Collectors.toSet()));
     } else {
       model.setRoles(Collections.emptySet());
+    }
+
+    if (entity.getToDate() != null) {
+      model.setToDate(entity.getToDate().toString());
+    } else {
+      model.setToDate(null);
     }
 
     // Add contextual sub-resource link for party roles

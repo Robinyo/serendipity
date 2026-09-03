@@ -28,10 +28,9 @@ export class AccountAdapter extends PartyAdapter implements Adapter<AccountModel
 
     const item = {
 
-      id: response.id,
-
-      displayName: response.party?.displayName,
+      type: response.party?.type,
       legalEntityType: response.party?.legalEntityType,
+      toDate: response.party?.toDate,
 
       name: response.name,
       email: response.email,
@@ -42,7 +41,12 @@ export class AccountAdapter extends PartyAdapter implements Adapter<AccountModel
 
     };
 
+    // Extract primary address with null-safety
+    const primaryAddress = response.party?.addresses?.[0] ?? null;
+
     let individual: PartyRefModel = createDefaultPartyRefModel();
+
+    if (primaryAddress?._links) delete primaryAddress._links;
 
     // Find the Account's Primary Contact
     const primaryContact = response.party?.roles?.find(
@@ -59,9 +63,6 @@ export class AccountAdapter extends PartyAdapter implements Adapter<AccountModel
       individual.phoneNumber = primaryContact.reciprocalPartyPhoneNumber ?? '';
 
     }
-
-    // Extract primary address with null-safety
-    const primaryAddress = response.party?.addresses?.[0] ?? null;
 
     // Build flat, key-value data structure
     const account: any = {
