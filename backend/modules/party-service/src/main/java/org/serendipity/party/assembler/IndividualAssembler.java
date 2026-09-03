@@ -85,7 +85,6 @@ public class IndividualAssembler extends RepresentationModelAssemblerSupport<Ind
       model.setDateOfBirth(entity.getDateOfBirth().toString());
     }
 
-
     model.setPlaceOfBirth(entity.getPlaceOfBirth());
     model.setCountryOfBirth(entity.getCountryOfBirth());
 

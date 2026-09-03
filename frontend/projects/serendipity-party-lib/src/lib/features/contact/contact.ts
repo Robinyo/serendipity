@@ -7,18 +7,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 
-// import { ActivityBar, CommandBar, Item } from 'serendipity-components-lib';
-import { ActivityBar, AbstractItem, CommandBar } from 'serendipity-components-lib';
+import { ActivityBar, CommandBar } from 'serendipity-components-lib';
 
 import { FormJsWrapper } from 'serendipity-camunda-lib';
 
 import { latLng, LatLng, LatLngBounds, Layer, LeafletEvent, LeafletMouseEvent, Map, MapOptions, tileLayer } from 'leaflet';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 
-import { PartyService } from '../../services/party/party';
-
+import { AbstractPartyItem } from '../../components/abstract/PartyItem';
 import { ContactModel } from '../../models/models';
 
+import { PartyService } from '../../services/party/party';
 // import { ElectoralDivisionsService } from '../../services/electoral-divisions/electoral-divisions';
 
 import { CONTACTS } from './constants';
@@ -33,10 +32,6 @@ class MapLayersControl extends LeafletControlLayersConfig {}
 const DEFAULT_ZOOM = 13;
 const DEFAULT_LATITUDE = -32.841;
 const DEFAULT_LONGITUDE = 151.753;
-
-const ACCORDION = 'accordion';
-const CARD = 'card';
-
 
 @Component({
   selector: 'contact',
@@ -61,18 +56,9 @@ const CARD = 'card';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush // ⚡ Shift to maximum rendering velocity speeds
 })
-export class Contact extends AbstractItem<ContactModel> {
+export class Contact extends AbstractPartyItem<ContactModel> {
 
-  public metadata = input<any>();
-
-  // Type-Safe Entity Declarations
-  public item!: ContactModel;
-  public schema: any;
-
-  @ViewChild('formRef') form!: FormJsWrapper;
-
-  public viewMode = CARD;
-  public selectedTabIndex = 0;
+  // @ViewChild('formRef') form!: FormJsWrapper;
 
   private partyService = inject(PartyService);
 
@@ -80,33 +66,22 @@ export class Contact extends AbstractItem<ContactModel> {
     super();
 
     effect(() => {
+
       const resolvedData = this.metadata();
 
       this.logger.info(`Switched view viewport target context to Party Id: ${this.id()}`);
 
-      if (resolvedData?.party) {
-        this.item = resolvedData.party;
+      if (resolvedData?.contact) {
+        this.item = resolvedData.contact;
         this.schema = resolvedData.generalInformationFormSchema;
       }
+
     });
+
   }
 
   //
-  // Validation Gates
-  //
-
-  public isDirty(): boolean {
-    this.logger.info('Contact Component: isDirty()');
-    return this.form ? this.form.isDirty() : false;
-  }
-
-  public isValid(): boolean {
-    this.logger.info('Contact Component: isValid()');
-    return this.form ? this.form.isValid() : false;
-  }
-
-  //
-  // Command Bar Infrastructure Handlers
+  // Command Bar Handlers
   //
 
   public onClose(): void {
@@ -123,6 +98,7 @@ export class Contact extends AbstractItem<ContactModel> {
   }
 
   public onSave(): void {
+
     this.logger.info('Contact Component: onSave() execution payload compiling');
 
     if (!this.form || !this.form.isValid()) {
@@ -187,7 +163,7 @@ export class Contact extends AbstractItem<ContactModel> {
   }
 
   public onTabChanged($event: any): void {
-    this.logger.info('ContactComponent: onTabChanged()');
+    this.logger.info('Contact Component: onTabChanged()');
     this.selectedTabIndex = $event.index;
   }
 

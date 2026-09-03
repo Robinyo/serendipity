@@ -1,16 +1,27 @@
-import { Component, input } from '@angular/core';
+import {Component, Directive, input} from '@angular/core';
 
 import { AbstractComponent } from '../component/component';
 
-@Component({
-  template: '' // Abstract container shell marker
-})
+// const ACCORDION = 'accordion';
+const CARD = 'card';
+
+@Directive()
 export abstract class AbstractItem<T> extends AbstractComponent {
 
-  // ⚡ THE MODERN AUTOMATED BINDING:
-  // Because your route path is 'contacts/:id', Angular automatically binds the URL value
+  // Because your route path is '/:id', Angular automatically binds the URL value
   // straight into this input signal! No subscriptions, no lifecycle hooks, no memory leaks.
   public id = input.required<string>();
+
+  public metadata = input<any>();
+
+  public item!: T;
+
+  // public viewMode = ACCORDION;
+  public viewMode = CARD;
+
+  public schema: any;
+
+  public selectedTabIndex = 0;
 
 }
 

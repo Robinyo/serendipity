@@ -117,7 +117,7 @@ export interface AddressModel {
   addressType?: string;
 }
 
-export interface IndividualModel {
+interface IndividualModel {
   party?: PartyModel,
   name?: NameModel,
   jobTitle?: string;
@@ -137,7 +137,7 @@ export interface IndividualModel {
   countryOfDeath?: string;
 }
 
-export interface OrganisationModel {
+interface OrganisationModel {
   party?: PartyModel;
   name?: string;
   email?: string;
@@ -160,3 +160,60 @@ export interface AccountModel extends OrganisationModel {
 }
 
 export interface AccountSummaryModel extends OrganisationSummaryModel {}
+
+export interface AddressUpdateDto {
+  name?: string;
+  line1?: string;
+  line2?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  country?: string;
+  addressType?: string;
+}
+
+export interface ContactUpdateDto {
+  id?: string;
+  displayName?: string;
+  // legalEntityType?: string;
+  title?: string;
+  givenName?: string;
+  preferredName?: string;
+  middleName?: string;
+  familyName?: string;
+  initials?: string;
+  honorific?: string;
+  salutation?: string;
+  jobTitle?: string;
+  sex?: string;
+  gender?: string;
+  email?: string;
+  phoneNumber?: string;
+  faxNumber?: string;
+  preferredContactMethod?: string;
+  photoUrl?: string;
+  electorate?: string;
+  dateOfBirth?: string;
+  placeOfBirth?: string;
+  countryOfBirth?: string;
+  dateOfDeath?: string;
+  placeOfDeath?: string;
+  countryOfDeath?: string;
+  address?: AddressModel;
+  organisation?: PartyRefModel;
+}
+
+export interface AccountUpdateDto {
+  name?: string;
+  email?: string;
+  phoneNumber?: string;
+  faxNumber?: string;
+  preferredContactMethod?: string;
+  establishmentDate?: string;
+  address?: AddressUpdateDto;
+  individual?: PartyRefModel;
+}
+
+// id?: string;
+// displayName?: string;
+// legalEntityType?: string;

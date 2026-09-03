@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { fromEvent, debounceTime, takeUntil } from 'rxjs';
+import { fromEvent, debounceTime, Observable } from 'rxjs';
 
 import { CATALOG_CONFIG_TOKEN } from 'serendipity-utils-lib';
 
@@ -76,7 +76,9 @@ export abstract class AbstractCollection<T> extends AbstractComponent implements
   private MINIMUM_ROWS = 10;        // The absolute lower boundary clamp
   private APPROX_ROW_HEIGHT = 48;   // Standard Angular Material Table Row height in pixels
 
-  protected constructor(config: CollectionComponentConfig) {
+  protected constructor(config: CollectionComponentConfig,
+                        protected service: { find: (filter: string, page: number, size: number) => Observable<any> },
+                        protected embeddedKey: 'individuals' | 'organisations' | 'null') {
     super();
 
     this.desktopDeviceColumns = config.desktopDeviceColumns;
@@ -108,7 +110,48 @@ export abstract class AbstractCollection<T> extends AbstractComponent implements
 
   // Concrete components implement this to fetch data from their specific microservices.
   // Only called when a structural data scope switch is requested (like an A-Z alpha filter click).
-  protected abstract refresh(): void;
+  // protected abstract refresh(): void;
+
+  // Consolidates your pagination math, microtask scheduling, and collection
+  // caches into a single, highly performant parent function pass!
+
+  protected refresh(): void {
+
+    this.logger.info(`Refreshing Collection Cache for Key: [${this.embeddedKey}], Filter: "${this.filter}"`);
+
+    queueMicrotask(() => this.isLoading.set(true));
+
+    const currentUiRowIndex = this.offset * this.rowsPerPage;
+    const springApiPageIndex = Math.floor(currentUiRowIndex / this.limit);
+
+    this.logger.info(`Requesting Server Data -> API Page: ${springApiPageIndex}, Limit Size Chunk: ${this.limit}`);
+
+    this.service.find(this.filter, springApiPageIndex, this.limit).subscribe({
+      next: (response: any) => {
+        this.logger.info(`Collection Component: Network Data refetched successfully.`);
+
+        // Dynamically unpack your target embedded array list using the constructor mapping key!
+        const newItems = response?._embedded?.[this.embeddedKey] || [];
+
+        if (this.offset === 0) {
+          this.allCachedItems = newItems;
+        } else {
+          this.allCachedItems = [...this.allCachedItems, ...newItems];
+        }
+
+        this.count = response?.page?.totalElements || 0;
+        this.logger.info(`Cache matrix expanded to: ${this.allCachedItems.length} records total.`);
+
+        this.renderCurrentPage();
+        this.isLoading.set(false);
+      },
+      error: (err: any) => {
+        this.logger.error(`Collection view refresh transaction failure`, err);
+        this.isLoading.set(false);
+      }
+    });
+
+  }
 
   // Slices the active memory cache based on current page configurations,
   // automatically pads missing slots, and safely streams it to the Material table.
@@ -229,7 +272,6 @@ export abstract class AbstractCollection<T> extends AbstractComponent implements
     }
   }
 
-
   public onClickPreviousPageButton(): void {
     this.logger.info('Collection Component: onClickPreviousPageButton()');
     this.offset = Math.max(0, this.offset - 1);
@@ -273,6 +315,7 @@ export abstract class AbstractCollection<T> extends AbstractComponent implements
   public getProperty = (obj: any, path: any) => (
     path.split('.').reduce((o: any, p: any) => o && o[p], obj)
   )
+
 }
 
 /*

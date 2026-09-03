@@ -1,5 +1,17 @@
 import { inject } from '@angular/core';
 
+import { LoggerService } from 'serendipity-utils-lib';
+
+export class PartyAdapter {
+
+  protected logger = inject(LoggerService);
+
+}
+
+/*
+
+import { inject } from '@angular/core';
+
 import { APP_ENVIRONMENT, LoggerService } from 'serendipity-utils-lib';
 
 export class PartyAdapter {
@@ -17,3 +29,5 @@ export class PartyAdapter {
   }
 
 }
+
+*/

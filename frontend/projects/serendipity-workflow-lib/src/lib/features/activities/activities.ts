@@ -48,9 +48,8 @@ export class Activities extends AbstractCollection<ActivityModel> {
 
     super({
       desktopDeviceColumns: COLUMNS_DESKTOP,
-      mobileDeviceColumns: COLUMNS_MOBILE,
-      limit: 10
-    });
+      mobileDeviceColumns: COLUMNS_MOBILE,},
+      inject(WorkflowService), 'null');
 
     this.logger.info('Activities Component: constructor()');
 
@@ -91,7 +90,7 @@ export class Activities extends AbstractCollection<ActivityModel> {
 
   }
 
-  protected refresh() {
+  protected override refresh() {
 
     this.logger.info('Contacts Component: refresh()');
 
@@ -102,7 +101,7 @@ export class Activities extends AbstractCollection<ActivityModel> {
       this.isLoading.set(true);
     });
 
-    this.workflowService.findAllActivities(this.getBody())
+    this.workflowService.find(this.getBody())
       .subscribe({
         next: (response: any) => {
 

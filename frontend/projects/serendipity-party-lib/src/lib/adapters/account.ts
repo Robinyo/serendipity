@@ -4,8 +4,7 @@ import { Adapter } from 'serendipity-utils-lib';
 
 import { PartyAdapter } from './party';
 
-import { AccountModel } from '../models/account';
-import { IndividualRefModel } from '../models/individual-ref';
+import { AccountModel, createDefaultPartyRefModel, PartyRefModel } from '../models/models';
 
 const PRIMARY_CONTACT = "Primary Contact";
 
@@ -18,42 +17,60 @@ export class AccountAdapter extends PartyAdapter implements Adapter<AccountModel
     super();
   }
 
-  adapt(item: any): any {
+  // Maps a deeply nested Spring HATEOAS entity into a flat,
+  // key-value data structure that Form-js can ingest.
 
-    this.logger.info('Item: ' + JSON.stringify(item, null, 2));
+  adapt(response: any): any {
 
-    // 1. Instantiate a new IndividualRefModel instance (or default to empty strings)
-    let individual = new IndividualRefModel('', '', '', '');
+    if (!response) return null;
 
-    // 2. Extract organisation properties from roles cleanly using .find()
-    const primaryContactRole = item.party?.roles?.find(
+    this.logger.info('Response: ' + JSON.stringify(response, null, 2));
+
+    const item = {
+
+      id: response.id,
+
+      displayName: response.party?.displayName,
+      legalEntityType: response.party?.legalEntityType,
+
+      name: response.name,
+      email: response.email,
+      phoneNumber: response.phoneNumber,
+      faxNumber: response.faxNumber,
+      preferredContactMethod: response.preferredContactMethod,
+      establishmentDate: response.establishmentDate
+
+    };
+
+    let individual: PartyRefModel = createDefaultPartyRefModel();
+
+    // Find the Account's Primary Contact
+    const primaryContact = response.party?.roles?.find(
       (role: any) => role.reciprocalRole === PRIMARY_CONTACT
     );
 
-    if (primaryContactRole) {
+    if (primaryContact) {
 
       this.logger.info('role.reciprocalRole === PRIMARY_CONTACT');
 
-      individual = new IndividualRefModel(
-        primaryContactRole.reciprocalPartyId ?? '',
-        primaryContactRole.reciprocalPartyName ?? '',
-        primaryContactRole.reciprocalPartyEmail ?? '',
-        primaryContactRole.reciprocalPartyPhoneNumber ?? ''
-      );
+      individual.id = primaryContact.reciprocalPartyId ?? '';
+      individual.displayName = primaryContact.reciprocalPartyName ?? '';
+      individual.email = primaryContact.reciprocalPartyName ?? '';
+      individual.phoneNumber = primaryContact.reciprocalPartyPhoneNumber ?? '';
 
     }
 
-    // 3. Extract primary address with null-safety
-    const primaryAddress = item.party?.addresses?.[0] ?? null;
+    // Extract primary address with null-safety
+    const primaryAddress = response.party?.addresses?.[0] ?? null;
 
-    // 4. Build summary Account payload
+    // Build flat, key-value data structure
     const account: any = {
       ...item,
       address: primaryAddress,
       individual
     };
 
-    this.logger.info('Adapted item: ' + JSON.stringify(account, null, 2));
+    this.logger.info('Flattened response: ' + JSON.stringify(account, null, 2));
 
     return account;
   }

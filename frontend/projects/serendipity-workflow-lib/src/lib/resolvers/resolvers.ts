@@ -25,7 +25,7 @@ export const activitiesResolver = (route: ActivatedRouteSnapshot) => {
   logger.info('Executing Activities Resolver');
 
   return forkJoin({
-    activitiesSummary: workflowService.findAllActivities(queryObject),
+    activitiesSummary: workflowService.find(queryObject),
     columnDefs: configService.get(ACTIVITIES_COLUMN_DEFS),
   });
 

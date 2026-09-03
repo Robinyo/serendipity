@@ -1,4 +1,106 @@
 import { inject, Injectable } from '@angular/core';
+import { HttpParams } from '@angular/common/http';
+
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+
+import { AbstractCollectionService, PagedResponse } from 'serendipity-utils-lib';
+
+import { AccountAdapter } from '../../adapters/account';
+import { AccountModel, AccountSummaryModel, AccountUpdateDto } from '../../models/models';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AccountsService extends AbstractCollectionService {
+
+  private readonly organisationsApi = '/api/party-service/organisations';
+  private readonly accountsApi = '/api/party-service/accounts';
+
+  // Declare properties without inline injection to stabilise cross-lib evaluation
+  private adapter!: AccountAdapter;
+
+  constructor() {
+
+    super();
+
+    this.logger.info('Account Service: constructor()')
+
+    // Safely resolve your library-specific adapters inside the execution window
+    this.adapter = inject(AccountAdapter);
+
+  }
+
+  public find(filter: string, page: number, size: number):
+    Observable<PagedResponse<AccountSummaryModel, 'organisations'>> {
+
+    this.logger.info(`Accounts Service: find(filter: "${filter}", page: ${page}, size: ${size})`);
+
+    // Determine the correct backend endpoint based on whether a filter is present
+    // If no filter is set (empty string), hit the master collection.
+    // If a filter is present (e.g. 'A'), route it to your custom search endpoint query mapping.
+
+    const url = filter
+      ? `${this.organisationsApi}/search/findByNameStartsWith`
+      : this.organisationsApi;
+
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString())
+      .set('sort', 'name,asc');
+
+    if (filter) {
+      params = params.set('name', filter);
+    }
+
+    const options = {
+      params: params
+    };
+
+    return this.http.get<PagedResponse<AccountSummaryModel, 'organisations'>>(url, options).pipe(
+      tap(() => this.logger.info('Accounts Service: find() completed'))
+    );
+
+  }
+
+  public findById(id: string): Observable<AccountModel> {
+
+    this.logger.info('Accounts Service: findContactById()');
+
+    return this.http.get<AccountModel>(`${this.organisationsApi}/${id}`, this.getDefaultHttpOptions()).pipe(
+
+      map((response: any) => this.adapter.adapt(response)),
+
+      tap(() => {
+        this.logger.info('Accounts Service: findById() completed');
+      })
+    );
+
+  }
+
+  public update(id: string, contact: AccountUpdateDto): Observable<AccountModel> {
+
+    this.logger.info('Accounts Service: update()');
+
+    return this.http.put<AccountModel>(`${this.accountsApi}/${id}`, contact, this.getDefaultHttpOptions()).pipe(
+      tap(() => {
+        this.logger.info('Accounts Service: update() completed');
+      })
+    );
+
+  }
+
+}
+
+
+
+
+/*
+
+export const ORGANISATIONS = '/api/party-service/organisations/';
+export const ORGANISATIONS_WITHOUT_A_TRAILING_SLASH = '/api/party-service/organisations';
+
+import { inject, Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
@@ -113,8 +215,9 @@ export class AccountsService extends AbstractCollectionService {
 
 }
 
-/*
+*/
 
+/*
 
   // path, operator, value
   // e.g., name, =, B%

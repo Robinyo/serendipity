@@ -20,7 +20,7 @@ export class WorkflowService extends AbstractCollectionService {
 
   }
 
-  public findAllActivities(body: any): Observable<any> {
+  public find(body: any): Observable<any> {
 
     this.logger.info('Workflow Service: findAllActivites()');
 
