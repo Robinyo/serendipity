@@ -15,7 +15,7 @@ export abstract class List<T> extends AbstractComponent {
   public selectedItem!: T;
 
   protected authService: AuthService = inject(AUTH_SERVICE_TOKEN);
-  protected dialogService: DialogService = inject(DialogService);
+  // protected dialogService: DialogService = inject(DialogService);
   // protected route: ActivatedRoute = inject(ActivatedRoute);
   // protected router: Router = inject(Router);
   // protected snackBar: MatSnackBar = inject(MatSnackBar);

@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { accountsResolver, accountResolver, contactResolver, contactsResolver } from './resolvers/resolvers';
+import { canDeactivateGuard } from './guards/can-deactivate';
 
 export const partyRoutes: Routes = [
 
@@ -12,7 +13,8 @@ export const partyRoutes: Routes = [
   {
     path: 'accounts/:id',
     loadComponent: () => import('./features/account/account').then(m => m.Account),
-    resolve: { metadata: accountResolver }
+    resolve: { metadata: accountResolver },
+    canDeactivate: [canDeactivateGuard]
   },
   {
     path: 'contacts',

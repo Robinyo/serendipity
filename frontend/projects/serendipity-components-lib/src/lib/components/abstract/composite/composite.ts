@@ -10,7 +10,7 @@ import { AbstractComponent } from '../component/component';
 export abstract class Composite extends AbstractComponent {
 
   protected authService: AuthService = inject(AUTH_SERVICE_TOKEN);
-  protected dialogService: DialogService = inject(DialogService);
+  // protected dialogService: DialogService = inject(DialogService);
 
 }
 

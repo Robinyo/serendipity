@@ -7,12 +7,15 @@ import { map } from 'rxjs/operators';
 
 import { ConfigService, LoggerService } from 'serendipity-utils-lib';
 
+import { DialogService } from '../../../services/dialogs/dialog';
+
 @Directive()
 export abstract class AbstractComponent {
 
   public isLoading = signal<boolean>(true);
 
   protected configService: ConfigService = inject(ConfigService);
+  protected dialogService: DialogService = inject(DialogService);
   protected logger: LoggerService = inject(LoggerService);
   protected router: Router = inject(Router);
 

@@ -7,7 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { Observable } from 'rxjs';
+import { of, Observable } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 import { ActivityBar, CommandBar, AbstractItem } from 'serendipity-components-lib';
 import { FormJsWrapper } from 'serendipity-camunda-lib';
@@ -70,7 +71,7 @@ export class Account extends AbstractPartyItem<AccountUpdateDto> {
   // Validation
   //
 
-  public canClose(): Observable<boolean> | boolean {
+  public canDeactivate(): Observable<boolean> | boolean {
 
     this.logger.info('Account Component: canClose()');
 
@@ -78,16 +79,12 @@ export class Account extends AbstractPartyItem<AccountUpdateDto> {
       return true;
     }
 
-    return false;
-
-    /*
     return this.dialogService.openConfirm({
       title: 'Account',
       message: 'Are you sure you want to leave this page?',
       acceptButton: 'OK',
       cancelButton: 'CANCEL'
     }).afterClosed();
-    */
 
   }
 
@@ -99,9 +96,24 @@ export class Account extends AbstractPartyItem<AccountUpdateDto> {
 
     this.logger.info('Account Component: onClose()');
 
-    if (this.canClose()) {
-      this.router.navigate([ACCOUNTS]);
-    }
+    const checkResult = this.canDeactivate();
+
+    // ⚡ THE ARCHITECTURAL STREAM RESOLVER:
+    // If the check returned a direct primitive boolean (e.g. form is clean), wrap it in an Observable.
+    // Otherwise, use the existing dialog afterClosed() stream directly!
+    const closingStream$: Observable<boolean> = typeof checkResult === 'boolean'
+      ? of(checkResult)
+      : checkResult;
+
+    // Subscribe to the stream, grab the first emitted value, and act on it
+    closingStream$.pipe(first()).subscribe((shouldNavigate: boolean) => {
+      this.logger.info(`Navigation permission evaluated result: ${shouldNavigate}`);
+
+      if (shouldNavigate) {
+        // Only route away if the user explicitly clicked 'OK' on the dialog!
+        this.router.navigate([ACCOUNTS]);
+      }
+    });
 
   }
 
