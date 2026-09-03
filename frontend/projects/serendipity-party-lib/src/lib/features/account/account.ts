@@ -7,8 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { of, Observable } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { first, tap } from 'rxjs/operators';
 
 import { ActivityBar, CommandBar, AbstractItem } from 'serendipity-components-lib';
 import { FormJsWrapper } from 'serendipity-camunda-lib';
@@ -118,6 +118,81 @@ export class Account extends AbstractPartyItem<AccountUpdateDto> {
 
   }
 
+  public onSave(): void {
+
+    this.logger.info('Account Component: OnSave Click Event Intercepted');
+
+    this.executeSaveTransaction().subscribe({
+      next: (result) => {
+        if (result) {
+          this.logger.info('Account Component: Standalone update lifecycle completely finalized.');
+          // Optional: Display a quick, non-blocking toast/snackbar success message here
+        }
+      }
+    });
+
+  }
+
+  public onSaveAndClose(): void {
+
+    this.logger.info('Account Component: OnSaveAndClose Click Event Intercepted');
+
+    this.executeSaveTransaction().subscribe((result) => {
+      // Only navigate away if validation passed and server output successfully resolved
+      if (result) {
+        this.logger.info('Account Component: Save transaction complete. Initiating safe routing exit.');
+        this.router.navigate([ACCOUNTS]);
+      }
+    });
+
+  }
+
+  private executeSaveTransaction(): Observable<AccountModel | null> {
+
+    this.logger.info('Account Component: executeSaveTransaction() compiling direct DTO payload');
+
+    if (!this.form || !this.form.isValid()) {
+      this.logger.error('Form submission blocked: Invalid form data constraints.');
+      return of(null);
+    }
+
+    const rawFormData = this.form.getData();
+    this.logger.info('rawFormData: ' + JSON.stringify(rawFormData, null, 2));
+
+    const updateDto = {
+      name: rawFormData.name,
+      email: rawFormData.email || null,
+      phoneNumber: rawFormData.phoneNumber || null,
+      faxNumber: rawFormData.faxNumber || null,
+      preferredContactMethod: rawFormData.preferredContactMethod || null,
+      establishmentDate: rawFormData.establishmentDate || null
+    };
+
+    queueMicrotask(() => this.isLoading.set(true));
+    this.logger.info('Dispatched Network payload: ' + JSON.stringify(updateDto, null, 2));
+
+    return this.accountsService.update(this.id(), updateDto).pipe(
+      tap({
+        next: (response: AccountModel) => {
+          this.logger.info('Account Component: update() successfully resolved over network pipeline.');
+
+          this.item = this.adapter.adapt(response);
+
+          // Sync our schema-based tracking baseline to mark the canvas pristine
+          if (this.form) {
+            this.form.resetPristineState(this.item);
+          }
+
+          this.isLoading.set(false);
+        },
+        error: (err) => {
+          this.logger.error('Account Component: update execution fault interceptor triggered', err);
+          this.isLoading.set(false);
+        }
+      })
+    );
+  }
+
   public onDeactivate(): void {
 
     this.logger.info('Account Component: onDeactivate()');
@@ -144,10 +219,6 @@ export class Account extends AbstractPartyItem<AccountUpdateDto> {
         const todayIsoString = new Date().toISOString().split('T')[0];
 
         const softDeleteDto = {
-
-          // type
-          // legalEntityType
-
           name: this.item.name,
           email: this.item.email || null,
           phoneNumber: this.item.phoneNumber || null,
@@ -155,7 +226,6 @@ export class Account extends AbstractPartyItem<AccountUpdateDto> {
           preferredContactMethod: this.item.preferredContactMethod || null,
           establishmentDate: this.item.establishmentDate || null,
           toDate: todayIsoString
-
         };
 
         this.logger.info('Dispatched Network payload: ' + JSON.stringify(softDeleteDto, null, 2));
@@ -178,6 +248,74 @@ export class Account extends AbstractPartyItem<AccountUpdateDto> {
     this.logger.info('Account Component: onNew()');
   }
 
+
+  public onTabChanged($event: any): void {
+    this.logger.info('Account Component: onTabChanged()');
+    this.selectedTabIndex = $event.index;
+  }
+
+}
+
+
+
+/*
+public onSave(): void {
+
+  this.logger.info('Account Component: onSave() using direct DTO mapping');
+
+  if (!this.form || !this.form.isValid()) {
+    this.logger.error('Form submission blocked: Invalid form data.');
+    return;
+  }
+
+  const rawFormData = this.form.getData();
+
+  this.logger.info('rawFormData: ' + JSON.stringify(rawFormData, null, 2));
+
+  const updateDto = {
+
+    name: rawFormData.name,
+    email: rawFormData.email || null,
+    phoneNumber: rawFormData.phoneNumber || null,
+    faxNumber: rawFormData.faxNumber || null,
+    preferredContactMethod: rawFormData.preferredContactMethod || null,
+    establishmentDate: rawFormData.establishmentDate || null
+
+  };
+
+  this.logger.info('Dispatched Network payload: ' + JSON.stringify(updateDto, null, 2));
+
+  this.accountsService.update(this.id(), updateDto).subscribe({
+    next: (response: AccountModel) => {
+
+      this.logger.info('Account Component: update() successfully resolved over network.');
+
+      this.item = this.adapter.adapt(response);
+
+      if (this.form) {
+        this.form.resetPristineState(this.item);
+      }
+
+    },
+    error: (err) => {
+      this.logger.error('Account Component: update execution fault interceptor', err);
+    }
+  });
+
+}
+
+public onSaveAndClose(): void {
+
+  this.logger.info('Account Component: onSaveAndClose()');
+
+  this.onSave();
+  // his.router.navigate([ACCOUNTS]);
+
+}
+*/
+
+/*
+
   public onSave(): void {
 
     this.logger.info('Account Component: onSave() using direct DTO mapping');
@@ -192,9 +330,6 @@ export class Account extends AbstractPartyItem<AccountUpdateDto> {
     this.logger.info('rawFormData: ' + JSON.stringify(rawFormData, null, 2));
 
     const updateDto = {
-
-      // type
-      // legalEntityType
 
       name: rawFormData.name,
       email: rawFormData.email || null,
@@ -227,18 +362,15 @@ export class Account extends AbstractPartyItem<AccountUpdateDto> {
   }
 
   public onSaveAndClose(): void {
+
     this.logger.info('Account Component: onSaveAndClose()');
+
     this.onSave();
-    this.onClose();
+    this.router.navigate([ACCOUNTS]);
+
   }
 
-  public onTabChanged($event: any): void {
-    this.logger.info('Account Component: onTabChanged()');
-    this.selectedTabIndex = $event.index;
-  }
-
-}
-
+*/
 
 /*
 
