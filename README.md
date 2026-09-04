@@ -17,7 +17,6 @@
 - [Developer Guide](https://robinyo.github.io/serendipity/docs/developer-guide/overview)
 - [Administration guide](https://robinyo.github.io/serendipity/docs/administration-guide/overview)
 
-
 ## ❯ Architecture
 
 <p align="center">
