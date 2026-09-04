@@ -113,24 +113,7 @@ export class Contact extends AbstractPartyItem<ContactUpdateDto> {
 
     this.logger.info('Contact Component: onClose()');
 
-    const checkResult = this.canDeactivate();
-
-    // If the check returned a direct primitive boolean (e.g. form is clean), wrap it in an Observable.
-    // Otherwise, use the existing dialog afterClosed() stream directly!
-    const closingStream$: Observable<boolean> = typeof checkResult === 'boolean'
-      ? of(checkResult)
-      : checkResult;
-
-    // Subscribe to the stream, grab the first emitted value, and act on it
-    closingStream$.pipe(first()).subscribe((shouldNavigate: boolean) => {
-      this.logger.info(`Navigation permission evaluated result: ${shouldNavigate}`);
-
-      if (shouldNavigate) {
-        // Only route away if the user explicitly clicked 'OK' on the dialog!
-        this.router.navigate([CONTACTS]);
-      }
-    });
-
+    this.router.navigate([CONTACTS]);
   }
 
   public onSave(): void {
@@ -291,6 +274,28 @@ export class Contact extends AbstractPartyItem<ContactUpdateDto> {
 }
 
 
+
+/*
+
+    const checkResult = this.canDeactivate();
+
+    // If the check returned a direct primitive boolean (e.g. form is clean), wrap it in an Observable.
+    // Otherwise, use the existing dialog afterClosed() stream directly!
+    const closingStream$: Observable<boolean> = typeof checkResult === 'boolean'
+      ? of(checkResult)
+      : checkResult;
+
+    // Subscribe to the stream, grab the first emitted value, and act on it
+    closingStream$.pipe(first()).subscribe((shouldNavigate: boolean) => {
+      this.logger.info(`Navigation permission evaluated result: ${shouldNavigate}`);
+
+      if (shouldNavigate) {
+        // Only route away if the user explicitly clicked 'OK' on the dialog!
+        this.router.navigate([CONTACTS]);
+      }
+    });
+
+*/
 
 /*
 

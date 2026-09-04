@@ -24,7 +24,8 @@ export const partyRoutes: Routes = [
   {
     path: 'contacts/:id',
     loadComponent: () => import('./features/contact/contact').then(m => m.Contact),
-    resolve: { metadata: contactResolver }
+    resolve: { metadata: contactResolver },
+    canDeactivate: [canDeactivateGuard]
   }
 
 ];
