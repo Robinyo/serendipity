@@ -14,8 +14,9 @@
 - [Get started](https://robinyo.github.io/serendipity/docs/get-started/installation)
 - [What's new or changed](https://github.com/Robinyo/serendipity)
 - [Try, install or upgrade](https://robinyo.github.io/serendipity/docs/try-install-upgrade/try)
-- [Administration guide](./docs/serendipity/sales/administration-guide/README.md)
-- [Developer Guide](./docs/serendipity/sales/developer-guide/README.md)
+- [Developer Guide](https://robinyo.github.io/serendipity/docs/developer-guide/overview)
+- [Administration guide](https://robinyo.github.io/serendipity/docs/administration-guide/overview)
+
 
 ## ❯ Architecture
 
