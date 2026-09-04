@@ -5,8 +5,8 @@ import { forkJoin } from 'rxjs';
 
 import { CATALOG_CONFIG_TOKEN, ConfigService, FormsService, LoggerService } from 'serendipity-utils-lib';
 
-import { PartyService } from '../services/party/party';
 import { AccountsService } from '../services/accounts/accounts';
+import { ContactsService } from '../services/contacts/contacts';
 
 import { ACCOUNTS_COLUMN_DEFS, CONTACTS_COLUMN_DEFS, RELATIONSHIP_LIST_COLUMN_DEFS } from './constants';
 import { ACCOUNT_INFORMATION_FORM, CONTACT_INFORMATION_FORM} from './form-ids';
@@ -53,7 +53,7 @@ export const contactsResolver = (route: ActivatedRouteSnapshot) => {
 
   const globalConfig = inject(CATALOG_CONFIG_TOKEN);
 
-  const partyService = inject(PartyService);
+  const contactsService = inject(ContactsService);
   const configService = inject(ConfigService);
 
   const logger = inject(LoggerService);
@@ -61,7 +61,7 @@ export const contactsResolver = (route: ActivatedRouteSnapshot) => {
   logger.info('Executing Contacts Resolver');
 
   return forkJoin({
-    contacts: partyService.findAllContacts('', 0, globalConfig.defaultLimit),
+    contacts: contactsService.find('', 0, globalConfig.defaultLimit),
     columnDefs: configService.get(CONTACTS_COLUMN_DEFS),
   });
 
@@ -69,7 +69,7 @@ export const contactsResolver = (route: ActivatedRouteSnapshot) => {
 
 export const contactResolver = (route: ActivatedRouteSnapshot) => {
 
-  const partyService = inject(PartyService);
+  const contactsService = inject(ContactsService);
   const configService = inject(ConfigService);
   const formService = inject(FormsService);
 
@@ -80,7 +80,7 @@ export const contactResolver = (route: ActivatedRouteSnapshot) => {
   logger.info(`Executing Contact Resolver for Id: ${id}`);
 
   return forkJoin({
-    contact: partyService.findContactById(id),
+    contact: contactsService.findById(id),
     relationshipListColumnDefs: configService.get(RELATIONSHIP_LIST_COLUMN_DEFS),
     generalInformationFormSchema: formService.getFormMetadata(CONTACT_INFORMATION_FORM)
   });

@@ -1,19 +1,11 @@
 package org.serendipity.party.dto;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import java.util.List;
 
 public record IndividualUpdateDto(
-  String title,
-  @NotBlank(message = "Given name is mandatory")
-  String givenName,
-  String preferredName,
-  String middleName,
-  @NotBlank(message = "Family name is mandatory")
-  String familyName,
-  String initials,
-  String honorific,
-  String salutation,
+  @Valid NameUpdateDto name,
   String jobTitle,
   String sex,
   String gender,
@@ -25,8 +17,13 @@ public record IndividualUpdateDto(
   String dateOfBirth,
   String placeOfBirth,
   String countryOfBirth,
-  List<AddressUpdateDto> addresses
+  String dateOfDeath,
+  String placeOfDeath,
+  String countryOfDeath,
+  String toDate
+  // @Valid AddressUpdateDto address
 ) {}
 
+// List<AddressUpdateDto> addresses
 // List<RoleUpdateDto> roles
 // legalEntityType

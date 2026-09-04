@@ -162,9 +162,9 @@ export interface AccountModel extends OrganisationModel {
 export interface AccountSummaryModel extends OrganisationSummaryModel {}
 
 export interface AddressUpdateDto {
-  name?: string;
+  name?: string | null;
   line1?: string;
-  line2?: string;
+  line2?: string | null;
   city?: string;
   state?: string;
   postalCode?: string;
@@ -172,33 +172,38 @@ export interface AddressUpdateDto {
   addressType?: string;
 }
 
-export interface ContactUpdateDto {
-  id?: string;
-  displayName?: string;
-  // legalEntityType?: string;
-  title?: string;
+export interface NameUpdateDto {
+  title?: string | null;
   givenName?: string;
-  preferredName?: string;
-  middleName?: string;
+  preferredName?: string | null;
+  middleName?: string | null;
   familyName?: string;
-  initials?: string;
-  honorific?: string;
-  salutation?: string;
-  jobTitle?: string;
-  sex?: string;
-  gender?: string;
-  email?: string;
-  phoneNumber?: string;
-  faxNumber?: string;
-  preferredContactMethod?: string;
-  photoUrl?: string;
-  electorate?: string;
-  dateOfBirth?: string;
-  placeOfBirth?: string;
-  countryOfBirth?: string;
-  dateOfDeath?: string;
-  placeOfDeath?: string;
-  countryOfDeath?: string;
+  initials?: string | null;
+  honorific?: string | null;
+  salutation?: string | null;
+}
+
+export interface ContactUpdateDto {
+  type?: string;
+  legalEntityType?: string;
+  displayName?: string;
+  name?: NameUpdateDto;
+  jobTitle?: string | null;
+  sex?: string | null;
+  gender?: string | null;
+  email?: string | null;
+  phoneNumber?: string | null;
+  faxNumber?:string | null;
+  preferredContactMethod?: string | null;
+  photoUrl?: string | null;
+  electorate?: string | null;
+  dateOfBirth?: string | null;
+  placeOfBirth?: string | null;
+  countryOfBirth?: string | null;
+  dateOfDeath?: string | null;
+  placeOfDeath?: string | null;
+  countryOfDeath?: string | null;
+  toDate?: string | null;
   address?: AddressModel;
   organisation?: PartyRefModel;
 }
@@ -216,7 +221,3 @@ export interface AccountUpdateDto {
   address?: AddressUpdateDto;
   individual?: PartyRefModel;
 }
-
-// id?: string;
-// displayName?: string;
-// legalEntityType?: string;

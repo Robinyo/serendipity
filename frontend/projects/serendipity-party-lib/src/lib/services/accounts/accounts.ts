@@ -65,7 +65,7 @@ export class AccountsService extends AbstractCollectionService {
 
   public findById(id: string): Observable<AccountModel> {
 
-    this.logger.info('Accounts Service: findContactById()');
+    this.logger.info('Accounts Service: findById()');
 
     return this.http.get<AccountModel>(`${this.organisationsApi}/${id}`, this.getDefaultHttpOptions()).pipe(
 
@@ -78,11 +78,11 @@ export class AccountsService extends AbstractCollectionService {
 
   }
 
-  public update(id: string, contact: AccountUpdateDto): Observable<AccountModel> {
+  public update(id: string, account: AccountUpdateDto): Observable<AccountModel> {
 
     this.logger.info('Accounts Service: update()');
 
-    return this.http.put<AccountModel>(`${this.accountsApi}/${id}`, contact, this.getDefaultHttpOptions()).pipe(
+    return this.http.put<AccountModel>(`${this.accountsApi}/${id}`, account, this.getDefaultHttpOptions()).pipe(
       tap(() => {
         this.logger.info('Accounts Service: update() completed');
       })

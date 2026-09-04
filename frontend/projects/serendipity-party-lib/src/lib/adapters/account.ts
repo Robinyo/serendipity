@@ -44,9 +44,9 @@ export class AccountAdapter extends PartyAdapter implements Adapter<AccountModel
     // Extract primary address with null-safety
     const primaryAddress = response.party?.addresses?.[0] ?? null;
 
-    let individual: PartyRefModel = createDefaultPartyRefModel();
-
     if (primaryAddress?._links) delete primaryAddress._links;
+
+    let individual: PartyRefModel = createDefaultPartyRefModel();
 
     // Find the Account's Primary Contact
     const primaryContact = response.party?.roles?.find(

@@ -12,6 +12,6 @@ public record OrganisationUpdateDto(
   String faxNumber,
   String preferredContactMethod,
   String establishmentDate,
-  // @Valid AddressUpdateDto address
   String toDate
+  // @Valid AddressUpdateDto address
 ) {}

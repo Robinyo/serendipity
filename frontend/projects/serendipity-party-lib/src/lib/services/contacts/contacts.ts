@@ -7,7 +7,7 @@ import { map, tap } from 'rxjs/operators';
 import { AbstractCollectionService, PagedResponse } from 'serendipity-utils-lib';
 
 import { ContactAdapter } from '../../adapters/contact';
-import {ContactModel, ContactSummaryModel} from '../../models/models';
+import { ContactModel, ContactSummaryModel, ContactUpdateDto } from '../../models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ import {ContactModel, ContactSummaryModel} from '../../models/models';
 export class ContactsService extends AbstractCollectionService {
 
   private readonly individualsApi = '/api/party-service/individuals';
-  // private readonly contactsApi = '/api/party-service/contacts';
+  private readonly contactsApi = '/api/party-service/contacts';
 
   // Declare properties without inline injection to stabilise cross-lib evaluation
   private adapter!: ContactAdapter;
@@ -73,6 +73,18 @@ export class ContactsService extends AbstractCollectionService {
 
       tap(() => {
         this.logger.info('Contacts Service: findById() completed');
+      })
+    );
+
+  }
+
+  public update(id: string, contact: ContactUpdateDto): Observable<ContactModel> {
+
+    this.logger.info('Contacts Service: update()');
+
+    return this.http.put<ContactModel>(`${this.contactsApi}/${id}`, contact, this.getDefaultHttpOptions()).pipe(
+      tap(() => {
+        this.logger.info('Contacts Service: update() completed');
       })
     );
 

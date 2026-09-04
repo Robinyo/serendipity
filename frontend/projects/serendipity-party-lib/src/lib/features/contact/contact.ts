@@ -1,4 +1,4 @@
-import { Component, inject, input, effect, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject, effect, ChangeDetectionStrategy } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -7,20 +7,24 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { ActivityBar, CommandBar } from 'serendipity-components-lib';
+import { Observable, of } from 'rxjs';
+import { first, tap } from 'rxjs/operators';
 
+import { ActivityBar, CommandBar } from 'serendipity-components-lib';
 import { FormJsWrapper } from 'serendipity-camunda-lib';
 
 import { latLng, LatLng, LatLngBounds, Layer, LeafletEvent, LeafletMouseEvent, Map, MapOptions, tileLayer } from 'leaflet';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 
 import { AbstractPartyItem } from '../../components/abstract/PartyItem';
-import { ContactModel } from '../../models/models';
+import { ContactModel, ContactUpdateDto } from '../../models/models';
+import { ContactAdapter } from '../../adapters/contact';
 
-import { PartyService } from '../../services/party/party';
+import { ContactsService } from '../../services/contacts/contacts';
+
+import { CONTACTS, Tab } from './constants';
+
 // import { ElectoralDivisionsService } from '../../services/electoral-divisions/electoral-divisions';
-
-import { CONTACTS } from './constants';
 
 class LeafletControlLayersConfig {
   baseLayers: { [name: string]: Layer } = {};
@@ -56,11 +60,11 @@ const DEFAULT_LONGITUDE = 151.753;
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush // ⚡ Shift to maximum rendering velocity speeds
 })
-export class Contact extends AbstractPartyItem<ContactModel> {
+export class Contact extends AbstractPartyItem<ContactUpdateDto> {
 
-  // @ViewChild('formRef') form!: FormJsWrapper;
+  private contactsService: ContactsService = inject(ContactsService);
 
-  private partyService = inject(PartyService);
+  private adapter: ContactAdapter = inject(ContactAdapter);
 
   constructor() {
     super();
@@ -81,198 +85,208 @@ export class Contact extends AbstractPartyItem<ContactModel> {
   }
 
   //
+  // Validation
+  //
+
+  public canDeactivate(): Observable<boolean> | boolean {
+
+    this.logger.info('Account Component: canClose()');
+
+    if (!this.isDirty() && this.isValid()) {
+      return true;
+    }
+
+    return this.dialogService.openConfirm({
+      title: 'Contact',
+      message: 'Are you sure you want to leave this page?',
+      acceptButton: 'OK',
+      cancelButton: 'CANCEL'
+    }).afterClosed();
+
+  }
+
+  //
   // Command Bar Handlers
   //
 
   public onClose(): void {
+
     this.logger.info('Contact Component: onClose()');
-    this.router.navigate([CONTACTS]);
+
+    const checkResult = this.canDeactivate();
+
+    // If the check returned a direct primitive boolean (e.g. form is clean), wrap it in an Observable.
+    // Otherwise, use the existing dialog afterClosed() stream directly!
+    const closingStream$: Observable<boolean> = typeof checkResult === 'boolean'
+      ? of(checkResult)
+      : checkResult;
+
+    // Subscribe to the stream, grab the first emitted value, and act on it
+    closingStream$.pipe(first()).subscribe((shouldNavigate: boolean) => {
+      this.logger.info(`Navigation permission evaluated result: ${shouldNavigate}`);
+
+      if (shouldNavigate) {
+        // Only route away if the user explicitly clicked 'OK' on the dialog!
+        this.router.navigate([CONTACTS]);
+      }
+    });
+
+  }
+
+  public onSave(): void {
+
+    this.logger.info('Contact Component: OnSave Click Event Intercepted');
+
+    this.executeSaveTransaction().subscribe({
+      next: (result) => {
+        if (result) {
+          this.logger.info('Account Component: Standalone update lifecycle completely finalized.');
+          // Optional: Display a quick, non-blocking toast/snackbar success message here
+        }
+      }
+    });
+
+  }
+
+  public onSaveAndClose(): void {
+
+    this.logger.info('Contact Component: OnSaveAndClose Click Event Intercepted');
+
+    this.executeSaveTransaction().subscribe((result) => {
+      // Only navigate away if validation passed and server output successfully resolved
+      if (result) {
+        this.logger.info('Account Component: Save transaction complete. Initiating safe routing exit.');
+        this.router.navigate([CONTACTS]);
+      }
+    });
+
+  }
+
+  private executeSaveTransaction(): Observable<ContactModel | null> {
+
+    this.logger.info('Contact Component: executeSaveTransaction() compiling direct DTO payload');
+
+    if (!this.form || !this.form.isValid()) {
+      this.logger.error('Form submission blocked: Invalid form data constraints.');
+      return of(null);
+    }
+
+    const rawFormData = this.form.getData();
+    this.logger.info('rawFormData: ' + JSON.stringify(rawFormData, null, 2));
+
+    const updateDto = {
+      name: rawFormData.name,
+      jobTitle: rawFormData.jobTitle || null,
+      sex: rawFormData.sex || null,
+      gender: rawFormData.gender || null,
+      email: rawFormData.email || null,
+      phoneNumber: rawFormData.phoneNumber || null,
+      faxNumber: rawFormData.faxNumber || null,
+      preferredContactMethod: rawFormData.preferredContactMethod || null,
+      dateOfBirth: rawFormData.dateOfBirth || null,
+      placeOfBirth: rawFormData.placeOfBirth || null,
+      countryOfBirth: rawFormData.countryOfBirth || null,
+      dateOfDeath: rawFormData.dateOfDeath || null,
+      placeOfDeath: rawFormData.placeOfDeath || null,
+      countryOfDeath: rawFormData.countryOfDeath || null
+    };
+
+    // photoUrl
+    // electorate
+
+    queueMicrotask(() => this.isLoading.set(true));
+    this.logger.info('Dispatched Network payload: ' + JSON.stringify(updateDto, null, 2));
+
+    return this.contactsService.update(this.id(), updateDto).pipe(
+      tap({
+        next: (response: ContactModel) => {
+          this.logger.info('Contact Component: update() successfully resolved over network pipeline.');
+
+          this.item = this.adapter.adapt(response);
+
+          // Sync our schema-based tracking baseline to mark the canvas pristine
+          if (this.form) {
+            this.form.resetPristineState(this.item);
+          }
+
+          this.isLoading.set(false);
+        },
+        error: (err) => {
+          this.logger.error('Contact Component: update execution fault interceptor triggered', err);
+          this.isLoading.set(false);
+        }
+      })
+    );
   }
 
   public onDeactivate(): void {
-    this.logger.info('Contact Component: onDeactivate()');
+
+    this.logger.info('Account Component: onDeactivate()');
+
+    this.dialogService.openConfirm({
+      title: 'Delete Contact',
+      message: 'Are you sure you want to delete this contact?',
+      acceptButton: 'OK',
+      cancelButton: 'CANCEL'
+    }).afterClosed().subscribe((confirmed: boolean) => {
+
+      this.logger.info(`Delete validation confirmation response resolved: ${confirmed}`);
+
+      if (confirmed) {
+
+        queueMicrotask(() => this.isLoading.set(true));
+
+        if (!this.form || !this.form.isValid()) {
+          this.logger.error('Form submission blocked: Invalid form data.');
+          return;
+        }
+
+        // Capture today's calendar date in standard ISO format (YYYY-MM-DD)
+        const todayIsoString = new Date().toISOString().split('T')[0];
+
+        const softDeleteDto = {
+          name: this.item.name,
+          jobTitle: this.item.jobTitle || null,
+          sex: this.item.sex || null,
+          gender: this.item.gender || null,
+          email: this.item.email || null,
+          phoneNumber: this.item.phoneNumber || null,
+          faxNumber: this.item.faxNumber || null,
+          preferredContactMethod: this.item.preferredContactMethod || null,
+          dateOfBirth: this.item.dateOfBirth || null,
+          placeOfBirth: this.item.placeOfBirth || null,
+          countryOfBirth: this.item.countryOfBirth || null,
+          dateOfDeath: this.item.dateOfDeath || null,
+          placeOfDeath: this.item.placeOfDeath || null,
+          countryOfDeath: this.item.countryOfDeath || null,
+          toDate: todayIsoString
+        };
+
+        this.logger.info('Dispatched Network payload: ' + JSON.stringify(softDeleteDto, null, 2));
+
+        this.contactsService.update(this.id(), softDeleteDto).subscribe({
+          next: (response: ContactModel) => {
+            this.logger.info('Account Component: update() successfully resolved over network.');
+          },
+          error: (err) => {
+            this.logger.error('Account Component: update execution fault interceptor', err);
+          }
+        });
+
+      }
+
+    });
   }
 
   public onNew(): void {
     this.logger.info('Contact Component: onNew()');
   }
 
-  public onSave(): void {
-
-    this.logger.info('Contact Component: onSave() execution payload compiling');
-
-    if (!this.form || !this.form.isValid()) {
-      this.logger.error('Form execution halted: Invalid structure criteria.');
-      return;
-    }
-
-    const rawFormData = this.form.getData();
-    this.logger.info('rawFormData: ' + JSON.stringify(rawFormData, null, 2));
-
-    // Deep clone the original model record instance block to prevent reference mutations
-    const targetPayload = JSON.parse(JSON.stringify(this.item));
-
-    // Patch the copied object graph recursively using form variables
-    this.patchDtoWithFormData(targetPayload, rawFormData);
-
-    // Deep clone a tracking version to pass over the wire network to your backend proxy
-    let networkPayload = JSON.parse(JSON.stringify(targetPayload));
-
-    // Delete presentation and structural collection keys strictly from the wire payload
-    // to prevent Hibernate verification and data validation conflicts!
-    delete networkPayload.address;
-    delete networkPayload.organisation;
-
-    // Strip the string UUID out of the root ID property so Jackson doesn't try
-    // to map a string UUID into an internal database java.lang.Long primary key field!
-    if (networkPayload.id) delete networkPayload.id;
-    if (networkPayload.party && networkPayload.party.id) delete networkPayload.party.id;
-
-    // Strip out secondary arrays that Spring Data validates strictly
-    if (networkPayload.names) delete networkPayload.names;
-    if (networkPayload.party?.roles) delete networkPayload.party.roles;
-
-    // Strip read-only HATEOAS link metrics
-    if (networkPayload._links) delete networkPayload._links;
-    if (networkPayload.party?._links) delete networkPayload.party._links;
-
-    // Loop through arrays and strip their local links as well
-    if (Array.isArray(networkPayload.party?.addresses)) {
-      networkPayload.party.addresses.forEach((addr: any) => {
-        if (addr.id) delete addr.id;
-        if (addr._links) delete addr._links;
-      });
-    }
-
-    if (Array.isArray(networkPayload.party?.roles)) {
-      networkPayload.party.roles.forEach((role: any) => {
-        if (role._links) delete role._links;
-      });
-    }
-
-    // Recursively scrub the remaining graph to convert empty strings ("") into clean null values
-    networkPayload = this.deepSanitizePayload(networkPayload);
-
-    this.update(targetPayload, networkPayload);
-  }
-
-  public onSaveAndClose(): void {
-    this.logger.info('Contact Component: onSaveAndClose()');
-    this.onSave();
-    this.onClose();
-  }
 
   public onTabChanged($event: any): void {
     this.logger.info('Contact Component: onTabChanged()');
     this.selectedTabIndex = $event.index;
   }
-
-  //
-  // Data Pipeline Operations
-  //
-
-  private update(localStateDto: ContactModel, wireNetworkDto: any): void {
-
-    this.logger.info('Contact Component: update() transaction dispatching');
-
-    // Retain full structural details locally (including address parameters)
-    this.item = localStateDto;
-
-    // Invoke the route parameter identifier cleanly using standard signal syntax ()
-    this.logger.info(`Updating Id: ${this.id()} matching state entity id: ${this.item.party?.id}`);
-    this.logger.info('Dispatched Network payload: ' + JSON.stringify(wireNetworkDto, null, 2));
-
-    // Ship the network-safe payload variant off over the HTTP proxy channel
-    this.partyService.updateContact(this.id(), wireNetworkDto).subscribe({
-      next: (databaseUpdatedRecord: ContactModel) => {
-        this.logger.info('Contact Component: update() successfully resolved over network.');
-
-        // Overwrite your local model state with the absolute server source of truth
-        this.item = databaseUpdatedRecord;
-
-        // this.openSnackBar();
-
-      },
-      error: (err) => {
-        this.logger.error('Failed to submit contact entity mutations to database provider', err);
-      }
-    });
-
-  }
-
-  private patchDtoWithFormData(dto: any, formData: any): any {
-
-    if (!dto || !formData || typeof dto !== 'object' || typeof formData !== 'object') {
-      return dto;
-    }
-
-    // Array Handling: Safely align forms with nested collections arrays
-    if (formData.address && dto.party && Array.isArray(dto.party.addresses)) {
-      const formAddress = formData.address;
-
-      const matchingDtoAddress = dto.party.addresses.find(
-        (addr: any) => addr.addressType === formAddress.addressType
-      );
-
-      if (matchingDtoAddress) {
-        this.patchDtoWithFormData(matchingDtoAddress, formAddress);
-      } else {
-        this.logger.warn(`Contact Component: addressType [${formAddress.addressType}] not found in entity list payload graph.`);
-      }
-    }
-
-    // Standard recursive object key iteration routing passes
-    Object.keys(formData).forEach(key => {
-      if (key === 'address') return;
-
-      if (key in dto) {
-        let formValue = formData[key];
-        const dtoValue = dto[key];
-
-        // Convert empty layout strings ("") back to clean null pointers
-        // so Spring Boot accepts them as standard Java null variables!
-        if (formValue === '') {
-          formValue = null;
-        }
-
-        if (
-          formValue && typeof formValue === 'object' && !Array.isArray(formValue) &&
-          dtoValue && typeof dtoValue === 'object' && !Array.isArray(dtoValue)
-        ) {
-          this.patchDtoWithFormData(dtoValue, formValue);
-        } else {
-          dto[key] = formValue;
-        }
-      }
-    });
-
-    return dto;
-  }
-
-  // Recursively traverses arrays, objects, and root elements, converting any
-  // empty strings ("") into clean JavaScript null parameters for Jackson compatibility.
-
-  private deepSanitizePayload(obj: any): any {
-    if (obj === '') {
-      return null;
-    }
-
-    if (obj === null || typeof obj !== 'object') {
-      return obj;
-    }
-
-    if (Array.isArray(obj)) {
-      return obj.map(item => this.deepSanitizePayload(item));
-    }
-
-    const sanitizedObj: any = {};
-    Object.keys(obj).forEach(key => {
-      sanitizedObj[key] = this.deepSanitizePayload(obj[key]);
-    });
-
-    return sanitizedObj;
-  }
-
 
 }
 
