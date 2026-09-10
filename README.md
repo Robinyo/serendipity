@@ -51,31 +51,31 @@ Follow the steps in the [Get Started](./get-started/overview) guide.
 
 ### Home (Welcome) Page
 
-![Home Page](/website/static/serendipity/screen-shots/serendipity/home.png)
+![Home Page](https://github.com/Robinyo/serendipity/blob/main/website/static/screen-shots/serendipity/home.png)
 
 ### Navigation
 
 **Navigation Bar**
 
-![Navigation Bar](/webbsite/static/serendipity/screen-shots/serendipity/navigation-bar.png)
+![Navigation Bar](https://github.com/Robinyo/serendipity/blob/main/website/static/screen-shots/serendipity/navigation-bar.png)
 
 **Command Bar**
 
-![Command Bar](/webbsite/static/serendipity/screen-shots/serendipity/command-bar.png)
+![Command Bar](https://github.com/Robinyo/serendipity/blob/main/website/static/screen-shots/serendipity/command-bar.png)
 
 **Sidenav**
 
-![Sidenav](/webbsite/static/serendipity/screen-shots/serendipity/sidenav.png)
+![Sidenav](https://github.com/Robinyo/serendipity/blob/main/website/static/screen-shots/serendipity/sidenav.png)
 
 ### Customer Engagement
 
 **Accounts**
 
-![Accounts](/webbsite/static/serendipity/screen-shots/serendipity/accounts.png)
+![Accounts](https://github.com/Robinyo/serendipity/blob/main/website/static/screen-shots/serendipity/accounts.png)
 
 **Contacts**
 
-![Contacts](/webbsite/static/serendipity/screen-shots/serendipity/contacts.png)
+![Contacts](https://github.com/Robinyo/serendipity/blob/main/website/static/screen-shots/serendipity/contacts.png)
 
 ## Web-based Tooling
 
