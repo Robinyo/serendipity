@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - 'website/**'
-      - 'docs/**'
+      - '../../the-docs/**'
 
 permissions:
   contents: read

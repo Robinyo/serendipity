@@ -1,5 +1,9 @@
 # Welcome
 
+import Logo from '@site/static/img/serendipity-logo.svg';
+
+<Logo style={{ width: '400px', height: 'auto' }} alt="Logo" />
+
 Serendipity is an open source toolkit for building performant, high-quality Customer Engagement applications.
 Applications that can transform your organisation by connecting your customers, products, people and operations.
 
@@ -10,16 +14,17 @@ Serendipity is composed of the following components:
 - **Progressive Web App** — an Angular 22 + Angular Material (M3) single-page application
 - **Backend for Frontend (BFF)** — a Spring Boot 4.0.1 service that serves the PWA and proxies API requests
 - **Core Services**
-    - **Identity Service** — Keycloak, providing OpenID Connect authentication and OAuth 2.0 authorisation
-    - **Party Service** — a Spring Boot microservice managing individuals, organisations, accounts, and contacts
+  - **Identity Service** — Keycloak, providing OpenID Connect authentication and OAuth 2.0 authorization
+  - **Party Service** — a Spring Boot microservice managing leads, opportunities, accounts, and contacts
 - **Orchestration Services**
-    - **Human Tasks Service** — Camunda 8.9 for BPMN 2.0 workflow orchestration
+  - **Human Tasks Service** — Camunda 8.9 for BPMN 2.0 workflow orchestration
 - **Reporting Services**
-    - **Report Service** — separate reporting infrastructure (see [js-docker](https://github.com/Robinyo/js-docker))
+  - **Report Service** — separate reporting infrastructure (see [js-docker](https://github.com/Robinyo/js-docker))
 
 <br /> <br />
 
-![Context Diagram](/screen-shots/context-diagram.png)
+![Context Diagram](/context-diagram.png)
+
 
 ## Security
 
@@ -44,7 +49,6 @@ Follow the steps in the [Get Started](./get-started/overview) guide.
 ### Home (Welcome) Page
 
 ![Home Page](/screen-shots/serendipity/home.png)
-
 
 ### Navigation
 
@@ -76,4 +80,4 @@ Serendipity uses [bpmn-js](https://bpmn.io/) to visually build and display BPMN 
 
 ## License
 
-GNU Affero General Public License v3.0 — see [LICENSE](../LICENSE) for details.
+GNU Affero General Public License v3.0 — see [LICENSE](/LICENSE) for details.

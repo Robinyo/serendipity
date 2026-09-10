@@ -41,7 +41,7 @@ const config: Config = {
       'classic',
       {
         docs: {
-          path: '../docs',
+          path: './docs',
           sidebarPath: './sidebars.ts',
           exclude: [
             '**/serendipity/**',

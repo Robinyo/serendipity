@@ -25,13 +25,13 @@
 
 Serendipity is composed of the following components:
 
-- [Progressive Web App](./docs/serendipity/sales/developer-guide/architecture/pwa/README.md)
-- [Backend for Frontend](./docs/serendipity/sales/developer-guide/architecture/bff/README.md)
+- [Progressive Web App](the-docs/serendipity/sales/developer-guide/architecture/pwa/README.md)
+- [Backend for Frontend](the-docs/serendipity/sales/developer-guide/architecture/bff/README.md)
 - Core Services
-  - [Identity Service](./docs/serendipity/sales/administration-guide/keycloak/README.md)
-  - [Party Service](./docs/serendipity/sales/developer-guide/architecture/spring-data/README.md)
+  - [Identity Service](the-docs/serendipity/sales/administration-guide/keycloak/README.md)
+  - [Party Service](the-docs/serendipity/sales/developer-guide/architecture/spring-data/README.md)
 - Orchestration Services
-  - [Human Tasks Service](./docs/camunda/guides/orchestrate-human-tasks/README.md)
+  - [Human Tasks Service](the-docs/camunda/guides/orchestrate-human-tasks/README.md)
 - Reporting Services
   - [Report Service](https://github.com/Robinyo/js-docker)
 
