@@ -199,7 +199,7 @@ To create a local tag on your current branch, run this:
 
 ```
 git tag <tagname>
-git tag -a v20.2.2 -m "Angular 20.2.2"
+git tag -a v22.2.0 -m "Angular 22.2.0"
 ```
 
 To push the local tags to GitHub:
