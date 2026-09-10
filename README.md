@@ -40,42 +40,42 @@ Follow the steps in the [Get Started](./get-started/overview) guide.
 
 ## Documentation
 
-- [Developer Guide](./developer-guide/overview) — build management, architecture, and tools
-- [Administration Guide](./administration-guide/overview) — Docker, Keycloak, PostgreSQL, pgAdmin
-- [User Guide](./users-guide/learn-the-basics) — navigate the PWA and understand the data
-- [Concepts](./concepts/authentication) — authentication architecture and CQRS
-- [Try, Install or Upgrade](./try-install-upgrade/try) — deployment scenarios
-- [References](./references/case-management) — case management framework
+- [Developer Guide](https://robinyo.github.io/serendipity/docs/developer-guide/overview) — build management, architecture, and tools
+- [Administration Guide](https://robinyo.github.io/serendipity/docs/administration-guide/overview) — Docker, Keycloak, PostgreSQL, pgAdmin
+- [User Guide](https://robinyo.github.io/serendipity/docs/users-guide/learn-the-basics) — navigate the PWA and understand the data
+- [Concepts](https://robinyo.github.io/serendipity/docs/concepts/authentication) — authentication architecture and CQRS
+- [Try, Install or Upgrade](https://robinyo.github.io/serendipity/docs/try-install-upgrade/try) — deployment scenarios
+- [References](https://robinyo.github.io/serendipity/docs/references/case-management) — case management framework
 
 ## Screen Shots
 
 ### Home (Welcome) Page
 
-![Home Page](/screen-shots/serendipity/home.png)
+![Home Page](/website/static/serendipity/screen-shots/serendipity/home.png)
 
 ### Navigation
 
 **Navigation Bar**
 
-![Navigation Bar](/screen-shots/serendipity/navigation-bar.png)
+![Navigation Bar](/webbsite/static/serendipity/screen-shots/serendipity/navigation-bar.png)
 
 **Command Bar**
 
-![Command Bar](/screen-shots/serendipity/command-bar.png)
+![Command Bar](/webbsite/static/serendipity/screen-shots/serendipity/command-bar.png)
 
 **Sidenav**
 
-![Sidenav](/screen-shots/serendipity/sidenav.png)
+![Sidenav](/webbsite/static/serendipity/screen-shots/serendipity/sidenav.png)
 
 ### Customer Engagement
 
 **Accounts**
 
-![Accounts](/screen-shots/serendipity/accounts.png)
+![Accounts](/webbsite/static/serendipity/screen-shots/serendipity/accounts.png)
 
 **Contacts**
 
-![Contacts](/screen-shots/serendipity/contacts.png)
+![Contacts](/webbsite/static/serendipity/screen-shots/serendipity/contacts.png)
 
 ## Web-based Tooling
 

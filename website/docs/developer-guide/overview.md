@@ -1,4 +1,4 @@
-# Developer Guide
+# Overview
 
 This guide covers everything you need to develop, build, and extend Serendipity.
 
