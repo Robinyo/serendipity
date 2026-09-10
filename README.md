@@ -36,7 +36,7 @@ Serendipity is composed of the following components:
 
 ## Getting Started
 
-Follow the steps in the [Get Started](./get-started/overview) guide.
+Follow the steps in the [Get Started](https://robinyo.github.io/serendipity/docs/get-started/overview) guide.
 
 ## Documentation
 
