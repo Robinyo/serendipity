@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # ADR-0001: Backend for Frontend as OAuth 2.0 confidential client
 
 **Status:** Accepted

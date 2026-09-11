@@ -1,7 +1,3 @@
----
-sidebar_position: 2
----
-
 # ADR-0002: Soft delete for Party entities using `toDate`
 
 **Status:** Accepted
