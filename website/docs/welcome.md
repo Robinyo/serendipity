@@ -1,8 +1,10 @@
-# Welcome
-
 import Logo from '@site/static/img/serendipity-logo.svg';
 
-<Logo style={{ width: '400px', height: 'auto' }} alt="Logo" />
+# Welcome
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <Logo style={{ width: '400px', height: 'auto' }} alt="Logo" />
+</div>
 
 Serendipity is an open source toolkit for building performant, high-quality Customer Engagement applications.
 Applications that can transform your organisation by connecting your customers, products, people and operations.

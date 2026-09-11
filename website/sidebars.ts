@@ -91,18 +91,26 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Spring Boot',
-          items: [
-            'developer-guide/spring-boot/overview',
-            'developer-guide/spring-boot/quickstart',
-          ],
-        },
-        {
-          type: 'category',
           label: 'Camunda',
           items: [
             'developer-guide/camunda/overview',
             'developer-guide/camunda/quickstart',
+          ],
+        },
+        'developer-guide/common-data-model',
+        {
+          type: 'category',
+          label: 'Database Seeds',
+          items: [
+            'developer-guide/database-seeds/parliament-of-australia/parliament-of-australia'
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Spring Boot',
+          items: [
+            'developer-guide/spring-boot/overview',
+            'developer-guide/spring-boot/quickstart',
           ],
         },
       ],
