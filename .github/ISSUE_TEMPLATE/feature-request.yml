@@ -1,0 +1,76 @@
+name: Feature request
+description: Suggest a new feature or improvement
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please search existing issues before opening a new one — someone may have already suggested this.
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      description: What kind of change are you proposing?
+      options:
+        - New feature
+        - Improvement to an existing feature
+        - Documentation change
+        - Tooling / developer experience
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which part of Serendipity would this affect?
+      options:
+        - Progressive Web App (Angular frontend)
+        - Backend for Frontend (BFF)
+        - Party Service (backend microservice)
+        - Keycloak / Identity
+        - Camunda / Workflow
+        - Documentation
+        - Docker / Deployment
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or opportunity
+      description: What problem does this solve, or what opportunity does it create? Describe the user need or motivation.
+      placeholder: "As a user, I want to... so that..."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe what you would like to see happen. This is a suggestion — the implementation may differ after discussion.
+      placeholder: "We should add X that does Y, accessible from Z."
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any alternative solutions or features you have considered.
+      placeholder: "We could also..."
+    validations:
+      required: false
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Screenshots, mockups, links, or anything else that helps illustrate the request.
+      placeholder: "Link to a related issue, design, or example from another tool."
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of conduct
+      description: By submitting this issue I agree to follow the [code of conduct](../CODE_OF_CONDUCT.md).
+      options:
+        - label: I agree to follow this repository's code of conduct
+          required: true
