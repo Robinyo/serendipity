@@ -32,6 +32,45 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: 'Developer Guide',
+      items: [
+        'developer-guide/overview',
+        {
+          type: 'category',
+          label: 'Angular',
+          items: [
+            'developer-guide/angular/overview',
+            'developer-guide/angular/quickstart',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Camunda',
+          items: [
+            'developer-guide/camunda/overview',
+            'developer-guide/camunda/quickstart',
+          ],
+        },
+        'developer-guide/common-data-model',
+        {
+          type: 'category',
+          label: 'Database Seeds',
+          items: [
+            'developer-guide/database-seeds/parliament-of-australia/parliament-of-australia'
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Spring Boot',
+          items: [
+            'developer-guide/spring-boot/overview',
+            'developer-guide/spring-boot/quickstart',
+          ],
+        },
+      ],
+    },
+    {
+      type: 'category',
       label: 'Concepts',
       items: [
         'concepts/authentication',
@@ -70,49 +109,25 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Administration Guide',
+      label: 'Architecture Guide',
       items: [
-        'administration-guide/overview',
-        'administration-guide/keycloak',
+        {
+          type: 'category',
+          label: 'ADR',
+          items: [
+            'architecture/adr/index',
+            'architecture/adr/adr-0001-bff-oauth2-confidential-client',
+            'architecture/adr/adr-0002-soft-delete-party-entities',
+          ],
+        },
       ],
     },
     {
       type: 'category',
-      label: 'Developer Guide',
+      label: 'Administration Guide',
       items: [
-        'developer-guide/overview',
-        {
-          type: 'category',
-          label: 'Angular',
-          items: [
-            'developer-guide/angular/overview',
-            'developer-guide/angular/quickstart',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Camunda',
-          items: [
-            'developer-guide/camunda/overview',
-            'developer-guide/camunda/quickstart',
-          ],
-        },
-        'developer-guide/common-data-model',
-        {
-          type: 'category',
-          label: 'Database Seeds',
-          items: [
-            'developer-guide/database-seeds/parliament-of-australia/parliament-of-australia'
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Spring Boot',
-          items: [
-            'developer-guide/spring-boot/overview',
-            'developer-guide/spring-boot/quickstart',
-          ],
-        },
+        'administration-guide/overview',
+        'administration-guide/keycloak',
       ],
     },
     {
