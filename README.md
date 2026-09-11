@@ -34,7 +34,7 @@ Serendipity is composed of the following components:
 - **OpenID Connect** is used for authentication and **OAuth 2.0** for authorisation.
 - **TLS** is used to encrypt data in transit and **AES** to encrypt data at rest.
 
-## Getting Started
+## Get Started
 
 Follow the steps in the [Get Started](https://robinyo.github.io/serendipity/docs/get-started/overview) guide.
 
@@ -79,7 +79,7 @@ Follow the steps in the [Get Started](https://robinyo.github.io/serendipity/docs
 
 ## Web-based Tooling
 
-Serendipity uses [bpmn-js](https://bpmn.io/) to visually build and display BPMN 2.0 diagrams and [form-js](https://bpmn.io/) to visually build and display forms.
+Serendipity uses [form-js](https://bpmn.io/) to render forms and [bpmn-js](https://bpmn.io/) to display BPMN 2.0 diagrams.
 
 ## License
 

@@ -76,7 +76,7 @@ Follow the steps in the [Get Started](./get-started/overview) guide.
 
 ## Web-based Tooling
 
-Serendipity uses [bpmn-js](https://bpmn.io/) to visually build and display BPMN 2.0 diagrams and [form-js](https://bpmn.io/) to visually build and display forms.
+Serendipity uses [form-js](https://bpmn.io/) to render forms and [bpmn-js](https://bpmn.io/) to display BPMN 2.0 diagrams.
 
 ## License
 
