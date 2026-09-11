@@ -7,7 +7,7 @@ This document covers how to get started, how to propose changes, and what we loo
 ## Getting started
 
 1. Clone the repository.
-2. Follow the steps in the [Get Started guide](https://robinyo.github.io/serendipity/docs/get-started/overview) to set up your local environment.
+2. Follow the steps in the [Get Started](https://robinyo.github.io/serendipity/docs/get-started/overview) guide to set up your local environment.
 3. Build the frontend and backend and confirm you can run the application locally.
 
 If anything in the setup is unclear or does not work as documented, that is itself a valuable contribution — please open an issue and describe what you hit.
@@ -40,7 +40,7 @@ For larger changes — new features, significant refactors, changes to the publi
 
 - Backend: follow the conventions already present in the Spring Boot modules (formatting, naming, layered structure).
 - Frontend: follow the conventions in the Angular workspace (standalone components, lazy loading, library boundaries).
-- Documentation: write in Markdown, prefer clarity over length, and keep the Docusaurus site buildable.
+- Documentation: write in Markdown, prefer clarity to length, and keep the Docusaurus site buildable.
 
 ## Areas we would welcome help with
 
@@ -53,4 +53,4 @@ The [Roadmap](https://robinyo.github.io/serendipity/docs/roadmap) describes wher
 
 ## License
 
-Contributions are made under the terms of the GNU Affero General Public License v3.0, as set out in the repository [LICENSE](../LICENSE).
+Contributions are made under the terms of the GNU Affero General Public License v3.0, as set out in the repository [LICENSE](https://github.com/Robinyo/serendipity/blob/main/LICENSE).
