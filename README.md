@@ -9,6 +9,8 @@
   Applications that can transform your organisation by connecting your customers, products, people and operations.
 </p>
 
+**Built using Angular v22, Angular Material (M3) v22.1.1, Spring Boot v4.0.1,
+Spring Cloud 2025.1.0 and Java 25.**
 
 ## Architecture
 
