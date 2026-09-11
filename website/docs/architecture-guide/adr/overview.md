@@ -10,10 +10,11 @@ Each ADR captures a significant architectural decision, the context in which it 
 |---|---|---|
 | [ADR-0001](./adr-0001-bff-oauth2-confidential-client.md) | Backend for Frontend as OAuth 2.0 confidential client | Accepted |
 | [ADR-0002](./adr-0002-soft-delete-party-entities.md) | Soft delete for Party entities using `toDate` | Accepted |
+| [ADR-0003](./adr-0003-bff-cors-csrf-session-security.md) | BFF CORS, CSRF, and session security model | Accepted |
 
 ## About this directory
 
-ADRs live alongside the documentation in the Docusaurus site, under `website/docs/architecture/adr/`. They are rendered as part of the site and linked from the Concepts section of the sidebar.
+ADRs live alongside the documentation in the Docusaurus site, under `website/docs/architecture-guide/adr/`. They are rendered as part of the site and linked from the Architecture Guide section of the sidebar.
 
 ## ADR format
 

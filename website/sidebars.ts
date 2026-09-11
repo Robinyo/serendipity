@@ -118,6 +118,7 @@ const sidebars: SidebarsConfig = {
             'architecture-guide/adr/overview',
             'architecture-guide/adr/adr-0001-bff-oauth2-confidential-client',
             'architecture-guide/adr/adr-0002-soft-delete-party-entities',
+            'architecture-guide/adr/adr-0003-bff-cors-csrf-session-security',
           ],
         },
       ],
