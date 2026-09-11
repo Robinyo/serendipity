@@ -115,7 +115,7 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'ADR',
           items: [
-            'architecture/adr/index',
+            'architecture/adr/overview',
             'architecture/adr/adr-0001-bff-oauth2-confidential-client',
             'architecture/adr/adr-0002-soft-delete-party-entities',
           ],
