@@ -115,9 +115,9 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'ADR',
           items: [
-            'architecture/adr/overview',
-            'architecture/adr/adr-0001-bff-oauth2-confidential-client',
-            'architecture/adr/adr-0002-soft-delete-party-entities',
+            'architecture-guide/adr/overview',
+            'architecture-guide/adr/adr-0001-bff-oauth2-confidential-client',
+            'architecture-guide/adr/adr-0002-soft-delete-party-entities',
           ],
         },
       ],
@@ -126,16 +126,18 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Administration Guide',
       items: [
-        'administration-guide/overview',
+        'administration-guide/docker',
         'administration-guide/keycloak',
+        'administration-guide/pgadmin',
+        'administration-guide/postgres',
       ],
     },
     {
       type: 'category',
       label: 'User Guide',
       items: [
-        'users-guide/learn-the-basics',
-        'users-guide/orchestrate-human-tasks',
+        'user-guide/learn-the-basics',
+        'user-guide/orchestrate-human-tasks',
       ],
     },
     {

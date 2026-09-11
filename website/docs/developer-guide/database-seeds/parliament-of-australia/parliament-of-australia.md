@@ -31,12 +31,11 @@ spokesperson and chair its meetings. The Speaker is also responsible for the adm
 House of Representatives. The Speaker is elected from among the 150 members of the House and is usually a person of
 considerable parliamentary experience.
 
-## Database Seeds (aka Database Initialisation)
+## Database Seeds
 
-Database seeding in Spring Boot with JPA involves populating your database with initial data, which is useful for
-development, testing, or providing default application settings. Several methods can be employed for this purpose.
-
-### Implementation
+Database seeding (also known as Database Initialisation) in Spring Boot with JPA involves populating your database with 
+initial data, which is useful for development, testing, or providing default application settings. 
+Several methods can be employed for this purpose.
 
 ### CommandLineRunner
 

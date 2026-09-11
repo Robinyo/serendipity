@@ -41,7 +41,7 @@ Follow the steps in the [Get Started](./get-started/overview) guide.
 
 - [Developer Guide](./developer-guide/overview) — build management, architecture, and tools
 - [Administration Guide](./administration-guide/overview) — Docker, Keycloak, PostgreSQL, pgAdmin
-- [User Guide](./users-guide/learn-the-basics) — navigate the PWA and understand the data
+- [User Guide](user-guide/learn-the-basics) — navigate the PWA and understand the data
 - [Concepts](./concepts/authentication) — authentication architecture and CQRS
 - [Try, Install or Upgrade](./try-install-upgrade/try) — deployment scenarios
 - [References](./references/case-management) — case management framework

@@ -27,18 +27,18 @@ A mature, production-ready open-source Customer Engagement Platform that organis
 
 ### Documentation
 
-- Fill remaining stub pages (administration overview, get-started overview, component overviews)
+- ~~Fill remaining stub pages (administration overview, get-started overview, component overviews)~~
 - Add API reference (OpenAPI / Springdoc) for the core services
-- Add Architecture Decision Records (ADRs) for key choices:
-  - BFF pattern and JWT relay
-  - Soft delete strategy
-  - Keycloak / OIDC integration
+- ~~Add Architecture Decision Records (ADRs) for key choices:~~
+  - ~~BFF pattern and JWT relay~~
+  - ~~Soft delete strategy~~
+  - ~~Keycloak / OIDC integration~~
 
 ### Developer experience
 
-- One-command local setup (`docker compose up` or a setup script)
-- CONTRIBUTING.md covering how to run tests, add a library, and submit a PR
-- Issue templates for bugs and feature requests
+- ~~One-command local setup (`docker compose up` or a setup script)~~
+- ~~CONTRIBUTING.md covering how to run tests, add a library, and submit a PR~~
+- ~~Issue templates for bugs and feature requests~~
 
 ### Security posture
 

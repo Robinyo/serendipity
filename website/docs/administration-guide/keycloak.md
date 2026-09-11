@@ -1,4 +1,4 @@
-# Serendipity Identity Service
+# Keycloak
 
 ## Keycloak Admin Console
 

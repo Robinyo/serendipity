@@ -94,12 +94,12 @@ docker inspect -f \
 To check the logs inside your container:
 
 ```
-docker container logs postgres
-docker container logs pgadmin
+docker container logs nginx
 docker container logs serendipity-identity-service
 docker container logs serendipity-party-service
+docker container logs serendipity-storage-service
 docker container logs serendipity-web-bff
-docker container logs nginx
+docker container logs pgadmin
 
 docker container logs orchestration
 docker container logs connectors
