@@ -131,6 +131,7 @@ const sidebars: SidebarsConfig = {
         'administration-guide/keycloak',
         'administration-guide/pgadmin',
         'administration-guide/postgres',
+        'administration-guide/rate-limiting',
       ],
     },
     {
