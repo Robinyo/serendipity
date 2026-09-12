@@ -124,7 +124,15 @@ const sidebars: SidebarsConfig = {
           label: 'Access Control',
           items: [
             'architecture-guide/access-control/overview',
-            'architecture-guide/access-control/users-groups-permissions-model',
+            'architecture-guide/access-control/design-document',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Observability',
+          items: [
+            'architecture-guide/observability/overview',
+            'architecture-guide/observability/design-document',
           ],
         },
         {

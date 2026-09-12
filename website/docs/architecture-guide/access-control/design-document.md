@@ -1,4 +1,4 @@
-# Users, Groups, and Permissions Model for Accounts and Contacts
+# Access Control — Design Document
 
 ## Purpose and scope
 
