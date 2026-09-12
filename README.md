@@ -42,12 +42,15 @@ Follow the steps in the [Get Started](https://robinyo.github.io/serendipity/docs
 
 ## Documentation
 
-- [Developer Guide](https://robinyo.github.io/serendipity/docs/developer-guide/overview) — build management, architecture, and tools
-- [Administration Guide](https://robinyo.github.io/serendipity/docs/administration-guide/overview) — Docker, Keycloak, PostgreSQL, pgAdmin
-- [User Guide](https://robinyo.github.io/serendipity/docs/users-guide/learn-the-basics) — navigate the PWA and understand the data
-- [Concepts](https://robinyo.github.io/serendipity/docs/concepts/authentication) — authentication architecture and CQRS
-- [Try, Install or Upgrade](https://robinyo.github.io/serendipity/docs/try-install-upgrade/try) — deployment scenarios
-- [References](https://robinyo.github.io/serendipity/docs/references/case-management) — case management framework
+- [Roadmap](https://robinyo.github.io/serendipity/docs/roadmap)
+- [Get Started](https://robinyo.github.io/serendipity/docs/get-started/installation)
+- [Try, Install or Upgrade](https://robinyo.github.io/serendipity/docs/try-install-upgrade/try)
+- [Developer Guide](https://robinyo.github.io/serendipity/docs/developer-guide/overview)
+- [Concepts](https://robinyo.github.io/serendipity/docs/concepts/authentication)
+- [Components](https://robinyo.github.io/serendipity/docs/components/bff/overview)
+- [Architecture Guide](https://robinyo.github.io/serendipity/docs/architecture-guide/adr/overview)
+- [Administration Guide](https://robinyo.github.io/serendipity/docs/administration-guide/docker)
+- [User Guide](https://robinyo.github.io/serendipity/)
 
 ## Screen Shots
 
