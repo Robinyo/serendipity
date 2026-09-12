@@ -33,7 +33,7 @@ export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      description="Description will go into a meta tag in <head />">
+      description="Serendipity Docusaurus docs">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
