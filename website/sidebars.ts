@@ -105,6 +105,13 @@ const sidebars: SidebarsConfig = {
             'components/nginx/configuration',
           ],
         },
+        {
+          type: 'category',
+          label: 'Party Service',
+          items: [
+            'components/party-service/overview',
+          ],
+        },
       ],
     },
     {
