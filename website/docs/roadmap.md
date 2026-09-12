@@ -44,7 +44,7 @@ A mature, production-ready open-source Customer Engagement Platform that organis
 - ✅ Remove commented-out legacy config from SecurityConfig.java
 - ✅ Keycloak client configuration documented and reproducible — see [Administration Guide: Keycloak](./administration-guide/keycloak.md)
 - ✅ Confirm the mkcert / TLS flow works from a cold start
-- ⏳ Document rate limiting considerations
+- ✅ Document rate limiting considerations
 
 ### Testing
 
