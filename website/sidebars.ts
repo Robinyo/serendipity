@@ -118,6 +118,15 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Architecture Guide',
       items: [
+        'architecture-guide/overview',
+        {
+          type: 'category',
+          label: 'Access Control',
+          items: [
+            'architecture-guide/access-control/overview',
+            'architecture-guide/access-control/users-groups-permissions-model',
+          ],
+        },
         {
           type: 'category',
           label: 'ADR',
