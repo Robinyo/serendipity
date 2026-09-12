@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # Roadmap
 
 This roadmap outlines where Serendipity is heading and why. It is a living document — items may shift priority as the project evolves and as the community contributes.
@@ -23,50 +19,55 @@ A mature, production-ready open-source Customer Engagement Platform that organis
 
 ## Phase 1 — Solidify Foundations
 
+**Status:** ✅ Substantially complete
+
 **Goal:** Ship the version you would confidently recommend to a peer organisation.
 
 ### Documentation
 
-- ~~Fill remaining stub pages (administration overview, get-started overview, component overviews)~~
-- Add API reference (OpenAPI / Springdoc) for the core services
-- ~~Add Architecture Decision Records (ADRs) for key choices:~~
-  - ~~BFF pattern and JWT relay~~
-  - ~~Soft delete strategy~~
-  - ~~Keycloak / OIDC integration~~
+- ✅ Architecture Decision Records (ADRs) for key choices
+  - ✅ ADR-0001: BFF pattern and OAuth 2.0 confidential client
+  - ✅ ADR-0002: Soft delete strategy for Party entities
+  - ✅ ADR-0003: BFF CORS, CSRF, and session security model
+- ✅ README version statement (Angular v22, Spring Boot v4.0.1, Java 25)
+- 🔄 Add API reference (OpenAPI / Springdoc) for the core services
 
 ### Developer experience
 
-- ~~One-command local setup (`docker compose up` or a setup script)~~
-- ~~CONTRIBUTING.md covering how to run tests, add a library, and submit a PR~~
-- ~~Issue templates for bugs and feature requests~~
+- ✅ CONTRIBUTING.md
+- ✅ Issue templates for bugs, feature requests, and doc fixes
+- 🔄 One-command local setup (`docker compose up` or a setup script)
 
 ### Security posture
 
-- Audit CORS headers on the BFF
-- Verify Keycloak client configuration is documented and reproducible
-- Confirm the mkcert / TLS flow works from a cold start
-- Document rate limiting considerations
+- ✅ Audit CORS headers on the BFF (ADR-0003)
+- ✅ Remove commented-out legacy config from SecurityConfig.java
+- ⏳ Verify Keycloak client configuration is documented and reproducible
+- ⏳ Confirm the mkcert / TLS flow works from a cold start
+- ⏳ Document rate limiting considerations
 
 ### Testing
 
-- Backend integration tests for party service CRUD and BFF auth flows
-- Frontend component tests for critical paths (login, account list, contact form)
+- ⏳ Backend integration tests for party service CRUD and BFF auth flows
+- ⏳ Frontend component tests for critical paths (login, account list, contact form)
 
 ### Observability
 
-- Actuator health endpoints
-- Structured JSON logging
-- Basic metrics (request latency, error rate) via Micrometer and Prometheus
+- ⏳ Actuator health endpoints
+- ⏳ Structured JSON logging
+- ⏳ Basic metrics (request latency, error rate) via Micrometer and Prometheus
 
 ### Dependency upgrades
 
-- Establish a quarterly upgrade cadence for Angular, Spring Boot, Camunda, and other major dependencies
+- ⏳ Establish a quarterly upgrade cadence for Angular, Spring Boot, Camunda, and other major dependencies
 
-**Exit criteria:** A new developer can clone, run locally, and make a small PR within an hour. The docs cover setup, architecture, and the main workflows. No open "how do I get started?" gaps.
+**Exit criteria:** A new developer can clone, run locally, and make a small PR within an hour. The docs cover setup, architecture, and the main workflows.
 
 ---
 
 ## Phase 2 — Core CRM Features
+
+**Status:** ⏳ Planned
 
 **Goal:** Make Serendipity useful as a standalone engagement tool, not just infrastructure.
 
@@ -106,6 +107,8 @@ A mature, production-ready open-source Customer Engagement Platform that organis
 
 ## Phase 3 — Workflow and Automation
 
+**Status:** ⏳ Planned
+
 **Goal:** Make Camunda integration a first-class feature, not a separate system.
 
 ### Process designer in the PWA
@@ -138,6 +141,8 @@ A mature, production-ready open-source Customer Engagement Platform that organis
 ---
 
 ## Phase 4 — Extensibility and Ecosystem
+
+**Status:** ⏳ Planned
 
 **Goal:** Make it feasible for others to build on Serendipity without forking.
 
