@@ -43,7 +43,7 @@ A mature, production-ready open-source Customer Engagement Platform that organis
 - ✅ Audit CORS headers on the BFF (ADR-0003)
 - ✅ Remove commented-out legacy config from SecurityConfig.java
 - ✅ Keycloak client configuration documented and reproducible — see [Administration Guide: Keycloak](./administration-guide/keycloak.md)
-- ⏳ Confirm the mkcert / TLS flow works from a cold start
+- ✅ Confirm the mkcert / TLS flow works from a cold start
 - ⏳ Document rate limiting considerations
 
 ### Testing

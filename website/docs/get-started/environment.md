@@ -226,7 +226,7 @@ Use `mkcert` to generate a key and a certificate for the following hostnames:
 - serendipity.localhost
 - serendipity-identity-service.localhost
 
-In the `\backend\certs` directory:
+In the `/backend/certs` directory:
 
 ```
 mkcert -key-file serendipity.localhost-key.pem -cert-file serendipity.localhost-cert.pem serendipity.localhost
