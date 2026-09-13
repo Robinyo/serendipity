@@ -48,7 +48,7 @@ Follow the steps in the [Get Started](https://robinyo.github.io/serendipity/docs
 - [Developer Guide](https://robinyo.github.io/serendipity/docs/developer-guide/overview)
 - [Concepts](https://robinyo.github.io/serendipity/docs/concepts/authentication)
 - [Components](https://robinyo.github.io/serendipity/docs/components/bff/overview)
-- [Architecture Guide](https://robinyo.github.io/serendipity/docs/architecture-guide/adr/overview)
+- [Architecture Guide](https://robinyo.github.io/serendipity/docs/architecture-guide/overview)
 - [Administration Guide](https://robinyo.github.io/serendipity/docs/administration-guide/docker)
 - [User Guide](https://robinyo.github.io/serendipity/)
 
