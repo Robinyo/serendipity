@@ -171,7 +171,7 @@ Notes on the matrix:
 
 - "Yes (team's accounts/contacts)" means the Sales Manager can act on entities owned by or assigned to members of their team. The Sales Manager's team is derived from their Keycloak groups (e.g. the Sales Manager is in `serendipity-team-sydney` and the entity is owned by or assigned to a user who is also in `serendipity-team-sydney`).
 - "Owned/assigned" means the Salesperson can act on entities they own or are assigned to (by user or by team).
-- The Sales Manager also has the **manager hierarchy** access path: when enabled, a Sales Manager automatically receives read or edit access to records owned by their direct reports (the user they manage), regardless of the direct report's team or the Sales Manager's role depth. The operations allowed on those records follow the Sales Manager's role — so a Sales Manager can view, edit, delete (soft), assign, and export a direct report's records if their Sales Manager role permits those operations, subject to Business Unit scope. The manager hierarchy is set via the `managedBy` field on the User table (see [Data model additions](#data-model-additions-suggested)).
+- The Sales Manager also has the **manager hierarchy** access path: when enabled, a Sales Manager automatically receives read or edit access to records owned by their direct reports (the user they manage), regardless of the direct report's team or the Sales Manager's role depth. The operations allowed on those records follow the Sales Manager's role — so a Sales Manager can view, edit, delete (soft), assign, and export a direct report's records if their Sales Manager role permits those operations, subject to Business Unit scope. The manager hierarchy is set via the `manager` Keycloak user attribute on the user (see [Data model additions](#data-model-additions-suggested)).
 - "Soft" means soft delete (set `toDate`), per ADR-0002. Hard delete is not part of this model.
 - Ownership does not override the coarse role. A Basic User does not access entities via ownership — Basic User is a system-level role that does not govern the records domain. For the customer-engagement roles, ownership grants access within the permissions of the role: a Salesperson who owns an entity can view and edit it (and delete it, soft), but a Salesperson who does not own or is not assigned to an entity cannot act on it unless they are the Sales Manager of the owning/assigned team or a direct report's manager via the hierarchy.
 
@@ -324,13 +324,13 @@ public class ContactEditAuthorizationManager
       }
     }
 
-    // Manager hierarchy check: is the current user the manager (managedBy) of the
-    // owning user? If so, the current user has access to the owning user's records
-    // (when the manager hierarchy is enabled), regardless of the owning user's team
-    // or the current user's role depth. The manager hierarchy is an access path —
-    // once the record is reachable via the hierarchy, the Sales Manager's role
-    // determines which operations are allowed. See the Manager hierarchy (enforcement)
-    // section in Data model additions.
+    // Manager hierarchy check: is the current user the manager (the owning user's
+    // `manager` Keycloak user attribute value) of the owning user? If so, the current
+    // user has access to the owning user's records (when the manager hierarchy is
+    // enabled), regardless of the owning user's team or the current user's role depth.
+    // The manager hierarchy is an access path — once the record is reachable via the
+    // hierarchy, the Sales Manager's role determines which operations are allowed. See
+    // the Manager hierarchy (enforcement) section in Data model additions.
     if (isCurrentUserManagerOfOwningUser(currentSub, contact.getParty().getOwnedBy())) {
       // The current user is the manager of the owning user — check that they have the
       // Sales Manager role to act on the direct report's records. The manager hierarchy
@@ -383,19 +383,37 @@ public class ContactEditAuthorizationManager
 
   private boolean isCurrentUserManagerOfOwningUser(
       String currentSub, String owningUserSub) {
-    // Returns true if the current user is the manager (the managedBy value) of the
-    // owning user. The owning user's managedBy is either:
-    //   (1) stored on the entity as ownedByManager (convenience field), in which case
-    //       the check is: currentSub.equals(contact.getParty().getOwnedByManager()), or
-    //   (2) looked up from the owning user's record (or a cached copy) at enforcement
-    //       time: owningUser.getManagedBy().
-    // For the sketch, option (1) is assumed — the entity carries ownedByManager and the
-    // check is a simple comparison. If option (2) is used, this helper takes the owning
-    // user's managedBy as a parameter (or fetches it) instead of currentSub vs.
-    // owningUserSub. See the Manager hierarchy (enforcement) section in Data model
+    // Returns true if the current user is the manager (the owning user's `manager`
+    // Keycloak user attribute value) of the owning user.
+    //
+    // The owning user's manager is the value of the `manager` attribute on the owning
+    // user's Keycloak user record. It is the `sub` of the owning user's manager.
+    //
+    // Two sources, depending on implementation:
+    //   (1) The owning user's `manager` attribute is emitted into the token (as a claim,
+    //       or via a User Attribute mapper). In that case the helper reads it from the
+    //       token for the owning user (or, if the owning user is the current user, from
+    //       the current user's token). The check is:
+    //         currentSub.equals(owningUserManagerFromToken(owningUserSub))
+    //   (2) The owning user's `manager` attribute is read from Keycloak (or a cached
+    //       copy) at enforcement time. The check is:
+    //         currentSub.equals(owningUserManagerFromKeycloak(owningUserSub))
+    //
+    // For the sketch, option (2) is assumed — the helper reads the owning user's
+    // `manager` attribute from Keycloak (or a cached copy), because there is no Serendipity
+    // `User` entity anymore and the owning user's `manager` may not be on the token.
+    // If option (1) is used (e.g. an Owner Attribute mapper emits `manager` into the
+    // token), the helper reads it from the token instead.
+    //
+    // If the entity carries `ownedByManager` as a convenience field (the owning user's
+    // `manager` attribute's `sub` at entity creation time), the check is a simple
+    // comparison: currentSub.equals(contact.getParty().getOwnedByManager()). That is
+    // option (2)'s convenience-field variant.
+    //
+    // This helper is sketched, not specified — the implementation depends on whether the
+    // owning user's `manager` is on the token, on the entity (ownedByManager), or must be
+    // fetched from Keycloak. See the Manager hierarchy (enforcement) section in Data model
     // additions.
-    // This helper is sketched, not specified — the implementation depends on whether
-    // ownedByManager is available on the entity or the owning user must be fetched.
     return false; // placeholder — replaced by the chosen option
   }
 }
@@ -405,8 +423,8 @@ Notes on the sketch:
 
 - **System Administrator bypass is first.** A `ROLE_SYSTEM_ADMINISTRATOR` user returns early from `check()` without any per-entity work. This matches the model: System Administrators have Organization (Global) access scope and can act on any entity.
 - **The manager fetches the entity for authorization.** This is a pre-check: the entity is fetched before the controller method runs. The service layer then fetches it again for business logic. See the note below on the duplicate-fetch tradeoff.
-- **`ownedByTeam` and the manager hierarchy are assumed.** The sketch's `isCurrentUserOnOwningUserTeam` checks whether the current user is on the owning user's team; `isCurrentUserManagerOfOwningUser` checks whether the current user is the manager (the `managedBy` value) of the owning user. These are now two separate, first-class checks in the sketch — not combined — because the manager hierarchy is an independent access path (it does not depend on the owning user's team). For the team check to work without a Keycloak lookup, the entity needs an `ownedByTeam` field (the owning user's team group name). For the manager-hierarchy check, the enforcement layer compares the current user's `sub` against the owning user's `managedBy` (or the entity carries a convenience `ownedByManager` field). The data model additions section currently lists `ownedBy`, `assignedTo`, and `assignedToTeam` — the manager-hierarchy fields (`managedBy` on User, and optionally `ownedByManager` on the entity) are additions for that access path. See the data model additions note below.
-- **`extractGroups` and the owning-user-team / manager-hierarchy logic are sketched, not specified.** The details depend on how JWT claims are exposed to the `AuthorizationManager` (e.g. via the `OAuth2AuthenticatedPrincipal`, or by reading the JWT claims directly). The owning-user-team check and the manager-hierarchy check are the least settled parts of the model — see the data model additions note.
+- **`ownedByTeam` and the manager hierarchy are assumed.** The sketch's `isCurrentUserOnOwningUserTeam` checks whether the current user is on the owning user's team; `isCurrentUserManagerOfOwningUser` checks whether the current user is the manager (the `manager` Keycloak user attribute value) of the owning user. These are now two separate, first-class checks in the sketch — not combined — because the manager hierarchy is an independent access path (it does not depend on the owning user's team). For the team check to work without a Keycloak lookup, the entity needs an `ownedByTeam` field (the owning user's team group name). For the manager-hierarchy check, the enforcement layer compares the current user's `sub` against the owning user's `manager` attribute (or the entity carries a convenience `ownedByManager` field). The data model additions section currently lists `ownedBy`, `assignedTo`, and `assignedToTeam` — the manager-hierarchy field is the owning user's `manager` Keycloak user attribute (and, optionally, an `ownedByManager` convenience field on the entity as a mirror of that attribute).
+- **`extractGroups` and the owning-user-team / manager-hierarchy logic are sketched, not specified.** The details depend on how JWT claims are exposed to the `AuthorizationManager` (e.g. via the `OAuth2AuthenticatedPrincipal`, or by reading the JWT claims directly). The owning-user-team check and the manager-hierarchy check are the least settled parts of the model — see the data model additions note. The manager-hierarchy check reads the owning user's `manager` Keycloak user attribute (either from the token if a User Attribute mapper emits it, or from Keycloak at enforcement time) — it does not read a Serendipity `User.managedBy` field, because there is no Serendipity `User` entity. The owning-user-team check reads the owning user's groups from the token (or from Keycloak) — it does not read a Serendipity team-membership table, because team membership is Keycloak group membership. For the manager-hierarchy check, the enforcement layer compares the current user's `sub` against the owning user's `manager` attribute (or the entity carries a convenience `ownedByManager` field).
 
 ### Design decisions for the enforcement layer
 
@@ -445,37 +463,42 @@ If the Party Service is an OAuth 2.0 resource server and the BFF relays the toke
 
 ## Data model additions (suggested)
 
-To support the model, the Party Service's entities need to carry fields that represent ownership, assignment, and the manager hierarchy. These fields do not exist in the Party Service's entities today — the current `Party` aggregate has `publicId`, `type`, and the audit fields, but no ownership, assignment, or manager-hierarchy fields. The fields below are additions to the `Party` entity (the root aggregate), so that `Individual` and `Organisation` inherit them, plus a field on the User entity for the manager hierarchy.
+To support the model, the Party Service's entities need to carry fields that represent ownership, assignment, and the manager hierarchy. These fields do not exist in the Party Service's entities today — the current `Party` aggregate has `publicId`, `type`, and the audit fields, but no ownership, assignment, or manager-hierarchy fields. The fields below are additions to the `Party` entity (the root aggregate), so that `Individual` and `Organisation` inherit them. There is no Serendipity-internal User entity — the manager hierarchy's `manager` attribute lives on the Keycloak user record, not on a Serendipity table.
 
 ### Party entity additions (root aggregate — inherited by Individual and Organisation)
 
 - `Party.ownedBy` — `String` (Keycloak `sub`), the owner. Not nullable if every entity must have an owner. The value is the Keycloak user ID of the user who owns the entity — a `sub` from Keycloak, not a Serendipity-internal user ID.
 - `Party.assignedTo` — `String` (Keycloak `sub`), the assignee. Nullable — not every entity is assigned to a specific user. The value is the Keycloak user ID of the user the entity is assigned to.
 - `Party.assignedToTeam` — `String` (Keycloak group name), the team the entity is assigned to. Nullable. The value is the Keycloak group name of the team (e.g. `serendipity-team-sydney`). There is no separate team identifier — the group name is the team identifier.
-- `Party.ownedByManager` — `String` (Keycloak `sub`), the manager of the owning user (the `sub` stored in the owning user's `managedBy` field, at the time the entity was created or last owned). Nullable — not every entity has a manager (e.g. a System Administrator has no manager). This is a **convenience field**, not a separate concept: it mirrors the owning user's `managedBy` so that the manager-hierarchy check can be done as a simple comparison against the entity (like `assignedToTeam` mirrors the owning user's team). If the owning user's `managedBy` changes, this field should be updated (e.g. by a lifecycle hook or a scheduled reconciliation). If the convenience field is not used, the enforcement layer resolves the owning user's `managedBy` at enforcement time by fetching the owning user (or a cached copy) — the same tradeoff as `ownedByTeam`.
+- **`Party.ownedByManager`** — `String` (Keycloak `sub`), the manager of the owning user (the `sub` stored in the owning user's `manager` Keycloak user attribute, at the time the entity was created or last owned). Nullable — not every entity has a manager (e.g. a System Administrator has no manager). This is a **convenience field**, not a separate concept: it mirrors the owning user's `manager` attribute so that the manager-hierarchy check can be done as a simple comparison against the entity (like `assignedToTeam` mirrors the owning user's team). If the owning user's `manager` attribute changes, this field should be updated (e.g. by a lifecycle hook or a scheduled reconciliation). If the convenience field is not used, the enforcement layer resolves the owning user's `manager` attribute at enforcement time — from the token (if a User Attribute mapper emits it) or from Keycloak (or a cached copy) — the same tradeoff as `ownedByTeam`.
 
-### User entity addition (Serendipity-internal user representation, not the Keycloak user)
+#### Keycloak user attributes (user representation, not a Serendipity table)
 
-- `User.managedBy` — `String` (Keycloak `sub`), the manager of this user. Nullable — not every user has a manager (e.g. a System Administrator has no manager; a top-of-hierarchy Sales Manager has no manager). When set, a Sales Manager who is the `managedBy` of another user receives read or edit access to that user's records (the **manager hierarchy**), regardless of the direct report's team or the Sales Manager's role depth — subject to Business Unit scope and the Sales Manager's role permissions. Only a Sales Manager (or a System Administrator) can be a manager; a Basic User is not a manager, because Basic User is a system-level role that does not govern the records domain. The `managedBy` field is set and maintained in Serendipity (or imported from Keycloak if Keycloak carries the manager relationship); it is not derived from Keycloak group membership.
+The user is represented in Keycloak, not in a Serendipity table. Keycloak's default user attributes (username, email, firstName, lastName) and core fields (id, enabled, emailVerified, createdTimestamp) are present on every user. The Serendipity-relevant enrichment is via **custom user attributes** added to Keycloak's user profile schema, and **the `manager` attribute**, which is the attribute the access-control model depends on.
 
-These fields are added to the `Party` entity so that `Individual` and `Organisation` inherit them. They are populated by the BFF or the PWA (via the BFF) when entities are created or assigned.
+- **`manager`** — a Keycloak user attribute whose value is the `sub` of the user's manager. Nullable — not every user has a manager (e.g. a System Administrator has no manager; a top-of-hierarchy Sales Manager has no manager). When set, a Sales Manager whose `sub` equals the `manager` attribute of another user receives read or edit access to that user's records (the **manager hierarchy**), regardless of the direct report's team or the Sales Manager's role depth — subject to Business Unit scope and the Sales Manager's role permissions. Only a Sales Manager (or a System Administrator) can be a manager; a Basic User is not a manager, because Basic User is a system-level role that does not govern the records domain. The `manager` attribute is set and maintained in Keycloak (or imported into Keycloak); it is not derived from Keycloak group membership. It is the attribute the manager-hierarchy enforcement check reads.
 
-If the BFF is responsible for creating entities on behalf of the user, it sets `ownedBy` to the current user's `sub` (from the validated token), `assignedTo` to the same or to a team member, as appropriate, and `ownedByManager` to the current user's manager's `sub` (from the current user's `managedBy`, if set) — or, if the entity is created on behalf of a team, to the team's manager.
+- **Other enriched attributes (optional, for the PWA / BFF profile):** `jobTitle`, `department`, `companyName`, `employeeId`, `employeeType`, `employeeHireDate` (a date string). These are user attributes in Keycloak. They are profile/display attributes — relevant to the PWA's user profile view and the BFF's profile endpoint, not to access-control enforcement. The PWA does not have direct access to the token; it gets the profile from the BFF, which reads the token's payload (and, if needed, the user's Keycloak attributes via the Keycloak admin API or a userinfo endpoint) and serves them to the PWA.
 
-If assignment can be done by a Sales Manager or System Administrator, the Party Service enforces that the caller is entitled to set `assignedTo` to a particular user or `assignedToTeam` to a particular team.
+- **`roles?: string[]` on the PWA's `UserProfile` interface** — this is the PWA's view of the user's roles, supplied by the BFF from the token's `realm_access.roles` (or a flattened/expanded view). It is **not** a Keycloak user attribute, and is not redundant with realm roles — it is the PWA's representation of the realm roles (which the PWA cannot read directly, because the frontend only has a cookie, not the token). The access-control enforcement uses the token's `realm_access.roles` directly; it does not read a `roles` attribute from Keycloak. If the `roles` array in the PWA profile is always just a copy of `realm_access.roles`, it is derived, not stored; whether to keep it on the `UserProfile` interface is a PWA design decision (it may be useful for the PWA's own rendering), but it is outside the access-control enforcement model.
 
 ### Manager hierarchy (enforcement)
 
-The manager hierarchy is an access path, not a role. It makes a record **reachable** by the owning user's manager (the user whose `sub` equals the owning user's `managedBy`), on the same basis that ownership, assignment, and team membership make a record reachable. Once the record is reachable via the hierarchy, the manager's role (Sales Manager) determines which operations are allowed — so the manager hierarchy + Sales Manager role = the Sales Manager's operations on the direct report's records (view, edit, delete (soft), assign, export), subject to Business Unit scope.
+The manager hierarchy is an access path, not a role. It makes a record **reachable** by the owning user's manager (the user whose `sub` equals the owning user's `manager` Keycloak user attribute value), on the same basis that ownership, assignment, and team membership make a record reachable. Once the record is reachable via the hierarchy, the manager's role (Sales Manager) determines which operations are allowed — so the manager hierarchy + Sales Manager role = the Sales Manager's operations on the direct report's records (view, edit, delete (soft), assign, export), subject to Business Unit scope.
 
-The enforcement check for the manager hierarchy is: **is the current user the `managedBy` of the owning user?** This can be done two ways:
+The enforcement check for the manager hierarchy is: **is the current user the `manager` (Keycloak user attribute) of the owning user?**
 
-1. **Convenience field on the entity.** The entity carries `ownedByManager` — the `sub` of the owning user's manager at the time the entity was created or last owned. The check is `currentSub.equals(entity.getOwnedByManager())`. Simple, no extra lookup. Needs maintenance when the owning user's `managedBy` changes.
-2. **Lookup at enforcement time.** The enforcement layer fetches (or uses a cached copy of) the owning user's record and reads `owningUser.getManagedBy()`. The check is `currentSub.equals(owningUser.getManagedBy())`. No field to maintain on the entity, but an extra fetch or cache dependency.
+Since the user representation is now in Keycloak, not in a Serendipity table, the enforcement layer does not look up a Serendipity `User` entity. It reads the owning user's `manager` attribute from the token (if the owning user's `manager` is emitted as a token claim via a User Attribute mapper) or, if the owning user's `manager` is not on the token, from Keycloak at enforcement time (an extra call or a cached copy) — the same convenience-field-vs-lookup tradeoff as `ownedByTeam` and `ownedByManager`.
 
-Either way is valid; the model (the manager hierarchy as an access path) is the same. The enforcement sketch in this document uses option (2) via a `isCurrentUserManagerOfOwningUser(currentSub, owningUserSub)` helper — but the helper's implementation is sketched, not specified, because it depends on whether `ownedByManager` is available on the entity or the owning user must be fetched.
+Two implementations of the enforcement check:
 
-The manager hierarchy is enabled by default when the `managedBy` field is set on the owning user. There is no separate "manager hierarchy enabled" flag on the entity — if `ownedByManager` (or the owning user's `managedBy`) is set, the hierarchy applies. If the organization wants to disable the hierarchy for a particular entity or user, it clears the `managedBy` (or `ownedByManager`) value.
+1. **Convenience field on the entity.** `Party.ownedByManager` stores the owning user's `manager` attribute's `sub` value at the time the entity was created or last owned. The check is `currentSub.equals(entity.getOwnedByManager())`. Simple, no extra lookup. Needs maintenance when the owning user's `manager` changes. (Same as before — the entity field is a mirror of the owning user's `manager` attribute, not a separate concept.)
+
+2. **Lookup at enforcement time.** The enforcement layer resolves the owning user's `manager` attribute — from the token if available, or from Keycloak (or a cached copy) if not — and checks `currentSub.equals(owningUserManager)`. No field to maintain on the entity, but a dependency on the token or Keycloak. This is the option sketched below in the enforcement sketch: the helper `isCurrentUserManagerOfOwningUser` reads the owning user's `manager` value (from the token or from Keycloak) rather than from a Serendipity `User.managedBy` field — because there is no Serendipity `User` entity anymore.
+
+The enforcement sketch in this document uses the `manager` Keycloak user attribute as the source of the owning user's manager, via a `isCurrentUserManagerOfOwningUser(currentSub, owningUserSub)` helper. The helper's implementation reads the owning user's `manager` attribute — either from the token (if a User Attribute mapper emits it) or from Keycloak at enforcement time. The sketch does not specify which; that is an implementation detail for the BFF/Party Service token-to-user resolution.
+
+The manager hierarchy is enabled by default when the owning user's `manager` attribute is set. There is no separate "manager hierarchy enabled" flag — if the owning user's `manager` attribute is set, the hierarchy applies. If the organization wants to disable the hierarchy for a particular entity or user, it clears the owning user's `manager` attribute (and, if `ownedByManager` is on the entity, clears it too).
 
 ## Open questions
 
