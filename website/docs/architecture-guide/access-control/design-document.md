@@ -235,7 +235,7 @@ The enforcement layer checks role-based rules via Spring Security's `Authorizati
 
 4. **Team-based rules** — the enforcement layer checks whether the current user is a member of the team that owns or is assigned the entity. The current user's team membership is derived from their Keycloak groups (from the `groups` claim in the validated token), and the entity's team is derived from its `assignedToTeam` (or, for owned entities, the owning user's group membership — see the note on `ownedByTeam` below). A Sales Manager (`ROLE_SALES_MANAGER`) who is a member of the team can act on team-owned or team-assigned entities. Example: the current user is a member of `serendipity-team-sydney`, and the entity's `assignedToTeam` is `serendipity-team-sydney`, or the entity's `ownedBy` belongs to a user who is also a member of `serendipity-team-sydney`.
 
-5. **No scope-based rules** — scope (electorate/region) is not part of the model. See [Scope (electorate / region)](#scope-electorate--region). If scope becomes a requirement later, a scope-based rule can be added then.
+5. **No scope-based rules** — scope (electorate/region) is not part of the model. If scope becomes a requirement later, a scope-based rule can be added then.
 
 A sketch of how this looks in Spring Security, using the `AuthorizationManager` SPI:
 

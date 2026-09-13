@@ -137,6 +137,13 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
+          label: 'Party Service',
+          items: [
+            'architecture-guide/party-service/design-document',
+          ],
+        },
+        {
+          type: 'category',
           label: 'ADR',
           items: [
             'architecture-guide/adr/overview',
