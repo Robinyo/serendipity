@@ -1,4 +1,4 @@
-# Observability — Design Document
+# Design Document
 
 ## Purpose
 
