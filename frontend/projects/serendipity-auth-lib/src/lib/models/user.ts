@@ -6,15 +6,15 @@ export interface UserProfile {
   firstName?: string;
   lastName?: string;
   id?: string;
-  enabled: string;
-  emailVerified: string;
-  createdTimestamp: string;
-  jobTitle: string;
-  department: string;
-  manager: string;
-  companyName: string;
-  employeeId: string;
-  employeeType: string;
-  employeeHireDate: string;
+  enabled?: string;
+  emailVerified?: string;
+  createdTimestamp?: string;
+  jobTitle?: string;
+  department?: string;
+  manager?: string;
+  companyName?: string;
+  employeeId?: string;
+  employeeType?: string;
+  employeeHireDate?: string;
   roles?: string[];
 }
