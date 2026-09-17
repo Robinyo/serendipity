@@ -17,7 +17,7 @@ import { LoggerService } from 'serendipity-utils-lib';
   ],
   templateUrl: './navigation-bar.html',
   standalone: true,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './navigation-bar.scss'
 })
 export class NavigationBar {

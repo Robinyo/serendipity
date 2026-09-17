@@ -27,7 +27,7 @@ import { CUSTOMER_ROUTES, MY_WORK_ROUTES, TOOLS_ROUTES } from './constants';
   ],
   templateUrl: './layout.html',
   standalone: true,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './layout.scss'
 })
 export class Layout  implements OnInit  {

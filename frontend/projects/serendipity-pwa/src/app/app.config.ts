@@ -39,5 +39,3 @@ export const appConfig: ApplicationConfig = {
   ]
 
 };
-
-// withInterceptors([httpInterceptor, authInterceptor]),

@@ -18,7 +18,7 @@ const PATH = '../assets/images/icons/misc/';
   ],
   templateUrl: './home.html',
   standalone: true,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './home.scss'
 })
 export class Home {
