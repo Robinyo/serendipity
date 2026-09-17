@@ -8,7 +8,7 @@ import { Layout } from './features/layout/layout';
     Layout
   ],
   templateUrl: './app.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './app.scss'
 })
 export class App {
