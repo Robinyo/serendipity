@@ -7,7 +7,6 @@ import { firstValueFrom } from 'rxjs';
 import { AUTH_SERVICE_TOKEN, AuthService } from 'serendipity-auth-lib';
 import { APP_ENVIRONMENT } from 'serendipity-utils-lib';
 
-// import { authInterceptor } from './core/interceptors/auth';
 import { httpInterceptor } from './core/interceptors/http';
 
 import { environment } from '../environments/environment';

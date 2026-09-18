@@ -1,7 +1,7 @@
 import { inject, Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { LoggerService } from '../../logger/logger.service';
+import { LoggerService } from '../../logger/logger';
 
 // Abstract parents MUST have a decorator to preserve DI metadata shapes
 

@@ -40,6 +40,7 @@ const sidebars: SidebarsConfig = {
           label: 'Angular',
           items: [
             'developer-guide/angular/overview',
+            'developer-guide/angular/configure',
             'developer-guide/angular/quickstart'
           ],
         },
