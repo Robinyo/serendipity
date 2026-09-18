@@ -33,7 +33,7 @@ export class Home {
 
     SVG_ICONS.forEach(svgIcon => {
 
-      if (svgIcon.name != undefined && svgIcon.filename != undefined) {
+      if (svgIcon.name !== undefined && svgIcon.filename !== undefined) {
 
         // https://material.angular.dev/components/icon/overview#svg-icons
 
@@ -60,5 +60,3 @@ export class Home {
   }
 
 }
-
-

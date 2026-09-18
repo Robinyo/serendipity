@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output, ChangeDetectionStrategy, inject} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -46,25 +46,3 @@ export class NavigationBar {
   }
 
 }
-
-/*
-
-
-    // Use window.location.assign with an absolute path.
-    // This explicitly tells the browser engine to bypass the SPA router history stack,
-    // clear out the active JavaScript runtime environment, and force a hard network request over the wire.
-    // window.location.assign(`${secureDomain}/logout`);
-
-  public logout(): void {
-
-    this.logger.info('Navigation Bar Component: logout()');
-
-    // Break out of the port 4200 local wrapper context to trigger the backend filter chain
-    const bffUrl = window.location.hostname === 'localhost' && window.location.port === '4200'
-      ? 'https://serendipity.localhost'
-      : '';
-
-    window.location.href = `${bffUrl}/logout`;
-  }
-
-*/
