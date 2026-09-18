@@ -10,7 +10,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'get-started/overview',
         'get-started/environment',
-        'get-started/installation',
+        'get-started/installation'
       ],
     },
     {
@@ -24,7 +24,7 @@ const sidebars: SidebarsConfig = {
           label: 'Docker Compose',
           items: [
             'try-install-upgrade/docker-compose/install',
-            'try-install-upgrade/docker-compose/configure',
+            'try-install-upgrade/docker-compose/configure'
           ],
         },
         'try-install-upgrade/sample-data',
@@ -40,7 +40,7 @@ const sidebars: SidebarsConfig = {
           label: 'Angular',
           items: [
             'developer-guide/angular/overview',
-            'developer-guide/angular/quickstart',
+            'developer-guide/angular/quickstart'
           ],
         },
         {
@@ -48,7 +48,7 @@ const sidebars: SidebarsConfig = {
           label: 'Camunda',
           items: [
             'developer-guide/camunda/overview',
-            'developer-guide/camunda/quickstart',
+            'developer-guide/camunda/quickstart'
           ],
         },
         'developer-guide/common-data-model',
@@ -64,7 +64,7 @@ const sidebars: SidebarsConfig = {
           label: 'Spring Boot',
           items: [
             'developer-guide/spring-boot/overview',
-            'developer-guide/spring-boot/quickstart',
+            'developer-guide/spring-boot/quickstart'
           ],
         },
       ],
@@ -74,7 +74,7 @@ const sidebars: SidebarsConfig = {
       label: 'Concepts',
       items: [
         'concepts/authentication',
-        'concepts/cqrs',
+        'concepts/cqrs'
       ],
     },
     {
@@ -86,7 +86,7 @@ const sidebars: SidebarsConfig = {
           label: 'Backend for Frontend',
           items: [
             'components/bff/overview',
-            'components/bff/configuration',
+            'components/bff/configuration'
           ],
         },
         {
@@ -94,7 +94,7 @@ const sidebars: SidebarsConfig = {
           label: 'Progressive Web App',
           items: [
             'components/pwa/overview',
-            'components/pwa/configuration',
+            'components/pwa/configuration'
           ],
         },
         {
@@ -102,14 +102,14 @@ const sidebars: SidebarsConfig = {
           label: 'Nginx',
           items: [
             'components/nginx/overview',
-            'components/nginx/configuration',
+            'components/nginx/configuration'
           ],
         },
         {
           type: 'category',
           label: 'Party Service',
           items: [
-            'components/party-service/overview',
+            'components/party-service/overview'
           ],
         },
       ],
@@ -123,7 +123,7 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Identity',
           items: [
-            'architecture-guide/identity/overview',
+            'architecture-guide/identity/overview'
           ],
         },
         {
@@ -131,7 +131,7 @@ const sidebars: SidebarsConfig = {
           label: 'Access Control',
           items: [
             'architecture-guide/access-control/overview',
-            'architecture-guide/access-control/design-document',
+            'architecture-guide/access-control/design-document'
           ],
         },
         {
@@ -139,14 +139,14 @@ const sidebars: SidebarsConfig = {
           label: 'Observability',
           items: [
             'architecture-guide/observability/overview',
-            'architecture-guide/observability/design-document',
+            'architecture-guide/observability/design-document'
           ],
         },
         {
           type: 'category',
           label: 'Party Service',
           items: [
-            'architecture-guide/party-service/design-document',
+            'architecture-guide/party-service/design-document'
           ],
         },
         {
@@ -156,7 +156,7 @@ const sidebars: SidebarsConfig = {
             'architecture-guide/adr/overview',
             'architecture-guide/adr/adr-0001-bff-oauth2-confidential-client',
             'architecture-guide/adr/adr-0002-soft-delete-party-entities',
-            'architecture-guide/adr/adr-0003-bff-cors-csrf-session-security',
+            'architecture-guide/adr/adr-0003-bff-cors-csrf-session-security'
           ],
         },
       ],
@@ -170,7 +170,7 @@ const sidebars: SidebarsConfig = {
         'administration-guide/user-provisioning',
         'administration-guide/pgadmin',
         'administration-guide/postgres',
-        'administration-guide/rate-limiting',
+        'administration-guide/rate-limiting'
       ],
     },
     {
@@ -178,14 +178,14 @@ const sidebars: SidebarsConfig = {
       label: 'User Guide',
       items: [
         'user-guide/learn-the-basics',
-        'user-guide/orchestrate-human-tasks',
+        'user-guide/orchestrate-human-tasks'
       ],
     },
     {
       type: 'category',
       label: 'References',
       items: [
-        'references/case-management',
+        'references/case-management'
       ],
     },
   ],

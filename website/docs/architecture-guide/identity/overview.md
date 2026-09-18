@@ -1,4 +1,4 @@
-# Identity (overview)
+# Overview
 
 ## Purpose
 

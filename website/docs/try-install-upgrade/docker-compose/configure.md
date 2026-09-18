@@ -1,8 +1,4 @@
----
-sidebar_label: Configure
----
-
-# Configure Docker Compose environments
+# Configure
 
 ## Choose a Docker Compose configuration
 
