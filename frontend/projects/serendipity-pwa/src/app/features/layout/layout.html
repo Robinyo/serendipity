@@ -1,5 +1,4 @@
-<app-navigation-bar (toggleSidenav)="sidenav.toggle()">
-</app-navigation-bar>
+<app-navigation-bar (toggleSidenav)="sidenav.toggle()"></app-navigation-bar>
 
 <mat-sidenav-container>
 
@@ -11,34 +10,30 @@
         My Work
       </h3>
 
-      @if (myWorkRoutes) {
-        @for (item of myWorkRoutes; track item.id) {
-          <a mat-list-item
-             class="md-sidenav-nav-list-item"
-             (click)="sidenav.close()"
-             [routerLink]="[item.route]"
-             routerLinkActive="active-nav-route">
-            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-            {{ item.label }}
-          </a>
-        }
+      @for (item of myWorkRoutes.value(); track item.id) {
+        <a mat-list-item
+           class="md-sidenav-nav-list-item"
+           (click)="sidenav.close()"
+           [routerLink]="[item.route]"
+           routerLinkActive="active-nav-route">
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          {{ item.label }}
+        </a>
       }
 
       <h3 matSubheader>
         Customers
       </h3>
 
-      @if (customerRoutes) {
-        @for (item of customerRoutes; track item.id) {
-          <a mat-list-item
-             class="md-sidenav-nav-list-item"
-             (click)="sidenav.close()"
-             [routerLink]="[item.route]"
-             routerLinkActive="active-nav-route">
-            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-            {{ item.label }}
-          </a>
-        }
+      @for (item of customerRoutes.value(); track item.id) {
+        <a mat-list-item
+           class="md-sidenav-nav-list-item"
+           (click)="sidenav.close()"
+           [routerLink]="[item.route]"
+           routerLinkActive="active-nav-route">
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          {{ item.label }}
+        </a>
       }
 
       <h3 matSubheader>
@@ -57,17 +52,15 @@
         Tools
       </h3>
 
-      @if (toolsRoutes) {
-        @for (item of toolsRoutes; track item.id) {
-          <a mat-list-item
-             class="md-sidenav-nav-list-item"
-             (click)="sidenav.close()"
-             [routerLink]="[item.route]"
-             routerLinkActive="active-nav-route">
-            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-            {{ item.label }}
-          </a>
-        }
+      @for (item of toolsRoutes.value(); track item.id) {
+        <a mat-list-item
+           class="md-sidenav-nav-list-item"
+           (click)="sidenav.close()"
+           [routerLink]="[item.route]"
+           routerLinkActive="active-nav-route">
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          {{ item.label }}
+        </a>
       }
 
     </mat-nav-list>
@@ -81,4 +74,3 @@
   </mat-sidenav-content>
 
 </mat-sidenav-container>
-

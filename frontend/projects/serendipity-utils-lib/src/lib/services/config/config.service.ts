@@ -13,8 +13,8 @@ export class ConfigService {
   private uriPrefix = 'assets/data/config/';
   private uriSuffix = '.json';
 
-  public get(filename: string): Observable<any> {
-    return this.httpClient.get<any>(this.uriPrefix + filename + this.uriSuffix);
+  public get<T>(filename: string): Observable<T> {
+    return this.httpClient.get<T>(this.uriPrefix + filename + this.uriSuffix);
   }
 
 }
