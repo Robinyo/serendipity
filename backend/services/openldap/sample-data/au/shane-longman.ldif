@@ -1,0 +1,359 @@
+# Sample LDIF — OpenLDAP serendipity backend, People branch (ou=people)
+#
+# Intended for: OpenLDAP (osixia/openldap) + Keycloak LDAP User Federation development.
+# Document: website/docs/try-install-upgrade/sample-data/configure.md
+#            website/docs/administration-guide/user-provisioning.md (LDAP federation section)
+#
+# Conventions:
+#  - uid        = login name (Keycloak pairs uid with cn to form display name)
+#  - cn        = full common name (character name from Capital City)
+#  - givenName / sn = first / last name (character's first/last name)
+#  - title     = job / functional title (the character's role in the series)
+#  - department = functional department (the dealing room desk / division)
+#  - mail      = email address (derived from uid)
+#  - telephoneNumber = phone
+#  - manager   = LDAP DN of the user's manager (STANDARD LDAP relationship attribute)
+#  - serendipitySub = Pre-computed Keycloak sub (UUID) — used at import time to resolve
+#                     the manager DN → the manager's Keycloak sub (Option A: resolve at import)
+#  - directoryObjectId = User's own LDAP DN — source-correlation attribute mapped into
+#                        Keycloak's directoryObjectId custom attribute at federation
+#  - c / l / st = geographic attributes (country / locality / state) — REPORTING ONLY at this point
+#                 (no geographic access-control scope in the model)
+#
+# NOTE: the <name>SerendipitySub attributes (e.g. jamesFarrellSerendipitySub) hold each user's OWN
+# sub, so that the import-time resolver can look up "which user owns this DN, and what is their sub?"
+# when resolving a direct report's manager. The manager's DN in the 'manager' attribute is looked up
+# by matching it to a user's directoryObjectId (their own DN), then reading that user's <name>SerendipitySub.
+#
+# Root DIT:
+#   dc=serendipity,dc=org
+#   ├── ou=people
+#   └── ou=groups
+#
+# =============================================================================
+# Sample organisation: Shane Longman — a fictional international bank based in the City of London,
+# the setting of the 1989 British TV series "Capital City" (ITV / Euston Films).
+# In the Serendipity sample, Shane Longman is a political lobbying organisation whose customers are
+# the Australian political parties seeded in the Party Service's sample-data.
+# The sample users are the character names from Capital City (not the actors' real names).
+# Geographic spread: London (UK), Sydney (NSW), Canberra (ACT).
+#   c=UK  -> London users
+#   c=AU  -> Sydney and Canberra users
+# =============================================================================
+
+version: 1
+
+dn: dc=serendipity,dc=org
+objectClass: domain
+dc: serendipity
+
+dn: ou=people,dc=serendipity,dc=org
+objectClass: organizationalUnit
+ou: people
+
+dn: ou=groups,dc=serendipity,dc=org
+objectClass: organizationalUnit
+ou: groups
+
+# =============================================================================
+# System Administrator — top of hierarchy, no manager (system account)
+# =============================================================================
+
+dn: uid=system,ou=people,dc=serendipity,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: system
+cn: System Account
+givenName: System
+sn: Account
+mail: system@serendipity.org
+telephoneNumber: +61-400-000-099
+title: System Account
+department: System
+description: Service account for org-wide communications (e.g. broadcast, system notifications).
+             No manager — top of hierarchy.
+userPassword: {SSHA}...encrypted...
+directoryObjectId: uid=system,ou=people,dc=serendipity,dc=org
+systemSerendipitySub: 9f0e1d2c-3b4a-5c6d-7e8f-9a0b1c2d3e4f
+c: AU
+l: Melbourne
+st: VIC
+
+# =============================================================================
+# Managers — top of hierarchy (CEO and two Directors). No 'manager' attribute.
+#   James Farrell — CEO (top of hierarchy)
+#   Lee Wolf — Director of Corporate Finance
+#   Leonard Ansen — Director of Banking Activities
+# =============================================================================
+
+# Chief Executive Officer — top of hierarchy
+dn: uid=james.farrell,ou=people,dc=serendipity,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: james.farrell
+cn: James Farrell
+givenName: James
+sn: Farrell
+mail: james.farrell@shanelongman.co.uk
+telephoneNumber: +44-20-7946-0958
+title: Chief Executive Officer
+department: Executive
+userPassword: {SSHA}...encrypted...
+directoryObjectId: uid=james.farrell,ou=people,dc=serendipity,dc=org
+jamesFarrellSerendipitySub: 4f5a1c2e-3b6d-4a7e-9c01-2d3f4a5b6c7d
+c: UK
+l: London
+st: Greater London
+
+# Director of Corporate Finance — reports to James Farrell (CEO)
+dn: uid=lee.wolf,ou=people,dc=serendipity,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: lee.wolf
+cn: Lee Wolf
+givenName: Lee
+sn: Wolf
+mail: lee.wolf@shanelongman.co.uk
+telephoneNumber: +44-20-7946-0959
+title: Director of Corporate Finance
+department: Corporate Finance
+userPassword: {SSHA}...encrypted...
+manager: uid=james.farrell,ou=people,dc=serendipity,dc=org
+directoryObjectId: uid=lee.wolf,ou=people,dc=serendipity,dc=org
+leeWolfSerendipitySub: c1d2e3f4-5a6b-7c8d-9e0f-1a2b3c4d5e6f
+c: UK
+l: London
+st: Greater London
+
+# Director of Banking Activities — reports to James Farrell (CEO)
+dn: uid=leonard.ansen,ou=people,dc=serendipity,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: leonard.ansen
+cn: Leonard Ansen
+givenName: Leonard
+sn: Ansen
+mail: leonard.ansen@shanelongman.co.uk
+telephoneNumber: +44-20-7946-0960
+title: Director of Banking Activities
+department: Banking Activities
+userPassword: {SSHA}...encrypted...
+manager: uid=james.farrell,ou=people,dc=serendipity,dc=org
+directoryObjectId: uid=leonard.ansen,ou=people,dc=serendipity,dc=org
+leonardAnsenSerendipitySub: 8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d
+c: UK
+l: London
+st: Greater London
+
+# =============================================================================
+# Dealing room — reports to Leonard Ansen (Director of Banking Activities)
+#   Geographic spread: all in Sydney (NSW) EXCEPT Hannah Burgess and Hilary Rollinger in Canberra (ACT)
+#   Hannah Burgess — Dealing Room IT / Computer Systems (Canberra)
+#   Hilary Rollinger — Graduate Assistant, primary desk (Canberra)
+# =============================================================================
+
+# Senior Trader — secondary desk — reports to Leonard Ansen
+dn: uid=declan.mcconnachie,ou=people,dc=serendipity,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: declan.mcconnachie
+cn: Declan McConnachie
+givenName: Declan
+sn: McConnachie
+mail: declan.mcconnachie@shanelongman.co.uk
+telephoneNumber: +61-2-9XXX-XXXX
+title: Senior Trader (secondary desk)
+department: Dealing Room
+userPassword: {SSHA}...encrypted...
+manager: uid=leonard.ansen,ou=people,dc=serendipity,dc=org
+directoryObjectId: uid=declan.mcconnachie,ou=people,dc=serendipity,dc=org
+declanMcConnachieSerendipitySub: d1e2f3a4-5b6c-7d8e-9f0a-1b2c3d4e5f6a
+c: AU
+l: Sydney
+st: NSW
+
+# Senior Trader — secondary desk — reports to Leonard Ansen
+dn: uid=sirkka.nieminen,ou=people,dc=serendipity,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: sirkka.nieminen
+cn: Sirkka Nieminen
+givenName: Sirkka
+sn: Nieminen
+mail: sirkka.nieminen@shanelongman.co.uk
+telephoneNumber: +61-2-9XXX-XXXX
+title: Senior Trader (secondary desk)
+department: Dealing Room
+userPassword: {SSHA}...encrypted...
+manager: uid=leonard.ansen,ou=people,dc=serendipity,dc=org
+directoryObjectId: uid=sirkka.nieminen,ou=people,dc=serendipity,dc=org
+sirkkaNieminenSerendipitySub: e2f3a4b5-6c7d-8e9f-0a1b-2c3d4e5f6a7b
+c: AU
+l: Sydney
+st: NSW
+
+# Senior Trader — primary desk — reports to Leonard Ansen
+dn: uid=michelle.hauptmann,ou=people,dc=serendipity,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: michelle.hauptmann
+cn: Michelle Hauptmann
+givenName: Michelle
+sn: Hauptmann
+mail: michelle.hauptmann@shanelongman.co.uk
+telephoneNumber: +61-2-9XXX-XXXX
+title: Senior Trader (primary desk)
+department: Dealing Room
+userPassword: {SSHA}...encrypted...
+manager: uid=leonard.ansen,ou=people,dc=serendipity,dc=org
+directoryObjectId: uid=michelle.hauptmann,ou=people,dc=serendipity,dc=org
+michelleHauptmannSerendipitySub: f3a4b5c6-7d8e-9f0a-1b2c-3d4e5f6a7b8c
+c: AU
+l: Sydney
+st: NSW
+
+# Junior Trader — primary desk — reports to Leonard Ansen
+dn: uid=chas.ewell,ou=people,dc=serendipity,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: chas.ewell
+cn: Chas Ewell
+givenName: Chas
+sn: Ewell
+mail: chas.ewell@shanelongman.co.uk
+telephoneNumber: +61-2-9XXX-XXXX
+title: Junior Trader (primary desk)
+department: Dealing Room
+userPassword: {SSHA}...encrypted...
+manager: uid=leonard.ansen,ou=people,dc=serendipity,dc=org
+directoryObjectId: uid=chas.ewell,ou=people,dc=serendipity,dc=org
+chasEwellSerendipitySub: a4b5c6d7-8e9f-0a1b-2c3d-4e5f6a7b8c9d
+c: AU
+l: Sydney
+st: NSW
+
+# Head of Swaps — reports to Leonard Ansen
+dn: uid=max.lubin,ou=people,dc=serendipity,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: max.lubin
+cn: Max Lubin
+givenName: Max
+sn: Lubin
+mail: max.lubin@shanelongman.co.uk
+telephoneNumber: +61-2-9XXX-XXXX
+title: Head of Swaps
+department: Swaps
+userPassword: {SSHA}...encrypted...
+manager: uid=leonard.ansen,ou=people,dc=serendipity,dc=org
+directoryObjectId: uid=max.lubin,ou=people,dc=serendipity,dc=org
+maxLubinSerendipitySub: b5c6d7e8-9f0a-1b2c-3d4e-5f6a7b8c9d0e
+c: AU
+l: Sydney
+st: NSW
+
+# Chief Trader / Head of Derivatives — reports to Leonard Ansen
+dn: uid=wendy.foley,ou=people,dc=serendipity,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: wendy.foley
+cn: Wendy Foley
+givenName: Wendy
+sn: Foley
+mail: wendy.foley@shanelongman.co.uk
+telephoneNumber: +61-2-9XXX-XXXX
+title: Chief Trader / Head of Derivatives
+department: Derivatives
+userPassword: {SSHA}...encrypted...
+manager: uid=leonard.ansen,ou=people,dc=serendipity,dc=org
+directoryObjectId: uid=wendy.foley,ou=people,dc=serendipity,dc=org
+wendyFoleySerendipitySub: c6d7e8f9-0a1b-2c3d-4e5f-6a7b8c9d0e1f
+c: AU
+l: Sydney
+st: NSW
+
+# Capital Markets Originator — reports to Leonard Ansen
+dn: uid=hudson.talbot,ou=people,dc=serendipity,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: hudson.talbot
+cn: Hudson J. Talbot III
+givenName: Hudson
+sn: Talbot
+mail: hudson.talbot@shanelongman.co.uk
+telephoneNumber: +61-2-9XXX-XXXX
+title: Capital Markets Originator
+department: Capital Markets
+userPassword: {SSHA}...encrypted...
+manager: uid=leonard.ansen,ou=people,dc=serendipity,dc=org
+directoryObjectId: uid=hudson.talbot,ou=people,dc=serendipity,dc=org
+hudsonTalbotSerendipitySub: d7e8f9a0-1b2c-3d4e-5f6a-7b8c9d0e1f2a
+c: AU
+l: Sydney
+st: NSW
+
+# Dealing Room IT / Computer Systems — reports to Leonard Ansen (Canberra)
+dn: uid=hannah.burgess,ou=people,dc=serendipity,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: hannah.burgess
+cn: Hannah Burgess
+givenName: Hannah
+sn: Burgess
+mail: hannah.burgess@shanelongman.co.uk
+telephoneNumber: +61-2-6XXX-XXXX
+title: Dealing Room IT / Computer Systems
+department: IT
+userPassword: {SSHA}...encrypted...
+manager: uid=leonard.ansen,ou=people,dc=serendipity,dc=org
+directoryObjectId: uid=hannah.burgess,ou=people,dc=serendipity,dc=org
+hannahBurgessSerendipitySub: e8f9a0b1-2c3d-4e5f-6a7b-8c9d0e1f2a3b
+c: AU
+l: Canberra
+st: ACT
+
+# Graduate Assistant — primary desk — reports to Leonard Ansen (Canberra)
+dn: uid=hilary.rollinger,ou=people,dc=serendipity,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: hilary.rollinger
+cn: Hilary Rollinger
+givenName: Hilary
+sn: Rollinger
+mail: hilary.rollinger@shanelongman.co.uk
+telephoneNumber: +61-2-6XXX-XXXX
+title: Graduate Assistant (primary desk)
+department: Dealing Room
+userPassword: {SSHA}...encrypted...
+manager: uid=leonard.ansen,ou=people,dc=serendipity,dc=org
+directoryObjectId: uid=hilary.rollinger,ou=people,dc=serendipity,dc=org
+hilaryRollingerSerendipitySub: f9a0b1c2-3d4e-5f6a-7b8c-9d0e1f2a3b4c
+c: AU
+l: Canberra
+st: ACT
