@@ -1,6 +1,6 @@
 # Serendipity — Knowledge Index
 
-**Last updated:** 2026-09-13
+**Last updated:** 2026-09-16
 
 This is the canonical knowledge layer for the Serendipity project — a curated,
 self-contained record of what the project is, how it is built, and the
@@ -78,7 +78,8 @@ manager's `sub`. See `backend/security.md` and `log.md` (ADR-0005) for detail.
 | This index | `.knowledge/index.md` | Global monorepo map and entry point |
 | Decision log | `.knowledge/log.md` | Changelog of architecture decisions (ADRs) |
 | Frontend knowledge | `.knowledge/frontend/index.md` | Angular architecture overview |
-| Backend knowledge | `.knowledge/backend/security.md` | Spring Security, Keycloak, JWT, BFF security model |
+| Backend knowledge | `.knowledge/backend/index.md` | Spring Boot backend architecture (modules, build, runtime topology, how the pieces fit) |
+| Backend security | `.knowledge/backend/security.md` | Spring Security, Keycloak, JWT, BFF security model |
 | Integration | `.knowledge/integration/api-contracts.md` | API contract layer (OpenAPI / RestClient; placeholder in v1) |
 | Docusaurus source | `website/docs/` | The rendered docs site source (deployed at `https://robinyo.github.io/serendipity`) |
 
