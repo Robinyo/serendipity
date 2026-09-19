@@ -12,8 +12,9 @@ The sample data gives you a small working organisation you can explore immediate
   can see how geographic reporting works. At this point these attributes are for reporting and filtering only — they do
   **not** gate access to records (the access-control model uses `manager` (Keycloak `sub`), roles, and
   `ownedBy`/`assignedTo`). If geographic access-control scope becomes a requirement later, it can be added then.
-- **Roles** — each user is assigned a Keycloak realm role (`system-administrator`, `sales-manager`, `salesperson` or
-  `basic-user`) consistent with the access-control model.
+- **Roles** — each user is assigned a Keycloak realm role that reflects their seniority tier in a consulting / advisory firm,
+  not a sales organisation. The Shane Longman roles are distinct from the Sales organisation roles and are designed for a
+  services-firm engagement model (see **Roles** below).
 - **Groups (teams)** — team groups such as the Shane Longman dealing-room groups, so you can see how team-based authorization
   works.
 
@@ -33,47 +34,97 @@ This lets you see how a lobbying / advisory organisation connects to politically
 Party Service seed data can be leveraged by a sample organisation without duplicating it.
 
 The sample users are the **character names** from *Capital City* (not the actors' real names). Each character is mapped to a
-role in the Serendipity access-control model.
+role tier in the Serendipity access-control model.
+
+### Roles
+
+The Shane Longman sample uses a **consulting / advisory-firm role hierarchy**, not a sales organisation. The roles are
+coarse-grained Keystone-style tiers that describe the user's seniority and what they are in the firm, not what they can do to
+a specific entity (that is governed by the `manager`-as-`sub` hierarchy, `ownedBy`/`assignedTo`, and team groups). The tiers
+are:
+
+| Tier | Keycloak role name | Common titles (the role covers all of these) | Who this is in the sample |
+|---|---|---|---|
+| Entry-level practitioner | `analyst` | Analyst, Associate Analyst | Graduate assistants and junior staff who handle data collection, market research, financial modeling, slide deck preparation, and primary task execution. |
+| Mid-level professional | `consultant` | Consultant, Senior Consultant | Experienced professionals responsible for managing specific workstreams, conducting client interviews, designing solutions, and drafting deliverables. |
+| Day-to-day project leader | `manager` | Manager, Engagement Manager, Project Leader | Experienced leaders who oversee day-to-day project operations, manage delivery timelines, lead consultant teams, and maintain primary client relationships. |
+| Senior practice leader | `senior-manager` | Senior Manager, Director, Associate Partner | Senior leaders tasked with driving multi-project delivery, leading sector or functional practice areas, and actively generating new business. |
+| Co-owner / senior executive | `partner` | Partner, Principal, Managing Director | Co-owners or senior executives of the firm focused on revenue generation, strategic client account management, firm governance, and practice development. |
+
+**What this is not:** these are not sales roles (`salesperson`, `sales-manager`, etc.). The Shane Longman sample is a
+separate organisation with its own role model. The two role models coexist in the same Keycloak realm — individual users are
+assignhed to one or the other depending on which organisation they belong to — but the roles are not interchangeable between
+organisations. (A `salesperson` in the Sales org is not the same role tier as a `consultant` in Shane Longman, even if both
+are "mid-level practitioners" in their respective firms.)
 
 ### The sample users (Shane Longman org)
 
-| User (uid) | Character | Title / role in the series | Department (sample) | Manager (Keycloak sub) | City | State | Role (Serendipity) |
+| User (uid) | Character | Title / role in the series | Department (sample) | Manager (Keycloak sub) | City | State | Role tier (Keycloak role) |
 |---|---|---|---|---|---|---|---|
 | `system` | System Account | — | System | — | Melbourne | VIC | `system-administrator` |
-| `james.farrell` | James Farrell | Chief Executive Officer | Executive | — | London | UK | `sales-manager` |
-| `lee.wolf` | Lee Wolf | Director of Corporate Finance | Corporate Finance | `james.farrell`'s sub | London | UK | `sales-manager` |
-| `leonard.ansen` | Leonard Ansen | Director of Banking Activities | Banking Activities | `james.farrell`'s sub | London | UK | `sales-manager` |
-| `declan.mcconnachie` | Declan McConnachie | Senior Trader (secondary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `salesperson` |
-| `sirkka.nieminen` | Sirkka Nieminen | Senior Trader (secondary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `salesperson` |
-| `michelle.hauptmann` | Michelle Hauptmann | Senior Trader (primary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `salesperson` |
-| `chas.ewell` | Chas Ewell | Junior Trader (primary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `salesperson` |
-| `max.lubin` | Max Lubin | Head of Swaps | Swaps | `leonard.ansen`'s sub | Sydney | NSW | `salesperson` |
-| `wendy.foley` | Wendy Foley | Chief Trader / Head of Derivatives | Derivatives | `leonard.ansen`'s sub | Sydney | NSW | `salesperson` |
-| `hudson.talbot` | Hudson J. Talbot III | Capital Markets Originator | Capital Markets | `leonard.ansen`'s sub | Sydney | NSW | `salesperson` |
-| `hannah.burgess` | Hannah Burgess | Dealing Room IT / Computer Systems | IT | `leonard.ansen`'s sub | Canberra | ACT | `salesperson` |
-| `hilary.rollinger` | Hilary Rollinger | Graduate Assistant (primary desk) | Dealing Room | `leonard.ansen`'s sub | Canberra | ACT | `salesperson` |
+| `james.farrell` | James Farrell | Chief Executive Officer | Executive | — | London | UK | `partner` |
+| `lee.wolf` | Lee Wolf | Director of Corporate Finance | Corporate Finance | `james.farrell`'s sub | London | UK | `senior-manager` |
+| `leonard.ansen` | Leonard Ansen | Director of Banking Activities | Banking Activities | `james.farrell`'s sub | London | UK | `senior-manager` |
+| `max.lubin` | Max Lubin | Head of Swaps | Swaps | `leonard.ansen`'s sub | Sydney | NSW | `manager` |
+| `wendy.foley` | Wendy Foley | Chief Trader / Head of Derivatives | Derivatives | `leonard.ansen`'s sub | Sydney | NSW | `manager` |
+| `declan.mcconnachie` | Declan McConnachie | Senior Trader (secondary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `consultant` |
+| `sirkka.nieminen` | Sirkka Nieminen | Senior Trader (secondary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `consultant` |
+| `michelle.hauptmann` | Michelle Hauptmann | Senior Trader (primary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `consultant` |
+| `chas.ewell` | Chas Ewell | Junior Trader (primary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `analyst` |
+| `hudson.talbot` | Hudson J. Talbot III | Capital Markets Originator | Capital Markets | `leonard.ansen`'s sub | Sydney | NSW | `consultant` |
+| `hannah.burgess` | Hannah Burgess | Dealing Room IT / Computer Systems | IT | `leonard.ansen`'s sub | Canberra | ACT | `consultant` |
+| `hilary.rollinger` | Hilary Rollinger | Graduate Assistant (primary desk) | Dealing Room | `leonard.ansen`'s sub | Canberra | ACT | `analyst` |
 
-A few things to notice in the sample:
+**Mapping notes:**
 
-- **Manager hierarchy depth** — James Farrell → Lee Wolf / Leonard Ansen → the dealing room. James Farrell (the CEO) has no
-  `manager` — they are top of hierarchy. Lee Wolf (Corporate Finance) and Leonard Ansen (Banking Activities) report to the
-  CEO. The dealing room traders report to Leonard Ansen. The `manager` attribute on each user holds their manager's
-  Keycloak `sub`, so the manager hierarchy works the same way as any other organisation in the model.
+- **James Farrell (CEO)** — `partner`. The CEO is a co-owner / senior executive of the firm: revenue generation, strategic
+  client account management, firm governance, and practice development. No manager — top of hierarchy.
+- **Lee Wolf (Director of Corporate Finance) and Leonard Ansen (Director of Banking Activities)** — `senior-manager`. Both
+  are Directors, which in a services firm sit at the Senior Manager / Director / Associate Partner tier: they drive
+  multi-project delivery, lead a functional practice area (Corporate Finance; Banking Activities), and actively generate new
+  business. Both report to the CEO.
+- **Max Lubin (Head of Swaps) and Wendy Foley (Chief Trader / Head of Derivatives)** — `manager`. Both are heads of a
+  function / desk: they oversee day-to-day operations of their practice area, manage the consultant team on that desk, and
+  maintain primary client relationships for swaps and derivatives work. Both report to Leonard Ansen.
+- **Declan McConnachie, Sirkka Nieminen, Michelle Hauptmann (Senior Traders), and Hudson Talbot (Capital Markets
+  Originator)** — `consultant`. Senior professionals who manage workstreams (a deal, a client relationship on the desk),
+  conduct the analysis and modeling, design solutions, and draft deliverables. They report to their desk head (Leonard Ansen
+  directly, or via the Head of Swaps / Head of Derivatives for the primary and secondary desk teams).
+- **Hannah Burgess (Dealing Room IT)** — `consultant`. The IT / systems professional who designs and maintains the dealing
+  room infrastructure and the systems the traders rely on; a mid-level professional managing a workstream (the IT function for
+  the dealing room). Reports to Leonard Ansen.
+- **Chas Ewell (Junior Trader) and Hilary Rollinger (Graduate Assistant)** — `analyst`. Entry-level staff: Chas is the junior
+  trader on the primary desk executing trades under supervision; Hilary is the graduate assistant who supports the primary desk
+  with data collection, research, modeling, and deck preparation. Both report to Leonard Ansen.
+
+### A few things to notice in the sample
+
+- **Manager hierarchy depth** — James Farrell (CEO, `partner`) → Lee Wolf / Leonard Ansen (`senior-manager`) → Max Lubin /
+  Wendy Foley (`manager`, the desk heads) → the dealing room consultants and analysts. The `manager` attribute on each user
+  holds their manager's Keycloak `sub`, so the manager hierarchy works the same way as any other organisation in the model:
+  a user with a `sub` equal to the `manager` attribute of another user receives access to that user's records (subject to
+  role and scope). The CEO has no `manager` — top of hierarchy.
 - **Geographic spread** — users span London (UK), Sydney (NSW), and Canberra (ACT). The `c`/`l`/`st` attributes are set
   accordingly (`c=UK` for London, `c=AU` for Sydney and Canberra). These are reporting attributes only — they don't affect
   who can see whose records.
-- **Character-to-role mapping** — the sample maps the *Capital City* characters to Serendipity roles consistently with the
-  access-control model: the CEO and the two Directors get `sales-manager`; the dealing room traders, heads of desk, and
-  assistants get `salesperson`. (The `system` account is the shared system account.)
+- **Character-to-role mapping** — the sample maps the *Capital City* characters to the consulting-firm role tiers consistently
+  with both the series' portrayal of each character and the access-control model: the CEO and the two Directors are the senior
+  executives / practice leaders; the desk heads are the day-to-day project leaders; the senior traders, capital markets
+  originator, and IT lead are the mid-level consultants; the junior trader and the graduate assistant are the entry-level
+  analysts.
 - **Customers** — the sample's customers are the Australian political parties seeded in the Party Service
   (`backend/modules/party-service/src/main/resources/sample-data/`). This leverages the existing seed data rather than
   duplicating it.
+- **Role model is distinct from the Sales org** — the Shane Longman roles (`analyst`, `consultant`, `manager`, `senior-manager`,
+  `partner`, `system-administrator`) are not the same as the Sales org roles (`salesperson`, `sales-manager`, etc.). The two
+  models coexist in the same Keycloak realm; a user belongs to one organisation and is assigned the role appropriate to that
+  organisation. This lets you see how two organisations with different role models can coexist in the same realm.
 
 ## Where the sample is defined
 
 The sample users (and their attributes, reporting line, and geographic attributes) are defined as an **LDIF** file:
 
-- `backend/services/openldap/sample-orgs/sample-users.ldif`
+- `backend/services/openldap/sample-data/au/shane-longman.ldif`
 
 LDIF is the standard format for importing users into an LDAP directory server. In the development path, the LDIF is loaded
 into an OpenLDAP directory, and then Keycloak's **LDAP User Federation** imports (or on-demand syncs) the users from that
@@ -96,7 +147,7 @@ application's sample bootstrap defines the **business data** (accounts, contacts
 ### Prerequisites
 
 - Serendipity installed and running (the backend including the identity service / Keycloak, and the PWA).
-- OpenLDAP running with the `serendipity` backend and the `sample-users.ldif` loaded (see the User Provisioning doc's
+- OpenLDAP running with the `serendipity` backend and the `shane-longman.ldif` loaded (see the User Provisioning doc's
   OpenLDAP setup section).
 - Keycloak's **LDAP User Federation** configured to connect to the OpenLDAP directory and import/sync the `serendipity`
   `ou=people` branch into the Serendipity realm.
@@ -110,7 +161,7 @@ application's sample bootstrap defines the **business data** (accounts, contacts
      -H ldap://localhost:389 \
      -D "cn=admin,dc=serendipity,dc=org" \
      -w admin \
-     -a -f backend/services/openldap/sample-orgs/sample-users.ldif
+     -a -f backend/services/openldap/sample-data/au/shane-longman.ldif
    ```
 
    This loads the `ou=people` and `ou=groups` entries and all the sample users (the Shane Longman sample organisation).
@@ -135,9 +186,10 @@ application's sample bootstrap defines the **business data** (accounts, contacts
    customizes the mapping so that each direct report's `manager` attribute receives the manager's `sub`. (See the User
    Provisioning doc for the resolution approach — Option A: resolve at import time via the `serendipitySub` lookup.)
 
-5. Assign the realm roles (`sales-manager`, `salesperson`, `basic-user`, `system-administrator`) and group memberships
-   (e.g. the Shane Longman dealing-room groups) to the imported users — either via the federation mapper (if configured to map
-   group membership from the directory) or manually in the Admin Console for the sample.
+5. Assign the realm roles (`analyst`, `consultant`, `manager`, `senior-manager`, `partner`, `system-administrator`) and group
+   memberships (e.g. the Shane Longman dealing-room groups) to the imported users — either via the federation mapper (if
+   configured to map group membership or a custom LDAP attribute into Keycloak roles) or manually in the Admin Console for the
+   sample.
 
 6. Export the realm (with the imported users, roles, groups and attributes) to the dev import file so the sample persists
    across container restarts:
@@ -151,27 +203,31 @@ application's sample bootstrap defines the **business data** (accounts, contacts
 The sample organisation has:
 
 - **1 shared System Administrator** (top of hierarchy, no manager) — `system`
-- **1 CEO** — James Farrell (top of hierarchy, no manager)
-- **2 Directors** — Lee Wolf (Corporate Finance) and Leonard Ansen (Banking Activities), both reporting to the CEO
-- **9 dealing room / desk / department staff** — the *Capital City* characters (Declan McConnachie, Sirkka Nieminen,
-  Michelle Hauptmann, Chas Ewell, Max Lubin, Wendy Foley, Hudson Talbot, Hannah Burgess, Hilary Rollinger), all reporting to
-  Leonard Ansen
+- **1 Partner / Managing Director** — James Farrell (CEO, top of hierarchy, no manager)
+- **2 Senior Managers / Directors** — Lee Wolf (Director of Corporate Finance) and Leonard Ansen (Director of Banking
+  Activities), both reporting to the CEO
+- **2 Managers / Engagement Managers (desk heads)** — Max Lubin (Head of Swaps) and Wendy Foley (Chief Trader / Head of
+  Derivatives), both reporting to Leonard Ansen
+- **5 Consultants / Senior Consultants** — Declan McConnachie, Sirkka Nieminen, Michelle Hauptmann (Senior Traders), Hudson
+  Talbot (Capital Markets Originator), Hannah Burgess (Dealing Room IT), all reporting to Leonard Ansen
+- **2 Analysts / Associate Analysts** — Chas Ewell (Junior Trader) and Hilary Rollinger (Graduate Assistant), both reporting
+  to Leonard Ansen
 
-| User (uid) | Character | Title | Department | Manager (Keycloak sub) | City | State |
-|---|---|---|---|---|---|---|
-| `system` | System Account | System Account | System | — | Melbourne | VIC |
-| `james.farrell` | James Farrell | CEO | Executive | — | London | UK |
-| `lee.wolf` | Lee Wolf | Director of Corporate Finance | Corporate Finance | `james.farrell`'s sub | London | UK |
-| `leonard.ansen` | Leonard Ansen | Director of Banking Activities | Banking Activities | `james.farrell`'s sub | London | UK |
-| `declan.mcconnachie` | Declan McConnachie | Senior Trader (secondary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW |
-| `sirkka.nieminen` | Sirkka Nieminen | Senior Trader (secondary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW |
-| `michelle.hauptmann` | Michelle Hauptmann | Senior Trader (primary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW |
-| `chas.ewell` | Chas Ewell | Junior Trader (primary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW |
-| `max.lubin` | Max Lubin | Head of Swaps | Swaps | `leonard.ansen`'s sub | Sydney | NSW |
-| `wendy.foley` | Wendy Foley | Chief Trader / Head of Derivatives | Derivatives | `leonard.ansen`'s sub | Sydney | NSW |
-| `hudson.talbot` | Hudson J. Talbot III | Capital Markets Originator | Capital Markets | `leonard.ansen`'s sub | Sydney | NSW |
-| `hannah.burgess` | Hannah Burgess | Dealing Room IT / Computer Systems | IT | `leonard.ansen`'s sub | Canberra | ACT |
-| `hilary.rollinger` | Hilary Rollinger | Graduate Assistant (primary desk) | Dealing Room | `leonard.ansen`'s sub | Canberra | ACT |
+| User (uid) | Character | Title (series) | Department | Manager (Keycloak sub) | City | State | Keycloak role |
+|---|---|---|---|---|---|---|---|
+| `system` | System Account | — | System | — | Melbourne | VIC | `system-administrator` |
+| `james.farrell` | James Farrell | CEO | Executive | — | London | UK | `partner` |
+| `lee.wolf` | Lee Wolf | Director of Corporate Finance | Corporate Finance | `james.farrell`'s sub | London | UK | `senior-manager` |
+| `leonard.ansen` | Leonard Ansen | Director of Banking Activities | Banking Activities | `james.farrell`'s sub | London | UK | `senior-manager` |
+| `max.lubin` | Max Lubin | Head of Swaps | Swaps | `leonard.ansen`'s sub | Sydney | NSW | `manager` |
+| `wendy.foley` | Wendy Foley | Chief Trader / Head of Derivatives | Derivatives | `leonard.ansen`'s sub | Sydney | NSW | `manager` |
+| `declan.mcconnachie` | Declan McConnachie | Senior Trader (secondary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `consultant` |
+| `sirkka.nieminen` | Sirkka Nieminen | Senior Trader (secondary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `consultant` |
+| `michelle.hauptmann` | Michelle Hauptmann | Senior Trader (primary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `consultant` |
+| `chas.ewell` | Chas Ewell | Junior Trader (primary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `analyst` |
+| `hudson.talbot` | Hudson J. Talbot III | Capital Markets Originator | Capital Markets | `leonard.ansen`'s sub | Sydney | NSW | `consultant` |
+| `hannah.burgess` | Hannah Burgess | Dealing Room IT / Computer Systems | IT | `leonard.ansen`'s sub | Canberra | ACT | `consultant` |
+| `hilary.rollinger` | Hilary Rollinger | Graduate Assistant (primary desk) | Dealing Room | `leonard.ansen`'s sub | Canberra | ACT | `analyst` |
 
 ## Removing sample data
 
@@ -186,10 +242,10 @@ To remove the sample data:
 
 To add your own sample users or organisations:
 
-1. Add entries to `backend/services/openldap/sample-orgs/sample-users.ldif` (or a new LDIF file) following the same conventions — `uid`,
+1. Add entries to `backend/services/openldap/sample-data/au/shane-longman.ldif` (or a new LDIF file) following the same conventions — `uid`,
    `cn`, `mail`, `title`, `department`, `manager` (the manager's LDAP DN), the pre-computed `<name>SerendipitySub`
    attribute for the user and their manager(s), `directoryObjectId` (the user's own LDAP DN), and the geographic attributes
-   `c`, `l`, `st`.
+   `c`, `l`, `st`, plus the Keycloak role that reflects the user's seniority tier in the firm.
 2. Re-load the LDIF into OpenLDAP and re-synchronize Keycloak's LDAP User Federation.
 3. Add the corresponding roles and groups.
 4. Export the realm so the sample persists.
