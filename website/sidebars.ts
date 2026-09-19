@@ -27,7 +27,14 @@ const sidebars: SidebarsConfig = {
             'try-install-upgrade/docker-compose/configure'
           ],
         },
-        'try-install-upgrade/sample-data',
+        {
+          type: 'category',
+          label: 'Sample Data',
+          items: [
+            'try-install-upgrade/sample-data/overview',
+            'try-install-upgrade/sample-data/configure'
+          ],
+        }
       ],
     },
     {
