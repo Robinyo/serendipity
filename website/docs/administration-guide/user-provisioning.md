@@ -164,14 +164,14 @@ The development path for automated, file-driven user provisioning uses **LDIF** 
 
 ### Why LDIF + OpenLDAP for development
 
-- **Version-controlled users.** The sample users, their attributes, their reporting line, and their geographic attributes all live in a single LDIF file (`backend/services/openldap/sample-orgs/sample-users.ldif`) that is part of the repo. You edit the file, reload it, and the directory reflects the change — no Admin Console copy-paste.
+- **Version-controlled users.** The sample users, their attributes, their reporting line, and their geographic attributes all live in a single LDIF file (`backend/services/openldap/sample-data/au/shane-longman.ldif`) that is part of the repo. You edit the file, reload it, and the directory reflects the change — no Admin Console copy-paste.
 - **Geographic attributes as first-class LDAP attributes.** Standard LDAP attributes `c` (country, `countryName`), `l` (locality / city), and `st` (state or province) carry the user's geographic attributes directly in the directory entry; they are then mapped into Keycloak's user profile at federation time. At this point these geographic attributes are for reporting and filtering only — they do **not** gate access to records (the access-control model uses `manager` (Keycloak `sub`), roles, and `ownedBy`/`assignedTo`). If geographic access-control scope becomes a requirement later, it can be added then.
 - **Relationship attributes for the reporting line.** The LDAP `manager` attribute (a standard LDAP relationship attribute) holds the manager's LDAP DN. This is the natural way to represent a reporting line in LDAP — a user entry references its manager's entry by DN. The LDIF does **not** store the manager's Keycloak `sub` in the LDAP `manager` attribute; that would be non-standard LDAP and would defeat the purpose of using an LDAP directory as the source of truth. Instead, the import-time resolver resolves the LDAP DN → the manager's Keycloak `sub` (see **Import-time resolution** below).
 - **No strict groups or deep tree required.** The sample avoids strict groups or a deep org tree in the directory. Geographic attributes live on the user profile itself (`c`, `l`, `st`), and the reporting line is a flat `manager` DN reference. If you later want team groups in the directory (e.g. `ou=teams,ou=serendipity` with member DNs), the same federation can map them into Keycloak groups.
 
 ### The sample LDIF
 
-The sample is defined in `backend/services/openldap/sample-orgs/sample-users.ldif`. It creates:
+The sample is defined in `backend/services/openldap/sample-data/au/shane-longman.ldif`. It creates:
 
 - A `dc=serendipity,dc=org` DIT with `ou=people` and `ou=groups` branches.
 - **16 users**:
@@ -191,7 +191,7 @@ The sample is defined in `backend/services/openldap/sample-orgs/sample-users.ldi
     - `c`, `l`, `st` — geographic attributes (`c` = country, `l` = locality/city, `st` = state/province). For example, a Brisbane user has `c: AU`, `l: Brisbane`, `st: QLD`. These are the standard LDAP geographic attributes; they map directly into Keycloak user attributes at federation time (assuming the federation mapper is configured to include them).
     - `employeeType` — an optional functional type (e.g. "salesperson", "usage-analyst") for filtering/reporting.
 
-- **Sample users table (LDIF → Keycloak):** The sample is defined in `backend/services/openldap/sample-orgs/sample-users.ldif`.
+- **Sample users table (LDIF → Keycloak):** The sample is defined in `backend/services/openldap/sample-data/au/shane-longman.ldif`.
 
 | uid | cn | title | department | manager (LDAP DN) | resolved KC sub (who the manager is) | city | state | employeeType |
 |---|---|---|---|---|---|---|---|---|
@@ -242,7 +242,7 @@ ldapmodify -x \
   -H ldap://localhost:389 \
   -D "cn=admin,dc=serendipity,dc=org" \
   -w admin \
-  -a -f backend/services/openldap/sample-orgs/sample-users.ldif
+  -a -f backend/services/openldap/sample-data/au/shane-longman.ldif
 ```
 
 The `-a` flag tells `ldapmodify` to treat the input as an add-only LDIF (no modifications or deletes). If you're reloading the sample (e.g. after editing it), you may want to first clear the `ou=people` and `ou=groups` branches, or use a fresh container.
@@ -370,5 +370,5 @@ These are reporting and filtering queries against the user profile attributes. T
 - Keycloak Server Administration Guide — [Managing users](https://www.keycloak.org/server/manage-users), [User profile](https://www.keycloak.org/docs/latest/server_admin/index.html#user-profile), [Managing attributes](https://www.keycloak.org/docs/latest/server_admin/index.html#managing-attributes), [Roles](https://www.keycloak.org/server/rbac), [Groups](https://www.keycloak.org/server/manage-groups), [LDAP user federation](https://www.keycloak.org/docs/latest/server_admin/index.html#_ldap_user_federation).
 - [Access Control design document](../architecture-guide/access-control/design-document.md) — the model that drives the attribute, role, and group requirements.
 - [Keycloak administration guide](./keycloak.md) — realm and client configuration reference.
-- Sample users LDIF: `backend/services/openldap/sample-orgs/sample-users.ldif`.
+- Sample users LDIF: `backend/services/openldap/sample-data/au/shane-longman.ldif`.
 - [Sample data](./try-install-upgrade/sample-data.md) — getting the sample users into Keycloak and exploring them in the application.
