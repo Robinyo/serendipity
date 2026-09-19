@@ -21,7 +21,7 @@ The sample data gives you a small working organisation you can explore immediate
 
 The sample users (and their attributes, reporting line, and geographic attributes) are defined as an **LDIF** file:
 
-- `frontend/style-guide/sample-users.ldif`
+- `backend/services/openldap/sample-orgs/sample-users.ldif`
 
 LDIF is the standard format for importing users into an LDAP directory server. In the development path, the LDIF is loaded
 into an OpenLDAP directory, and then Keycloak's **LDAP User Federation** imports (or on-demand syncs) the users from that
@@ -58,7 +58,7 @@ application's sample bootstrap defines the **business data** (accounts, contacts
      -H ldap://localhost:389 \
      -D "cn=admin,dc=serendipity,dc=org" \
      -w admin \
-     -a -f frontend/style-guide/sample-users.ldif
+     -a -f backend/services/openldap/sample-orgs/sample-users.ldif
    ```
 
    This loads the `ou=people` and `ou=groups` entries and all the sample users.
