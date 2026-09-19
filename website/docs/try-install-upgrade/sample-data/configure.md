@@ -148,7 +148,7 @@ To remove the sample data:
 
 To add your own sample users or organisations:
 
-1. Add entries to `frontend/style-guide/sample-users.ldif` (or a new LDIF file) following the same conventions — `uid`,
+1. Add entries to `backend/services/openldap/sample-orgs/sample-users.ldif` (or a new LDIF file) following the same conventions — `uid`,
    `cn`, `mail`, `title`, `department`, `manager` (the manager's LDAP DN), the pre-computed `<name>SerendipitySub`
    attribute for the user and their manager(s), `directoryObjectId` (the user's own LDAP DN), and the geographic attributes
    `c`, `l`, `st`.
