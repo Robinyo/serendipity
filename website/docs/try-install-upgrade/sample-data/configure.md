@@ -1,50 +1,25 @@
 # Configure
 
-## What the sample data includes
+## Shane Longman
 
-The sample data gives you a small working organisation you can explore immediately after installing Serendipity:
+### About Shane Longman
 
-- **A sample political lobbying organisation — Shane Longman** — a fictional international bank (from the 1989 British TV
-  series *Capital City*, ITV/Euston Films), with the cast's character names as users. The bank's customers include the
-  Australian political parties seeded in the Party Service's `sample-data` (Liberal Party of Australia, Australian Labor
-  Party, Australian Greens, etc.). Geographic attributes: every user is Canberra-based (`l: Canberra`, `st: ACT`), and the
-  sample uses a single `shane-longman.org` email domain for all users.
-- **Geographic attributes** — every user carries `l` (locality / city) and `st` (state / province), so you
-  can see how geographic reporting works. (The `c` (country) attribute is **not** used on user entries in the sample —
-  `c` requires the `country` objectClass, which is not part of the `inetOrgPerson`/`organizationalPerson` attribute chain,
-  and adding it would require either an auxiliary class or `objectClass: country` on the entry, neither of which fits a
-  person entry. Standard `inetOrgPerson` practice is to use `l` and `st` for city/state reporting; `c` and `co` are dropped
-  from user entries and only `l` and `st` are carried on user entries.) At this point these geographic attributes are for
-  reporting and filtering only — they do **not** gate access to records (the access-control model uses `manager` (Keycloak
-  `sub`), roles, and `ownedBy`/`assignedTo`). If geographic access-control scope becomes a requirement later, it can be added
-  then.
-- **Roles** — each user is assigned a Keycloak realm role that reflects their seniority tier in a consulting / advisory firm,
-  not a sales organisation. The Shane Longman roles are distinct from the Sales organisation roles and are designed for a
-  services-firm engagement model (see **Roles** below).
-- **Groups (teams)** — team groups such as the Shane Longman dealing-room groups, so you can see how team-based authorization
-  works.
+**Shane Longman** is a fictional lobbying firm, with sample users generated from the **character names** of the cast of 
+the British TV series Capital City (ITV/Euston Films).
 
-## The sample organisation — Shane Longman
+### Geographic attributes
 
-### About the organisation
-
-**Shane Longman** is a fictional international bank whose dealing room is based in Canberra, Australia. In the Serendipity
-sample, Shane Longman is a **political lobbying organisation** — a fictional entity whose customers are
-the Australian political parties seeded in the Party Service's `sample-data`
-(`backend/modules/party-service/src/main/resources/sample-data/`).
-This lets you see how a lobbying / advisory organisation connects to politically organised customers, and how the existing
-Party Service seed data can be leveraged by a sample organisation without duplicating it.
-
-The sample users are the **character names** from *Capital City* (not the actors' real names). Each character is mapped to a
-role tier in the Serendipity access-control model. The entire sample organisation (all 13 users) is based in Canberra (`l: Canberra`,
-`st: ACT`), and every user uses a single `shane-longman.org` email domain.
+Every user includes `l` (locality / city) and `st` (state / province) attributes.
+At this point these geographic attributes are for reporting and filtering only — they do **not** gate access to
+records.
 
 ### Roles
 
-The Shane Longman sample uses a **consulting / advisory-firm role hierarchy**, not a sales organisation. The roles are
-coarse-grained Keystone-style tiers that describe the user's seniority and what they are in the firm, not what they can do to
-a specific entity (that is governed by the `manager`-as-`sub` hierarchy, `ownedBy`/`assignedTo`, and team groups). The tiers
-are:
+Each user is assigned a Keycloak realm role that reflects their seniority tier in the firm.
+The roles are coarse-grained and reflect the user's seniority and what they are in the firm, not what they can do to a 
+specific entity (that is governed by the `manager`-as-`sub` hierarchy, `ownedBy`/`assignedTo`, and team groups). 
+
+The tiers are:
 
 | Tier | Keycloak role name | Common titles (the role covers all of these) | Who this is in the sample |
 |---|---|---|---|
@@ -56,7 +31,7 @@ are:
 
 **What this is not:** these are not sales roles (`salesperson`, `sales-manager`, etc.). The Shane Longman sample is a
 separate organisation with its own role model. The two role models coexist in the same Keycloak realm — individual users are
-assignhed to one or the other depending on which organisation they belong to — but the roles are not interchangeable between
+assigned to one or the other depending on which organisation they belong to — but the roles are not interchangeable between
 organisations. (A `salesperson` in the Sales org is not the same role tier as a `consultant` in Shane Longman, even if both
 are "mid-level practitioners" in their respective firms.)
 
