@@ -85,7 +85,6 @@ All 13 users are based in Canberra (`l: Canberra`, `st: ACT`) and use the single
   a user with a `sub` equal to the `manager` attribute of another user receives access to that user's records (subject to
   role and scope). The CEO has no `manager` — top of hierarchy.
 - **Geographic spread** — the entire sample organisation is based in Canberra. Every user has `l: Canberra`, `st: ACT`.
-  The `c` (country) attribute is **not** used on user entries (see the note on `c` in the Geographic attributes bullet above).
   These are reporting attributes only — they don't affect who can see whose records.
 - **Character-to-role mapping** — the sample maps the *Capital City* characters to the consulting-firm role tiers consistently
   with both the series' portrayal of each character and the access-control model: the CEO and the two Directors are the senior
