@@ -1,0 +1,36 @@
+networks:
+  serendipity:
+
+volumes:
+  openldap_data:
+  openldap_config:
+
+services:
+  openldap:
+    image: osixia/openldap:1.5.0
+    container_name: openldap
+    restart: "no"
+    ports:
+      # - "127.0.0.1:389:389"
+      - "389:389"
+    environment:
+      LDAP_ORGANISATION: ${SERENDIPITY_LDAP_ORGANISATION}
+      LDAP_DOMAIN: ${SERENDIPITY_LDAP_DOMAIN}
+      LDAP_BASE_DN: ${SERENDIPITY_LDAP_BASE_DN}
+      LDAP_ADMIN_PASSWORD: ${SERENDIPITY_LDAP_ADMIN_PASSWORD}
+      LDAP_REMOVE_CONFIG_AFTER_SETUP: "false"
+      LDAP_TLS: "false"
+    env_file:
+      - "${PWD}/.env"
+    healthcheck:
+      test: [ "CMD", "ldapsearch", "-x", "-h", "localhost", "-b", "${SERENDIPITY_LDAP_BASE_DN}", "-s", "base" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    networks:
+      - serendipity
+    volumes:
+      - openldap_data:/var/lib/ldap
+      - openldap_config:/etc/ldap/slapd.d
+      - "${PWD}/services/openldap/ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom"

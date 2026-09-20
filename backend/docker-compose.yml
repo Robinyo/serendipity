@@ -1,3 +1,13 @@
+include:
+  - docker-compose.openldap.yml
+
+networks:
+  serendipity:
+
+volumes:
+  storage_service_data:
+  identity_service_data:
+
 services:
 
   # Make sure your certificates and keys (the *.pem files in the ./certs directory) have the correct permissions
@@ -208,11 +218,3 @@ services:
         condition: service_healthy
       serendipity-party-service:
         condition: service_healthy
-
-volumes:
-  storage_service_data:
-  identity_service_data:
-
-networks:
-  serendipity:
-    name: serendipity

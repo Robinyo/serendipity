@@ -1,0 +1,300 @@
+# Top-level branches
+dn: ou=people,dc=shane-longman,dc=org
+objectClass: organizationalUnit
+ou: people
+
+dn: ou=groups,dc=shane-longman,dc=org
+objectClass: organizationalUnit
+ou: groups
+
+# James Farrell — CEO
+dn: uid=james.farrell,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: james.farrell
+cn: James Farrell
+givenName: James
+sn: Farrell
+mail: james.farrell@shanelongman.co.uk
+telephoneNumber: +44-20-7946-0101
+title: Chief Executive Officer
+departmentNumber: Executive
+employeeType: partner
+description: 11111111-1111-1111-1111-111111111111
+co: United Kingdom
+l: London
+st: Greater London
+
+# Lee Wolf — Director of Corporate Finance
+dn: uid=lee.wolf,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: lee.wolf
+cn: Lee Wolf
+givenName: Lee
+sn: Wolf
+mail: lee.wolf@shanelongman.co.uk
+telephoneNumber: +44-20-7946-0202
+title: Director, Political Advisory
+departmentNumber: Political Advisory
+employeeType: senior-manager
+manager: uid=james.farrell,ou=people,dc=shane-longman,dc=org
+description: 22222222-2222-2222-2222-222222222222
+co: United Kingdom
+l: London
+st: Greater London
+
+# Leonard Ansen — Director of Banking Activities
+dn: uid=leonard.ansen,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: leonard.ansen
+cn: Leonard Ansen
+givenName: Leonard
+sn: Ansen
+mail: leonard.ansen@shanelongman.co.uk
+telephoneNumber: +44-20-7946-0303
+title: Director, Corporate Finance
+departmentNumber: Corporate Finance
+employeeType: senior-manager
+manager: uid=james.farrell,ou=people,dc=shane-longman,dc=org
+description: 33333333-3333-3333-3333-333333333333
+co: United Kingdom
+l: London
+st: Greater London
+
+# Max Lubin — Head of Swaps
+dn: uid=max.lubin,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: max.lubin
+cn: Max Lubin
+givenName: Max
+sn: Lubin
+mail: max.lubin@shanelongman.co.uk
+telephoneNumber: +44-20-7946-0404
+title: Head of Swaps
+departmentNumber: Derivatives
+employeeType: manager
+manager: uid=leonard.ansen,ou=people,dc=shane-longman,dc=org
+description: 44444444-4444-4444-4444-444444444444
+co: United Kingdom
+l: London
+st: Greater London
+
+# Wendy Foley — Chief Trader
+dn: uid=wendy.foley,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: wendy.foley
+cn: Wendy Foley
+givenName: Wendy
+sn: Foley
+mail: wendy.foley@shanelongman.co.uk
+telephoneNumber: +44-20-7946-0505
+title: Chief Trader / Head of Derivatives
+departmentNumber: Derivatives
+employeeType: manager
+manager: uid=leonard.ansen,ou=people,dc=shane-longman,dc=org
+description: 55555555-5555-5555-5555-555555555555
+co: United Kingdom
+l: London
+st: Greater London
+
+# Declan McConnachie — Senior Trader
+dn: uid=declan.mcconnachie,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: declan.mcconnachie
+cn: Declan McConnachie
+givenName: Declan
+sn: McConnachie
+mail: declan.mcconnachie@shanelongman.co.uk
+telephoneNumber: +44-20-7946-0606
+title: Consultant, Political Advisory
+departmentNumber: Political Advisory
+employeeType: consultant
+manager: uid=lee.wolf,ou=people,dc=shane-longman,dc=org
+description: 66666666-6666-6666-6666-666666666666
+co: United Kingdom
+l: London
+st: Greater London
+
+# Sirkka Nieminen — Senior Trader
+dn: uid=sirkka.nieminen,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: sirkka.nieminen
+cn: Sirkka Nieminen
+givenName: Sirkka
+sn: Nieminen
+mail: sirkka.nieminen@shanelongman.co.uk
+telephoneNumber: +44-20-7946-0707
+title: Consultant, Political Advisory
+departmentNumber: Political Advisory
+employeeType: consultant
+manager: uid=lee.wolf,ou=people,dc=shane-longman,dc=org
+description: 77777777-7777-7777-7777-777777777777
+co: United Kingdom
+l: London
+st: Greater London
+
+# Michelle Hauptmann — Senior Trader
+dn: uid=michelle.hauptmann,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: michelle.hauptmann
+cn: Michelle Hauptmann
+givenName: Michelle
+sn: Hauptmann
+mail: michelle.hauptmann@shanelongman.co.uk
+telephoneNumber: +44-20-7946-0808
+title: Consultant, Corporate Finance
+departmentNumber: Corporate Finance
+employeeType: consultant
+manager: uid=leonard.ansen,ou=people,dc=shane-longman,dc=org
+description: 88888888-8888-8888-8888-888888888888
+co: United Kingdom
+l: London
+st: Greater London
+
+# Hudson Talbot — Capital Markets Originator
+dn: uid=hudson.talbot,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: hudson.talbot
+cn: Hudson Talbot
+givenName: Hudson
+sn: Talbot
+mail: hudson.talbot@shanelongman.co.uk
+telephoneNumber: +44-20-7946-0909
+title: Consultant, Corporate Finance
+departmentNumber: Corporate Finance
+employeeType: consultant
+manager: uid=leonard.ansen,ou=people,dc=shane-longman,dc=org
+description: 99999999-9999-9999-9999-999999999999
+co: United Kingdom
+l: London
+st: Greater London
+
+# Hannah Burgess — Dealing Room IT
+dn: uid=hannah.burgess,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: hannah.burgess
+cn: Hannah Burgess
+givenName: Hannah
+sn: Burgess
+mail: hannah.burgess@shanelongman.com.au
+telephoneNumber: +61-2-8999-1010
+title: Dealing Room IT
+departmentNumber: IT
+employeeType: consultant
+manager: uid=leonard.ansen,ou=people,dc=shane-longman,dc=org
+description: aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+co: Australia
+l: Canberra
+st: ACT
+
+# Chas Ewell — Junior Trader
+dn: uid=chas.ewell,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: chas.ewell
+cn: Chas Ewell
+givenName: Chas
+sn: Ewell
+mail: chas.ewell@shanelongman.co.uk
+telephoneNumber: +44-20-7946-1111
+title: Associate Analyst, Political Advisory
+departmentNumber: Political Advisory
+employeeType: analyst
+manager: uid=lee.wolf,ou=people,dc=shane-longman,dc=org
+description: bbbbbbbb-cccc-dddd-eeee-ffffffffffff
+co: United Kingdom
+l: London
+st: Greater London
+
+# Hilary Rollinger — Graduate Assistant
+dn: uid=hilary.rollinger,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: hilary.rollinger
+cn: Hilary Rollinger
+givenName: Hilary
+sn: Rollinger
+mail: hilary.rollinger@shanelongman.com.au
+telephoneNumber: +61-2-8999-1212
+title: Associate Analyst, Corporate Finance
+departmentNumber: Corporate Finance
+employeeType: analyst
+manager: uid=leonard.ansen,ou=people,dc=shane-longman,dc=org
+description: cccccccc-dddd-eeee-ffff-000000000000
+co: Australia
+l: Canberra
+st: ACT
+
+# Groups
+dn: cn=serendipity-practice-political-advisory,ou=groups,dc=shane-longman,dc=org
+objectClass: groupOfNames
+cn: serendipity-practice-political-advisory
+description: Political advisory practice — Shane Longman
+member: uid=lee.wolf,ou=people,dc=shane-longman,dc=org
+member: uid=declan.mcconnachie,ou=people,dc=shane-longman,dc=org
+member: uid=sirkka.nieminen,ou=people,dc=shane-longman,dc=org
+member: uid=chas.ewell,ou=people,dc=shane-longman,dc=org
+
+dn: cn=serendipity-practice-corporate-finance,ou=groups,dc=shane-longman,dc=org
+objectClass: groupOfNames
+cn: serendipity-practice-corporate-finance
+description: Corporate finance practice — Shane Longman
+member: uid=leonard.ansen,ou=people,dc=shane-longman,dc=org
+member: uid=max.lubin,ou=people,dc=shane-longman,dc=org
+member: uid=wendy.foley,ou=people,dc=shane-longman,dc=org
+member: uid=michelle.hauptmann,ou=people,dc=shane-longman,dc=org
+member: uid=hudson.talbot,ou=people,dc=shane-longman,dc=org
+member: uid=hannah.burgess,ou=people,dc=shane-longman,dc=org
+member: uid=hilary.rollinger,ou=people,dc=shane-longman,dc=org
+
+# System Account
+dn: uid=system,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: system
+cn: System Account
+givenName: System
+sn: Account
+mail: system@shanelongman.local
+title: System Account
+departmentNumber: System
+employeeType: system-administrator
+description: 00000000-0000-0000-0000-000000000000
+co: United Kingdom
+l: London
+st: Greater London
