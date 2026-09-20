@@ -3,7 +3,7 @@
 ## Shane Longman
 
 **Shane Longman** is a fictional lobbying firm, with sample users generated from the character names of the cast of 
-the British TV series **Capital City** (ITV/Euston Films).
+the British TV series Capital City (ITV/Euston Films).
 
 ### Geographic attributes
 
