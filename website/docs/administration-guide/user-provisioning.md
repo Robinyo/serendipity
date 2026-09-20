@@ -50,7 +50,7 @@ These are tracked by Keycloak on the core user model but are not configurable pr
 These are added to the user's profile as custom attributes. They are part of the realm's **User Profile** (the user profile schema) — they are **defined in the realm**, not created automatically when a federation is initiated. They are added to the user's **Attributes** tab in the Admin Console (or via the Admin API, or via import).
 
 | Attribute | Value | Notes |
-|---|---|---|
+|---|---|---|---|
 | `manager` | The `sub` (UUID) of the user's manager | The one attribute the access-control model depends on — it enables the manager hierarchy: a Sales Manager whose `sub` equals the `manager` attribute of another user receives access to that user's records (subject to role and scope). If a user has no manager, leave this unset. The value must be the manager's `sub`, not their `username` or `email` — those can change, and the enforcement layer compares `currentSub` against the owning user's `manager` attribute value directly. See **Setting the `manager` attribute** below. |
 | `jobTitle` | A string | Optional profile attribute. Not used for enforcement. |
 | `department` | A string | Optional profile attribute. Not used for enforcement. |
@@ -146,7 +146,6 @@ Entra ID's user object carries a `manager` attribute (a reference to the manager
 Even with both sides named `manager`, the values differ in a way the federation mapping must handle:
 
 - Entra ID's `manager` carries the manager's **Entra ID Object ID** (or DN). Serendipity's model wants the manager's **Keycloak `sub`**. The federation mapper that maps the upstream `manager` into Keycloak's `manager` attribute must therefore produce a Keycloak-`sub`-valued `manager` attribute — which requires the import process to know, for the manager's Entra ID Object ID, which Keycloak user that is and what their `sub` is. One way to enable that lookup is to also map the upstream Entra ID Object ID into a separate Keycloak custom attribute (e.g. `directoryObjectId`) on each user, so the import process can resolve "which Keycloak user has this Entra ID Object ID as their `directoryObjectId`, and what is their `sub`?" and write that `sub` into the direct report's `manager` attribute. Alternatively, the federation mapper can be configured to write the Entra ID Object ID (or DN) into Keycloak's `manager` attribute and the enforcement layer resolves it to a `sub` at enforcement time — the same tradeoff as the `ownedByTeam` lookup option.
-
 - The `sub` is Keycloak's own stable identifier for the user (its own UUID), distinct from the Entra ID Object ID. It is the value the access-control model uses for `ownedBy`, `assignedTo`, and the `manager` attribute value. The reporting line from Entra ID is the starting point, but the value that ends up in Keycloak's `manager` attribute must be the Keycloak `sub` if the model uses sub-as-value — or the Entra ID Object ID if the model uses resolve-at-enforcement-time. That choice is made in the federation mapper configuration (and is the same decision as the enterprise-deployment section above).
 
 **For an initial enterprise rollout with federation, the typical sequence is:**
@@ -164,55 +163,55 @@ The development path for automated, file-driven user provisioning uses **LDIF** 
 
 ### Why LDIF + OpenLDAP for development
 
-- **Version-controlled users.** The sample users, their attributes, their reporting line, and their geographic attributes all live in a single LDIF file (`backend/services/openldap/sample-data/au/shane-longman.ldif`) that is part of the repo. You edit the file, reload it, and the directory reflects the change — no Admin Console copy-paste.
-- **Geographic attributes as first-class LDAP attributes.** Standard LDAP attributes `c` (country, `countryName`), `l` (locality / city), and `st` (state or province) carry the user's geographic attributes directly in the directory entry; they are then mapped into Keycloak's user profile at federation time. At this point these geographic attributes are for reporting and filtering only — they do **not** gate access to records (the access-control model uses `manager` (Keycloak `sub`), roles, and `ownedBy`/`assignedTo`). If geographic access-control scope becomes a requirement later, it can be added then.
+- **Version-controlled users.** The sample users, their attributes, their reporting line, and their geographic attributes all live in a single LDIF file (`backend/services/openldap/ldif/shane-longman.ldif`) that is part of the repo. You edit the file, reload it, and the directory reflects the change — no Admin Console copy-paste.
+- **Geographic attributes as first-class LDAP attributes.** Standard LDAP attribute `l` (locality / city) and `st` (state or province) carry the user's geographic attributes directly in the directory entry; they are then mapped into Keycloak's user profile at federation time. (The `c` (country) attribute is **not** used on user entries in the sample — `c` requires the `country` objectClass, which is not part of the `inetOrgPerson`/`organizationalPerson` attribute chain, and adding it would require either an auxiliary class or `objectClass: country` on the entry, neither of which fits a person entry. Standard `inetOrgPerson` practice is to use `l` and `st` for city/state reporting. `c` and `co` are dropped from user entries; only `l` and `st` are carried on user entries.) At this point these geographic attributes are for reporting and filtering only — they do **not** gate access to records (the access-control model uses `manager` (Keycloak `sub`), roles, and `ownedBy`/`assignedTo`). If geographic access-control scope becomes a requirement later, it can be added then.
 - **Relationship attributes for the reporting line.** The LDAP `manager` attribute (a standard LDAP relationship attribute) holds the manager's LDAP DN. This is the natural way to represent a reporting line in LDAP — a user entry references its manager's entry by DN. The LDIF does **not** store the manager's Keycloak `sub` in the LDAP `manager` attribute; that would be non-standard LDAP and would defeat the purpose of using an LDAP directory as the source of truth. Instead, the import-time resolver resolves the LDAP DN → the manager's Keycloak `sub` (see **Import-time resolution** below).
-- **No strict groups or deep tree required.** The sample avoids strict groups or a deep org tree in the directory. Geographic attributes live on the user profile itself (`c`, `l`, `st`), and the reporting line is a flat `manager` DN reference. If you later want team groups in the directory (e.g. `ou=teams,ou=serendipity` with member DNs), the same federation can map them into Keycloak groups.
+- **No strict groups or deep tree required.** The sample avoids strict groups or a deep org tree in the directory. Geographic attributes live on the user profile itself (`l`, `st`), and the reporting line is a flat `manager` DN reference. If you later want team groups in the directory (e.g. `ou=teams,ou=serendipity` with member DNs), the same federation can map them into Keycloak groups.
 
 ### The sample LDIF
 
-The sample is defined in `backend/services/openldap/sample-data/au/shane-longman.ldif`. It creates:
+The sample is defined in `backend/services/openldap/ldif/shane-longman.ldif`. It creates:
 
 - A `dc=shane-longman,dc=org` DIT with `ou=people` and `ou=groups` branches.
 - **13 users**:
-  - 1 System Administrator (`uid=system`) — top of hierarchy, no `manager` attribute.
-  - 1 Partner / Managing Director (`uid=james.farrell` — CEO), top of hierarchy, no `manager` attribute.
-  - 2 Senior Managers / Directors (`uid=lee.wolf` — Director of Corporate Finance; `uid=leonard.ansen` — Director of Banking Activities), both reporting to James Farrell.
-  - 2 Managers / Engagement Managers (`uid=max.lubin` — Head of Swaps; `uid=wendy.foley` — Chief Trader / Head of Derivatives), both reporting to Leonard Ansen.
-  - 5 Consultants — Declan McConnachie and Sirkka Nieminen (political advisory, reporting to Lee Wolf); Michelle Hauptmann, Hudson Talbot, and Hannah Burgess (corporate finance / dealing room, reporting to Leonard Ansen).
-  - 2 Analysts — Chas Ewell (junior trader, reporting to Lee Wolf); Hilary Rollinger (graduate assistant, reporting to Leonard Ansen).
+    - 1 System Administrator (`uid=system`) — top of hierarchy, no `manager` attribute.
+    - 1 Partner / Managing Director (`uid=james.farrell` — CEO), top of hierarchy, no `manager` attribute.
+    - 2 Senior Managers / Directors (`uid=lee.wolf` — Director of Corporate Finance; `uid=leonard.ansen` — Director of Banking Activities), both reporting to James Farrell.
+    - 2 Managers / Engagement Managers (`uid=max.lubin` — Head of Swaps; `uid=wendy.foley` — Chief Trader / Head of Derivatives), both reporting to Leonard Ansen.
+    - 5 Consultants — Declan McConnachie and Sirkka Nieminen (political advisory, reporting to Lee Wolf); Michelle Hauptmann, Hudson Talbot, and Hannah Burgess (corporate finance / dealing room, reporting to Leonard Ansen).
+    - 2 Analysts — Chas Ewell (junior trader, reporting to Lee Wolf); Hilary Rollinger (graduate assistant, reporting to Leonard Ansen).
 - **Attribute conventions:**
-  - `uid` — login name (Keycloak pairs `uid` with `cn` to form the display name).
-  - `cn`, `givenName`, `sn` — common name, given name, surname.
-  - `title` — job / functional title (e.g. "Chief Executive Officer", "Head of Swaps", "Senior Trader — secondary desk", "Dealing Room IT", "Junior Trader — primary desk").
-  - `department` — functional department (e.g. "Executive", "Corporate Finance", "Derivatives", "Political Advisory", "Dealing Room", "IT", "Capital Markets").
-  - `mail` — email address (e.g. `james.farrell@shanelongman.co.uk` for London users, `hannah.burgess@shanelongman.com.au` for Australian users — reflecting the lobbying firm's AU clients).
-  - `telephoneNumber` — phone.
-  - `manager` — **the manager's LDAP DN** (standard LDAP relationship attribute). For example, a direct report of Leonard Ansen has `manager: uid=leonard.ansen,ou=people,dc=shane-longman,dc=org`. A direct report of Lee Wolf has `manager: uid=lee.wolf,ou=people,dc=shane-longman,dc=org`. This is **not** the manager's Keycloak `sub`.
-  - `directoryObjectId` — the **user's own LDAP DN** (e.g. `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org`). This is the source-correlation attribute mapped into Keycloak's `directoryObjectId` custom attribute at federation. For the OpenLDAP case, `directoryObjectId` holds the LDAP DN (the upstream directory object identifier), analogous to how it holds the Entra ID Object ID for the Entra ID federation case. The role of `directoryObjectId` is the same in both cases: it lets the import process correlate a local user to the upstream directory object, and (for the manager resolution) look up which user owns a given manager DN.
-  - `serendipitySub` — a pre-computed Keycloak `sub` (UUID) for each user, stored as a user-specific attribute (e.g. `leonardAnsenSerendipitySub: 33333333-3333-3333-3333-333333333333`). These are used at import time to resolve each direct report's LDAP `manager` DN → the manager's Keycloak `sub`. For example, when the import process reads a direct report whose `manager` attribute is `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org`, it looks up the user whose `directoryObjectId` matches that DN, reads that user's `leonardAnsenSerendipitySub`, and writes that UUID into the direct report's Keycloak `manager` attribute.
-  - `c`, `l`, `st` — geographic attributes (`c` = country, `l` = locality/city, `st` = state/province). For example, a London user has `c: UK`, `l: London`, `st: Greater London`; a Canberra user has `c: AU`, `l: Canberra`, `st: ACT`. These are the standard LDAP geographic attributes; they map directly into Keycloak user attributes at federation time (assuming the federation mapper is configured to include them).
-  - `employeeType` — an optional functional type (e.g. "partner", "senior-manager", "manager", "consultant", "analyst", "system-administrator") for filtering/reporting.
+    - `uid` — login name (Keycloak pairs `uid` with `cn` to form the display name).
+    - `cn`, `givenName`, `sn` — common name, given name, surname.
+    - `title` — job / functional title (e.g. "Chief Executive Officer", "Head of Swaps", "Consultant, Political Advisory", "Dealing Room IT", "Associate Analyst, Political Advisory").
+    - `departmentNumber` — functional department (e.g. "Executive", "Corporate Finance", "Derivatives", "Political Advisory", "IT", "System"). This is the `inetOrgPerson` attribute; the `department` custom attribute in Keycloak's user profile is mapped from it at federation time.
+    - `mail` — email address. In the sample, every user uses the single `shane-longman.org` domain (e.g. `james.farrell@shane-longman.org`). The sample is a single-location Canberra organisation, so there is no `.co.uk`/`.com.au` domain split — that split is retained in the documentation of the broader geographic-reporting model but the sample itself uses a single domain.
+    - `telephoneNumber` — phone.
+    - `manager` — **the manager's LDAP DN** (standard LDAP relationship attribute). For example, a direct report of Leonard Ansen has `manager: uid=leonard.ansen,ou=people,dc=shane-longman,dc=org`. A direct report of Lee Wolf has `manager: uid=lee.wolf,ou=people,dc=shane-longman,dc=org`. This is **not** the manager's Keycloak `sub`.
+    - `description` — in the sample, this attribute carries each user's pre-computed Keycloak `sub` (UUID). For example, James Farrell's entry has `description: 11111111-1111-1111-1111-111111111111`, Lee Wolf's entry has `description: 22222222-2222-2222-2222-222222222222`, and Leonard Ansen's entry has `description: 33333333-3333-3333-3333-333333333333`. These pre-computed values are the source for the import-time resolution described below — they are a stand-in for Keycloak's own `sub` generation so the sample is deterministic and self-contained.
+    - `l`, `st` — geographic attributes (`l` = locality/city, `st` = state/province). In the sample, every user has `l: Canberra`, `st: ACT` (the entire sample organisation is based in Canberra). These are the standard `inetOrgPerson` geographic attributes; they map directly into Keycloak user attributes at federation time (assuming the federation mapper is configured to include them). The `c` (country) attribute is **not** present on user entries in the sample (see the note above in this section).
+    - `employeeType` — an optional functional type (e.g. "partner", "senior-manager", "manager", "consultant", "analyst", "system-administrator") for filtering/reporting.
+    - `userPassword` — a placeholder password (`secret`) for each user entry, included so the sample can be loaded into OpenLDAP and optionally used for LDAP-based sign-in. In a real deployment, replace with a properly hashed password if LDAP-based sign-in is wanted, or omit if the federation is read-only and Keycloak is the identity provider.
 
-- **Sample users table (LDIF → Keycloak):** The sample is defined in `backend/services/openldap/sample-data/au/shane-longman.ldif`.
+- **Sample users table (LDIF → Keycloak):**
 
-| uid | cn | title | department | manager (LDAP DN) | resolved KC sub (who the manager is) | city | state | employeeType |
+| uid | cn | title | departmentNumber (sample) | manager (LDAP DN) | resolved KC sub (who the manager is) | city | state | employeeType |
 |---|---|---|---|---|---|---|---|---|
-| `system` | System Account | System Account | System | *(none — top of hierarchy)* | *(none)* | Melbourne | VIC | — |
-| `james.farrell` | James Farrell | Chief Executive Officer | Executive | *(none — top of hierarchy)* | *(none)* | London | Greater London | — |
-| `lee.wolf` | Lee Wolf | Director of Corporate Finance | Political Advisory | `uid=james.farrell,ou=people,dc=shane-longman,dc=org` | `11111111-1111-1111-1111-111111111111` (James Farrell) | London | Greater London | `senior-manager` |
-| `leonard.ansen` | Leonard Ansen | Director of Banking Activities | Corporate Finance | `uid=james.farrell,ou=people,dc=shane-longman,dc=org` | `11111111-1111-1111-1111-111111111111` (James Farrell) | London | Greater London | `senior-manager` |
-| `max.lubin` | Max Lubin | Head of Swaps | Derivatives | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `33333333-3333-3333-3333-333333333333` (Leonard Ansen) | London | Greater London | `manager` |
-| `wendy.foley` | Wendy Foley | Chief Trader / Head of Derivatives | Derivatives | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `33333333-3333-3333-3333-333333333333` (Leonard Ansen) | London | Greater London | `manager` |
-| `declan.mcconnachie` | Declan McConnachie | Senior Trader (secondary desk) | Political Advisory | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | `22222222-2222-2222-2222-222222222222` (Lee Wolf) | London | Greater London | `consultant` |
-| `sirkka.nieminen` | Sirkka Nieminen | Senior Trader (secondary desk) | Political Advisory | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | `22222222-2222-2222-2222-222222222222` (Lee Wolf) | London | Greater London | `consultant` |
-| `michelle.hauptmann` | Michelle Hauptmann | Senior Trader (primary desk) | Corporate Finance | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `33333333-3333-3333-3333-333333333333` (Leonard Ansen) | London | Greater London | `consultant` |
-| `chas.ewell` | Chas Ewell | Junior Trader (primary desk) | Dealing Room | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | `22222222-2222-2222-2222-222222222222` (Lee Wolf) | London | Greater London | `analyst` |
-| `hudson.talbot` | Hudson J. Talbot III | Capital Markets Originator | Capital Markets | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `33333333-3333-3333-3333-333333333333` (Leonard Ansen) | London | Greater London | `consultant` |
-| `hannah.burgess` | Hannah Burgess | Dealing Room IT / Computer Systems | IT | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `33333333-3333-3333-3333-333333333333` (Leonard Ansen) | Canberra | ACT | `consultant` |
-| `hilary.rollinger` | Hilary Rollinger | Graduate Assistant (primary desk) | Dealing Room | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | `22222222-2222-2222-2222-222222222222` (Lee Wolf) | Canberra | ACT | `analyst` |
+| `system` | System Account | System Account | System | *(none — top of hierarchy)* | *(none)* | Canberra | ACT | — |
+| `james.farrell` | James Farrell | Chief Executive Officer | Executive | *(none — top of hierarchy)* | *(none)* | Canberra | ACT | — |
+| `lee.wolf` | Lee Wolf | Director, Political Advisory | Political Advisory | `uid=james.farrell,ou=people,dc=shane-longman,dc=org` | `11111111-1111-1111-1111-111111111111` (James Farrell) | Canberra | ACT | `senior-manager` |
+| `leonard.ansen` | Leonard Ansen | Director, Corporate Finance | Corporate Finance | `uid=james.farrell,ou=people,dc=shane-longman,dc=org` | `11111111-1111-1111-1111-111111111111` (James Farrell) | Canberra | ACT | `senior-manager` |
+| `max.lubin` | Max Lubin | Head of Swaps | Derivatives | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `33333333-3333-3333-3333-333333333333` (Leonard Ansen) | Canberra | ACT | `manager` |
+| `wendy.foley` | Wendy Foley | Chief Trader / Head of Derivatives | Derivatives | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `33333333-3333-3333-3333-333333333333` (Leonard Ansen) | Canberra | ACT | `manager` |
+| `declan.mcconnachie` | Declan McConnachie | Consultant, Political Advisory | Political Advisory | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | `22222222-2222-2222-2222-222222222222` (Lee Wolf) | Canberra | ACT | `consultant` |
+| `sirkka.nieminen` | Sirkka Nieminen | Consultant, Political Advisory | Political Advisory | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | `22222222-2222-2222-2222-222222222222` (Lee Wolf) | Canberra | ACT | `consultant` |
+| `michelle.hauptmann` | Michelle Hauptmann | Consultant, Corporate Finance | Corporate Finance | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `33333333-3333-3333-3333-333333333333` (Leonard Ansen) | Canberra | ACT | `consultant` |
+| `chas.ewell` | Chas Ewell | Associate Analyst, Political Advisory | Political Advisory | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | `22222222-2222-2222-2222-222222222222` (Lee Wolf) | Canberra | ACT | `analyst` |
+| `hudson.talbot` | Hudson Talbot | Consultant, Corporate Finance | Corporate Finance | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `33333333-3333-3333-3333-333333333333` (Leonard Ansen) | Canberra | ACT | `consultant` |
+| `hannah.burgess` | Hannah Burgess | Dealing Room IT | IT | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `33333333-3333-3333-3333-333333333333` (Leonard Ansen) | Canberra | ACT | `consultant` |
+| `hilary.rollinger` | Hilary Rollinger | Associate Analyst, Corporate Finance | Corporate Finance | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | `22222222-2222-2222-2222-222222222222` (Lee Wolf) | Canberra | ACT | `analyst` |
 
-**Note on the resolved KC sub column.** The UUIDs in the `resolved KC sub` column are the pre-computed `serendipitySub` values from the LDIF. They are used at import time to resolve each direct report's LDAP `manager` DN → the manager's Keycloak `sub`. In a real deployment, Keycloak generates the `sub` at import time; the pre-computed values here are a stand-in for that post-import lookup so the sample is self-contained and deterministic.
+**Note on the resolved KC sub column.** The UUIDs in the `resolved KC sub` column are the values stored in each user's `description` attribute in the LDIF. They are used at import time to resolve each direct report's LDAP `manager` DN → the manager's Keycloak `sub`. In a real deployment, Keycloak generates the `sub` at import time; the pre-computed values here are a stand-in for that post-import lookup so the sample is self-contained and deterministic.
 
 ### OpenLDAP setup (development)
 
@@ -242,7 +241,7 @@ ldapmodify -x \
   -H ldap://localhost:389 \
   -D "cn=admin,dc=shane-longman,dc=org" \
   -w admin \
-  -a -f backend/services/openldap/sample-data/au/shane-longman.ldif
+  -a -f backend/services/openldap/ldif/shane-longman.ldif
 ```
 
 The `-a` flag tells `ldapmodify` to treat the input as an add-only LDIF (no modifications or deletes). If you're reloading the sample (e.g. after editing it), you may want to first clear the `ou=people` and `ou=groups` branches, or use a fresh container.
@@ -256,10 +255,10 @@ ldapsearch -x \
   -w admin \
   -b "ou=people,dc=shane-longman,dc=org" \
   "(objectClass=inetOrgPerson)" \
-  dn cn mail title department manager c l st directoryObjectId
+  dn cn mail title departmentNumber manager l st description
 ```
 
-This returns each user's DN, common name, email, title, department, manager DN, geographic attributes, and `directoryObjectId`.
+This returns each user's DN, common name, email, title, department, manager DN, geographic attributes (`l`, `st`), and the pre-computed KC sub (the `description` attribute).
 
 ### Keycloak LDAP User Federation configuration
 
@@ -267,27 +266,26 @@ In Keycloak's Admin Console, for the Serendipity realm:
 
 1. **User Federation** → **Add provider** → **ldap** (OpenLDAP / generic LDAP).
 2. Configure the connection:
-  - **Service account user DN**: a service account that can read the `ou=people` branch (e.g. `cn=admin,dc=shane-longman,dc=org` with password `admin`, or a dedicated read-only service account).
-  - **Edit mode**: `WRITABLE` if you want Keycloak to write changes back to LDAP (e.g. for development); `READ_ONLY` if LDAP is the source of truth and Keycloak should not write back.
-  - **Connection URL**: `ldap://localhost:389` (or the container's host/port in your Docker Compose setup).
-  - **Users DN**: `ou=people,dc=shane-longman,dc=org` — the branch where the sample users live.
-  - **Search scope**: `SUBTREE` (to find users in the branch).
-  - **User object classes**: `inetOrgPerson`, `organizationalPerson`, `person`, `top` (matching the LDIF).
-  - **Username LDAP attribute**: `uid` (or `cn`, depending on your login-name choice — the sample uses `uid` as the login name).
-  - **UUID LDAP attribute**: `uid` (or a dedicated attribute; in the sample the stable identifier is the DN, but Keycloak needs a UUID attribute for the `sub` — see note below).
+    - **Service account user DN**: a service account that can read the `ou=people` branch (e.g. `cn=admin,dc=shane-longman,dc=org` with password `admin`, or a dedicated read-only service account).
+    - **Edit mode**: `WRITABLE` if you want Keycloak to write changes back to LDAP (e.g. for development); `READ_ONLY` if LDAP is the source of truth and Keycloak should not write back.
+    - **Connection URL**: `ldap://localhost:389` (or the container's host/port in your Docker Compose setup).
+    - **Users DN**: `ou=people,dc=shane-longman,dc=org` — the branch where the sample users live.
+    - **Search scope**: `SUBTREE` (to find users in the branch).
+    - **User object classes**: `inetOrgPerson`, `organizationalPerson`, `person`, `top` (matching the LDIF).
+    - **Username LDAP attribute**: `uid` (or `cn`, depending on your login-name choice — the sample uses `uid` as the login name).
+    - **UUID LDAP attribute**: `uid` (or a dedicated attribute; in the sample the stable identifier is the DN, but Keycloak needs a UUID attribute for the `sub` — see note below).
 3. **Attribute mapping** — map the LDAP attributes into Keycloak's user model. For the sample:
-   - `mail` → `email`
-   - `givenName` → `firstName`
-   - `sn` → `lastName`
-   - `cn` → `displayName` (or use `uid` + `cn` to form the display name)
-   - `title` → `title` (custom attribute, if defined)
-   - `department` → `department` (custom attribute, if defined)
-   - `c` → `c` (custom attribute, if defined — geographic, reporting only)
-   - `l` → `l` (custom attribute, if defined — geographic, reporting only)
-   - `st` → `st` (custom attribute, if defined — geographic, reporting only)
-   - `directoryObjectId` → `directoryObjectId` (custom attribute, source correlation)
-   - `manager` → `manager` (**see Import-time resolution below — the value that lands in Keycloak's `manager` must be the manager's Keycloak `sub`, not the LDAP DN**)
-4. **Custom attributes must be defined first.** Before the federation will map `title`, `department`, `c`, `l`, `st`, `directoryObjectId`, and `manager` into Keycloak's user profile, those custom attributes must be defined in the realm's **User Profile** schema (see [Keycloak user profile schema and federation alignment](#keycloak-user-profile-schema-and-federation-alignment)). Define them as optional, unmanaged-by-federation-by-default attributes first, then configure the federation mapper to map the upstream values into them.
+    - `mail` → `email`
+    - `givenName` → `firstName`
+    - `sn` → `lastName`
+    - `cn` → `displayName` (or use `uid` + `cn` to form the display name)
+    - `title` → `title` (custom attribute, if defined)
+    - `departmentNumber` → `department` (custom attribute, if defined)
+    - `l` → `l` (custom attribute, if defined — geographic, reporting only)
+    - `st` → `st` (custom attribute, if defined — geographic, reporting only)
+    - `manager` → `manager` (**see Import-time resolution below — the value that lands in Keycloak's `manager` must be the manager's Keycloak `sub`, not the LDAP DN**)
+    - `description` → (not mapped to a standard Keycloak attribute; the import-time resolver reads it directly to obtain each user's pre-computed KC sub — see below)
+4. **Custom attributes must be defined first.** Before the federation will map `title`, `department`, `l`, `st`, and `manager` into Keycloak's user profile, those custom attributes must be defined in the realm's **User Profile** schema (see [Keycloak user profile schema and federation alignment](#keycloak-user-profile-schema-and-federation-alignment)). Define them as optional, unmanaged-by-federation-by-default attributes first, then configure the federation mapper to map the upstream values into them.
 5. **Test / Synchronize.** Use **Test all users** or **Sync changes** to import the sample users. Verify that each user appears in the Serendipity realm's Users list with the expected attributes.
 
 ### Import-time resolution — LDAP DN → Keycloak `sub`
@@ -296,22 +294,22 @@ The crux of the LDAP federation case is the same as the Entra ID case: the LDAP 
 
 **How the sample does it:**
 
-1. The LDIF pre-computes each user's Keycloak `sub` as a per-user attribute (e.g. `leonardAnsenSerendipitySub: 33333333-3333-3333-3333-333333333333`).
-2. The LDIF also sets each user's `directoryObjectId` to their own LDAP DN.
-3. At import time, the federation mapper (or a post-import script) resolves each direct report's LDAP `manager` DN to the Keycloak `sub` of the user whose `directoryObjectId` matches that DN:
-  - Read the direct report's LDAP `manager` attribute (e.g. `uid=lee.wolf,ou=people,dc=shane-longman,dc=org`).
-  - Look up the user in the already-imported set whose `directoryObjectId` equals that DN (here, Lee Wolf's entry).
-  - Read that user's per-user `serendipitySub` attribute (here, `leeWolfSerendipitySub`).
-  - Write that UUID into the direct report's Keycloak `manager` attribute.
-4. For users with no manager (System Administrator, top-of-hierarchy managers), leave the Keycloak `manager` attribute unset.
+1. The LDIF pre-computes each user's Keycloak `sub` as the `description` attribute on that user's entry (e.g. James Farrell's entry has `description: 11111111-1111-1111-1111-111111111111`, Lee Wolf's entry has `description: 22222222-2222-2222-2222-222222222222`, Leonard Ansen's entry has `description: 33333333-3333-3333-3333-333333333333`).
+2. At import time, the federation mapper (or a post-import script) resolves each direct report's LDAP `manager` DN to the Keycloak `sub` of the user whose LDAP DN matches that manager DN:
+    - Read the direct report's LDAP `manager` attribute (e.g. `uid=lee.wolf,ou=people,dc=shane-longman,dc=org`).
+    - Look up the user in the already-imported set whose LDAP DN equals that value (here, Lee Wolf's entry, `uid=lee.wolf,ou=people,dc=shane-longman,dc=org`).
+    - Read that user's `description` attribute (here, `22222222-2222-2222-2222-222222222222`).
+    - Write that UUID into the direct report's Keycloak `manager` attribute.
+3. For users with no manager (System Administrator, top-of-hierarchy managers), leave the Keycloak `manager` attribute unset.
 
-**Why pre-computed `sub`s?** In the sample, the `sub` values are pre-computed so the resolution is deterministic and the sample is repeatable. In a real deployment, Keycloak generates the `sub` at import time (it's the `id` of the imported user). The import process would then resolve the manager DN → the manager's Keycloak `sub` using the already-imported manager user's `id` (Keycloak's own `sub`), not a pre-computed attribute. The pre-computed `serendipitySub` in the sample is a stand-in for that post-import lookup — it makes the sample self-contained and verifiable without running the full import-and-lookup sequence.
+**Why pre-computed `sub`s?** In the sample, the `sub` values are pre-computed and stored in the `description` attribute so the resolution is deterministic and the sample is repeatable. In a real deployment, Keycloak generates the `sub` at import time (it's the `id` of the imported user). The import process would then resolve the manager DN → the manager's Keycloak `sub` using the already-imported manager user's `id` (Keycloak's own `sub`), not a pre-computed attribute. The pre-computed `description`-as-sub in the sample is a stand-in for that post-import lookup — it makes the sample self-contained and verifiable without running the full import-and-lookup sequence.
 
 **What lands in Keycloak's `manager` attribute for the sample:**
 
 - Desk heads Max Lubin and Wendy Foley → `33333333-3333-3333-3333-333333333333` (Leonard Ansen's Keycloak `sub`).
 - Political advisory consultants Declan McConnachie and Sirkka Nieminen → `22222222-2222-2222-2222-222222222222` (Lee Wolf's Keycloak `sub`).
-- All other consultants and analysts (Michelle Hauptmann, Hudson Talbot, Hannah Burgess, Chas Ewell, Hilary Rollinger) → `33333333-3333-3333-3333-333333333333` (Leonard Ansen's Keycloak `sub`), except Declan and Sirkka who report to Lee Wolf.
+- Analyst Chas Ewell → `22222222-2222-2222-2222-222222222222` (Lee Wolf's Keycloak `sub`).
+- All other consultants and analysts (Michelle Hauptmann, Hudson Talbot, Hannah Burgess, Hilary Rollinger) → `33333333-3333-3333-3333-333333333333` (Leonard Ansen's Keycloak `sub`).
 - Lee Wolf and Leonard Ansen → `11111111-1111-1111-1111-111111111111` (James Farrell's Keycloak `sub`).
 - System Administrator, James Farrell → *(unset — no manager)*.
 
@@ -339,26 +337,25 @@ Assign these in Keycloak after import (or configure the federation to do it auto
 
 ### Geographic reporting with the sample
 
-Because every user carries `c`, `l`, `st` in the LDIF (and thus in Keycloak after federation), you can run geographic reports:
+Because every user carries `l` and `st` in the LDIF (and thus in Keycloak after federation), you can run geographic reports:
 
-- **By country**: "show me all users in GB" — the entire sample (13 users) is UK-based; all users have `c: GB`.
-- **By city**: "show me all users in London" — James Farrell, Lee Wolf, Leonard Ansen, Max Lubin, Wendy Foley, Declan McConnachie, Sirkka Nieminen, Michelle Hauptmann, Hudson Talbot, Chas Ewell (10 users, all with `l: London`).
-- **By state/province**: "show me all users in Greater London" — the same 10 London-based users; "show me all users in ACT" — Hannah Burgess and Hilary Rollinger (the two Canberra-based characters, both with `l: Canberra`, `st: ACT`).
+- **By city**: "show me all users in Canberra" — the entire sample (13 users) is Canberra-based; all users have `l: Canberra`.
+- **By state/province**: "show me all users in ACT" — the same 13 users, all with `st: ACT`.
 
-These are reporting and filtering queries against the user profile attributes. They do **not** affect the access-control model — a user in London can access records owned by a user in Canberra if the manager hierarchy and roles permit it (or vice versa). Geographic scope as an access-control dimension is not in the model at this point; if it becomes a requirement, it can be added then (as a scope-based rule, per the [Access Control design document](../architecture-guide/access-control/design-document.md)).
+These are reporting and filtering queries against the user profile attributes. They do **not** affect the access-control model — a user in Canberra has no geographic access-control advantage over any other user; access is governed by the manager hierarchy and roles. Geographic scope as an access-control dimension is not in the model at this point; if it becomes a requirement, it can be added then (as a scope-based rule, per the [Access Control design document](../architecture-guide/access-control/design-document.md)).
 
 ### Reloading and extending the sample
 
 - To reload the sample after editing the LDIF, clear the `ou=people` (and `ou=groups`) branch in OpenLDAP and re-run `ldapmodify`, or use a fresh container.
-- To add your own users or organisations, add entries to `backend/services/openldap/sample-data/au/shane-longman.ldif` (or a new LDIF file) following the same conventions: `uid`, `cn`, `givenName`, `sn`, `title`, `department`, `mail`, `manager` (the manager's LDAP DN), `directoryObjectId` (the user's own DN), the per-user `serendipitySub` (for import-time resolution), and the geographic attributes `c`, `l`, `st`.
+- To add your own users or organisations, add entries to `backend/services/openldap/ldif/shane-longman.ldif` (or a new LDIF file) following the same conventions: `uid`, `cn`, `givenName`, `sn`, `title`, `departmentNumber`, `mail`, `manager` (the manager's LDAP DN), the `description` attribute carrying the user's pre-computed KC `sub` (for import-time resolution), and the geographic attributes `l`, `st`.
 - To remove the sample, delete the users from OpenLDAP and from Keycloak (or de-activate them), and re-export the realm if you want the sample to stop persisting.
 
 ### What this section does not cover
 
 - Production LDAP/Active Directory/Entra ID federation performance tuning, connection pooling, or failover — refer to the Keycloak Server Administration Guide for LDAP connection configuration.
-- Writing changes back to LDAP (`WRITABLE` mode) — the sample uses `READ_ONLY` perspective (the directory is the source of truth); Keycloak writes to its own database. If you enable `WRITABLE` mode, be aware that Keycloak may write user attribute changes back to LDAP.
-- The `uuid` / `sub` generation at scale — the sample pre-computes `sub`s for repeatability; a production LDAP federation lets Keycloak generate them at import. The resolution logic (DN → manager's `sub`) is the same either way.
-- Password management in LDAP — the sample LDIF includes placeholder `userPassword` values (`{SSHA}...encrypted...`); replace with real hashed passwords if you need users to sign in via the LDAP directory (or rely on Keycloak's own credentials if the federation is read-only and Keycloak is the identity provider).
+- Writing changes back to LDAP (`WRITABLE` mode) — the sample uses a `READ_ONLY` perspective (the directory is the source of truth); Keycloak writes to its own database. If you enable `WRITABLE` mode, be aware that Keycloak may write user attribute changes back to LDAP.
+- The `uuid` / `sub` generation at scale — the sample pre-computes `sub`s (in the `description` attribute) for repeatability; a production LDAP federation lets Keycloak generate them at import. The resolution logic (DN → manager's `sub`) is the same either way.
+- Password management in LDAP — the sample LDIF includes placeholder `userPassword: secret` values on every entry; replace with real hashed passwords if you need users to sign in via the LDAP directory (or rely on Keycloak's own credentials if the federation is read-only and Keycloak is the identity provider).
 
 ## What this document does not cover
 
@@ -371,5 +368,5 @@ These are reporting and filtering queries against the user profile attributes. T
 - Keycloak Server Administration Guide — [Managing users](https://www.keycloak.org/server/manage-users), [User profile](https://www.keycloak.org/docs/latest/server_admin/index.html#user-profile), [Managing attributes](https://www.keycloak.org/docs/latest/server_admin/index.html#managing-attributes), [Roles](https://www.keycloak.org/server/rbac), [Groups](https://www.keycloak.org/server/manage-groups), [LDAP user federation](https://www.keycloak.org/docs/latest/server_admin/index.html#_ldap_user_federation).
 - [Access Control design document](../architecture-guide/access-control/design-document.md) — the model that drives the attribute, role, and group requirements.
 - [Keycloak administration guide](./keycloak.md) — realm and client configuration reference.
-- Sample users LDIF: `backend/services/openldap/sample-data/au/shane-longman.ldif`.
+- Sample users LDIF: `backend/services/openldap/ldif/shane-longman.ldif`.
 - [Sample data](../try-install-upgrade/sample-data/configure.md#getting-the-sample-data-into-keycloak) — getting the sample users (Shane Longman) into Keycloak and exploring them in the application.

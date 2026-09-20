@@ -7,11 +7,17 @@ The sample data gives you a small working organisation you can explore immediate
 - **A sample political lobbying organisation — Shane Longman** — a fictional international bank (from the 1989 British TV
   series *Capital City*, ITV/Euston Films), with the cast's character names as users. The bank's customers include the
   Australian political parties seeded in the Party Service's `sample-data` (Liberal Party of Australia, Australian Labor
-  Party, Australian Greens, etc.). Geographic attributes are the Australian capital cities plus London.
-- **Geographic attributes** — every user carries `c` (country), `l` (locality / city) and `st` (state / province), so you
-  can see how geographic reporting works. At this point these attributes are for reporting and filtering only — they do
-  **not** gate access to records (the access-control model uses `manager` (Keycloak `sub`), roles, and
-  `ownedBy`/`assignedTo`). If geographic access-control scope becomes a requirement later, it can be added then.
+  Party, Australian Greens, etc.). Geographic attributes: every user is Canberra-based (`l: Canberra`, `st: ACT`), and the
+  sample uses a single `shane-longman.org` email domain for all users.
+- **Geographic attributes** — every user carries `l` (locality / city) and `st` (state / province), so you
+  can see how geographic reporting works. (The `c` (country) attribute is **not** used on user entries in the sample —
+  `c` requires the `country` objectClass, which is not part of the `inetOrgPerson`/`organizationalPerson` attribute chain,
+  and adding it would require either an auxiliary class or `objectClass: country` on the entry, neither of which fits a
+  person entry. Standard `inetOrgPerson` practice is to use `l` and `st` for city/state reporting; `c` and `co` are dropped
+  from user entries and only `l` and `st` are carried on user entries.) At this point these geographic attributes are for
+  reporting and filtering only — they do **not** gate access to records (the access-control model uses `manager` (Keycloak
+  `sub`), roles, and `ownedBy`/`assignedTo`). If geographic access-control scope becomes a requirement later, it can be added
+  then.
 - **Roles** — each user is assigned a Keycloak realm role that reflects their seniority tier in a consulting / advisory firm,
   not a sales organisation. The Shane Longman roles are distinct from the Sales organisation roles and are designed for a
   services-firm engagement model (see **Roles** below).
@@ -22,19 +28,16 @@ The sample data gives you a small working organisation you can explore immediate
 
 ### About the organisation
 
-**Shane Longman** is a fictional international bank based in the City of London, the setting of the 1989 British TV series
-*Capital City* (ITV / Euston Films, 26 September 1989 – 20 December 1990). In the series, the bank's dealing room is home
-to a group of investment bankers — traders, a Director of Banking Activities, a Director of Corporate Finance, a Head of
-Swaps, a Chief Trader, a Head of Derivatives, a capital markets originator, and IT — whose professional and personal lives
-are the focus of the show.
-
-In the Serendipity sample, Shane Longman is a **political lobbying organisation** — a fictional entity whose customers are
-the Australian political parties seeded in the Party Service's `sample-data` (`backend/modules/party-service/src/main/resources/sample-data/`).
+**Shane Longman** is a fictional international bank whose dealing room is based in Canberra, Australia. In the Serendipity
+sample, Shane Longman is a **political lobbying organisation** — a fictional entity whose customers are
+the Australian political parties seeded in the Party Service's `sample-data`
+(`backend/modules/party-service/src/main/resources/sample-data/`).
 This lets you see how a lobbying / advisory organisation connects to politically organised customers, and how the existing
 Party Service seed data can be leveraged by a sample organisation without duplicating it.
 
 The sample users are the **character names** from *Capital City* (not the actors' real names). Each character is mapped to a
-role tier in the Serendipity access-control model.
+role tier in the Serendipity access-control model. The entire sample organisation (all 13 users) is based in Canberra (`l: Canberra`,
+`st: ACT`), and every user uses a single `shane-longman.org` email domain.
 
 ### Roles
 
@@ -59,43 +62,47 @@ are "mid-level practitioners" in their respective firms.)
 
 ### The sample users (Shane Longman org)
 
-| User (uid) | Character | Title / role in the series | Department (sample) | Manager (Keycloak sub) | City | State | Role tier (Keycloak role) |
-|---|---|---|---|---|---|---|---|
-| `system` | System Account | — | System | — | Melbourne | VIC | `system-administrator` |
-| `james.farrell` | James Farrell | Chief Executive Officer | Executive | — | London | UK | `partner` |
-| `lee.wolf` | Lee Wolf | Director of Corporate Finance | Corporate Finance | `james.farrell`'s sub | London | UK | `senior-manager` |
-| `leonard.ansen` | Leonard Ansen | Director of Banking Activities | Banking Activities | `james.farrell`'s sub | London | UK | `senior-manager` |
-| `max.lubin` | Max Lubin | Head of Swaps | Swaps | `leonard.ansen`'s sub | Sydney | NSW | `manager` |
-| `wendy.foley` | Wendy Foley | Chief Trader / Head of Derivatives | Derivatives | `leonard.ansen`'s sub | Sydney | NSW | `manager` |
-| `declan.mcconnachie` | Declan McConnachie | Senior Trader (secondary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `consultant` |
-| `sirkka.nieminen` | Sirkka Nieminen | Senior Trader (secondary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `consultant` |
-| `michelle.hauptmann` | Michelle Hauptmann | Senior Trader (primary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `consultant` |
-| `chas.ewell` | Chas Ewell | Junior Trader (primary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `analyst` |
-| `hudson.talbot` | Hudson J. Talbot III | Capital Markets Originator | Capital Markets | `leonard.ansen`'s sub | Sydney | NSW | `consultant` |
-| `hannah.burgess` | Hannah Burgess | Dealing Room IT / Computer Systems | IT | `leonard.ansen`'s sub | Canberra | ACT | `consultant` |
-| `hilary.rollinger` | Hilary Rollinger | Graduate Assistant (primary desk) | Dealing Room | `leonard.ansen`'s sub | Canberra | ACT | `analyst` |
+The sample users live in `backend/services/openldap/ldif/shane-longman.ldif`. Their attributes in the LDIF use the
+`inetOrgPerson` attribute names directly: `title`, `departmentNumber` (the `inetOrgPerson` department attribute — mapped
+to Keycloak's `department` custom attribute at federation time), `mail`, `manager` (the manager's LDAP DN), `l`, `st`, and
+`description` (which, in the sample, carries the user's pre-computed Keycloak `sub` — see the user provisioning doc's
+import-time resolution section). The table below shows the users, their titles and departments as they appear in the LDIF's
+`title`/`departmentNumber` attributes, their manager's LDAP DN, the pre-computed KC `sub` that the resolution uses, and their
+geographic attributes.
+
+All 13 users are based in Canberra (`l: Canberra`, `st: ACT`) and use the single `shane-longman.org` email domain.
+
+| uid | Character | Title (LDIF `title`) | Department (LDIF `departmentNumber`) | Manager (LDAP DN) | Pre-computed KC sub (in `description`) | City | State | Keycloak role (assigned after import) |
+|---|---|---|---|---|---|---|---|---|
+| `system` | System Account | System Account | System | *(none — top of hierarchy)* | *(none)* | Canberra | ACT | `system-administrator` |
+| `james.farrell` | James Farrell | Chief Executive Officer | Executive | *(none — top of hierarchy)* | *(none)* | Canberra | ACT | `partner` |
+| `lee.wolf` | Lee Wolf | Director, Political Advisory | Political Advisory | `uid=james.farrell,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `22222222-2222-2222-2222-222222222222` | Canberra | ACT | `senior-manager` |
+| `leonard.ansen` | Leonard Ansen | Director, Corporate Finance | Corporate Finance | `uid=james.farrell,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `33333333-3333-3333-3333-333333333333` | Canberra | ACT | `senior-manager` |
+| `max.lubin` | Max Lubin | Head of Swaps | Derivatives | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `44444444-4444-4444-4444-444444444444` | Canberra | ACT | `manager` |
+| `wendy.foley` | Wendy Foley | Chief Trader / Head of Derivatives | Derivatives | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `55555555-5555-5555-5555-555555555555` | Canberra | ACT | `manager` |
+| `declan.mcconnachie` | Declan McConnachie | Consultant, Political Advisory | Political Advisory | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `66666666-6666-6666-6666-666666666666` | Canberra | ACT | `consultant` |
+| `sirkka.nieminen` | Sirkka Nieminen | Consultant, Political Advisory | Political Advisory | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `77777777-7777-7777-7777-777777777777` | Canberra | ACT | `consultant` |
+| `michelle.hauptmann` | Michelle Hauptmann | Consultant, Corporate Finance | Corporate Finance | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `88888888-8888-8888-8888-888888888888` | Canberra | ACT | `consultant` |
+| `chas.ewell` | Chas Ewell | Associate Analyst, Political Advisory | Political Advisory | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `bbbbbbbb-cccc-dddd-eeee-ffffffffffff` | Canberra | ACT | `analyst` |
+| `hudson.talbot` | Hudson Talbot | Consultant, Corporate Finance | Corporate Finance | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `99999999-9999-9999-9999-999999999999` | Canberra | ACT | `consultant` |
+| `hannah.burgess` | Hannah Burgess | Dealing Room IT | IT | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee` | Canberra | ACT | `consultant` |
+| `hilary.rollinger` | Hilary Rollinger | Associate Analyst, Corporate Finance | Corporate Finance | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `cccccccc-dddd-eeee-ffff-000000000000` | Canberra | ACT | `analyst` |
 
 **Mapping notes:**
 
-- **James Farrell (CEO)** — `partner`. The CEO is a co-owner / senior executive of the firm: revenue generation, strategic
-  client account management, firm governance, and practice development. No manager — top of hierarchy.
-- **Lee Wolf (Director of Corporate Finance) and Leonard Ansen (Director of Banking Activities)** — `senior-manager`. Both
-  are Directors, which in a services firm sit at the Senior Manager / Director / Associate Partner tier: they drive
-  multi-project delivery, lead a functional practice area (Corporate Finance; Banking Activities), and actively generate new
-  business. Both report to the CEO.
-- **Max Lubin (Head of Swaps) and Wendy Foley (Chief Trader / Head of Derivatives)** — `manager`. Both are heads of a
-  function / desk: they oversee day-to-day operations of their practice area, manage the consultant team on that desk, and
-  maintain primary client relationships for swaps and derivatives work. Both report to Leonard Ansen.
-- **Declan McConnachie, Sirkka Nieminen, Michelle Hauptmann (Senior Traders), and Hudson Talbot (Capital Markets
-  Originator)** — `consultant`. Senior professionals who manage workstreams (a deal, a client relationship on the desk),
-  conduct the analysis and modeling, design solutions, and draft deliverables. They report to their desk head (Leonard Ansen
-  directly, or via the Head of Swaps / Head of Derivatives for the primary and secondary desk teams).
-- **Hannah Burgess (Dealing Room IT)** — `consultant`. The IT / systems professional who designs and maintains the dealing
-  room infrastructure and the systems the traders rely on; a mid-level professional managing a workstream (the IT function for
-  the dealing room). Reports to Leonard Ansen.
-- **Chas Ewell (Junior Trader) and Hilary Rollinger (Graduate Assistant)** — `analyst`. Entry-level staff: Chas is the junior
-  trader on the primary desk executing trades under supervision; Hilary is the graduate assistant who supports the primary desk
-  with data collection, research, modeling, and deck preparation. Both report to Leonard Ansen.
+- **Lee Wolf and Leonard Ansen** — each has their own pre-computed KC `sub` in their `description` attribute
+  (`22222222-...` and `33333333-...` respectively). Both report to James Farrell (whose `description` holds `11111111-...`).
+  Their Keycloak `manager` attribute (after import-time resolution) is James Farrell's `sub` (`11111111-...`).
+- **Max Lubin and Wendy Foley** — desk heads under Leonard Ansen. After import-time resolution their Keycloak `manager`
+  attribute is Leonard Ansen's `sub` (`33333333-...`).
+- **Declan McConnachie and Sirkka Nieminen** — senior traders on the political advisory desk, under Lee Wolf. After
+  import-time resolution their Keycloak `manager` attribute is Lee Wolf's `sub` (`22222222-...`).
+- **Michelle Hauptmann, Hudson Talbot, and Hannah Burgess** — under Leonard Ansen. After import-time resolution their
+  Keycloak `manager` attribute is Leonard Ansen's `sub` (`33333333-...`).
+- **Chas Ewell** — junior trader on the political advisory desk, under Lee Wolf. After import-time resolution his Keycloak
+  `manager` attribute is Lee Wolf's `sub` (`22222222-...`).
+- **Hilary Rollinger** — graduate assistant, under Lee Wolf. After import-time resolution her Keycloak `manager` attribute
+  is Lee Wolf's `sub` (`22222222-...`).
 
 ### A few things to notice in the sample
 
@@ -104,9 +111,9 @@ are "mid-level practitioners" in their respective firms.)
   holds their manager's Keycloak `sub`, so the manager hierarchy works the same way as any other organisation in the model:
   a user with a `sub` equal to the `manager` attribute of another user receives access to that user's records (subject to
   role and scope). The CEO has no `manager` — top of hierarchy.
-- **Geographic spread** — users span London (UK), Sydney (NSW), and Canberra (ACT). The `c`/`l`/`st` attributes are set
-  accordingly (`c=UK` for London, `c=AU` for Sydney and Canberra). These are reporting attributes only — they don't affect
-  who can see whose records.
+- **Geographic spread** — the entire sample organisation is based in Canberra. Every user has `l: Canberra`, `st: ACT`.
+  The `c` (country) attribute is **not** used on user entries (see the note on `c` in the Geographic attributes bullet above).
+  These are reporting attributes only — they don't affect who can see whose records.
 - **Character-to-role mapping** — the sample maps the *Capital City* characters to the consulting-firm role tiers consistently
   with both the series' portrayal of each character and the access-control model: the CEO and the two Directors are the senior
   executives / practice leaders; the desk heads are the day-to-day project leaders; the senior traders, capital markets
@@ -124,7 +131,7 @@ are "mid-level practitioners" in their respective firms.)
 
 The sample users (and their attributes, reporting line, and geographic attributes) are defined as an **LDIF** file:
 
-- `backend/services/openldap/sample-data/au/shane-longman.ldif`
+- `backend/services/openldap/ldif/shane-longman.ldif`
 
 LDIF is the standard format for importing users into an LDAP directory server. In the development path, the LDIF is loaded
 into an OpenLDAP directory, and then Keycloak's **LDAP User Federation** imports (or on-demand syncs) the users from that
@@ -149,7 +156,7 @@ application's sample bootstrap defines the **business data** (accounts, contacts
 - Serendipity installed and running (the backend including the identity service / Keycloak, and the PWA).
 - OpenLDAP running with the `serendipity` backend and the `shane-longman.ldif` loaded (see the User Provisioning doc's
   OpenLDAP setup section).
-- Keycloak's **LDAP User Federation** configured to connect to the OpenLDAP directory and import/sync the `serendipity`
+- Keycloak's **LDAP User Federation** configured to connect to the OpenLDAP directory and import/sync the `shane-longman`
   `ou=people` branch into the Serendipity realm.
 
 ### Steps
@@ -159,9 +166,9 @@ application's sample bootstrap defines the **business data** (accounts, contacts
    ```bash
    docker exec -i serendipity-openldap ldapmodify -x \
      -H ldap://localhost:389 \
-     -D "cn=admin,dc=serendipity,dc=org" \
+     -D "cn=admin,dc=shane-longman,dc=org" \
      -w admin \
-     -a -f backend/services/openldap/sample-data/au/shane-longman.ldif
+     -a -f backend/services/openldap/ldif/shane-longman.ldif
    ```
 
    This loads the `ou=people` and `ou=groups` entries and all the sample users (the Shane Longman sample organisation).
@@ -170,21 +177,24 @@ application's sample bootstrap defines the **business data** (accounts, contacts
 
    ```bash
    ldapsearch -x -H ldap://localhost:389 \
-     -D "cn=admin,dc=serendipity,dc=org" -w admin \
-     -b "ou=people,dc=serendipity,dc=org" "(objectClass=inetOrgPerson)" dn cn mail title department manager c l st
+     -D "cn=admin,dc=shane-longman,dc=org" -w admin \
+     -b "ou=people,dc=shane-longman,dc=org" "(objectClass=inetOrgPerson)" dn cn mail title departmentNumber manager l st description
    ```
 
-   You should see the sample users with their `manager` (LDAP DN), `c`/`l`/`st` (geographic attributes), `title`, `department`, and DN.
+   You should see the sample users with their `manager` (LDAP DN), `l`/`st` (geographic attributes — all `l: Canberra`,
+   `st: ACT`), `title`, `departmentNumber`, `description` (the pre-computed KC sub), and DN.
 
 3. In Keycloak's Admin Console, open the Serendipity realm → **User Federation** → select the LDAP federation provider →
    **Synchronize all users** (or **Sync changes** / **Test all users** depending on the version) to import the sample users
-   into the realm. The federation mapper maps the LDAP attributes (including `manager`, `c`, `l`, `st`, `title`, `department`)
+   into the realm. The federation mapper maps the LDAP attributes (including `manager`, `l`, `st`, `title`, `departmentNumber`)
    into Keycloak's user model.
 
 4. At import time, the `manager` attribute in Keycloak is set to the **manager's Keycloak `sub`** (not the LDAP DN). The
-   sample LDIF pre-computes each user's Keycloak `sub` in the per-user `<name>SerendipitySub` attributes, and the import
-   customizes the mapping so that each direct report's `manager` attribute receives the manager's `sub`. (See the User
-   Provisioning doc for the resolution approach — Option A: resolve at import time via the `serendipitySub` lookup.)
+   sample LDIF pre-computes each user's Keycloak `sub` in the per-user `description` attribute, and the import customizes the
+   mapping so that each direct report's `manager` attribute receives the manager's `sub`. (See the User Provisioning doc for
+   the resolution approach — Option A: resolve at import time via the `description`-as-sub lookup: read the direct report's
+   `manager` DN, look up the user whose LDAP DN matches that DN, read that user's `description` value, and write that UUID
+   into the direct report's Keycloak `manager` attribute.)
 
 5. Assign the realm roles (`analyst`, `consultant`, `manager`, `senior-manager`, `partner`, `system-administrator`) and group
    memberships (e.g. the Shane Longman dealing-room groups) to the imported users — either via the federation mapper (if
@@ -209,25 +219,26 @@ The sample organisation has:
 - **2 Managers / Engagement Managers (desk heads)** — Max Lubin (Head of Swaps) and Wendy Foley (Chief Trader / Head of
   Derivatives), both reporting to Leonard Ansen
 - **5 Consultants / Senior Consultants** — Declan McConnachie, Sirkka Nieminen, Michelle Hauptmann (Senior Traders), Hudson
-  Talbot (Capital Markets Originator), Hannah Burgess (Dealing Room IT), all reporting to Leonard Ansen
-- **2 Analysts / Associate Analysts** — Chas Ewell (Junior Trader) and Hilary Rollinger (Graduate Assistant), both reporting
-  to Leonard Ansen
+  Talbot (Capital Markets Originator), Hannah Burgess (Dealing Room IT). Declan and Sirkka report to Lee Wolf; Michelle,
+  Hudson, and Hannah report to Leonard Ansen.
+- **2 Analysts / Associate Analysts** — Chas Ewell (Junior Trader, reporting to Lee Wolf) and Hilary Rollinger (Graduate
+  Assistant, reporting to Lee Wolf).
 
-| User (uid) | Character | Title (series) | Department | Manager (Keycloak sub) | City | State | Keycloak role |
-|---|---|---|---|---|---|---|---|
-| `system` | System Account | — | System | — | Melbourne | VIC | `system-administrator` |
-| `james.farrell` | James Farrell | CEO | Executive | — | London | UK | `partner` |
-| `lee.wolf` | Lee Wolf | Director of Corporate Finance | Corporate Finance | `james.farrell`'s sub | London | UK | `senior-manager` |
-| `leonard.ansen` | Leonard Ansen | Director of Banking Activities | Banking Activities | `james.farrell`'s sub | London | UK | `senior-manager` |
-| `max.lubin` | Max Lubin | Head of Swaps | Swaps | `leonard.ansen`'s sub | Sydney | NSW | `manager` |
-| `wendy.foley` | Wendy Foley | Chief Trader / Head of Derivatives | Derivatives | `leonard.ansen`'s sub | Sydney | NSW | `manager` |
-| `declan.mcconnachie` | Declan McConnachie | Senior Trader (secondary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `consultant` |
-| `sirkka.nieminen` | Sirkka Nieminen | Senior Trader (secondary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `consultant` |
-| `michelle.hauptmann` | Michelle Hauptmann | Senior Trader (primary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `consultant` |
-| `chas.ewell` | Chas Ewell | Junior Trader (primary desk) | Dealing Room | `leonard.ansen`'s sub | Sydney | NSW | `analyst` |
-| `hudson.talbot` | Hudson J. Talbot III | Capital Markets Originator | Capital Markets | `leonard.ansen`'s sub | Sydney | NSW | `consultant` |
-| `hannah.burgess` | Hannah Burgess | Dealing Room IT / Computer Systems | IT | `leonard.ansen`'s sub | Canberra | ACT | `consultant` |
-| `hilary.rollinger` | Hilary Rollinger | Graduate Assistant (primary desk) | Dealing Room | `leonard.ansen`'s sub | Canberra | ACT | `analyst` |
+| uid | Character | Title (LDIF `title`) | Department (LDIF `departmentNumber`) | Manager (LDAP DN) | Pre-computed KC sub (in `description`) | City | State | Keycloak role (assigned after import) |
+|---|---|---|---|---|---|---|---|---|
+| `system` | System Account | System Account | System | *(none — top of hierarchy)* | *(none)* | Canberra | ACT | `system-administrator` |
+| `james.farrell` | James Farrell | Chief Executive Officer | Executive | *(none — top of hierarchy)* | *(none)* | Canberra | ACT | `partner` |
+| `lee.wolf` | Lee Wolf | Director, Political Advisory | Political Advisory | `uid=james.farrell,ou=people,dc=shane-longman,dc=org` | `22222222-2222-2222-2222-222222222222` | Canberra | ACT | `senior-manager` |
+| `leonard.ansen` | Leonard Ansen | Director, Corporate Finance | Corporate Finance | `uid=james.farrell,ou=people,dc=shane-longman,dc=org` | `33333333-3333-3333-3333-333333333333` | Canberra | ACT | `senior-manager` |
+| `max.lubin` | Max Lubin | Head of Swaps | Derivatives | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `44444444-4444-4444-4444-444444444444` | Canberra | ACT | `manager` |
+| `wendy.foley` | Wendy Foley | Chief Trader / Head of Derivatives | Derivatives | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `55555555-5555-5555-5555-555555555555` | Canberra | ACT | `manager` |
+| `declan.mcconnachie` | Declan McConnachie | Consultant, Political Advisory | Political Advisory | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | `66666666-6666-6666-6666-666666666666` | Canberra | ACT | `consultant` |
+| `sirkka.nieminen` | Sirkka Nieminen | Consultant, Political Advisory | Political Advisory | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | `77777777-7777-7777-7777-777777777777` | Canberra | ACT | `consultant` |
+| `michelle.hauptmann` | Michelle Hauptmann | Consultant, Corporate Finance | Corporate Finance | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `88888888-8888-8888-8888-888888888888` | Canberra | ACT | `consultant` |
+| `chas.ewell` | Chas Ewell | Associate Analyst, Political Advisory | Political Advisory | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | `bbbbbbbb-cccc-dddd-eeee-ffffffffffff` | Canberra | ACT | `analyst` |
+| `hudson.talbot` | Hudson Talbot | Consultant, Corporate Finance | Corporate Finance | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `99999999-9999-9999-9999-999999999999` | Canberra | ACT | `consultant` |
+| `hannah.burgess` | Hannah Burgess | Dealing Room IT | IT | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee` | Canberra | ACT | `consultant` |
+| `hilary.rollinger` | Hilary Rollinger | Associate Analyst, Corporate Finance | Corporate Finance | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | `cccccccc-dddd-eeee-ffff-000000000000` | Canberra | ACT | `analyst` |
 
 ## Removing sample data
 
@@ -242,10 +253,13 @@ To remove the sample data:
 
 To add your own sample users or organisations:
 
-1. Add entries to `backend/services/openldap/sample-data/au/shane-longman.ldif` (or a new LDIF file) following the same conventions — `uid`,
-   `cn`, `mail`, `title`, `department`, `manager` (the manager's LDAP DN), the pre-computed `<name>SerendipitySub`
-   attribute for the user and their manager(s), `directoryObjectId` (the user's own LDAP DN), and the geographic attributes
-   `c`, `l`, `st`, plus the Keycloak role that reflects the user's seniority tier in the firm.
+1. Add entries to `backend/services/openldap/ldif/shane-longman.ldif` (or a new LDIF file) following the same conventions — `uid`,
+   `cn`, `givenName`, `sn`, `mail`, `title`, `departmentNumber` (the `inetOrgPerson` department attribute — mapped to Keycloak's
+   `department` custom attribute at federation time), `manager` (the manager's LDAP DN), the `description` attribute carrying the
+   user's pre-computed KC `sub` (for import-time resolution — the same `description`-as-sub lookup: read the direct report's
+   `manager` DN, look up the manager's entry by DN, read the `description` value, and write that UUID into the direct report's
+   `manager` attribute), and the geographic attributes `l`, `st` (with `c` **not** used on user entries — see the geographic
+   attributes note above), plus the Keycloak role that reflects the user's seniority tier in the firm.
 2. Re-load the LDIF into OpenLDAP and re-synchronize Keycloak's LDAP User Federation.
 3. Add the corresponding roles and groups.
 4. Export the realm so the sample persists.
@@ -258,7 +272,7 @@ come from and how the `manager` value is populated.
 ## References
 
 - [User Provisioning](./administration-guide/user-provisioning.md) — the LDIF approach, OpenLDAP setup, Keycloak federation
-  configuration, and the `manager`/`directoryObjectId` attribute model.
+  configuration, and the `manager`-as-`sub` attribute model.
 - [Keycloak administration guide](./keycloak.md) — realm and client configuration, realm export/import.
 - [Access Control design document](../architecture-guide/access-control/design-document.md) — the model that drives the
   `manager`-as-`sub` rule, roles, groups, and the geographic-attributes-are-reporting-only stance.
