@@ -2,10 +2,8 @@
 
 ## Shane Longman
 
-### About Shane Longman
-
-**Shane Longman** is a fictional lobbying firm, with sample users generated from the **character names** of the cast of 
-the British TV series Capital City (ITV/Euston Films).
+**Shane Longman** is a fictional lobbying firm, with sample users generated from the character names of the cast of 
+the British TV series **Capital City** (ITV/Euston Films).
 
 ### Geographic attributes
 
@@ -16,7 +14,7 @@ records.
 ### Roles
 
 Each user is assigned a Keycloak realm role that reflects their seniority tier in the firm.
-The roles are coarse-grained and reflect the user's seniority and what they are in the firm, not what they can do to a 
+The roles are coarse-grained and reflect the user's seniority and position, not what they can do to a 
 specific entity (that is governed by the `manager`-as-`sub` hierarchy, `ownedBy`/`assignedTo`, and team groups). 
 
 The tiers are:
