@@ -92,6 +92,22 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-compile</id>
+                        <configuration>
+                            <compilerArgs>
+                                <!-- Best Practice: Configures MapStruct to automatically output standard Spring Component beans -->
+                                <compilerArg>-Amapstruct.defaultComponentModel=spring</compilerArg>
+                            </compilerArgs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
 		</plugins>
 	</build>
 

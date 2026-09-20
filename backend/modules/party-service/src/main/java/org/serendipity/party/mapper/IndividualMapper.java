@@ -21,6 +21,9 @@ public interface IndividualMapper {
   // Extracts the NameUpdateDto sub-record and delegates string formatting to the stream utility below.
   @Mapping(target = "party.displayName", source = "name", qualifiedByName = "concatNameDtoToDisplayName")
 
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "names", ignore = true)
+  @Mapping(target = "photoUrl", ignore = true)
   // Maps every single parameter from the NameUpdateDto sub-record
   // into the Individual's @Embedded Name attribute columns in the database!
   @Mapping(target = "name.title", source = "name.title")

@@ -16,6 +16,7 @@ public interface OrganisationMapper {
   @Mapping(target = "party.displayName", source = "name")
 
   // MapStruct automatically maps identical names (e.g. name -> name, email -> email)
+  @Mapping(target = "id", ignore = true)
   void updateEntityFromDto(OrganisationUpdateDto dto, @MappingTarget Organisation entity);
 
 }
