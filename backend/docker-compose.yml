@@ -155,6 +155,39 @@ services:
       identity-service-data:
         condition: service_healthy
 
+  serendipity-identity-service-export:
+    container_name: serendipity-identity-service-export
+    image: quay.io/keycloak/keycloak:${SERENDIPITY_IDENTITY_SERVICE_VERSION}
+    profiles: ["tools"]
+    command:
+      [
+        "export",
+        "--realm=${REALM_NAME:-serendipity-dev}",
+        "--users=same_file",
+        "--file=/export/${REALM_NAME:-serendipity-dev}-realm.json"
+      ]
+    environment:
+      KC_HTTP_ENABLED: "true"
+      KC_HEALTH_ENABLED: "false"
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://identity-service-data:5432/${SERENDIPITY_IDENTITY_SERVICE_DB}
+      KC_DB_USERNAME: ${SERENDIPITY_IDENTITY_SERVICE_USER}
+      KC_DB_PASSWORD: ${SERENDIPITY_IDENTITY_SERVICE_PASSWORD}
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${SERENDIPITY_IDENTITY_SERVICE_ADMIN}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${SERENDIPITY_IDENTITY_SERVICE_ADMIN_PASSWORD}
+    env_file:
+      - "${PWD}/.env"
+    networks:
+      - serendipity
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+      - "serendipity.localhost:host-gateway"
+    volumes:
+      - "${PWD}/services/identity-service/export:/export"
+    depends_on:
+      identity-service-data:
+        condition: service_healthy
+
   serendipity-party-service:
     container_name: serendipity-party-service
     build:

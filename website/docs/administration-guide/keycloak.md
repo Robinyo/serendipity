@@ -177,36 +177,14 @@ When the user clicks **Logout** in the PWA, the browser calls `GET https://seren
 
 ### Export a realm
 
-We provide the following Docker Compose file that is useful during development and testing:
-
-| Component        | Description         |
-|:-----------------|:--------------------|
-| export-realm.yml | Export a realm.     |
-
 To export a realm, in the project's `/backend` directory, run
 
 ```bash
-REALM_NAME=serendipity-dev docker compose -f export-realm.yml up
-```
-
-To stop the containers, run:
-
-```bash
-docker compose -f export-realm.yml down -v
+REALM_NAME=serendipity-dev docker compose run --rm serendipity-identity-service-export
 ```
 
 :::info
 The exported realm file is written to `backend/services/identity-service/export/`. Look for a file named `serendipity-dev-realm.json` there.
-
-The Keycloak container in `export-realm.yml` is started with `-Dkeycloak.migration.action=export`, which writes the realm (with users) to the path given by `-Dkeycloak.migration.file`. The volume mounts in `export-realm.yml` map that path to `backend/services/identity-service/export/` on the host.
-:::
-
-:::info
-The realm is also imported at container startup from `backend/services/identity-service/import/`. If you edit the realm in Keycloak and want those changes to persist across container restarts (e.g., in a fresh `docker compose up`), export again and replace the import file, or update the import file by hand and re-import.
-:::
-
-:::tip
-After exporting a modified realm and copying `serendipity-dev-realm.json` into `backend/services/identity-service/import/`, a fresh `docker compose up` picks up the import file. Keycloak logs show `Importing realm` during startup. The realm in the running container should match the imported file; verify by comparing the exported file from a subsequent export run against the import file.
 :::
 
 ## References
