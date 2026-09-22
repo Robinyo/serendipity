@@ -32,7 +32,14 @@ const sidebars: SidebarsConfig = {
           label: 'Sample Data',
           items: [
             'try-install-upgrade/sample-data/overview',
-            'try-install-upgrade/sample-data/configure'
+            {
+              type: 'category',
+              label: 'Shane Longman',
+              items: [
+                'try-install-upgrade/sample-data/shane-longman/overview',
+                'try-install-upgrade/sample-data/shane-longman/user-provisioning'
+              ],
+            }
           ],
         }
       ],

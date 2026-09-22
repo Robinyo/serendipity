@@ -1,6 +1,8 @@
 # Keycloak
 
-## Keycloak Admin Console
+## Keycloak Server Administration
+
+### Create a permanent Admin account
 
 Navigate to the Keycloak Admin Console:
 
@@ -15,8 +17,6 @@ And sign in using the `SERENDIPITY_IDENTITY_SERVICE_ADMIN` (`temp-admin`) and `S
 You should see something like:
 
 ![Keycloak Admin Console Welcome page](/screen-shots/keycloak/keycloak-welcome-page.png)
-
-### Create a permanent Admin account
 
 When you first start Keycloak you log in using the Keycloak bootstrap username and password. You should create a permanent Admin account in the master realm and delete the temporary one.
 
@@ -187,8 +187,49 @@ REALM_NAME=serendipity-dev docker compose run --rm serendipity-identity-service-
 The exported realm file is written to `backend/services/identity-service/export/`. Look for a file named `serendipity-dev-realm.json` there.
 :::
 
+### User Federation
+
+In Keycloak's Admin Console, for the `serendipity-dev` realm:
+
+1. **User Federation** → **Add LDAP providers**:
+
+![Add LDAP Provider](/screen-shots/keycloak/keycloak-add-ldap-provider.png)
+
+2. Configure the General options:
+
+![Add LDAP Provider](/screen-shots/keycloak/keycloak-ldap-provider-general-options.png)
+ - **UI display name**: `OpenLDAP`
+ - **Vendor**: `Other`
+
+3. Configure the Connection and authentication settings:
+
+![Add LDAP Provider](/screen-shots/keycloak/keycloak-ldap-provider-connection-settings.png)
+
+  - **Connection URL**: `ldap://openldap:389`
+  - **Bind DN**: `cn=admin,dc=shane-longman,dc=org`
+  - **Bind credendials**: `secret`
+
+4. Configure the LDAP searching and updating settings:
+
+![Add LDAP Provider](/screen-shots/keycloak/keycloak-ldap-provider-ldap-searching-and-updating-settings.png)
+
+  - **Edit mode**: `READ_ONLY` if LDAP is the source of truth and Keycloak should not write back. `WRITABLE` if you want Keycloak to write changes back to OpenLDAP.
+  - **Users DN**: `ou=people,dc=shane-longman,dc=org`
+  - **Username LDAP attribute**: `mail` user sign in using their email address
+  - **RDN LDAP attribute**: `uid`
+  - **UUID LDAP attribute**: `entryUUID`
+  - **User object classes**: `inetOrgPerson, organizationalPerson, person`
+  - **User LDAP filter**: `(objectClass=inetOrgPerson)`
+
+5. Configure the Synchronization settings:
+
+![Add LDAP Provider](/screen-shots/keycloak/keycloak-ldap-provider-synchronization-settings.png)
+
+And then click the 'Save' button.
+
 ## References
 
 ### Keycloak
 
 * Keycloak docs: [Server Administration Guide - Importing and Exporting Realms](https://www.keycloak.org/server/importExport)
+* Keycloak docs: [Server Administration Guide - Configuring federated LDAP storage](https://www.keycloak.org/docs/latest/server_admin/index.html#configuring-federated-ldap-storage)
