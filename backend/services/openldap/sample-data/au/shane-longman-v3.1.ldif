@@ -1,0 +1,300 @@
+# Top-level branches
+dn: ou=people,dc=shane-longman,dc=org
+objectClass: organizationalUnit
+ou: people
+
+dn: ou=groups,dc=shane-longman,dc=org
+objectClass: organizationalUnit
+ou: groups
+
+# James Farrell — Chief Executive Officer
+dn: uid=james.farrell,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: james.farrell
+cn: James Farrell
+givenName: James
+sn: Farrell
+mail: james.farrell@shane-longman.org
+userPassword: secret
+telephoneNumber: +44-20-7946-0101
+title: Chief Executive Officer
+departmentNumber: Executive
+employeeType: partner
+description: 11111111-1111-1111-1111-111111111111
+l: Canberra
+st: ACT
+
+# Lee Wolf — Federal Affairs
+dn: uid=lee.wolf,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: lee.wolf
+cn: Lee Wolf
+givenName: Lee
+sn: Wolf
+mail: lee.wolf@shane-longman.org
+userPassword: secret
+telephoneNumber: +44-20-7946-0202
+title: Director, Federal Affairs
+departmentNumber: Federal Affairs
+employeeType: senior-manager
+manager: uid=james.farrell,ou=people,dc=shane-longman,dc=org
+description: 22222222-2222-2222-2222-222222222222
+l: Canberra
+st: ACT
+
+# Leonard Ansen — Strategic Communications
+dn: uid=leonard.ansen,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: leonard.ansen
+cn: Leonard Ansen
+givenName: Leonard
+sn: Ansen
+mail: leonard.ansen@shane-longman.org
+userPassword: secret
+telephoneNumber: +44-20-7946-0303
+title: Director, Strategic Communications
+departmentNumber: Strategic Communications
+employeeType: senior-manager
+manager: uid=james.farrell,ou=people,dc=shane-longman,dc=org
+description: 33333333-3333-3333-3333-333333333333
+l: Canberra
+st: ACT
+
+# Max Lubin — Head of Business Development
+dn: uid=max.lubin,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: max.lubin
+cn: Max Lubin
+givenName: Max
+sn: Lubin
+mail: max.lubin@shane-longman.org
+userPassword: secret
+telephoneNumber: +44-20-7946-0404
+title: Head of Business Development
+departmentNumber: Business Development
+employeeType: manager
+manager: uid=leonard.ansen,ou=people,dc=shane-longman,dc=org
+description: 44444444-4444-4444-4444-444444444444
+l: Canberra
+st: ACT
+
+# Wendy Foley — Head of Client Management
+dn: uid=wendy.foley,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: wendy.foley
+cn: Wendy Foley
+givenName: Wendy
+sn: Foley
+mail: wendy.foley@shane-longman.org
+userPassword: secret
+telephoneNumber: +44-20-7946-0505
+title: Head of Client Management
+departmentNumber: Client Management
+employeeType: manager
+manager: uid=leonard.ansen,ou=people,dc=shane-longman,dc=org
+description: 55555555-5555-5555-5555-555555555555
+l: Canberra
+st: ACT
+
+# Declan McConnachie — Senior Trader
+dn: uid=declan.mcconnachie,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: declan.mcconnachie
+cn: Declan McConnachie
+givenName: Declan
+sn: McConnachie
+mail: declan.mcconnachie@shane-longman.org
+userPassword: secret
+telephoneNumber: +44-20-7946-0606
+title: Consultant, Federal Affairs
+departmentNumber: Federal Affairs
+employeeType: consultant
+manager: uid=lee.wolf,ou=people,dc=shane-longman,dc=org
+description: 66666666-6666-6666-6666-666666666666
+l: Canberra
+st: ACT
+
+# Sirkka Nieminen — Senior Trader
+dn: uid=sirkka.nieminen,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: sirkka.nieminen
+cn: Sirkka Nieminen
+givenName: Sirkka
+sn: Nieminen
+mail: sirkka.nieminen@shane-longman.org
+userPassword: secret
+telephoneNumber: +44-20-7946-0707
+title: Consultant, Federal Affairs
+departmentNumber: Federal Affairs
+employeeType: consultant
+manager: uid=lee.wolf,ou=people,dc=shane-longman,dc=org
+description: 77777777-7777-7777-7777-777777777777
+l: Canberra
+st: ACT
+
+# Michelle Hauptmann — Senior Trader
+dn: uid=michelle.hauptmann,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: michelle.hauptmann
+cn: Michelle Hauptmann
+givenName: Michelle
+sn: Hauptmann
+mail: michelle.hauptmann@shane-longman.org
+userPassword: secret
+telephoneNumber: +44-20-7946-0808
+title: Consultant, Strategic Communications
+departmentNumber: Strategic Communications
+employeeType: consultant
+manager: uid=leonard.ansen,ou=people,dc=shane-longman,dc=org
+description: 88888888-8888-8888-8888-888888888888
+l: Canberra
+st: ACT
+
+# Hudson Talbot — Capital Markets Originator
+dn: uid=hudson.talbot,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: hudson.talbot
+cn: Hudson Talbot
+givenName: Hudson
+sn: Talbot
+mail: hudson.talbot@shane-longman.org
+userPassword: secret
+telephoneNumber: +44-20-7946-0909
+title: Consultant, Strategic Communications
+departmentNumber: Strategic Communications
+employeeType: consultant
+manager: uid=leonard.ansen,ou=people,dc=shane-longman,dc=org
+description: 99999999-9999-9999-9999-999999999999
+l: Canberra
+st: ACT
+
+# Hannah Burgess — Head of IT
+dn: uid=hannah.burgess,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: hannah.burgess
+cn: Hannah Burgess
+givenName: Hannah
+sn: Burgess
+mail: hannah.burgess@shane-longman.org
+userPassword: secret
+telephoneNumber: +61-2-8999-1010
+title: Head of IT
+departmentNumber: IT
+employeeType: consultant
+manager: uid=leonard.ansen,ou=people,dc=shane-longman,dc=org
+description: aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+l: Canberra
+st: ACT
+
+# Chas Ewell — Junior Trader
+dn: uid=chas.ewell,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: chas.ewell
+cn: Chas Ewell
+givenName: Chas
+sn: Ewell
+mail: chas.ewell@shane-longman.org
+userPassword: secret
+telephoneNumber: +44-20-7946-1111
+title: Associate Analyst, Federal Affairs
+departmentNumber: Federal Affairs
+employeeType: analyst
+manager: uid=lee.wolf,ou=people,dc=shane-longman,dc=org
+description: bbbbbbbb-cccc-dddd-eeee-ffffffffffff
+l: Canberra
+st: ACT
+
+# Hilary Rollinger — Graduate Assistant
+dn: uid=hilary.rollinger,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: hilary.rollinger
+cn: Hilary Rollinger
+givenName: Hilary
+sn: Rollinger
+mail: hilary.rollinger@shane-longman.org
+userPassword: secret
+telephoneNumber: +61-2-8999-1212
+title: Associate Analyst, Strategic Communications
+departmentNumber: Strategic Communications
+employeeType: analyst
+manager: uid=leonard.ansen,ou=people,dc=shane-longman,dc=org
+description: cccccccc-dddd-eeee-ffff-000000000000
+l: Canberra
+st: ACT
+
+# Groups
+dn: cn=federal-affairs,ou=groups,dc=shane-longman,dc=org
+objectClass: groupOfNames
+cn: federal-affairs
+description: Federal Affairs is the core lobbying and practice team.
+member: uid=lee.wolf,ou=people,dc=shane-longman,dc=org
+member: uid=declan.mcconnachie,ou=people,dc=shane-longman,dc=org
+member: uid=sirkka.nieminen,ou=people,dc=shane-longman,dc=org
+member: uid=chas.ewell,ou=people,dc=shane-longman,dc=org
+
+dn: cn=strategic-communications,ou=groups,dc=shane-longman,dc=org
+objectClass: groupOfNames
+cn: strategic-communications
+description: Strategic Communications is the core public relations team.
+member: uid=leonard.ansen,ou=people,dc=shane-longman,dc=org
+member: uid=max.lubin,ou=people,dc=shane-longman,dc=org
+member: uid=wendy.foley,ou=people,dc=shane-longman,dc=org
+member: uid=michelle.hauptmann,ou=people,dc=shane-longman,dc=org
+member: uid=hudson.talbot,ou=people,dc=shane-longman,dc=org
+member: uid=hannah.burgess,ou=people,dc=shane-longman,dc=org
+member: uid=hilary.rollinger,ou=people,dc=shane-longman,dc=org
+
+# System Account
+dn: uid=system,ou=people,dc=shane-longman,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: system
+cn: System Account
+givenName: System
+sn: Account
+mail: system@shanelongman.local
+userPassword: secret
+title: System Account
+departmentNumber: System
+employeeType: system-administrator
+description: 00000000-0000-0000-0000-000000000000
+l: Canberra
+st: ACT

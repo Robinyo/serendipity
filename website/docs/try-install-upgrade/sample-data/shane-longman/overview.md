@@ -3,6 +3,12 @@
 **Shane Longman** is a fictional lobbying firm, with sample users generated from the character names of the cast of
 the British TV series Capital City (ITV/Euston Films).
 
+Shane Longman is organised into specialised practice areas, strategic support teams, and operational departments.
+
+The core lobbying and practice group is Federal Affairs.
+The support teams are Public Affairs and Strategic Communications and Intelligence and Analytics.
+Operations and Compliance includes the Business Development and Client Management teams.
+
 ### Geographic attributes
 
 Every user includes `l` (locality / city) and `st` (state / province) attributes.
