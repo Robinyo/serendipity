@@ -182,7 +182,6 @@ const sidebars: SidebarsConfig = {
       items: [
         'administration-guide/docker',
         'administration-guide/keycloak',
-        'administration-guide/user-provisioning',
         'administration-guide/pgadmin',
         'administration-guide/postgres',
         'administration-guide/rate-limiting'

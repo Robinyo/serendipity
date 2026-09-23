@@ -1,8 +1,6 @@
 # Keycloak
 
-## Keycloak Server Administration
-
-### Create a permanent Admin account
+## Create a permanent Admin account
 
 Navigate to the Keycloak Admin Console:
 
@@ -38,11 +36,13 @@ Now sign out and then sign back in using your permanent Admin account credential
 After signing back in with the permanent admin account, the Admin Console loads as before but now the top-right user menu shows the permanent admin's name. The temporary bootstrap user no longer appears — delete it from **Users** in the master realm.
 :::
 
-### Create a Realm
+## Configuring realms
 
 A realm in Keycloak is analogous to a tenant. Each realm allows an administrator to create (isolated) groups of applications and users. Initially, Keycloak includes a single realm, the `master` realm.
 
 The `master` realm should only be used to manage Keycloak.
+
+### Creating a realm
 
 To create a new realm, in the side menu click the dropdown menu and then click the 'Create realm' button:
 
@@ -68,7 +68,9 @@ In newer versions of Keycloak (v19+ using the modern React-based Admin Console),
 The new Admin Console heavily caches UI state. A hard refresh (Cmd + Shift + R on Mac, Ctrl + F5 on Windows) often reveals that the setting did save on the backend even though the frontend UI showed it toggled back off.
 :::
 
-### Create a User
+## Managing users
+
+### Create a user
 
 Verify that you are in the correct realm e.g., the Development Realm (`serendipity-dev`).
 
@@ -100,7 +102,118 @@ You should see something like:
 
 ![Keycloak Account Console Personal Info](/screen-shots/keycloak/keycloak-account-console-personal-info.png)
 
-### Create a Client
+
+### Managing user attributes
+
+In Keycloak a user is associated with a set of attributes. These attributes are used to describe and identify users 
+within Keycloak as well as to provide additional information about users to applications.
+
+#### Default managed attributes
+
+By default, Keycloak provides a basic user profile configuration:
+
+| Attribute | Notes |
+|---|---|
+| `username` | The primary login name — what the user types to sign in. Stable until changed. Not used for ownership/assignment comparisons (the enforcement layer uses `sub`). |
+| `email` | The preferred email address. |
+| `firstName` | Given name. |
+| `lastName` | Surname / family name. |
+
+In Keycloak, both the `username` and `email` attributes can be used to identify, authenticate, and link user accounts.
+
+The behavior of both `username` and `email` attributes changes accordingly to the Login settings of your realm. 
+By default, Serendipity has enabled the `Email as username` setting.
+
+#### Core fields (not profile attributes)
+
+These are tracked by Keycloak on the core user model but are not configurable profile attributes:
+
+| Field | Notes |
+|---|---|
+| `id` | The system-generated UUID. This is the value emitted as `sub` in tokens. |
+| `enabled` | Whether the account is active. |
+| `emailVerified` | Whether the email has been verified. |
+| `createdTimestamp` | When the user was created. |
+
+#### Custom attributes
+
+These are added to the user's profile as custom attributes. 
+
+| Attribute | Value | Notes                                                                                                                                                                                                                                                                                                                                      |
+|---|---|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `manager` | The `sub` (UUID) of the user's manager | The one attribute the access-control model depends on — it enables the manager hierarchy. See **Setting the `manager` attribute** below. |
+| `jobTitle` | A string | Optional profile attribute.                                                                                                                                                                                                                                                                                       |
+| `department` | A string | Optional profile attribute.                                                                                                                                                                                                                                                                                      |
+| `employeeType` | A string | Optional profile attribute.                                                                                                                                                                                                                                                                                    |
+| `employeeHireDate` | A date string (ISO date) | Optional profile attribute.                                                                                                                                                                                                                                                                                    |
+| `directoryObjectId` | The Entra ID Object ID of the user | Optional. Only relevant when federating with Microsoft Entra ID and the directory wants to correlate to, or re-hydrate from, the Entra ID object.                                                                                        |
+
+#### Setting the `manager` attribute
+
+The `manager` attribute stores the manager's `sub` (Keycloak UUID). To set it:
+
+1. Identify the manager's Keycloak `sub`. <br />
+   Open the (manager) user in the Admin Console and copy the `id` field. The `id` is the UUID you need.
+2. Open the direct report user in the Admin Console.
+3. Go to the Attributes tab.
+4. Set the attribute with Key = `manager` and Value = the manager's `sub` (the UUID copied in step 1).
+5. Click the Save button.
+
+:::tip
+The `sub` is not labeled "sub" in the Admin Console. It is the `id` field on the user's Details tab. That is the value (UUID) you copy into the `manager` attribute.
+:::
+
+### Managing the User Profile
+
+The user profile configuration is managed on a per-realm basis.
+
+The user profile configuration is stored using a well-defined JSON schema.
+
+## Using external storage
+
+### Adding a provider
+
+In Keycloak's Admin Console, for the `serendipity-dev` realm:
+
+1. **User Federation** → **Add LDAP providers**:
+
+![Add LDAP Provider](/screen-shots/keycloak/keycloak-add-ldap-provider.png)
+
+2. Configure the General options:
+
+![Add LDAP Provider](/screen-shots/keycloak/keycloak-ldap-provider-general-options.png)
+ - **UI display name**: `OpenLDAP`
+ - **Vendor**: `Other`
+
+3. Configure the Connection and authentication settings:
+
+![Add LDAP Provider](/screen-shots/keycloak/keycloak-ldap-provider-connection-settings.png)
+
+  - **Connection URL**: `ldap://openldap:389`
+  - **Bind DN**: `cn=admin,dc=shane-longman,dc=org`
+  - **Bind credendials**: `secret`
+
+4. Configure the LDAP searching and updating settings:
+
+![Add LDAP Provider](/screen-shots/keycloak/keycloak-ldap-provider-ldap-searching-and-updating-settings.png)
+
+  - **Edit mode**: `READ_ONLY` if LDAP is the source of truth and Keycloak should not write back. `WRITABLE` if you want Keycloak to write changes back to OpenLDAP.
+  - **Users DN**: `ou=people,dc=shane-longman,dc=org`
+  - **Username LDAP attribute**: `mail` user sign in using their email address
+  - **RDN LDAP attribute**: `uid`
+  - **UUID LDAP attribute**: `entryUUID`
+  - **User object classes**: `inetOrgPerson, organizationalPerson, person`
+  - **User LDAP filter**: `(objectClass=inetOrgPerson)`
+
+5. Configure the Synchronization settings:
+
+![Add LDAP Provider](/screen-shots/keycloak/keycloak-ldap-provider-synchronization-settings.png)
+
+And then click the 'Save' button.
+
+## Managing OpenID Connect and SAML Clients
+
+### Creating an OpenID Connect client
 
 Verify that you are in the correct realm e.g., the Development Realm (`serendipity-dev`).
 
@@ -175,7 +288,7 @@ This matches the `postLogoutRedirectUri` set on the BFF's `OidcClientInitiatedLo
 When the user clicks **Logout** in the PWA, the browser calls `GET https://serendipity.localhost/logout`. The BFF invalidates the session and the `JSESSIONID` cookie, then redirects the browser to Keycloak's logout endpoint (`https://serendipity-identity-service.localhost/realms/serendipity-dev/protocol/openid-connect/logout`). If the post-logout redirect URI is registered on the client, Keycloak destroys the SSO session and redirects the browser back to `https://serendipity.localhost/`. Without the post-logout redirect URI registered, the browser is still redirected to `https://serendipity.localhost/` but the Keycloak session remains active — opening the PWA again logs the user back in without a credential prompt.
 :::
 
-### Export a realm
+## Export a realm
 
 To export a realm, in the project's `/backend` directory, run
 
@@ -187,49 +300,12 @@ REALM_NAME=serendipity-dev docker compose run --rm serendipity-identity-service-
 The exported realm file is written to `backend/services/identity-service/export/`. Look for a file named `serendipity-dev-realm.json` there.
 :::
 
-### User Federation
-
-In Keycloak's Admin Console, for the `serendipity-dev` realm:
-
-1. **User Federation** → **Add LDAP providers**:
-
-![Add LDAP Provider](/screen-shots/keycloak/keycloak-add-ldap-provider.png)
-
-2. Configure the General options:
-
-![Add LDAP Provider](/screen-shots/keycloak/keycloak-ldap-provider-general-options.png)
- - **UI display name**: `OpenLDAP`
- - **Vendor**: `Other`
-
-3. Configure the Connection and authentication settings:
-
-![Add LDAP Provider](/screen-shots/keycloak/keycloak-ldap-provider-connection-settings.png)
-
-  - **Connection URL**: `ldap://openldap:389`
-  - **Bind DN**: `cn=admin,dc=shane-longman,dc=org`
-  - **Bind credendials**: `secret`
-
-4. Configure the LDAP searching and updating settings:
-
-![Add LDAP Provider](/screen-shots/keycloak/keycloak-ldap-provider-ldap-searching-and-updating-settings.png)
-
-  - **Edit mode**: `READ_ONLY` if LDAP is the source of truth and Keycloak should not write back. `WRITABLE` if you want Keycloak to write changes back to OpenLDAP.
-  - **Users DN**: `ou=people,dc=shane-longman,dc=org`
-  - **Username LDAP attribute**: `mail` user sign in using their email address
-  - **RDN LDAP attribute**: `uid`
-  - **UUID LDAP attribute**: `entryUUID`
-  - **User object classes**: `inetOrgPerson, organizationalPerson, person`
-  - **User LDAP filter**: `(objectClass=inetOrgPerson)`
-
-5. Configure the Synchronization settings:
-
-![Add LDAP Provider](/screen-shots/keycloak/keycloak-ldap-provider-synchronization-settings.png)
-
-And then click the 'Save' button.
-
 ## References
 
 ### Keycloak
 
-* Keycloak docs: [Server Administration Guide - Importing and Exporting Realms](https://www.keycloak.org/server/importExport)
-* Keycloak docs: [Server Administration Guide - Configuring federated LDAP storage](https://www.keycloak.org/docs/latest/server_admin/index.html#configuring-federated-ldap-storage)
+* Keycloak docs: [Server Administration Guide - Creating the first administrator](https://www.keycloak.org/docs/latest/server_admin/index.html#creating-first-admin_server_administration_guide)
+* Keycloak docs: [Server Administration Guide - Configuring realms](https://www.keycloak.org/docs/latest/server_admin/index.html#_configuring-realms)
+* Keycloak docs: [Server Administration Guide - Using external storage](https://www.keycloak.org/docs/latest/server_admin/index.html#_user-storage-federation)
+* Keycloak docs: [Server Administration Guide - Managing users](https://www.keycloak.org/docs/latest/server_admin/index.html#assembly-managing-users_server_administration_guide)
+

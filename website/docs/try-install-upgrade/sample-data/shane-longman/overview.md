@@ -6,8 +6,8 @@ the British TV series Capital City (ITV/Euston Films).
 Shane Longman is organised into specialised practice areas, strategic support teams, and operational departments.
 
 The core lobbying and practice group is Federal Affairs.
-The support teams are Public Affairs and Strategic Communications and Intelligence and Analytics.
-Operations and Compliance includes the Business Development and Client Management teams.
+The support teams are Public Affairs and Strategic Communications, Intelligence and Analytics, Operations and Compliance 
+which includes the Business Development and Client Management teams.
 
 ### Geographic attributes
 
