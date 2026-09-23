@@ -1,0 +1,25 @@
+{
+  "models": [
+    {
+      "title": "Qwen 2.5 Coder 14B (Mac Mini)",
+      "model": "qwen2.5-coder:14b",
+      "provider": "ollama",
+      "apiBase": "http://192.168.2.1:11434"
+    },
+    {
+      "title": "Qwen 2.5 Coder 7B (Mac Mini — fast)",
+      "model": "qwen2.5-coder:7b",
+      "provider": "ollama",
+      "apiBase": "http://192.168.2.1:11434"
+    }
+  ],
+  "customInstructions": [
+    "This project uses Angular 22.1.1, Spring Boot 4.0.1, Spring Cloud 2025.1.0, and Java 25.",
+    "Always consult .continue/rules/serendipity-versions.md for version-specific guidance before answering.",
+    "The primary development model (Solar Pro 4 via Hermes) has a 2026-02 knowledge cutoff and knows these versions.",
+    "This local model (Qwen 2.5 Coder, ~2024 training) does NOT reliably know Spring Boot 4, Angular v22, or Java 25.",
+    "For version-specific questions, prefer the project's .knowledge/ docs and the primary model.",
+    "Use this local model for general code structure, refactoring, and code review — NOT for version-specific API questions.",
+    "When you must answer a version-specific question, include the relevant doc excerpt or API signature from the rules file in your response context."
+  ]
+}
