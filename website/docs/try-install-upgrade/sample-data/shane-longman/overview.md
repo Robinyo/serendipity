@@ -6,7 +6,7 @@ the British TV series Capital City (ITV/Euston Films).
 Shane Longman is organised into specialised practice areas, strategic support teams, and operational departments.
 
 The core lobbying and practice group is Federal Affairs.
-The support teams are Public Affairs and Strategic Communications, Intelligence and Analytics, Operations and Compliance 
+The support teams are Public Affairs and Strategic Communications, Intelligence and Analytics, Operations and Compliance
 which includes the Business Development and Client Management teams.
 
 ### Geographic attributes
@@ -53,38 +53,41 @@ All 13 users are based in Canberra (`l: Canberra`, `st: ACT`) and use the single
 |---|---|---|---|---|---|---|---|---|
 | `system` | System Account | System Account | System | *(none — top of hierarchy)* | *(none)* | Canberra | ACT | `system-administrator` |
 | `james.farrell` | James Farrell | Chief Executive Officer | Executive | *(none — top of hierarchy)* | *(none)* | Canberra | ACT | `partner` |
-| `lee.wolf` | Lee Wolf | Director, Political Advisory | Political Advisory | `uid=james.farrell,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `22222222-2222-2222-2222-222222222222` | Canberra | ACT | `senior-manager` |
-| `leonard.ansen` | Leonard Ansen | Director, Corporate Finance | Corporate Finance | `uid=james.farrell,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `33333333-3333-3333-3333-333333333333` | Canberra | ACT | `senior-manager` |
-| `max.lubin` | Max Lubin | Head of Swaps | Derivatives | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `44444444-4444-4444-4444-444444444444` | Canberra | ACT | `manager` |
-| `wendy.foley` | Wendy Foley | Chief Trader / Head of Derivatives | Derivatives | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `55555555-5555-5555-5555-555555555555` | Canberra | ACT | `manager` |
-| `declan.mcconnachie` | Declan McConnachie | Consultant, Political Advisory | Political Advisory | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `66666666-6666-6666-6666-666666666666` | Canberra | ACT | `consultant` |
-| `sirkka.nieminen` | Sirkka Nieminen | Consultant, Political Advisory | Political Advisory | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `77777777-7777-7777-7777-777777777777` | Canberra | ACT | `consultant` |
-| `michelle.hauptmann` | Michelle Hauptmann | Consultant, Corporate Finance | Corporate Finance | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `88888888-8888-8888-8888-888888888888` | Canberra | ACT | `consultant` |
-| `chas.ewell` | Chas Ewell | Associate Analyst, Political Advisory | Political Advisory | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `bbbbbbbb-cccc-dddd-eeee-ffffffffffff` | Canberra | ACT | `analyst` |
-| `hudson.talbot` | Hudson Talbot | Consultant, Corporate Finance | Corporate Finance | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `99999999-9999-9999-9999-999999999999` | Canberra | ACT | `consultant` |
-| `hannah.burgess` | Hannah Burgess | Dealing Room IT | IT | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee` | Canberra | ACT | `consultant` |
-| `hilary.rollinger` | Hilary Rollinger | Associate Analyst, Corporate Finance | Corporate Finance | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `cccccccc-dddd-eeee-ffff-000000000000` | Canberra | ACT | `analyst` |
+| `lee.wolf` | Lee Wolf | Director, Federal Affairs | Federal Affairs | `uid=james.farrell,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `22222222-2222-2222-2222-222222222222` | Canberra | ACT | `senior-manager` |
+| `leonard.ansen` | Leonard Ansen | Director, Strategic Communications | Strategic Communications | `uid=james.farrell,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `33333333-3333-3333-3333-333333333333` | Canberra | ACT | `senior-manager` |
+| `max.lubin` | Max Lubin | Head of Business Development | Business Development | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `44444444-4444-4444-4444-444444444444` | Canberra | ACT | `manager` |
+| `wendy.foley` | Wendy Foley | Head of Client Management | Client Management | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `55555555-5555-5555-5555-555555555555` | Canberra | ACT | `manager` |
+| `declan.mcconnachie` | Declan McConnachie | Consultant, Federal Affairs | Federal Affairs | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `66666666-6666-6666-6666-666666666666` | Canberra | ACT | `consultant` |
+| `sirkka.nieminen` | Sirkka Nieminen | Consultant, Federal Affairs | Federal Affairs | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `77777777-7777-7777-7777-777777777777` | Canberra | ACT | `consultant` |
+| `michelle.hauptmann` | Michelle Hauptmann | Consultant, Strategic Communications | Strategic Communications | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `88888888-8888-8888-8888-888888888888` | Canberra | ACT | `consultant` |
+| `chas.ewell` | Chas Ewell | Associate Analyst, Federal Affairs | Federal Affairs | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `bbbbbbbb-cccc-dddd-eeee-ffffffffffff` | Canberra | ACT | `analyst` |
+| `hudson.talbot` | Hudson Talbot | Consultant, Strategic Communications | Strategic Communications | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `99999999-9999-9999-9999-999999999999` | Canberra | ACT | `consultant` |
+| `hannah.burgess` | Hannah Burgess | Head of IT | IT | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee` | Canberra | ACT | `consultant` |
+| `hilary.rollinger` | Hilary Rollinger | Associate Analyst, Strategic Communications | Strategic Communications | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | *(own sub:)* `cccccccc-dddd-eeee-ffff-000000000000` | Canberra | ACT | `analyst` |
 
 **Mapping notes:**
 
 - **Lee Wolf and Leonard Ansen** — each has their own pre-computed KC `sub` in their `description` attribute
   (`22222222-...` and `33333333-...` respectively). Both report to James Farrell (whose `description` holds `11111111-...`).
   Their Keycloak `manager` attribute (after import-time resolution) is James Farrell's `sub` (`11111111-...`).
-- **Max Lubin and Wendy Foley** — desk heads under Leonard Ansen. After import-time resolution their Keycloak `manager`
-  attribute is Leonard Ansen's `sub` (`33333333-...`).
-- **Declan McConnachie and Sirkka Nieminen** — senior traders on the political advisory desk, under Lee Wolf. After
-  import-time resolution their Keycloak `manager` attribute is Lee Wolf's `sub` (`22222222-...`).
-- **Michelle Hauptmann, Hudson Talbot, and Hannah Burgess** — under Leonard Ansen. After import-time resolution their
-  Keycloak `manager` attribute is Leonard Ansen's `sub` (`33333333-...`).
-- **Chas Ewell** — junior trader on the political advisory desk, under Lee Wolf. After import-time resolution his Keycloak
+- **Max Lubin and Wendy Foley** — department heads under Leonard Ansen. Head of Business Development and Head of Client
+  Management respectively. After import-time resolution their Keycloak `manager` attribute is Leonard Ansen's `sub`
+  (`33333333-...`).
+- **Declan McConnachie and Sirkka Nieminen** — consultants on the Federal Affairs desk, under Lee Wolf. After import-time
+  resolution their Keycloak `manager` attribute is Lee Wolf's `sub` (`22222222-...`).
+- **Michelle Hauptmann and Hudson Talbot** — consultants on the Strategic Communications desk, under Leonard Ansen. After
+  import-time resolution their Keycloak `manager` attribute is Leonard Ansen's `sub` (`33333333-...`).
+- **Hannah Burgess** — Head of IT, under Leonard Ansen. After import-time resolution her Keycloak `manager` attribute is
+  Leonard Ansen's `sub` (`33333333-...`).
+- **Chas Ewell** — associate analyst on the Federal Affairs desk, under Lee Wolf. After import-time resolution his Keycloak
   `manager` attribute is Lee Wolf's `sub` (`22222222-...`).
-- **Hilary Rollinger** — graduate assistant, under Lee Wolf. After import-time resolution her Keycloak `manager` attribute
-  is Lee Wolf's `sub` (`22222222-...`).
+- **Hilary Rollinger** — associate analyst on the Strategic Communications desk, under Leonard Ansen. After import-time
+  resolution her Keycloak `manager` attribute is Leonard Ansen's `sub` (`33333333-...`).
 
 ### A few things to notice in the sample
 
 - **Manager hierarchy depth** — James Farrell (CEO, `partner`) → Lee Wolf / Leonard Ansen (`senior-manager`) → Max Lubin /
-  Wendy Foley (`manager`, the desk heads) → the dealing room consultants and analysts. The `manager` attribute on each user
+  Wendy Foley (`manager`, department heads) → the consultants and analysts. The `manager` attribute on each user
   holds their manager's Keycloak `sub`, so the manager hierarchy works the same way as any other organisation in the model:
   a user with a `sub` equal to the `manager` attribute of another user receives access to that user's records (subject to
   role and scope). The CEO has no `manager` — top of hierarchy.
@@ -92,8 +95,8 @@ All 13 users are based in Canberra (`l: Canberra`, `st: ACT`) and use the single
   These are reporting attributes only — they don't affect who can see whose records.
 - **Character-to-role mapping** — the sample maps the *Capital City* characters to the consulting-firm role tiers consistently
   with both the series' portrayal of each character and the access-control model: the CEO and the two Directors are the senior
-  executives / practice leaders; the desk heads are the day-to-day project leaders; the senior traders, capital markets
-  originator, and IT lead are the mid-level consultants; the junior trader and the graduate assistant are the entry-level
+  executives / practice leaders; the department heads are the day-to-day project leaders; the senior traders, capital markets
+  originator, and IT head are the mid-level consultants; the junior trader and the graduate assistant are the entry-level
   analysts.
 - **Customers** — the sample's customers are the Australian political parties seeded in the Party Service
   (`backend/modules/party-service/src/main/resources/sample-data/`). This leverages the existing seed data rather than
@@ -102,6 +105,11 @@ All 13 users are based in Canberra (`l: Canberra`, `st: ACT`) and use the single
   `partner`, `system-administrator`) are not the same as the Sales org roles (`salesperson`, `sales-manager`, etc.). The two
   models coexist in the same Keycloak realm; a user belongs to one organisation and is assigned the role appropriate to that
   organisation. This lets you see how two organisations with different role models can coexist in the same realm.
+- **Organisational structure** — Shane Longman is organised into specialised practice areas, strategic support teams, and
+  operational departments. The core lobbying and practice group is **Federal Affairs** (led by Lee Wolf). The support teams are
+  **Strategic Communications** (led by Leonard Ansen), **Intelligence and Analytics**, and **Operations and Compliance** which
+  includes the **Business Development** (Max Lubin) and **Client Management** (Wendy Foley) teams. The **IT** team (Hannah Burgess)
+  provides technical support.
 
 ## Where the sample is defined
 
