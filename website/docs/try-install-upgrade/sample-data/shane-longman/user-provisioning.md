@@ -59,38 +59,6 @@
    # From the Serendipity backend directory, or via the Keycloak Admin Console's Realm settings → Action → Partial export
    ```
 
-## The sample users (summary)
-
-The sample organisation has:
-
-- **1 shared System Administrator** (top of hierarchy, no manager) — `system`
-- **1 Partner / Managing Director** — James Farrell (CEO, top of hierarchy, no manager)
-- **2 Senior Managers / Directors** — Lee Wolf (Director of Corporate Finance) and Leonard Ansen (Director of Banking
-  Activities), both reporting to the CEO
-- **2 Managers / Engagement Managers (desk heads)** — Max Lubin (Head of Swaps) and Wendy Foley (Chief Trader / Head of
-  Derivatives), both reporting to Leonard Ansen
-- **5 Consultants / Senior Consultants** — Declan McConnachie, Sirkka Nieminen, Michelle Hauptmann (Senior Traders), Hudson
-  Talbot (Capital Markets Originator), Hannah Burgess (Dealing Room IT). Declan and Sirkka report to Lee Wolf; Michelle,
-  Hudson, and Hannah report to Leonard Ansen.
-- **2 Analysts / Associate Analysts** — Chas Ewell (Junior Trader, reporting to Lee Wolf) and Hilary Rollinger (Graduate
-  Assistant, reporting to Lee Wolf).
-
-| uid | Character | Title (LDIF `title`) | Department (LDIF `departmentNumber`) | Manager (LDAP DN) | Pre-computed KC sub (in `description`) | City | State | Keycloak role (assigned after import) |
-|---|---|---|---|---|---|---|---|---|
-| `system` | System Account | System Account | System | *(none — top of hierarchy)* | *(none)* | Canberra | ACT | `system-administrator` |
-| `james.farrell` | James Farrell | Chief Executive Officer | Executive | *(none — top of hierarchy)* | *(none)* | Canberra | ACT | `partner` |
-| `lee.wolf` | Lee Wolf | Director, Political Advisory | Political Advisory | `uid=james.farrell,ou=people,dc=shane-longman,dc=org` | `22222222-2222-2222-2222-222222222222` | Canberra | ACT | `senior-manager` |
-| `leonard.ansen` | Leonard Ansen | Director, Corporate Finance | Corporate Finance | `uid=james.farrell,ou=people,dc=shane-longman,dc=org` | `33333333-3333-3333-3333-333333333333` | Canberra | ACT | `senior-manager` |
-| `max.lubin` | Max Lubin | Head of Swaps | Derivatives | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `44444444-4444-4444-4444-444444444444` | Canberra | ACT | `manager` |
-| `wendy.foley` | Wendy Foley | Chief Trader / Head of Derivatives | Derivatives | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `55555555-5555-5555-5555-555555555555` | Canberra | ACT | `manager` |
-| `declan.mcconnachie` | Declan McConnachie | Consultant, Political Advisory | Political Advisory | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | `66666666-6666-6666-6666-666666666666` | Canberra | ACT | `consultant` |
-| `sirkka.nieminen` | Sirkka Nieminen | Consultant, Political Advisory | Political Advisory | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | `77777777-7777-7777-7777-777777777777` | Canberra | ACT | `consultant` |
-| `michelle.hauptmann` | Michelle Hauptmann | Consultant, Corporate Finance | Corporate Finance | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `88888888-8888-8888-8888-888888888888` | Canberra | ACT | `consultant` |
-| `chas.ewell` | Chas Ewell | Associate Analyst, Political Advisory | Political Advisory | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | `bbbbbbbb-cccc-dddd-eeee-ffffffffffff` | Canberra | ACT | `analyst` |
-| `hudson.talbot` | Hudson Talbot | Consultant, Corporate Finance | Corporate Finance | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `99999999-9999-9999-9999-999999999999` | Canberra | ACT | `consultant` |
-| `hannah.burgess` | Hannah Burgess | Dealing Room IT | IT | `uid=leonard.ansen,ou=people,dc=shane-longman,dc=org` | `aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee` | Canberra | ACT | `consultant` |
-| `hilary.rollinger` | Hilary Rollinger | Associate Analyst, Corporate Finance | Corporate Finance | `uid=lee.wolf,ou=people,dc=shane-longman,dc=org` | `cccccccc-dddd-eeee-ffff-000000000000` | Canberra | ACT | `analyst` |
-
 ## Removing sample data
 
 To remove the sample data:
