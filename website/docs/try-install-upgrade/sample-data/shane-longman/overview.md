@@ -9,6 +9,8 @@ The core lobbying and practice group is Federal Affairs.
 The support teams are Public Affairs and Strategic Communications, Intelligence and Analytics, Operations and Compliance
 which includes the Business Development and Client Management teams.
 
+![Org Chart](./org-chart.png)
+
 ### Geographic attributes
 
 Every user includes `l` (locality / city) and `st` (state / province) attributes.
