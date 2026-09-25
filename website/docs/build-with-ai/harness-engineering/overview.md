@@ -63,17 +63,7 @@ The `.knowledge/` layer serves the same role as the tutorial's "system-of-record
 
 ### Skills — on-demand specialised knowledge
 
-Skills are Hermes's mechanism for loading specialised workflows when a task matches. They are Hermes app-level, not repo files. Examples relevant to Serendipity work:
-
-- `systemic-debugging` — 4-phase root-cause debugging
-- `test-driven-development` — RED-GREEN-REFACTOR enforcement
-- `codebase-inspection` — pygount-based LOC/ language ratios
-- `dogfood` — exploratory QA of web apps
-- `documentation-consistency` — prevent stale cross-references after edits
-- `github` — gh CLI: PRs, issues, reviews, repos
-- `requesting-code-review` — pre-commit review: security scan, quality gates
-
-Skills encode the _how_ for recurring task types. They are loaded when the task matches, and they carry the user's preferred approach and quality standards for that task type.
+Skills are Hermes's mechanism for loading specialised workflows when a task matches. They are Hermes app-level, not repo files — they live in the Hermes profile, not in the Serendipity repo. When a session touches a task type that has a skill (debugging, testing, code review, documentation consistency, GitHub operations, and a few others), the skill loads and carries the user's preferred approach and quality standards for that task type. The repo therefore doesn't enumerate skills as config — skills are an orthogonal, app-level layer that the harness can call on when relevant.
 
 ### `.continuerc` + `.continue/rules/` — version guidance for local models
 
@@ -184,7 +174,9 @@ The main thing the tutorial's lens surfaces as a gap: Serendipity does not have 
 - Whether to add an `docs/harness-engineering/evaluator-rubric.md` — the tutorial's quality-scoring rubric. Currently unused.
 - The `openai-advanced/` pack (system-of-record docs, agent-first governance templates) is the tutorial's recommendation for when the repo grows into a longer-running system with multiple domains, active plans, quality scoring, and reliability policies. Serendipity has not reached that point; the minimal pack's gaps above are consistent with that.
 
-## Files referenced
+## References
+
+### Files Referenced
 
 - `/Users/rob/workspace/Hermes/serendipity/.hermes.md` — repo-level instructions (root)
 - `/Users/rob/workspace/Hermes/serendipity/.knowledge/` — canonical project knowledge (Open Knowledge Format monorepo)
@@ -192,4 +184,7 @@ The main thing the tutorial's lens surfaces as a gap: Serendipity does not have 
 - `/Users/rob/workspace/Hermes/serendipity/.continue/rules/serendipity-versions.md` — version guidance for local models
 - Hermes memory — persistent cross-session facts (profile-level, not repo files)
 - Hermes skills — on-demand specialised workflows (app-level, not repo files)
-- `https://walkinglabs.github.io/learn-harness-engineering/en/resources/` — the tutorial this document is framed against
+
+### Harness Engineering
+
+* Walkinglabs docs: [Learn Harness Engineering](https://walkinglabs.github.io/learn-harness-engineering/en/)
