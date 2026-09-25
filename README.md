@@ -45,6 +45,7 @@ Follow the steps in the [Get Started](https://robinyo.github.io/serendipity/docs
 - [Roadmap](https://robinyo.github.io/serendipity/docs/roadmap)
 - [Get Started](https://robinyo.github.io/serendipity/docs/get-started/installation)
 - [Try, Install or Upgrade](https://robinyo.github.io/serendipity/docs/try-install-upgrade/try)
+- [Build with AI](https://robinyo.github.io/serendipity/docs/build-with-ai/harness-engineering/overview)
 - [Developer Guide](https://robinyo.github.io/serendipity/docs/developer-guide/overview)
 - [Concepts](https://robinyo.github.io/serendipity/docs/concepts/authentication)
 - [Components](https://robinyo.github.io/serendipity/docs/components/bff/overview)
