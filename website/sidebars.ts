@@ -46,6 +46,19 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: 'Build with AI',
+      items: [
+        {
+          type: 'category',
+          label: 'Harness Engineering',
+          items: [
+            'build-with-ai/harness-engineering/overview'
+          ],
+        },
+      ],
+    },
+    {
+      type: 'category',
       label: 'Developer Guide',
       items: [
         'developer-guide/overview',
