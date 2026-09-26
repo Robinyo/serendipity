@@ -2,8 +2,16 @@ package org.serendipity.party.database.seed.au;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jspecify.annotations.NonNull;
-import org.serendipity.party.entity.*;
-import org.serendipity.party.service.*;
+import org.serendipity.party.entity.Address;
+import org.serendipity.party.entity.Individual;
+import org.serendipity.party.entity.Name;
+import org.serendipity.party.entity.Organisation;
+import org.serendipity.party.entity.Party;
+import org.serendipity.party.entity.Role;
+import org.serendipity.party.service.AddressService;
+import org.serendipity.party.service.IndividualService;
+import org.serendipity.party.service.OrganisationService;
+import org.serendipity.party.service.RoleService;
 import org.serendipity.party.type.PartyType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -156,6 +164,12 @@ public class Senate implements CommandLineRunner {
             case LIBERAL_PARTY_OF_AUSTRALIA:
             case NATIONAL_PARTY_OF_AUSTRALIA:
             case PAULINE_HANSONS_ONE_NATION:
+            case AUSTRALIA_S_VOICE:
+            case COUNTRY_LIBERAL_PARTY:
+            case JACQUI_LAMIBE_NETWORK:
+            case UNITED_AUSTRALIA_PARTY:
+            case CENTRE_ALLIANCE:
+            case KATTER_S_AUSTRALIAN_PARTY:
 
               Page<Organisation> organisations = organisationService.findByName(politicalParty.toString(), pageable);
               Organisation organisation = organisations.getContent().getFirst();
