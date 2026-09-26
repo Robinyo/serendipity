@@ -188,3 +188,5 @@ The main thing the tutorial's lens surfaces as a gap: Serendipity does not have 
 ### Harness Engineering
 
 * Walkinglabs docs: [Learn Harness Engineering](https://walkinglabs.github.io/learn-harness-engineering/en/)
+* Zhiqiang Shen's website: [Dive into Claude Code: The Design Space of Today’s and Future AI Agent Systems](https://zhiqiangshen.com/projects/Claude_Code_Report/Claude_Code_Report.pdf)
+* GitHub: [NG Agentic Engineering](https://github.com/L-X-T/ng-agentic-skills)

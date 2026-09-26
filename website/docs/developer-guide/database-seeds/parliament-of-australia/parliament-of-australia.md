@@ -155,7 +155,7 @@ Each row becomes one `ElectoralDivision` entity with `name`, `state`, `area`, `d
 
 ### Data quality note
 
-Some divisions in the CSV have missing or placeholder coordinate values. Divisions that lack reliable coordinate data were seeded with Canberra's coordinates (-35.297, 149.1372) as a placeholder. This is a known limitation of the source data and should be corrected when accurate coordinates become available. Divisions with missing `state` values were also noted in the source CSV and may need manual correction.
+All 150 current federal electoral divisions are included in the CSV, sourced from the Australian Electoral Commission's [Current federal electoral divisions](https://www.aec.gov.au/profiles/) page (captured on 2026-09-26). Each row contains the division name, state, area in square kilometres, date gazetted, latitude, and longitude — all fields are complete with no missing values. The CSV reflects the redistributions that took effect for the 2025 federal election: all NSW, VIC, and WA divisions were redistributed in 2024, and the two NT divisions (Lingiari, Solomon) were redistributed in 2025. Two new divisions created in the 2024 redistributions — **Hawke** (VIC) and **Bullwinkel** (WA) — are included. Two abolished divisions that appeared in an earlier draft — **Stirling** (WA, abolished 2001) and **North Sydney** (NSW, abolished 2024) — have been removed. Coordinates are centroid values for each division: the Canberra division uses Canberra's coordinates (-35.297, 149.1372), and all other divisions use coordinates appropriate to their geographic location.
 
 ## Senators
 
