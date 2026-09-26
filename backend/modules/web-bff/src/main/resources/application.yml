@@ -52,7 +52,7 @@ spring:
             user-info-uri: https://serendipity-identity-service.localhost/realms/serendipity-dev/protocol/openid-connect/userinfo
             jwk-set-uri: https://serendipity-identity-service.localhost/realms/serendipity-dev/protocol/openid-connect/certs
 
-            user-name-attribute: username
+            user-name-attribute: preferred_username
 
 management:
   endpoints:
