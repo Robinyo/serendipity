@@ -102,7 +102,6 @@ You should see something like:
 
 ![Keycloak Account Console Personal Info](/screen-shots/keycloak/keycloak-account-console-personal-info.png)
 
-
 ### Managing user attributes
 
 In Keycloak a user is associated with a set of attributes. These attributes are used to describe and identify users 
@@ -112,12 +111,12 @@ within Keycloak as well as to provide additional information about users to appl
 
 By default, Keycloak provides a basic user profile configuration:
 
-| Attribute | Notes |
-|---|---|
-| `username` | The primary login name — what the user types to sign in. Stable until changed. Not used for ownership/assignment comparisons (the enforcement layer uses `sub`). |
-| `email` | The preferred email address. |
-| `firstName` | Given name. |
-| `lastName` | Surname / family name. |
+| Attribute   | Notes                                                                                                                                                            |
+|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `username`  | The primary login name — what the user types to sign in. Stable until changed. Not used for ownership/assignment comparisons (the enforcement layer uses `sub`). |
+| `email`     | The preferred email address.                                                                                                                                     |
+| `firstName` | Given name.                                                                                                                                                      |
+| `lastName`  | Surname / family name.                                                                                                                                           |
 
 In Keycloak, both the `username` and `email` attributes can be used to identify, authenticate, and link user accounts.
 
@@ -128,27 +127,25 @@ By default, Serendipity has enabled the `Email as username` setting.
 
 These are tracked by Keycloak on the core user model but are not configurable profile attributes:
 
-| Field | Notes |
-|---|---|
-| `id` | The system-generated UUID. This is the value emitted as `sub` in tokens. |
-| `enabled` | Whether the account is active. |
-| `emailVerified` | Whether the email has been verified. |
-| `createdTimestamp` | When the user was created. |
+| Field              | Notes                                                                    |
+|--------------------|--------------------------------------------------------------------------|
+| `id`               | The system-generated UUID. This is the value emitted as `sub` in tokens. |
+| `enabled`          | Whether the account is active.                                           |
+| `emailVerified`    | Whether the email has been verified.                                     |
+| `createdTimestamp` | When the user was created.                                               |
 
 #### Custom attributes
 
 These are added to the user's profile as custom attributes. 
 
-| Attribute | Value | Notes                                                                                                                                                                                                                                                                                                                                      |
-|---|---|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `manager` | The `sub` (UUID) of the user's manager | The one attribute the access-control model depends on — it enables the manager hierarchy. See **Setting the `manager` attribute** below. |
-| `jobTitle` | A string | Optional profile attribute.                                                                                                                                                                                                                                                                                       |
-| `department` | A string | Optional profile attribute.                                                                                                                                                                                                                                                                                      |
-| `employeeType` | A string | Optional profile attribute.                                                                                                                                                                                                                                                                                    |
-| `employeeHireDate` | A date string (ISO date) | Optional profile attribute.                                                                                                                                                                                                                                                                                    |
-| `directoryObjectId` | The Entra ID Object ID of the user | Optional. Only relevant when federating with Microsoft Entra ID and the directory wants to correlate to, or re-hydrate from, the Entra ID object.                                                                                        |
+| Attribute      | Value                                  | Notes                                                                                                                                    |
+|----------------|----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| `manager`      | The `sub` (UUID) of the user's manager | The one attribute the access-control model depends on — it enables the manager hierarchy. See **Setting the `manager` attribute** below. |
+| `jobTitle`     | A string                               | Optional profile attribute.                                                                                                              |
+| `department`   | A string                               | Optional profile attribute.                                                                                                              |
+| `employeeType` | A string                               | Optional profile attribute.                                                                                                              |
 
-#### Setting the `manager` attribute
+#### Manually setting the `manager` attribute
 
 The `manager` attribute stores the manager's `sub` (Keycloak UUID). To set it:
 
@@ -168,6 +165,12 @@ The `sub` is not labeled "sub" in the Admin Console. It is the `id` field on the
 The user profile configuration is managed on a per-realm basis.
 
 The user profile configuration is stored using a well-defined JSON schema.
+
+
+
+
+
+
 
 ## Using external storage
 
@@ -240,21 +243,27 @@ After saving, Keycloak takes you to the client's **Settings** page. The **Client
 The BFF must be configured with the client credentials the Keycloak client just generated. The OAuth2 client registration lives in `backend/modules/web-bff/src/main/resources/application.yml`:
 
 ```yaml
-oauth2:
-  client:
-    registration:
-      keycloak:
-        client-id: serendipity-web-bff
-        client-secret: <the client secret Keycloak generated — copy it from the Credentials tab>
-        scope:
-          - openid
-          - profile
-          - email
-        authorization-grant-type: authorization_code
-        redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
-    provider:
-      keycloak:
-        issuer-uri: https://serendipity-identity-service.localhost/realms/serendipity-dev
+  security:
+     oauth2:
+        client:
+           registration:
+              keycloak:
+                 client-id: serendipity-web-bff
+                 client-secret: LPg1pb4vRmHLhYOrA60hiOASlMHNlnSI
+                 scope:
+                    - openid
+                    - profile
+                    - email
+                 authorization-grant-type: authorization_code
+                 redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+           provider:
+              keycloak:
+                 issuer-uri: https://serendipity-identity-service.localhost/realms/serendipity-dev
+                 authorization-uri: https://serendipity-identity-service.localhost/realms/serendipity-dev/protocol/openid-connect/auth
+                 token-uri: https://serendipity-identity-service.localhost/realms/serendipity-dev/protocol/openid-connect/token
+                 user-info-uri: https://serendipity-identity-service.localhost/realms/serendipity-dev/protocol/openid-connect/userinfo
+                 jwk-set-uri: https://serendipity-identity-service.localhost/realms/serendipity-dev/protocol/openid-connect/certs
+                 user-name-attribute: preferred_username
 ```
 
 Each field must match what Keycloak has for the client:

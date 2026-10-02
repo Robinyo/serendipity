@@ -280,6 +280,43 @@ member: uid=hudson.talbot,ou=people,dc=shane-longman,dc=org
 member: uid=hannah.burgess,ou=people,dc=shane-longman,dc=org
 member: uid=hilary.rollinger,ou=people,dc=shane-longman,dc=org
 
+dn: cn=analysts,ou=groups,dc=shane-longman,dc=org
+objectClass: groupOfNames
+cn: analysts
+description: The Analysts Group.
+member: uid=chas.ewell,ou=people,dc=shane-longman,dc=org
+member: uid=hilary.rollinger,ou=people,dc=shane-longman,dc=org
+
+dn: cn=consultants,ou=groups,dc=shane-longman,dc=org
+objectClass: groupOfNames
+cn: consultants
+description: The Consultants Group.
+member: uid=declan.mcconnachie,ou=people,dc=shane-longman,dc=org
+member: uid=sirkka.nieminen,ou=people,dc=shane-longman,dc=org
+member: uid=michelle.hauptmann,ou=people,dc=shane-longman,dc=org
+member: uid=hudson.talbot,ou=people,dc=shane-longman,dc=org
+member: uid=hannah.burgess,ou=people,dc=shane-longman,dc=org
+
+dn: cn=managers,ou=groups,dc=shane-longman,dc=org
+objectClass: groupOfNames
+cn: managers
+description: The Managers Group.
+member: uid=max.lubin,ou=people,dc=shane-longman,dc=org
+member: uid=wendy.foley,ou=people,dc=shane-longman,dc=org
+
+dn: cn=senior-managers,ou=groups,dc=shane-longman,dc=org
+objectClass: groupOfNames
+cn: senior-managers
+description: The Senior Managers Group.
+member: uid=lee.wolf,ou=people,dc=shane-longman,dc=org
+member: uid=leonard.ansen,ou=people,dc=shane-longman,dc=org
+
+dn: cn=partners,ou=groups,dc=shane-longman,dc=org
+objectClass: groupOfNames
+cn: partners
+description: The Partners Group.
+member: uid=james.farrell,ou=people,dc=shane-longman,dc=org
+
 # System Account
 dn: uid=system,ou=people,dc=shane-longman,dc=org
 objectClass: inetOrgPerson
