@@ -138,12 +138,12 @@ These are tracked by Keycloak on the core user model but are not configurable pr
 
 These are added to the user's profile as custom attributes. 
 
-| Attribute      | Value                                  | Notes                                                                                                                                    |
-|----------------|----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| `manager`      | The `sub` (UUID) of the user's manager | The one attribute the access-control model depends on — it enables the manager hierarchy. See **Setting the `manager` attribute** below. |
-| `jobTitle`     | A string                               | Optional profile attribute.                                                                                                              |
-| `department`   | A string                               | Optional profile attribute.                                                                                                              |
-| `employeeType` | A string                               | Optional profile attribute.                                                                                                              |
+| Attribute      | Value                                  | Notes                                                                                     |
+|----------------|----------------------------------------|-------------------------------------------------------------------------------------------|
+| `jobTitle`     | A string                               | Optional profile attribute.                                                               |
+| `department`   | A string                               | Optional profile attribute.                                                               |
+| `employeeType` | A string                               | Optional profile attribute.                                                               |
+| `manager`      | The `sub` (UUID) of the user's manager | The one attribute the access-control model depends on — it enables the manager hierarchy. |
 
 #### Manually setting the `manager` attribute
 
@@ -164,13 +164,174 @@ The `sub` is not labeled "sub" in the Admin Console. It is the `id` field on the
 
 The user profile configuration is managed on a per-realm basis.
 
-The user profile configuration is stored using a well-defined JSON schema.
+The user profile configuration is stored using a well-defined JSON schema:
 
-
-
-
-
-
+```json
+{
+  "attributes": [
+    {
+      "name": "username",
+      "displayName": "${username}",
+      "validations": {
+        "length": {
+          "min": 3,
+          "max": 255
+        },
+        "username-prohibited-characters": {},
+        "up-username-not-idn-homograph": {}
+      },
+      "permissions": {
+        "view": [
+          "admin",
+          "user"
+        ],
+        "edit": [
+          "admin",
+          "user"
+        ]
+      },
+      "multivalued": false
+    },
+    {
+      "name": "email",
+      "displayName": "${email}",
+      "validations": {
+        "email": {},
+        "length": {
+          "max": 255
+        }
+      },
+      "required": {
+        "roles": [
+          "user"
+        ]
+      },
+      "permissions": {
+        "view": [
+          "admin",
+          "user"
+        ],
+        "edit": [
+          "admin",
+          "user"
+        ]
+      },
+      "multivalued": false
+    },
+    {
+      "name": "firstName",
+      "displayName": "${firstName}",
+      "validations": {
+        "length": {
+          "max": 255
+        },
+        "person-name-prohibited-characters": {}
+      },
+      "required": {
+        "roles": [
+          "user"
+        ]
+      },
+      "permissions": {
+        "view": [
+          "admin",
+          "user"
+        ],
+        "edit": [
+          "admin",
+          "user"
+        ]
+      },
+      "multivalued": false
+    },
+    {
+      "name": "lastName",
+      "displayName": "${lastName}",
+      "validations": {
+        "length": {
+          "max": 255
+        },
+        "person-name-prohibited-characters": {}
+      },
+      "required": {
+        "roles": [
+          "user"
+        ]
+      },
+      "permissions": {
+        "view": [
+          "admin",
+          "user"
+        ],
+        "edit": [
+          "admin",
+          "user"
+        ]
+      },
+      "multivalued": false
+    },
+    {
+      "name": "jobTitle",
+      "displayName": "jobTitle",
+      "validations": {},
+      "annotations": {},
+      "permissions": {
+        "view": [],
+        "edit": [
+          "admin"
+        ]
+      },
+      "multivalued": false
+    },
+    {
+      "name": "department",
+      "displayName": "department",
+      "validations": {},
+      "annotations": {},
+      "permissions": {
+        "view": [],
+        "edit": [
+          "admin"
+        ]
+      },
+      "multivalued": false
+    },
+    {
+      "name": "employeeType",
+      "displayName": "employeeType",
+      "validations": {},
+      "annotations": {},
+      "permissions": {
+        "view": [],
+        "edit": [
+          "admin"
+        ]
+      },
+      "multivalued": false
+    },
+    {
+      "name": "manager",
+      "displayName": "manager",
+      "validations": {},
+      "annotations": {},
+      "permissions": {
+        "view": [],
+        "edit": [
+          "admin"
+        ]
+      },
+      "multivalued": false
+    }
+  ],
+  "groups": [
+    {
+      "name": "user-metadata",
+      "displayHeader": "User metadata",
+      "displayDescription": "Attributes, which refer to user metadata"
+    }
+  ]
+}
+```
 
 ## Using external storage
 
@@ -213,6 +374,37 @@ In Keycloak's Admin Console, for the `serendipity-dev` realm:
 ![Add LDAP Provider](/screen-shots/keycloak/keycloak-ldap-provider-synchronization-settings.png)
 
 And then click the 'Save' button.
+
+### Standard Built-In Mappers
+
+Keycloak automatically creates standard mappers for core attributes when you set up an LDAP provider. 
+Ensure their settings match your entry:
+
+- username: Maps Keycloak `username` &rarr; LDAP attribute `uid`.
+- first name: Maps Keycloak `firstName` &rarr; LDAP attribute `givenName`
+- last name: Maps Keycloak `lastName` &rarr; LDAP attribute `sn`
+- email: Maps Keycloak `email` &rarr; LDAP attribute `mail`
+
+### Custom User Attribute Mappers
+
+| Mapper Name   | Mapper Type                | Keycloak Attribute | LDAP Attribute     |
+|---------------|----------------------------|--------------------|--------------------|
+| job-title     | user-attribute-ldap-mapper | `jobTitle`         | `title`            |
+| department    | user-attribute-ldap-mapper | `department`       | `departmentNumber` |
+| employee-type | user-attribute-ldap-mapper | `employeeType`     | `employeeType`     |
+| locality-city | user-attribute-ldap-mapper |                    | `l`                |
+| state-region  | user-attribute-ldap-mapper |                    | `st`               |
+| manager-dn    | user-attribute-ldap-mapper | `manager`          | `manager`          |
+
+:::info
+Custom attributes mapped this way will be stored on the Keycloak User Profile under User Attributes and can be exposed 
+to your applications via OIDC token mappers.
+:::
+
+### The `manager` attribute
+
+The default `user-attribute-ldap-mapper` performs a direct string copy, so it will store the raw LDAP DN string 
+(e.g., uid=lee.wolf,ou=people,dc=shane-longman,dc=org) as the custom user attribute value.
 
 ## Managing OpenID Connect and SAML Clients
 

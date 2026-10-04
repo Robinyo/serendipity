@@ -6,7 +6,7 @@ the British TV series Capital City.
 Shane Longman is organised into specialised practice areas, strategic support teams, and operational departments.
 
 The core lobbying and practice group is Federal Affairs.
-The support teams are Public Affairs and Strategic Communications, Intelligence and Analytics, Operations and Compliance
+The support teams are Public Affairs and Strategic Communications, Intelligence and Analytics and Operations and Compliance
 which includes the Business Development and Client Management teams.
 
 ![Org Chart](./org-chart.png)
@@ -14,6 +14,7 @@ which includes the Business Development and Client Management teams.
 ## LDAP
 
 An LDAP (Lightweight Directory Access Protocol) server stores and organises information about users and devices.
+In an enterprise environment this might be Active Directory or Entra ID.
 
 ## LDIF
 
@@ -26,8 +27,8 @@ It has three core elements:
 - Group Entries: Group records (e.g., `cn=analysts`) using the `groupOfNames` object class, listing member 
   Distinguished Names (DNs).
 
-We can use the information obtained from a Directory Server (e.g., OpenLDAP) to create users and groups in Keycloak 
-(Serendipity's Indentity Service).
+We can use the information obtained from a Directory Server (e.g., [OpenLDAP](https://www.openldap.org/)) to create 
+users and groups in Keycloak (Serendipity's Indentity Service).
 
 :::tip
 Before you can make use of the information obtained from a Directory Server you must first configure Keycloak.
@@ -38,7 +39,7 @@ Before you can make use of the information obtained from a Directory Server you 
 The Base DN (Distinguished Name) is the top-level starting point in your LDAP directory tree where Keycloak (or any
 LDAP client) begins searching for entries.
 
-This information is not defined in the LDIF file but is required by the Directory Server (e.g., OpenLDAP) on startup:
+This information is not defined in the LDIF file but is required by the Directory Server on startup:
 
 ```shell
 LDAP_ORGANISATION=Shane Longman
@@ -62,7 +63,7 @@ givenName: Chas
 sn: Ewell
 mail: chas.ewell@shane-longman.org
 userPassword: secret
-telephoneNumber: +44-20-7946-1111
+telephoneNumber: +61-20-7946-1111
 title: Associate Analyst, Federal Affairs
 departmentNumber: Federal Affairs
 employeeType: analyst
@@ -90,3 +91,4 @@ Each user is assigned to one or more groups.
 ## References
 
 * Wikipedia: [Capital City - TV Series](https://en.wikipedia.org/wiki/Capital_City_(TV_series))
+* OpenLDAP website: [OpenLDAP](https://www.openldap.org/)

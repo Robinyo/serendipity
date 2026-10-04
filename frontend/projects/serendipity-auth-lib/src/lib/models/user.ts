@@ -1,15 +1,20 @@
 export interface UserProfile {
+
   authenticated: boolean;
+
   username?: string;
   email?: string;
   firstName?: string;
   lastName?: string;
+
   jobTitle?: string;
   department?: string;
-  manager?: string;
   employeeType?: string;
+  manager?: string;
+
   // groups?: string[];
   // roles?: string[];
+
 }
 
 // https://www.keycloak.org/docs/latest/server_admin/index.html#user-profile

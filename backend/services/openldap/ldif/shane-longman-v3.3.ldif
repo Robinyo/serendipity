@@ -19,7 +19,7 @@ givenName: James
 sn: Farrell
 mail: james.farrell@shane-longman.org
 userPassword: secret
-telephoneNumber: +44-20-7946-0101
+telephoneNumber: +61-20-7946-0101
 title: Chief Executive Officer
 departmentNumber: Executive
 employeeType: partner
@@ -39,7 +39,7 @@ givenName: Lee
 sn: Wolf
 mail: lee.wolf@shane-longman.org
 userPassword: secret
-telephoneNumber: +44-20-7946-0202
+telephoneNumber: +61-20-7946-0202
 title: Director, Federal Affairs
 departmentNumber: Federal Affairs
 employeeType: senior-manager
@@ -60,7 +60,7 @@ givenName: Leonard
 sn: Ansen
 mail: leonard.ansen@shane-longman.org
 userPassword: secret
-telephoneNumber: +44-20-7946-0303
+telephoneNumber: +61-20-7946-0303
 title: Director, Strategic Communications
 departmentNumber: Strategic Communications
 employeeType: senior-manager
@@ -81,7 +81,7 @@ givenName: Max
 sn: Lubin
 mail: max.lubin@shane-longman.org
 userPassword: secret
-telephoneNumber: +44-20-7946-0404
+telephoneNumber: +61-20-7946-0404
 title: Head of Business Development
 departmentNumber: Business Development
 employeeType: manager
@@ -102,7 +102,7 @@ givenName: Wendy
 sn: Foley
 mail: wendy.foley@shane-longman.org
 userPassword: secret
-telephoneNumber: +44-20-7946-0505
+telephoneNumber: +61-20-7946-0505
 title: Head of Client Management
 departmentNumber: Client Management
 employeeType: manager
@@ -123,7 +123,7 @@ givenName: Declan
 sn: McConnachie
 mail: declan.mcconnachie@shane-longman.org
 userPassword: secret
-telephoneNumber: +44-20-7946-0606
+telephoneNumber: +61-20-7946-0606
 title: Consultant, Federal Affairs
 departmentNumber: Federal Affairs
 employeeType: consultant
@@ -144,7 +144,7 @@ givenName: Sirkka
 sn: Nieminen
 mail: sirkka.nieminen@shane-longman.org
 userPassword: secret
-telephoneNumber: +44-20-7946-0707
+telephoneNumber: +61-20-7946-0707
 title: Consultant, Federal Affairs
 departmentNumber: Federal Affairs
 employeeType: consultant
@@ -165,7 +165,7 @@ givenName: Michelle
 sn: Hauptmann
 mail: michelle.hauptmann@shane-longman.org
 userPassword: secret
-telephoneNumber: +44-20-7946-0808
+telephoneNumber: +61-20-7946-0808
 title: Consultant, Strategic Communications
 departmentNumber: Strategic Communications
 employeeType: consultant
@@ -186,7 +186,7 @@ givenName: Hudson
 sn: Talbot
 mail: hudson.talbot@shane-longman.org
 userPassword: secret
-telephoneNumber: +44-20-7946-0909
+telephoneNumber: +61-20-7946-0909
 title: Consultant, Strategic Communications
 departmentNumber: Strategic Communications
 employeeType: consultant
@@ -228,7 +228,7 @@ givenName: Chas
 sn: Ewell
 mail: chas.ewell@shane-longman.org
 userPassword: secret
-telephoneNumber: +44-20-7946-1111
+telephoneNumber: +61-20-7946-1111
 title: Associate Analyst, Federal Affairs
 departmentNumber: Federal Affairs
 employeeType: analyst
