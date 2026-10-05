@@ -369,7 +369,7 @@ In Keycloak's Admin Console, for the `serendipity-dev` realm:
   - **User object classes**: `inetOrgPerson, organizationalPerson, person`
   - **User LDAP filter**: `(objectClass=inetOrgPerson)`
 
-5. Configure the Synchronization settings:
+5. Configure the Synchronisation settings:
 
 ![Add LDAP Provider](/screen-shots/keycloak/keycloak-ldap-provider-synchronization-settings.png)
 
@@ -405,6 +405,55 @@ to your applications via OIDC token mappers.
 
 The default `user-attribute-ldap-mapper` performs a direct string copy, so it will store the raw LDAP DN string 
 (e.g., uid=lee.wolf,ou=people,dc=shane-longman,dc=org) as the custom user attribute value.
+
+### Custom Group Attribute Mapper
+
+You need to configure the `group-ldap-mapper` if you want Keycloak to recognise these group structures and assign users to them automatically.
+
+Keycloak does not read group entries or member attributes from LDAP by default — it relies on the mapper to parse your schema.
+
+### Adding a provider
+
+In Keycloak, go to User Federation $\rightarrow$ your LDAP provider $\rightarrow$ Mappers tab, click Add mapper, and select group-ldap-mapper as the Mapper Type.
+
+In Keycloak's Admin Console, for the `serendipity-dev` realm:
+
+1. **User Federation** → **Open the OpenLDAP provider**:
+
+![Add LDAP Provider](/screen-shots/keycloak/keycloak-openldap-provider.png)
+
+2. On the **Mappers** tab, click the **Add mapper** button:
+
+![Add LDAP Provider](/screen-shots/keycloak/keycloak-user-federation-settings.png)
+
+3. Configure the General settings:
+
+![Add LDAP Provider](/screen-shots/keycloak/Keycloak-groups-mapper-general-settings.png)
+
+  - **Name**: `groups-dn`
+  - **Mapper type**: `group-ldap-mapper`
+  - **LDAP Groups DN**: `ou=groups,dc=shane-longman,dc=org`
+  - **Group Name LDAP Attribute**: `cn`
+  - **Group Object Classes**: `groupOfNames`
+
+4. Configure the group Membership settings:
+
+![Add LDAP Provider](/screen-shots/keycloak/Keycloak-groups-mapper-general-settings.png)
+
+  - **Membership LDAP Attribute**: `member`
+  - **Membership Attribute Type**: `DN`
+  - **User Groups Retrieve Strategy**: `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`
+  - **Member-Of LDAP Attribute**: `memberOf`
+
+Save the mapper settings, then click Sync LDAP Groups from the Action dropdoown menu.
+
+
+
+
+
+
+
+
 
 ## Managing OpenID Connect and SAML Clients
 

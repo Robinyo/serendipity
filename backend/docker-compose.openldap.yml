@@ -23,7 +23,7 @@ services:
     env_file:
       - "${PWD}/.env"
     healthcheck:
-      test: [ "CMD", "ldapsearch", "-x", "-h", "localhost", "-b", "${SERENDIPITY_LDAP_BASE_DN}", "-s", "base" ]
+      test: [ "CMD", "ldapsearch", "-x", "-h", "localhost", "-b", "${LDAP_BASE_DN}", "-s", "base" ]
       interval: 10s
       timeout: 5s
       retries: 5

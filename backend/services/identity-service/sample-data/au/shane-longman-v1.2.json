@@ -29,7 +29,7 @@
   "oauth2DevicePollingInterval" : 5,
   "enabled" : true,
   "sslRequired" : "external",
-  "registrationAllowed" : true,
+  "registrationAllowed" : false,
   "registrationEmailAsUsername" : true,
   "rememberMe" : true,
   "verifyEmail" : false,
@@ -378,7 +378,23 @@
       } ]
     }
   },
-  "groups" : [ ],
+  "groups" : [ {
+    "id" : "94d1c0ac-0400-4d8f-a6e4-6d4890ba4f28",
+    "name" : "federal-affairs",
+    "path" : "/federal-affairs",
+    "subGroups" : [ ],
+    "attributes" : { },
+    "realmRoles" : [ ],
+    "clientRoles" : { }
+  }, {
+    "id" : "6075a866-e6fe-4079-bfc9-d598b6c59f1a",
+    "name" : "strategic-communications",
+    "path" : "/strategic-communications",
+    "subGroups" : [ ],
+    "attributes" : { },
+    "realmRoles" : [ ],
+    "clientRoles" : { }
+  } ],
   "defaultRole" : {
     "id" : "68203d1b-605b-49e4-b10d-4e658c342689",
     "name" : "default-roles-serendipity-dev",
@@ -420,6 +436,90 @@
   "webAuthnPolicyPasswordlessAcceptableAaguids" : [ ],
   "webAuthnPolicyPasswordlessExtraOrigins" : [ ],
   "users" : [ {
+    "id" : "57ac99a7-33d8-4851-a756-5a9e4e493f85",
+    "username" : "chas.ewell@shane-longman.org",
+    "firstName" : "Chas Ewell",
+    "lastName" : "Ewell",
+    "email" : "chas.ewell@shane-longman.org",
+    "emailVerified" : false,
+    "attributes" : {
+      "employeeType" : [ "analyst" ],
+      "LDAP_ENTRY_DN" : [ "uid=chas.ewell,ou=people,dc=shane-longman,dc=org" ],
+      "manager" : [ "uid=lee.wolf,ou=people,dc=shane-longman,dc=org" ],
+      "jobTitle" : [ "Associate Analyst, Federal Affairs" ],
+      "department" : [ "Federal Affairs" ],
+      "LDAP_ID" : [ "db1abcd8-4da9-1041-8f12-276a132f9ba7" ],
+      "modifyTimestamp" : [ "20260926035528Z" ],
+      "createTimestamp" : [ "20260926035528Z" ]
+    },
+    "origin" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "createdTimestamp" : 1791154228673,
+    "enabled" : true,
+    "totp" : false,
+    "federationLink" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-serendipity-dev" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "031e72f1-14eb-4d90-8c52-7913ebaecdfc",
+    "username" : "declan.mcconnachie@shane-longman.org",
+    "firstName" : "Declan McConnachie",
+    "lastName" : "McConnachie",
+    "email" : "declan.mcconnachie@shane-longman.org",
+    "emailVerified" : false,
+    "attributes" : {
+      "employeeType" : [ "consultant" ],
+      "LDAP_ENTRY_DN" : [ "uid=declan.mcconnachie,ou=people,dc=shane-longman,dc=org" ],
+      "manager" : [ "uid=lee.wolf,ou=people,dc=shane-longman,dc=org" ],
+      "jobTitle" : [ "Consultant, Federal Affairs" ],
+      "department" : [ "Federal Affairs" ],
+      "LDAP_ID" : [ "db1a6152-4da9-1041-8f0d-276a132f9ba7" ],
+      "modifyTimestamp" : [ "20260926035528Z" ],
+      "createTimestamp" : [ "20260926035528Z" ]
+    },
+    "origin" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "createdTimestamp" : 1791149831891,
+    "enabled" : true,
+    "totp" : false,
+    "federationLink" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-serendipity-dev" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "2952c6fd-e754-4358-9fac-a4488eaa5187",
+    "username" : "hannah.burgess@shane-longman.org",
+    "firstName" : "Hannah Burgess",
+    "lastName" : "Burgess",
+    "email" : "hannah.burgess@shane-longman.org",
+    "emailVerified" : false,
+    "attributes" : {
+      "employeeType" : [ "consultant" ],
+      "LDAP_ENTRY_DN" : [ "uid=hannah.burgess,ou=people,dc=shane-longman,dc=org" ],
+      "manager" : [ "uid=leonard.ansen,ou=people,dc=shane-longman,dc=org" ],
+      "jobTitle" : [ "Head of IT" ],
+      "department" : [ "IT" ],
+      "LDAP_ID" : [ "db1aae6e-4da9-1041-8f11-276a132f9ba7" ],
+      "modifyTimestamp" : [ "20260926035528Z" ],
+      "createTimestamp" : [ "20260926035528Z" ]
+    },
+    "origin" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "createdTimestamp" : 1791149831902,
+    "enabled" : true,
+    "totp" : false,
+    "federationLink" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-serendipity-dev" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
     "id" : "a9533e23-a3f6-4805-82cf-d2c71762f0e6",
     "username" : "hey@rob-ferguson.me",
     "firstName" : "Rob",
@@ -443,6 +543,201 @@
     "notBefore" : 0,
     "groups" : [ ]
   }, {
+    "id" : "c777e6f8-28ef-4859-81c3-622650151904",
+    "username" : "hilary.rollinger@shane-longman.org",
+    "firstName" : "Hilary Rollinger",
+    "lastName" : "Rollinger",
+    "email" : "hilary.rollinger@shane-longman.org",
+    "emailVerified" : false,
+    "attributes" : {
+      "employeeType" : [ "analyst" ],
+      "LDAP_ENTRY_DN" : [ "uid=hilary.rollinger,ou=people,dc=shane-longman,dc=org" ],
+      "manager" : [ "uid=leonard.ansen,ou=people,dc=shane-longman,dc=org" ],
+      "jobTitle" : [ "Associate Analyst, Strategic Communications" ],
+      "department" : [ "Strategic Communications" ],
+      "LDAP_ID" : [ "db1acab6-4da9-1041-8f13-276a132f9ba7" ],
+      "modifyTimestamp" : [ "20260926035528Z" ],
+      "createTimestamp" : [ "20260926035528Z" ]
+    },
+    "origin" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "createdTimestamp" : 1791154228679,
+    "enabled" : true,
+    "totp" : false,
+    "federationLink" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-serendipity-dev" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "736a8bfd-24ab-4ab5-8259-07c850492643",
+    "username" : "hudson.talbot@shane-longman.org",
+    "firstName" : "Hudson Talbot",
+    "lastName" : "Talbot",
+    "email" : "hudson.talbot@shane-longman.org",
+    "emailVerified" : false,
+    "attributes" : {
+      "employeeType" : [ "consultant" ],
+      "LDAP_ENTRY_DN" : [ "uid=hudson.talbot,ou=people,dc=shane-longman,dc=org" ],
+      "manager" : [ "uid=leonard.ansen,ou=people,dc=shane-longman,dc=org" ],
+      "jobTitle" : [ "Consultant, Strategic Communications" ],
+      "department" : [ "Strategic Communications" ],
+      "LDAP_ID" : [ "db1a976c-4da9-1041-8f10-276a132f9ba7" ],
+      "modifyTimestamp" : [ "20260926035528Z" ],
+      "createTimestamp" : [ "20260926035528Z" ]
+    },
+    "origin" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "createdTimestamp" : 1791149831899,
+    "enabled" : true,
+    "totp" : false,
+    "federationLink" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-serendipity-dev" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "819e970a-c3d5-412a-9ef9-8831debcc35e",
+    "username" : "james.farrell@shane-longman.org",
+    "firstName" : "James Farrell",
+    "lastName" : "Farrell",
+    "email" : "james.farrell@shane-longman.org",
+    "emailVerified" : false,
+    "attributes" : {
+      "employeeType" : [ "partner" ],
+      "LDAP_ENTRY_DN" : [ "uid=james.farrell,ou=people,dc=shane-longman,dc=org" ],
+      "jobTitle" : [ "Chief Executive Officer" ],
+      "department" : [ "Executive" ],
+      "LDAP_ID" : [ "db19a550-4da9-1041-8f08-276a132f9ba7" ],
+      "modifyTimestamp" : [ "20260926035528Z" ],
+      "createTimestamp" : [ "20260926035528Z" ]
+    },
+    "origin" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "createdTimestamp" : 1791149831877,
+    "enabled" : true,
+    "totp" : false,
+    "federationLink" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-serendipity-dev" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "23f97038-5fd4-428b-88d1-4cb5a37cfb54",
+    "username" : "lee.wolf@shane-longman.org",
+    "firstName" : "Lee Wolf",
+    "lastName" : "Wolf",
+    "email" : "lee.wolf@shane-longman.org",
+    "emailVerified" : false,
+    "attributes" : {
+      "employeeType" : [ "senior-manager" ],
+      "LDAP_ENTRY_DN" : [ "uid=lee.wolf,ou=people,dc=shane-longman,dc=org" ],
+      "manager" : [ "uid=james.farrell,ou=people,dc=shane-longman,dc=org" ],
+      "jobTitle" : [ "Director, Federal Affairs" ],
+      "department" : [ "Federal Affairs" ],
+      "LDAP_ID" : [ "db19c15c-4da9-1041-8f09-276a132f9ba7" ],
+      "modifyTimestamp" : [ "20260926035528Z" ],
+      "createTimestamp" : [ "20260926035528Z" ]
+    },
+    "origin" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "createdTimestamp" : 1791149831882,
+    "enabled" : true,
+    "totp" : false,
+    "federationLink" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-serendipity-dev" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "8ced837c-a679-4d4c-bbfe-25b8c4d26e13",
+    "username" : "leonard.ansen@shane-longman.org",
+    "firstName" : "Leonard Ansen",
+    "lastName" : "Ansen",
+    "email" : "leonard.ansen@shane-longman.org",
+    "emailVerified" : false,
+    "attributes" : {
+      "employeeType" : [ "senior-manager" ],
+      "LDAP_ENTRY_DN" : [ "uid=leonard.ansen,ou=people,dc=shane-longman,dc=org" ],
+      "manager" : [ "uid=james.farrell,ou=people,dc=shane-longman,dc=org" ],
+      "jobTitle" : [ "Director, Strategic Communications" ],
+      "department" : [ "Strategic Communications" ],
+      "LDAP_ID" : [ "db1a0090-4da9-1041-8f0a-276a132f9ba7" ],
+      "modifyTimestamp" : [ "20260926035528Z" ],
+      "createTimestamp" : [ "20260926035528Z" ]
+    },
+    "origin" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "createdTimestamp" : 1791149831885,
+    "enabled" : true,
+    "totp" : false,
+    "federationLink" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-serendipity-dev" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "7c1da683-3451-4015-94af-29e557520042",
+    "username" : "max.lubin@shane-longman.org",
+    "firstName" : "Max Lubin",
+    "lastName" : "Lubin",
+    "email" : "max.lubin@shane-longman.org",
+    "emailVerified" : false,
+    "attributes" : {
+      "employeeType" : [ "manager" ],
+      "LDAP_ENTRY_DN" : [ "uid=max.lubin,ou=people,dc=shane-longman,dc=org" ],
+      "manager" : [ "uid=leonard.ansen,ou=people,dc=shane-longman,dc=org" ],
+      "jobTitle" : [ "Head of Business Development" ],
+      "department" : [ "Business Development" ],
+      "LDAP_ID" : [ "db1a2fde-4da9-1041-8f0b-276a132f9ba7" ],
+      "modifyTimestamp" : [ "20260926035528Z" ],
+      "createTimestamp" : [ "20260926035528Z" ]
+    },
+    "origin" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "createdTimestamp" : 1791149831887,
+    "enabled" : true,
+    "totp" : false,
+    "federationLink" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-serendipity-dev" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "7a740a99-3bf1-4046-a411-da7223cb136d",
+    "username" : "michelle.hauptmann@shane-longman.org",
+    "firstName" : "Michelle Hauptmann",
+    "lastName" : "Hauptmann",
+    "email" : "michelle.hauptmann@shane-longman.org",
+    "emailVerified" : false,
+    "attributes" : {
+      "employeeType" : [ "consultant" ],
+      "LDAP_ENTRY_DN" : [ "uid=michelle.hauptmann,ou=people,dc=shane-longman,dc=org" ],
+      "manager" : [ "uid=leonard.ansen,ou=people,dc=shane-longman,dc=org" ],
+      "jobTitle" : [ "Consultant, Strategic Communications" ],
+      "department" : [ "Strategic Communications" ],
+      "LDAP_ID" : [ "db1a895c-4da9-1041-8f0f-276a132f9ba7" ],
+      "modifyTimestamp" : [ "20260926035528Z" ],
+      "createTimestamp" : [ "20260926035528Z" ]
+    },
+    "origin" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "createdTimestamp" : 1791149831896,
+    "enabled" : true,
+    "totp" : false,
+    "federationLink" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-serendipity-dev" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
     "id" : "11d97e12-661c-4ed2-b2a9-a94c161b9d12",
     "username" : "service-account-serendipity-web-bff",
     "emailVerified" : false,
@@ -450,6 +745,89 @@
     "enabled" : true,
     "totp" : false,
     "serviceAccountClientId" : "serendipity-web-bff",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-serendipity-dev" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "d12f92c5-9eca-47eb-8239-b55501d54bee",
+    "username" : "sirkka.nieminen@shane-longman.org",
+    "firstName" : "Sirkka Nieminen",
+    "lastName" : "Nieminen",
+    "email" : "sirkka.nieminen@shane-longman.org",
+    "emailVerified" : false,
+    "attributes" : {
+      "employeeType" : [ "consultant" ],
+      "LDAP_ENTRY_DN" : [ "uid=sirkka.nieminen,ou=people,dc=shane-longman,dc=org" ],
+      "manager" : [ "uid=lee.wolf,ou=people,dc=shane-longman,dc=org" ],
+      "jobTitle" : [ "Consultant, Federal Affairs" ],
+      "department" : [ "Federal Affairs" ],
+      "LDAP_ID" : [ "db1a7c64-4da9-1041-8f0e-276a132f9ba7" ],
+      "modifyTimestamp" : [ "20260926035528Z" ],
+      "createTimestamp" : [ "20260926035528Z" ]
+    },
+    "origin" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "createdTimestamp" : 1791149831892,
+    "enabled" : true,
+    "totp" : false,
+    "federationLink" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-serendipity-dev" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "ef744da6-c37d-4637-bdcc-7c9cfe08a3d9",
+    "username" : "system@shanelongman.local",
+    "firstName" : "System Account",
+    "lastName" : "Account",
+    "email" : "system@shanelongman.local",
+    "emailVerified" : false,
+    "attributes" : {
+      "employeeType" : [ "system-administrator" ],
+      "LDAP_ENTRY_DN" : [ "uid=system,ou=people,dc=shane-longman,dc=org" ],
+      "jobTitle" : [ "System Account" ],
+      "department" : [ "System" ],
+      "LDAP_ID" : [ "db1b02ec-4da9-1041-8f16-276a132f9ba7" ],
+      "modifyTimestamp" : [ "20260926035528Z" ],
+      "createTimestamp" : [ "20260926035528Z" ]
+    },
+    "origin" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "createdTimestamp" : 1791154228683,
+    "enabled" : true,
+    "totp" : false,
+    "federationLink" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-serendipity-dev" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "8cab0db7-fe80-4e5d-9709-518031a3e79b",
+    "username" : "wendy.foley@shane-longman.org",
+    "firstName" : "Wendy Foley",
+    "lastName" : "Foley",
+    "email" : "wendy.foley@shane-longman.org",
+    "emailVerified" : false,
+    "attributes" : {
+      "employeeType" : [ "manager" ],
+      "LDAP_ENTRY_DN" : [ "uid=wendy.foley,ou=people,dc=shane-longman,dc=org" ],
+      "manager" : [ "uid=leonard.ansen,ou=people,dc=shane-longman,dc=org" ],
+      "jobTitle" : [ "Head of Client Management" ],
+      "department" : [ "Client Management" ],
+      "LDAP_ID" : [ "db1a446a-4da9-1041-8f0c-276a132f9ba7" ],
+      "modifyTimestamp" : [ "20260926035528Z" ],
+      "createTimestamp" : [ "20260926035528Z" ]
+    },
+    "origin" : "8CAeux6uRYun2UHe-Vf1Yw",
+    "createdTimestamp" : 1791149831889,
+    "enabled" : true,
+    "totp" : false,
+    "federationLink" : "8CAeux6uRYun2UHe-Vf1Yw",
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
@@ -1382,15 +1760,6 @@
         "allowed-protocol-mapper-types" : [ "saml-user-property-mapper", "saml-role-list-mapper", "oidc-sha256-pairwise-sub-mapper", "saml-user-attribute-mapper", "oidc-usermodel-property-mapper", "oidc-address-mapper", "oidc-usermodel-attribute-mapper", "oidc-full-name-mapper" ]
       }
     }, {
-      "id" : "2c9efe79-5760-4068-9c69-574e83f8db2a",
-      "name" : "Allowed Protocol Mapper Types",
-      "providerId" : "allowed-protocol-mappers",
-      "subType" : "authenticated",
-      "subComponents" : { },
-      "config" : {
-        "allowed-protocol-mapper-types" : [ "oidc-address-mapper", "oidc-usermodel-attribute-mapper", "oidc-full-name-mapper", "saml-role-list-mapper", "saml-user-attribute-mapper", "oidc-sha256-pairwise-sub-mapper", "saml-user-property-mapper", "oidc-usermodel-property-mapper" ]
-      }
-    }, {
       "id" : "af74ddfa-3b5f-41f9-87fc-b823837aad2e",
       "name" : "Allowed Client Scopes",
       "providerId" : "allowed-client-templates",
@@ -1423,6 +1792,15 @@
       "subComponents" : { },
       "config" : { }
     }, {
+      "id" : "2c9efe79-5760-4068-9c69-574e83f8db2a",
+      "name" : "Allowed Protocol Mapper Types",
+      "providerId" : "allowed-protocol-mappers",
+      "subType" : "authenticated",
+      "subComponents" : { },
+      "config" : {
+        "allowed-protocol-mapper-types" : [ "oidc-address-mapper", "oidc-usermodel-attribute-mapper", "oidc-full-name-mapper", "saml-role-list-mapper", "saml-user-attribute-mapper", "oidc-sha256-pairwise-sub-mapper", "saml-user-property-mapper", "oidc-usermodel-property-mapper" ]
+      }
+    }, {
       "id" : "39f1d6f5-5c74-40e6-81cf-9a9b4835f9a2",
       "name" : "Trusted Hosts",
       "providerId" : "trusted-hosts",
@@ -1441,6 +1819,201 @@
         "kc.user.profile.config" : [ "{\"attributes\":[{\"name\":\"username\",\"displayName\":\"${username}\",\"validations\":{\"length\":{\"min\":3,\"max\":255},\"username-prohibited-characters\":{},\"up-username-not-idn-homograph\":{}},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"email\",\"displayName\":\"${email}\",\"validations\":{\"email\":{},\"length\":{\"max\":255}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"firstName\",\"displayName\":\"${firstName}\",\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"lastName\",\"displayName\":\"${lastName}\",\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"jobTitle\",\"displayName\":\"jobTitle\",\"validations\":{},\"annotations\":{},\"permissions\":{\"view\":[],\"edit\":[\"admin\"]},\"multivalued\":false},{\"name\":\"department\",\"displayName\":\"department\",\"validations\":{},\"annotations\":{},\"permissions\":{\"view\":[],\"edit\":[\"admin\"]},\"multivalued\":false},{\"name\":\"employeeType\",\"displayName\":\"employeeType\",\"validations\":{},\"annotations\":{},\"permissions\":{\"view\":[],\"edit\":[\"admin\"]},\"multivalued\":false},{\"name\":\"manager\",\"displayName\":\"manager\",\"validations\":{},\"annotations\":{},\"permissions\":{\"view\":[],\"edit\":[\"admin\"]},\"multivalued\":false}],\"groups\":[{\"name\":\"user-metadata\",\"displayHeader\":\"User metadata\",\"displayDescription\":\"Attributes, which refer to user metadata\"}]}" ]
       }
     } ],
+    "org.keycloak.storage.UserStorageProvider" : [ {
+      "id" : "8CAeux6uRYun2UHe-Vf1Yw",
+      "name" : "OpenLDAP",
+      "providerId" : "ldap",
+      "subComponents" : {
+        "org.keycloak.storage.ldap.mappers.LDAPStorageMapper" : [ {
+          "id" : "df9c1c49-2620-47e4-abb2-9d5e7034c774",
+          "name" : "employee-type",
+          "providerId" : "user-attribute-ldap-mapper",
+          "subComponents" : { },
+          "config" : {
+            "ldap.attribute" : [ "employeeType" ],
+            "attribute.force.default" : [ "false" ],
+            "is.mandatory.in.ldap" : [ "false" ],
+            "is.binary.attribute" : [ "false" ],
+            "read.only" : [ "true" ],
+            "always.read.value.from.ldap" : [ "false" ],
+            "user.model.attribute" : [ "employeeType" ]
+          }
+        }, {
+          "id" : "83fcb6de-c42e-4bf0-9d45-04c908f2c154",
+          "name" : "first name",
+          "providerId" : "user-attribute-ldap-mapper",
+          "subComponents" : { },
+          "config" : {
+            "ldap.attribute" : [ "cn" ],
+            "is.mandatory.in.ldap" : [ "true" ],
+            "always.read.value.from.ldap" : [ "true" ],
+            "read.only" : [ "true" ],
+            "user.model.attribute" : [ "firstName" ]
+          }
+        }, {
+          "id" : "82d6fcfd-5823-4ed9-abe6-058eaf68a2bf",
+          "name" : "Kerberos principal attribute mapper",
+          "providerId" : "kerberos-principal-attribute-mapper",
+          "subComponents" : { },
+          "config" : { }
+        }, {
+          "id" : "08574f54-c007-4d03-8410-dd65a64a6fbe",
+          "name" : "groups-dn",
+          "providerId" : "group-ldap-mapper",
+          "subComponents" : { },
+          "config" : {
+            "mode" : [ "IMPORT" ],
+            "membership.attribute.type" : [ "DN" ],
+            "user.roles.retrieve.strategy" : [ "LOAD_GROUPS_BY_MEMBER_ATTRIBUTE" ],
+            "group.name.ldap.attribute" : [ "cn" ],
+            "membership.user.ldap.attribute" : [ "uid" ],
+            "preserve.group.inheritance" : [ "false" ],
+            "membership.ldap.attribute" : [ "member" ],
+            "ignore.missing.groups" : [ "false" ],
+            "group.object.classes" : [ "groupOfNames" ],
+            "groups.dn" : [ "ou=groups,dc=shane-longman,dc=org" ],
+            "memberof.ldap.attribute" : [ "memberOf" ],
+            "drop.non.existing.groups.during.sync" : [ "true" ],
+            "groups.path" : [ "/" ]
+          }
+        }, {
+          "id" : "086e5cdb-bf2a-46e0-bea3-dd0c01301953",
+          "name" : "department",
+          "providerId" : "user-attribute-ldap-mapper",
+          "subComponents" : { },
+          "config" : {
+            "ldap.attribute" : [ "departmentNumber" ],
+            "attribute.force.default" : [ "false" ],
+            "is.mandatory.in.ldap" : [ "false" ],
+            "is.binary.attribute" : [ "false" ],
+            "read.only" : [ "true" ],
+            "always.read.value.from.ldap" : [ "false" ],
+            "user.model.attribute" : [ "department" ]
+          }
+        }, {
+          "id" : "9d1691ce-5a68-463c-9024-976ddbdcb7cd",
+          "name" : "manager-dn",
+          "providerId" : "user-attribute-ldap-mapper",
+          "subComponents" : { },
+          "config" : {
+            "ldap.attribute" : [ "manager" ],
+            "attribute.force.default" : [ "false" ],
+            "is.mandatory.in.ldap" : [ "false" ],
+            "is.binary.attribute" : [ "false" ],
+            "always.read.value.from.ldap" : [ "false" ],
+            "read.only" : [ "true" ],
+            "user.model.attribute" : [ "manager" ]
+          }
+        }, {
+          "id" : "1e4d01f1-cb4e-4804-8392-b98c3f02ef00",
+          "name" : "modify date",
+          "providerId" : "user-attribute-ldap-mapper",
+          "subComponents" : { },
+          "config" : {
+            "ldap.attribute" : [ "modifyTimestamp" ],
+            "is.mandatory.in.ldap" : [ "false" ],
+            "read.only" : [ "true" ],
+            "always.read.value.from.ldap" : [ "true" ],
+            "user.model.attribute" : [ "modifyTimestamp" ]
+          }
+        }, {
+          "id" : "8547f798-d36e-4046-a906-041af84dea55",
+          "name" : "last name",
+          "providerId" : "user-attribute-ldap-mapper",
+          "subComponents" : { },
+          "config" : {
+            "ldap.attribute" : [ "sn" ],
+            "is.mandatory.in.ldap" : [ "true" ],
+            "read.only" : [ "true" ],
+            "always.read.value.from.ldap" : [ "true" ],
+            "user.model.attribute" : [ "lastName" ]
+          }
+        }, {
+          "id" : "b74cbd79-a229-4be4-b0cf-7ba1cdf67b0f",
+          "name" : "email",
+          "providerId" : "user-attribute-ldap-mapper",
+          "subComponents" : { },
+          "config" : {
+            "ldap.attribute" : [ "mail" ],
+            "is.mandatory.in.ldap" : [ "false" ],
+            "read.only" : [ "true" ],
+            "always.read.value.from.ldap" : [ "false" ],
+            "user.model.attribute" : [ "email" ]
+          }
+        }, {
+          "id" : "ce6b8bab-a497-4754-8563-f1676442e1b0",
+          "name" : "creation date",
+          "providerId" : "user-attribute-ldap-mapper",
+          "subComponents" : { },
+          "config" : {
+            "ldap.attribute" : [ "createTimestamp" ],
+            "is.mandatory.in.ldap" : [ "false" ],
+            "read.only" : [ "true" ],
+            "always.read.value.from.ldap" : [ "true" ],
+            "user.model.attribute" : [ "createTimestamp" ]
+          }
+        }, {
+          "id" : "a43e3465-801b-4783-8b66-1fb69e8cf148",
+          "name" : "username",
+          "providerId" : "user-attribute-ldap-mapper",
+          "subComponents" : { },
+          "config" : {
+            "ldap.attribute" : [ "mail" ],
+            "is.mandatory.in.ldap" : [ "true" ],
+            "always.read.value.from.ldap" : [ "false" ],
+            "read.only" : [ "true" ],
+            "user.model.attribute" : [ "username" ]
+          }
+        }, {
+          "id" : "04827a21-9db0-4847-be55-505deed7c0b8",
+          "name" : "job-title",
+          "providerId" : "user-attribute-ldap-mapper",
+          "subComponents" : { },
+          "config" : {
+            "ldap.attribute" : [ "title" ],
+            "attribute.force.default" : [ "false" ],
+            "is.mandatory.in.ldap" : [ "false" ],
+            "is.binary.attribute" : [ "false" ],
+            "read.only" : [ "true" ],
+            "always.read.value.from.ldap" : [ "false" ],
+            "user.model.attribute" : [ "jobTitle" ]
+          }
+        } ]
+      },
+      "config" : {
+        "fullSyncPeriod" : [ "-1" ],
+        "pagination" : [ "true" ],
+        "connectionTrace" : [ "false" ],
+        "startTls" : [ "false" ],
+        "usersDn" : [ "ou=people,dc=shane-longman,dc=org" ],
+        "connectionPooling" : [ "true" ],
+        "cachePolicy" : [ "DEFAULT" ],
+        "useKerberosForPasswordAuthentication" : [ "false" ],
+        "importEnabled" : [ "true" ],
+        "enabled" : [ "true" ],
+        "bindCredential" : [ "secret" ],
+        "changedSyncPeriod" : [ "-1" ],
+        "usernameLDAPAttribute" : [ "mail" ],
+        "bindDn" : [ "cn=admin,dc=shane-longman,dc=org" ],
+        "lastSync" : [ "1791157020" ],
+        "vendor" : [ "other" ],
+        "uuidLDAPAttribute" : [ "entryUUID" ],
+        "allowKerberosAuthentication" : [ "false" ],
+        "connectionUrl" : [ "ldap://openldap:389" ],
+        "syncRegistrations" : [ "true" ],
+        "authType" : [ "simple" ],
+        "krbPrincipalAttribute" : [ "krb5PrincipalName" ],
+        "customUserSearchFilter" : [ "(objectClass=inetOrgPerson)" ],
+        "searchScope" : [ "1" ],
+        "useTruststoreSpi" : [ "always" ],
+        "usePasswordModifyExtendedOp" : [ "false" ],
+        "trustEmail" : [ "false" ],
+        "userObjectClasses" : [ "inetOrgPerson, organizationalPerson, person" ],
+        "rdnLDAPAttribute" : [ "uid" ],
+        "editMode" : [ "READ_ONLY" ],
+        "validatePasswordPolicy" : [ "false" ]
+      }
+    } ],
     "org.keycloak.keys.KeyProvider" : [ {
       "id" : "825e153d-05f1-4bed-b15c-e7c7987ba3f4",
       "name" : "aes-generated",
@@ -1450,6 +2023,18 @@
         "kid" : [ "8f3ff0eb-8544-43a3-9d90-ea51a23fdebe" ],
         "secret" : [ "nXCa2m4EUZljOY7z_KZqRQ" ],
         "priority" : [ "100" ]
+      }
+    }, {
+      "id" : "88761fb1-fac5-4a75-8a0b-62c571d68569",
+      "name" : "rsa-enc-generated",
+      "providerId" : "rsa-enc-generated",
+      "subComponents" : { },
+      "config" : {
+        "privateKey" : [ "MIIEpQIBAAKCAQEArCXh4hyxPNTDbykl4vYE/1SlGaiNAQGBG6aOR8jJ/o5swnHDICsiindPV82+krc1vo2loed6UkRibEEYociCZD3uqi2RNLwpAeRBgROeWcpwhoqK1jdwyJ1oRhkx0Vk0bDD7k3Y/i8e7aVCTepcEM3XznEWQrUyAER5eKR22lDmgPgJ27cnLavPHlGqY2qrm/qs6uuE7gB8RfKKwboOI4io0xaM8XFhimKR8t2luDx9f6Fz3SX/IvR08dfIUnXzI9sJlP6tlNj5n7/ttnO6F7y6VdDBEp2dOFHEzKPgoXGaSNK2yLvZpOPpgInxZf9LxG5w7EN9hqa1a09p6iTRp0QIDAQABAoIBAC4uN2t+APntpcPzSOuazfplDalVcwYbDjSJuM9/CNkWAg0jkZHWoHx+xzUpx376URueShmlzEW3fKPHzsDP1lLn3leew75e361XO09SIP+7c/ZTwiz3UHUw7OEpLxkXEh4YAdUsOp3X5em5qOaRDppzgPeiHc6voAd3mxDynKEkZsJdvjw9g1LXhd4wlso9htRufBaGLeRcZF9ykfyU1HFA/7qXPj2lXHQlk4AIdHT4KsrOe+/i8/lzzkDjv+vbW5tWHjCAA5hqaDhhCHqvH1UWIRugmFEf2Y8qPKJDP0FSs3fS9G468+5RYQPEilxZ1ybK+qrHCPD4k50ogNMivyUCgYEA72Pz0FbIAc6aQk9KcyJfYOGfm48QrqNTwA0cAHDzbtc/Xb8MIPbweuEESdwP4Uea8yeWCMQVK9fybaF9x/+Taef7t100FEetrLKw5/NOu1HHyNmhn6FqEbJkLmWCJmuR6kVUI7u01HnPYvu8A9qISr9wAC8ofC5ZZbSRxvfBnLsCgYEAuBeSJNmdC42Z+Pov5x+36o6aeU/dPdTEUWxlc9nCd+6PcJCShc+QCMc/3fiLrUnNNH0x1DubguXIMHtIGCTjvnPR8SI5+6uC2GiXo+GS8sHIgHtBSCu+cCmOdLAgHkS7mWjqN878acIa0jVVYYADFsNZ8gVogM5CyAe1LrPkUOMCgYEAg5gUXQB3bdbeoXjo2iWY/K7KiD660uVhkn8iV3O/vbyBTs1Io45bX5D2RIu+Bv7PxL6MEUGIydMppu5RMHHj3SHzEzce+87zP63y5W6wZvRruJM574BRyGyh+Yc/ZlNXoMp/mC0FGI/lWuo6znuA1GYr8U37GVh5OBls0U08lyUCgYEAsZssCBlbBlZrAmZ96MIVMlq6deezT4ACl3u4tXiVwheKk9MnSanjEFULLSApwdm9/LH8bQHFGxiNdxi5iXGtt4UOO1IGFuR1rEvcYOO0XjjPNAW2CecKKDQvmCyEEC/Hvk4WChnMNExsi/mgkhxq3n9CO9kz5XEZxNqK1q//ynkCgYEAgAMxNePyKpo/alXq/ApPM9iqO2D3ObZcoHsXMw5yQCao4tIuwux7bi8BN8TAGEZZ7tWM8fHrZCr4Iwl6SI+/Q0fmqSn2wibqHN0QyHFgz/6is3Mgz3TBaRCrGtTVjCJ0rcNtbkjh+uELs1NXW5mXOqIC5PgacYnzBDx8A43uNw0=" ],
+        "keyUse" : [ "ENC" ],
+        "certificate" : [ "MIICrTCCAZUCBgGgINonWTANBgkqhkiG9w0BAQsFADAaMRgwFgYDVQQDDA9zZXJlbmRpcGl0eS1kZXYwHhcNMjYwODIwMjAyNDIyWhcNMzYwODIwMjAyNjAyWjAaMRgwFgYDVQQDDA9zZXJlbmRpcGl0eS1kZXYwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCsJeHiHLE81MNvKSXi9gT/VKUZqI0BAYEbpo5HyMn+jmzCccMgKyKKd09Xzb6StzW+jaWh53pSRGJsQRihyIJkPe6qLZE0vCkB5EGBE55ZynCGiorWN3DInWhGGTHRWTRsMPuTdj+Lx7tpUJN6lwQzdfOcRZCtTIARHl4pHbaUOaA+Anbtyctq88eUapjaqub+qzq64TuAHxF8orBug4jiKjTFozxcWGKYpHy3aW4PH1/oXPdJf8i9HTx18hSdfMj2wmU/q2U2Pmfv+22c7oXvLpV0MESnZ04UcTMo+ChcZpI0rbIu9mk4+mAifFl/0vEbnDsQ32GprVrT2nqJNGnRAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAIsuMKFiX3/2qWK9YK2BG8VQTcKvVL84TUhPo+jc5zM5i7CAu+cEYElaT5DlSjMkj5wJRajylu5THXQqV7m3rfzVtuDuYVrvY5/kOwOtOybJOjvv2PVzHqBwiuxdRu/WTaHTMORzrl//CR46shx4k/zSbbwx1uCPSt8CRZ1wsZMdgfXOZW0/STcdzCn4smC3OMJj36Ox/pCt2ZNQ8gWUrv9gflU4f3n0Mv9cB5E25qsMt4lzNVYgAJTV8ERZSWwt0lU5PICVvBVSNJbp7z4nTHgGNhfVg6nCsPOEz2xzx/Q6GRqQj029nTYbhy2ARf6b+kn5L3PWs8u1qJbLkVpOh9g=" ],
+        "priority" : [ "100" ],
+        "algorithm" : [ "RSA-OAEP" ]
       }
     }, {
       "id" : "95aa2c20-abb8-4ce7-b9a7-6fb13dba5e1b",
@@ -1472,18 +2057,6 @@
         "keyUse" : [ "SIG" ],
         "certificate" : [ "MIICrTCCAZUCBgGgINonOzANBgkqhkiG9w0BAQsFADAaMRgwFgYDVQQDDA9zZXJlbmRpcGl0eS1kZXYwHhcNMjYwODIwMjAyNDIyWhcNMzYwODIwMjAyNjAyWjAaMRgwFgYDVQQDDA9zZXJlbmRpcGl0eS1kZXYwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQD1wMYsmh8dHieNoQDwZKXWIA9V/ZzUQfRtFZitlgnnEUJh+1mumXJhC4lUGaJhCnQJ+yer5f8WBsq1wkF401W+1CvZroCQm3VTCcu6vAawOOMJvPEZgYsTopXRy7gHwBA5BoWTchEf4zKl5lKFWW5580p6nSVS3dLO0Exmn8GvFwpCIq49Quh4WeDZlHlGAWpFqpyO7yYnahNyCl8q45sTan+w/dEOzQRjJJ361S73JVcb/cE3rcr8bRMxGNi/LCxQAMTYedkTli/YBBfz1b7C9dTKhcs0Kg6nq1/99JnC+vEPp/p7/L45M8Euosn3j2O1HgMgmQG5c7tpu6iuOzuxAgMBAAEwDQYJKoZIhvcNAQELBQADggEBANJGIjoTnP7EwFwn2qPW7j2gjqvIE/J4HV5hh5rGVbe3UFSP7nrV8IkJoMQTnLZKEXmrL2Rha/hYOhc9GkjE4XXF6XAmwWVnB1bEznCqeXMn1N8Fv9maMvRCT5oNOCsyk81DVPYCHe8b4hGr7FQTkPmwaldXQR1ecCkyThsLw4+6J6RlJCuG1pwnJVXMm/7rMImtOC9ErUgibB7j6icasCF9uJ/+b0TN5EJR1XdNYcXAaTgNB5d5pzRUuv8wwyJLhECZpfJsh1l1aNmqnlRAd8LaZBobMyYkdhgOnQ5k+c82mP2962ZRww2+f0capRWFDCqbUwVE1WomssVJa07DfUs=" ],
         "priority" : [ "100" ]
-      }
-    }, {
-      "id" : "88761fb1-fac5-4a75-8a0b-62c571d68569",
-      "name" : "rsa-enc-generated",
-      "providerId" : "rsa-enc-generated",
-      "subComponents" : { },
-      "config" : {
-        "privateKey" : [ "MIIEpQIBAAKCAQEArCXh4hyxPNTDbykl4vYE/1SlGaiNAQGBG6aOR8jJ/o5swnHDICsiindPV82+krc1vo2loed6UkRibEEYociCZD3uqi2RNLwpAeRBgROeWcpwhoqK1jdwyJ1oRhkx0Vk0bDD7k3Y/i8e7aVCTepcEM3XznEWQrUyAER5eKR22lDmgPgJ27cnLavPHlGqY2qrm/qs6uuE7gB8RfKKwboOI4io0xaM8XFhimKR8t2luDx9f6Fz3SX/IvR08dfIUnXzI9sJlP6tlNj5n7/ttnO6F7y6VdDBEp2dOFHEzKPgoXGaSNK2yLvZpOPpgInxZf9LxG5w7EN9hqa1a09p6iTRp0QIDAQABAoIBAC4uN2t+APntpcPzSOuazfplDalVcwYbDjSJuM9/CNkWAg0jkZHWoHx+xzUpx376URueShmlzEW3fKPHzsDP1lLn3leew75e361XO09SIP+7c/ZTwiz3UHUw7OEpLxkXEh4YAdUsOp3X5em5qOaRDppzgPeiHc6voAd3mxDynKEkZsJdvjw9g1LXhd4wlso9htRufBaGLeRcZF9ykfyU1HFA/7qXPj2lXHQlk4AIdHT4KsrOe+/i8/lzzkDjv+vbW5tWHjCAA5hqaDhhCHqvH1UWIRugmFEf2Y8qPKJDP0FSs3fS9G468+5RYQPEilxZ1ybK+qrHCPD4k50ogNMivyUCgYEA72Pz0FbIAc6aQk9KcyJfYOGfm48QrqNTwA0cAHDzbtc/Xb8MIPbweuEESdwP4Uea8yeWCMQVK9fybaF9x/+Taef7t100FEetrLKw5/NOu1HHyNmhn6FqEbJkLmWCJmuR6kVUI7u01HnPYvu8A9qISr9wAC8ofC5ZZbSRxvfBnLsCgYEAuBeSJNmdC42Z+Pov5x+36o6aeU/dPdTEUWxlc9nCd+6PcJCShc+QCMc/3fiLrUnNNH0x1DubguXIMHtIGCTjvnPR8SI5+6uC2GiXo+GS8sHIgHtBSCu+cCmOdLAgHkS7mWjqN878acIa0jVVYYADFsNZ8gVogM5CyAe1LrPkUOMCgYEAg5gUXQB3bdbeoXjo2iWY/K7KiD660uVhkn8iV3O/vbyBTs1Io45bX5D2RIu+Bv7PxL6MEUGIydMppu5RMHHj3SHzEzce+87zP63y5W6wZvRruJM574BRyGyh+Yc/ZlNXoMp/mC0FGI/lWuo6znuA1GYr8U37GVh5OBls0U08lyUCgYEAsZssCBlbBlZrAmZ96MIVMlq6deezT4ACl3u4tXiVwheKk9MnSanjEFULLSApwdm9/LH8bQHFGxiNdxi5iXGtt4UOO1IGFuR1rEvcYOO0XjjPNAW2CecKKDQvmCyEEC/Hvk4WChnMNExsi/mgkhxq3n9CO9kz5XEZxNqK1q//ynkCgYEAgAMxNePyKpo/alXq/ApPM9iqO2D3ObZcoHsXMw5yQCao4tIuwux7bi8BN8TAGEZZ7tWM8fHrZCr4Iwl6SI+/Q0fmqSn2wibqHN0QyHFgz/6is3Mgz3TBaRCrGtTVjCJ0rcNtbkjh+uELs1NXW5mXOqIC5PgacYnzBDx8A43uNw0=" ],
-        "keyUse" : [ "ENC" ],
-        "certificate" : [ "MIICrTCCAZUCBgGgINonWTANBgkqhkiG9w0BAQsFADAaMRgwFgYDVQQDDA9zZXJlbmRpcGl0eS1kZXYwHhcNMjYwODIwMjAyNDIyWhcNMzYwODIwMjAyNjAyWjAaMRgwFgYDVQQDDA9zZXJlbmRpcGl0eS1kZXYwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCsJeHiHLE81MNvKSXi9gT/VKUZqI0BAYEbpo5HyMn+jmzCccMgKyKKd09Xzb6StzW+jaWh53pSRGJsQRihyIJkPe6qLZE0vCkB5EGBE55ZynCGiorWN3DInWhGGTHRWTRsMPuTdj+Lx7tpUJN6lwQzdfOcRZCtTIARHl4pHbaUOaA+Anbtyctq88eUapjaqub+qzq64TuAHxF8orBug4jiKjTFozxcWGKYpHy3aW4PH1/oXPdJf8i9HTx18hSdfMj2wmU/q2U2Pmfv+22c7oXvLpV0MESnZ04UcTMo+ChcZpI0rbIu9mk4+mAifFl/0vEbnDsQ32GprVrT2nqJNGnRAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAIsuMKFiX3/2qWK9YK2BG8VQTcKvVL84TUhPo+jc5zM5i7CAu+cEYElaT5DlSjMkj5wJRajylu5THXQqV7m3rfzVtuDuYVrvY5/kOwOtOybJOjvv2PVzHqBwiuxdRu/WTaHTMORzrl//CR46shx4k/zSbbwx1uCPSt8CRZ1wsZMdgfXOZW0/STcdzCn4smC3OMJj36Ox/pCt2ZNQ8gWUrv9gflU4f3n0Mv9cB5E25qsMt4lzNVYgAJTV8ERZSWwt0lU5PICVvBVSNJbp7z4nTHgGNhfVg6nCsPOEz2xzx/Q6GRqQj029nTYbhy2ARf6b+kn5L3PWs8u1qJbLkVpOh9g=" ],
-        "priority" : [ "100" ],
-        "algorithm" : [ "RSA-OAEP" ]
       }
     } ]
   },

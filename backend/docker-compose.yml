@@ -113,6 +113,7 @@ services:
     command:
       - "start-dev"
       - "--import-realm"
+      # - "--log-level=org.keycloak.storage.ldap:DEBUG,org.keycloak.models.ldap:DEBUG"
     restart: unless-stopped
     environment:
       KC_HTTP_ENABLED: "true"
