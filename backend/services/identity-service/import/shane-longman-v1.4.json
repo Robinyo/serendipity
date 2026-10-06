@@ -384,7 +384,7 @@
     "path" : "/analysts",
     "subGroups" : [ ],
     "attributes" : { },
-    "realmRoles" : [ ],
+    "realmRoles" : [ "analyst" ],
     "clientRoles" : { }
   }, {
     "id" : "d4fe8c2e-7439-4282-a9a5-36042025b77f",
@@ -392,7 +392,7 @@
     "path" : "/consultants",
     "subGroups" : [ ],
     "attributes" : { },
-    "realmRoles" : [ ],
+    "realmRoles" : [ "consultant" ],
     "clientRoles" : { }
   }, {
     "id" : "94d1c0ac-0400-4d8f-a6e4-6d4890ba4f28",
@@ -408,7 +408,7 @@
     "path" : "/managers",
     "subGroups" : [ ],
     "attributes" : { },
-    "realmRoles" : [ ],
+    "realmRoles" : [ "manager" ],
     "clientRoles" : { }
   }, {
     "id" : "1362035f-9bdc-4c0e-8eec-7e3bf5c95f12",
@@ -416,7 +416,7 @@
     "path" : "/partners",
     "subGroups" : [ ],
     "attributes" : { },
-    "realmRoles" : [ ],
+    "realmRoles" : [ "partner" ],
     "clientRoles" : { }
   }, {
     "id" : "64612cc1-4b9e-4fe5-9d28-15fc97ceab4e",
@@ -424,7 +424,7 @@
     "path" : "/senior-managers",
     "subGroups" : [ ],
     "attributes" : { },
-    "realmRoles" : [ ],
+    "realmRoles" : [ "senior-manager" ],
     "clientRoles" : { }
   }, {
     "id" : "6075a866-e6fe-4079-bfc9-d598b6c59f1a",

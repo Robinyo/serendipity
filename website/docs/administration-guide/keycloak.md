@@ -408,13 +408,8 @@ The default `user-attribute-ldap-mapper` performs a direct string copy, so it wi
 
 ### Custom Group Attribute Mapper
 
-You need to configure the `group-ldap-mapper` if you want Keycloak to recognise these group structures and assign users to them automatically.
-
+You need to configure the `group-ldap-mapper` if you want Keycloak to recognise group structures and assign users to them automatically.
 Keycloak does not read group entries or member attributes from LDAP by default — it relies on the mapper to parse your schema.
-
-### Adding a provider
-
-In Keycloak, go to User Federation $\rightarrow$ your LDAP provider $\rightarrow$ Mappers tab, click Add mapper, and select group-ldap-mapper as the Mapper Type.
 
 In Keycloak's Admin Console, for the `serendipity-dev` realm:
 
@@ -435,25 +430,22 @@ In Keycloak's Admin Console, for the `serendipity-dev` realm:
   - **LDAP Groups DN**: `ou=groups,dc=shane-longman,dc=org`
   - **Group Name LDAP Attribute**: `cn`
   - **Group Object Classes**: `groupOfNames`
+  - **Preserve Group Inheritance**: `Off`
+  - **Ignore Missing Groups**: `Off`
 
 4. Configure the group Membership settings:
 
-![Add LDAP Provider](/screen-shots/keycloak/Keycloak-groups-mapper-general-settings.png)
+![Add LDAP Provider](/screen-shots/keycloak/keycloak-groups-mapper-membership-settings.png)
 
   - **Membership LDAP Attribute**: `member`
   - **Membership Attribute Type**: `DN`
+  - **Membership User LDAP Attribute**: `uid`
+  - **Mode**: `IMPORT`
   - **User Groups Retrieve Strategy**: `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`
   - **Member-Of LDAP Attribute**: `memberOf`
+  - **Drop non-existing groups during sync**: `On`
 
-Save the mapper settings, then click Sync LDAP Groups from the Action dropdoown menu.
-
-
-
-
-
-
-
-
+Save the mapper settings, then select **Sync LDAP Groups** from the **Action** dropdown menu.
 
 ## Managing OpenID Connect and SAML Clients
 
