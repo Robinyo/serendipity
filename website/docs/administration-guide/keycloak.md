@@ -447,6 +447,22 @@ In Keycloak's Admin Console, for the `serendipity-dev` realm:
 
 Save the mapper settings, then select **Sync LDAP Groups** from the **Action** dropdown menu.
 
+## Assigning permissions using roles and groups
+
+Roles and groups are used to manage access to applications.
+Roles define specific applications permissions and typically apply to one type of user.
+Groups are a collection of users to which you assign one or more roles.
+
+The Shane Longman sample organisation utilises the following roles:
+
+| Tier                        | Keycloak role name | Common titles (the role covers all of these) | Who this is in the sample                                                                                                                                   |
+|-----------------------------|--------------------|----------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Entry-level practitioner    | `analyst`          | Analyst, Associate Analyst                   | Graduate assistants and junior staff who handle data collection, market research, financial modeling, slide deck preparation, and primary task execution.   |
+| Mid-level professional      | `consultant`       | Consultant, Senior Consultant                | Experienced professionals responsible for managing specific workstreams, conducting client interviews, designing solutions, and drafting deliverables.      |
+| Day-to-day project leader   | `manager`          | Manager, Engagement Manager, Project Leader  | Experienced leaders who oversee day-to-day project operations, manage delivery timelines, lead consultant teams, and maintain primary client relationships. |
+| Senior practice leader      | `senior-manager`   | Senior Manager, Director, Associate Partner  | Senior leaders tasked with driving multi-project delivery, leading sector or functional practice areas, and actively generating new business.               |
+| Co-owner / senior executive | `partner`          | Partner, Principal, Managing Director        | Co-owners or senior executives of the firm focused on revenue generation, strategic client account management, firm governance, and practice development.   |
+
 ## Managing OpenID Connect and SAML Clients
 
 ### Creating an OpenID Connect client
