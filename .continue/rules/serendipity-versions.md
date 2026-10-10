@@ -90,7 +90,7 @@
 - **OIDC provider** via `spring.security.oauth2.client.provider.keycloak`.
 - **Keycloak issuer:** `https://serendipity-identity-service.localhost/realms/serendipity-dev`.
 - **Client ID:** `serendipity-web-bff`.
-- **`user-name-attribute: username`** — the BFF reads the `username` attribute (one of Keycloak's four default managed attributes: `username`, `email`, `firstName`, `lastName`) to identify the authenticated user. This is consistent with the project's `.knowledge/backend/security.md` guidance.
+- **`user-name-attribute: preferred_username`** — the BFF identifies the authenticated user from the ID token's `preferred_username` claim (the OIDC claim name for Keycloak's `username` managed attribute) — this is Spring Security's default and matches `application.yml` line 55. Distinct from Keycloak's managed user attribute name (`username`), which is what appears in the realm user profile.
 - **Scopes:** `openid`, `profile`, `email`.
 - **Grant type:** `authorization_code` with PKCE (implied).
 - **`server.forward-headers-strategy: framework`** — for proxied/deployed deployments.
@@ -182,7 +182,7 @@
 
 ## Known Tensions / Things to Verify
 
-1. **Resolved — `username` is the `user-name-attribute`.** The BFF's `application.yml` uses `user-name-attribute: username` (line 55), matching the project's `.knowledge/backend/security.md` guidance. The `username` attribute is one of Keycloak's four default managed attributes (`username`, `email`, `firstName`, `lastName`) and is the attribute the BFF reads to identify the authenticated user. (Previously there was a tension where `application.yml` used `preferred_username`; that has been fixed.)
+1. **Resolved — the `user-name-attribute` is `preferred_username`.** The BFF's `application.yml` uses `user-name-attribute: preferred_username` (line 55). This is the OIDC claim name (`preferred_username`) in the ID token — it is not a misspelling for the managed attribute. Keycloak's managed user attribute is named `username` (one of the four defaults: `username`, `email`, `firstName`, `lastName`), but the claim that leaves it in tokens is `preferred_username`, which is what Spring Security's OAuth2 client reads by default.
 
 2. **Spring Boot 4 migration details** — The exact changes from Boot 3.x to Boot 4.x (auto-configuration, property namespaces, dependency management, native image) should be verified against the official Spring Boot 4 migration guide. This rules file does not claim exhaustive knowledge of Boot 4's breaking changes.
 
