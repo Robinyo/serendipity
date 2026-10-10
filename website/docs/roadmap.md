@@ -73,12 +73,12 @@ A mature, production-ready open-source Customer Engagement Platform that organis
 
 ### Interaction tracking
 
-- Log calls, emails, meetings, and notes against parties and accounts
+- Log calls, emails, meetings, and notes against accounts and contacts
 - Timeline view in the PWA showing interactions in date order
 
 ### Task and activity management
 
-- Lightweight task list tied to parties — assign, due dates, status
+- Lightweight task list tied to partys (accounts and contacts) — assign, due dates, status
 - Distinct from Camunda workflow tasks but visible alongside them
 
 ### Segments and lists
@@ -93,7 +93,7 @@ A mature, production-ready open-source Customer Engagement Platform that organis
 
 ### Search
 
-- Full-text or indexed search across parties, contacts, and notes
+- Full-text or indexed search across accounts, contacts, and notes
 - Frontend search bar backed by backend filtering
 
 ### Reporting v1
@@ -152,7 +152,7 @@ A mature, production-ready open-source Customer Engagement Platform that organis
 
 ### API-first where it matters
 
-- Public, versioned REST API for the core domain (parties, interactions, tasks)
+- Public, versioned REST API for the core domain (partys, interactions, tasks)
 - So external systems can integrate without going through the BFF
 
 ### Multi-tenancy (optional)

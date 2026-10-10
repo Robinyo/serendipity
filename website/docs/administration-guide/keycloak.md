@@ -44,21 +44,21 @@ The `master` realm should only be used to manage Keycloak.
 
 ### Creating a realm
 
-To create a new realm, in the side menu click the dropdown menu and then click the 'Create realm' button:
+To create a new realm, in the side menu click the dropdown menu and then click the **Create realm** button:
 
 ![Keycloak Admin Console Create Realm](/screen-shots/keycloak/keycloak-create-realm.png)
 
-Enter a 'Realm name' (e.g., `serendipity-dev`) and then click the 'Create' button.
+Enter a **Realm name** (e.g., `serendipity-dev`) and then click the **Create** button.
 
 :::tip
 After creation the realm selector (top-left of the Admin Console) now includes `serendipity-dev` alongside `master`. Selecting it takes you to that realm's dashboard. The realm's **Realm settings** page is reachable from the side menu and the **Login** tab shows the default login options for the realm.
 :::
 
-To update a realm's settings, select 'Realm settings' in the side menu:
+To update a realm's settings, select **Realm settings** in the side menu:
 
 ![Keycloak Admin Console Realm Settings](/screen-shots/keycloak/keycloak-realm-settings.png)
 
-On the realm's settings 'Login' tab you can control the options for users, applications, roles, and groups in the current realm:
+On the realm's settings **Login** tab you can control the options for users, applications, roles, and groups in the current realm:
 
 ![Keycloak Admin Console Realm Settings](/screen-shots/keycloak/keycloak-realm-settings-login-tab.png)
 
@@ -74,19 +74,19 @@ The new Admin Console heavily caches UI state. A hard refresh (Cmd + Shift + R o
 
 Verify that you are in the correct realm e.g., the Development Realm (`serendipity-dev`).
 
-To create a new user, select 'Users' in the side menu and then click the 'Create new user' button:
+To create a new user, select **Users** in the side menu and then click the **Create new user** button:
 
 ![Keycloak Admin Console Create User](/screen-shots/keycloak/keycloak-create-user.png)
 
-Enable the 'Email verified' slide toggle and enter an email address, a first name (i.e., given name), a last name (i.e., family name) and then click the 'Create' button.
+Enable the **Email verified** slide toggle and enter an email address, a first name (i.e., given name), a last name (i.e., family name) and then click the **Create** button.
 
 A user needs a password to sign in.
 
-To create a password, select the 'Credentials' tab and then click the 'Set password' button:
+To create a password, select the **Credentials** tab and then click the **Set password** button:
 
 ![Keycloak Admin Console Set Password](/screen-shots/keycloak/keycloak-set-password.png)
 
-Enter a password, confirm the password and disable the 'Temporary' slide toggle (so that the user does not need to update the password the first time they sign in) and then click the 'Save' button.
+Enter a password, confirm the password and disable the **Temporary** slide toggle (so that the user does not need to update the password the first time they sign in) and then click the **Save** button.
 
 Navigate to the Keycloak Account Console:
 
@@ -154,7 +154,7 @@ The `manager` attribute stores the manager's `sub` (Keycloak UUID). To set it:
 2. Open the direct report user in the Admin Console.
 3. Go to the Attributes tab.
 4. Set the attribute with Key = `manager` and Value = the manager's `sub` (the UUID copied in step 1).
-5. Click the Save button.
+5. Click the **Save** button.
 
 :::tip
 The `sub` is not labeled "sub" in the Admin Console. It is the `id` field on the user's Details tab. That is the value (UUID) you copy into the `manager` attribute.
@@ -373,7 +373,7 @@ In Keycloak's Admin Console, for the `serendipity-dev` realm:
 
 ![Add LDAP Provider](/screen-shots/keycloak/keycloak-ldap-provider-synchronization-settings.png)
 
-And then click the 'Save' button.
+And then click the **Save** button.
 
 ### Standard Built-In Mappers
 
@@ -463,25 +463,43 @@ The Shane Longman sample organisation utilises the following roles:
 | Senior practice leader      | `senior-manager`   | Senior Manager, Director, Associate Partner  | Senior leaders tasked with driving multi-project delivery, leading sector or functional practice areas, and actively generating new business.               |
 | Co-owner / senior executive | `partner`          | Partner, Principal, Managing Director        | Co-owners or senior executives of the firm focused on revenue generation, strategic client account management, firm governance, and practice development.   |
 
+### Creating a realm role
+
+Verify that you are in the correct realm e.g., the Development Realm (`serendipity-dev`).
+
+To create a new role:
+1. Select **Realm Roles** in the side menu and then click the **Create role** button.
+2. Enter a **Role Name**, enter a **Description** and then click **Save**.
+
+### Assigning realm roles to a group
+
+Verify that you are in the correct realm e.g., the Development Realm (`serendipity-dev`).
+
+1. Click **Groups** in the left sidebar menu.   
+2. Click on the name of the group you want to configure. Open the **Role mapping** tab.   
+3. Click **Assign role**.   
+4. Use the filter dropdown (set to Filter by realm roles) to view available realm roles.   
+5. Select the checkboxes for the roles you want to grant, then click **Assign**.
+
 ## Managing OpenID Connect and SAML Clients
 
 ### Creating an OpenID Connect client
 
 Verify that you are in the correct realm e.g., the Development Realm (`serendipity-dev`).
 
-To create a new client, select 'Clients' in the side menu and then click the 'Create client' button:
+To create a new client, select **Clients** in the side menu and then click the **Create client** button:
 
 ![Keycloak Admin Console Create Client 1](/screen-shots/keycloak/keycloak-create-client-1.png)
 
-Enter a 'Client ID' (e.g., `serendipity-web-bff`) and a 'Name' (e.g., `Serendipity Web BFF`) and then click the 'Next' button:
+Enter a **Client ID** (e.g., `serendipity-web-bff`) and a **Name** (e.g., `Serendipity Web BFF`) and then click the **Next** button:
 
 ![Keycloak Admin Console Create Client 2](/screen-shots/keycloak/keycloak-create-client-2.png)
 
-Enable the 'Client authentication' (i.e., OAuth 2.0 Confidential Client) slide toggle and the 'Standard flow' (i.e., OAuth 2.0 Authorization Code Flow) checkbox and then click the 'Next' button:
+Enable the **Client authentication** (i.e., OAuth 2.0 Confidential Client) slide toggle and the **Standard flow** (i.e., OAuth 2.0 Authorization Code Flow) checkbox and then click the **Next** button:
 
 ![Keycloak Admin Console Create Client 3](/screen-shots/keycloak/keycloak-create-client-3.png)
 
-Enter a 'Valid redirect URI' (e.g., `https://serendipity.localhost/*`), a valid 'Web origins' (e.g., `*`) and then click the 'Save' button.
+Enter a **Valid redirect URI** (e.g., `https://serendipity.localhost/*`), a valid **Web origins** (e.g., `*`) and then click the **Save** button.
 
 :::tip
 After saving, Keycloak takes you to the client's **Settings** page. The **Client authentication** field shows `On` and **Standard flow** shows `On`. A **Client secret** is generated and visible in the **Credentials** tab — copy it now; Keycloak does not show it again. The client appears in the **Clients** list with the name you entered.

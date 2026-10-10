@@ -37,7 +37,8 @@ const sidebars: SidebarsConfig = {
               label: 'Shane Longman',
               items: [
                 'try-install-upgrade/sample-data/shane-longman/overview',
-                'try-install-upgrade/sample-data/shane-longman/user-provisioning'
+                'try-install-upgrade/sample-data/shane-longman/user-provisioning',
+                'try-install-upgrade/sample-data/shane-longman/access-control'
               ],
             }
           ],
