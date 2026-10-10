@@ -327,7 +327,7 @@ uid: system
 cn: System Account
 givenName: System
 sn: Account
-mail: system@shanelongman.local
+mail: system@shane-longman.org
 userPassword: secret
 title: System Account
 departmentNumber: System

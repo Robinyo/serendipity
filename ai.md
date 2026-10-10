@@ -1,4 +1,4 @@
-Q. What is the best self-hostable model that has been traing on Spring Boot 4.0.1, Spring Cloud 2025.1.0, Java 25,and Angular v22.
+Q. What is the best self-hostable model that has been trained on Spring Boot 4.0.1, Spring Cloud 2025.1.0, Java 25,and Angular v22.
 
 There is **no open weights model that natively has pre-trained, param-level knowledge** for those specific future/cutting-edge versions out of the box.
 
