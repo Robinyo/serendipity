@@ -57,6 +57,10 @@ A mature, production-ready open-source Customer Engagement Platform that organis
 - ⏳ Structured JSON logging
 - ⏳ Basic metrics (request latency, error rate) via Micrometer and Prometheus
 
+### Access-control enforcement
+
+- ⏳ Enforce the manager-hierarchy rule in the Party Service: the LDIF's `manager` attribute holds a DN (e.g. `uid=james.farrell,ou=people,dc=shane-longman,dc=org`); the enforcement layer must resolve that DN to the manager's Keycloak `sub` before comparing it against `ownedBy` / `assignedTo`. See [Access Control — design document](./architecture-guide/access-control/design-document.md).
+
 ### Dependency upgrades
 
 - ⏳ Establish a quarterly upgrade cadence for Angular, Spring Boot, Camunda, and other major dependencies

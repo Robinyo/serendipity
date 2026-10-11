@@ -11,7 +11,7 @@
 | `jobTitle`     | A string                               | Optional profile attribute.                                                               |
 | `department`   | A string                               | Optional profile attribute.                                                               |
 | `employeeType` | A string                               | Optional profile attribute.                                                               |
-| `manager`      | The `sub` (UUID) of the user's manager | The one attribute the access-control model depends on — it enables the manager hierarchy. |
+| `manager`      | The manager's DN, e.g. `uid=james.farrell,ou=people,dc=shane-longman,dc=org` | The one attribute the access-control model depends on — it enables the manager hierarchy. |
 
 2. Create the realm roles in Keycloak:
 
@@ -36,9 +36,11 @@
 | state-region  | user-attribute-ldap-mapper |                    | `st`               |
 | manager-dn    | user-attribute-ldap-mapper | `manager`          | `manager`          |
 
-   The federation mapper maps the LDAP attributes into Keycloak's user profile. 
-   When you configure the `group-ldap-mapper` and trigger a synchronisation (or when a user logs in), Keycloak automatically reads the LDAP directory branch and creates the corresponding groups in Keycloak dynamically.
-   You assign realm roles to the groups after the LDAP group sync has run at least once (or after you manually trigger the initial sync) so that the synced groups exist in Keycloak.
+The federation mapper maps the LDAP attributes into Keycloak's user profile.
+When you configure the `group-ldap-mapper` and trigger a synchronisation (or when a user logs in), Keycloak automatically reads the LDAP directory branch and creates the corresponding groups in Keycloak dynamically.
+You assign realm roles to the groups after the LDAP group sync has run at least once (or after you manually trigger the initial sync) so that the synced groups exist in Keycloak.
+
+**The `manager` attribute arrives as a DN and is resolved to a `sub`.** On initial load the `manager-dn` mapper copies the LDAP `manager` attribute as-is, so the Keycloak user's `manager` attribute holds the manager's **DN** (e.g. `uid=james.farrell,ou=people,dc=shane-longman,dc=org`) — a directory string, not a Keycloak identifier. The access-control model needs the **`sub` (UUID) of the manager's user** — the same token `sub` the enforcement layer compares `ownedBy` and `assignedTo` against ([Access Control — design document](../../../architecture-guide/access-control/design-document.md)). Resolving a DN to that `sub` is a one-time, per-manager lookup against the synced users (DN → user → `sub`), cached afterwards; every `manager` value is exactly one DN, so the lookup is cheap. **This resolution is not yet implemented** — it is tracked as an open roadmap item ([Roadmap](../../../roadmap.md)).
 
 :::info
 Every user includes `l` (locality / city) and `st` (state / province) attributes.
