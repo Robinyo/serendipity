@@ -183,7 +183,12 @@
 
                   <mat-card-content class="md-card-content">
                     <div>
-                      <form-js-wrapper #formRef [schema]="schema" [data]="item"></form-js-wrapper>
+                      <form-js-wrapper
+                        #formRef
+                        [schema]="schema"
+                        [data]="item"
+                        (buttonClick)="onSearchFieldButtonClick($event)">
+                      </form-js-wrapper>
                     </div>
                   </mat-card-content>
 

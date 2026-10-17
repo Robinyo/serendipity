@@ -105,6 +105,10 @@ export class Contact extends AbstractPartyItem<ContactUpdateDto> {
 
   }
 
+  public onSearchFieldButtonClick(event: { key?: string; field: any; value: any; rawValue?: any }): void {
+    this.logger.info('Search field button clicked: ', event.field.label);
+  }
+
   //
   // Command Bar Handlers
   //

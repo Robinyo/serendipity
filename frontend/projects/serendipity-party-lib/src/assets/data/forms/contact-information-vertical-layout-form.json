@@ -55,7 +55,7 @@
     },
     {
       "label": "Account Name",
-      "type": "textfield",
+      "type": "searchField",
       "layout": {
         "row": "Row_15xr32x",
         "columns": null
