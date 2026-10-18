@@ -9,11 +9,14 @@
       justify-content: center;
       padding: 0 12px;
       background-color: var(--form-field-addon-bg, #f2f4f7);
-      border: 1px solid var(--form-field-border-color, #ccc);
-      border-right: none;
+      border-left: none;
+      border-top: none;
+      border-bottom: none;
+      border-right: 1px solid var(--form-field-border-color, #ccc);
       border-radius: 4px 0 0 4px;
       cursor: pointer;
       color: #333;
+      outline: none;
 
       &:hover:not([disabled]) {
         background-color: #e5e7eb;

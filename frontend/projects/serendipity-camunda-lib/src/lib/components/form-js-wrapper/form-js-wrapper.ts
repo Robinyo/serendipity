@@ -1,6 +1,6 @@
 import {
-  AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, OnDestroy, OnInit, Output,
-  NgZone, ViewChild, ChangeDetectionStrategy
+  AfterViewInit, ChangeDetectorRef, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, inject, Input,
+  OnDestroy, OnInit, Output, NgZone, ViewChild
 } from '@angular/core';
 import { Form } from '@bpmn-io/form-js-viewer';
 import { CustomFormFieldsModule } from '../form-js-extensions/search-field/render/custom-form-fields';
@@ -16,8 +16,8 @@ import { getDeepDiff, ObjectDiff } from '../../utils/object-diff/object-diff';
   selector: 'form-js-wrapper',
   standalone: true,
   template: `<div #formWrapper class="form-wrapper"></div>`,
-  changeDetection: ChangeDetectionStrategy.Eager,
-  styleUrl: './form-js-wrapper.scss'
+  styleUrl: './form-js-wrapper.scss',
+  changeDetection: ChangeDetectionStrategy.Eager
 })
 export class FormJsWrapper implements AfterViewInit, OnDestroy, OnInit {
 
